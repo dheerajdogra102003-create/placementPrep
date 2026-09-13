@@ -515,49 +515,51 @@ let correctCount = 0;
 let wrongCount = 0;
 
 // DOM Elements
-const elements = {
-  themeToggle: document.getElementById('theme-toggle'),
-  body: document.body,
-  
-  // Header
-  progressText: document.getElementById('progress-text'),
-  progressBar: document.getElementById('progress-bar-fill'),
-  scoreDisplay: document.getElementById('score-display'),
-  
-  // Card elements
-  questionNumber: document.getElementById('question-number'),
-  difficultyBadge: document.getElementById('difficulty-badge'),
-  topicBadge: document.getElementById('topic-badge'),
-  conceptBadge: document.getElementById('concept-badge'),
-  questionText: document.getElementById('question-text'),
-  optionsContainer: document.getElementById('options-container'),
-  
-  // Explanation area
-  explanationArea: document.getElementById('explanation-area'),
-  statusIcon: document.getElementById('status-icon'),
-  statusText: document.getElementById('status-text'),
-  explanationText: document.getElementById('explanation-text'),
-  whyCorrectText: document.getElementById('why-correct'),
-  whyOthersText: document.getElementById('why-others'),
-  
-  // Controls
-  prevBtn: document.getElementById('prev-btn'),
-  nextBtn: document.getElementById('next-btn'),
-  
-  // Completion
-  flashcardArea: document.getElementById('flashcard-area'),
-  completionArea: document.getElementById('completion-area'),
-  finalScore: document.getElementById('final-score'),
-  finalPercentage: document.getElementById('final-percentage'),
-  finalCorrect: document.getElementById('final-correct'),
-  finalWrong: document.getElementById('final-wrong'),
-  finalAttempted: document.getElementById('final-attempted'),
-  performanceMessage: document.getElementById('performance-message'),
-  restartBtn: document.getElementById('restart-btn')
-};
+let elements = {};
 
 // Initialize
 function init() {
+  elements = {
+    themeToggle: document.getElementById('theme-toggle'),
+    body: document.body,
+    
+    // Header
+    progressText: document.getElementById('progress-text'),
+    progressBar: document.getElementById('progress-bar-fill'),
+    scoreDisplay: document.getElementById('score-display'),
+    
+    // Card elements
+    questionNumber: document.getElementById('question-number'),
+    difficultyBadge: document.getElementById('difficulty-badge'),
+    topicBadge: document.getElementById('topic-badge'),
+    conceptBadge: document.getElementById('concept-badge'),
+    questionText: document.getElementById('question-text'),
+    optionsContainer: document.getElementById('options-container'),
+    
+    // Explanation area
+    explanationArea: document.getElementById('explanation-area'),
+    statusIcon: document.getElementById('status-icon'),
+    statusText: document.getElementById('status-text'),
+    explanationText: document.getElementById('explanation-text'),
+    whyCorrectText: document.getElementById('why-correct'),
+    whyOthersText: document.getElementById('why-others'),
+    
+    // Controls
+    prevBtn: document.getElementById('prev-btn'),
+    nextBtn: document.getElementById('next-btn'),
+    
+    // Completion
+    flashcardArea: document.getElementById('flashcard-area'),
+    completionArea: document.getElementById('completion-area'),
+    finalScore: document.getElementById('final-score'),
+    finalPercentage: document.getElementById('final-percentage'),
+    finalCorrect: document.getElementById('final-correct'),
+    finalWrong: document.getElementById('final-wrong'),
+    finalAttempted: document.getElementById('final-attempted'),
+    performanceMessage: document.getElementById('performance-message'),
+    restartBtn: document.getElementById('restart-btn')
+  };
+
   loadTheme();
   loadQuestion();
   setupEventListeners();
@@ -608,14 +610,14 @@ function loadQuestion() {
   const q = questions[currentQuestionIndex];
   
   // Update header
-  elements.progressText.textContent = \`Question \${currentQuestionIndex + 1} of \${questions.length}\`;
-  elements.progressBar.style.width = \`\${((currentQuestionIndex) / questions.length) * 100}%\`;
-  elements.scoreDisplay.textContent = \`Score: \${score}\`;
+  elements.progressText.textContent = `Question ${currentQuestionIndex + 1} of ${questions.length}`;
+  elements.progressBar.style.width = `${((currentQuestionIndex) / questions.length) * 100}%`;
+  elements.scoreDisplay.textContent = `Score: ${score}`;
   
   // Update badges & question
-  elements.questionNumber.textContent = \`Q\${q.id}\`;
+  elements.questionNumber.textContent = `Q${q.id}`;
   elements.difficultyBadge.textContent = q.difficulty;
-  elements.difficultyBadge.className = \`badge diff-\${q.difficulty.toLowerCase()}\`;
+  elements.difficultyBadge.className = `badge diff-${q.difficulty.toLowerCase()}`;
   elements.topicBadge.textContent = q.topic;
   elements.conceptBadge.textContent = q.concept;
   elements.questionText.textContent = q.question;
@@ -625,7 +627,7 @@ function loadQuestion() {
   q.options.forEach((optionText, index) => {
     const btn = document.createElement('button');
     btn.className = 'option-btn';
-    btn.innerHTML = \`<span class="option-letter">\${String.fromCharCode(65 + index)}</span> <span class="option-text">\${optionText}</span>\`;
+    btn.innerHTML = `<span class="option-letter">${String.fromCharCode(65 + index)}</span> <span class="option-text">${optionText}</span>`;
     
     // If already answered, show state
     if (q.userAnswer !== undefined) {
@@ -684,8 +686,8 @@ function selectOption(selectedIndex) {
     }
   });
   
-  elements.scoreDisplay.textContent = \`Score: \${score}\`;
-  elements.progressBar.style.width = \`\${((currentQuestionIndex + 1) / questions.length) * 100}%\`;
+  elements.scoreDisplay.textContent = `Score: ${score}`;
+  elements.progressBar.style.width = `${((currentQuestionIndex + 1) / questions.length) * 100}%`;
   
   showExplanation(q, isCorrect);
   
@@ -709,12 +711,12 @@ function showExplanation(q, isCorrect) {
   }
   
   elements.explanationText.textContent = q.explanation;
-  elements.whyCorrectText.textContent = \`Why Correct: \${q.whyCorrect}\`;
+  elements.whyCorrectText.textContent = `Why Correct: ${q.whyCorrect}`;
   
   elements.whyOthersText.innerHTML = '<strong>Why others are wrong:</strong><br>';
   for (const [key, value] of Object.entries(q.whyOthersAreWrong)) {
     const letter = String.fromCharCode(65 + parseInt(key));
-    elements.whyOthersText.innerHTML += \`<div><strong>Option \${letter}:</strong> \${value}</div>\`;
+    elements.whyOthersText.innerHTML += `<div><strong>Option ${letter}:</strong> ${value}</div>`;
   }
 }
 
@@ -725,8 +727,8 @@ function showCompletionScreen() {
   const total = questions.length;
   const percentage = Math.round((score / total) * 100);
   
-  elements.finalScore.textContent = \`\${score} / \${total}\`;
-  elements.finalPercentage.textContent = \`\${percentage}%\`;
+  elements.finalScore.textContent = `${score} / ${total}`;
+  elements.finalPercentage.textContent = `${percentage}%`;
   elements.finalCorrect.textContent = correctCount;
   elements.finalWrong.textContent = wrongCount;
   elements.finalAttempted.textContent = correctCount + wrongCount;

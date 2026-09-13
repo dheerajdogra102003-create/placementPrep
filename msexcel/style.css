@@ -9,9 +9,9 @@
   --card-border: #e2e8f0;
   --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
   
-  --primary-color: #3b82f6;
-  --primary-hover: #2563eb;
-  --secondary-color: #8b5cf6;
+  --primary-color: #107C41;
+  --primary-hover: #185C37;
+  --secondary-color: #21A366;
   
   --success-color: #22c55e;
   --success-bg: #dcfce7;
@@ -38,9 +38,9 @@ body.dark-mode {
   --card-border: #334155;
   --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
   
-  --primary-color: #3b82f6;
-  --primary-hover: #60a5fa;
-  --secondary-color: #a78bfa;
+  --primary-color: #21A366;
+  --primary-hover: #107C41;
+  --secondary-color: #185C37;
   
   --success-color: #4ade80;
   --success-bg: rgba(34, 197, 94, 0.15);
