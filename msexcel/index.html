@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MS Excel - Placement Practice</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div>
+                    <h1>MS Excel - Placement Practice</h1>
+                    <p class="subtitle">30 Placement-Level MCQs</p>
+                </div>
+                <div class="header-controls">
+                    <div id="score-display" class="score-display">Score: 0</div>
+                    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+                        <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                        <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="4.22" x2="19.78" y2="5.64"></line></svg>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div id="progress-bar-fill" class="progress-bar-fill" style="width: 0%"></div>
+                </div>
+                <div id="progress-text" class="progress-text">Question 1 of 30</div>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            
+            <!-- Flashcard Area -->
+            <div id="flashcard-area" class="flashcard-area">
+                <div class="flashcard">
+                    <!-- Badges -->
+                    <div class="badges-row">
+                        <span id="question-number" class="badge bg-primary">Q1</span>
+                        <span id="difficulty-badge" class="badge">Easy</span>
+                        <span id="topic-badge" class="badge bg-secondary">Topic</span>
+                        <span id="concept-badge" class="badge bg-outline">Concept</span>
+                    </div>
+
+                    <!-- Question -->
+                    <h2 id="question-text" class="question-text">Loading question...</h2>
+
+                    <!-- Options -->
+                    <div id="options-container" class="options-container">
+                        <!-- Buttons injected via JS -->
+                    </div>
+
+                    <!-- Explanation Area (Hidden initially) -->
+                    <div id="explanation-area" class="explanation-area hidden">
+                        <div class="status-header">
+                            <span id="status-icon" class="status-icon"></span>
+                            <h3 id="status-text" class="status-text"></h3>
+                        </div>
+                        <p id="explanation-text" class="explanation-text"></p>
+                        <div class="why-details">
+                            <p id="why-correct" class="why-correct"></p>
+                            <div id="why-others" class="why-others"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <div class="navigation-controls">
+                    <button id="prev-btn" class="nav-btn" disabled>Previous</button>
+                    <button id="next-btn" class="nav-btn btn-primary" disabled>Next</button>
+                </div>
+            </div>
+
+            <!-- Completion Area (Hidden initially) -->
+            <div id="completion-area" class="completion-area hidden">
+                <div class="completion-card">
+                    <h2>Quiz Completed!</h2>
+                    <div class="score-circle">
+                        <span id="final-percentage" class="percentage">0%</span>
+                        <span id="final-score" class="score-fraction">0 / 30</span>
+                    </div>
+                    
+                    <p id="performance-message" class="performance-message">Great job!</p>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-box correct">
+                            <span class="stat-label">Correct</span>
+                            <span id="final-correct" class="stat-value">0</span>
+                        </div>
+                        <div class="stat-box wrong">
+                            <span class="stat-label">Incorrect</span>
+                            <span id="final-wrong" class="stat-value">0</span>
+                        </div>
+                        <div class="stat-box total">
+                            <span class="stat-label">Attempted</span>
+                            <span id="final-attempted" class="stat-value">0</span>
+                        </div>
+                    </div>
+
+                    <button id="restart-btn" class="nav-btn btn-primary btn-large">Restart Quiz</button>
+                </div>
+            </div>
+
+        </main>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
