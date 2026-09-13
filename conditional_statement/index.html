@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MNC Placement Mastery - Conditional Statements</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="app">
+        <!-- Header -->
+        <header>
+            <div class="logo">
+                <span class="neon-text">MNC Placement Mastery</span>
+            </div>
+            <nav>
+                <button id="nav-dashboard" class="nav-btn active">Dashboard</button>
+                <button id="nav-practice" class="nav-btn">Practice Mode</button>
+                <button id="nav-quiz" class="nav-btn">Timed Test</button>
+            </nav>
+        </header>
+
+        <main>
+            <!-- Dashboard View -->
+            <section id="view-dashboard" class="view active">
+                <div class="dashboard-header">
+                    <h1>Conditional Statements</h1>
+                    <p>Accenture & Big MNC Technical Practice</p>
+                    <div class="feature-tags">
+                        <span>50 Placement-Level Questions</span>
+                        <span>Accenture-style Logic</span>
+                        <span>C/C++/Java/Python/Pseudocode</span>
+                        <span>Instant Explanations</span>
+                    </div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Questions Attempted</h3>
+                        <p id="stat-attempted">0 / 50</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Overall Accuracy</h3>
+                        <p id="stat-accuracy">0%</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Weakest Concept</h3>
+                        <p id="stat-weakest">None</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Marked for Review</h3>
+                        <p id="stat-marked">0</p>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="cta-btn primary" id="btn-start-practice">Start Practice</button>
+                    <button class="cta-btn secondary" id="btn-start-quiz">Start Timed Test</button>
+                    <button class="cta-btn secondary" id="btn-start-hard">Hard Questions Only</button>
+                    <button class="cta-btn secondary" id="btn-review-marked">Review Marked</button>
+                </div>
+            </section>
+
+            <!-- Practice / Quiz View -->
+            <section id="view-question" class="view">
+                <div class="question-header">
+                    <div class="q-meta">
+                        <span id="q-number">Question 1/50</span>
+                        <span id="q-difficulty" class="badge">Medium</span>
+                        <span id="q-concept" class="badge">if-else</span>
+                        <span id="q-language" class="badge">C</span>
+                    </div>
+                    <div class="q-controls">
+                        <div id="timer-display" class="hidden">20:00</div>
+                        <button id="btn-mark-review" class="icon-btn" title="Mark for Review (Shortcut: R)">⭐</button>
+                    </div>
+                </div>
+
+                <div class="question-body">
+                    <p id="q-text" class="question-text">Question text goes here</p>
+                    <div id="q-code-container" class="code-block hidden">
+                        <pre><code id="q-code"></code></pre>
+                    </div>
+                </div>
+
+                <div class="options-grid" id="options-container">
+                    <!-- Options populated by JS -->
+                </div>
+
+                <div class="action-bar">
+                    <button id="btn-prev" class="nav-arrow" title="Previous (Left Arrow)">&larr; Prev</button>
+                    <button id="btn-show-explanation" class="btn-reveal hidden">Show Explanation</button>
+                    <button id="btn-next" class="nav-arrow" title="Next (Right Arrow)">Next &rarr;</button>
+                    <button id="btn-submit-quiz" class="btn-submit hidden">Submit Test</button>
+                </div>
+
+                <div id="explanation-panel" class="explanation-panel hidden">
+                    <div class="exp-header">
+                        <h3 id="exp-status">Correct!</h3>
+                        <p class="correct-ans-label">Correct Answer: <strong id="exp-correct-ans">Option A</strong></p>
+                    </div>
+                    <div class="exp-content">
+                        <h4>Explanation</h4>
+                        <p id="exp-reasoning"></p>
+
+                        <div class="exp-others">
+                            <h4>Why others are wrong:</h4>
+                            <ul id="exp-wrong-options"></ul>
+                        </div>
+
+                        <div class="exp-extras">
+                            <div class="extra-box trap">
+                                <strong>Common Trap:</strong> <span id="exp-trap"></span>
+                            </div>
+                            <div class="extra-box shortcut">
+                                <strong>Exam Shortcut:</strong> <span id="exp-shortcut"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Results View -->
+            <section id="view-results" class="view">
+                <h2>Test Results</h2>
+                <div class="results-overview">
+                    <div class="result-score">
+                        <h1 id="res-score">15/20</h1>
+                        <p id="res-level">Strong — minor improvement needed</p>
+                    </div>
+                    <div class="result-stats">
+                        <p>Accuracy: <span id="res-accuracy">75%</span></p>
+                        <p>Time Taken: <span id="res-time">12:34</span></p>
+                    </div>
+                </div>
+                <div class="results-actions">
+                    <button id="btn-back-dashboard" class="cta-btn primary">Back to Dashboard</button>
+                    <button id="btn-review-test" class="cta-btn secondary">Review Solutions</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="questions.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

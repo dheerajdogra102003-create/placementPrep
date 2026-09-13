@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loops - MNC Placement Mastery</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- Header Navigation -->
+  <header class="app-header">
+    <div class="header-left">
+      <div class="logo">Loops Mastery</div>
+      <div class="subtitle">50 Expected MNC MCQs | 2026</div>
+    </div>
+
+    <div class="header-center">
+      <div class="mode-selector">
+        <button id="btn-practice" class="mode-btn active" aria-label="Practice Mode">Practice Mode</button>
+        <button id="btn-exam" class="mode-btn" aria-label="Exam Mode">Exam Mode</button>
+        <button id="btn-review" class="mode-btn" aria-label="Review Mode">Review Mode</button>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <div id="exam-timer" class="timer hidden" aria-label="Exam Timer">30:00</div>
+      <div class="score-display">
+        Score: <span id="current-score">0</span> / 50
+      </div>
+      <button id="theme-toggle" class="icon-btn" aria-label="Toggle Theme" title="Toggle Light/Dark Mode">
+        <svg id="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+        <svg id="icon-sun" class="hidden" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+      </button>
+      <button id="drawer-toggle" class="icon-btn" aria-label="Toggle Question Grid" title="Question Navigator">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="7" height="7"></rect>
+          <rect x="14" y="3" width="7" height="7"></rect>
+          <rect x="14" y="14" width="7" height="7"></rect>
+          <rect x="3" y="14" width="7" height="7"></rect>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="main-layout">
+    <div class="content-wrapper">
+
+      <!-- Water Tank Progress -->
+      <div class="water-tracker-wrapper">
+        <div class="water-tracker">
+          <span class="water-label">Tank</span>
+          <div class="water-container">
+            <div id="pour-stream" class="pour-stream"></div>
+            <div id="water-bar" class="water-bar"></div>
+          </div>
+          <div id="leak-container" class="leak-container"></div>
+        </div>
+      </div>
+
+      <!-- Top Question Info -->
+      <div class="question-header">
+        <h2 id="question-number">Question 1 of 50</h2>
+        <div class="badges">
+          <span id="badge-topic" class="badge topic-badge">Topic</span>
+          <span id="badge-difficulty" class="badge diff-badge">Difficulty</span>
+          <span id="badge-language" class="badge lang-badge">Language</span>
+        </div>
+      </div>
+
+      <!-- Question Content -->
+      <div class="question-card">
+        <p id="question-text" class="question-text">Question text goes here</p>
+        <div id="code-container" class="code-container hidden">
+          <pre><code id="code-block" class="code-block"></code></pre>
+        </div>
+      </div>
+
+      <!-- Answer Options -->
+      <div id="options-grid" class="options-grid">
+        <button class="option-btn" data-opt="A"><span class="opt-label">A</span><span class="opt-text"
+            id="opt-text-A">Option A</span></button>
+        <button class="option-btn" data-opt="B"><span class="opt-label">B</span><span class="opt-text"
+            id="opt-text-B">Option B</span></button>
+        <button class="option-btn" data-opt="C"><span class="opt-label">C</span><span class="opt-text"
+            id="opt-text-C">Option C</span></button>
+        <button class="option-btn" data-opt="D"><span class="opt-label">D</span><span class="opt-text"
+            id="opt-text-D">Option D</span></button>
+      </div>
+
+      <!-- Instant Feedback Box -->
+      <div id="feedback-container" class="feedback-container hidden">
+        <div class="feedback-header" id="feedback-header">
+          <h3 id="feedback-title">Result</h3>
+        </div>
+        <div class="feedback-body">
+          <div class="explanation-section">
+            <h4><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg> Step-by-Step Trace</h4>
+            <p id="explanation-text">Explanation goes here.</p>
+          </div>
+          <div class="cards-row">
+            <div class="info-card trap-card">
+              <h4><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2">
+                  <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z">
+                  </path>
+                  <line x1="12" y1="9" x2="12" y2="13"></line>
+                  <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                </svg> Exam Trap</h4>
+              <p id="trap-text">Trap info</p>
+            </div>
+            <div class="info-card trick-card">
+              <h4><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2">
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                </svg> Quick Trick</h4>
+              <p id="trick-text">Trick info</p>
+            </div>
+            <div class="info-card app-card">
+              <h4><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2">
+                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                  <line x1="8" y1="21" x2="16" y2="21"></line>
+                  <line x1="12" y1="17" x2="12" y2="21"></line>
+                </svg> Real World</h4>
+              <p id="app-text">App info</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Controls Navigation -->
+      <div class="controls-nav">
+        <button id="btn-prev" class="nav-btn">Previous</button>
+        <button id="btn-mark" class="nav-btn mark-btn">Mark for Review</button>
+        <button id="btn-skip" class="nav-btn skip-btn">Skip</button>
+        <button id="btn-next" class="nav-btn next-btn">Next</button>
+        <button id="btn-submit-exam" class="nav-btn submit-btn hidden">Submit Exam</button>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Side Drawer Question Grid -->
+  <aside id="question-drawer" class="drawer">
+    <div class="drawer-header">
+      <h3>Question Navigator</h3>
+      <button id="close-drawer" class="icon-btn" aria-label="Close Drawer">&times;</button>
+    </div>
+    <div class="drawer-legend">
+      <span class="legend-item"><span class="dot unvisited"></span> Unvisited</span>
+      <span class="legend-item"><span class="dot answered"></span> Answered</span>
+      <span class="legend-item"><span class="dot marked"></span> Marked</span>
+      <span class="legend-item"><span class="dot skipped"></span> Skipped</span>
+    </div>
+    <div id="grid-container" class="grid-container">
+      <!-- Grid buttons generated by JS -->
+    </div>
+  </aside>
+
+  <!-- Results Dashboard Modal -->
+  <div id="results-modal" class="modal hidden">
+    <div class="modal-content">
+      <h2 id="results-title">Assessment Results</h2>
+      <div class="results-overview">
+        <div class="score-circle">
+          <svg viewBox="0 0 36 36" class="circular-chart">
+            <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+            <path id="score-circle-path" class="circle" stroke-dasharray="0, 100"
+              d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+            <text id="score-percentage" x="18" y="20.35" class="percentage">0%</text>
+          </svg>
+        </div>
+        <div class="score-details">
+          <h3 id="performance-label">Needs Improvement</h3>
+          <p>Total Score: <strong id="res-score">0 / 50</strong></p>
+          <p>Correct: <span id="res-correct" class="text-success">0</span></p>
+          <p>Incorrect: <span id="res-incorrect" class="text-danger">0</span></p>
+          <p>Skipped: <span id="res-skipped" class="text-warning">0</span></p>
+        </div>
+      </div>
+
+      <div class="results-breakdown">
+        <div class="breakdown-col">
+          <h3>Difficulty Accuracy</h3>
+          <div id="diff-stats"></div>
+        </div>
+        <div class="breakdown-col">
+          <h3>Top Weakest Topics</h3>
+          <ul id="weak-topics-list"></ul>
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button id="btn-review-mistakes" class="modal-btn primary-btn">Review Mistakes</button>
+        <button id="btn-restart" class="modal-btn secondary-btn">Restart Full Test</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="questions.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>

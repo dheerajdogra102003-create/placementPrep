@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="theme-color" content="#09111f">
+	<title>Placement Practice | Command Prompt Basics</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap"
+		rel="stylesheet">
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+	<div class="app-shell">
+		<header class="app-header">
+			<a class="brand" href="../index.html" aria-label="Placement practice home"><span
+					class="brand-mark">&gt;_</span><span>PLACEMENT<br><b>LAB</b></span></a>
+			<div class="header-title"><strong>Accenture + Capgemini</strong><span>Technical placement practice</span>
+			</div>
+			<div class="header-actions" style="display: flex; align-items: center; gap: 15px;">
+				<button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle theme">
+					<svg class="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+						stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+						<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+					</svg>
+					<svg class="sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+						stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+						<circle cx="12" cy="12" r="5"></circle>
+						<line x1="12" y1="1" x2="12" y2="3"></line>
+						<line x1="12" y1="21" x2="12" y2="23"></line>
+						<line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+						<line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+						<line x1="1" y1="12" x2="3" y2="12"></line>
+						<line x1="21" y1="12" x2="23" y2="12"></line>
+						<line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+						<line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+					</svg>
+				</button>
+				<button class="restart-link" id="headerRestart" type="button">Restart quiz</button>
+			</div>
+		</header>
+
+		<main id="top">
+			<section class="intro-row">
+				<div>
+					<p class="kicker">Module 04 / Command line fundamentals</p>
+					<h1>Command Prompt <span>/</span> Windows Basics</h1>
+					<p class="subtitle">A focused 30-question sprint for the commands you are expected to know before
+						technical interviews.</p>
+				</div>
+				<div class="module-badge"><span>01</span><small>practice<br>module</small></div>
+			</section>
+
+			<section class="score-strip" aria-label="Quiz score summary">
+				<div class="score-item score-main"><span class="score-icon">✦</span>
+					<div><small>Current score</small><strong id="scoreValue">0%</strong></div>
+				</div>
+				<div class="score-item"><small>Correct</small><strong id="correctValue">0</strong></div>
+				<div class="score-item"><small>Incorrect</small><strong id="incorrectValue">0</strong></div>
+				<div class="score-item score-progress"><small>Progress</small><strong><span id="questionValue">1</span>
+						<i>/</i> <span id="totalValue">30</span></strong></div>
+			</section>
+
+			<section class="quiz-view" id="quizView" aria-live="polite">
+				<div class="progress-track">
+					<div class="progress-fill" id="progressFill"></div>
+				</div>
+				<div class="question-meta"><span id="questionLabel">Question 01 / 30</span><span
+						class="difficulty-badge" id="difficultyBadge">Easy</span><span class="topic-label"
+						id="topicLabel">Navigation</span></div>
+
+				<article class="question-card">
+					<div class="question-heading"><span class="question-number" id="questionNumber">01</span>
+						<div>
+							<p class="micro-label">Concept</p>
+							<p class="concept" id="conceptValue">dir command</p>
+						</div>
+					</div>
+					<h2 id="questionText">Loading question...</h2>
+					<div class="options-grid" id="optionsGrid"></div>
+					<div class="feedback" id="feedbackPanel" hidden>
+						<div class="feedback-title"><span id="feedbackIcon"></span><strong id="feedbackTitle"></strong>
+						</div>
+						<div class="feedback-content">
+							<p class="micro-label">Correct answer</p>
+							<p id="correctAnswerText"></p>
+							<p class="micro-label">Why?</p>
+							<p id="explanationText"></p>
+							<p class="micro-label">Why the other options are incorrect</p>
+							<p id="otherOptionsText"></p>
+							<p class="micro-label">Real-world use</p>
+							<p id="realWorldText"></p>
+						</div>
+					</div>
+				</article>
+
+				<div class="quiz-controls"><button class="secondary-button" id="previousButton" type="button">←
+						Previous</button><span class="keyboard-note">Select an answer to continue</span><button
+						class="primary-button" id="nextButton" type="button" disabled>Next question →</button></div>
+			</section>
+
+			<section class="result-view" id="resultView" hidden>
+				<div class="result-header">
+					<p class="kicker">Module complete</p>
+					<h2>Strong work.<br><span>Here is your readout.</span></h2>
+				</div>
+				<div class="result-score"><span id="finalScore">0%</span><small>final score</small></div>
+				<div class="result-stats">
+					<div><small>Correct answers</small><strong id="finalCorrect">0</strong></div>
+					<div><small>Incorrect answers</small><strong id="finalIncorrect">0</strong></div>
+					<div><small>Total questions</small><strong>30</strong></div>
+					<div><small>Performance</small><strong id="performanceLevel">Needs More Practice</strong></div>
+				</div>
+				<div class="result-actions"><button class="primary-button" id="reviewButton" type="button">Review
+						answers</button><button class="secondary-button" id="retryButton" type="button">↻ Retry
+						quiz</button></div>
+				<div class="review-list" id="reviewList"></div>
+			</section>
+		</main>
+		<footer><span>Placement Lab / v1.0</span><span>Built for focused practice</span></footer>
+	</div>
+	<script src="script.js"></script>
+</body>
+
+</html>
