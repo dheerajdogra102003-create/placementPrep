@@ -1,129 +1,423 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="theme-color" content="#09111f">
-	<title>Placement Practice | Command Prompt Basics</title>
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link
-		href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap"
-		rel="stylesheet">
-	<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linux & Shell Commands - Placement Practice & Assessment</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-	<div class="app-shell">
-		<header class="app-header">
-			<a class="brand" href="../index.html" aria-label="Placement practice home"><span
-					class="brand-mark">&gt;_</span><span>PLACEMENT<br><b>LAB</b></span></a>
-			<div class="header-title"><strong>Accenture + Capgemini</strong><span>Technical placement practice</span>
-			</div>
-			<div class="header-actions" style="display: flex; align-items: center; gap: 15px;">
-				<button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle theme">
-					<svg class="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-						stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-						<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-					</svg>
-					<svg class="sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-						stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
-						<circle cx="12" cy="12" r="5"></circle>
-						<line x1="12" y1="1" x2="12" y2="3"></line>
-						<line x1="12" y1="21" x2="12" y2="23"></line>
-						<line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-						<line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-						<line x1="1" y1="12" x2="3" y2="12"></line>
-						<line x1="21" y1="12" x2="23" y2="12"></line>
-						<line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-						<line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-					</svg>
-				</button>
-				<button class="restart-link" id="headerRestart" type="button">Restart quiz</button>
-			</div>
-		</header>
 
-		<main id="top">
-			<section class="intro-row">
-				<div>
-					<p class="kicker">Module 04 / Command line fundamentals</p>
-					<h1>Command Prompt <span>/</span> Windows Basics</h1>
-					<p class="subtitle">A focused 30-question sprint for the commands you are expected to know before
-						technical interviews.</p>
-				</div>
-				<div class="module-badge"><span>01</span><small>practice<br>module</small></div>
-			</section>
+    <!-- Header Navigation -->
+    <header class="app-header">
+        <div class="header-container">
+            <div class="header-left">
+                <a href="../index.html" class="back-link" aria-label="Return to PlacementPrep Dashboard">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                    Dashboard
+                </a>
+                <div class="header-divider"></div>
+                <div class="module-title-area">
+                    <div class="topic-tag">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="4 17 10 11 4 5"></polyline>
+                            <line x1="12" y1="19" x2="20" y2="19"></line>
+                        </svg>
+                        <span>Linux &amp; Shell Commands</span>
+                    </div>
+                    <span id="header-mode-badge" class="badge mode-tag">Practice Mode</span>
+                </div>
+            </div>
 
-			<section class="score-strip" aria-label="Quiz score summary">
-				<div class="score-item score-main"><span class="score-icon">✦</span>
-					<div><small>Current score</small><strong id="scoreValue">0%</strong></div>
-				</div>
-				<div class="score-item"><small>Correct</small><strong id="correctValue">0</strong></div>
-				<div class="score-item"><small>Incorrect</small><strong id="incorrectValue">0</strong></div>
-				<div class="score-item score-progress"><small>Progress</small><strong><span id="questionValue">1</span>
-						<i>/</i> <span id="totalValue">30</span></strong></div>
-			</section>
+            <div class="header-center">
+                <!-- 20:00 Timer for Exam Mode -->
+                <div id="timer-box" class="timer-box hidden" aria-live="polite">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    <span id="timer-display" class="timer-text">20:00</span>
+                </div>
+            </div>
 
-			<section class="quiz-view" id="quizView" aria-live="polite">
-				<div class="progress-track">
-					<div class="progress-fill" id="progressFill"></div>
-				</div>
-				<div class="question-meta"><span id="questionLabel">Question 01 / 30</span><span
-						class="difficulty-badge" id="difficultyBadge">Easy</span><span class="topic-label"
-						id="topicLabel">Navigation</span></div>
+            <div class="header-right">
+                <div id="score-counter" class="score-pill">
+                    Score: <strong id="score-value">0</strong>
+                </div>
 
-				<article class="question-card">
-					<div class="question-heading"><span class="question-number" id="questionNumber">01</span>
-						<div>
-							<p class="micro-label">Concept</p>
-							<p class="concept" id="conceptValue">dir command</p>
-						</div>
-					</div>
-					<h2 id="questionText">Loading question...</h2>
-					<div class="options-grid" id="optionsGrid"></div>
-					<div class="feedback" id="feedbackPanel" hidden>
-						<div class="feedback-title"><span id="feedbackIcon"></span><strong id="feedbackTitle"></strong>
-						</div>
-						<div class="feedback-content">
-							<p class="micro-label">Correct answer</p>
-							<p id="correctAnswerText"></p>
-							<p class="micro-label">Why?</p>
-							<p id="explanationText"></p>
-							<p class="micro-label">Why the other options are incorrect</p>
-							<p id="otherOptionsText"></p>
-							<p class="micro-label">Real-world use</p>
-							<p id="realWorldText"></p>
-						</div>
-					</div>
-				</article>
+                <button id="theme-toggle" class="icon-btn theme-toggle" aria-label="Toggle dark mode" title="Toggle dark/light mode">
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="4.22" x2="19.78" y2="5.64"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
 
-				<div class="quiz-controls"><button class="secondary-button" id="previousButton" type="button">←
-						Previous</button><span class="keyboard-note">Select an answer to continue</span><button
-						class="primary-button" id="nextButton" type="button" disabled>Next question →</button></div>
-			</section>
+    <!-- Main Application Container -->
+    <main class="app-main">
 
-			<section class="result-view" id="resultView" hidden>
-				<div class="result-header">
-					<p class="kicker">Module complete</p>
-					<h2>Strong work.<br><span>Here is your readout.</span></h2>
-				</div>
-				<div class="result-score"><span id="finalScore">0%</span><small>final score</small></div>
-				<div class="result-stats">
-					<div><small>Correct answers</small><strong id="finalCorrect">0</strong></div>
-					<div><small>Incorrect answers</small><strong id="finalIncorrect">0</strong></div>
-					<div><small>Total questions</small><strong>30</strong></div>
-					<div><small>Performance</small><strong id="performanceLevel">Needs More Practice</strong></div>
-				</div>
-				<div class="result-actions"><button class="primary-button" id="reviewButton" type="button">Review
-						answers</button><button class="secondary-button" id="retryButton" type="button">↻ Retry
-						quiz</button></div>
-				<div class="review-list" id="reviewList"></div>
-			</section>
-		</main>
-		<footer><span>Placement Lab / v1.0</span><span>Built for focused practice</span></footer>
-	</div>
-	<script src="script.js"></script>
+        <!-- SCREEN 1: Mode Selection Screen -->
+        <section id="screen-mode-select" class="screen-view">
+            <div class="welcome-hero">
+                <div class="terminal-hero-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="4 17 10 11 4 5"></polyline>
+                        <line x1="12" y1="19" x2="20" y2="19"></line>
+                    </svg>
+                </div>
+                <h1>Linux &amp; Command Line Essentials</h1>
+                <p class="hero-desc">
+                    Master essential CLI commands, file operations, directory navigation, command sequencing, and network diagnostics designed for <strong>Accenture, TCS, Capgemini, Cognizant, Infosys &amp; Wipro</strong> technical interviews.
+                </p>
+
+                <div class="exam-spec-banner">
+                    <div class="spec-pill"><span class="pill-dot blue"></span> 30 Placement MCQs</div>
+                    <div class="spec-pill"><span class="pill-dot green"></span> 11 Easy Fundamentals</div>
+                    <div class="spec-pill"><span class="pill-dot amber"></span> 10 Medium Comparisons</div>
+                    <div class="spec-pill"><span class="pill-dot purple"></span> 9 Hard Real-world Tasks</div>
+                    <div class="spec-pill"><span class="pill-dot blue"></span> 20 Min Exam Timer</div>
+                </div>
+            </div>
+
+            <div class="modes-grid">
+                <!-- Mode 1: Practice Mode -->
+                <div class="mode-card" data-mode="practice">
+                    <div class="mode-icon-wrapper blue">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                        </svg>
+                    </div>
+                    <h3>Interactive Practice</h3>
+                    <p>Self-paced learning with instant feedback, command syntax analysis, and real-world tips. Filter by topic or difficulty.</p>
+                    <ul class="mode-perks">
+                        <li>Instant correct/incorrect verification</li>
+                        <li>Detailed command breakdown &amp; real-world tips</li>
+                        <li>Filter by Navigation, Files, Networking &amp; more</li>
+                    </ul>
+                    <button class="btn btn-primary start-mode-btn" data-mode="practice">Start Practice</button>
+                </div>
+
+                <!-- Mode 2: Placement Exam Mode -->
+                <div class="mode-card highlighted" data-mode="exam">
+                    <div class="mode-badge-hot">MNC Simulation</div>
+                    <div class="mode-icon-wrapper amber">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                    </div>
+                    <h3>Placement Timed Exam</h3>
+                    <p>Strict 20-minute timed simulation with 30 randomized questions, one attempt per question, and diagnostic performance analytics.</p>
+                    <ul class="mode-perks">
+                        <li>20:00 countdown with auto-submission</li>
+                        <li>Question &amp; option randomization</li>
+                        <li>Full topic-wise diagnostic readiness report</li>
+                    </ul>
+                    <button class="btn btn-accent start-mode-btn" data-mode="exam">Start Timed Exam (20m)</button>
+                </div>
+
+                <!-- Mode 3: Flashcard Study Mode -->
+                <div class="mode-card" data-mode="flashcards">
+                    <div class="mode-icon-wrapper purple">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                        </svg>
+                    </div>
+                    <h3>Flashcard Study</h3>
+                    <p>Flip-card revision mode. Great for rapid recall of command names, switches, relative/absolute paths, and networking tools.</p>
+                    <ul class="mode-perks">
+                        <li>Interactive card flip reveal</li>
+                        <li>Quick concept testing</li>
+                        <li>Keyboard shortcut support (Space to flip)</li>
+                    </ul>
+                    <button class="btn btn-secondary start-mode-btn" data-mode="flashcards">Open Flashcards</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCREEN 2: Practice & Exam Workspace -->
+        <section id="screen-quiz-workspace" class="screen-view hidden">
+            
+            <!-- Filter & Status Bar (Visible in Practice & Flashcard Modes) -->
+            <div id="quiz-filter-bar" class="quiz-filter-bar">
+                <div class="filter-group">
+                    <span class="filter-label">Topic:</span>
+                    <button class="filter-pill active" data-filter-topic="all">All (30)</button>
+                    <button class="filter-pill" data-filter-topic="Navigation">Navigation</button>
+                    <button class="filter-pill" data-filter-topic="Directory Management">Directory</button>
+                    <button class="filter-pill" data-filter-topic="File Management">Files</button>
+                    <button class="filter-pill" data-filter-topic="Command Comparison">Comparison</button>
+                    <button class="filter-pill" data-filter-topic="Networking Basics">Networking</button>
+                    <button class="filter-pill" data-filter-topic="Command Prompt Interface">Interface</button>
+                </div>
+                <div class="filter-group">
+                    <span class="filter-label">Difficulty:</span>
+                    <button class="filter-pill active" data-filter-diff="all">All</button>
+                    <button class="filter-pill" data-filter-diff="Easy">Easy (11)</button>
+                    <button class="filter-pill" data-filter-diff="Medium">Medium (10)</button>
+                    <button class="filter-pill" data-filter-diff="Hard">Hard (9)</button>
+                </div>
+                <div class="workspace-actions">
+                    <button id="btn-change-mode" class="btn-text">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+                        Change Mode
+                    </button>
+                </div>
+            </div>
+
+            <!-- Quiz Layout: Flashcard Main + Navigator Sidebar -->
+            <div class="workspace-grid">
+                
+                <!-- Main Question & Card Area -->
+                <div class="question-main-col">
+                    
+                    <!-- Progress bar -->
+                    <div class="progress-bar-wrapper">
+                        <div class="progress-info">
+                            <span id="question-progress-label">Question 1 of 30</span>
+                            <span id="question-progress-percent">0% Completed</span>
+                        </div>
+                        <div class="progress-track">
+                            <div id="progress-bar-fill" class="progress-fill" style="width: 3.33%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Flashcard Card Component -->
+                    <div id="flashcard-container" class="flashcard-container">
+                        
+                        <!-- Question Meta Header -->
+                        <div class="card-meta-row">
+                            <div class="meta-badges">
+                                <span id="badge-q-number" class="badge badge-num">Q1</span>
+                                <span id="badge-q-topic" class="badge badge-topic">Navigation</span>
+                                <span id="badge-q-concept" class="badge badge-concept">dir command</span>
+                                <span id="badge-q-diff" class="badge badge-diff easy">Easy</span>
+                            </div>
+                            <button id="btn-mark-review" class="btn-bookmark" aria-label="Mark question for review">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                                </svg>
+                                <span id="mark-text">Mark</span>
+                            </button>
+                        </div>
+
+                        <!-- Target Companies Notice -->
+                        <div id="target-companies-box" class="target-companies-box" style="display: flex; align-items: center; gap: 0.5rem; background-color: var(--bg-surface-elevated); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 0.5rem 0.85rem; font-size: 0.82rem; margin-bottom: 1.25rem;">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--accent-cloud);"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                            <span style="font-weight: 600; color: var(--text-muted);">Frequent MNC Pattern:</span>
+                            <div id="companies-pill-list" class="companies-pill-list" style="display: flex; gap: 0.35rem; flex-wrap: wrap;">
+                                <span class="badge" style="background: var(--accent-cloud-light); color: var(--accent-cloud); font-size: 0.72rem;">Accenture</span>
+                                <span class="badge" style="background: var(--accent-cloud-light); color: var(--accent-cloud); font-size: 0.72rem;">Capgemini</span>
+                                <span class="badge" style="background: var(--accent-cloud-light); color: var(--accent-cloud); font-size: 0.72rem;">TCS</span>
+                                <span class="badge" style="background: var(--accent-cloud-light); color: var(--accent-cloud); font-size: 0.72rem;">Wipro</span>
+                            </div>
+                        </div>
+
+                        <!-- Question Text -->
+                        <div class="question-body">
+                            <h2 id="question-text" class="question-title">Loading question...</h2>
+                        </div>
+
+                        <!-- Options List -->
+                        <div id="options-container" class="options-container">
+                            <!-- Option buttons injected by JS -->
+                        </div>
+
+                        <!-- Flashcard Flip Reveal Button (Only in Flashcards Mode) -->
+                        <div id="flashcard-reveal-row" class="flashcard-reveal-row hidden">
+                            <button id="btn-flip-card" class="btn btn-secondary btn-flip">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+                                Reveal Answer &amp; Explanation
+                            </button>
+                        </div>
+
+                        <!-- Explanation & Deep Dive Panel -->
+                        <div id="explanation-panel" class="explanation-panel hidden">
+                            <div class="explanation-status-header">
+                                <div id="explanation-status-icon" class="status-indicator-icon correct">
+                                    ✓
+                                </div>
+                                <div class="status-indicator-text">
+                                    <h3 id="explanation-status-heading">Correct Answer!</h3>
+                                    <p id="explanation-status-sub">Technical command breakdown:</p>
+                                </div>
+                            </div>
+
+                            <div class="explanation-body">
+                                <div class="explanation-main-text">
+                                    <p id="explanation-summary-text"></p>
+                                </div>
+
+                                <div class="explanation-details-grid" style="margin-bottom: 1.25rem;">
+                                    <div class="explanation-box correct-box" style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 1rem;">
+                                        <div class="box-title" style="margin-bottom: 0.5rem;">
+                                            <span class="box-badge" style="color: var(--success-text); font-weight: 700; font-size: 0.85rem;">✓ Why This Is Correct</span>
+                                        </div>
+                                        <p id="explanation-why-correct" style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.55;"></p>
+                                    </div>
+                                </div>
+
+                                <div class="placement-tip-box">
+                                    <div class="tip-icon">💡</div>
+                                    <div class="tip-content">
+                                        <strong>Placement Technical Round Tip:</strong>
+                                        <p id="explanation-real-world"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Navigation Footer Controls -->
+                    <div class="card-footer-nav">
+                        <button id="btn-prev" class="btn btn-secondary nav-btn" disabled>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                            Previous
+                        </button>
+                        
+                        <div class="nav-center-actions">
+                            <button id="btn-submit-exam" class="btn btn-danger hidden">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                Finish &amp; Submit Exam
+                            </button>
+                        </div>
+
+                        <button id="btn-next" class="btn btn-primary nav-btn">
+                            Next
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        </button>
+                    </div>
+
+                </div>
+
+                <!-- Right Column: Sidebar Question Navigator -->
+                <aside class="sidebar-col">
+                    <div class="navigator-card">
+                        <div class="navigator-header">
+                            <h3>Question Navigator</h3>
+                            <span id="nav-count-badge" class="nav-counter">0 / 30</span>
+                        </div>
+
+                        <!-- Legend -->
+                        <div class="navigator-legend">
+                            <div class="legend-pill"><span class="legend-dot unvisited"></span>Unvisited</div>
+                            <div class="legend-pill"><span class="legend-dot answered"></span>Answered</div>
+                            <div class="legend-pill"><span class="legend-dot marked"></span>Marked</div>
+                            <div class="legend-pill"><span class="legend-dot current"></span>Current</div>
+                        </div>
+
+                        <!-- 30 Questions Grid -->
+                        <div id="navigator-grid" class="navigator-grid">
+                            <!-- 30 buttons injected via JS -->
+                        </div>
+
+                        <!-- Quick stats in sidebar -->
+                        <div class="sidebar-stats">
+                            <div class="stat-mini">
+                                <span class="stat-mini-label">Answered</span>
+                                <span id="side-stat-answered" class="stat-mini-val">0</span>
+                            </div>
+                            <div class="stat-mini">
+                                <span class="stat-mini-label">Marked</span>
+                                <span id="side-stat-marked" class="stat-mini-val">0</span>
+                            </div>
+                            <div class="stat-mini">
+                                <span class="stat-mini-label">Remaining</span>
+                                <span id="side-stat-remaining" class="stat-mini-val">30</span>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+
+            </div>
+
+        </section>
+
+        <!-- SCREEN 3: Results & Analytics Screen -->
+        <section id="screen-results" class="screen-view hidden">
+            <div class="results-container">
+                <div class="results-card">
+                    <div class="results-header">
+                        <div class="results-badge-congrats">Exam Completed</div>
+                        <h1 id="results-headline">Assessment Report</h1>
+                        <p id="results-subtext">Detailed breakdown of your Linux &amp; Command Line placement readiness.</p>
+                    </div>
+
+                    <div class="results-score-row">
+                        <div class="score-circle-wrapper">
+                            <div class="score-circle">
+                                <span id="results-percentage" class="score-num">0%</span>
+                                <span class="score-denom">Accuracy</span>
+                            </div>
+                        </div>
+                        <div class="score-summary-details">
+                            <div class="summary-stat-box">
+                                <span class="stat-label">Total Score</span>
+                                <span id="results-score-fraction" class="stat-val primary">0 / 30</span>
+                            </div>
+                            <div class="summary-stat-box">
+                                <span class="stat-label">Time Taken</span>
+                                <span id="results-time-taken" class="stat-val">00:00</span>
+                            </div>
+                            <div class="summary-stat-box">
+                                <span class="stat-label">Placement Readiness</span>
+                                <span id="results-readiness-tag" class="stat-val badge-readiness">Pending</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Category Breakdown -->
+                    <div class="breakdown-section">
+                        <h3>Performance Breakdown by Topic &amp; Difficulty</h3>
+                        <div id="results-breakdown-grid" class="breakdown-grid">
+                            <!-- Injected dynamically via JS -->
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="results-actions">
+                        <button id="btn-review-answers" class="btn btn-primary btn-large">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                            Review All 30 Explanations
+                        </button>
+                        <button id="btn-retake-exam" class="btn btn-secondary btn-large">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+                            Retake Exam
+                        </button>
+                        <a href="../index.html" class="btn btn-text btn-large">
+                            Back to Dashboard
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Questions Data & Engine Script -->
+    <script src="questions.js"></script>
+    <script src="script.js"></script>
 </body>
-
 </html>

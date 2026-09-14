@@ -1,187 +1,753 @@
-const questionBank = [
-  { id: 1, question: "Which command displays the files and folders in the current directory?", options: ["cd", "dir", "cls", "mkdir"], correctAnswer: 1, difficulty: "Easy", topic: "Navigation", concept: "dir command", explanation: { correct: "dir lists the contents of the current directory.", realWorld: "Use dir before changing folders to inspect what is available." } },
-  { id: 2, question: "Which command changes the current working directory to a folder named Reports?", options: ["dir Reports", "cd Reports", "move Reports", "mkdir Reports"], correctAnswer: 1, difficulty: "Easy", topic: "Navigation", concept: "cd command", explanation: { correct: "cd Reports moves the prompt into the Reports folder.", realWorld: "Use cd to move through a project folder structure from Command Prompt." } },
-  { id: 3, question: "What does cd .. do at a Windows command prompt?", options: ["Opens the root of the drive", "Creates a parent folder", "Moves to the parent directory", "Lists the parent directory"], correctAnswer: 2, difficulty: "Easy", topic: "Navigation", concept: "parent directory", explanation: { correct: "The two dots represent the directory one level above the current location.", realWorld: "Use cd .. to back out of a nested project folder quickly." } },
-  { id: 4, question: "Which command creates a new directory named Practice?", options: ["rmdir Practice", "cd Practice", "mkdir Practice", "dir Practice"], correctAnswer: 2, difficulty: "Easy", topic: "Directory Management", concept: "mkdir command", explanation: { correct: "mkdir creates a new directory with the supplied name.", realWorld: "Create a workspace for practice files with mkdir Practice." } },
-  { id: 5, question: "Which command removes an empty directory named Temp?", options: ["del Temp", "rmdir Temp", "remove Temp", "cls Temp"], correctAnswer: 1, difficulty: "Easy", topic: "Directory Management", concept: "rmdir command", explanation: { correct: "rmdir removes a directory when it is empty.", realWorld: "Clean up an unused empty folder with rmdir Temp." } },
-  { id: 6, question: "Which command copies report.txt to a folder named Backup?", options: ["copy report.txt Backup", "move report.txt Backup", "cd report.txt Backup", "dir report.txt Backup"], correctAnswer: 0, difficulty: "Easy", topic: "File Management", concept: "copy command", explanation: { correct: "copy takes a source file and destination and leaves the original in place.", realWorld: "Make a backup copy of a document before editing it." } },
-  { id: 7, question: "Which command moves notes.txt from the current folder into Archive?", options: ["copy notes.txt Archive", "move notes.txt Archive", "mkdir notes.txt Archive", "rmdir notes.txt Archive"], correctAnswer: 1, difficulty: "Easy", topic: "File Management", concept: "move command", explanation: { correct: "move relocates the file to Archive rather than keeping a second copy.", realWorld: "Move completed work into an Archive folder to keep a project tidy." } },
-  { id: 8, question: "Which command deletes a file named old.log?", options: ["rmdir old.log", "del old.log", "cls old.log", "cd old.log"], correctAnswer: 1, difficulty: "Easy", topic: "File Management", concept: "del command", explanation: { correct: "del removes a file from the current directory.", realWorld: "Remove an obsolete log file after confirming it is no longer needed." } },
-  { id: 9, question: "Which command clears the text currently visible in Command Prompt?", options: ["clear", "reset", "cls", "del"], correctAnswer: 2, difficulty: "Easy", topic: "Command Prompt Interface", concept: "cls command", explanation: { correct: "cls clears the visible command history from the console window.", realWorld: "Use cls to make a fresh troubleshooting view without closing the prompt." } },
-  { id: 10, question: "Which command shows a computer's IP address configuration?", options: ["ping", "ipconfig", "dir", "cd"], correctAnswer: 1, difficulty: "Easy", topic: "Networking Basics", concept: "ipconfig command", explanation: { correct: "ipconfig displays local adapter and IP configuration details.", realWorld: "Run ipconfig when checking which local address a machine received." } },
-  { id: 11, question: "What is the main purpose of ping 192.168.1.1?", options: ["To change the computer's IP", "To list network adapters", "To test reachability of that address", "To copy a file to that address"], correctAnswer: 2, difficulty: "Easy", topic: "Networking Basics", concept: "ping command", explanation: { correct: "ping sends connectivity checks to the specified host and reports responses.", realWorld: "Test whether a gateway or server responds before investigating an application." } },
-  { id: 12, question: "Which command changes to the absolute path C:\\Work\\Reports?", options: ["dir C:\\Work\\Reports", "cd C:\\Work\\Reports", "move C:\\Work\\Reports", "mkdir C:\\Work\\Reports"], correctAnswer: 1, difficulty: "Medium", topic: "Navigation", concept: "absolute paths", explanation: { correct: "An absolute path identifies the complete location from the drive root.", realWorld: "Use an absolute path when a script must work from any starting directory." } },
-  { id: 13, question: "A prompt shows C:\\Users\\Sam\\Project>. Which command reaches C:\\Users\\Sam\\Data using a relative path?", options: ["cd ..\\Data", "cd Data\\..", "cd \\Data", "dir ..\\Data"], correctAnswer: 0, difficulty: "Medium", topic: "Navigation", concept: "relative paths", explanation: { correct: "From Project, .. moves to Sam and then Data enters the sibling folder.", realWorld: "Relative paths keep project scripts portable across different drive letters." } },
-  { id: 14, question: "What happens when mkdir Archive is run while Archive already exists?", options: ["The existing folder is renamed", "A second identical folder is created", "The command reports that the directory already exists", "All files in Archive are deleted"], correctAnswer: 2, difficulty: "Medium", topic: "Directory Management", concept: "mkdir behavior", explanation: { correct: "Windows cannot create another directory with the same name in the same location.", realWorld: "Check with dir before creating setup folders in repeatable scripts." } },
-  { id: 15, question: "Why can rmdir Logs fail even when the Logs folder is visible?", options: ["rmdir only works on files", "The directory may not be empty", "The folder name must be uppercase", "rmdir requires an IP address"], correctAnswer: 1, difficulty: "Medium", topic: "Directory Management", concept: "rmdir behavior", explanation: { correct: "The basic rmdir command requires the target directory to be empty.", realWorld: "List and remove or move contents before deleting a leftover folder." } },
-  { id: 16, question: "What is the key difference between copy file.txt Backup and move file.txt Backup?", options: ["copy creates a duplicate; move relocates the original", "copy deletes the source; move creates a duplicate", "copy changes folders; move lists files", "There is no difference"], correctAnswer: 0, difficulty: "Medium", topic: "Command Comparison", concept: "copy vs move", explanation: { correct: "copy preserves the source while move transfers it to the destination.", realWorld: "Choose copy for backups and move for reorganizing files." } },
-  { id: 17, question: "Which command should be used to remove a file, not an empty folder?", options: ["rmdir", "del", "mkdir", "cd"], correctAnswer: 1, difficulty: "Medium", topic: "Command Comparison", concept: "del vs rmdir", explanation: { correct: "del targets files, while rmdir targets directories.", realWorld: "Identify the item type before deleting it to avoid a command error." } },
-  { id: 18, question: "Which command gives the contents of the current folder without changing the prompt location?", options: ["cd", "dir", "move", "mkdir"], correctAnswer: 1, difficulty: "Medium", topic: "Command Comparison", concept: "cd vs dir", explanation: { correct: "dir reads and displays contents; it does not alter the working directory.", realWorld: "Use dir to inspect a location before choosing a file operation." } },
-  { id: 19, question: "Which statement correctly compares ipconfig and ping?", options: ["ipconfig tests a remote host; ping displays local IP settings", "Both commands delete network settings", "ipconfig displays local configuration; ping tests reachability", "ping creates a new network adapter"], correctAnswer: 2, difficulty: "Medium", topic: "Command Comparison", concept: "ipconfig vs ping", explanation: { correct: "ipconfig reports local network configuration, while ping checks a target response.", realWorld: "Run ipconfig first for local facts, then ping to isolate connectivity." } },
-  { id: 20, question: "A file is in C:\\Work and the destination folder is C:\\Work\\Backup. Which command preserves the original?", options: ["move report.txt Backup", "copy report.txt Backup", "del report.txt Backup", "rmdir report.txt Backup"], correctAnswer: 1, difficulty: "Medium", topic: "File Management", concept: "copy syntax", explanation: { correct: "copy sends a duplicate to Backup and leaves report.txt in Work.", realWorld: "Use copy when preserving a source is important for recovery or comparison." } },
-  { id: 21, question: "Which command is best to verify the exact files that were copied into Backup?", options: ["cd Backup", "dir Backup", "cls Backup", "ipconfig Backup"], correctAnswer: 1, difficulty: "Medium", topic: "File Management", concept: "output interpretation", explanation: { correct: "dir Backup lists the destination directory contents.", realWorld: "Verify a file operation with dir before deleting the source." } },
-  { id: 22, question: "After running ping 10.0.0.8, which output most strongly indicates the host responded?", options: ["Request timed out", "Destination host unreachable", "Reply from 10.0.0.8", "The syntax of the command is incorrect"], correctAnswer: 2, difficulty: "Hard", topic: "Networking Basics", concept: "ping output", explanation: { correct: "Reply from the target address confirms that a response was received.", realWorld: "Use a reply as an initial signal that a server or gateway is reachable." } },
-  { id: 23, question: "A developer receives 'The system cannot find the path specified' after cd Project\\API. What should be checked first?", options: ["Whether the path exists relative to the current directory", "Whether ping is enabled", "Whether the screen is clear", "Whether the IP address changed"], correctAnswer: 0, difficulty: "Hard", topic: "Navigation", concept: "path troubleshooting", explanation: { correct: "cd resolves the path from the current location, so a missing folder or wrong starting point is the first check.", realWorld: "Use dir at each level to find a misspelled or misplaced project folder." } },
-  { id: 24, question: "A script runs from C:\\Build and must create C:\\Build\\Output before copying files. Which sequence is valid?", options: ["mkdir Output, then copy *.txt Output", "rmdir Output, then cd Output", "del Output, then copy Output", "ping Output, then mkdir *.txt"], correctAnswer: 0, difficulty: "Hard", topic: "Directory Management", concept: "scenario-based syntax", explanation: { correct: "The destination directory must exist before files can be copied into it.", realWorld: "Create build output directories before placing generated artifacts there." } },
-  { id: 25, question: "Which sequence moves a file from the current directory into an existing Archive folder and then verifies it?", options: ["move report.txt Archive, then dir Archive", "copy Archive report.txt, then cls", "mkdir report.txt, then rmdir Archive", "cd report.txt, then ipconfig Archive"], correctAnswer: 0, difficulty: "Hard", topic: "File Management", concept: "practical command usage", explanation: { correct: "move performs the relocation and dir confirms the destination contents.", realWorld: "Verify a cleanup operation immediately after moving a completed file." } },
-  { id: 26, question: "A laptop has an IP address but cannot reach a gateway. Which first command best tests the gateway itself?", options: ["cls", "mkdir", "ping", "rmdir"], correctAnswer: 2, difficulty: "Hard", topic: "Networking Basics", concept: "connectivity troubleshooting", explanation: { correct: "ping tests whether the gateway responds over the network.", realWorld: "Ping the gateway to separate local network issues from broader internet issues." } },
-  { id: 27, question: "Which sequence creates a folder, enters it, and confirms the prompt is showing its contents?", options: ["mkdir Lab, cd Lab, dir", "dir Lab, rmdir Lab, cd Lab", "cd Lab, del Lab, cls", "copy Lab, ping Lab, mkdir Lab"], correctAnswer: 0, difficulty: "Hard", topic: "Command Comparison", concept: "command sequencing", explanation: { correct: "mkdir creates Lab, cd enters it, and dir displays its contents.", realWorld: "This is a common setup sequence for a new practice or project directory." } },
-  { id: 28, question: "A user runs del Reports and gets an error because Reports is a directory. Which command is appropriate only if the directory is empty?", options: ["rmdir Reports", "copy Reports", "ping Reports", "cd Reports"], correctAnswer: 0, difficulty: "Hard", topic: "Command Comparison", concept: "file vs directory", explanation: { correct: "rmdir is the directory-removal command and works for an empty target.", realWorld: "Use rmdir after checking that a temporary directory contains no required files." } },
-  { id: 29, question: "Which command is most useful for checking the local address before testing that address with ping?", options: ["ipconfig", "dir", "move", "cls"], correctAnswer: 0, difficulty: "Hard", topic: "Networking Basics", concept: "diagnostic workflow", explanation: { correct: "ipconfig reveals the machine's configured IPv4 address and gateway information.", realWorld: "Inspect local network values with ipconfig before selecting a target for testing." } },
-  { id: 30, question: "A teammate wants to clean the screen but keep all files untouched. Which command has exactly that effect?", options: ["del", "cls", "rmdir", "move"], correctAnswer: 1, difficulty: "Hard", topic: "Command Prompt Interface", concept: "safe command selection", explanation: { correct: "cls affects only the visible console display and does not modify files.", realWorld: "Use cls between troubleshooting steps to keep the console output readable without changing system data." } }
-];
+// Linux & Command Line Application Logic
+(function () {
+    'use strict';
 
-const state = { questions: [], current: 0, answers: [] };
-const byId = (id) => document.getElementById(id);
-const shuffle = (items) => items.map((item) => ({ item, sort: Math.random() })).sort((a, b) => a.sort - b.sort).map(({ item }) => item);
+    // Application State
+    let allQuestions = [];          // Master list of 30 questions
+    let activeQuestions = [];       // Filtered / active pool
+    let currentIndex = 0;           // Current question index in active pool
+    let currentMode = 'practice';   // 'practice' | 'exam' | 'flashcards' | 'review'
 
-function createAttempt() {
-  state.questions = shuffle(questionBank).map((question) => ({
-    ...question,
-    options: shuffle(question.options.map((text, index) => ({ text, originalIndex: index })))
-  }));
-  state.answers = state.questions.map(() => null);
-  state.current = 0;
-}
+    // User responses: keyed by question id
+    let userAnswers = {};           // { [qId]: selectedOptionIndex }
+    let markedQuestions = new Set();// Set of question IDs
+    let isAnswerSubmitted = {};     // { [qId]: boolean }
 
-function answeredCount() { return state.answers.filter(Boolean).length; }
-function correctCount() { return state.answers.filter((answer) => answer && answer.correct).length; }
-function percent() { return Math.round((correctCount() / state.questions.length) * 100); }
+    // Exam Timer State (20 minutes for 30 questions)
+    const EXAM_DURATION_SECONDS = 20 * 60;
+    let examTimeRemaining = EXAM_DURATION_SECONDS;
+    let timerInterval = null;
+    let examStartTime = null;
+    let examEndTime = null;
 
-function renderQuestion() {
-  const question = state.questions[state.current];
-  const answer = state.answers[state.current];
-  const number = String(state.current + 1).padStart(2, "0");
-  byId("questionLabel").textContent = `Question ${number} / ${state.questions.length}`;
-  byId("questionNumber").textContent = number;
-  byId("questionValue").textContent = state.current + 1;
-  byId("difficultyBadge").textContent = question.difficulty;
-  byId("topicLabel").textContent = question.topic;
-  byId("conceptValue").textContent = question.concept;
-  byId("questionText").textContent = question.question;
-  byId("progressFill").style.width = `${((state.current + 1) / state.questions.length) * 100}%`;
-  const options = byId("optionsGrid");
-  options.innerHTML = "";
-  question.options.forEach((option, index) => {
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = "option-button";
-    button.dataset.index = index;
-    button.innerHTML = `<span class="option-letter">${String.fromCharCode(65 + index)}</span><span>${option.text}</span>`;
-    button.addEventListener("click", () => selectAnswer(index));
-    options.appendChild(button);
-  });
-  byId("previousButton").disabled = state.current === 0;
-  byId("nextButton").disabled = !answer;
-  byId("nextButton").textContent = state.current === state.questions.length - 1 ? "See results →" : "Next question →";
-  byId("feedbackPanel").hidden = !answer;
-  if (answer) showAnswer(answer);
-  updateScore();
-}
+    // Filters for Practice & Flashcards
+    let currentTopicFilter = 'all';
+    let currentDiffFilter = 'all';
 
-function selectAnswer(selectedIndex) {
-  if (state.answers[state.current]) return;
-  const question = state.questions[state.current];
-  const correct = question.options[selectedIndex].originalIndex === question.correctAnswer;
-  state.answers[state.current] = { selectedIndex, correct };
-  showAnswer(state.answers[state.current]);
-  byId("nextButton").disabled = false;
-  updateScore();
-}
+    // DOM Elements
+    const screenModeSelect = document.getElementById('screen-mode-select');
+    const screenQuizWorkspace = document.getElementById('screen-quiz-workspace');
+    const screenResults = document.getElementById('screen-results');
 
-function showAnswer(answer) {
-  const question = state.questions[state.current];
-  const buttons = [...document.querySelectorAll(".option-button")];
-  buttons.forEach((button, index) => {
-    button.disabled = true;
-    if (question.options[index].originalIndex === question.correctAnswer) button.classList.add("is-correct");
-    if (index === answer.selectedIndex && !answer.correct) button.classList.add("is-wrong");
-  });
-  const correctOption = question.options.find((option) => option.originalIndex === question.correctAnswer);
-  const feedbackTitle = byId("feedbackTitle");
-  feedbackTitle.textContent = answer.correct ? "Correct!" : "Incorrect";
-  feedbackTitle.className = answer.correct ? "is-correct" : "is-wrong";
-  byId("feedbackIcon").textContent = answer.correct ? "✓" : "×";
-  byId("correctAnswerText").textContent = correctOption.text;
-  byId("explanationText").textContent = question.explanation.correct;
-  byId("otherOptionsText").textContent = question.options
-    .filter((option) => option.originalIndex !== question.correctAnswer)
-    .map((option) => `${option.text} is not the correct command or result for this scenario.`)
-    .join(" ");
-  byId("realWorldText").textContent = question.explanation.realWorld;
-  byId("feedbackPanel").hidden = false;
-}
+    const headerModeBadge = document.getElementById('header-mode-badge');
+    const timerBox = document.getElementById('timer-box');
+    const timerDisplay = document.getElementById('timer-display');
+    const scoreDisplay = document.getElementById('score-value');
+    const themeToggleBtn = document.getElementById('theme-toggle');
 
-function updateScore() {
-  const correct = correctCount();
-  byId("scoreValue").textContent = `${percent()}%`;
-  byId("correctValue").textContent = correct;
-  byId("incorrectValue").textContent = answeredCount() - correct;
-  byId("totalValue").textContent = state.questions.length;
-}
+    const quizFilterBar = document.getElementById('quiz-filter-bar');
+    const progressBarFill = document.getElementById('progress-bar-fill');
+    const progressLabel = document.getElementById('question-progress-label');
+    const progressPercent = document.getElementById('question-progress-percent');
 
-function nextQuestion() {
-  if (!state.answers[state.current]) return;
-  if (state.current === state.questions.length - 1) showResults();
-  else { state.current += 1; renderQuestion(); window.scrollTo({ top: 0, behavior: "smooth" }); }
-}
+    const badgeQNumber = document.getElementById('badge-q-number');
+    const badgeQTopic = document.getElementById('badge-q-topic');
+    const badgeQConcept = document.getElementById('badge-q-concept');
+    const badgeQDiff = document.getElementById('badge-q-diff');
+    const btnMarkReview = document.getElementById('btn-mark-review');
+    const markText = document.getElementById('mark-text');
 
-function previousQuestion() {
-  if (state.current > 0) { state.current -= 1; renderQuestion(); window.scrollTo({ top: 0, behavior: "smooth" }); }
-}
+    const questionText = document.getElementById('question-text');
+    const optionsContainer = document.getElementById('options-container');
 
-function showResults() {
-  byId("quizView").hidden = true;
-  byId("resultView").hidden = false;
-  const score = percent();
-  byId("finalScore").textContent = `${score}%`;
-  byId("finalCorrect").textContent = correctCount();
-  byId("finalIncorrect").textContent = state.questions.length - correctCount();
-  byId("performanceLevel").textContent = score >= 90 ? "Excellent" : score >= 75 ? "Good" : score >= 50 ? "Needs Improvement" : "Needs More Practice";
-  renderReview();
-  window.scrollTo({ top: 0, behavior: "smooth" });
-}
+    const flashcardRevealRow = document.getElementById('flashcard-reveal-row');
+    const btnFlipCard = document.getElementById('btn-flip-card');
 
-function renderReview() {
-  const list = byId("reviewList");
-  list.innerHTML = "";
-  state.questions.forEach((question, index) => {
-    const answer = state.answers[index];
-    const selected = question.options[answer.selectedIndex].text;
-    const correct = question.options.find((option) => option.originalIndex === question.correctAnswer).text;
-    const item = document.createElement("article");
-    item.className = "review-item";
-    item.innerHTML = `<div><h3>${String(index + 1).padStart(2, "0")}. ${question.question}</h3><span class="review-result ${answer.correct ? "correct" : "incorrect"}">${answer.correct ? "correct" : "incorrect"}</span></div><p>Your answer: ${selected}</p><p>Correct answer: ${correct} · ${question.difficulty} · ${question.topic}</p>`;
-    list.appendChild(item);
-  });
-}
+    const explanationPanel = document.getElementById('explanation-panel');
+    const explanationStatusIcon = document.getElementById('explanation-status-icon');
+    const explanationStatusHeading = document.getElementById('explanation-status-heading');
+    const explanationStatusSub = document.getElementById('explanation-status-sub');
+    const explanationSummaryText = document.getElementById('explanation-summary-text');
+    const explanationWhyCorrect = document.getElementById('explanation-why-correct');
+    const explanationRealWorld = document.getElementById('explanation-real-world');
 
-function restartQuiz() {
-  createAttempt();
-  byId("resultView").hidden = true;
-  byId("quizView").hidden = false;
-  renderQuestion();
-  window.scrollTo({ top: 0, behavior: "smooth" });
-}
+    const btnPrev = document.getElementById('btn-prev');
+    const btnNext = document.getElementById('btn-next');
+    const btnSubmitExam = document.getElementById('btn-submit-exam');
+    const btnChangeMode = document.getElementById('btn-change-mode');
 
-byId("nextButton").addEventListener("click", nextQuestion);
-byId("previousButton").addEventListener("click", previousQuestion);
-byId("headerRestart").addEventListener("click", restartQuiz);
-byId("retryButton").addEventListener("click", restartQuiz);
+    const navigatorGrid = document.getElementById('navigator-grid');
+    const navCountBadge = document.getElementById('nav-count-badge');
+    const sideStatAnswered = document.getElementById('side-stat-answered');
+    const sideStatMarked = document.getElementById('side-stat-marked');
+    const sideStatRemaining = document.getElementById('side-stat-remaining');
 
-const themeToggle = byId("themeToggle");
-if (themeToggle) {
-  const isSystemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  const savedTheme = localStorage.getItem("theme");
-  if (savedTheme === "dark" || (!savedTheme && isSystemDark)) {
-    document.body.classList.add("dark-mode");
-  }
-  
-  themeToggle.addEventListener("click", () => {
-    document.body.classList.toggle("dark-mode");
-    localStorage.setItem("theme", document.body.classList.contains("dark-mode") ? "dark" : "light");
-  });
-}
-byId("reviewButton").addEventListener("click", () => byId("reviewList").scrollIntoView({ behavior: "smooth" }));
-createAttempt();
-renderQuestion();
+    // Results screen elements
+    const resultsPercentage = document.getElementById('results-percentage');
+    const resultsScoreFraction = document.getElementById('results-score-fraction');
+    const resultsTimeTaken = document.getElementById('results-time-taken');
+    const resultsReadinessTag = document.getElementById('results-readiness-tag');
+    const resultsBreakdownGrid = document.getElementById('results-breakdown-grid');
+    const btnReviewAnswers = document.getElementById('btn-review-answers');
+    const btnRetakeExam = document.getElementById('btn-retake-exam');
+
+    // Initialization
+    function init() {
+        initTheme();
+        loadQuestions();
+        bindEvents();
+    }
+
+    // Theme Setup (shares placementprep-theme key)
+    function initTheme() {
+        const savedTheme = localStorage.getItem('placementprep-theme') || localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+
+        themeToggleBtn.addEventListener('click', () => {
+            const current = document.documentElement.getAttribute('data-theme') || 'light';
+            const next = current === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', next);
+            localStorage.setItem('placementprep-theme', next);
+            localStorage.setItem('theme', next);
+        });
+    }
+
+    // Load Questions from questions.js (or fallback)
+    function loadQuestions() {
+        if (typeof questionsData !== 'undefined' && Array.isArray(questionsData) && questionsData.length > 0) {
+            allQuestions = questionsData;
+        } else if (typeof questionBank !== 'undefined' && Array.isArray(questionBank) && questionBank.length > 0) {
+            allQuestions = questionBank;
+        } else {
+            console.error('No question bank found in questions.js');
+        }
+        console.log(`Loaded ${allQuestions.length} Linux & Shell questions.`);
+    }
+
+    // Event Bindings
+    function bindEvents() {
+        // Mode start buttons
+        document.querySelectorAll('.start-mode-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const mode = e.currentTarget.dataset.mode;
+                startMode(mode);
+            });
+        });
+
+        // Navigation
+        btnPrev.addEventListener('click', () => navigate(-1));
+        btnNext.addEventListener('click', () => navigate(1));
+        btnChangeMode.addEventListener('click', returnToModeSelect);
+        btnSubmitExam.addEventListener('click', confirmSubmitExam);
+
+        // Mark for review
+        btnMarkReview.addEventListener('click', toggleMarkReview);
+
+        // Flashcard flip
+        btnFlipCard.addEventListener('click', () => {
+            explanationPanel.classList.remove('hidden');
+            flashcardRevealRow.classList.add('hidden');
+        });
+
+        // Results actions
+        btnReviewAnswers.addEventListener('click', startReviewMode);
+        btnRetakeExam.addEventListener('click', () => startMode('exam'));
+
+        // Topic filter pills
+        document.querySelectorAll('[data-filter-topic]').forEach(pill => {
+            pill.addEventListener('click', (e) => {
+                document.querySelectorAll('[data-filter-topic]').forEach(p => p.classList.remove('active'));
+                e.currentTarget.classList.add('active');
+                currentTopicFilter = e.currentTarget.dataset.filterTopic;
+                applyFilters();
+            });
+        });
+
+        // Difficulty filter pills
+        document.querySelectorAll('[data-filter-diff]').forEach(pill => {
+            pill.addEventListener('click', (e) => {
+                document.querySelectorAll('[data-filter-diff]').forEach(p => p.classList.remove('active'));
+                e.currentTarget.classList.add('active');
+                currentDiffFilter = e.currentTarget.dataset.filterDiff;
+                applyFilters();
+            });
+        });
+
+        // Keyboard navigation
+        window.addEventListener('keydown', handleKeyboardShortcuts);
+    }
+
+    // Mode Controller
+    function startMode(mode) {
+        currentMode = mode;
+        clearInterval(timerInterval);
+        timerBox.classList.add('hidden');
+        timerBox.classList.remove('timer-urgent');
+
+        userAnswers = {};
+        markedQuestions.clear();
+        isAnswerSubmitted = {};
+        currentIndex = 0;
+
+        screenModeSelect.classList.add('hidden');
+        screenResults.classList.add('hidden');
+        screenQuizWorkspace.classList.remove('hidden');
+
+        if (mode === 'practice') {
+            headerModeBadge.textContent = 'Practice Mode';
+            headerModeBadge.className = 'badge mode-tag';
+            quizFilterBar.classList.remove('hidden');
+            btnSubmitExam.classList.add('hidden');
+            flashcardRevealRow.classList.add('hidden');
+            applyFilters();
+        } else if (mode === 'exam') {
+            headerModeBadge.textContent = 'Placement Exam';
+            headerModeBadge.className = 'badge mode-tag';
+            quizFilterBar.classList.add('hidden');
+            btnSubmitExam.classList.remove('hidden');
+            flashcardRevealRow.classList.add('hidden');
+
+            // Randomized clone for exam simulation
+            activeQuestions = shuffleArray([...allQuestions]).map(q => ({ ...q }));
+
+            startExamTimer();
+            buildNavigatorGrid();
+            renderCurrentQuestion();
+        } else if (mode === 'flashcards') {
+            headerModeBadge.textContent = 'Flashcard Study';
+            headerModeBadge.className = 'badge mode-tag';
+            quizFilterBar.classList.remove('hidden');
+            btnSubmitExam.classList.add('hidden');
+            applyFilters();
+        }
+    }
+
+    function returnToModeSelect() {
+        if (currentMode === 'exam' && Object.keys(userAnswers).length > 0) {
+            if (!confirm('Are you sure you want to exit the exam? Your current exam progress will be lost.')) {
+                return;
+            }
+        }
+        clearInterval(timerInterval);
+        screenQuizWorkspace.classList.add('hidden');
+        screenResults.classList.add('hidden');
+        screenModeSelect.classList.remove('hidden');
+    }
+
+    // Filter Logic for Practice & Flashcards
+    function applyFilters() {
+        activeQuestions = allQuestions.filter(q => {
+            const matchesTopic = currentTopicFilter === 'all' || q.topic === currentTopicFilter;
+            const matchesDiff = currentDiffFilter === 'all' || q.difficulty.toLowerCase() === currentDiffFilter.toLowerCase();
+            return matchesTopic && matchesDiff;
+        });
+
+        if (activeQuestions.length === 0) {
+            alert('No questions match the selected filter criteria.');
+            currentTopicFilter = 'all';
+            currentDiffFilter = 'all';
+            document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+            document.querySelector('[data-filter-topic="all"]')?.classList.add('active');
+            document.querySelector('[data-filter-diff="all"]')?.classList.add('active');
+            activeQuestions = [...allQuestions];
+        }
+
+        currentIndex = 0;
+        buildNavigatorGrid();
+        renderCurrentQuestion();
+    }
+
+    // Timer Implementation (20:00 Countdown)
+    function startExamTimer() {
+        examTimeRemaining = EXAM_DURATION_SECONDS;
+        examStartTime = new Date();
+        timerBox.classList.remove('hidden');
+        updateTimerDisplay();
+
+        timerInterval = setInterval(() => {
+            examTimeRemaining--;
+            updateTimerDisplay();
+
+            if (examTimeRemaining <= 180) { // under 3 minutes
+                timerBox.classList.add('timer-urgent');
+            }
+
+            if (examTimeRemaining <= 0) {
+                clearInterval(timerInterval);
+                alert('Time is up! Submitting your exam automatically.');
+                submitExam();
+            }
+        }, 1000);
+    }
+
+    function updateTimerDisplay() {
+        const minutes = Math.floor(examTimeRemaining / 60);
+        const seconds = examTimeRemaining % 60;
+        timerDisplay.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    }
+
+    // Render Question & Flashcard
+    function renderCurrentQuestion() {
+        if (!activeQuestions || activeQuestions.length === 0) return;
+
+        const q = activeQuestions[currentIndex];
+        const qId = q.id;
+
+        // Update Progress
+        const currentNum = currentIndex + 1;
+        const totalNum = activeQuestions.length;
+        progressLabel.textContent = `Question ${currentNum} of ${totalNum}`;
+        const pct = Math.round((currentNum / totalNum) * 100);
+        progressPercent.textContent = `${pct}% Completed`;
+        progressBarFill.style.width = `${(currentNum / totalNum) * 100}%`;
+
+        // Update Meta Badges
+        badgeQNumber.textContent = `Q${currentNum}`;
+        badgeQTopic.textContent = q.topic || 'Command Line';
+        badgeQConcept.textContent = q.concept || 'CLI';
+        badgeQDiff.textContent = q.difficulty;
+        badgeQDiff.className = `badge badge-diff ${q.difficulty.toLowerCase()}`;
+
+        // Bookmark status
+        if (markedQuestions.has(qId)) {
+            btnMarkReview.classList.add('marked');
+            markText.textContent = 'Marked';
+        } else {
+            btnMarkReview.classList.remove('marked');
+            markText.textContent = 'Mark';
+        }
+
+        // Render Question Text
+        questionText.textContent = q.question;
+
+        // Render Options
+        optionsContainer.innerHTML = '';
+        const hasAnswered = userAnswers.hasOwnProperty(qId);
+        const selectedOptIdx = userAnswers[qId];
+
+        q.options.forEach((optText, optIndex) => {
+            const letter = String.fromCharCode(65 + optIndex); // A, B, C, D
+            const optBtn = document.createElement('button');
+            optBtn.className = 'option-btn';
+            optBtn.setAttribute('data-option-index', optIndex);
+
+            optBtn.innerHTML = `
+                <span class="option-letter">${letter}</span>
+                <span class="option-text">${optText}</span>
+            `;
+
+            // State Styling
+            if (currentMode === 'exam') {
+                if (hasAnswered && selectedOptIdx === optIndex) {
+                    optBtn.classList.add('selected');
+                }
+                optBtn.addEventListener('click', () => handleExamOptionClick(qId, optIndex));
+            } else if (currentMode === 'practice') {
+                if (hasAnswered) {
+                    optBtn.disabled = true;
+                    if (optIndex === q.correctAnswer) {
+                        optBtn.classList.add('correct');
+                    } else if (selectedOptIdx === optIndex) {
+                        optBtn.classList.add('incorrect');
+                    }
+                } else {
+                    optBtn.addEventListener('click', () => handlePracticeOptionClick(q, optIndex));
+                }
+            } else if (currentMode === 'flashcards') {
+                optBtn.addEventListener('click', () => {
+                    revealExplanation(q, optIndex);
+                });
+            } else if (currentMode === 'review') {
+                optBtn.disabled = true;
+                if (optIndex === q.correctAnswer) {
+                    optBtn.classList.add('correct');
+                } else if (selectedOptIdx === optIndex) {
+                    optBtn.classList.add('incorrect');
+                }
+            }
+
+            optionsContainer.appendChild(optBtn);
+        });
+
+        // Explanation / Flashcard Panel handling
+        if (currentMode === 'flashcards') {
+            explanationPanel.classList.add('hidden');
+            flashcardRevealRow.classList.remove('hidden');
+        } else if (currentMode === 'practice') {
+            flashcardRevealRow.classList.add('hidden');
+            if (hasAnswered) {
+                renderExplanation(q, selectedOptIdx);
+                explanationPanel.classList.remove('hidden');
+            } else {
+                explanationPanel.classList.add('hidden');
+            }
+        } else if (currentMode === 'review') {
+            flashcardRevealRow.classList.add('hidden');
+            renderExplanation(q, selectedOptIdx);
+            explanationPanel.classList.remove('hidden');
+        } else {
+            flashcardRevealRow.classList.add('hidden');
+            explanationPanel.classList.add('hidden');
+        }
+
+        // Navigation button states
+        btnPrev.disabled = currentIndex === 0;
+        btnNext.disabled = currentIndex === activeQuestions.length - 1;
+
+        // Update score & sidebar
+        updateSidebarStats();
+        highlightCurrentNavCell();
+    }
+
+    // Option Click Handlers
+    function handleExamOptionClick(qId, optIndex) {
+        userAnswers[qId] = optIndex;
+        renderCurrentQuestion();
+    }
+
+    function handlePracticeOptionClick(q, optIndex) {
+        userAnswers[q.id] = optIndex;
+        isAnswerSubmitted[q.id] = true;
+        renderCurrentQuestion();
+        updateScoreHeader();
+    }
+
+    function revealExplanation(q, optIndex) {
+        userAnswers[q.id] = optIndex;
+        flashcardRevealRow.classList.add('hidden');
+        renderExplanation(q, optIndex);
+        explanationPanel.classList.remove('hidden');
+        updateSidebarStats();
+        highlightCurrentNavCell();
+    }
+
+    // Explanation Rendering
+    function renderExplanation(q, selectedOptIndex) {
+        const isCorrect = selectedOptIndex === q.correctAnswer;
+        const correctLetter = String.fromCharCode(65 + q.correctAnswer);
+        const correctText = q.options[q.correctAnswer];
+
+        if (isCorrect) {
+            explanationStatusIcon.className = 'status-indicator-icon correct';
+            explanationStatusIcon.textContent = '✓';
+            explanationStatusHeading.textContent = 'Correct Answer!';
+            explanationStatusSub.textContent = `Option ${correctLetter} is the right command.`;
+        } else {
+            explanationStatusIcon.className = 'status-indicator-icon wrong';
+            explanationStatusIcon.textContent = '✕';
+            explanationStatusHeading.textContent = 'Incorrect Choice';
+            explanationStatusSub.textContent = `Correct: Option ${correctLetter} (${correctText})`;
+        }
+
+        explanationSummaryText.textContent = `Target command: ${q.concept || correctText}. Always review command switches and syntax before deployment.`;
+        explanationWhyCorrect.textContent = (q.explanation && q.explanation.correct) ? q.explanation.correct : 'This command performs the required action in the CLI.';
+        explanationRealWorld.textContent = (q.explanation && q.explanation.realWorld) ? q.explanation.realWorld : 'Used frequently in production bash/cmd scripts and diagnostic workflows.';
+    }
+
+    // Sidebar Navigator Grid Builder
+    function buildNavigatorGrid() {
+        navigatorGrid.innerHTML = '';
+        navCountBadge.textContent = `${activeQuestions.length} Questions`;
+
+        activeQuestions.forEach((q, idx) => {
+            const cell = document.createElement('button');
+            cell.className = 'nav-cell-btn';
+            cell.textContent = idx + 1;
+            cell.title = `Question ${idx + 1}: ${q.concept || q.topic}`;
+            cell.setAttribute('data-index', idx);
+
+            cell.addEventListener('click', () => {
+                currentIndex = idx;
+                renderCurrentQuestion();
+            });
+
+            navigatorGrid.appendChild(cell);
+        });
+
+        updateSidebarStats();
+    }
+
+    function updateSidebarStats() {
+        let answeredCount = 0;
+        let markedCount = 0;
+
+        activeQuestions.forEach((q, idx) => {
+            const cell = navigatorGrid.children[idx];
+            if (!cell) return;
+
+            const isAnswered = userAnswers.hasOwnProperty(q.id);
+            const isMarked = markedQuestions.has(q.id);
+
+            cell.className = 'nav-cell-btn';
+
+            if (currentMode === 'review') {
+                const isCorrect = userAnswers[q.id] === q.correctAnswer;
+                if (isCorrect) {
+                    cell.classList.add('correct-rev');
+                } else {
+                    cell.classList.add('wrong-rev');
+                }
+            } else {
+                if (isAnswered) {
+                    cell.classList.add('answered');
+                    answeredCount++;
+                }
+                if (isMarked) {
+                    cell.classList.add('marked');
+                    markedCount++;
+                }
+            }
+        });
+
+        const remainingCount = activeQuestions.length - answeredCount;
+        sideStatAnswered.textContent = answeredCount;
+        sideStatMarked.textContent = markedCount;
+        sideStatRemaining.textContent = Math.max(0, remainingCount);
+
+        updateScoreHeader();
+    }
+
+    function highlightCurrentNavCell() {
+        const cells = navigatorGrid.querySelectorAll('.nav-cell-btn');
+        cells.forEach((cell, idx) => {
+            if (idx === currentIndex) {
+                cell.classList.add('current');
+            } else {
+                cell.classList.remove('current');
+            }
+        });
+    }
+
+    function updateScoreHeader() {
+        let correct = 0;
+        Object.keys(userAnswers).forEach(qId => {
+            const q = allQuestions.find(item => item.id == qId);
+            if (q && userAnswers[qId] === q.correctAnswer) {
+                correct++;
+            }
+        });
+        scoreDisplay.textContent = correct;
+    }
+
+    // Toggle Mark Question for Review
+    function toggleMarkReview() {
+        if (!activeQuestions[currentIndex]) return;
+        const qId = activeQuestions[currentIndex].id;
+
+        if (markedQuestions.has(qId)) {
+            markedQuestions.delete(qId);
+            btnMarkReview.classList.remove('marked');
+            markText.textContent = 'Mark';
+        } else {
+            markedQuestions.add(qId);
+            btnMarkReview.classList.add('marked');
+            markText.textContent = 'Marked';
+        }
+
+        updateSidebarStats();
+        highlightCurrentNavCell();
+    }
+
+    // Navigation
+    function navigate(delta) {
+        const nextIdx = currentIndex + delta;
+        if (nextIdx >= 0 && nextIdx < activeQuestions.length) {
+            currentIndex = nextIdx;
+            renderCurrentQuestion();
+        }
+    }
+
+    // Submit Exam & Diagnostics
+    function confirmSubmitExam() {
+        const answeredCount = Object.keys(userAnswers).length;
+        const total = activeQuestions.length;
+        const unanswered = total - answeredCount;
+
+        let msg = `Are you sure you want to submit your exam?\n\n• Answered: ${answeredCount}/${total}\n• Unanswered: ${unanswered}`;
+        if (unanswered > 0) {
+            msg += `\n\nWarning: Unanswered questions will receive 0 marks.`;
+        }
+
+        if (confirm(msg)) {
+            submitExam();
+        }
+    }
+
+    function submitExam() {
+        clearInterval(timerInterval);
+        examEndTime = new Date();
+
+        // Calculate time taken
+        let timeTakenSeconds = EXAM_DURATION_SECONDS - examTimeRemaining;
+        if (examStartTime && examEndTime) {
+            timeTakenSeconds = Math.round((examEndTime - examStartTime) / 1000);
+        }
+        const mins = Math.floor(timeTakenSeconds / 60);
+        const secs = timeTakenSeconds % 60;
+        const formattedTime = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+
+        // Calculate Total Score & Breakdown
+        let correctCount = 0;
+        const topicStats = {};
+        const diffStats = {
+            Easy: { total: 0, correct: 0 },
+            Medium: { total: 0, correct: 0 },
+            Hard: { total: 0, correct: 0 }
+        };
+
+        activeQuestions.forEach(q => {
+            // Topic stats
+            if (!topicStats[q.topic]) {
+                topicStats[q.topic] = { total: 0, correct: 0 };
+            }
+            topicStats[q.topic].total++;
+
+            // Difficulty stats
+            const diffKey = q.difficulty || 'Medium';
+            if (diffStats[diffKey]) {
+                diffStats[diffKey].total++;
+            }
+
+            // Check correctness
+            if (userAnswers[q.id] === q.correctAnswer) {
+                correctCount++;
+                topicStats[q.topic].correct++;
+                if (diffStats[diffKey]) {
+                    diffStats[diffKey].correct++;
+                }
+            }
+        });
+
+        const totalQ = activeQuestions.length;
+        const percentage = Math.round((correctCount / totalQ) * 100);
+
+        // Update Results UI
+        resultsPercentage.textContent = `${percentage}%`;
+        resultsScoreFraction.textContent = `${correctCount} / ${totalQ}`;
+        resultsTimeTaken.textContent = formattedTime;
+
+        // Readiness Tag
+        resultsReadinessTag.className = 'stat-val badge-readiness';
+        if (percentage >= 80) {
+            resultsReadinessTag.textContent = 'Placement Ready (High)';
+            resultsReadinessTag.classList.add('high');
+        } else if (percentage >= 50) {
+            resultsReadinessTag.textContent = 'Needs Practice (Medium)';
+            resultsReadinessTag.classList.add('medium');
+        } else {
+            resultsReadinessTag.textContent = 'Critical Revision Needed';
+            resultsReadinessTag.classList.add('low');
+        }
+
+        // Render Topic & Difficulty Breakdowns
+        resultsBreakdownGrid.innerHTML = '';
+
+        // Difficulty Cards
+        ['Easy', 'Medium', 'Hard'].forEach(diff => {
+            const data = diffStats[diff];
+            if (!data || data.total === 0) return;
+            const diffPct = Math.round((data.correct / data.total) * 100);
+            const dotColor = diff === 'Easy' ? 'green' : (diff === 'Medium' ? 'amber' : 'red');
+
+            const card = document.createElement('div');
+            card.className = 'breakdown-card';
+            card.innerHTML = `
+                <div class="breakdown-card-header">
+                    <span class="breakdown-diff-dot ${dotColor}"></span>
+                    <div>
+                        <strong>${diff} Questions</strong>
+                        <p>${data.total} questions</p>
+                    </div>
+                </div>
+                <div class="breakdown-card-score">
+                    <span>${data.correct} / ${data.total}</span>
+                    <span class="breakdown-percent">${diffPct}%</span>
+                </div>
+            `;
+            resultsBreakdownGrid.appendChild(card);
+        });
+
+        // Topic Cards
+        Object.keys(topicStats).forEach(topic => {
+            const data = topicStats[topic];
+            const topicPct = Math.round((data.correct / data.total) * 100);
+
+            const card = document.createElement('div');
+            card.className = 'breakdown-card';
+            card.innerHTML = `
+                <div class="breakdown-card-header">
+                    <span class="breakdown-diff-dot mint"></span>
+                    <div>
+                        <strong>${topic}</strong>
+                        <p>${data.total} questions</p>
+                    </div>
+                </div>
+                <div class="breakdown-card-score">
+                    <span>${data.correct} / ${data.total}</span>
+                    <span class="breakdown-percent">${topicPct}%</span>
+                </div>
+            `;
+            resultsBreakdownGrid.appendChild(card);
+        });
+
+        // Switch to Screen 3
+        screenQuizWorkspace.classList.add('hidden');
+        screenResults.classList.remove('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Review Mode
+    function startReviewMode() {
+        currentMode = 'review';
+        currentIndex = 0;
+        headerModeBadge.textContent = 'Exam Review';
+        headerModeBadge.className = 'badge mode-tag';
+        timerBox.classList.add('hidden');
+        btnSubmitExam.classList.add('hidden');
+        quizFilterBar.classList.add('hidden');
+
+        screenResults.classList.add('hidden');
+        screenQuizWorkspace.classList.remove('hidden');
+
+        buildNavigatorGrid();
+        renderCurrentQuestion();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Keyboard Shortcuts
+    function handleKeyboardShortcuts(e) {
+        if (screenQuizWorkspace.classList.contains('hidden')) return;
+
+        if (e.key === 'ArrowLeft') {
+            navigate(-1);
+        } else if (e.key === 'ArrowRight') {
+            navigate(1);
+        } else if (['1', '2', '3', '4'].includes(e.key)) {
+            const idx = parseInt(e.key, 10) - 1;
+            selectOptionByIndex(idx);
+        } else if (['a', 'b', 'c', 'd', 'A', 'B', 'C', 'D'].includes(e.key)) {
+            const code = e.key.toUpperCase().charCodeAt(0) - 65;
+            selectOptionByIndex(code);
+        } else if (e.key.toLowerCase() === 'm' || e.key.toLowerCase() === 'r') {
+            toggleMarkReview();
+        } else if (e.key === ' ' && currentMode === 'flashcards') {
+            e.preventDefault();
+            btnFlipCard.click();
+        }
+    }
+
+    function selectOptionByIndex(index) {
+        const optionBtns = optionsContainer.querySelectorAll('.option-btn');
+        if (optionBtns[index] && !optionBtns[index].disabled) {
+            optionBtns[index].click();
+        }
+    }
+
+    // Utility: Shuffle
+    function shuffleArray(array) {
+        const arr = [...array];
+        for (let i = arr.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        return arr;
+    }
+
+    // Run when DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+
+})();
