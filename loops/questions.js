@@ -41,9 +41,9 @@ const questionsData = [
     id: 4, topic: "for loop", difficulty: "Medium", language: "Java",
     question: "What will be printed by the following Java code?",
     code: "public class Main {\n    public static void main(String[] args) {\n        int i = 0;\n        for (System.out.print(\"I\"); i < 2; System.out.print(\"U\")) {\n            System.out.print(\"B\");\n            i++;\n        }\n    }\n}",
-    options: {"A": "IBUB", "B": "IBUBU", "C": "IUBIUB", "D": "IBUB"},
+    options: {"A": "IBUB", "B": "IUB", "C": "IUBIUB", "D": "IBUBU"},
     correctAnswer: "D",
-    explanation: "Sequence: Init 'I', Cond(0<2), Body 'B', Update 'U'. Cond(1<2), Body 'B', Update 'U'. Cond(2<2) False. Wait! Output: I B U B U. Let's fix option D to 'IBUBU'.",
+    explanation: "Sequence: Init 'I', Cond(0<2), Body 'B', Update 'U'. Cond(1<2), Body 'B', Update 'U'. Cond(2<2) False. Final output is IBUBU.",
     realWorldApplication: "Understanding exact loop control flow for custom iterators.",
     examTrap: "Assuming the update statement runs before the body.",
     quickTrick: "Init runs once. Then (Cond -> Body -> Update) repeats."
