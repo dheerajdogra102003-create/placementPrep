@@ -3,939 +3,1072 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Cloud Computing placement-focused revision notes for fresher technical MCQ rounds.">
-<title>Cloud Computing | Placement Notes</title>
+<meta name="description" content="Placement Notes and Last Minute Revision Hub for Campus Recruitment and Technical Rounds.">
+<title>Notes & Last Minute Prep Hub | PlacementPrep</title>
 
 <style>
-:root{
-  --bg:#f6f6f3;
-  --card:#ffffff;
-  --card2:#f0f0ed;
-  --text:#111111;
-  --muted:#6c6c6c;
-  --border:#e5e5e2;
-  --red:#e60023;
-  --red2:#ff3654;
-  --pink:#d53a8e;
-  --mint:#d0f0c0;
-  --mintText:#28551d;
-  --shadow:0 14px 40px rgba(0,0,0,.07);
-  --radius:18px;
+:root {
+  --bg: #f6f6f3;
+  --card: #ffffff;
+  --card2: #f0f0ed;
+  --card3: #e8e8e3;
+  --text: #111111;
+  --muted: #666666;
+  --border: #e4e4e0;
+  --red: #e60023;
+  --red2: #ff3654;
+  --pink: #d53a8e;
+  --blue: #0284c7;
+  --green: #107c41;
+  --amber: #d97706;
+  --purple: #7c3aed;
+  --mint: #d0f0c0;
+  --mintText: #28551d;
+  --shadow: 0 14px 40px rgba(0,0,0,.06);
+  --shadow-lg: 0 20px 50px rgba(0,0,0,.12);
+  --radius: 18px;
+  --font: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
-body.dark{
-  --bg:#0d0d0f;
-  --card:#171719;
-  --card2:#202023;
-  --text:#f6f6f6;
-  --muted:#a7a7aa;
-  --border:#2b2b30;
-  --mint:#1f351b;
-  --mintText:#b7eaa7;
-  --shadow:0 18px 50px rgba(0,0,0,.30);
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{
-  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  background:var(--bg);color:var(--text);line-height:1.55;
-  transition:.25s ease;
-}
-button,input{font:inherit}
-button{cursor:pointer}
-a{text-decoration:none;color:inherit}
-.topbar{
-  position:fixed;top:0;left:0;right:0;height:68px;z-index:1000;
-  display:flex;align-items:center;padding:0 22px;
-  background:color-mix(in srgb,var(--card) 88%,transparent);
-  backdrop-filter:blur(16px);border-bottom:1px solid var(--border);
-}
-.nav-left{display:flex;align-items:center;gap:12px}
-.brand{display:flex;align-items:center;gap:11px;font-weight:850}
-.logo{
-  width:40px;height:40px;border-radius:12px;display:grid;place-items:center;
-  color:#fff;background:linear-gradient(135deg,var(--red),var(--pink));
-  box-shadow:0 8px 22px rgba(230,0,35,.22);font-size:20px;
-}
-.brand small{display:block;color:var(--muted);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase}
-.nav-actions{margin-left:auto;display:flex;gap:9px;align-items:center}
-.icon-btn{
-  width:40px;height:40px;border:1px solid var(--border);background:var(--card);
-  color:var(--text);border-radius:11px;transition:.2s;display:grid;place-items:center;
-}
-.icon-btn:hover{border-color:var(--red);transform:translateY(-2px)}
-.nav-back{
-  display:inline-flex;align-items:center;gap:6px;padding:0 14px;height:40px;
-  border:1px solid var(--border);background:var(--card);color:var(--text);
-  border-radius:11px;font-size:12px;font-weight:700;transition:.2s;
-}
-.nav-back:hover{border-color:var(--red);color:var(--red);transform:translateY(-2px)}
-.layout{padding-top:68px}
-.sidebar{
-  position:fixed;top:68px;left:0;bottom:0;width:260px;z-index:500;
-  background:var(--card);border-right:1px solid var(--border);padding:22px 14px;overflow:auto
-}
-.side-label{
-  color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:1.2px;
-  font-weight:850;padding:10px 11px 8px
-}
-.side-link{
-  display:flex;gap:9px;align-items:center;padding:9px 11px;margin:2px 0;border-radius:10px;
-  color:var(--muted);font-size:12.5px;transition:.2s
-}
-.side-link:hover{background:var(--card2);color:var(--text)}
-.side-link.active{background:rgba(230,0,35,.09);color:var(--red);font-weight:750}
-.side-num{
-  width:23px;height:23px;border-radius:7px;background:var(--card2);
-  display:grid;place-items:center;font-size:10px;flex:none
-}
-.side-link.active .side-num{background:var(--red);color:#fff}
-.main{margin-left:260px;max-width:1500px;padding:34px clamp(18px,4vw,58px)}
-.hero{
-  position:relative;overflow:hidden;border-radius:28px;padding:clamp(30px,5vw,58px);
-  background:linear-gradient(135deg,#101011 0%,#17171a 58%,#3a162b 100%);
-  color:#fff;box-shadow:0 22px 60px rgba(0,0,0,.15);margin-bottom:24px
-}
-.hero:before,.hero:after{content:"";position:absolute;border-radius:50%;pointer-events:none}
-.hero:before{width:360px;height:360px;right:-110px;top:-160px;background:radial-gradient(circle,rgba(213,58,142,.48),transparent 68%)}
-.hero:after{width:300px;height:300px;left:42%;bottom:-220px;background:radial-gradient(circle,rgba(230,0,35,.32),transparent 68%)}
-.hero-content{position:relative;z-index:2;max-width:900px}
-.eyebrow{
-  display:inline-flex;align-items:center;gap:7px;padding:6px 10px;border:1px solid rgba(255,255,255,.15);
-  border-radius:999px;background:rgba(255,255,255,.07);font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase
-}
-.hero h1{font-size:clamp(34px,5.2vw,66px);line-height:1.02;letter-spacing:-2.6px;margin:18px 0 16px}
-.hero h1 span{color:#ff5a72}
-.hero p{max-width:720px;color:#d4d4d7;font-size:15px}
-.hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
-.hero-tag{padding:7px 10px;border-radius:9px;background:rgba(255,255,255,.08);font-size:11px}
-.hero-bottom{position:relative;z-index:2;display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
-.hero-btn{
-  border:0;border-radius:11px;padding:11px 15px;font-weight:800;font-size:12px;
-  background:#fff;color:#111
-}
-.hero-btn.alt{background:rgba(255,255,255,.09);color:#fff;border:1px solid rgba(255,255,255,.14)}
-.progress-wrap{margin-top:24px;max-width:420px}
-.progress-top{display:flex;justify-content:space-between;font-size:10px;color:#bdbdc2;margin-bottom:7px}
-.progress{height:7px;border-radius:999px;background:rgba(255,255,255,.1);overflow:hidden}
-.progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--red2),var(--pink));transition:width .35s}
 
-.searchbar{
-  position:sticky;top:80px;z-index:100;margin-bottom:25px;
-  display:flex;gap:9px;align-items:center;background:var(--card);border:1px solid var(--border);
-  border-radius:14px;padding:9px;box-shadow:var(--shadow)
+body.dark {
+  --bg: #0d0d10;
+  --card: #17171a;
+  --card2: #212126;
+  --card3: #2a2a30;
+  --text: #f6f6f8;
+  --muted: #a4a4ab;
+  --border: #2c2c33;
+  --mint: #1f351b;
+  --mintText: #b7eaa7;
+  --shadow: 0 18px 50px rgba(0,0,0,.35);
+  --shadow-lg: 0 24px 60px rgba(0,0,0,.5);
 }
-.searchbar input{
-  flex:1;border:0;outline:0;background:transparent;color:var(--text);font-size:13px;padding:5px 7px
-}
-.search-icon{padding:0 7px;color:var(--muted)}
-.clear-search{
-  border:0;background:var(--card2);color:var(--muted);border-radius:9px;padding:7px 10px;font-size:11px
-}
-.section{scroll-margin-top:95px;margin:0 0 42px}
-.section-head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:15px}
-.section-kicker{color:var(--red);font-size:10px;font-weight:850;letter-spacing:1.2px;text-transform:uppercase}
-.section h2{font-size:clamp(23px,3vw,32px);letter-spacing:-.8px;line-height:1.15;margin-top:4px}
-.section-sub{color:var(--muted);font-size:12px;max-width:700px}
-.grid{display:grid;gap:14px}
-.grid-4{grid-template-columns:repeat(4,minmax(0,1fr))}
-.grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
-.grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
-.card{
-  background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
-  padding:19px;box-shadow:var(--shadow);transition:.22s
-}
-.card:hover{transform:translateY(-3px);box-shadow:0 18px 45px rgba(0,0,0,.09)}
-.card h3{font-size:16px;line-height:1.25;margin-bottom:8px}
-.card p{font-size:12px;color:var(--muted)}
-.priority-card{position:relative;overflow:hidden}
-.priority-card:after{content:"";position:absolute;width:90px;height:90px;right:-35px;top:-35px;border-radius:50%;background:rgba(230,0,35,.06)}
-.badge{
-  display:inline-flex;align-items:center;gap:5px;padding:5px 8px;border-radius:7px;
-  font-size:9px;font-weight:900;letter-spacing:.7px;text-transform:uppercase;margin-bottom:12px
-}
-.high{background:rgba(230,0,35,.10);color:var(--red)}
-.medium{background:rgba(213,58,142,.11);color:var(--pink)}
-.low{background:var(--card2);color:var(--muted)}
-.mint{background:var(--mint);color:var(--mintText)}
-.topic-list{list-style:none;margin-top:11px}
-.topic-list li{font-size:11.5px;padding:7px 0;border-bottom:1px dashed var(--border);display:flex;gap:7px}
-.topic-list li:last-child{border-bottom:0}
-.topic-list li:before{content:"✓";color:var(--red);font-weight:900}
-.note{
-  background:var(--card);border:1px solid var(--border);border-radius:17px;padding:20px;
-  margin-bottom:13px
-}
-.note-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
-.note-title{display:flex;gap:10px;align-items:flex-start}
-.note-num{
-  min-width:30px;height:30px;border-radius:9px;background:var(--red);color:#fff;
-  display:grid;place-items:center;font-size:11px;font-weight:900
-}
-.note h3{font-size:17px;margin-bottom:4px}
-.note .definition{font-size:12.5px;color:var(--muted);max-width:850px}
-.note-body{display:grid;grid-template-columns:1.15fr .85fr;gap:14px;margin-top:16px}
-.mini-box{background:var(--card2);border-radius:12px;padding:13px}
-.mini-box h4{font-size:10px;text-transform:uppercase;letter-spacing:.8px;margin-bottom:7px}
-.mini-box ul{padding-left:16px;color:var(--muted);font-size:11.5px}
-.mini-box li{margin:4px 0}
-.example{border-left:3px solid var(--pink);padding-left:11px;color:var(--muted);font-size:11.5px}
-.exam{background:rgba(230,0,35,.055);border:1px solid rgba(230,0,35,.12);border-radius:12px;padding:12px;font-size:11.5px}
-.exam strong{color:var(--red)}
-.memory{margin-top:11px;color:var(--mintText);font-size:11px;font-weight:750}
-.table-wrap{overflow:auto;border:1px solid var(--border);border-radius:15px;background:var(--card)}
-table{width:100%;border-collapse:collapse;min-width:700px}
-th,td{text-align:left;padding:12px 13px;border-bottom:1px solid var(--border);font-size:11px;vertical-align:top}
-th{background:var(--card2);font-size:10px;text-transform:uppercase;letter-spacing:.6px}
-tr:last-child td{border-bottom:0}
-td strong{font-weight:850}
-.clue{color:var(--red);font-weight:750}
-.trap{
-  border-left:4px solid var(--red);background:var(--card);border-radius:12px;
-  padding:13px 15px;border-top:1px solid var(--border);border-right:1px solid var(--border);border-bottom:1px solid var(--border)
-}
-.trap strong{display:block;font-size:12px;margin-bottom:3px}
-.trap span{color:var(--muted);font-size:11.5px}
-.scenario{
-  position:relative;background:var(--card);border:1px solid var(--border);border-radius:16px;
-  padding:18px;overflow:hidden
-}
-.scenario .tag{font-size:9px;font-weight:900;color:var(--pink);text-transform:uppercase;letter-spacing:.8px}
-.scenario h3{font-size:14px;margin:8px 0}
-.scenario p{font-size:11.5px;color:var(--muted)}
-.answer{
-  margin-top:12px;padding:10px;border-radius:10px;background:var(--mint);color:var(--mintText);
-  font-size:11px;font-weight:800
-}
-.cheat{
-  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px
-}
-.cheat div{
-  background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px
-}
-.cheat b{font-size:11px;color:var(--red)}
-.cheat span{display:block;font-size:11px;color:var(--muted);margin-top:3px}
-.revision{
-  background:linear-gradient(135deg,#111,#24111b);color:#fff;border-radius:23px;padding:25px;
-  box-shadow:0 18px 50px rgba(0,0,0,.14)
-}
-.revision h2{margin-top:5px}
-.revision-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}
-.revision-item{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.09);padding:13px;border-radius:12px}
-.revision-item b{font-size:11px}
-.revision-item span{display:block;color:#c7c7ca;font-size:10.5px;margin-top:4px}
-.footer{padding:28px 0 50px;color:var(--muted);font-size:10.5px;text-align:center}
-.mobile-menu{display:none}
-.no-results{display:none;text-align:center;padding:35px;color:var(--muted)}
-mark{background:rgba(255,214,0,.35);color:inherit;border-radius:3px;padding:0 2px}
 
-@media(max-width:1100px){
-  .grid-4{grid-template-columns:repeat(2,1fr)}
-  .grid-3{grid-template-columns:repeat(2,1fr)}
-  .sidebar{width:235px}
-  .main{margin-left:235px}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.55;
+  transition: background .25s ease, color .25s ease;
+  min-height: 100vh;
 }
-@media(max-width:800px){
-  .topbar{height:62px;padding:0 13px}
-  .layout{padding-top:62px}
-  .sidebar{
-    transform:translateX(-105%);transition:.28s;top:62px;width:270px;
-    box-shadow:20px 0 50px rgba(0,0,0,.12)
-  }
-  .sidebar.open{transform:translateX(0)}
-  .mobile-menu{display:block}
-  .main{margin-left:0;padding:22px 13px}
-  .searchbar{top:72px}
-  .grid-4,.grid-3,.grid-2{grid-template-columns:1fr}
-  .note-body{grid-template-columns:1fr}
-  .cheat{grid-template-columns:1fr}
-  .revision-grid{grid-template-columns:1fr}
-  .hero{border-radius:20px}
-  .hero h1{letter-spacing:-1.5px}
-  .brand small{display:none}
+
+button, input, select, textarea { font: inherit; }
+button { cursor: pointer; }
+a { text-decoration: none; color: inherit; }
+
+/* Topbar */
+.topbar {
+  position: fixed; top: 0; left: 0; right: 0; height: 68px; z-index: 1000;
+  display: flex; align-items: center; justify-content: space-between; padding: 0 24px;
+  background: color-mix(in srgb, var(--card) 85%, transparent);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
 }
-@media(max-width:480px){
-  .nav-actions .hide-mobile{display:none}
-  .hero{padding:25px 20px}
-  .hero h1{font-size:35px}
-  .section h2{font-size:24px}
-  .note{padding:15px}
+.nav-left { display: flex; align-items: center; gap: 14px; }
+.brand { display: flex; align-items: center; gap: 12px; font-weight: 850; font-size: 17px; }
+.logo {
+  width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center;
+  color: #fff; background: linear-gradient(135deg, var(--amber), var(--red));
+  box-shadow: 0 8px 22px rgba(217, 119, 6, .25); font-size: 20px;
+}
+.brand small {
+  display: block; color: var(--muted); font-size: 10px; font-weight: 700;
+  letter-spacing: 1px; text-transform: uppercase;
+}
+.nav-actions { display: flex; align-items: center; gap: 10px; }
+.nav-btn {
+  display: inline-flex; align-items: center; gap: 7px; padding: 0 14px; height: 40px;
+  border: 1px solid var(--border); background: var(--card); color: var(--text);
+  border-radius: 11px; font-size: 12.5px; font-weight: 700; transition: .2s;
+}
+.nav-btn:hover { border-color: var(--amber); color: var(--amber); transform: translateY(-2px); }
+.nav-btn.primary {
+  background: linear-gradient(135deg, var(--amber), var(--red));
+  color: #fff; border: 0; box-shadow: 0 4px 16px rgba(217,119,6,.25);
+}
+.nav-btn.primary:hover { color: #fff; opacity: .95; }
+.icon-btn {
+  width: 40px; height: 40px; border: 1px solid var(--border); background: var(--card);
+  color: var(--text); border-radius: 11px; transition: .2s; display: grid; place-items: center; font-size: 15px;
+}
+.icon-btn:hover { border-color: var(--amber); transform: translateY(-2px); }
+
+/* Main Container */
+.container { max-width: 1400px; margin: 0 auto; padding: 94px 24px 60px; }
+
+/* Hero */
+.hero {
+  position: relative; overflow: hidden; border-radius: 28px; padding: clamp(32px, 5vw, 60px);
+  background: linear-gradient(135deg, #131118 0%, #1f1a26 50%, #2f1922 100%);
+  color: #fff; box-shadow: var(--shadow-lg); margin-bottom: 30px;
+}
+.hero:before, .hero:after { content: ""; position: absolute; border-radius: 50%; pointer-events: none; }
+.hero:before { width: 380px; height: 380px; right: -120px; top: -140px; background: radial-gradient(circle, rgba(217, 119, 6, .45), transparent 70%); }
+.hero:after { width: 320px; height: 320px; left: 45%; bottom: -180px; background: radial-gradient(circle, rgba(230, 0, 35, .35), transparent 70%); }
+.hero-content { position: relative; z-index: 2; max-width: 880px; }
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border: 1px solid rgba(255,255,255,.18);
+  border-radius: 999px; background: rgba(255,255,255,.08); font-size: 11px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase;
+}
+.hero h1 { font-size: clamp(32px, 4.8vw, 56px); line-height: 1.05; letter-spacing: -2px; margin: 18px 0 14px; font-weight: 900; }
+.hero h1 span { background: linear-gradient(90deg, #fbbf24, #f87171); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.hero p { color: #d6d6db; font-size: 15px; max-width: 720px; }
+
+.hero-stats {
+  display: flex; flex-wrap: wrap; gap: 16px; margin-top: 26px;
+}
+.stat-pill {
+  display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.12); padding: 10px 18px; border-radius: 14px;
+}
+.stat-pill b { font-size: 18px; color: #fff; }
+.stat-pill span { font-size: 11.5px; color: #c4c4cb; text-transform: uppercase; letter-spacing: .7px; }
+
+.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.hero-btn {
+  border: 0; border-radius: 12px; padding: 12px 20px; font-weight: 800; font-size: 13px;
+  background: #fff; color: #111; display: inline-flex; align-items: center; gap: 8px; transition: .2s;
+}
+.hero-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(0,0,0,.25); }
+.hero-btn.alt {
+  background: rgba(255,255,255,.12); color: #fff; border: 1px solid rgba(255,255,255,.2);
+}
+.hero-btn.alt:hover { background: rgba(255,255,255,.18); }
+
+/* Featured Cloud Banner */
+.featured-card {
+  position: relative; background: var(--card); border: 1px solid var(--border); border-radius: 20px;
+  padding: 24px 28px; margin-bottom: 30px; box-shadow: var(--shadow);
+  display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap;
+  border-left: 6px solid var(--blue);
+}
+.featured-content { max-width: 800px; }
+.featured-tag {
+  display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 6px;
+  background: rgba(2, 132, 199, .12); color: var(--blue); font-size: 10px; font-weight: 850; letter-spacing: .8px; text-transform: uppercase;
+}
+.featured-card h2 { font-size: 20px; margin: 8px 0 6px; letter-spacing: -.5px; }
+.featured-card p { font-size: 13px; color: var(--muted); }
+.featured-btn {
+  background: var(--blue); color: #fff; padding: 12px 22px; border-radius: 12px;
+  font-size: 13px; font-weight: 800; display: inline-flex; align-items: center; gap: 8px; transition: .2s; flex-shrink: 0;
+}
+.featured-btn:hover { background: #0369a1; transform: translateY(-2px); color: #fff; }
+
+/* Filter & Controls Bar */
+.controls-bar {
+  position: sticky; top: 78px; z-index: 100; margin-bottom: 25px;
+  background: var(--card); border: 1px solid var(--border); border-radius: 16px;
+  padding: 12px 16px; box-shadow: var(--shadow);
+  display: flex; flex-direction: column; gap: 12px;
+}
+.search-row { display: flex; gap: 10px; align-items: center; }
+.search-box {
+  flex: 1; display: flex; align-items: center; gap: 10px; background: var(--card2);
+  border: 1px solid var(--border); border-radius: 12px; padding: 8px 14px;
+}
+.search-box input {
+  flex: 1; border: 0; outline: 0; background: transparent; color: var(--text); font-size: 13.5px;
+}
+.search-icon { color: var(--muted); font-size: 16px; }
+.clear-btn {
+  border: 0; background: transparent; color: var(--muted); font-size: 12px; font-weight: 700; padding: 4px 8px; border-radius: 6px;
+}
+.clear-btn:hover { background: var(--card3); color: var(--text); }
+
+/* Module Tabs */
+.module-tabs {
+  display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: thin;
+}
+.module-tabs::-webkit-scrollbar { height: 4px; }
+.module-tabs::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+.tab-btn {
+  white-space: nowrap; border: 1px solid var(--border); background: var(--card2);
+  color: var(--muted); padding: 8px 16px; border-radius: 10px; font-size: 12px; font-weight: 750;
+  display: inline-flex; align-items: center; gap: 6px; transition: .2s;
+}
+.tab-btn:hover { background: var(--card3); color: var(--text); }
+.tab-btn.active {
+  background: var(--text); color: var(--bg); border-color: var(--text);
+}
+
+/* Secondary Filters */
+.filter-row {
+  display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
+  font-size: 12px; color: var(--muted); padding-top: 4px; border-top: 1px dashed var(--border);
+}
+.filter-tags { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+.priority-pill {
+  padding: 4px 10px; border-radius: 8px; font-size: 10.5px; font-weight: 800; text-transform: uppercase; letter-spacing: .5px;
+  background: var(--card2); color: var(--muted); border: 1px solid var(--border); cursor: pointer; transition: .2s;
+}
+.priority-pill.active { background: var(--amber); color: #fff; border-color: var(--amber); }
+
+/* Notes Grid */
+.notes-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 18px; margin-top: 15px;
+}
+.note-card {
+  background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 22px; box-shadow: var(--shadow); transition: transform .2s, box-shadow .2s;
+  display: flex; flex-direction: column; position: relative;
+}
+.note-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+.note-card.custom-note { border-left: 5px solid var(--amber); }
+
+.card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 12px; }
+.badges-wrap { display: flex; gap: 6px; flex-wrap: wrap; }
+.badge {
+  display: inline-flex; align-items: center; gap: 4px; padding: 4px 8px; border-radius: 6px;
+  font-size: 9.5px; font-weight: 900; letter-spacing: .6px; text-transform: uppercase;
+}
+.badge-mod { background: rgba(0,0,0,.06); color: var(--text); border: 1px solid var(--border); }
+body.dark .badge-mod { background: rgba(255,255,255,.08); }
+.badge-high { background: rgba(230,0,35,.10); color: var(--red); }
+.badge-med { background: rgba(213,58,142,.12); color: var(--pink); }
+.badge-cheat { background: rgba(217,119,6,.12); color: var(--amber); }
+.badge-custom { background: var(--mint); color: var(--mintText); }
+
+.card-actions { display: flex; gap: 4px; }
+.card-action-btn {
+  border: 0; background: transparent; color: var(--muted); width: 28px; height: 28px;
+  border-radius: 6px; display: grid; place-items: center; font-size: 13px; transition: .2s;
+}
+.card-action-btn:hover { background: var(--card2); color: var(--red); }
+
+.note-card h3 { font-size: 16.5px; line-height: 1.3; margin-bottom: 8px; letter-spacing: -.3px; }
+.note-card .summary { font-size: 12.5px; color: var(--muted); margin-bottom: 14px; line-height: 1.5; }
+
+.key-points {
+  background: var(--card2); border-radius: 12px; padding: 12px 14px; margin-bottom: 14px;
+}
+.key-points h4 { font-size: 10px; text-transform: uppercase; letter-spacing: .8px; color: var(--muted); margin-bottom: 6px; }
+.key-points ul { padding-left: 16px; font-size: 11.5px; color: var(--text); }
+.key-points li { margin: 4px 0; }
+
+.code-box {
+  background: #18181b; color: #f4f4f5; font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px; padding: 10px 12px; border-radius: 10px; margin-bottom: 12px; overflow-x: auto;
+}
+
+.trap-box {
+  background: rgba(230,0,35,.05); border-left: 3px solid var(--red); border-radius: 0 10px 10px 0;
+  padding: 10px 12px; font-size: 11.5px; margin-top: auto;
+}
+.trap-box strong { color: var(--red); display: block; font-size: 10.5px; text-transform: uppercase; letter-spacing: .6px; margin-bottom: 2px; }
+
+/* Empty state */
+.empty-state {
+  grid-column: 1 / -1; text-align: center; padding: 60px 20px; background: var(--card);
+  border: 2px dashed var(--border); border-radius: 20px; color: var(--muted);
+}
+.empty-state h3 { font-size: 18px; color: var(--text); margin: 12px 0 6px; }
+
+/* Modal */
+.modal-backdrop {
+  position: fixed; inset: 0; z-index: 2000; background: rgba(0,0,0,.6);
+  backdrop-filter: blur(8px); display: none; place-items: center; padding: 20px;
+}
+.modal-backdrop.open { display: grid; }
+.modal-card {
+  background: var(--card); border: 1px solid var(--border); border-radius: 24px;
+  width: 100%; max-width: 620px; max-height: 90vh; overflow-y: auto;
+  box-shadow: var(--shadow-lg); padding: 28px; animation: modalPop .2s ease-out;
+}
+@keyframes modalPop {
+  from { opacity: 0; transform: scale(.96) translateY(10px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+.modal-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.modal-head h2 { font-size: 20px; letter-spacing: -.5px; }
+.close-modal-btn {
+  border: 0; background: var(--card2); color: var(--muted); width: 34px; height: 34px;
+  border-radius: 10px; font-size: 16px; display: grid; place-items: center; transition: .2s;
+}
+.close-modal-btn:hover { background: var(--card3); color: var(--text); }
+
+.form-group { margin-bottom: 16px; }
+.form-group label { display: block; font-size: 11.5px; font-weight: 800; text-transform: uppercase; letter-spacing: .7px; color: var(--muted); margin-bottom: 6px; }
+.form-control {
+  width: 100%; padding: 10px 14px; border-radius: 11px; border: 1px solid var(--border);
+  background: var(--card2); color: var(--text); font-size: 13px; outline: 0; transition: border .2s;
+}
+.form-control:focus { border-color: var(--amber); }
+textarea.form-control { min-height: 80px; resize: vertical; }
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.modal-footer { display: flex; justify-content: flex-end; gap: 10px; margin-top: 24px; }
+
+/* Responsive */
+@media(max-width: 860px) {
+  .notes-grid { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .topbar { padding: 0 16px; }
+  .container { padding: 84px 16px 40px; }
+  .hide-mobile { display: none; }
 }
 </style>
 </head>
 
 <body>
 
+<!-- Header -->
 <header class="topbar">
   <div class="nav-left">
-    <button class="icon-btn mobile-menu" id="menuBtn" aria-label="Open menu">☰</button>
-    <a href="../index.html" class="logo" title="Back to PlacementPrep">☁</a>
+    <a href="../index.html" class="logo" title="Back to PlacementPrep">📚</a>
     <div class="brand">
       Placement<span>Prep</span>
-      <small>Cloud Computing</small>
+      <small>Notes & Last-Minute Hub</small>
     </div>
   </div>
 
   <div class="nav-actions">
-    <a href="../index.html" class="nav-back">
-      <span>←</span> Dashboard
+    <a href="../index.html" class="nav-btn">
+      <span>←</span> <span class="hide-mobile">Dashboard</span>
     </a>
-    <button class="icon-btn hide-mobile" id="topSearch" title="Search">⌕</button>
+    <button class="nav-btn primary" id="addNoteBtn">
+      <span>+</span> Add Note
+    </button>
     <button class="icon-btn" id="themeBtn" title="Toggle theme">☾</button>
   </div>
 </header>
 
-<div class="layout">
+<div class="container">
 
-<aside class="sidebar" id="sidebar">
-  <div class="side-label">Cloud Notes</div>
-  <a class="side-link active" href="#priority"><span class="side-num">01</span>Priority Map</a>
-  <a class="side-link" href="#fundamentals"><span class="side-num">02</span>Fundamentals</a>
-  <a class="side-link" href="#models"><span class="side-num">03</span>Cloud Models</a>
-  <a class="side-link" href="#virtualization"><span class="side-num">04</span>Virtualization</a>
-  <a class="side-link" href="#scaling"><span class="side-num">05</span>Scaling & Availability</a>
-  <a class="side-link" href="#storage"><span class="side-num">06</span>Storage</a>
-  <a class="side-link" href="#security"><span class="side-num">07</span>Security & IAM</a>
-  <a class="side-link" href="#medium"><span class="side-num">08</span>Medium Topics</a>
-  <a class="side-link" href="#comparisons"><span class="side-num">09</span>Comparisons</a>
-  <a class="side-link" href="#traps"><span class="side-num">10</span>MCQ Traps</a>
-  <a class="side-link" href="#questions"><span class="side-num">11</span>How Questions Are Asked</a>
-  <a class="side-link" href="#scenarios"><span class="side-num">12</span>Scenario Patterns</a>
-  <a class="side-link" href="#revision"><span class="side-num">13</span>Last-Minute Revision</a>
-</aside>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="eyebrow">⚡ Placement Revision Library</div>
+      <h1>Notes &amp; Last-Minute<br><span>Prep Material</span></h1>
+      <p>
+        Centralized revision sheets, formula summaries, cheat sheets, and placement MCQ traps across all technical modules. 
+        Select any module to revise high-yield concepts or add custom notes for your upcoming campus interviews.
+      </p>
 
-<main class="main">
+      <div class="hero-stats">
+        <div class="stat-pill">
+          <b id="totalModulesCount">7</b>
+          <span>Modules Covered</span>
+        </div>
+        <div class="stat-pill">
+          <b id="totalNotesCount">24</b>
+          <span>High-Yield Notes</span>
+        </div>
+        <div class="stat-pill">
+          <b id="customNotesCount">0</b>
+          <span>User Notes Added</span>
+        </div>
+      </div>
 
-<section class="hero">
-  <div class="hero-content">
-    <div class="eyebrow">⚡ Fresher Technical MCQ Revision</div>
-    <h1>Cloud Computing<br><span>Placement Notes</span></h1>
-    <p>
-      High-yield revision notes built around the concepts most useful for
-      campus technical assessments and fresher interviews. Focus on definitions,
-      differences, responsibilities, scenarios and common MCQ traps.
-    </p>
+      <div class="hero-actions">
+        <button class="hero-btn" onclick="document.getElementById('addNoteBtn').click()">
+          <span>+</span> Add Notes for Any Module
+        </button>
+        <a href="cloud-computing.html" class="hero-btn alt">
+          ☁ Cloud Computing Full Sheet →
+        </a>
+      </div>
+    </div>
+  </section>
 
-    <div class="hero-tags">
-      <span class="hero-tag">Accenture</span>
-      <span class="hero-tag">Capgemini</span>
-      <span class="hero-tag">TCS</span>
-      <span class="hero-tag">Infosys</span>
-      <span class="hero-tag">Wipro</span>
-      <span class="hero-tag">Cognizant</span>
-      <span class="hero-tag">HCLTech</span>
+  <!-- Featured Cloud Computing Sheet Banner -->
+  <div class="featured-card">
+    <div class="featured-content">
+      <span class="featured-tag">☁ Featured Deep-Dive Revision</span>
+      <h2>Cloud Computing: Complete 13-Section Placement Revision Sheet</h2>
+      <p>
+        Full-length interactive study guide with Priority Map, IaaS/PaaS/SaaS, Virtualization, Scaling, Storage, IAM, Security, 
+        Comparison Tables, MCQ Traps, 10 Placement Scenarios, and a 10-Minute Last-Minute Sheet.
+      </p>
+    </div>
+    <a href="cloud-computing.html" class="featured-btn">
+      Open Full Cloud Notes →
+    </a>
+  </div>
+
+  <!-- Search & Filter Controls -->
+  <div class="controls-bar">
+    <div class="search-row">
+      <div class="search-box">
+        <span class="search-icon">⌕</span>
+        <input type="search" id="searchInput" placeholder="Search notes by keyword, formula, trap, or module...">
+        <button class="clear-btn" id="clearSearch">Clear</button>
+      </div>
     </div>
 
-    <div class="hero-bottom">
-      <button class="hero-btn" onclick="document.querySelector('#fundamentals').scrollIntoView()">Start Revision →</button>
-      <button class="hero-btn alt" onclick="document.querySelector('#revision').scrollIntoView()">⚡ Quick Revision</button>
+    <!-- Module Tabs -->
+    <div class="module-tabs" id="moduleTabs">
+      <button class="tab-btn active" data-mod="all">All Modules</button>
+      <button class="tab-btn" data-mod="cloud">☁ Cloud Computing</button>
+      <button class="tab-btn" data-mod="excel">📊 MS Excel</button>
+      <button class="tab-btn" data-mod="word">📝 MS Word</button>
+      <button class="tab-btn" data-mod="linux">🐧 Linux Commands</button>
+      <button class="tab-btn" data-mod="variables">💻 Variables &amp; Types</button>
+      <button class="tab-btn" data-mod="browser">🌐 Browser Fundamentals</button>
+      <button class="tab-btn" data-mod="loops">🔄 Loops &amp; Flow</button>
+      <button class="tab-btn" data-mod="custom">✨ My Custom Notes</button>
     </div>
 
-    <div class="progress-wrap">
-      <div class="progress-top"><span>Scroll progress</span><span id="progressText">0%</span></div>
-      <div class="progress"><span id="progressBar"></span></div>
+    <!-- Priority Filters & Export/Import -->
+    <div class="filter-row">
+      <div class="filter-tags">
+        <span>Filter priority:</span>
+        <button class="priority-pill active" data-priority="all">All</button>
+        <button class="priority-pill" data-priority="high">High</button>
+        <button class="priority-pill" data-priority="medium">Medium</button>
+        <button class="priority-pill" data-priority="cheat">Cheat Sheet</button>
+      </div>
+      <div style="display:flex;gap:8px">
+        <button class="clear-btn" id="exportBtn" title="Export your notes as JSON">📥 Backup Notes</button>
+        <label class="clear-btn" style="cursor:pointer" title="Import notes from JSON file">
+          📤 Import Notes <input type="file" id="importInput" accept=".json" style="display:none">
+        </label>
+      </div>
     </div>
   </div>
-</section>
 
-<div class="searchbar" id="searchArea">
-  <span class="search-icon">⌕</span>
-  <input id="searchInput" type="search" placeholder="Search cloud topic, IaaS, IAM, storage, security...">
-  <button class="clear-search" id="clearSearch">Clear</button>
+  <!-- Notes Grid Container -->
+  <div class="notes-grid" id="notesGrid">
+    <!-- Populated by JavaScript -->
+  </div>
+
 </div>
 
-<div id="content">
-
-<section class="section" id="priority">
-  <div class="section-head">
-    <div>
-      <div class="section-kicker">01 / Start Here</div>
-      <h2>Placement Priority Map</h2>
+<!-- Add Note Modal -->
+<div class="modal-backdrop" id="noteModal">
+  <div class="modal-card">
+    <div class="modal-head">
+      <h2>+ Add Module Note</h2>
+      <button class="close-modal-btn" id="closeModalBtn">✕</button>
     </div>
-    <p class="section-sub">Revise HIGH topics first. Medium topics are useful for differentiation; low topics are optional.</p>
+    <form id="noteForm">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="noteModule">Module / Subject</label>
+          <select id="noteModule" class="form-control" required>
+            <option value="cloud">Cloud Computing</option>
+            <option value="excel">MS Excel</option>
+            <option value="word">MS Word</option>
+            <option value="linux">Linux Commands</option>
+            <option value="variables">Variables &amp; Types</option>
+            <option value="browser">Browser Fundamentals</option>
+            <option value="loops">Loops &amp; Control Flow</option>
+            <option value="other">Other / General Prep</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="notePriority">Priority / Tag</label>
+          <select id="notePriority" class="form-control" required>
+            <option value="high">HIGH PRIORITY</option>
+            <option value="medium">MEDIUM PRIORITY</option>
+            <option value="cheat">CHEAT SHEET / FORMULA</option>
+            <option value="trap">PLACEMENT TRAP</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="noteTitle">Topic / Concept Title</label>
+        <input type="text" id="noteTitle" class="form-control" placeholder="e.g. VLOOKUP vs INDEX-MATCH, Fork vs Exec, etc." required>
+      </div>
+
+      <div class="form-group">
+        <label for="noteSummary">Core Definition / One-Line Summary</label>
+        <textarea id="noteSummary" class="form-control" placeholder="Quick 1-2 sentence core concept that freshers must remember." rows="2" required></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="notePoints">Key Points / Takeaways (One per line)</label>
+        <textarea id="notePoints" class="form-control" placeholder="Point 1&#10;Point 2&#10;Point 3" rows="3"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="noteCode">Code / Formula / Syntax (Optional)</label>
+        <textarea id="noteCode" class="form-control" placeholder="=VLOOKUP(lookup_value, table_array, col_index, [range_lookup])" rows="2"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="noteTrap">MCQ Trap / Asked In Interviews (Optional)</label>
+        <input type="text" id="noteTrap" class="form-control" placeholder="e.g. Remember: VLOOKUP cannot search to the left of the lookup column.">
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="nav-btn" id="cancelModalBtn">Cancel</button>
+        <button type="submit" class="nav-btn primary">Save Note</button>
+      </div>
+    </form>
   </div>
-
-  <div class="grid grid-4">
-    <article class="card priority-card">
-      <span class="badge high">HIGH</span>
-      <h3>Cloud Fundamentals</h3>
-      <p>Core definitions and characteristics are the base of almost every cloud question.</p>
-      <ul class="topic-list">
-        <li>Cloud basics</li><li>Characteristics</li><li>Advantages / disadvantages</li><li>Public / Private / Hybrid</li>
-      </ul>
-    </article>
-
-    <article class="card priority-card">
-      <span class="badge high">HIGH</span>
-      <h3>Service Models</h3>
-      <p>One of the most important comparison areas for fresher MCQs.</p>
-      <ul class="topic-list">
-        <li>IaaS</li><li>PaaS</li><li>SaaS</li><li>Responsibility split</li>
-      </ul>
-    </article>
-
-    <article class="card priority-card">
-      <span class="badge high">HIGH</span>
-      <h3>Virtualization</h3>
-      <p>Know how physical resources become isolated virtual resources.</p>
-      <ul class="topic-list">
-        <li>Hypervisor</li><li>VM</li><li>Server virtualization</li><li>Types of virtualization</li>
-      </ul>
-    </article>
-
-    <article class="card priority-card">
-      <span class="badge high">HIGH</span>
-      <h3>Security & IAM</h3>
-      <p>Security scenarios often test access, identity and common cloud threats.</p>
-      <ul class="topic-list">
-        <li>IAM</li><li>Authentication / Authorization</li><li>MFA</li><li>Encryption</li>
-      </ul>
-    </article>
-  </div>
-
-  <div class="grid grid-3" style="margin-top:14px">
-    <article class="card"><span class="badge medium">MEDIUM-HIGH</span><h3>Scaling & Reliability</h3><p>Scalability, elasticity, auto-scaling, high availability and fault tolerance.</p></article>
-    <article class="card"><span class="badge medium">MEDIUM</span><h3>Modern Cloud Basics</h3><p>Containers, serverless, load balancing, CDN, VPC, subnet and region/AZ.</p></article>
-    <article class="card"><span class="badge low">LOW-MEDIUM</span><h3>Differentiators</h3><p>Vendor lock-in, multi-cloud, migration, monitoring and basic CI/CD awareness.</p></article>
-  </div>
-</section>
-
-<section class="section" id="fundamentals">
-  <div class="section-head">
-    <div><div class="section-kicker">02 / Core Concepts</div><h2>Cloud Computing Fundamentals</h2></div>
-    <p class="section-sub">Know the concept in one sentence, then recognize it in a scenario.</p>
-  </div>
-
-  <article class="note searchable">
-    <div class="note-head">
-      <div class="note-title"><div class="note-num">01</div><div><h3>Cloud Computing</h3><p class="definition">Delivery of computing resources such as servers, storage, software and processing over the internet, usually on demand.</p></div></div>
-      <span class="badge high">HIGH</span>
-    </div>
-    <div class="note-body">
-      <div class="mini-box"><h4>Remember</h4><ul><li>Resources are accessed remotely.</li><li>On-demand provisioning is a key idea.</li><li>Pay-as-you-use is a common cloud model.</li><li>Reduces the need to own physical infrastructure.</li></ul></div>
-      <div class="mini-box"><h4>Example</h4><div class="example">A startup rents computing resources from a cloud provider instead of buying servers.</div><div class="exam"><strong>Asked as:</strong> “Which technology provides computing resources over the internet on demand?”</div></div>
-    </div>
-    <div class="memory">Memory: Cloud = “use remote resources when you need them.”</div>
-  </article>
-
-  <article class="note searchable">
-    <div class="note-head">
-      <div class="note-title"><div class="note-num">02</div><div><h3>Characteristics of Cloud Computing</h3><p class="definition">Features that make cloud services flexible, shared and measurable.</p></div></div>
-      <span class="badge high">HIGH</span>
-    </div>
-    <div class="note-body">
-      <div class="mini-box"><h4>Remember</h4><ul><li><b>On-demand self-service</b> — resources can be provisioned when needed.</li><li><b>Broad network access</b> — access from connected devices.</li><li><b>Resource pooling</b> — provider resources are shared.</li><li><b>Rapid elasticity</b> — capacity can adjust quickly.</li><li><b>Measured service</b> — usage can be monitored and billed.</li></ul></div>
-      <div class="mini-box"><h4>Example</h4><div class="example">An online store increases resources during a sale and reduces them later.</div><div class="exam"><strong>Asked as:</strong> “Which characteristic enables pay-as-you-use measurement?” → Measured service.</div></div>
-    </div>
-  </article>
-
-  <article class="note searchable">
-    <div class="note-head">
-      <div class="note-title"><div class="note-num">03</div><div><h3>Advantages & Disadvantages</h3><p class="definition">Cloud can reduce infrastructure ownership while introducing dependency on provider services and connectivity.</p></div></div>
-      <span class="badge high">HIGH</span>
-    </div>
-    <div class="note-body">
-      <div class="mini-box"><h4>Advantages</h4><ul><li>Lower upfront hardware cost.</li><li>Easy accessibility.</li><li>Rapid scaling.</li><li>Provider-managed maintenance for many services.</li><li>Backup and recovery options.</li></ul></div>
-      <div class="mini-box"><h4>Risks / Limits</h4><ul><li>Internet dependency.</li><li>Security and privacy concerns.</li><li>Less infrastructure control.</li><li>Possible provider outage.</li><li>Vendor dependency.</li></ul></div>
-    </div>
-  </article>
-</section>
-
-<section class="section" id="models">
-  <div class="section-head">
-    <div><div class="section-kicker">03 / Models</div><h2>Deployment & Service Models</h2></div>
-    <p class="section-sub">This is one of the highest-value areas for direct and scenario MCQs.</p>
-  </div>
-
-  <div class="grid grid-3">
-    <article class="card searchable"><span class="badge high">PUBLIC CLOUD</span><h3>Public Cloud</h3><p>Cloud infrastructure is offered by a provider and can serve multiple customers. Strong scalability and accessibility; less direct infrastructure control.</p><div class="example" style="margin-top:12px">Scenario: A startup wants fast, scalable infrastructure without owning data-center hardware.</div></article>
-    <article class="card searchable"><span class="badge high">PRIVATE CLOUD</span><h3>Private Cloud</h3><p>Cloud infrastructure dedicated to a single organization. Useful where greater control, customization or isolation is required.</p><div class="example" style="margin-top:12px">Scenario: An organization wants dedicated cloud infrastructure for sensitive workloads.</div></article>
-    <article class="card searchable"><span class="badge high">HYBRID CLOUD</span><h3>Hybrid Cloud</h3><p>Combination of private and public cloud environments, often used to balance control, security, flexibility and cost.</p><div class="example" style="margin-top:12px">Scenario: Sensitive data stays private while scalable public resources handle other workloads.</div></article>
-  </div>
-
-  <article class="note searchable" style="margin-top:14px">
-    <div class="note-head">
-      <div class="note-title"><div class="note-num">04</div><div><h3>Community Cloud</h3><p class="definition">A cloud environment shared by organizations with common requirements, such as security, compliance or mission needs.</p></div></div>
-      <span class="badge medium">MEDIUM</span>
-    </div>
-    <div class="note-body">
-      <div class="mini-box"><h4>Remember</h4><ul><li>Shared by a defined community.</li><li>Common goals or compliance needs are the clue.</li></ul></div>
-      <div class="mini-box"><h4>Question pattern</h4><div class="exam"><strong>Scenario:</strong> Several organizations with similar compliance requirements share a dedicated cloud environment. Which model? → Community Cloud.</div></div>
-    </div>
-  </article>
-
-  <article class="note searchable">
-    <div class="note-head">
-      <div class="note-title"><div class="note-num">05</div><div><h3>IaaS — Infrastructure as a Service</h3><p class="definition">Provides virtualized infrastructure such as compute, storage and networking; the customer manages more of the software stack.</p></div></div>
-      <span class="badge high">HIGH</span>
-    </div>
-    <div class="note-body">
-      <div class="mini-box"><h4>Remember</h4><ul><li>More control than PaaS/SaaS.</li><li>Provider handles physical infrastructure.</li><li>Customer typically manages OS, applications and data.</li><li>Common clue: “rent virtual servers/resources.”</li></ul></div>
-      <div class="mini-box"><h4>Example + Trap</h4><div class="example">A company rents virtual machines and installs its own operating system and application.</div><div class="exam"><strong>Trap:</strong> IaaS is not the same as “complete application.”</div></div>
-    </div>
-    <div class="memory">Memory: IaaS = Infrastructure → “I manage more.”</div>
-  </article>
-
-  <article class="note searchable">
-    <div class="note-head">
-      <div class="note-title"><div class="note-num">06</div><div><h3>PaaS — Platform as a Service</h3><p class="definition">Provides a managed environment for developing and deploying applications without managing the underlying infrastructure.</p></div></div>
-      <span class="badge high">HIGH</span>
-    </div>
-    <div class="note-body">
-      <div class="mini-box"><h4>Remember</h4><ul><li>Developer focuses mainly on application code.</li><li>Provider manages infrastructure and platform components.</li><li>Faster development and deployment.</li><li>Less infrastructure customization than IaaS.</li></ul></div>
-      <div class="mini-box"><h4>Example + Trap</h4><div class="example">A developer deploys an application without managing the server OS.</div><div class="exam"><strong>Trap:</strong> “Developer does not manage underlying infrastructure” strongly points to PaaS.</div></div>
-    </div>
-    <div class="memory">Memory: PaaS = Platform → “I bring the code.”</div>
-  </article>
-
-  <article class="note searchable">
-    <div class="note-head">
-      <div class="note-title"><div class="note-num">07</div><div><h3>SaaS — Software as a Service</h3><p class="definition">Ready-to-use software delivered over the internet; the provider manages the underlying infrastructure and application.</p></div></div>
-      <span class="badge high">HIGH</span>
-    </div>
-    <div class="note-body">
-      <div class="mini-box"><h4>Remember</h4><ul><li>End user mainly uses the application.</li><li>Little or no local installation.</li><li>Provider handles updates and infrastructure.</li><li>Typical clue: “access software through browser.”</li></ul></div>
-      <div class="mini-box"><h4>Examples</h4><div class="example">Gmail, Google Docs and similar browser-based applications.</div><div class="exam"><strong>Asked as:</strong> “Which model gives the user a ready-to-use application?” → SaaS.</div></div>
-    </div>
-    <div class="memory">Memory: IaaS → Build infrastructure | PaaS → Develop | SaaS → Use.</div>
-  </article>
-
-  <article class="note searchable">
-    <div class="note-head">
-      <div class="note-title"><div class="note-num">08</div><div><h3>Shared Responsibility Model</h3><p class="definition">Cloud security responsibilities are divided between the provider and the customer; the exact split depends on the service model.</p></div></div>
-      <span class="badge high">HIGH</span>
-    </div>
-    <div class="note-body">
-      <div class="mini-box"><h4>Remember</h4><ul><li>Provider is responsible for the cloud infrastructure it operates.</li><li>Customer remains responsible for what it controls.</li><li>IaaS generally leaves more security/configuration responsibility with the customer.</li><li>SaaS shifts more operational responsibility to the provider.</li></ul></div>
-      <div class="mini-box"><h4>Question pattern</h4><div class="exam"><strong>Scenario:</strong> A company leaves its cloud storage publicly accessible because of a bad setting. Who failed to configure the resource correctly? → Customer-side responsibility.</div></div>
-    </div>
-  </article>
-</section>
-
-<section class="section" id="virtualization">
-  <div class="section-head">
-    <div><div class="section-kicker">04 / Infrastructure</div><h2>Virtualization</h2></div>
-    <p class="section-sub">Understand the physical → hypervisor → VM relationship.</p>
-  </div>
-
-  <article class="note searchable">
-    <div class="note-head">
-      <div class="note-title"><div class="note-num">09</div><div><h3>Virtualization</h3><p class="definition">Technology that creates logical/virtual resources from physical computing resources, allowing multiple isolated environments to share hardware.</p></div></div>
-      <span class="badge high">HIGH</span>
-    </div>
-    <div class="note-body">
-      <div class="mini-box"><h4>Remember</h4><ul><li>Improves resource utilization.</li><li>Reduces dependence on separate physical machines.</li><li>Supports isolation between virtual environments.</li><li>Virtualization is a foundation of many cloud environments.</li></ul></div>
-      <div class="mini-box"><h4>Example</h4><div class="example">One physical server runs several independent virtual machines.</div><div class="exam"><strong>Asked as:</strong> “Which technology allows multiple VMs to run on one physical host?” → Virtualization.</div></div>
-    </div>
-  </article>
-
-  <article class="note searchable">
-    <div class="note-head">
-      <div class="note-title"><div class="note-num">10</div><div><h3>Hypervisor</h3><p class="definition">Software layer that creates and manages virtual machines and allocates physical resources to them.</p></div></div>
-      <span class="badge high">HIGH</span>
-    </div>
-    <div class="note-body">
-      <div class="mini-box"><h4>Remember</h4><ul><li>Manages VMs.</li><li>Allocates CPU, memory and other resources.</li><li>Provides isolation between virtual machines.</li></ul></div>
-      <div class="mini-box"><h4>Question pattern</h4><div class="exam"><strong>Which component creates and controls VMs?</strong> → Hypervisor.</div></div>
-    </div>
-  </article>
-
-  <article class="note searchable">
-    <div class="note-head">
-      <div class="note-title"><div class="note-num">11</div><div><h3>Types of Virtualization</h3><p class="definition">Virtualization can be applied to different resources such as servers, networks, storage, desktops and applications.</p></div></div>
-      <span class="badge medium">MEDIUM</span>
-    </div>
-    <div class="note-body">
-      <div class="mini-box"><h4>Know the clue</h4><ul><li><b>Server:</b> one physical server → multiple virtual servers.</li><li><b>Network:</b> logical network segments over physical networking.</li><li><b>Storage:</b> multiple physical storage resources → virtual pool.</li><li><b>Desktop:</b> desktop environment hosted centrally.</li><li><b>Application:</b> application runs in an isolated/virtual environment.</li></ul></div>
-      <div class="mini-box"><h4>MCQ trick</h4><div class="exam">Look at the noun after “virtualization.” That usually tells you what resource is being abstracted.</div></div>
-    </div>
-  </article>
-</section>
-
-<section class="section" id="scaling">
-  <div class="section-head">
-    <div><div class="section-kicker">05 / Performance</div><h2>Scaling, Elasticity & Reliability</h2></div>
-    <p class="section-sub">Scenario questions often hide the answer inside words such as “sudden spike,” “growth,” “failure” and “availability.”</p>
-  </div>
-
-  <div class="grid grid-2">
-    <article class="card searchable"><span class="badge high">SCALABILITY</span><h3>Scalability</h3><p>Ability of a system to handle increasing workload by adding or increasing resources.</p><div class="example" style="margin-top:12px">Clue: business grows and infrastructure must support more users.</div></article>
-    <article class="card searchable"><span class="badge high">ELASTICITY</span><h3>Elasticity</h3><p>Ability to automatically or rapidly increase and decrease resources as workload changes.</p><div class="example" style="margin-top:12px">Clue: sudden traffic spike during a sale, followed by a drop later.</div></article>
-    <article class="card searchable"><span class="badge high">AUTO-SCALING</span><h3>Auto Scaling</h3><p>Automatically adjusts resource capacity according to demand or configured rules.</p><div class="example" style="margin-top:12px">Clue: “increase instances automatically when CPU/traffic rises.”</div></article>
-    <article class="card searchable"><span class="badge high">HIGH AVAILABILITY</span><h3>High Availability</h3><p>Designing systems to remain available with minimal downtime, often using redundancy.</p><div class="example" style="margin-top:12px">Clue: “keep the application running even if one component fails.”</div></article>
-    <article class="card searchable"><span class="badge high">FAULT TOLERANCE</span><h3>Fault Tolerance</h3><p>Ability of a system to continue operating despite a component failure.</p><div class="example" style="margin-top:12px">Clue: failure occurs, but service continues without interruption.</div></article>
-    <article class="card searchable"><span class="badge medium">LOAD BALANCING</span><h3>Load Balancing</h3><p>Distributes incoming traffic across multiple servers/resources to avoid overloading one.</p><div class="example" style="margin-top:12px">Clue: many servers share incoming requests.</div></article>
-  </div>
-</section>
-
-<section class="section" id="storage">
-  <div class="section-head">
-    <div><div class="section-kicker">06 / Data</div><h2>Cloud Storage</h2></div>
-    <p class="section-sub">The most important distinction is what kind of data access the application needs.</p>
-  </div>
-
-  <article class="note searchable">
-    <div class="note-head"><div class="note-title"><div class="note-num">12</div><div><h3>Cloud Storage</h3><p class="definition">Cloud storage provides remote storage capacity accessible over a network, allowing data to be stored without relying solely on local physical devices.</p></div></div><span class="badge high">HIGH</span></div>
-    <div class="note-body">
-      <div class="mini-box"><h4>Remember</h4><ul><li>Accessible remotely.</li><li>Can scale with demand.</li><li>Used for files, media, application data, backups and databases.</li></ul></div>
-      <div class="mini-box"><h4>Question pattern</h4><div class="exam"><strong>Asked as:</strong> “Which storage type is best for massive collections of images and videos?” → Object storage.</div></div>
-    </div>
-  </article>
-
-  <div class="table-wrap searchable">
-    <table>
-      <thead><tr><th>Storage</th><th>Meaning</th><th>Best-fit clue</th><th>Example use</th><th>Placement clue</th></tr></thead>
-      <tbody>
-        <tr><td><strong>Object</strong></td><td>Data stored as objects with metadata and an identifier.</td><td>Large-scale unstructured data.</td><td>Images, videos, backups.</td><td class="clue">Think “files at huge scale”.</td></tr>
-        <tr><td><strong>Block</strong></td><td>Data divided into blocks presented as storage volumes.</td><td>Low-latency, high-performance application storage.</td><td>Databases, VM disks.</td><td class="clue">Think “disk for a server”.</td></tr>
-        <tr><td><strong>File</strong></td><td>Data organized through folders/files.</td><td>Shared file-system style access.</td><td>Documents, team folders.</td><td class="clue">Think “normal folders/files”.</td></tr>
-      </tbody>
-    </table>
-  </div>
-</section>
-
-<section class="section" id="security">
-  <div class="section-head">
-    <div><div class="section-kicker">07 / Security</div><h2>Cloud Security & IAM</h2></div>
-    <p class="section-sub">Security questions are usually recognition questions: identify the threat, control or access concept.</p>
-  </div>
-
-  <div class="grid grid-3">
-    <article class="card searchable"><span class="badge high">IAM</span><h3>Identity & Access Management</h3><p>Controls which identities can access which cloud resources and what actions they can perform.</p></article>
-    <article class="card searchable"><span class="badge high">MFA</span><h3>Multi-Factor Authentication</h3><p>Requires more than one authentication factor, such as password + OTP.</p></article>
-    <article class="card searchable"><span class="badge high">ENCRYPTION</span><h3>Encryption</h3><p>Transforms readable data into a protected form so unauthorized parties cannot easily understand it.</p></article>
-  </div>
-
-  <article class="note searchable" style="margin-top:14px">
-    <div class="note-head"><div class="note-title"><div class="note-num">13</div><div><h3>IAM Components</h3><p class="definition">IAM manages identities, permissions and access rules for cloud resources.</p></div></div><span class="badge high">HIGH</span></div>
-    <div class="note-body">
-      <div class="mini-box"><h4>Remember</h4><ul><li><b>User:</b> individual identity.</li><li><b>Group:</b> collection of users managed together.</li><li><b>Role:</b> set of permissions associated with a job/use case.</li><li><b>Policy:</b> rules defining allowed or denied actions.</li></ul></div>
-      <div class="mini-box"><h4>Example</h4><div class="example">Students can view content, teachers can upload marks and admins can manage the entire system.</div><div class="exam"><strong>Scenario:</strong> “Give developers read-only access to storage.” → IAM policy/permission configuration.</div></div>
-    </div>
-  </article>
-
-  <article class="note searchable">
-    <div class="note-head"><div class="note-title"><div class="note-num">14</div><div><h3>Authentication vs Authorization</h3><p class="definition"><b>Authentication</b> verifies who you are. <b>Authorization</b> determines what you are allowed to do.</p></div></div><span class="badge high">HIGH</span></div>
-    <div class="note-body">
-      <div class="mini-box"><h4>Remember</h4><ul><li>Password/OTP → authentication.</li><li>Permission to read/write/delete → authorization.</li><li>Authentication normally comes before authorization.</li></ul></div>
-      <div class="mini-box"><h4>Trap</h4><div class="exam"><strong>“Who are you?”</strong> → Authentication.<br><strong>“What can you access?”</strong> → Authorization.</div></div>
-    </div>
-    <div class="memory">Memory: AuthN = Name/identity | AuthZ = Zone/permissions.</div>
-  </article>
-
-  <div class="grid grid-3">
-    <article class="card searchable"><span class="badge high">THREAT</span><h3>Data Breach</h3><p>Sensitive information is accessed or exposed to unauthorized parties.</p></article>
-    <article class="card searchable"><span class="badge high">THREAT</span><h3>Data Loss</h3><p>Data is deleted, corrupted or becomes permanently unavailable.</p></article>
-    <article class="card searchable"><span class="badge high">THREAT</span><h3>Misconfiguration</h3><p>Incorrect settings expose resources, such as accidentally public storage.</p></article>
-    <article class="card searchable"><span class="badge high">THREAT</span><h3>Insecure API</h3><p>A weakness in a cloud service interface can expose functionality or data.</p></article>
-    <article class="card searchable"><span class="badge high">THREAT</span><h3>Insider Threat</h3><p>A trusted internal user misuses legitimate access.</p></article>
-    <article class="card searchable"><span class="badge high">THREAT</span><h3>Account Hijacking</h3><p>An attacker gains unauthorized access by compromising credentials or identity.</p></article>
-  </div>
-
-  <article class="note searchable" style="margin-top:14px">
-    <div class="note-head"><div class="note-title"><div class="note-num">15</div><div><h3>Backup & Disaster Recovery</h3><p class="definition"><b>Backup</b> keeps recoverable copies of data. <b>Disaster recovery</b> focuses on restoring systems/services after a disruptive event.</p></div></div><span class="badge high">HIGH</span></div>
-    <div class="note-body">
-      <div class="mini-box"><h4>Remember</h4><ul><li>Backup = recover the data.</li><li>Disaster recovery = restore the service/environment.</li><li>Both support business continuity.</li></ul></div>
-      <div class="mini-box"><h4>Scenario</h4><div class="exam"><strong>“Database is accidentally deleted and a copy is restored.”</strong> → Backup/recovery.<br><strong>“Primary environment fails and service is restored elsewhere.”</strong> → Disaster recovery.</div></div>
-    </div>
-  </article>
-</section>
-
-<section class="section" id="medium">
-  <div class="section-head">
-    <div><div class="section-kicker">08 / Expand Your Score</div><h2>Medium-Priority Topics</h2></div>
-    <p class="section-sub">Know the one-line definition and the scenario clue. Do not spend excessive time on implementation details.</p>
-  </div>
-
-  <div class="grid grid-3">
-    <article class="card searchable"><span class="badge medium">SERVERLESS</span><h3>Serverless Computing</h3><p>Run application functions without managing servers directly. The provider handles infrastructure and scaling.</p><div class="exam" style="margin-top:10px"><strong>Clue:</strong> “No server management + event-driven function.”</div></article>
-    <article class="card searchable"><span class="badge medium">CONTAINERS</span><h3>Containers vs VMs</h3><p>Containers share the host OS kernel and package applications with dependencies; VMs virtualize a complete machine environment.</p><div class="exam" style="margin-top:10px"><strong>Clue:</strong> Containers are generally lighter than full VMs.</div></article>
-    <article class="card searchable"><span class="badge medium">CDN</span><h3>CDN</h3><p>Content Delivery Network caches/distributes content closer to users to reduce latency.</p><div class="exam" style="margin-top:10px"><strong>Clue:</strong> “Users in different locations need faster static content.”</div></article>
-    <article class="card searchable"><span class="badge medium">NETWORKING</span><h3>VPC & Subnet</h3><p>VPC is a logically isolated cloud network. A subnet is a smaller network segment inside it.</p><div class="exam" style="margin-top:10px"><strong>Clue:</strong> “Private logical network in cloud.”</div></article>
-    <article class="card searchable"><span class="badge medium">DNS</span><h3>Cloud DNS</h3><p>Maps domain names to network destinations such as IP addresses or other endpoints.</p><div class="exam" style="margin-top:10px"><strong>Clue:</strong> “Translate website name to network destination.”</div></article>
-    <article class="card searchable"><span class="badge medium">VPN</span><h3>VPN</h3><p>Creates a protected connection over a public network, often used to connect users or networks securely.</p><div class="exam" style="margin-top:10px"><strong>Clue:</strong> “Secure private connection over the internet.”</div></article>
-    <article class="card searchable"><span class="badge medium">REGION / AZ</span><h3>Region vs Availability Zone</h3><p>A region is a geographic cloud location; availability zones are isolated locations within a region designed for resilience.</p></article>
-    <article class="card searchable"><span class="badge medium">MULTI-TENANCY</span><h3>Multi-Tenancy</h3><p>Multiple customers share underlying provider infrastructure while remaining logically isolated.</p></article>
-    <article class="card searchable"><span class="badge medium">CAPEX / OPEX</span><h3>CapEx vs OpEx</h3><p>CapEx is upfront capital investment; OpEx is ongoing operational spending. Cloud consumption commonly aligns with OpEx.</p></article>
-    <article class="card searchable"><span class="badge medium">MONITORING</span><h3>Cloud Monitoring</h3><p>Tracks performance, availability and activity to identify issues and unusual behavior.</p></article>
-    <article class="card searchable"><span class="badge medium">MIGRATION</span><h3>Basic Cloud Migration</h3><p>Moving applications/data from on-premises infrastructure to cloud environments.</p></article>
-    <article class="card searchable"><span class="badge low">DIFFERENTIATOR</span><h3>Vendor Lock-in / Multi-Cloud</h3><p>Vendor lock-in makes switching providers difficult. Multi-cloud uses services from more than one cloud provider.</p></article>
-  </div>
-</section>
-
-<section class="section" id="comparisons">
-  <div class="section-head">
-    <div><div class="section-kicker">09 / Comparison Zone</div><h2>Important Comparison Tables</h2></div>
-    <p class="section-sub">These are the tables to memorize before a technical MCQ round.</p>
-  </div>
-
-  <div class="table-wrap searchable" style="margin-bottom:14px">
-    <table>
-      <thead><tr><th>Concept</th><th>Meaning</th><th>Who manages what</th><th>Example</th><th>Placement clue</th></tr></thead>
-      <tbody>
-        <tr><td><strong>IaaS</strong></td><td>Virtual infrastructure.</td><td>Provider: physical infrastructure. Customer: OS/apps/data.</td><td>Virtual server.</td><td class="clue">“Rent servers.”</td></tr>
-        <tr><td><strong>PaaS</strong></td><td>Managed application platform.</td><td>Provider manages infrastructure/platform; developer focuses on code.</td><td>App deployment platform.</td><td class="clue">“Deploy without managing OS.”</td></tr>
-        <tr><td><strong>SaaS</strong></td><td>Ready-to-use software.</td><td>Provider manages application and infrastructure.</td><td>Gmail / Docs.</td><td class="clue">“Use the software.”</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="table-wrap searchable" style="margin-bottom:14px">
-    <table>
-      <thead><tr><th>Concept</th><th>Meaning</th><th>Control</th><th>Typical use</th><th>Placement clue</th></tr></thead>
-      <tbody>
-        <tr><td><strong>Public</strong></td><td>Provider-operated shared environment.</td><td>Less infrastructure control.</td><td>Scalable general workloads.</td><td class="clue">“Fast + scalable + shared.”</td></tr>
-        <tr><td><strong>Private</strong></td><td>Dedicated to one organization.</td><td>Greater control/customization.</td><td>Sensitive/dedicated workloads.</td><td class="clue">“Dedicated environment.”</td></tr>
-        <tr><td><strong>Hybrid</strong></td><td>Public + private combination.</td><td>Balances control and flexibility.</td><td>Sensitive + scalable workloads.</td><td class="clue">“Keep some private, use public too.”</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="table-wrap searchable" style="margin-bottom:14px">
-    <table>
-      <thead><tr><th>Concept</th><th>Meaning</th><th>Example</th><th>Placement clue</th></tr></thead>
-      <tbody>
-        <tr><td><strong>Scalability</strong></td><td>Handle growth by increasing capacity.</td><td>Business grows from 1M to 5M users.</td><td class="clue">Growth / larger workload.</td></tr>
-        <tr><td><strong>Elasticity</strong></td><td>Rapidly/automatically add and remove capacity with demand.</td><td>Sale causes traffic spike, then demand falls.</td><td class="clue">Sudden rise + later fall.</td></tr>
-        <tr><td><strong>Auto Scaling</strong></td><td>Mechanism that adjusts capacity based on rules/demand.</td><td>Automatically add instances at high load.</td><td class="clue">“Automatically increase/decrease.”</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="table-wrap searchable" style="margin-bottom:14px">
-    <table>
-      <thead><tr><th>Concept</th><th>Meaning</th><th>Example</th><th>Placement clue</th></tr></thead>
-      <tbody>
-        <tr><td><strong>Authentication</strong></td><td>Verifies identity.</td><td>Password + OTP.</td><td class="clue">Who are you?</td></tr>
-        <tr><td><strong>Authorization</strong></td><td>Determines permissions.</td><td>Can read but cannot delete.</td><td class="clue">What can you do?</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="table-wrap searchable" style="margin-bottom:14px">
-    <table>
-      <thead><tr><th>Concept</th><th>Meaning</th><th>Typical use</th><th>Placement clue</th></tr></thead>
-      <tbody>
-        <tr><td><strong>VM</strong></td><td>Virtualized machine environment.</td><td>Run separate OS environments.</td><td class="clue">Full machine abstraction.</td></tr>
-        <tr><td><strong>Container</strong></td><td>Isolated application environment sharing host OS kernel.</td><td>Package and run applications consistently.</td><td class="clue">Lightweight app isolation.</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="table-wrap searchable">
-    <table>
-      <thead><tr><th>Concept</th><th>Meaning</th><th>Cost model</th><th>Placement clue</th></tr></thead>
-      <tbody>
-        <tr><td><strong>On-Premises</strong></td><td>Organization owns/operates its infrastructure.</td><td>Large upfront investment often required.</td><td class="clue">Own the servers.</td></tr>
-        <tr><td><strong>Cloud</strong></td><td>Consume provider infrastructure/services.</td><td>Often usage-based / operational spending.</td><td class="clue">Rent/use provider resources.</td></tr>
-        <tr><td><strong>CapEx</strong></td><td>Capital expenditure.</td><td>Upfront purchase of long-lived assets.</td><td class="clue">Buy hardware.</td></tr>
-        <tr><td><strong>OpEx</strong></td><td>Operational expenditure.</td><td>Ongoing operating cost.</td><td class="clue">Pay for service/use.</td></tr>
-      </tbody>
-    </table>
-  </div>
-</section>
-
-<section class="section" id="traps">
-  <div class="section-head">
-    <div><div class="section-kicker">10 / Avoid Easy Mistakes</div><h2>Common MCQ Traps</h2></div>
-  </div>
-  <div class="grid grid-2">
-    <div class="trap"><strong>Scalability ≠ Elasticity</strong><span>Scalability focuses on handling growth; elasticity emphasizes rapid adjustment with changing demand.</span></div>
-    <div class="trap"><strong>Authentication ≠ Authorization</strong><span>Authentication verifies identity; authorization checks permissions.</span></div>
-    <div class="trap"><strong>IaaS ≠ PaaS</strong><span>IaaS gives more infrastructure control. PaaS removes more infrastructure management from the developer.</span></div>
-    <div class="trap"><strong>Public Cloud ≠ “No Security”</strong><span>Public cloud can have strong security controls; the key distinction is shared/provider-operated infrastructure and responsibility.</span></div>
-    <div class="trap"><strong>IAM ≠ Authentication only</strong><span>IAM is broader: identities, permissions and access policies.</span></div>
-    <div class="trap"><strong>Object ≠ Block ≠ File</strong><span>Choose based on access pattern and workload, not simply on “storage.”</span></div>
-    <div class="trap"><strong>Backup ≠ Disaster Recovery</strong><span>Backup preserves recoverable data; disaster recovery restores services/environments after disruption.</span></div>
-    <div class="trap"><strong>Hypervisor ≠ VM</strong><span>Hypervisor manages VMs; a VM is the virtual machine environment itself.</span></div>
-  </div>
-</section>
-
-<section class="section" id="questions">
-  <div class="section-head">
-    <div><div class="section-kicker">11 / Question Recognition</div><h2>How Questions Are Asked</h2></div>
-    <p class="section-sub">Do not only memorize definitions. Learn the wording that points to the concept.</p>
-  </div>
-  <div class="grid grid-2">
-    <article class="card searchable"><span class="badge high">DIRECT</span><h3>Definition MCQ</h3><p>“Which model provides virtualized computing resources over the internet?”</p><div class="answer">→ IaaS</div></article>
-    <article class="card searchable"><span class="badge high">DIFFERENCE</span><h3>Comparison MCQ</h3><p>“Which model allows developers to deploy without managing the underlying OS?”</p><div class="answer">→ PaaS</div></article>
-    <article class="card searchable"><span class="badge high">EXAMPLE</span><h3>Example Recognition</h3><p>“A browser-based ready-to-use email application is an example of which model?”</p><div class="answer">→ SaaS</div></article>
-    <article class="card searchable"><span class="badge high">APPLICATION</span><h3>Most Suitable</h3><p>“A sale causes traffic to increase suddenly and later return to normal. Which feature is most relevant?”</p><div class="answer">→ Elasticity / Auto Scaling</div></article>
-    <article class="card searchable"><span class="badge medium">STATEMENT</span><h3>Statement-Based</h3><p>“Identify the correct statement about IAM, virtualization or shared responsibility.”</p><div class="answer">→ Look for the precise responsibility/access distinction.</div></article>
-    <article class="card searchable"><span class="badge medium">NOT / EXCEPT</span><h3>Negative MCQ</h3><p>“Which of the following is NOT a characteristic of cloud computing?”</p><div class="answer">→ Eliminate on-demand access, resource pooling, elasticity and measured service first.</div></article>
-  </div>
-</section>
-
-<section class="section" id="scenarios">
-  <div class="section-head">
-    <div><div class="section-kicker">12 / Scenario Training</div><h2>Scenario-Based Question Patterns</h2></div>
-    <p class="section-sub">These are representative patterns, not claimed as official company previous-year questions.</p>
-  </div>
-
-  <div class="grid grid-2">
-    <article class="scenario searchable"><div class="tag">Scenario 01 · E-commerce</div><h3>Traffic suddenly increases during a sale.</h3><p>The company wants resources to increase automatically and reduce after the sale.</p><div class="answer">Answer: Elasticity + Auto Scaling</div></article>
-    <article class="scenario searchable"><div class="tag">Scenario 02 · Developer</div><h3>Developer wants to deploy code without managing the OS.</h3><p>The provider should manage the infrastructure and platform environment.</p><div class="answer">Answer: PaaS</div></article>
-    <article class="scenario searchable"><div class="tag">Scenario 03 · Sensitive Data</div><h3>A bank wants dedicated infrastructure for sensitive workloads.</h3><p>The organization prioritizes control and isolation.</p><div class="answer">Answer: Private Cloud</div></article>
-    <article class="scenario searchable"><div class="tag">Scenario 04 · Mixed Workloads</div><h3>A company keeps sensitive workloads private but uses public cloud for scalable workloads.</h3><p>It needs a combination of deployment approaches.</p><div class="answer">Answer: Hybrid Cloud</div></article>
-    <article class="scenario searchable"><div class="tag">Scenario 05 · Storage</div><h3>An application stores millions of images and videos.</h3><p>The data is large-scale and unstructured.</p><div class="answer">Answer: Object Storage</div></article>
-    <article class="scenario searchable"><div class="tag">Scenario 06 · Database</div><h3>A database needs high-performance disk-like storage.</h3><p>The workload needs fast block-level access.</p><div class="answer">Answer: Block Storage</div></article>
-    <article class="scenario searchable"><div class="tag">Scenario 07 · Access</div><h3>Employees should receive different permissions based on their job roles.</h3><p>The company needs centralized identity and permission management.</p><div class="answer">Answer: IAM / Role-based permissions</div></article>
-    <article class="scenario searchable"><div class="tag">Scenario 08 · Login</div><h3>Users must enter a password and then an OTP.</h3><p>Two different authentication factors are required.</p><div class="answer">Answer: MFA</div></article>
-    <article class="scenario searchable"><div class="tag">Scenario 09 · Security Incident</div><h3>A storage resource was accidentally made public.</h3><p>The exposure happened because of an incorrect configuration.</p><div class="answer">Answer: Security misconfiguration</div></article>
-    <article class="scenario searchable"><div class="tag">Scenario 10 · Failure</div><h3>A server fails but the application continues operating.</h3><p>The system was designed with redundancy so a component failure does not stop the service.</p><div class="answer">Answer: Fault tolerance / High availability</div></article>
-  </div>
-</section>
-
-<section class="section" id="company">
-  <div class="section-head">
-    <div><div class="section-kicker">Placement Context</div><h2>Company Pattern Guidance</h2></div>
-    <p class="section-sub">Treat this as preparation guidance, not a promise that a company will ask a specific question.</p>
-  </div>
-  <div class="card searchable">
-    <div class="table-wrap" style="border:0">
-      <table>
-        <thead><tr><th>Company / Pattern</th><th>High-value cloud areas</th><th>Likely style</th><th>Evidence level</th></tr></thead>
-        <tbody>
-          <tr><td><strong>Accenture</strong></td><td>IaaS/PaaS/SaaS, applied cloud concepts, security, scalability and real-world scenarios.</td><td>Applied technical / scenario</td><td>Official assessment guidance + public company cloud material</td></tr>
-          <tr><td><strong>TCS</strong></td><td>Cloud basics, service models, virtualization, scalable systems and basic cloud services.</td><td>Direct + practical</td><td>Public sample questions + candidate-reported experiences</td></tr>
-          <tr><td><strong>Infosys</strong></td><td>Cloud fundamentals, public/private/hybrid, IaaS/PaaS/SaaS and security basics.</td><td>Basic technical</td><td>Candidate-reported/public prep patterns</td></tr>
-          <tr><td><strong>Capgemini</strong></td><td>Cloud fundamentals, service models, virtualization, deployment and common security concepts.</td><td>MCQ + technical</td><td>Common placement material; exact company questions vary</td></tr>
-          <tr><td><strong>Other IT/service firms</strong></td><td>Fundamentals, service/deployment models, virtualization, security, storage and scalability.</td><td>Direct + scenario</td><td>General fresher placement pattern</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="revision">
-  <div class="revision">
-    <div class="section-kicker" style="color:#ff6a80">13 / Final 10-Minute Revision</div>
-    <h2>Last-Minute Cloud Computing Sheet</h2>
-
-    <div class="revision-grid">
-      <div class="revision-item"><b>Cloud</b><span>Remote computing resources over the internet.</span></div>
-      <div class="revision-item"><b>IaaS</b><span>Virtual infrastructure; more customer control.</span></div>
-      <div class="revision-item"><b>PaaS</b><span>Managed platform; focus on application development.</span></div>
-      <div class="revision-item"><b>SaaS</b><span>Ready-to-use software.</span></div>
-      <div class="revision-item"><b>Public</b><span>Provider-operated shared cloud environment.</span></div>
-      <div class="revision-item"><b>Private</b><span>Dedicated to one organization.</span></div>
-      <div class="revision-item"><b>Hybrid</b><span>Public + private combination.</span></div>
-      <div class="revision-item"><b>Virtualization</b><span>Logical resources over physical hardware.</span></div>
-      <div class="revision-item"><b>Hypervisor</b><span>Creates/manages VMs.</span></div>
-      <div class="revision-item"><b>Scalability</b><span>Handle growth.</span></div>
-      <div class="revision-item"><b>Elasticity</b><span>Adjust capacity with changing demand.</span></div>
-      <div class="revision-item"><b>Auto Scaling</b><span>Automatically changes capacity.</span></div>
-      <div class="revision-item"><b>Object</b><span>Massive unstructured data such as media.</span></div>
-      <div class="revision-item"><b>Block</b><span>High-performance disk-like storage.</span></div>
-      <div class="revision-item"><b>File</b><span>Folders/files and shared file access.</span></div>
-      <div class="revision-item"><b>IAM</b><span>Identity + permissions + access control.</span></div>
-      <div class="revision-item"><b>AuthN</b><span>Who are you?</span></div>
-      <div class="revision-item"><b>AuthZ</b><span>What can you do?</span></div>
-      <div class="revision-item"><b>MFA</b><span>Multiple authentication factors.</span></div>
-      <div class="revision-item"><b>Encryption</b><span>Protects data from unauthorized reading.</span></div>
-      <div class="revision-item"><b>Misconfiguration</b><span>Incorrect settings expose resources.</span></div>
-      <div class="revision-item"><b>Backup</b><span>Recoverable copy of data.</span></div>
-      <div class="revision-item"><b>DR</b><span>Restore services after disruption.</span></div>
-      <div class="revision-item"><b>Load Balancer</b><span>Distributes incoming traffic.</span></div>
-      <div class="revision-item"><b>CDN</b><span>Moves cached content closer to users.</span></div>
-      <div class="revision-item"><b>VPC</b><span>Logical isolated cloud network.</span></div>
-      <div class="revision-item"><b>Region</b><span>Geographic cloud location.</span></div>
-      <div class="revision-item"><b>AZ</b><span>Isolated location within a region.</span></div>
-      <div class="revision-item"><b>Serverless</b><span>Run functions without managing servers directly.</span></div>
-    </div>
-
-    <div style="margin-top:20px;padding:15px;border-radius:13px;background:rgba(255,255,255,.08);font-size:11px;color:#d1d1d4">
-      <b style="color:#fff">Golden rule:</b>
-      If the question gives a real-world situation, look for the strongest clue:
-      “rent servers” → IaaS · “deploy code without OS management” → PaaS ·
-      “ready-to-use software” → SaaS · “traffic spike” → elasticity/auto-scaling ·
-      “who are you?” → authentication · “what can you access?” → authorization.
-    </div>
-  </div>
-</section>
-
-<div class="footer">
-  Cloud Computing Placement Notes · Designed for fast technical revision ·
-  Always verify company-specific hiring patterns from current official recruitment information.
-</div>
-
-</div>
-</main>
 </div>
 
 <script>
-const body=document.body;
-const themeBtn=document.getElementById("themeBtn");
-const menuBtn=document.getElementById("menuBtn");
-const sidebar=document.getElementById("sidebar");
-const searchInput=document.getElementById("searchInput");
-const clearSearch=document.getElementById("clearSearch");
-const topSearch=document.getElementById("topSearch");
+// Built-in Seed Notes for different PlacementPrep Modules
+const defaultNotes = [
+  // --- CLOUD COMPUTING ---
+  {
+    id: "cc-1",
+    module: "cloud",
+    moduleName: "Cloud Computing",
+    priority: "high",
+    title: "IaaS vs PaaS vs SaaS Comparison",
+    summary: "Cloud service models differ primarily in the division of responsibility between provider and client.",
+    points: [
+      "IaaS: Virtual machines, storage, networking (AWS EC2, Azure VM). Client manages OS, runtime & apps.",
+      "PaaS: Managed application platform (Heroku, Google App Engine). Client brings only code & data.",
+      "SaaS: Ready-to-use software over internet (Gmail, Microsoft 365, Salesforce). Client just uses it."
+    ],
+    code: "Control Hierarchy: IaaS (Most Control) > PaaS > SaaS (Least Control)",
+    trap: "PaaS trap: 'Developer does NOT manage the underlying OS' is the defining keyword for PaaS."
+  },
+  {
+    id: "cc-2",
+    module: "cloud",
+    moduleName: "Cloud Computing",
+    priority: "high",
+    title: "Scalability vs Elasticity vs Auto Scaling",
+    summary: "Crucial difference tested in TCS, Accenture, and Infosys scenario MCQs.",
+    points: [
+      "Scalability: Ability to handle increasing workload by adding resources (long-term growth).",
+      "Elasticity: Dynamic ability to automatically add and reduce resources as demand spikes and drops.",
+      "Auto Scaling: The actual automated mechanism configured to trigger instance changes."
+    ],
+    code: "Black Friday Sale spike -> Elasticity | Business growing 1M to 5M users -> Scalability",
+    trap: "Spike + subsequent drop = Elasticity. Never confuse it with simple static scalability!"
+  },
+  {
+    id: "cc-3",
+    module: "cloud",
+    moduleName: "Cloud Computing",
+    priority: "high",
+    title: "Object vs Block vs File Storage",
+    summary: "Choose storage based on data structure, access pattern, and workload requirements.",
+    points: [
+      "Object Storage: Large unstructured data (images, videos, backups). Flat address space, unique ID + metadata.",
+      "Block Storage: Fast, low-latency disk volumes mounted to VMs (e.g. AWS EBS). Ideal for databases.",
+      "File Storage: Hierarchical directory tree structure (folders/files) accessed over network (NFS/SMB)."
+    ],
+    code: "Images/Videos -> Object | OS & DB volumes -> Block | Shared team folders -> File",
+    trap: "Block storage is required for boot disks and databases requiring raw sector access."
+  },
+  {
+    id: "cc-4",
+    module: "cloud",
+    moduleName: "Cloud Computing",
+    priority: "cheat",
+    title: "Cloud Security: AuthN vs AuthZ & Shared Responsibility",
+    summary: "Authentication verifies who you are; Authorization decides what resources you can touch.",
+    points: [
+      "Authentication (AuthN): Passwords, MFA, Biometrics, OTPs.",
+      "Authorization (AuthZ): IAM Policies, RBAC, Read/Write permissions.",
+      "Shared Responsibility: Provider secures the cloud; customer secures what is IN the cloud (data, IAM, OS patches in IaaS)."
+    ],
+    code: "Accidental public S3 bucket = Customer misconfiguration, NOT provider fault!",
+    trap: "IAM manages BOTH AuthN and AuthZ, but AuthN must happen before AuthZ."
+  },
 
-// Synchronize theme with PlacementPrep platform theme or local cloud-theme
-const savedTheme=localStorage.getItem("cloud-theme") || localStorage.getItem("placementprep-theme") || localStorage.getItem("theme");
-if(savedTheme==="dark"){
-  body.classList.add("dark");
-  themeBtn.textContent="☀";
+  // --- MS EXCEL ---
+  {
+    id: "ex-1",
+    module: "excel",
+    moduleName: "MS Excel",
+    priority: "high",
+    title: "VLOOKUP vs INDEX & MATCH",
+    summary: "The most tested lookup formulas in corporate aptitude and technical rounds.",
+    points: [
+      "VLOOKUP searches only left-to-right (lookup value must be in column 1 of table array).",
+      "INDEX & MATCH can look up both left and right, and won't break when columns are inserted.",
+      "XLOOKUP is the modern successor: defaults to exact match and looks in any direction."
+    ],
+    code: "=VLOOKUP(lookup_val, table_array, col_index, FALSE)\n=INDEX(return_range, MATCH(lookup_val, lookup_range, 0))",
+    trap: "Always set range_lookup to FALSE (or 0) for exact match, otherwise Excel assumes sorted data!"
+  },
+  {
+    id: "ex-2",
+    module: "excel",
+    moduleName: "MS Excel",
+    priority: "cheat",
+    title: "Excel Error Codes Cheat Sheet",
+    summary: "Direct recognition questions appear frequently in fresher recruitment tests.",
+    points: [
+      "#N/A: Value not available (lookup value not found).",
+      "#VALUE!: Wrong data type passed to a formula (e.g. adding text to numbers).",
+      "#REF!: Invalid cell reference (referenced cell or column was deleted).",
+      "#DIV/0!: Formula attempts division by zero or an empty cell.",
+      "#NAME?: Excel does not recognize formula name (typo in function name)."
+    ],
+    code: "Fix #N/A with: =IFERROR(VLOOKUP(...), \"Not Found\")",
+    trap: "Deleting a row referenced in another sheet creates #REF!, not #VALUE!."
+  },
+  {
+    id: "ex-3",
+    module: "excel",
+    moduleName: "MS Excel",
+    priority: "medium",
+    title: "Absolute vs Relative Cell Referencing ($)",
+    summary: "Determines how formulas behave when dragged or copied across cells.",
+    points: [
+      "Relative (A1): Both column and row change when dragged.",
+      "Absolute ($A$1): Both column and row stay fixed.",
+      "Mixed ($A1): Column fixed, row adjusts. (A$1): Row fixed, column adjusts.",
+      "Press F4 while editing formula to cycle through $ states."
+    ],
+    code: "Dragging =$A$1*B1 down -> row 2 becomes =$A$1*B2 (A1 stays locked)",
+    trap: "Forgetting $ in lookup table ranges causes the search area to shift downward when dragged."
+  },
+
+  // --- MS WORD ---
+  {
+    id: "wd-1",
+    module: "word",
+    moduleName: "MS Word",
+    priority: "high",
+    title: "Mail Merge Lifecycle & Components",
+    summary: "Common topic in office software rounds for IT and operations roles.",
+    points: [
+      "Three components: Main Document, Data Source (Excel/Access), and Merged Document.",
+      "Allows batch generating personalized letters, certificates, envelopes, and emails.",
+      "Merge fields are inserted using «Field_Name» syntax."
+    ],
+    code: "Mailings Tab -> Start Mail Merge -> Select Recipients -> Insert Merge Fields -> Finish & Merge",
+    trap: "Data source changes after merging do NOT automatically update already-generated merged documents."
+  },
+  {
+    id: "wd-2",
+    module: "word",
+    moduleName: "MS Word",
+    priority: "cheat",
+    title: "Essential MS Word Shortcuts & Break Types",
+    summary: "Shortcuts and document structuring questions.",
+    points: [
+      "Section Break (Next Page): Starts new section on next page with independent headers/footers/margins.",
+      "Section Break (Continuous): Starts new section on same page (used for multi-column layouts).",
+      "Ctrl + Shift + C / V: Copy / Paste Formatting (Format Painter shortcut).",
+      "Ctrl + Enter: Hard Page Break | Shift + Enter: Line Break (soft break without new paragraph)."
+    ],
+    code: "Ctrl + J: Justify | Ctrl + E: Center | F4: Repeat last action",
+    trap: "Page break only moves text; Section break is REQUIRED to change page orientation (Portrait to Landscape) mid-document."
+  },
+
+  // --- LINUX COMMANDS ---
+  {
+    id: "lx-1",
+    module: "linux",
+    moduleName: "Linux Commands",
+    priority: "high",
+    title: "File Permissions & Chmod Octal Calculator",
+    summary: "Permissions are represented in 3 triplets: User (Owner), Group, and Others.",
+    points: [
+      "Read (r) = 4, Write (w) = 2, Execute (x) = 1.",
+      "chmod 755: Owner (rwx=7), Group (r-x=5), Others (r-x=5). Standard for executable scripts.",
+      "chmod 644: Owner (rw-=6), Group (r--=4), Others (r--=4). Standard for data files.",
+      "chown user:group filename changes ownership."
+    ],
+    code: "chmod +x script.sh  # makes executable\nchmod 700 file.txt   # owner full access only",
+    trap: "Directory execute permission (x) is required to 'cd' into it or access files within it!"
+  },
+  {
+    id: "lx-2",
+    module: "linux",
+    moduleName: "Linux Commands",
+    priority: "cheat",
+    title: "Pipes, Redirection & Grep / Find",
+    summary: "Piping chains stdout of one command into stdin of another command.",
+    points: [
+      "| (Pipe): passes output of command 1 to command 2.",
+      "> (Redirect): overwrites file with output. >> (Append): appends to file.",
+      "grep -i 'pattern' file: Case-insensitive search.",
+      "find /path -name '*.txt': Finds files by name recursively."
+    ],
+    code: "ps aux | grep node       # find node processes\ncat access.log | grep 404 | wc -l # count 404 errors",
+    trap: "grep searches file CONTENTS; find searches file NAMES and directory structure."
+  },
+
+  // --- VARIABLES & TYPES ---
+  {
+    id: "var-1",
+    module: "variables",
+    moduleName: "Variables & Types",
+    priority: "high",
+    title: "var vs let vs const & Temporal Dead Zone",
+    summary: "A staple interview question across TCS, Cognizant, Wipro, and product startups.",
+    points: [
+      "var: Function-scoped, hoisted and initialized with undefined. Can be re-declared.",
+      "let: Block-scoped, hoisted but NOT initialized (Temporal Dead Zone - TDZ). Cannot be re-declared.",
+      "const: Block-scoped, must be initialized at declaration, identifier cannot be reassigned.",
+      "const objects/arrays CAN have their properties mutated."
+    ],
+    code: "console.log(a); // undefined\nvar a = 10;\n\nconsole.log(b); // ReferenceError (TDZ)\nlet b = 20;",
+    trap: "Accessing a 'let' or 'const' variable before its line of declaration throws ReferenceError, NOT undefined."
+  },
+  {
+    id: "var-2",
+    module: "variables",
+    moduleName: "Variables & Types",
+    priority: "cheat",
+    title: "Type Coercion & Equality: == vs ===",
+    summary: "Abstract equality (==) coerces types; Strict equality (===) checks both value and type.",
+    points: [
+      "0 == false -> true | 0 === false -> false",
+      "null == undefined -> true | null === undefined -> false",
+      "typeof null -> 'object' (famous JavaScript bug)",
+      "NaN === NaN -> false (use Number.isNaN())"
+    ],
+    code: "console.log('5' + 2); // '52' (string concatenation)\nconsole.log('5' - 2); // 3 (converted to number)",
+    trap: "The '+' operator converts to string if one operand is string; '-' always attempts numeric conversion."
+  },
+
+  // --- BROWSER FUNDAMENTALS ---
+  {
+    id: "br-1",
+    module: "browser",
+    moduleName: "Browser Fundamentals",
+    priority: "high",
+    title: "HTTP Status Codes Overview",
+    summary: "Recognize status codes and categories in fresher tests.",
+    points: [
+      "1xx (Informational): 101 Switching Protocols.",
+      "2xx (Success): 200 OK, 201 Created, 204 No Content.",
+      "3xx (Redirection): 301 Moved Permanently, 304 Not Modified (cached).",
+      "4xx (Client Error): 400 Bad Request, 401 Unauthorized, 403 Forbidden, 404 Not Found.",
+      "5xx (Server Error): 500 Internal Error, 502 Bad Gateway, 503 Unavailable, 504 Gateway Timeout."
+    ],
+    code: "401 = Not Authenticated (Who are you?) | 403 = Authenticated but Not Authorized",
+    trap: "502 Bad Gateway means the proxy received an invalid response from upstream server; 504 is timeout."
+  },
+  {
+    id: "br-2",
+    module: "browser",
+    moduleName: "Browser Fundamentals",
+    priority: "medium",
+    title: "Cookies vs LocalStorage vs SessionStorage",
+    summary: "Client-side storage comparison frequently tested in frontend/full-stack interviews.",
+    points: [
+      "Cookies: ~4KB limit, sent with every HTTP request, supports expiration/HttpOnly.",
+      "LocalStorage: ~5-10MB limit, persists indefinitely until explicitly cleared.",
+      "SessionStorage: ~5-10MB limit, cleared automatically when the browser tab is closed."
+    ],
+    code: "localStorage.setItem('theme', 'dark');\nsessionStorage.setItem('tempToken', 'xyz');",
+    trap: "LocalStorage is scoped to the origin (protocol + host + port), NOT per-tab."
+  },
+
+  // --- LOOPS ---
+  {
+    id: "lp-1",
+    module: "loops",
+    moduleName: "Loops & Flow",
+    priority: "high",
+    title: "While vs Do-While & Break vs Continue",
+    summary: "Control flow basics tested in pseudo-code and output prediction questions.",
+    points: [
+      "while loop: Entry-controlled (condition checked BEFORE execution; can execute 0 times).",
+      "do-while loop: Exit-controlled (condition checked AFTER execution; executes AT LEAST 1 time).",
+      "break: Terminates the loop immediately and jumps out.",
+      "continue: Skips remainder of current iteration and jumps to next iteration test."
+    ],
+    code: "int i = 5;\ndo { printf(\"%d \", i); } while(i < 3); // prints: 5 (runs once)",
+    trap: "In a do-while loop, if the condition is false from start, body still runs exactly ONCE."
+  }
+];
+
+// LocalStorage key for custom notes
+const STORAGE_KEY = "placementprep_custom_notes";
+
+function getStoredNotes() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch(e) {
+    return [];
+  }
 }
 
-themeBtn.addEventListener("click",()=>{
-  body.classList.toggle("dark");
-  const dark=body.classList.contains("dark");
-  localStorage.setItem("cloud-theme",dark?"dark":"light");
-  localStorage.setItem("placementprep-theme",dark?"dark":"light");
-  localStorage.setItem("theme",dark?"dark":"light");
-  themeBtn.textContent=dark?"☀":"☾";
+function saveStoredNotes(notes) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(notes));
+}
+
+let activeModule = "all";
+let activePriority = "all";
+let searchQuery = "";
+
+function renderNotes() {
+  const customNotes = getStoredNotes();
+  const allNotes = [...customNotes, ...defaultNotes];
+
+  // Update counts in hero
+  const customCount = customNotes.length;
+  document.getElementById("customNotesCount").textContent = customCount;
+  document.getElementById("totalNotesCount").textContent = allNotes.length;
+
+  const grid = document.getElementById("notesGrid");
+  grid.innerHTML = "";
+
+  const q = searchQuery.trim().toLowerCase();
+
+  const filtered = allNotes.filter(note => {
+    // Module filter
+    if (activeModule === "custom" && !note.isCustom) return false;
+    if (activeModule !== "all" && activeModule !== "custom" && note.module !== activeModule) return false;
+
+    // Priority filter
+    if (activePriority !== "all" && note.priority !== activePriority) return false;
+
+    // Search query
+    if (q) {
+      const matchText = [
+        note.title,
+        note.summary,
+        note.moduleName,
+        note.trap,
+        note.code,
+        ...(note.points || [])
+      ].join(" ").toLowerCase();
+      if (!matchText.includes(q)) return false;
+    }
+
+    return true;
+  });
+
+  if (filtered.length === 0) {
+    grid.innerHTML = `
+      <div class="empty-state">
+        <div style="font-size:36px">🔍</div>
+        <h3>No notes match your filters</h3>
+        <p>Try searching for a different keyword or click "+ Add Note" to create a new note for this module.</p>
+        <button class="nav-btn primary" style="margin-top:14px" onclick="document.getElementById('addNoteBtn').click()">+ Add Note Now</button>
+      </div>
+    `;
+    return;
+  }
+
+  filtered.forEach(note => {
+    const card = document.createElement("article");
+    card.className = `note-card ${note.isCustom ? "custom-note" : ""}`;
+
+    let priorityClass = "badge-high";
+    let priorityLabel = "HIGH";
+    if (note.priority === "medium") { priorityClass = "badge-med"; priorityLabel = "MEDIUM"; }
+    else if (note.priority === "cheat") { priorityClass = "badge-cheat"; priorityLabel = "CHEAT SHEET"; }
+    else if (note.priority === "trap") { priorityClass = "badge-high"; priorityLabel = "MCQ TRAP"; }
+
+    const pointsHtml = (note.points && note.points.length > 0)
+      ? `<div class="key-points">
+          <h4>Key Remember Points</h4>
+          <ul>${note.points.map(p => `<li>${p}</li>`).join("")}</ul>
+         </div>`
+      : "";
+
+    const codeHtml = note.code
+      ? `<pre class="code-box"><code>${escapeHtml(note.code)}</code></pre>`
+      : "";
+
+    const trapHtml = note.trap
+      ? `<div class="trap-box">
+          <strong>⚡ Placement Clue / Trap</strong>
+          <span>${escapeHtml(note.trap)}</span>
+         </div>`
+      : "";
+
+    const deleteBtn = note.isCustom
+      ? `<button class="card-action-btn" title="Delete note" onclick="deleteCustomNote('${note.id}')">🗑</button>`
+      : "";
+
+    card.innerHTML = `
+      <div class="card-top">
+        <div class="badges-wrap">
+          <span class="badge badge-mod">${escapeHtml(note.moduleName)}</span>
+          <span class="badge ${priorityClass}">${priorityLabel}</span>
+          ${note.isCustom ? '<span class="badge badge-custom">MY NOTE</span>' : ''}
+        </div>
+        <div class="card-actions">
+          ${deleteBtn}
+        </div>
+      </div>
+      <h3>${escapeHtml(note.title)}</h3>
+      <p class="summary">${escapeHtml(note.summary)}</p>
+      ${pointsHtml}
+      ${codeHtml}
+      ${trapHtml}
+    `;
+
+    grid.appendChild(card);
+  });
+}
+
+function escapeHtml(str) {
+  if (!str) return "";
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+function deleteCustomNote(id) {
+  if (confirm("Are you sure you want to delete this custom note?")) {
+    const notes = getStoredNotes().filter(n => n.id !== id);
+    saveStoredNotes(notes);
+    renderNotes();
+  }
+}
+
+// Module tabs click
+document.querySelectorAll(".tab-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    activeModule = btn.getAttribute("data-mod");
+    renderNotes();
+  });
 });
 
-menuBtn?.addEventListener("click",()=>sidebar.classList.toggle("open"));
-
-document.querySelectorAll(".side-link").forEach(link=>{
-  link.addEventListener("click",()=>sidebar.classList.remove("open"));
+// Priority pills click
+document.querySelectorAll(".priority-pill").forEach(pill => {
+  pill.addEventListener("click", () => {
+    document.querySelectorAll(".priority-pill").forEach(p => p.classList.remove("active"));
+    pill.classList.add("active");
+    activePriority = pill.getAttribute("data-priority");
+    renderNotes();
+  });
 });
 
-topSearch?.addEventListener("click",()=>{
-  document.getElementById("searchArea").scrollIntoView({behavior:"smooth"});
-  setTimeout(()=>searchInput.focus(),350);
+// Search input
+const searchInput = document.getElementById("searchInput");
+searchInput.addEventListener("input", (e) => {
+  searchQuery = e.target.value;
+  renderNotes();
 });
 
-clearSearch.addEventListener("click",()=>{
-  searchInput.value="";
-  filterContent("");
+document.getElementById("clearSearch").addEventListener("click", () => {
+  searchInput.value = "";
+  searchQuery = "";
+  renderNotes();
   searchInput.focus();
 });
 
-function filterContent(query){
-  const q=query.trim().toLowerCase();
-  const items=document.querySelectorAll(".searchable");
+// Modal open / close
+const modal = document.getElementById("noteModal");
+const addNoteBtn = document.getElementById("addNoteBtn");
+const closeModalBtn = document.getElementById("closeModalBtn");
+const cancelModalBtn = document.getElementById("cancelModalBtn");
+const noteForm = document.getElementById("noteForm");
 
-  items.forEach(item=>{
-    const text=item.textContent.toLowerCase();
-    item.style.display=(!q || text.includes(q))?"":"none";
-  });
+function openModal() {
+  modal.classList.add("open");
+  if (activeModule !== "all" && activeModule !== "custom") {
+    const modSelect = document.getElementById("noteModule");
+    if ([...modSelect.options].some(o => o.value === activeModule)) {
+      modSelect.value = activeModule;
+    }
+  }
+  document.getElementById("noteTitle").focus();
 }
 
-searchInput.addEventListener("input",e=>filterContent(e.target.value));
+function closeModal() {
+  modal.classList.remove("open");
+  noteForm.reset();
+}
 
-const progressBar=document.getElementById("progressBar");
-const progressText=document.getElementById("progressText");
-
-window.addEventListener("scroll",()=>{
-  const scrollTop=window.scrollY;
-  const docHeight=document.documentElement.scrollHeight-window.innerHeight;
-  const percent=docHeight>0?Math.min(100,Math.round((scrollTop/docHeight)*100)):0;
-  progressBar.style.width=percent+"%";
-  progressText.textContent=percent+"%";
-
-  const sections=[...document.querySelectorAll(".section")];
-  let current="";
-  sections.forEach(section=>{
-    if(scrollTop>=section.offsetTop-130) current=section.id;
-  });
-
-  document.querySelectorAll(".side-link").forEach(link=>{
-    link.classList.toggle("active",link.getAttribute("href")==="#"+current);
-  });
+addNoteBtn.addEventListener("click", openModal);
+closeModalBtn.addEventListener("click", closeModal);
+cancelModalBtn.addEventListener("click", closeModal);
+modal.addEventListener("click", (e) => {
+  if (e.target === modal) closeModal();
 });
+
+// Form submit
+noteForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const modSelect = document.getElementById("noteModule");
+  const modValue = modSelect.value;
+  const modText = modSelect.options[modSelect.selectedIndex].text;
+
+  const pointsText = document.getElementById("notePoints").value.trim();
+  const points = pointsText ? pointsText.split("\n").map(p => p.trim()).filter(Boolean) : [];
+
+  const newNote = {
+    id: "custom-" + Date.now(),
+    isCustom: true,
+    module: modValue,
+    moduleName: modText,
+    priority: document.getElementById("notePriority").value,
+    title: document.getElementById("noteTitle").value.trim(),
+    summary: document.getElementById("noteSummary").value.trim(),
+    points: points,
+    code: document.getElementById("noteCode").value.trim(),
+    trap: document.getElementById("noteTrap").value.trim()
+  };
+
+  const stored = getStoredNotes();
+  stored.unshift(newNote);
+  saveStoredNotes(stored);
+
+  closeModal();
+  renderNotes();
+});
+
+// Export & Import
+document.getElementById("exportBtn").addEventListener("click", () => {
+  const custom = getStoredNotes();
+  const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(custom, null, 2));
+  const downloadAnchor = document.createElement("a");
+  downloadAnchor.setAttribute("href", dataStr);
+  downloadAnchor.setAttribute("download", `placementprep_notes_backup_${Date.now()}.json`);
+  document.body.appendChild(downloadAnchor);
+  downloadAnchor.click();
+  downloadAnchor.remove();
+});
+
+document.getElementById("importInput").addEventListener("change", (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = (event) => {
+    try {
+      const imported = JSON.parse(event.target.result);
+      if (Array.isArray(imported)) {
+        const current = getStoredNotes();
+        const merged = [...imported, ...current];
+        // Deduplicate by ID
+        const unique = Array.from(new Map(merged.map(item => [item.id || Math.random(), item])).values());
+        saveStoredNotes(unique);
+        renderNotes();
+        alert(`Successfully imported ${imported.length} notes!`);
+      } else {
+        alert("Invalid format: expected JSON array of notes.");
+      }
+    } catch(err) {
+      alert("Failed to parse JSON file.");
+    }
+  };
+  reader.readAsText(file);
+});
+
+// Dark Theme Sync
+const body = document.body;
+const themeBtn = document.getElementById("themeBtn");
+const savedTheme = localStorage.getItem("placementprep-theme") || localStorage.getItem("theme") || localStorage.getItem("cloud-theme");
+
+if (savedTheme === "dark") {
+  body.classList.add("dark");
+  themeBtn.textContent = "☀";
+}
+
+themeBtn.addEventListener("click", () => {
+  body.classList.toggle("dark");
+  const dark = body.classList.contains("dark");
+  localStorage.setItem("placementprep-theme", dark ? "dark" : "light");
+  localStorage.setItem("theme", dark ? "dark" : "light");
+  localStorage.setItem("cloud-theme", dark ? "dark" : "light");
+  themeBtn.textContent = dark ? "☀" : "☾";
+});
+
+// Initial Render
+renderNotes();
 </script>
 
 </body>
