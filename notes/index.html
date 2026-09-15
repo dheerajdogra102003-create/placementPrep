@@ -132,12 +132,27 @@ a { text-decoration: none; color: inherit; }
 .highlight-item b { display: block; font-size: 12px; color: #fff; }
 .highlight-item span { font-size: 10.5px; color: #94a3b8; }
 
-/* Playbook Glass Card */
+/* Playbook Glass Card (Universal Exam Strategy) */
 .hero-playbook {
-  background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(14px); border-radius: 20px; padding: 22px; box-shadow: 0 16px 40px rgba(0,0,0,.28);
+  background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(14px); border-radius: 22px; padding: 22px 24px; box-shadow: 0 16px 40px rgba(0,0,0,.28);
+  position: relative; overflow: hidden;
+}
+.hero-playbook:before {
+  content: ""; position: absolute; top: -50px; right: -50px; width: 140px; height: 140px;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.22), transparent 70%); border-radius: 50%; pointer-events: none;
 }
 .playbook-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+.playbook-title-wrap { display: flex; align-items: center; gap: 8px; }
+.live-pulse {
+  width: 8px; height: 8px; border-radius: 50%; background: #38bdf8;
+  box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.7); animation: pulseDot 2s infinite; flex-shrink: 0;
+}
+@keyframes pulseDot {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 7px rgba(56, 189, 248, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(56, 189, 248, 0); }
+}
 .playbook-head h3 { font-size: 15.5px; letter-spacing: -.3px; color: #fff; font-weight: 800; }
 .playbook-badge {
   font-size: 9.5px; font-weight: 850; letter-spacing: .8px; text-transform: uppercase;
@@ -146,21 +161,25 @@ a { text-decoration: none; color: inherit; }
 }
 .playbook-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
 .playbook-list li {
-  display: flex; gap: 10px; align-items: flex-start; padding: 9px 11px; border-radius: 11px;
-  background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.06); transition: .2s;
+  display: flex; gap: 10px; align-items: flex-start; padding: 10px 12px; border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.07); transition: .2s;
 }
-.playbook-list li:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(56, 189, 248, 0.3); }
+.playbook-list li:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(56, 189, 248, 0.35); transform: translateX(2px); }
 .playbook-num {
-  font-size: 10px; font-weight: 900; color: #38bdf8; background: rgba(56, 189, 248, 0.15);
-  width: 22px; height: 22px; border-radius: 6px; display: grid; place-items: center; flex-shrink: 0; margin-top: 1px;
+  font-size: 10px; font-weight: 900; color: #38bdf8; background: rgba(56, 189, 248, 0.16);
+  width: 24px; height: 24px; border-radius: 7px; display: grid; place-items: center; flex-shrink: 0; margin-top: 1px;
 }
-.playbook-list strong { display: block; font-size: 11.5px; color: #f1f5f9; margin-bottom: 2px; }
-.playbook-list p { font-size: 11px; color: #cbd5e1; line-height: 1.4; margin: 0; }
+.playbook-list strong { display: block; font-size: 12px; color: #f8fafc; margin-bottom: 2px; }
+.playbook-list p { font-size: 11px; color: #cbd5e1; line-height: 1.45; margin: 0; }
 .playbook-footer {
-  margin-top: 14px; padding-top: 10px; border-top: 1px dashed rgba(255, 255, 255, 0.12);
-  display: flex; justify-content: space-between; align-items: center; font-size: 10.5px; color: #94a3b8;
+  margin-top: 14px; padding-top: 12px; border-top: 1px dashed rgba(255, 255, 255, 0.12);
+  display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: #94a3b8; flex-wrap: wrap; gap: 8px;
 }
-.playbook-accent { color: #38bdf8; font-weight: 750; }
+.playbook-chips { display: flex; gap: 5px; flex-wrap: wrap; }
+.playbook-chip {
+  font-size: 9.5px; padding: 2px 7px; border-radius: 5px; background: rgba(255, 255, 255, 0.07);
+  color: #93c5fd; border: 1px solid rgba(255, 255, 255, 0.1); font-weight: 600;
+}
 
 @media(max-width: 920px) {
   .hero-layout { grid-template-columns: 1fr; gap: 24px; }
@@ -376,38 +395,47 @@ textarea.form-control { min-height: 80px; resize: vertical; }
         </div>
       </div>
 
-      <!-- Right Column: Last-Minute MCQ Strategy Card -->
+      <!-- Right Column: Universal Technical Exam Strategy Card -->
       <aside class="hero-playbook">
         <div class="playbook-head">
-          <h3>MCQ Strategy Rules</h3>
-          <span class="playbook-badge">⚡ Placement Tips</span>
+          <div class="playbook-title-wrap">
+            <span class="live-pulse"></span>
+            <h3>Technical Exam Strategy</h3>
+          </div>
+          <span class="playbook-badge">⚡ Universal Rules</span>
         </div>
         <ul class="playbook-list">
           <li>
             <span class="playbook-num">01</span>
             <div>
-              <strong>Trigger Words in Scenarios</strong>
-              <p>“Rent virtual server” → IaaS · “Deploy without OS” → PaaS · “Sudden spike &amp; dip” → Elasticity</p>
+              <strong>Spot Negative Stems (NOT / EXCEPT)</strong>
+              <p>Questions ending with <em>“NOT”</em> or <em>“EXCEPT”</em> cause ~35% of rush errors. Eliminate valid choices first.</p>
             </div>
           </li>
           <li>
             <span class="playbook-num">02</span>
             <div>
-              <strong>Shared Responsibility Model</strong>
-              <p>Storage misconfiguration / public leaks are customer failures, not provider infrastructure.</p>
+              <strong>Extreme Option Elimination Principle</strong>
+              <p>Options with absolute words like <em>“Always”, “Never”</em>, or <em>“Zero overhead”</em> are almost always distractors.</p>
             </div>
           </li>
           <li>
             <span class="playbook-num">03</span>
             <div>
-              <strong>AuthN vs AuthZ Principle</strong>
-              <p>Authentication verifies identity; Authorization determines allowed actions and permissions.</p>
+              <strong>Edge Case &amp; Boundary Analysis</strong>
+              <p>In code/logic MCQs, test boundary inputs: <code>0</code>, empty values, <code>null</code>, and operator precedence.</p>
             </div>
           </li>
         </ul>
         <div class="playbook-footer">
-          <span>Targeting fresher technical rounds</span>
-          <span class="playbook-accent">100% High-Yield</span>
+          <div class="playbook-chips">
+            <span class="playbook-chip">Cloud</span>
+            <span class="playbook-chip">OS &amp; Linux</span>
+            <span class="playbook-chip">DBMS</span>
+            <span class="playbook-chip">OOPs</span>
+            <span class="playbook-chip">Code</span>
+          </div>
+          <span style="color:#38bdf8;font-weight:700">Universal Prep</span>
         </div>
       </aside>
     </div>
