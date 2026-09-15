@@ -132,53 +132,60 @@ a { text-decoration: none; color: inherit; }
 .highlight-item b { display: block; font-size: 12px; color: #fff; }
 .highlight-item span { font-size: 10.5px; color: #94a3b8; }
 
-/* Playbook Glass Card (Universal Exam Strategy) */
-.hero-playbook {
-  background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.14);
-  backdrop-filter: blur(14px); border-radius: 22px; padding: 22px 24px; box-shadow: 0 16px 40px rgba(0,0,0,.28);
-  position: relative; overflow: hidden;
+/* Website Brand Showcase (Right Column) */
+.brand-showcase {
+  position: relative; display: flex; align-items: center; justify-content: center; min-height: 280px;
 }
-.hero-playbook:before {
-  content: ""; position: absolute; top: -50px; right: -50px; width: 140px; height: 140px;
-  background: radial-gradient(circle, rgba(56, 189, 248, 0.22), transparent 70%); border-radius: 50%; pointer-events: none;
+.showcase-glow {
+  position: absolute; width: 240px; height: 240px;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.35) 0%, rgba(37, 99, 235, 0.15) 50%, transparent 70%);
+  border-radius: 50%; filter: blur(20px); pointer-events: none;
+  animation: pulseGlow 4s ease-in-out infinite alternate;
 }
-.playbook-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
-.playbook-title-wrap { display: flex; align-items: center; gap: 8px; }
-.live-pulse {
-  width: 8px; height: 8px; border-radius: 50%; background: #38bdf8;
-  box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.7); animation: pulseDot 2s infinite; flex-shrink: 0;
+@keyframes pulseGlow {
+  0% { transform: scale(0.85); opacity: 0.7; }
+  100% { transform: scale(1.15); opacity: 1; }
 }
-@keyframes pulseDot {
-  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.7); }
-  70% { transform: scale(1); box-shadow: 0 0 0 7px rgba(56, 189, 248, 0); }
-  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(56, 189, 248, 0); }
+
+.brand-emblem-card {
+  position: relative; z-index: 2; background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.16); backdrop-filter: blur(16px);
+  border-radius: 24px; padding: 28px 24px; text-align: center;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3); display: flex; flex-direction: column;
+  align-items: center; width: 100%; max-width: 360px; transition: transform .3s ease, border-color .3s ease;
 }
-.playbook-head h3 { font-size: 15.5px; letter-spacing: -.3px; color: #fff; font-weight: 800; }
-.playbook-badge {
-  font-size: 9.5px; font-weight: 850; letter-spacing: .8px; text-transform: uppercase;
-  color: #38bdf8; background: rgba(56, 189, 248, 0.14); padding: 4px 8px; border-radius: 6px;
-  border: 1px solid rgba(56, 189, 248, 0.25);
+.brand-emblem-card:hover {
+  transform: translateY(-4px); border-color: rgba(56, 189, 248, 0.45);
 }
-.playbook-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-.playbook-list li {
-  display: flex; gap: 10px; align-items: flex-start; padding: 10px 12px; border-radius: 12px;
-  background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.07); transition: .2s;
+
+.brand-logo-badge {
+  width: 82px; height: 82px; border-radius: 22px;
+  background: linear-gradient(135deg, #0284c7 0%, #2563eb 50%, #4f46e5 100%);
+  color: #fff; display: grid; place-items: center; margin-bottom: 14px;
+  box-shadow: 0 12px 30px rgba(2, 132, 199, 0.4); animation: floatBadge 3.5s ease-in-out infinite alternate;
 }
-.playbook-list li:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(56, 189, 248, 0.35); transform: translateX(2px); }
-.playbook-num {
-  font-size: 10px; font-weight: 900; color: #38bdf8; background: rgba(56, 189, 248, 0.16);
-  width: 24px; height: 24px; border-radius: 7px; display: grid; place-items: center; flex-shrink: 0; margin-top: 1px;
+@keyframes floatBadge {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-6px); }
 }
-.playbook-list strong { display: block; font-size: 12px; color: #f8fafc; margin-bottom: 2px; }
-.playbook-list p { font-size: 11px; color: #cbd5e1; line-height: 1.45; margin: 0; }
-.playbook-footer {
-  margin-top: 14px; padding-top: 12px; border-top: 1px dashed rgba(255, 255, 255, 0.12);
-  display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: #94a3b8; flex-wrap: wrap; gap: 8px;
+
+.brand-showcase-title {
+  font-size: 24px; font-weight: 900; letter-spacing: -1px; color: #fff; margin-bottom: 2px;
 }
-.playbook-chips { display: flex; gap: 5px; flex-wrap: wrap; }
-.playbook-chip {
-  font-size: 9.5px; padding: 2px 7px; border-radius: 5px; background: rgba(255, 255, 255, 0.07);
-  color: #93c5fd; border: 1px solid rgba(255, 255, 255, 0.1); font-weight: 600;
+.brand-showcase-title span { color: #38bdf8; }
+.brand-showcase-desc {
+  font-size: 11px; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px;
+  font-weight: 700; margin-bottom: 16px;
+}
+
+.showcase-pills { display: flex; flex-direction: column; gap: 8px; width: 100%; }
+.showcase-pill {
+  display: flex; align-items: center; justify-content: center; gap: 8px; padding: 8px 12px;
+  border-radius: 10px; background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.09); font-size: 11.5px; font-weight: 700; color: #e2e8f0;
+}
+.pill-dot {
+  width: 7px; height: 7px; border-radius: 50%; background: #38bdf8; box-shadow: 0 0 8px #38bdf8;
 }
 
 @media(max-width: 920px) {
@@ -395,49 +402,35 @@ textarea.form-control { min-height: 80px; resize: vertical; }
         </div>
       </div>
 
-      <!-- Right Column: Universal Technical Exam Strategy Card -->
-      <aside class="hero-playbook">
-        <div class="playbook-head">
-          <div class="playbook-title-wrap">
-            <span class="live-pulse"></span>
-            <h3>Technical Exam Strategy</h3>
+      <!-- Right Column: PlacementPrep Website Brand Showcase -->
+      <div class="brand-showcase">
+        <div class="showcase-glow"></div>
+        <div class="brand-emblem-card">
+          <div class="brand-logo-badge">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+              <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+            </svg>
           </div>
-          <span class="playbook-badge">⚡ Universal Rules</span>
-        </div>
-        <ul class="playbook-list">
-          <li>
-            <span class="playbook-num">01</span>
-            <div>
-              <strong>Spot Negative Stems (NOT / EXCEPT)</strong>
-              <p>Questions ending with <em>“NOT”</em> or <em>“EXCEPT”</em> cause ~35% of rush errors. Eliminate valid choices first.</p>
-            </div>
-          </li>
-          <li>
-            <span class="playbook-num">02</span>
-            <div>
-              <strong>Extreme Option Elimination Principle</strong>
-              <p>Options with absolute words like <em>“Always”, “Never”</em>, or <em>“Zero overhead”</em> are almost always distractors.</p>
-            </div>
-          </li>
-          <li>
-            <span class="playbook-num">03</span>
-            <div>
-              <strong>Edge Case &amp; Boundary Analysis</strong>
-              <p>In code/logic MCQs, test boundary inputs: <code>0</code>, empty values, <code>null</code>, and operator precedence.</p>
-            </div>
-          </li>
-        </ul>
-        <div class="playbook-footer">
-          <div class="playbook-chips">
-            <span class="playbook-chip">Cloud</span>
-            <span class="playbook-chip">OS &amp; Linux</span>
-            <span class="playbook-chip">DBMS</span>
-            <span class="playbook-chip">OOPs</span>
-            <span class="playbook-chip">Code</span>
+          <div class="brand-showcase-title">
+            Placement<span>Prep</span>
           </div>
-          <span style="color:#38bdf8;font-weight:700">Universal Prep</span>
+          <div class="brand-showcase-desc">Campus Recruitment Prep</div>
+
+          <div class="showcase-pills">
+            <div class="showcase-pill">
+              <span class="pill-dot"></span> High-Yield Revision Sheets
+            </div>
+            <div class="showcase-pill">
+              <span>🎯</span> Scenario &amp; MCQ Trap Focused
+            </div>
+            <div class="showcase-pill">
+              <span>⚡</span> Fast-Track Interview Ready
+            </div>
+          </div>
         </div>
-      </aside>
+      </div>
     </div>
   </section>
 
