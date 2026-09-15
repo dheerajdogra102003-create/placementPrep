@@ -1,491 +1,665 @@
-const questions = [
-    // --- Theoretical Conceptual (8) ---
-    {
-        id: 1,
-        topic: "MS Word",
-        category: "theoretical_conceptual",
-        difficulty: "easy placement",
-        question: "What is the primary function of the 'Format Painter' tool in MS Word?",
-        options: {
-            A: "To copy the text from one paragraph and paste it into another.",
-            B: "To copy the formatting (such as color, font style, and size) applied to a piece of text and apply it to elsewhere.",
-            C: "To remove all formatting from a selected block of text.",
-            D: "To apply predefined artistic text effects like shadows and reflections."
-        },
-        correctAnswer: "B",
-        explanation: "The Format Painter copies formatting from one object or text block and applies it to another, saving time when standardizing styles.",
-        realWorldApplication: "Quickly applying the exact heading style from Chapter 1 to the heading of Chapter 2 without manually setting font sizes and colors."
+// Microsoft Word 30 Placement MCQs
+const questionsData = [
+  {
+    "id": 1,
+    "question": "What is the primary function of the 'Format Painter' tool in MS Word?",
+    "options": [
+      "To copy the text from one paragraph and paste it into another.",
+      "To copy the formatting (such as color, font style, and size) applied to a piece of text and apply it elsewhere.",
+      "To remove all formatting from a selected block of text.",
+      "To apply predefined artistic text effects like shadows and reflections."
+    ],
+    "correctAnswer": 1,
+    "difficulty": "Easy",
+    "topic": "Core Concepts",
+    "concept": "Format Painter",
+    "explanation": "The Format Painter copies formatting from one object or text block and applies it to another, saving time when standardizing styles.",
+    "whyCorrect": "Format Painter captures all font styling, size, color, and paragraph properties and replicates them directly onto targeted text.",
+    "whyOthersAreWrong": {
+      "0": "Copying and pasting text is performed using Copy (Ctrl+C) and Paste (Ctrl+V), not Format Painter.",
+      "2": "Removing formatting is performed using the 'Clear All Formatting' eraser button (Ctrl+Spacebar).",
+      "3": "Predefined artistic text effects are found under 'Text Effects and Typography'."
     },
-    {
-        id: 2,
-        topic: "MS Word",
-        category: "theoretical_conceptual",
-        difficulty: "moderate placement",
-        question: "In MS Word, what is a 'Macro' primarily used for?",
-        options: {
-            A: "To create large-scale charts and graphs from table data.",
-            B: "To automatically translate documents into different languages.",
-            C: "To record a sequence of commands and instructions to automate a repetitive task.",
-            D: "To merge multiple Word documents into a single master PDF."
-        },
-        correctAnswer: "C",
-        explanation: "A macro is a recorded series of commands and keystrokes that you can trigger with a single click or keyboard shortcut to automate repetitive tasks.",
-        realWorldApplication: "Automating the process of inserting a company header, formatting the title, and adding a standard footer to daily report templates."
+    "realWorldApplication": "Quickly applying the exact heading style from Chapter 1 to the heading of Chapter 2 without manually setting font sizes, weights, and colors."
+  },
+  {
+    "id": 2,
+    "question": "In MS Word, what is a 'Macro' primarily used for?",
+    "options": [
+      "To create large-scale charts and graphs from table data.",
+      "To automatically translate documents into different languages.",
+      "To record a sequence of commands and instructions to automate a repetitive task.",
+      "To merge multiple Word documents into a single master PDF."
+    ],
+    "correctAnswer": 2,
+    "difficulty": "Medium",
+    "topic": "Core Concepts",
+    "concept": "Macros & Automation",
+    "explanation": "A macro is a recorded series of commands and keystrokes written in VBA (Visual Basic for Applications) that you can trigger with a single click or keyboard shortcut to automate repetitive tasks.",
+    "whyCorrect": "Macros record multiple user actions into an executable script, dramatically reducing human error on routine document formatting.",
+    "whyOthersAreWrong": {
+      "0": "Charts and graphs are created via the Insert > Chart ribbon or linked Excel workbooks.",
+      "1": "Translating documents is handled by the Review > Translate service.",
+      "3": "Combining documents into a PDF is handled via PDF export or document merging tools."
     },
-    {
-        id: 3,
-        topic: "MS Word",
-        category: "theoretical_conceptual",
-        difficulty: "moderate placement",
-        question: "Which of the following best describes 'Mail Merge'?",
-        options: {
-            A: "A feature that connects MS Word directly to Outlook to send bulk emails without personalization.",
-            B: "A tool that merges multiple Word documents into one file.",
-            C: "A process that combines a main document with a data source (like Excel) to create personalized documents for multiple recipients.",
-            D: "A tracking tool that merges comments from multiple reviewers."
-        },
-        correctAnswer: "C",
-        explanation: "Mail Merge takes a template document and injects data from a spreadsheet or database to generate personalized letters, envelopes, or emails.",
-        realWorldApplication: "Generating 500 personalized interview offer letters where the name, date, and salary fields change for each candidate."
+    "realWorldApplication": "Automating the process of inserting a company header, formatting the title, and adding a standard legal disclaimer to daily report templates."
+  },
+  {
+    "id": 3,
+    "question": "Which of the following best describes 'Mail Merge'?",
+    "options": [
+      "A feature that connects MS Word directly to Outlook to send bulk emails without personalization.",
+      "A tool that merges multiple Word documents into one file.",
+      "A process that combines a main document with a data source (like Excel) to create personalized documents for multiple recipients.",
+      "A tracking tool that merges comments from multiple reviewers."
+    ],
+    "correctAnswer": 2,
+    "difficulty": "Medium",
+    "topic": "Core Concepts",
+    "concept": "Mail Merge",
+    "explanation": "Mail Merge takes a template document and injects data from a spreadsheet or database to generate personalized letters, envelopes, or emails.",
+    "whyCorrect": "It replaces merge field placeholders with specific record data from an external dataset (e.g. CSV or Excel) for each recipient.",
+    "whyOthersAreWrong": {
+      "0": "Mail Merge is specifically designed for personalized outputs, not static unpersonalized bulk emails.",
+      "1": "Merging multiple Word files into one is achieved via Insert > Object > Text from File.",
+      "3": "Combining reviewer feedback is performed using Review > Compare > Combine Documents."
     },
-    {
-        id: 4,
-        topic: "MS Word",
-        category: "theoretical_conceptual",
-        difficulty: "moderate placement",
-        question: "What is the function of 'Styles' in MS Word?",
-        options: {
-            A: "To change the physical layout of the page (margins, orientation).",
-            B: "To apply a consistent set of formatting choices consistently throughout a document, enabling structural features like automatic Tables of Contents.",
-            C: "To grammar-check documents based on different stylistic guidelines (APA, MLA).",
-            D: "To insert stylized smart graphics like flowcharts."
-        },
-        correctAnswer: "B",
-        explanation: "Styles (like Heading 1, Normal) ensure consistent formatting and allow Word to understand the document structure, which is required for navigation panes and automatic Tables of Contents.",
-        realWorldApplication: "Formatting a 100-page software documentation manual so that all subheadings match perfectly and auto-populate the index."
+    "realWorldApplication": "Generating 500 personalized interview offer letters where candidate names, interview slots, and department details change dynamically."
+  },
+  {
+    "id": 4,
+    "question": "What is the primary function of 'Styles' (e.g., Heading 1, Normal) in MS Word?",
+    "options": [
+      "To change the physical layout of the page (margins and orientation).",
+      "To apply a consistent set of formatting choices throughout a document, enabling structural features like automatic Tables of Contents.",
+      "To grammar-check documents based on stylistic guidelines (APA, MLA).",
+      "To insert stylized vector graphics like flowcharts."
+    ],
+    "correctAnswer": 1,
+    "difficulty": "Medium",
+    "topic": "Core Concepts",
+    "concept": "Document Styles",
+    "explanation": "Styles (like Heading 1, Normal) ensure consistent formatting and allow Word to understand the document structure, which is required for navigation panes and automatic Tables of Contents.",
+    "whyCorrect": "Styles establish semantic hierarchy across sections, enabling automated table of contents generation and global theme modifications.",
+    "whyOthersAreWrong": {
+      "0": "Page margins and orientation are configured in the Layout tab under Page Setup.",
+      "2": "Grammar and style checking are handled by the Editor / Proofing engine.",
+      "3": "Flowcharts and diagrams are inserted via SmartArt or Shapes."
     },
-    {
-        id: 5,
-        topic: "MS Word",
-        category: "theoretical_conceptual",
-        difficulty: "moderate-hard placement",
-        question: "What is a 'Section Break' used for that a 'Page Break' cannot do?",
-        options: {
-            A: "A Section Break pushes text to the next page.",
-            B: "A Section Break allows you to have different page orientations, margins, or headers/footers within the same document.",
-            C: "A Section Break automatically creates a new chapter in the Table of Contents.",
-            D: "A Section Break prevents the document from being printed beyond that point."
-        },
-        correctAnswer: "B",
-        explanation: "While a Page Break just starts a new page, a Section Break divides the document into independent formatting zones, allowing different page layouts or headers in each section.",
-        realWorldApplication: "Having the first 5 pages of a report in Portrait orientation, and the 6th page in Landscape orientation to fit a wide data table."
+    "realWorldApplication": "Formatting a 100-page software documentation manual so that all subheadings match brand guidelines and auto-populate the document outline."
+  },
+  {
+    "id": 5,
+    "question": "What is a 'Section Break' used for that a standard 'Page Break' cannot do?",
+    "options": [
+      "A Section Break pushes text to the next page.",
+      "A Section Break allows you to have different page orientations, margins, or headers/footers within the same document.",
+      "A Section Break automatically creates a new chapter in the Table of Contents.",
+      "A Section Break prevents the document from being printed beyond that point."
+    ],
+    "correctAnswer": 1,
+    "difficulty": "Hard",
+    "topic": "Core Concepts",
+    "concept": "Section Breaks",
+    "explanation": "While a Page Break just starts a new page, a Section Break divides the document into independent formatting zones, allowing different page layouts or headers in each section.",
+    "whyCorrect": "Section Breaks partition the document so that properties like page orientation (portrait vs landscape), column counts, and header links can vary independently.",
+    "whyOthersAreWrong": {
+      "0": "Both page breaks and 'Next Page' section breaks advance text, but layout partitioning is unique to section breaks.",
+      "2": "Tables of Contents rely on Heading styles, not section break insertion.",
+      "3": "Print ranges are determined in the Print dialog, not by break markers."
     },
-    {
-        id: 6,
-        topic: "MS Word",
-        category: "theoretical_conceptual",
-        difficulty: "easy placement",
-        question: "What is the standard keyboard shortcut to undo the last action in MS Word?",
-        options: {
-            A: "Ctrl + Y",
-            B: "Ctrl + Z",
-            C: "Ctrl + X",
-            D: "Ctrl + U"
-        },
-        correctAnswer: "B",
-        explanation: "Ctrl + Z is the universal shortcut to Undo. Ctrl + Y is Redo, Ctrl + X is Cut, and Ctrl + U is Underline.",
-        realWorldApplication: "Quickly reverting a formatting mistake instead of trying to manually change the font back to its previous state."
+    "realWorldApplication": "Having the first 5 pages of a technical proposal in Portrait orientation, and page 6 in Landscape orientation to display a wide database architecture diagram."
+  },
+  {
+    "id": 6,
+    "question": "What is the standard keyboard shortcut to undo the last action in MS Word?",
+    "options": [
+      "Ctrl + Y",
+      "Ctrl + Z",
+      "Ctrl + X",
+      "Ctrl + U"
+    ],
+    "correctAnswer": 1,
+    "difficulty": "Easy",
+    "topic": "Core Concepts",
+    "concept": "Undo Shortcut",
+    "explanation": "Ctrl + Z is the universal shortcut to Undo. Ctrl + Y is Redo, Ctrl + X is Cut, and Ctrl + U is Underline.",
+    "whyCorrect": "Ctrl + Z pops the most recent action off the application undo stack.",
+    "whyOthersAreWrong": {
+      "0": "Ctrl + Y is Redo or Repeat action.",
+      "2": "Ctrl + X cuts the selected text to the clipboard.",
+      "3": "Ctrl + U applies or removes text underlining."
     },
-    {
-        id: 7,
-        topic: "MS Word",
-        category: "theoretical_conceptual",
-        difficulty: "moderate placement",
-        question: "What does the 'Track Changes' feature do?",
-        options: {
-            A: "It records all the locations a document has been saved to on a network.",
-            B: "It monitors the time spent editing a document.",
-            C: "It marks all additions, deletions, and formatting changes made to a document so they can be reviewed and accepted/rejected later.",
-            D: "It tracks which users have opened the document."
-        },
-        correctAnswer: "C",
-        explanation: "Track Changes visually logs every edit made to a document, allowing authors and reviewers to collaborate, see exactly what changed, and approve or reject edits.",
-        realWorldApplication: "A senior developer reviewing a junior's technical spec document and suggesting wording edits before final approval."
+    "realWorldApplication": "Instantly reversing an accidental paragraph deletion or incorrect paste without disrupting your typing rhythm."
+  },
+  {
+    "id": 7,
+    "question": "What does the 'Track Changes' feature do in MS Word?",
+    "options": [
+      "It records all the network locations a document has been saved to.",
+      "It monitors the total active editing time spent on a document.",
+      "It marks all additions, deletions, and formatting changes made to a document so they can be reviewed and accepted/rejected later.",
+      "It tracks which IP addresses or user accounts have opened the document."
+    ],
+    "correctAnswer": 2,
+    "difficulty": "Easy",
+    "topic": "Core Concepts",
+    "concept": "Track Changes",
+    "explanation": "Track Changes visually logs every edit made to a document, allowing authors and reviewers to collaborate, see exactly what changed, and approve or reject edits.",
+    "whyCorrect": "It records every insertion, deletion, and formatting update with color-coded author markup balloons or inline strikethroughs.",
+    "whyOthersAreWrong": {
+      "0": "File paths and versions are managed through OneDrive version history or Windows file properties.",
+      "1": "Total editing time is tracked passively under File > Info > Properties.",
+      "3": "Document access auditing is performed at the enterprise cloud or file server level."
     },
-    {
-        id: 8,
-        topic: "MS Word",
-        category: "theoretical_conceptual",
-        difficulty: "moderate-hard placement",
-        question: "What is a 'Soft Return' (Line Break) in MS Word, and how is it created?",
-        options: {
-            A: "It creates a new paragraph; created by pressing Enter.",
-            B: "It moves text to the next line without starting a new paragraph; created by pressing Shift + Enter.",
-            C: "It forces text to the next page; created by pressing Ctrl + Enter.",
-            D: "It creates a column break; created by pressing Alt + Enter."
-        },
-        correctAnswer: "B",
-        explanation: "A soft return (Shift + Enter) moves the cursor to the next line but keeps the text within the same paragraph, preventing extra paragraph spacing from being added.",
-        realWorldApplication: "Keeping an address block tightly spaced together while the rest of the document uses double paragraph spacing."
+    "realWorldApplication": "A lead software architect reviewing a junior engineer's functional specification document and suggesting revisions before client sign-off."
+  },
+  {
+    "id": 8,
+    "question": "What is a 'Soft Return' (Line Break) in MS Word, and how is it created?",
+    "options": [
+      "It creates a new paragraph; created by pressing Enter.",
+      "It moves text to the next line without starting a new paragraph; created by pressing Shift + Enter.",
+      "It forces text to the next page; created by pressing Ctrl + Enter.",
+      "It creates a column break; created by pressing Alt + Enter."
+    ],
+    "correctAnswer": 1,
+    "difficulty": "Medium",
+    "topic": "Core Concepts",
+    "concept": "Soft Return (Shift+Enter)",
+    "explanation": "A soft return (Shift + Enter) moves the cursor to the next line but keeps the text within the same paragraph, preventing extra paragraph spacing from being added.",
+    "whyCorrect": "Shift + Enter inserts a manual line break character (\u21b5) without triggering paragraph-after or paragraph-before spacing rules.",
+    "whyOthersAreWrong": {
+      "0": "Pressing Enter inserts a hard paragraph break (\u00b6) which applies paragraph spacing rules.",
+      "2": "Pressing Ctrl + Enter inserts a manual page break.",
+      "3": "Column breaks are inserted with Ctrl + Shift + Enter."
     },
-
-    // --- Technical Application (8) ---
-    {
-        id: 9,
-        topic: "MS Word",
-        category: "technical_application",
-        difficulty: "moderate placement",
-        question: "You want to create an automatic Table of Contents for your report. What is the mandatory prerequisite step before generating it?",
-        options: {
-            A: "You must insert page numbers on every page.",
-            B: "You must manually type out a list of chapters on the first page.",
-            C: "You must apply built-in Heading styles (Heading 1, Heading 2, etc.) to your chapter titles.",
-            D: "You must insert bookmarks at the start of every page."
-        },
-        correctAnswer: "C",
-        explanation: "Word generates the Table of Contents by scanning the document for text formatted with Heading styles. Without Headings, it won't know what to include.",
-        realWorldApplication: "Structuring a 50-page requirements document so the TOC automatically updates when sections are added or moved."
+    "realWorldApplication": "Formatting multi-line addresses or contact information blocks tightly together in a resume or invoice header."
+  },
+  {
+    "id": 9,
+    "question": "You want to create an automatic Table of Contents for your report. What is the mandatory prerequisite step before generating it?",
+    "options": [
+      "You must insert page numbers on every single page.",
+      "You must manually type out a list of chapters on the first page.",
+      "You must apply built-in Heading styles (Heading 1, Heading 2, etc.) to your chapter titles.",
+      "You must insert bookmarks at the start of every page."
+    ],
+    "correctAnswer": 2,
+    "difficulty": "Medium",
+    "topic": "Formatting & Layout",
+    "concept": "Table of Contents Setup",
+    "explanation": "Word generates the Table of Contents by scanning the document for text formatted with Heading styles. Without Headings, it won't know what to include.",
+    "whyCorrect": "The automated Table of Contents engine indexes Heading 1, Heading 2, and Heading 3 paragraphs and maps their corresponding page coordinates.",
+    "whyOthersAreWrong": {
+      "0": "While page numbers will appear in the TOC, inserting them beforehand is not the structural requirement for TOC generation.",
+      "1": "Manually typing headings defeats the purpose of an automated, self-updating TOC.",
+      "3": "Bookmarks can create manual hyperlinks, but the built-in TOC feature uses heading outline levels."
     },
-    {
-        id: 10,
-        topic: "MS Word",
-        category: "technical_application",
-        difficulty: "moderate placement",
-        question: "How can you insert a trademark symbol (™) using AutoCorrect without accessing the 'Insert Symbol' menu?",
-        options: {
-            A: "Type (tm) and press the spacebar.",
-            B: "Press Ctrl + T.",
-            C: "Type /trademark.",
-            D: "Press Alt + M."
-        },
-        correctAnswer: "A",
-        explanation: "Word's AutoCorrect automatically replaces specific text patterns like (tm), (c), and (r) with their respective symbols ™, ©, and ®.",
-        realWorldApplication: "Quickly typing out corporate product names that require trademark symbols without breaking typing flow."
+    "realWorldApplication": "Structuring a 50-page enterprise software requirements specification so the TOC updates automatically whenever sections shift."
+  },
+  {
+    "id": 10,
+    "question": "How can you quickly insert a trademark symbol (\u2122) using AutoCorrect without accessing the 'Insert Symbol' menu?",
+    "options": [
+      "Type (tm) and press the spacebar.",
+      "Press Ctrl + T.",
+      "Type /trademark.",
+      "Press Alt + M."
+    ],
+    "correctAnswer": 0,
+    "difficulty": "Easy",
+    "topic": "Formatting & Layout",
+    "concept": "AutoCorrect Symbols",
+    "explanation": "Word's AutoCorrect automatically replaces specific text patterns like (tm), (c), and (r) with their respective symbols \u2122, \u00a9, and \u00ae.",
+    "whyCorrect": "The default AutoCorrect lookup dictionary maps parenthesized characters like (tm) to the Unicode \u2122 glyph upon whitespace entry.",
+    "whyOthersAreWrong": {
+      "1": "Ctrl + T creates a hanging indent in Word, not a trademark symbol.",
+      "2": "Slash commands are used in modern collaborative markdown editors, not native Word defaults.",
+      "3": "Alt + M activates the Mailings ribbon tab in the Word interface."
     },
-    {
-        id: 11,
-        topic: "MS Word",
-        category: "technical_application",
-        difficulty: "moderate-hard placement",
-        question: "You need to lock a document so users can only fill out specific form fields and cannot edit the surrounding text. Which feature accomplishes this?",
-        options: {
-            A: "Save as PDF",
-            B: "Restrict Editing -> Allow only 'Filling in forms'",
-            C: "Mark as Final",
-            D: "Read-Only Mode"
-        },
-        correctAnswer: "B",
-        explanation: "The 'Restrict Editing' pane allows you to lock the document structure while explicitly permitting users to only interact with designated form fields.",
-        realWorldApplication: "Distributing a standardized HR employee intake form where candidates can only type their answers in specific boxes."
+    "realWorldApplication": "Rapidly drafting corporate press releases containing registered trademarks and copyright notices without disrupting keyboard workflow."
+  },
+  {
+    "id": 11,
+    "question": "You need to lock a document so users can only fill out designated form fields and cannot edit the surrounding text. Which feature accomplishes this?",
+    "options": [
+      "Save as PDF",
+      "Restrict Editing -> Allow only 'Filling in forms'",
+      "Mark as Final",
+      "Read-Only Mode"
+    ],
+    "correctAnswer": 1,
+    "difficulty": "Medium",
+    "topic": "Formatting & Layout",
+    "concept": "Restrict Editing",
+    "explanation": "The 'Restrict Editing' pane allows you to lock the document structure while explicitly permitting users to only interact with designated form fields.",
+    "whyCorrect": "'Filling in forms' protection freezes all static boilerplate text and unlocks only Content Controls or legacy form fields for input.",
+    "whyOthersAreWrong": {
+      "0": "Saving as a standard PDF still allows PDF editors to annotate or OCR the text, and doesn't configure interactive Word form fields.",
+      "2": "'Mark as Final' is an advisory status that can be dismissed with a single click by any user.",
+      "3": "Read-Only mode prevents users from entering form data altogether unless saved as a new copy."
     },
-    {
-        id: 12,
-        topic: "MS Word",
-        category: "technical_application",
-        difficulty: "hard placement",
-        question: "You are setting up a Mail Merge. What represents the placeholder for data coming from your Excel spreadsheet?",
-        options: {
-            A: "Data Tags",
-            B: "Merge Fields (e.g., «First_Name»)",
-            C: "Excel Links",
-            D: "Dynamic Variables"
-        },
-        correctAnswer: "B",
-        explanation: "Merge Fields act as placeholders in the Word document. During the merge, Word replaces the field (like «First_Name») with actual data from the corresponding column in the data source.",
-        realWorldApplication: "Creating a template for generating customized weekly performance reports for 200 different sales agents."
+    "realWorldApplication": "Distributing standardized HR employee onboarding forms where candidates must input personal details without modifying contractual clauses."
+  },
+  {
+    "id": 12,
+    "question": "You are configuring a Mail Merge document. What represents the dynamic placeholder for incoming data from your Excel spreadsheet?",
+    "options": [
+      "Data Tags",
+      "Merge Fields (e.g., \u00abFirst_Name\u00bb)",
+      "Excel Links",
+      "Dynamic Variables"
+    ],
+    "correctAnswer": 1,
+    "difficulty": "Hard",
+    "topic": "Formatting & Layout",
+    "concept": "Mail Merge Fields",
+    "explanation": "Merge Fields act as placeholders in the Word document. During the merge, Word replaces the field (like \u00abFirst_Name\u00bb) with actual data from the corresponding column in the data source.",
+    "whyCorrect": "Merge fields are enclosed in chevron delimiters (\u00ab \u00bb) and bind directly to database or spreadsheet column headers.",
+    "whyOthersAreWrong": {
+      "0": "'Data Tags' is not standard Microsoft Office terminology for Mail Merge data binding.",
+      "2": "Excel links embed live spreadsheet tables or charts, not individual recipient mail merge tokens.",
+      "3": "Dynamic Variables are programming language constructs, not Word document merge tokens."
     },
-    {
-        id: 13,
-        topic: "MS Word",
-        category: "technical_application",
-        difficulty: "moderate placement",
-        question: "You want to print a document, but you only want to print pages 1, 3, and a range from 5 to 8. How should you format this in the print dialog box?",
-        options: {
-            A: "1; 3; 5-8",
-            B: "1, 3, 5-8",
-            C: "1 and 3 and 5 to 8",
-            D: "1+3+5:8"
-        },
-        correctAnswer: "B",
-        explanation: "In the page range box, commas separate individual pages, and hyphens define a continuous range.",
-        realWorldApplication: "Printing only the summary, the financial table, and the appendices of a massive corporate report to save paper."
+    "realWorldApplication": "Creating an automated template that generates 200 tailored client invoices with customized line items, names, and billing dates."
+  },
+  {
+    "id": 13,
+    "question": "You want to print page 1, page 3, and pages 5 through 8 of a document. How should you format the custom range in the Print dialog?",
+    "options": [
+      "1; 3; 5-8",
+      "1, 3, 5-8",
+      "1 and 3 and 5 to 8",
+      "1+3+5:8"
+    ],
+    "correctAnswer": 1,
+    "difficulty": "Easy",
+    "topic": "Formatting & Layout",
+    "concept": "Print Page Ranges",
+    "explanation": "In the page range box, commas separate individual pages, and hyphens define a continuous range.",
+    "whyCorrect": "Commas delineate distinct non-contiguous page numbers while hyphens represent contiguous ranges (from 5 through 8 inclusive).",
+    "whyOthersAreWrong": {
+      "0": "Semicolons are not recognized as page separators in the Windows print dialog.",
+      "2": "Natural language strings like 'and' or 'to' cause invalid input syntax errors.",
+      "3": "Colons and plus signs are spreadsheet formula operators, not print range delimiters."
     },
-    {
-        id: 14,
-        topic: "MS Word",
-        category: "technical_application",
-        difficulty: "moderate-hard placement",
-        question: "What is the purpose of the 'Navigation Pane' in MS Word?",
-        options: {
-            A: "To search the internet for definitions of words.",
-            B: "To visually map the document's heading structure, allowing you to click and jump to sections or easily reorganize chapters via drag-and-drop.",
-            C: "To navigate between multiple open Word windows.",
-            D: "To track file paths when saving documents to a network drive."
-        },
-        correctAnswer: "B",
-        explanation: "The Navigation Pane displays the document structure (based on Heading styles), allowing easy navigation, searching, and structural reorganization.",
-        realWorldApplication: "Reviewing a dense API specification document and quickly jumping between endpoint descriptions."
+    "realWorldApplication": "Printing only the executive summary, client invoice, and appendices from a 200-page corporate financial audit."
+  },
+  {
+    "id": 14,
+    "question": "What is the primary function of the 'Navigation Pane' in MS Word?",
+    "options": [
+      "To search the internet for definitions of technical terms.",
+      "To visually map the document's heading structure, allowing you to click and jump to sections or easily reorganize chapters via drag-and-drop.",
+      "To navigate between multiple open Word application windows.",
+      "To track file paths when saving documents across local and network drives."
+    ],
+    "correctAnswer": 1,
+    "difficulty": "Hard",
+    "topic": "Formatting & Layout",
+    "concept": "Navigation Pane",
+    "explanation": "The Navigation Pane displays the document structure (based on Heading styles), allowing easy navigation, searching, and structural reorganization.",
+    "whyCorrect": "The Headings tab in the Navigation Pane displays an interactive outline where dragging a heading relocates that entire chapter and its body text.",
+    "whyOthersAreWrong": {
+      "0": "Searching definitions online is handled by the Smart Lookup / Search feature.",
+      "2": "Switching between open windows is handled by the View tab ('Switch Windows') or Windows taskbar (Alt+Tab).",
+      "3": "File path inspection is located under File > Info."
     },
-    {
-        id: 15,
-        topic: "MS Word",
-        category: "technical_application",
-        difficulty: "moderate placement",
-        question: "You pasted text from a website and it brought over unwanted background colors, fonts, and bolding. What is the fastest way to strip this formatting and match your document?",
-        options: {
-            A: "Highlight the text, change the font color to black, and remove the bold setting manually.",
-            B: "Use the 'Keep Text Only' paste option, or click the 'Clear All Formatting' eraser icon.",
-            C: "Delete the text, type it out manually.",
-            D: "Save the document as a plain text (.txt) file and reopen it."
-        },
-        correctAnswer: "B",
-        explanation: "Pasting with 'Keep Text Only' or using 'Clear All Formatting' instantly strips external HTML/CSS styles and forces the text to adopt the destination's default paragraph style.",
-        realWorldApplication: "Aggregating research notes from various websites into a clean, uniformly formatted whitepaper."
+    "realWorldApplication": "Reviewing an extensive API documentation draft and dragging Chapter 4 ahead of Chapter 3 with all nested subheadings updated instantly."
+  },
+  {
+    "id": 15,
+    "question": "You pasted text from a website that brought unwanted background colors, fonts, and bolding. What is the fastest way to strip all external styling to match your document?",
+    "options": [
+      "Highlight the text, change font color to black, and remove bold manually.",
+      "Use the 'Keep Text Only' paste option, or click the 'Clear All Formatting' button.",
+      "Delete the text and retype it by hand.",
+      "Save the document as a plain text (.txt) file and reopen it."
+    ],
+    "correctAnswer": 1,
+    "difficulty": "Easy",
+    "topic": "Formatting & Layout",
+    "concept": "Clear Formatting",
+    "explanation": "Pasting with 'Keep Text Only' or using 'Clear All Formatting' instantly strips external HTML/CSS styles and forces the text to adopt the destination's default paragraph style.",
+    "whyCorrect": "The 'Clear All Formatting' command (or Ctrl+Spacebar) removes all character formatting overrides, returning the text to the document's Normal style.",
+    "whyOthersAreWrong": {
+      "0": "Manual adjustment takes significant time and often misses hidden web styles like line heights or span backgrounds.",
+      "2": "Retyping long sections of research data is completely inefficient and error-prone.",
+      "3": "Converting the entire document to .txt strips formatting from every page, destroying tables and images."
     },
-    {
-        id: 16,
-        topic: "MS Word",
-        category: "technical_application",
-        difficulty: "hard placement",
-        question: "How do you create a hanging indent, where the first line of a paragraph is flush left, but subsequent lines are indented?",
-        options: {
-            A: "Press 'Enter' at the end of every line and press 'Space' 5 times.",
-            B: "Open Paragraph settings and under Indentation, set 'Special' to 'Hanging'.",
-            C: "Use the 'Align Right' button.",
-            D: "Insert a Table with hidden borders."
-        },
-        correctAnswer: "B",
-        explanation: "A hanging indent is properly created via Paragraph formatting settings, which automatically manages word wrapping without manual spaces or line breaks.",
-        realWorldApplication: "Properly formatting a References or Bibliography section according to APA/MLA academic or corporate standards."
+    "realWorldApplication": "Compiling research findings from diverse web sources into a clean, uniform company whitepaper adhering to brand typography."
+  },
+  {
+    "id": 16,
+    "question": "How do you create a 'Hanging Indent' where the first line is flush left, but subsequent lines are indented?",
+    "options": [
+      "Press Enter at the end of every line and press Space 5 times.",
+      "Open Paragraph settings and under Indentation, set 'Special' to 'Hanging'.",
+      "Click the 'Align Right' button.",
+      "Insert a Table with hidden borders."
+    ],
+    "correctAnswer": 1,
+    "difficulty": "Hard",
+    "topic": "Formatting & Layout",
+    "concept": "Hanging Indent",
+    "explanation": "A hanging indent is properly created via Paragraph formatting settings, which automatically manages word wrapping without manual spaces or line breaks.",
+    "whyCorrect": "Setting Special Indentation to 'Hanging' (or pressing Ctrl+T) offsets all wrapped lines in the paragraph while keeping line 1 against the margin.",
+    "whyOthersAreWrong": {
+      "0": "Hard-coding spaces breaks responsive reflow if fonts, page sizes, or margins change.",
+      "2": "Align Right moves all lines to the right margin, failing the hanging indent format.",
+      "3": "Tables add unnecessary structural overhead and make bibliography screen readers fail accessibility tests."
     },
-
-    // --- Scenario Based (6) ---
-    {
-        id: 17,
-        topic: "MS Word",
-        category: "scenario_based",
-        difficulty: "moderate-hard placement",
-        question: "You are writing a manual. You want the header of Chapter 1 to say 'Introduction' and the header of Chapter 2 to say 'System Architecture'. However, when you change the header on page 10 (Chapter 2), it overwrites the header on page 1. How do you fix this?",
-        options: {
-            A: "You cannot have different headers; you must use text boxes instead.",
-            B: "Insert a Section Break between the chapters, enter the Chapter 2 header, and uncheck 'Link to Previous'.",
-            C: "Insert a Page Break between the chapters and check 'Different First Page'.",
-            D: "Save Chapter 1 and Chapter 2 as separate Word files."
-        },
-        correctAnswer: "B",
-        explanation: "Headers are linked across sections by default. To have unique headers, you must separate the content with a Section Break and explicitly break the link by unchecking 'Link to Previous'.",
-        realWorldApplication: "Creating professional technical manuals where the header reflects the current chapter being read."
+    "realWorldApplication": "Correctly formatting academic and corporate citations, references, and bibliographies according to APA, IEEE, or MLA guidelines."
+  },
+  {
+    "id": 17,
+    "question": "You want Chapter 1 header to read 'Introduction' and Chapter 2 header to read 'System Architecture'. Changing Chapter 2 header overwrites Chapter 1. How do you resolve this?",
+    "options": [
+      "Headers cannot be customized per chapter; you must use floating text boxes instead.",
+      "Insert a Section Break between the chapters, open the Chapter 2 header, and uncheck 'Link to Previous'.",
+      "Insert a Page Break between chapters and check 'Different First Page'.",
+      "Save Chapter 1 and Chapter 2 as separate Word documents."
+    ],
+    "correctAnswer": 1,
+    "difficulty": "Medium",
+    "topic": "Scenario Applications",
+    "concept": "Unlink Headers Across Sections",
+    "explanation": "Headers are linked across sections by default. To have unique headers, you must separate the content with a Section Break and explicitly break the link by unchecking 'Link to Previous'.",
+    "whyCorrect": "Unchecking 'Link to Previous' on Section 2 severs header inheritance, allowing Section 2 to maintain independent header text and numbering.",
+    "whyOthersAreWrong": {
+      "0": "Word fully supports multi-section header customization natively without floating text boxes.",
+      "2": "'Different First Page' only modifies page 1 of that section, not subsequent chapters.",
+      "3": "Splitting documents into multiple files breaks unified pagination and automated Table of Contents generation."
     },
-    {
-        id: 18,
-        topic: "MS Word",
-        category: "scenario_based",
-        difficulty: "moderate placement",
-        question: "A client sent you a contract with 'Track Changes' enabled. There are dozens of red cross-outs and underlined additions. You want to see how the final document will read without the distracting markup. What should you do?",
-        options: {
-            A: "Click 'Accept All Changes', which permanently alters the document.",
-            B: "Change the tracking view from 'All Markup' to 'No Markup'.",
-            C: "Turn off the 'Track Changes' button.",
-            D: "Save the document as a PDF to hide the markup."
-        },
-        correctAnswer: "B",
-        explanation: "Switching the view to 'No Markup' allows you to read the clean, final version of the text without permanently accepting or losing the tracked edit history.",
-        realWorldApplication: "Proofreading a heavily edited legal agreement for readability before officially accepting the lawyer's revisions."
+    "realWorldApplication": "Creating professional corporate reports and published books where headers display dynamic chapter names across sections."
+  },
+  {
+    "id": 18,
+    "question": "A contract with Track Changes enabled contains dozens of red markup lines. You want to preview how the final document reads without accepting the edits permanently. What should you do?",
+    "options": [
+      "Click 'Accept All Changes', which permanently alters the document.",
+      "Change the tracking display view from 'All Markup' to 'No Markup'.",
+      "Turn off the 'Track Changes' toggle button.",
+      "Save the document as a PDF to hide the markup."
+    ],
+    "correctAnswer": 1,
+    "difficulty": "Medium",
+    "topic": "Scenario Applications",
+    "concept": "No Markup Preview",
+    "explanation": "Switching the view to 'No Markup' allows you to read the clean, final version of the text without permanently accepting or losing the tracked edit history.",
+    "whyCorrect": "'No Markup' displays the text with all suggested changes incorporated visually while preserving the underlying revision history for future review.",
+    "whyOthersAreWrong": {
+      "0": "Accepting all changes destroys reviewer history permanently, preventing further editorial audit.",
+      "2": "Turning off Track Changes only stops recording new changes; it does not hide existing markup.",
+      "3": "Exporting to PDF with markup visible will bake the red lines directly into the exported PDF."
     },
-    {
-        id: 19,
-        topic: "MS Word",
-        category: "scenario_based",
-        difficulty: "hard placement",
-        question: "You are finalizing a 200-page document. You discover you misspelled the CEO's last name 'Smithson' as 'Smitheson' throughout the entire text. What is the safest and fastest way to fix this?",
-        options: {
-            A: "Read through the document manually and delete the 'e' each time.",
-            B: "Run Spell Check and click 'Change All' when it flags 'Smitheson'.",
-            C: "Use the 'Replace' tool (Ctrl + H), type 'Smitheson' in 'Find what', 'Smithson' in 'Replace with', and click 'Replace All'.",
-            D: "Use the 'AutoCorrect' feature to fix it dynamically."
-        },
-        correctAnswer: "C",
-        explanation: "The Find and Replace tool is designed specifically for making bulk text corrections instantly and accurately across an entire document.",
-        realWorldApplication: "Fixing a deprecated API endpoint name across a massive technical specification document right before publication."
+    "realWorldApplication": "Proofreading a 30-page commercial vendor agreement for flow and tone before presenting it to corporate legal counsel for formal review."
+  },
+  {
+    "id": 19,
+    "question": "You realize a vendor company name 'Smitheson' was misspelled across a 200-page document and should be 'Smithson'. What is the safest and fastest way to correct all occurrences?",
+    "options": [
+      "Manually scroll through the document and delete the letter 'e' on each page.",
+      "Run Spell Check and click 'Change All' when it flags the word.",
+      "Use the 'Replace' tool (Ctrl + H), enter 'Smitheson' in 'Find what', 'Smithson' in 'Replace with', and click 'Replace All'.",
+      "Use the AutoCorrect dictionary to fix past text dynamically."
+    ],
+    "correctAnswer": 2,
+    "difficulty": "Medium",
+    "topic": "Scenario Applications",
+    "concept": "Find and Replace (Ctrl+H)",
+    "explanation": "The Find and Replace tool (Ctrl + H) is designed specifically for making bulk text corrections instantly and accurately across an entire document.",
+    "whyCorrect": "Ctrl + H searches the entire document string buffer and substitutes every instance atomically in seconds.",
+    "whyOthersAreWrong": {
+      "0": "Manual inspection across 200 pages guarantees human oversight and takes hours.",
+      "1": "Spell Check might not flag proper nouns or names if they are already in the custom dictionary.",
+      "3": "AutoCorrect triggers only during live keystroke entry; it does not retroactively scan existing text."
     },
-    {
-        id: 20,
-        topic: "MS Word",
-        category: "scenario_based",
-        difficulty: "moderate placement",
-        question: "You have an image placed in your document, but you can't seem to drag it freely around the page; it acts like a giant text character. How do you allow the image to be moved anywhere?",
-        options: {
-            A: "Change the 'Wrap Text' setting from 'In Line with Text' to 'Square' or 'Tight'.",
-            B: "Right-click the image and select 'Unlock'.",
-            C: "Convert the image to a SmartArt graphic.",
-            D: "Put the image inside a Table."
-        },
-        correctAnswer: "A",
-        explanation: "Images are inserted 'In Line with Text' by default, meaning they behave like text characters. Changing text wrapping allows the image to float freely on the page.",
-        realWorldApplication: "Designing a marketing flyer where a company logo needs to sit perfectly in the top right corner outside of normal margins."
+    "realWorldApplication": "Correcting a modified client legal entity name or deprecated API endpoint across hundreds of pages before product launch."
+  },
+  {
+    "id": 20,
+    "question": "An image inserted into Word behaves like a giant text character and cannot be dragged freely around the page. How do you allow free image positioning?",
+    "options": [
+      "Change the 'Wrap Text' setting from 'In Line with Text' to 'Square' or 'Tight'.",
+      "Right-click the image and select 'Unlock'.",
+      "Convert the image into a SmartArt graphic.",
+      "Place the image inside a single-cell Table."
+    ],
+    "correctAnswer": 0,
+    "difficulty": "Easy",
+    "topic": "Scenario Applications",
+    "concept": "Image Text Wrapping",
+    "explanation": "Images are inserted 'In Line with Text' by default, meaning they behave like text characters. Changing text wrapping allows the image to float freely on the page.",
+    "whyCorrect": "Selecting 'Square', 'Tight', or 'In Front of Text' decouples the graphic from the baseline font stream, enabling free drag-and-drop placement.",
+    "whyOthersAreWrong": {
+      "1": "There is no general 'Unlock' context menu option for inline graphics in Microsoft Word.",
+      "2": "SmartArt is intended for organizational charts and process diagrams, not arbitrary image wrapping.",
+      "3": "Placing the image in a table restricts it to the table grid cell boundaries rather than allowing free canvas movement."
     },
-    {
-        id: 21,
-        topic: "MS Word",
-        category: "scenario_based",
-        difficulty: "moderate-hard placement",
-        question: "Your team is collaborating on a Word document stored on OneDrive. Two people are editing it simultaneously. What feature ensures you don't overwrite each other's work?",
-        options: {
-            A: "Macro Recording",
-            B: "Document Inspector",
-            C: "Co-authoring (Real-time collaboration)",
-            D: "Mail Merge"
-        },
-        correctAnswer: "C",
-        explanation: "Co-authoring allows multiple users to work on a cloud-hosted Word document simultaneously, showing where each person is typing in real-time.",
-        realWorldApplication: "A project manager and a tech lead simultaneously writing different sections of a project proposal before a strict deadline."
+    "realWorldApplication": "Positioning a corporate logo or promotional graphic precisely into the top right margin of a marketing brochure."
+  },
+  {
+    "id": 21,
+    "question": "Two team members are simultaneously editing a Word document hosted on Microsoft OneDrive. Which technology prevents them from overwriting each other's work?",
+    "options": [
+      "Macro Recording",
+      "Document Inspector",
+      "Co-authoring (Real-time collaboration)",
+      "Mail Merge"
+    ],
+    "correctAnswer": 2,
+    "difficulty": "Medium",
+    "topic": "Scenario Applications",
+    "concept": "Co-authoring",
+    "explanation": "Co-authoring allows multiple users to work on a cloud-hosted Word document simultaneously, showing where each person is typing in real-time.",
+    "whyCorrect": "Co-authoring locks individual paragraphs at sub-document levels and synchronizes delta updates via cloud delta-sync engines.",
+    "whyOthersAreWrong": {
+      "0": "Macro recording automates VBA keystrokes and has no collaborative locking capabilities.",
+      "1": "Document Inspector inspects files for hidden metadata, personal data, and comments before sharing.",
+      "3": "Mail Merge merges data sources into letter templates."
     },
-    {
-        id: 22,
-        topic: "MS Word",
-        category: "scenario_based",
-        difficulty: "moderate placement",
-        question: "You want to send a Word document to a client, but you want to ensure they cannot easily alter the text and that it looks exactly the same regardless of what fonts they have installed. What is the standard practice?",
-        options: {
-            A: "Save it as an RTF (Rich Text Format).",
-            B: "Save/Export it as a PDF (Portable Document Format).",
-            C: "Password protect the .docx file.",
-            D: "Embed the fonts and save it as a template (.dotx)."
-        },
-        correctAnswer: "B",
-        explanation: "PDFs preserve formatting, fonts, and layout exactly as designed and prevent accidental edits by the recipient.",
-        realWorldApplication: "Sending a final invoice or an official signed contract to a vendor."
+    "realWorldApplication": "A project manager and a software engineer co-writing distinct sections of an RFP proposal minutes before an RFP deadline."
+  },
+  {
+    "id": 22,
+    "question": "You want to distribute a final proposal to external clients ensuring formatting and typography cannot shift across different computers. What is the standard format to use?",
+    "options": [
+      "Save as RTF (Rich Text Format).",
+      "Export / Save as PDF (Portable Document Format).",
+      "Password protect the .docx file.",
+      "Save as a Word Template (.dotx)."
+    ],
+    "correctAnswer": 1,
+    "difficulty": "Easy",
+    "topic": "Scenario Applications",
+    "concept": "PDF Export",
+    "explanation": "PDFs preserve formatting, fonts, and layout exactly as designed and prevent accidental edits by the recipient.",
+    "whyCorrect": "PDF freezes rasterized layouts, embedded vector curves, and font definitions into an unalterable print-ready standard.",
+    "whyOthersAreWrong": {
+      "0": "RTF strips modern advanced Word formatting and may render differently across third-party processors.",
+      "2": "A password-protected .docx still depends on local fonts installed on the client machine, which can distort layout.",
+      "3": "A .dotx template prompts the recipient to generate a new editable Word document, risking accidental tampering."
     },
-
-    // --- Problem Solving (5) ---
-    {
-        id: 23,
-        topic: "MS Word",
-        category: "problem_solving",
-        difficulty: "hard placement",
-        question: "You are trying to delete a blank page at the end of your document, but pressing Backspace isn't working. What is the most likely hidden culprit, and how do you find it?",
-        options: {
-            A: "A virus has corrupted the file; run an antivirus scan.",
-            B: "There is an invisible watermark pushing the page down; remove the watermark.",
-            C: "There are hidden paragraph marks or a page break; turn on 'Show/Hide ¶' to see and delete them.",
-            D: "The printer settings require an even number of pages."
-        },
-        correctAnswer: "C",
-        explanation: "Blank pages are usually caused by hidden empty paragraphs (returns) or manual Page/Section Breaks. Toggling 'Show/Hide ¶' reveals these non-printing characters so they can be deleted.",
-        realWorldApplication: "Cleaning up formatting artifacts in a resume so it prints perfectly on one page."
+    "realWorldApplication": "Submitting finalized commercial price bids, employment contracts, and NDA documents to external enterprise clients."
+  },
+  {
+    "id": 23,
+    "question": "You are unable to delete a stubborn blank page at the end of a Word document by pressing Backspace. What is the most effective troubleshooting step?",
+    "options": [
+      "Run an antivirus scan on the document file.",
+      "Remove watermarks from the Design tab.",
+      "Toggle 'Show/Hide \u00b6' (Ctrl+Shift+8) to reveal and delete hidden empty paragraph returns or page breaks.",
+      "Change printer properties to force an odd page count."
+    ],
+    "correctAnswer": 2,
+    "difficulty": "Hard",
+    "topic": "Troubleshooting & Tools",
+    "concept": "Show/Hide Formatting Marks",
+    "explanation": "Blank pages are usually caused by hidden empty paragraphs (returns) or manual Page/Section Breaks. Toggling 'Show/Hide \u00b6' reveals these non-printing characters so they can be deleted.",
+    "whyCorrect": "The Show/Hide command (Ctrl+Shift+*) renders all invisible non-printing characters (\u00b6, dots for spaces, break lines), making the culprit instantly selectable and removable.",
+    "whyOthersAreWrong": {
+      "0": "Antivirus software scans for malicious macro payloads, not layout formatting artifacts.",
+      "1": "Watermarks sit in headers as background elements and do not push paragraphs onto new pages.",
+      "3": "Printer settings do not control the internal document page count in Word's layout editor."
     },
-    {
-        id: 24,
-        topic: "MS Word",
-        category: "problem_solving",
-        difficulty: "moderate-hard placement",
-        question: "You have a two-column layout, but you want the title of the document to span completely across the top of both columns. How is this achieved?",
-        options: {
-            A: "Type the title in the header area.",
-            B: "Format the title text as 'One Column', insert a Continuous Section Break, and format the rest as 'Two Columns'.",
-            C: "Use the 'Merge Columns' button on the title paragraph.",
-            D: "This is impossible; columns apply to the entire document page."
-        },
-        correctAnswer: "B",
-        explanation: "Section breaks allow different layouts on the same page. A continuous break allows the title to be 1-column, and the text immediately below it to split into 2-columns.",
-        realWorldApplication: "Formatting a scientific research paper or a newsletter with a unified headline and a double-column body."
+    "realWorldApplication": "Eliminating an unwanted trailing blank page from a candidate's resume so it exports cleanly as a single page."
+  },
+  {
+    "id": 24,
+    "question": "You have a two-column newsletter layout, but need the headline title to stretch across the full width of both columns. How is this accomplished?",
+    "options": [
+      "Place the headline title inside the page header.",
+      "Format the title as 'One Column', insert a Continuous Section Break, and format the body as 'Two Columns'.",
+      "Select the headline and click 'Merge Columns'.",
+      "This is impossible; column settings apply strictly to the whole page."
+    ],
+    "correctAnswer": 1,
+    "difficulty": "Medium",
+    "topic": "Troubleshooting & Tools",
+    "concept": "Continuous Section Breaks",
+    "explanation": "Section breaks allow different layouts on the same page. A continuous break allows the title to be 1-column, and the text immediately below it to split into 2-columns.",
+    "whyCorrect": "A Continuous Section Break splits page formatting without forcing a page eject, enabling mixed 1-column and 2-column designs on the same page.",
+    "whyOthersAreWrong": {
+      "0": "Headers repeat on every page and cannot serve as a one-time article headline on page 1.",
+      "2": "'Merge Columns' is a table operation, not a paragraph column formatting tool.",
+      "3": "Word natively supports mixed column layouts on a single page through continuous section breaks."
     },
-    {
-        id: 25,
-        topic: "MS Word",
-        category: "problem_solving",
-        difficulty: "moderate placement",
-        question: "Your paragraph has a weird gap between two words that stretches across the whole line, even though there is only one space between them. What is causing this?",
-        options: {
-            A: "The font is corrupted.",
-            B: "The paragraph alignment is set to 'Justified', and the line has very few words, causing Word to stretch the spacing to reach the margins.",
-            C: "You accidentally pressed the 'Tab' key.",
-            D: "The kerning setting is set to maximum."
-        },
-        correctAnswer: "B",
-        explanation: "Justified alignment forces text to touch both the left and right margins by expanding the spaces between words, which looks awkward on short lines.",
-        realWorldApplication: "Troubleshooting awkward typography in a formal block-justified legal document."
+    "realWorldApplication": "Formatting academic journal papers or company technical newsletters featuring a full-width title followed by a dual-column research body."
+  },
+  {
+    "id": 25,
+    "question": "A line of text in a paragraph exhibits exaggerated, awkward gaps between words despite only having single spaces. What is the root cause?",
+    "options": [
+      "The font file is corrupted.",
+      "The paragraph alignment is set to 'Justified', and the line has very few words, causing Word to expand spacing to touch both margins.",
+      "The user accidentally pressed Tab between words.",
+      "Kerning is set to maximum."
+    ],
+    "correctAnswer": 1,
+    "difficulty": "Medium",
+    "topic": "Troubleshooting & Tools",
+    "concept": "Justified Alignment Spacing",
+    "explanation": "Justified alignment forces text to touch both the left and right margins by expanding the spaces between words, which looks awkward on short lines.",
+    "whyCorrect": "Full justification (Ctrl+J) stretches word spacing across the line; if a line ends with a manual line break (Shift+Enter) rather than a natural wrap, gaps become severe.",
+    "whyOthersAreWrong": {
+      "0": "Font corruption causes missing glyphs or substitution boxes (tofu), not proportional word spacing expansion.",
+      "2": "Tab keys create rigid tab-stop leaps rather than proportional spacing stretching across all words.",
+      "3": "Kerning adjusts letter-spacing within a word, not the whitespace between separate words."
     },
-    {
-        id: 26,
-        topic: "MS Word",
-        category: "problem_solving",
-        difficulty: "hard placement",
-        question: "When you type a web URL (like www.google.com) and press space, Word automatically turns it into a clickable blue hyperlink. You want to disable this automatic behavior completely. Where do you go?",
-        options: {
-            A: "Design -> Page Background -> Link Colors",
-            B: "File -> Options -> Proofing -> AutoCorrect Options -> AutoFormat As You Type",
-            C: "Insert -> Links -> Disable Hyperlinks",
-            D: "Review -> Language -> Unlink URLs"
-        },
-        correctAnswer: "B",
-        explanation: "Word's AutoFormat As You Type settings control automatic behaviors like converting URLs to hyperlinks, creating automatic bulleted lists, and changing straight quotes to smart quotes.",
-        realWorldApplication: "Writing code documentation where URLs should remain plain text strings so they can be easily copied into a terminal without triggering browser launches."
+    "realWorldApplication": "Formatting legal contracts and corporate governance publications with clean block justification and proper hyphenation."
+  },
+  {
+    "id": 26,
+    "question": "When you type a URL (such as www.microsoft.com), Word automatically converts it into a clickable blue hyperlink. Where do you disable this automatic conversion?",
+    "options": [
+      "Design -> Page Background -> Link Colors",
+      "File -> Options -> Proofing -> AutoCorrect Options -> AutoFormat As You Type",
+      "Insert -> Links -> Disable Hyperlinks",
+      "Review -> Language -> Unlink URLs"
+    ],
+    "correctAnswer": 1,
+    "difficulty": "Hard",
+    "topic": "Troubleshooting & Tools",
+    "concept": "AutoFormat As You Type",
+    "explanation": "Word's AutoFormat As You Type settings control automatic behaviors like converting URLs to hyperlinks, creating automatic bulleted lists, and changing straight quotes to smart quotes.",
+    "whyCorrect": "Under Proofing > AutoCorrect Options > 'AutoFormat As You Type', unchecking 'Internet and network paths with hyperlinks' stops automatic hyperlink creation.",
+    "whyOthersAreWrong": {
+      "0": "Design tab manages visual theme palettes and page backgrounds.",
+      "2": "The Insert tab allows inserting manual links, but doesn't manage live keystroke replacement rules.",
+      "3": "The Review tab controls proofing dictionaries and translations."
     },
-    {
-        id: 27,
-        topic: "MS Word",
-        category: "problem_solving",
-        difficulty: "moderate-hard placement",
-        question: "You have a massive table that spans across three pages. When you look at pages 2 and 3, you cannot tell what the data in each column represents because the column headers are only on page 1. How do you fix this?",
-        options: {
-            A: "Manually copy and paste the header row at the top of the table on pages 2 and 3.",
-            B: "Select the header row, go to Table Layout, and click 'Repeat Header Rows'.",
-            C: "Insert a page break inside the table to force headers down.",
-            D: "You must convert the table to Excel; Word cannot do this."
-        },
-        correctAnswer: "B",
-        explanation: "'Repeat Header Rows' dynamically repeats the selected top row(s) at the top of every new page the table flows onto, preventing manual formatting nightmares if the table shifts.",
-        realWorldApplication: "Presenting a 10-page inventory list where every page needs 'Item ID', 'Description', and 'Quantity' at the top for readability."
+    "realWorldApplication": "Writing code documentation and server configuration manuals where raw URLs should remain plain text without clickable redirects."
+  },
+  {
+    "id": 27,
+    "question": "A table extends over three pages in a document. Pages 2 and 3 do not display the column headers, making data difficult to interpret. How do you repeat them automatically?",
+    "options": [
+      "Manually copy and paste the header row at the top of pages 2 and 3.",
+      "Select the header row, go to Table Tools Layout, and click 'Repeat Header Rows'.",
+      "Insert a page break inside the table to force headers down.",
+      "Convert the table to an embedded Excel spreadsheet."
+    ],
+    "correctAnswer": 1,
+    "difficulty": "Medium",
+    "topic": "Troubleshooting & Tools",
+    "concept": "Repeat Header Rows",
+    "explanation": "'Repeat Header Rows' dynamically repeats the selected top row(s) at the top of every new page the table flows onto, preventing manual formatting nightmares if the table shifts.",
+    "whyCorrect": "'Repeat Header Rows' automatically re-renders the table header across page boundaries and updates dynamically if rows are added or deleted above.",
+    "whyOthersAreWrong": {
+      "0": "Manually pasting rows fractures the table and breaks if any edits shift table rows up or down.",
+      "2": "Inserting page breaks creates disconnected split tables rather than a unified flowing data set.",
+      "3": "Embedded Excel objects add heavy performance overhead and do not wrap across multiple Word pages naturally."
     },
-
-    // --- Tricky Exam Questions (3) ---
-    {
-        id: 28,
-        topic: "MS Word",
-        category: "tricky_exam_questions",
-        difficulty: "hard placement",
-        question: "What does the 'Format Painter' do if you double-click the icon instead of single-clicking it?",
-        options: {
-            A: "It permanently deletes the source formatting.",
-            B: "It opens the Advanced Formatting dialog box.",
-            C: "It locks the Format Painter on, allowing you to apply the formatting to multiple separate areas until you press Esc.",
-            D: "It paints the formatting across the entire document instantly."
-        },
-        correctAnswer: "C",
-        explanation: "A single click applies the format once and turns off. A double click locks the tool, allowing continuous application across non-contiguous text blocks.",
-        realWorldApplication: "Applying a specific warning style to five different, scattered paragraphs throughout a safety manual."
+    "realWorldApplication": "Formatting a 10-page enterprise software asset ledger or product pricing table so every page displays clear column designations."
+  },
+  {
+    "id": 28,
+    "question": "What happens if you double-click the 'Format Painter' icon instead of single-clicking it?",
+    "options": [
+      "It permanently deletes the source formatting.",
+      "It opens the Advanced Typography dialog box.",
+      "It locks the Format Painter on, allowing you to apply the formatting to multiple separate text selections until you press Esc.",
+      "It applies the formatting across the entire document in one click."
+    ],
+    "correctAnswer": 2,
+    "difficulty": "Hard",
+    "topic": "Advanced & Tricky",
+    "concept": "Persistent Format Painter",
+    "explanation": "A single click applies the format once and turns off. A double click locks the tool, allowing continuous application across non-contiguous text blocks.",
+    "whyCorrect": "Double-clicking locks the brush cursor active, permitting multiple disparate text highlights until the user presses Esc or clicks the icon again.",
+    "whyOthersAreWrong": {
+      "0": "Format Painter never destroys or clears source formatting.",
+      "1": "The Font dialog (Ctrl+D) opens typography settings, not the Format Painter button.",
+      "3": "Applying formatting across an entire document requires selecting all (Ctrl+A) or editing the Normal style."
     },
-    {
-        id: 29,
-        topic: "MS Word",
-        category: "tricky_exam_questions",
-        difficulty: "hard placement",
-        question: "You want to search a document for any word that begins with 'pre' (like preview, prepare). Which advanced Find feature should you use?",
-        options: {
-            A: "Use Wildcards and search for 'pre*'",
-            B: "Use Sounds Like and search for 'pre'",
-            C: "Use Match Case and search for 'PRE'",
-            D: "Use Find Whole Words Only and search for 'pre'"
-        },
-        correctAnswer: "A",
-        explanation: "Enabling 'Use wildcards' in Advanced Find allows you to use asterisks (*) to represent any string of characters, so 'pre*' finds any word starting with those letters.",
-        realWorldApplication: "Performing complex text extraction or auditing across massive data dumps pasted into Word."
+    "realWorldApplication": "Formatting warning callouts or parameter definitions scattered across 10 non-contiguous sections in a user manual without re-clicking the button."
+  },
+  {
+    "id": 29,
+    "question": "You want to find any word in a document that starts with 'pre' (e.g. preview, prepare, prefix). Which Advanced Find feature must be used?",
+    "options": [
+      "Check 'Use wildcards' and search for 'pre*'",
+      "Check 'Sounds Like' and search for 'pre'",
+      "Check 'Match Case' and search for 'PRE'",
+      "Check 'Find Whole Words Only' and search for 'pre'"
+    ],
+    "correctAnswer": 0,
+    "difficulty": "Hard",
+    "topic": "Advanced & Tricky",
+    "concept": "Wildcard Search",
+    "explanation": "Enabling 'Use wildcards' in Advanced Find allows you to use asterisks (*) to represent any string of characters, so 'pre*' finds any word starting with those letters.",
+    "whyCorrect": "Enabling 'Use wildcards' turns on regex-like pattern matching where asterisk (*) matches zero or more trailing characters.",
+    "whyOthersAreWrong": {
+      "1": "'Sounds Like' uses phonetic Soundex matching for homophones (like 'there' and 'their').",
+      "2": "'Match Case' matches exact uppercase/lowercase strings but does not match variable suffixes.",
+      "3": "'Find Whole Words Only' excludes words like 'preview' because it specifically looks for the standalone isolated word 'pre'."
     },
-    {
-        id: 30,
-        topic: "MS Word",
-        category: "tricky_exam_questions",
-        difficulty: "hard placement",
-        question: "What happens if you apply a 'Drop Cap' to a paragraph?",
-        options: {
-            A: "The entire paragraph becomes capitalized.",
-            B: "The paragraph text is dropped to the bottom of the page.",
-            C: "The first letter of the paragraph is enlarged and drops down two or more lines of text, commonly seen in novels.",
-            D: "A decorative caption is added beneath the paragraph."
-        },
-        correctAnswer: "C",
-        explanation: "A Drop Cap is a large capital letter at the beginning of a text block that has the depth of two or more lines of regular text.",
-        realWorldApplication: "Formatting a company newsletter or magazine article to give it a professional, editorial aesthetic."
-    }
+    "realWorldApplication": "Auditing a massive codebase manual to find all occurrences of functions prefixed with 'get' or 'pre' across thousands of lines."
+  },
+  {
+    "id": 30,
+    "question": "What happens when you apply a 'Drop Cap' to a paragraph in MS Word?",
+    "options": [
+      "The entire paragraph is converted into uppercase letters.",
+      "The paragraph text drops down to the bottom margin of the page.",
+      "The first letter of the paragraph is enlarged and drops down across two or more lines of text.",
+      "A decorative caption frame is placed beneath the paragraph."
+    ],
+    "correctAnswer": 2,
+    "difficulty": "Medium",
+    "topic": "Advanced & Tricky",
+    "concept": "Drop Cap",
+    "explanation": "A Drop Cap is a large capital letter at the beginning of a text block that has the depth of two or more lines of regular text.",
+    "whyCorrect": "Drop Cap enlarges the initial letter into a stylized display character that drops down into subsequent lines of the paragraph.",
+    "whyOthersAreWrong": {
+      "0": "Converting to uppercase is handled by the Change Case (Shift+F3) button.",
+      "1": "Pushing text down is handled by page breaks, paragraph spacing, or vertical alignment.",
+      "3": "Adding decorative captions is done via Insert > Caption."
+    },
+    "realWorldApplication": "Creating elegant editorial layouts, corporate newsletters, or marketing magazine articles that require an executive aesthetic."
+  }
 ];
+
+const questions = questionsData;
