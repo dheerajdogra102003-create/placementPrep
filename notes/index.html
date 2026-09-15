@@ -441,6 +441,7 @@ textarea.form-control { min-height: 80px; resize: vertical; }
         <label class="clear-btn" style="cursor:pointer" title="Import notes from JSON file">
           📤 Import Notes <input type="file" id="importInput" accept=".json" style="display:none">
         </label>
+        <button class="clear-btn" id="clearCustomBtn" title="Clear all custom added notes" style="color:var(--red)">🗑 Reset Custom</button>
       </div>
     </div>
   </div>
@@ -945,14 +946,19 @@ document.getElementById("importInput").addEventListener("change", (e) => {
         saveStoredNotes(unique);
         renderNotes();
         alert(`Successfully imported ${imported.length} notes!`);
-      } else {
-        alert("Invalid format: expected JSON array of notes.");
       }
     } catch(err) {
       alert("Failed to parse JSON file.");
     }
   };
   reader.readAsText(file);
+});
+
+document.getElementById("clearCustomBtn").addEventListener("click", () => {
+  if (confirm("Clear all your custom added notes? Built-in Cloud Computing notes will remain.")) {
+    localStorage.removeItem(STORAGE_KEY);
+    renderNotes();
+  }
 });
 
 // Dark Theme Sync
