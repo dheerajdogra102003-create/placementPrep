@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Cloud Computing Placement Notes and Last-Minute Revision Hub.">
-<title>Notes & Last Minute Prep | Cloud Computing</title>
+<meta name="description" content="Placement Notes and Last-Minute Revision Hub for Campus Recruitment and Technical Interviews.">
+<title>Notes & Last Minute Prep Material | PlacementPrep</title>
 
 <style>
 :root {
@@ -19,14 +19,9 @@
   --blue-hover: #0369a1;
   --blue-light: rgba(2, 132, 199, 0.1);
   --blue-glow: rgba(2, 132, 199, 0.2);
-  --red: #e60023;
-  --pink: #d53a8e;
-  --amber: #d97706;
-  --mint: #d0f0c0;
-  --mintText: #28551d;
   --shadow: 0 14px 40px rgba(0,0,0,.06);
   --shadow-lg: 0 20px 50px rgba(0,0,0,.12);
-  --radius: 18px;
+  --radius: 20px;
   --font: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
@@ -42,8 +37,6 @@ body.dark {
   --blue-hover: #0284c7;
   --blue-light: rgba(56, 189, 248, 0.12);
   --blue-glow: rgba(56, 189, 248, 0.25);
-  --mint: #1f351b;
-  --mintText: #b7eaa7;
   --shadow: 0 18px 50px rgba(0,0,0,.35);
   --shadow-lg: 0 24px 60px rgba(0,0,0,.5);
 }
@@ -101,37 +94,27 @@ a { text-decoration: none; color: inherit; }
 .icon-btn:hover { border-color: var(--blue); transform: translateY(-2px); }
 
 /* Main Container */
-.container { max-width: 1400px; margin: 0 auto; padding: 94px 24px 60px; }
+.container { max-width: 1200px; margin: 0 auto; padding: 94px 24px 60px; }
 
 /* Hero */
 .hero {
-  position: relative; overflow: hidden; border-radius: 28px; padding: clamp(32px, 5vw, 60px);
-  background: linear-gradient(135deg, #0b1528 0%, #10243e 50%, #1e1b38 100%);
-  color: #fff; box-shadow: var(--shadow-lg); margin-bottom: 30px;
+  position: relative; overflow: hidden; border-radius: 28px; padding: clamp(32px, 5vw, 56px);
+  background: linear-gradient(135deg, #0b1528 0%, #10243e 50%, #17243c 100%);
+  color: #fff; box-shadow: var(--shadow-lg); margin-bottom: 36px;
 }
 .hero:before, .hero:after { content: ""; position: absolute; border-radius: 50%; pointer-events: none; }
 .hero:before { width: 380px; height: 380px; right: -120px; top: -140px; background: radial-gradient(circle, rgba(2, 132, 199, .45), transparent 70%); }
 .hero:after { width: 320px; height: 320px; left: 45%; bottom: -180px; background: radial-gradient(circle, rgba(37, 99, 235, .35), transparent 70%); }
-.hero-content { position: relative; z-index: 2; max-width: 880px; }
+.hero-content { position: relative; z-index: 2; max-width: 820px; }
 .eyebrow {
   display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border: 1px solid rgba(255,255,255,.18);
   border-radius: 999px; background: rgba(255,255,255,.08); font-size: 11px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase;
 }
-.hero h1 { font-size: clamp(32px, 4.8vw, 56px); line-height: 1.05; letter-spacing: -2px; margin: 18px 0 14px; font-weight: 900; }
-.hero h1 span { background: linear-gradient(90deg, #38bdf8, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-.hero p { color: #d1e0f3; font-size: 15px; max-width: 740px; }
+.hero h1 { font-size: clamp(32px, 4.5vw, 52px); line-height: 1.08; letter-spacing: -2px; margin: 16px 0 12px; font-weight: 900; }
+.hero h1 span { background: linear-gradient(90deg, #38bdf8, #93c5fd); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.hero p { color: #d1e0f3; font-size: 15px; max-width: 700px; line-height: 1.6; }
 
-.hero-stats {
-  display: flex; flex-wrap: wrap; gap: 16px; margin-top: 26px;
-}
-.stat-pill {
-  display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,.08);
-  border: 1px solid rgba(255,255,255,.12); padding: 10px 18px; border-radius: 14px;
-}
-.stat-pill b { font-size: 18px; color: #fff; }
-.stat-pill span { font-size: 11.5px; color: #c4d7ec; text-transform: uppercase; letter-spacing: .7px; }
-
-.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
 .hero-btn {
   border: 0; border-radius: 12px; padding: 12px 20px; font-weight: 800; font-size: 13px;
   background: #fff; color: #0b1528; display: inline-flex; align-items: center; gap: 8px; transition: .2s;
@@ -142,148 +125,107 @@ a { text-decoration: none; color: inherit; }
 }
 .hero-btn.alt:hover { background: rgba(255,255,255,.18); }
 
-/* Featured Cloud Banner */
-.featured-card {
-  position: relative; background: var(--card); border: 1px solid var(--border); border-radius: 20px;
-  padding: 24px 28px; margin-bottom: 30px; box-shadow: var(--shadow);
-  display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap;
-  border-left: 6px solid var(--blue);
+/* Section Header */
+.section-head {
+  display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 20px; flex-wrap: wrap; gap: 12px;
 }
-.featured-content { max-width: 820px; }
-.featured-tag {
-  display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 6px;
-  background: var(--blue-light); color: var(--blue); font-size: 10.5px; font-weight: 850; letter-spacing: .8px; text-transform: uppercase;
-}
-.featured-card h2 { font-size: 21px; margin: 8px 0 6px; letter-spacing: -.5px; color: var(--text); }
-.featured-card p { font-size: 13px; color: var(--muted); line-height: 1.5; }
-.featured-btn {
-  background: var(--blue); color: #fff; padding: 12px 22px; border-radius: 12px;
-  font-size: 13px; font-weight: 800; display: inline-flex; align-items: center; gap: 8px; transition: .2s; flex-shrink: 0;
-}
-.featured-btn:hover { background: var(--blue-hover); transform: translateY(-2px); color: #fff; box-shadow: 0 8px 20px var(--blue-glow); }
+.section-kicker { color: var(--blue); font-size: 11px; font-weight: 850; letter-spacing: 1.2px; text-transform: uppercase; }
+.section-head h2 { font-size: 24px; letter-spacing: -.6px; margin-top: 4px; }
+.section-sub { color: var(--muted); font-size: 13px; max-width: 600px; }
 
-/* Filter & Controls Bar */
-.controls-bar {
-  position: sticky; top: 78px; z-index: 100; margin-bottom: 25px;
-  background: var(--card); border: 1px solid var(--border); border-radius: 16px;
-  padding: 12px 16px; box-shadow: var(--shadow);
-  display: flex; flex-direction: column; gap: 12px;
-}
-.search-row { display: flex; gap: 10px; align-items: center; }
-.search-box {
-  flex: 1; display: flex; align-items: center; gap: 10px; background: var(--card2);
-  border: 1px solid var(--border); border-radius: 12px; padding: 8px 14px;
-}
-.search-box input {
-  flex: 1; border: 0; outline: 0; background: transparent; color: var(--text); font-size: 13.5px;
-}
-.search-icon { color: var(--blue); font-size: 16px; font-weight: bold; }
-.clear-btn {
-  border: 0; background: transparent; color: var(--muted); font-size: 12px; font-weight: 700; padding: 4px 8px; border-radius: 6px;
-}
-.clear-btn:hover { background: var(--card3); color: var(--text); }
-
-/* Module Tabs */
-.module-tabs {
-  display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: thin;
-}
-.module-tabs::-webkit-scrollbar { height: 4px; }
-.module-tabs::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
-.tab-btn {
-  white-space: nowrap; border: 1px solid var(--border); background: var(--card2);
-  color: var(--muted); padding: 8px 16px; border-radius: 10px; font-size: 12px; font-weight: 750;
-  display: inline-flex; align-items: center; gap: 6px; transition: .2s;
-}
-.tab-btn:hover { background: var(--card3); color: var(--text); }
-.tab-btn.active {
-  background: var(--blue); color: #fff; border-color: var(--blue);
-  box-shadow: 0 4px 12px var(--blue-glow);
+/* Modules Grid */
+.modules-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 24px;
 }
 
-/* Secondary Filters */
-.filter-row {
-  display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
-  font-size: 12px; color: var(--muted); padding-top: 4px; border-top: 1px dashed var(--border);
-}
-.filter-tags { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
-.priority-pill {
-  padding: 4px 10px; border-radius: 8px; font-size: 10.5px; font-weight: 800; text-transform: uppercase; letter-spacing: .5px;
-  background: var(--card2); color: var(--muted); border: 1px solid var(--border); cursor: pointer; transition: .2s;
-}
-.priority-pill.active { background: var(--blue); color: #fff; border-color: var(--blue); }
-
-/* Notes Grid */
-.notes-grid {
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 18px; margin-top: 15px;
-}
-
-/* Cloud Computing Note Card in Blue Theme */
-.note-card {
+/* Module Card */
+.mod-card {
   background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
-  padding: 22px; box-shadow: var(--shadow); transition: transform .2s, box-shadow .2s, border-color .2s;
+  padding: 28px; box-shadow: var(--shadow); transition: transform .22s, box-shadow .22s, border-color .22s;
   display: flex; flex-direction: column; position: relative;
-  border-left: 5px solid var(--blue);
 }
-.note-card:hover {
-  transform: translateY(-3px); box-shadow: var(--shadow-lg);
+.mod-card:hover {
+  transform: translateY(-4px); box-shadow: var(--shadow-lg);
+}
+
+/* Cloud Computing Card - Blue */
+.mod-card.cloud-card {
+  border-top: 5px solid var(--blue);
+}
+.mod-card.cloud-card:hover {
   border-color: var(--blue);
 }
-.note-card.custom-note {
-  border-left: 5px solid var(--amber);
+.card-header {
+  display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px;
+}
+.card-icon {
+  width: 48px; height: 48px; border-radius: 14px; display: grid; place-items: center;
+  font-size: 24px; background: var(--blue-light); color: var(--blue);
+}
+.card-badge {
+  display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; border-radius: 6px;
+  font-size: 10px; font-weight: 850; letter-spacing: .6px; text-transform: uppercase;
+  background: var(--blue-light); color: var(--blue);
+}
+.mod-card h3 { font-size: 20px; letter-spacing: -.4px; margin-bottom: 8px; color: var(--text); }
+.mod-card p { font-size: 13px; color: var(--muted); line-height: 1.55; margin-bottom: 20px; flex: 1; }
+
+.tag-list {
+  display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 22px;
+}
+.tag-item {
+  padding: 4px 9px; border-radius: 6px; background: var(--card2); color: var(--muted);
+  font-size: 11px; font-weight: 600;
 }
 
-.card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 12px; }
-.badges-wrap { display: flex; gap: 6px; flex-wrap: wrap; }
-.badge {
-  display: inline-flex; align-items: center; gap: 4px; padding: 4px 8px; border-radius: 6px;
-  font-size: 9.5px; font-weight: 900; letter-spacing: .6px; text-transform: uppercase;
+.open-card-btn {
+  background: var(--blue); color: #fff; padding: 12px 18px; border-radius: 12px;
+  font-size: 13px; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  transition: .2s; width: 100%; text-align: center;
 }
-.badge-cloud {
-  background: var(--blue-light); color: var(--blue); border: 1px solid var(--blue-glow);
+.open-card-btn:hover {
+  background: var(--blue-hover); box-shadow: 0 8px 20px var(--blue-glow); color: #fff;
 }
-.badge-high { background: rgba(230,0,35,.10); color: var(--red); }
-.badge-med { background: rgba(213,58,142,.12); color: var(--pink); }
-.badge-cheat { background: var(--blue-light); color: var(--blue); font-weight: 900; }
-.badge-custom { background: var(--mint); color: var(--mintText); }
 
-.card-actions { display: flex; gap: 4px; }
-.card-action-btn {
+/* Add New Module Card */
+.add-mod-card {
+  background: transparent; border: 2px dashed var(--border); border-radius: var(--radius);
+  padding: 32px 24px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; cursor: pointer; transition: .2s; min-height: 320px;
+}
+.add-mod-card:hover {
+  border-color: var(--blue); background: var(--card); transform: translateY(-4px);
+  box-shadow: var(--shadow);
+}
+.add-mod-icon {
+  width: 52px; height: 52px; border-radius: 16px; background: var(--card2);
+  display: grid; place-items: center; font-size: 24px; color: var(--muted); margin-bottom: 14px;
+  transition: .2s;
+}
+.add-mod-card:hover .add-mod-icon {
+  background: var(--blue-light); color: var(--blue);
+}
+.add-mod-card h3 { font-size: 17px; margin-bottom: 6px; color: var(--text); }
+.add-mod-card p { font-size: 12.5px; color: var(--muted); max-width: 260px; }
+
+/* Custom Added Module Card */
+.mod-card.custom-card {
+  border-top: 5px solid #107c41;
+}
+.mod-card.custom-card .card-icon {
+  background: rgba(16, 124, 65, 0.1); color: #107c41;
+}
+.mod-card.custom-card .open-card-btn {
+  background: #107c41;
+}
+.mod-card.custom-card .open-card-btn:hover {
+  background: #0e6b37;
+}
+.delete-card-btn {
   border: 0; background: transparent; color: var(--muted); width: 28px; height: 28px;
   border-radius: 6px; display: grid; place-items: center; font-size: 13px; transition: .2s;
 }
-.card-action-btn:hover { background: var(--card2); color: var(--red); }
-
-.note-card h3 {
-  font-size: 16.5px; line-height: 1.3; margin-bottom: 8px; letter-spacing: -.3px;
-  color: var(--text);
-}
-.note-card .summary { font-size: 12.5px; color: var(--muted); margin-bottom: 14px; line-height: 1.5; }
-
-.key-points {
-  background: var(--card2); border-radius: 12px; padding: 12px 14px; margin-bottom: 14px;
-}
-.key-points h4 { font-size: 10px; text-transform: uppercase; letter-spacing: .8px; color: var(--blue); margin-bottom: 6px; font-weight: 800; }
-.key-points ul { padding-left: 16px; font-size: 11.5px; color: var(--text); }
-.key-points li { margin: 4px 0; }
-
-.code-box {
-  background: #0f172a; color: #bae6fd; font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 11px; padding: 10px 12px; border-radius: 10px; margin-bottom: 12px; overflow-x: auto;
-  border: 1px solid rgba(56, 189, 248, 0.2);
-}
-
-.trap-box {
-  background: var(--blue-light); border-left: 3px solid var(--blue); border-radius: 0 10px 10px 0;
-  padding: 10px 12px; font-size: 11.5px; margin-top: auto;
-}
-.trap-box strong { color: var(--blue); display: block; font-size: 10.5px; text-transform: uppercase; letter-spacing: .6px; margin-bottom: 2px; }
-
-/* Empty state */
-.empty-state {
-  grid-column: 1 / -1; text-align: center; padding: 60px 20px; background: var(--card);
-  border: 2px dashed var(--border); border-radius: 20px; color: var(--muted);
-}
-.empty-state h3 { font-size: 18px; color: var(--text); margin: 12px 0 6px; }
+.delete-card-btn:hover { background: var(--card2); color: #e60023; }
 
 /* Modal */
 .modal-backdrop {
@@ -293,7 +235,7 @@ a { text-decoration: none; color: inherit; }
 .modal-backdrop.open { display: grid; }
 .modal-card {
   background: var(--card); border: 1px solid var(--border); border-radius: 24px;
-  width: 100%; max-width: 620px; max-height: 90vh; overflow-y: auto;
+  width: 100%; max-width: 560px; max-height: 90vh; overflow-y: auto;
   box-shadow: var(--shadow-lg); padding: 28px; animation: modalPop .2s ease-out;
 }
 @keyframes modalPop {
@@ -317,13 +259,11 @@ a { text-decoration: none; color: inherit; }
 .form-control:focus { border-color: var(--blue); }
 textarea.form-control { min-height: 80px; resize: vertical; }
 
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .modal-footer { display: flex; justify-content: flex-end; gap: 10px; margin-top: 24px; }
 
 /* Responsive */
-@media(max-width: 860px) {
-  .notes-grid { grid-template-columns: 1fr; }
-  .form-row { grid-template-columns: 1fr; }
+@media(max-width: 768px) {
+  .modules-grid { grid-template-columns: 1fr; }
   .topbar { padding: 0 16px; }
   .container { padding: 84px 16px 40px; }
   .hide-mobile { display: none; }
@@ -347,11 +287,8 @@ textarea.form-control { min-height: 80px; resize: vertical; }
     <a href="../index.html" class="nav-btn">
       <span>←</span> <span class="hide-mobile">Dashboard</span>
     </a>
-    <a href="cloud-computing.html" class="nav-btn hide-mobile" style="color:var(--blue);border-color:var(--blue)">
-      <span>📖</span> Full Cloud Sheet
-    </a>
-    <button class="nav-btn primary" id="addNoteBtn">
-      <span>+</span> Add Note
+    <button class="nav-btn primary" id="addModuleBtn">
+      <span>+</span> Add Module Notes
     </button>
     <button class="icon-btn" id="themeBtn" title="Toggle theme">☾</button>
   </div>
@@ -365,332 +302,117 @@ textarea.form-control { min-height: 80px; resize: vertical; }
       <div class="eyebrow">⚡ Placement Revision Library</div>
       <h1>Notes &amp; Last-Minute<br><span>Prep Material</span></h1>
       <p>
-        Placement-focused technical revision sheets, service model comparisons, storage architectures, and common MCQ traps.
-        Explore the Cloud Computing notes below in blue or add custom notes for any module.
+        Quick technical revision sheets, placement cheat sheets, and high-yield concepts.
+        Access the comprehensive Cloud Computing notes below or add notes for different modules.
       </p>
-
-      <div class="hero-stats">
-        <div class="stat-pill">
-          <b id="totalNotesCount">10</b>
-          <span>Cloud Notes Ready</span>
-        </div>
-        <div class="stat-pill">
-          <b id="customNotesCount">0</b>
-          <span>User Notes Added</span>
-        </div>
-        <div class="stat-pill">
-          <b>13</b>
-          <span>Deep Sections</span>
-        </div>
-      </div>
 
       <div class="hero-actions">
         <a href="cloud-computing.html" class="hero-btn">
-          ☁ Open Full 13-Section Cloud Sheet →
+          ☁ Open Cloud Computing Notes →
         </a>
-        <button class="hero-btn alt" onclick="document.getElementById('addNoteBtn').click()">
-          <span>+</span> Add Note to Module
+        <button class="hero-btn alt" onclick="document.getElementById('addModuleBtn').click()">
+          <span>+</span> Add Module Notes
         </button>
       </div>
     </div>
   </section>
 
-  <!-- Featured Cloud Computing Sheet Banner -->
-  <div class="featured-card">
-    <div class="featured-content">
-      <span class="featured-tag">☁ Complete Study Guide</span>
-      <h2>Cloud Computing: Complete 13-Section Placement Revision Sheet</h2>
+  <!-- Section Title -->
+  <div class="section-head">
+    <div>
+      <div class="section-kicker">Placement Study Sheets</div>
+      <h2>Revision Notes by Module</h2>
+    </div>
+    <p class="section-sub">Choose a module to open full high-yield placement notes, comparison tables, and last-minute sheets.</p>
+  </div>
+
+  <!-- Modules Grid -->
+  <div class="modules-grid" id="modulesGrid">
+    
+    <!-- Cloud Computing Module Card (In Blue) -->
+    <article class="mod-card cloud-card">
+      <div class="card-header">
+        <div class="card-icon">☁</div>
+        <span class="card-badge">13 Sections · High Yield</span>
+      </div>
+      <h3>Cloud Computing</h3>
       <p>
-        Interactive revision guide covering Cloud Priority Map, NIST Characteristics, IaaS/PaaS/SaaS, Virtualization, 
-        Scaling vs Elasticity, Object/Block/File Storage, IAM &amp; Security, 6 Comparison Tables, 10 Real Placement Scenarios, and a 10-Minute Last-Minute Sheet.
+        Complete fresher placement revision sheet. Covers 5 NIST characteristics, IaaS vs PaaS vs SaaS, 
+        Virtualization &amp; Hypervisors, Elasticity vs Scalability, Cloud Storage architectures, IAM, 
+        Security Threats, Comparison Tables, 10 Scenarios, and 10-Minute Last-Minute Sheet.
       </p>
-    </div>
-    <a href="cloud-computing.html" class="featured-btn">
-      Open Full Interactive Sheet →
-    </a>
-  </div>
-
-  <!-- Search & Filter Controls -->
-  <div class="controls-bar">
-    <div class="search-row">
-      <div class="search-box">
-        <span class="search-icon">⌕</span>
-        <input type="search" id="searchInput" placeholder="Search Cloud Computing notes, IaaS, storage, IAM, virtualization, traps...">
-        <button class="clear-btn" id="clearSearch">Clear</button>
+      <div class="tag-list">
+        <span class="tag-item">Fundamentals</span>
+        <span class="tag-item">IaaS/PaaS/SaaS</span>
+        <span class="tag-item">Virtualization</span>
+        <span class="tag-item">Storage</span>
+        <span class="tag-item">IAM &amp; Security</span>
+        <span class="tag-item">MCQ Traps</span>
+        <span class="tag-item">Scenarios</span>
       </div>
+      <a href="cloud-computing.html" class="open-card-btn">
+        Open Cloud Computing Notes →
+      </a>
+    </article>
+
+    <!-- Custom Modules Added by User will render here -->
+
+    <!-- Add New Module Notes Card -->
+    <div class="add-mod-card" id="addCardTrigger">
+      <div class="add-mod-icon">+</div>
+      <h3>Add Module Notes</h3>
+      <p>Click here to add notes or revision material for another subject or module.</p>
     </div>
 
-    <!-- Module Tabs -->
-    <div class="module-tabs" id="moduleTabs">
-      <button class="tab-btn active" data-mod="all">All Notes</button>
-      <button class="tab-btn" data-mod="cloud">☁ Cloud Computing</button>
-      <button class="tab-btn" data-mod="custom">✨ My Custom Notes</button>
-    </div>
-
-    <!-- Priority Filters & Export/Import -->
-    <div class="filter-row">
-      <div class="filter-tags">
-        <span>Filter priority:</span>
-        <button class="priority-pill active" data-priority="all">All</button>
-        <button class="priority-pill" data-priority="high">High</button>
-        <button class="priority-pill" data-priority="medium">Medium</button>
-        <button class="priority-pill" data-priority="cheat">Cheat Sheet</button>
-      </div>
-      <div style="display:flex;gap:8px">
-        <button class="clear-btn" id="exportBtn" title="Export your notes as JSON">📥 Backup Notes</button>
-        <label class="clear-btn" style="cursor:pointer" title="Import notes from JSON file">
-          📤 Import Notes <input type="file" id="importInput" accept=".json" style="display:none">
-        </label>
-        <button class="clear-btn" id="clearCustomBtn" title="Clear all custom added notes" style="color:var(--red)">🗑 Reset Custom</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Notes Grid Container (Cloud Notes in Blue) -->
-  <div class="notes-grid" id="notesGrid">
-    <!-- Populated by JavaScript -->
   </div>
 
 </div>
 
-<!-- Add Note Modal -->
-<div class="modal-backdrop" id="noteModal">
+<!-- Add Module Modal -->
+<div class="modal-backdrop" id="moduleModal">
   <div class="modal-card">
     <div class="modal-head">
-      <h2>+ Add Module Note</h2>
+      <h2>+ Add Module Notes</h2>
       <button class="close-modal-btn" id="closeModalBtn">✕</button>
     </div>
-    <form id="noteForm">
-      <div class="form-row">
-        <div class="form-group">
-          <label for="noteModule">Module / Subject</label>
-          <select id="noteModule" class="form-control" required>
-            <option value="cloud">Cloud Computing</option>
-            <option value="excel">MS Excel</option>
-            <option value="word">MS Word</option>
-            <option value="linux">Linux Commands</option>
-            <option value="variables">Variables &amp; Types</option>
-            <option value="browser">Browser Fundamentals</option>
-            <option value="loops">Loops &amp; Control Flow</option>
-            <option value="other">Other Technical Topic</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="notePriority">Priority / Tag</label>
-          <select id="notePriority" class="form-control" required>
-            <option value="high">HIGH PRIORITY</option>
-            <option value="medium">MEDIUM PRIORITY</option>
-            <option value="cheat">CHEAT SHEET</option>
-            <option value="trap">PLACEMENT TRAP</option>
-          </select>
-        </div>
+    <form id="moduleForm">
+      <div class="form-group">
+        <label for="modTitle">Module / Subject Name</label>
+        <input type="text" id="modTitle" class="form-control" placeholder="e.g. MS Excel, Linux Commands, Operating Systems..." required>
       </div>
 
       <div class="form-group">
-        <label for="noteTitle">Topic / Concept Title</label>
-        <input type="text" id="noteTitle" class="form-control" placeholder="e.g. S3 Bucket Policies vs IAM Roles, Hypervisor Types..." required>
+        <label for="modBadge">Badge / Tag (e.g. High Yield, Cheat Sheet)</label>
+        <input type="text" id="modBadge" class="form-control" placeholder="e.g. 10 Sections · Formulas" value="High Yield Notes">
       </div>
 
       <div class="form-group">
-        <label for="noteSummary">Core Definition / One-Line Summary</label>
-        <textarea id="noteSummary" class="form-control" placeholder="Quick 1-2 sentence core concept tested in technical rounds." rows="2" required></textarea>
+        <label for="modDesc">Summary Description</label>
+        <textarea id="modDesc" class="form-control" placeholder="Brief summary of what this module's notes cover (formulas, shortcuts, definitions, MCQ traps)..." rows="3" required></textarea>
       </div>
 
       <div class="form-group">
-        <label for="notePoints">Key Points / Takeaways (One per line)</label>
-        <textarea id="notePoints" class="form-control" placeholder="Point 1&#10;Point 2&#10;Point 3" rows="3"></textarea>
+        <label for="modTags">Topic Tags (comma-separated)</label>
+        <input type="text" id="modTags" class="form-control" placeholder="e.g. Formulas, VLOOKUP, Shortcuts, Traps">
       </div>
 
       <div class="form-group">
-        <label for="noteCode">Key Formula / Comparison / Clue (Optional)</label>
-        <textarea id="noteCode" class="form-control" placeholder="IaaS (Manage OS/Runtime) vs PaaS (Manage Code Only) vs SaaS (Just Use)" rows="2"></textarea>
-      </div>
-
-      <div class="form-group">
-        <label for="noteTrap">MCQ Trap / Asked In Interviews (Optional)</label>
-        <input type="text" id="noteTrap" class="form-control" placeholder="e.g. 'Sudden traffic spike + drop' = Elasticity, NOT simple scalability.">
+        <label for="modLink">Notes File / Page Link (Optional)</label>
+        <input type="text" id="modLink" class="form-control" placeholder="e.g. ../msexcel/index.html or custom link">
       </div>
 
       <div class="modal-footer">
         <button type="button" class="nav-btn" id="cancelModalBtn">Cancel</button>
-        <button type="submit" class="nav-btn primary">Save Note</button>
+        <button type="submit" class="nav-btn primary">Save Module</button>
       </div>
     </form>
   </div>
 </div>
 
 <script>
-// Only Cloud Computing Notes - Styled in Blue
-const defaultNotes = [
-  {
-    id: "cc-1",
-    module: "cloud",
-    moduleName: "Cloud Computing",
-    priority: "high",
-    title: "Cloud Computing Definition & 5 NIST Characteristics",
-    summary: "Delivery of computing resources (servers, storage, software) over the internet on-demand with pay-as-you-go pricing.",
-    points: [
-      "On-demand self-service: Provision resources without human provider interaction.",
-      "Broad network access: Capabilities available over network from standard devices (laptops, phones).",
-      "Resource pooling: Provider resources pooled to serve multi-tenant consumers dynamically.",
-      "Rapid elasticity: Capabilities can scale outward and inward rapidly with demand.",
-      "Measured service: Metered usage for automatic billing and resource transparency."
-    ],
-    code: "Memory Hook: Cloud = 'Use remote shared resources only when and where you need them.'",
-    trap: "Asked as: 'Which characteristic enables pay-as-you-use billing?' → Measured service."
-  },
-  {
-    id: "cc-2",
-    module: "cloud",
-    moduleName: "Cloud Computing",
-    priority: "high",
-    title: "Service Models: IaaS vs PaaS vs SaaS",
-    summary: "The division of control and management responsibility between cloud vendor and consumer.",
-    points: [
-      "IaaS (Infrastructure as a Service): Rent virtual servers, storage & networking (AWS EC2, Azure VM). Client manages OS, apps, data & runtime.",
-      "PaaS (Platform as a Service): Managed development & deployment platform (AWS Elastic Beanstalk, Heroku). Developer focuses solely on code & data.",
-      "SaaS (Software as a Service): Ready-to-use software accessed via web browser (Gmail, Google Docs, Salesforce). Vendor manages everything."
-    ],
-    code: "Control: IaaS (Most Control) > PaaS > SaaS (Least Control)\nMemory: IaaS -> Build Infra | PaaS -> Deploy Code | SaaS -> Use App",
-    trap: "PaaS clue: 'Deploy code without managing OS or server maintenance' strongly points to PaaS."
-  },
-  {
-    id: "cc-3",
-    module: "cloud",
-    moduleName: "Cloud Computing",
-    priority: "high",
-    title: "Deployment Models: Public, Private, Hybrid & Community",
-    summary: "Defines who owns, operates, and accesses the cloud infrastructure.",
-    points: [
-      "Public Cloud: Multi-tenant shared infrastructure owned by vendor (AWS, Azure, GCP). Highly scalable, lower initial cost.",
-      "Private Cloud: Infrastructure dedicated entirely to a single organization. Maximum security, governance and control.",
-      "Hybrid Cloud: Interconnected combination of public and private environments (sensitive data stays on private, peak compute runs on public).",
-      "Community Cloud: Shared among multiple organizations with common regulatory, compliance, or mission needs."
-    ],
-    code: "Bank sensitive transactions -> Private | Seasonal public store -> Hybrid | Common compliance -> Community",
-    trap: "Public Cloud ≠ 'Unsafe'. Public cloud can have enterprise-grade security; the key distinction is shared ownership."
-  },
-  {
-    id: "cc-4",
-    module: "cloud",
-    moduleName: "Cloud Computing",
-    priority: "high",
-    title: "Shared Responsibility Model Breakdown",
-    summary: "Cloud security responsibilities are divided between provider and customer based on the chosen service model.",
-    points: [
-      "Security 'OF' the Cloud (Provider): Physical data centers, host hardware, hypervisor, network facilities.",
-      "Security 'IN' the Cloud (Customer): Customer data, IAM credentials, OS patching (in IaaS), firewall configuration.",
-      "In IaaS: Customer holds maximum responsibility (OS, patches, firewalls, apps).",
-      "In SaaS: Provider holds maximum operational responsibility; customer only manages user accounts & data access."
-    ],
-    code: "Accidental public S3 storage bucket = Customer configuration failure, NOT provider infrastructure failure!",
-    trap: "Questions often ask: 'Who is responsible if customer data is leaked due to public permissions?' → Customer."
-  },
-  {
-    id: "cc-5",
-    module: "cloud",
-    moduleName: "Cloud Computing",
-    priority: "high",
-    title: "Virtualization & Hypervisor (Type 1 vs Type 2)",
-    summary: "Virtualization abstracts physical hardware into logical isolated virtual environments (VMs).",
-    points: [
-      "Hypervisor (VMM): Software layer that creates, runs, and allocates hardware resources to VMs.",
-      "Type 1 (Bare-Metal): Runs directly on physical hardware without host OS (VMware ESXi, Hyper-V, KVM). High performance.",
-      "Type 2 (Hosted): Runs on top of a host operating system (VirtualBox, VMware Workstation). Typically used for desktop testing.",
-      "Virtual Machine (VM): Complete guest OS running isolated on abstracted virtual hardware."
-    ],
-    code: "Physical Hardware -> Hypervisor (Type 1) -> Multiple Guest VMs\nHypervisor = The Manager | VM = The Environment",
-    trap: "Hypervisor ≠ VM. The Hypervisor is the controlling software; the VM is the virtual guest system."
-  },
-  {
-    id: "cc-6",
-    module: "cloud",
-    moduleName: "Cloud Computing",
-    priority: "high",
-    title: "Scalability vs Elasticity vs Auto-Scaling",
-    summary: "Frequently tested scenario question across Accenture, TCS, and Capgemini technical rounds.",
-    points: [
-      "Scalability: Ability to handle increasing workload by adding resources (long-term planned growth, e.g. 1M to 5M users).",
-      "Vertical Scaling (Scale-Up): Increasing CPU, RAM, or disk on an existing server.",
-      "Horizontal Scaling (Scale-Out): Adding more server instances to distribute load.",
-      "Elasticity: Dynamic ability to automatically add AND remove capacity with sudden demand swings.",
-      "Auto-Scaling: The automated trigger mechanism that monitors CPU/traffic and scales instances."
-    ],
-    code: "Sudden Flash Sale traffic spike + subsequent drop = Elasticity\nBusiness growth from 10k to 50k users = Scalability",
-    trap: "If the scenario mentions traffic 'rises during a festival sale and drops after', the answer is ALWAYS Elasticity!"
-  },
-  {
-    id: "cc-7",
-    module: "cloud",
-    moduleName: "Cloud Computing",
-    priority: "high",
-    title: "Cloud Storage Architectures: Object vs Block vs File",
-    summary: "Workload access patterns dictate which storage type is required.",
-    points: [
-      "Object Storage: Massive unstructured data (images, videos, backups). Stored as objects with unique key + metadata. (e.g. AWS S3).",
-      "Block Storage: High-performance, low-latency raw disk blocks mounted directly to VMs. Required for OS boot drives & databases. (e.g. AWS EBS).",
-      "File Storage: Hierarchical folder/file structure shared across network via SMB/NFS (e.g. AWS EFS). Ideal for shared team directories."
-    ],
-    code: "Media files & Backups -> Object Storage | VM Boot Disks & Databases -> Block Storage | Shared folders -> File Storage",
-    trap: "Databases and OS boot volumes require Block Storage for low-latency random read/write access."
-  },
-  {
-    id: "cc-8",
-    module: "cloud",
-    moduleName: "Cloud Computing",
-    priority: "cheat",
-    title: "Cloud Security: Authentication vs Authorization & IAM",
-    summary: "IAM governs identities, roles, and resource access policies in cloud environments.",
-    points: [
-      "Authentication (AuthN): 'Who are you?' Verifies identity (Password, OTP, MFA, Biometrics).",
-      "Authorization (AuthZ): 'What are you allowed to do?' Verifies permissions (Read, Write, Delete policies).",
-      "IAM User: Individual identity for a person or service.",
-      "IAM Role: Temporary set of permissions assumed by trusted users or cloud services.",
-      "MFA (Multi-Factor Authentication): Requires 2 or more independent authentication factors."
-    ],
-    code: "AuthN = Name & Identity | AuthZ = Zone & Permissions\nAuthN must always occur before AuthZ can be evaluated!",
-    trap: "IAM is NOT just authentication. It encompasses identities, groups, roles, and granular authorization policies."
-  },
-  {
-    id: "cc-9",
-    module: "cloud",
-    moduleName: "Cloud Computing",
-    priority: "medium",
-    title: "High Availability vs Fault Tolerance vs Disaster Recovery",
-    summary: "Architectural strategies designed to keep systems operating during failures and catastrophes.",
-    points: [
-      "High Availability (HA): System remains accessible with minimal downtime (e.g. 99.99% uptime) via redundant instances.",
-      "Fault Tolerance (FT): Zero downtime; system continues operating seamlessly even when a hardware component fails completely.",
-      "Backup: Keeping recoverable copies of data for point-in-time recovery.",
-      "Disaster Recovery (DR): Plan and infrastructure to restore entire systems after a catastrophic outage (RTO and RPO metrics)."
-    ],
-    code: "Load Balancer distributes traffic across multiple Availability Zones (AZs) to provide High Availability.",
-    trap: "Backup restores the DATA; Disaster Recovery restores the SERVICE and infrastructure."
-  },
-  {
-    id: "cc-10",
-    module: "cloud",
-    moduleName: "Cloud Computing",
-    priority: "cheat",
-    title: "Top 8 Cloud Computing MCQ Traps",
-    summary: "Common misconceptions that examiners use to create tricky multiple-choice options.",
-    points: [
-      "Scalability ≠ Elasticity: Scalability accommodates long-term growth; Elasticity adjusts dynamically to spikes and dips.",
-      "Authentication ≠ Authorization: AuthN verifies identity; AuthZ evaluates access permissions.",
-      "IaaS ≠ PaaS: IaaS gives full server OS control; PaaS completely abstracts the OS away from developers.",
-      "Public Cloud ≠ No Security: Public cloud is multi-tenant infrastructure, but provides robust isolated security controls.",
-      "Hypervisor ≠ VM: The hypervisor is the software engine; VMs are the guest instances.",
-      "CapEx vs OpEx: On-premises servers = CapEx (upfront hardware); Cloud pay-per-use = OpEx (operational spending)."
-    ],
-    code: "Golden Rule: In real-world scenarios, match the key trigger word:\n'Rent VM' -> IaaS | 'Deploy Code' -> PaaS | 'Use Browser App' -> SaaS | 'Traffic Spike' -> Elasticity",
-    trap: "Always eliminate negative traps first: 'Which of the following is NOT a NIST cloud characteristic?'"
-  }
-];
+const STORAGE_KEY = "placementprep_user_modules";
 
-// LocalStorage key for custom notes
-const STORAGE_KEY = "placementprep_custom_notes";
-
-function getStoredNotes() {
+function getStoredModules() {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     return raw ? JSON.parse(raw) : [];
@@ -699,115 +421,48 @@ function getStoredNotes() {
   }
 }
 
-function saveStoredNotes(notes) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(notes));
+function saveStoredModules(mods) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(mods));
 }
 
-let activeModule = "all";
-let activePriority = "all";
-let searchQuery = "";
+function renderModules() {
+  const customMods = getStoredModules();
+  const grid = document.getElementById("modulesGrid");
 
-function renderNotes() {
-  const customNotes = getStoredNotes();
-  const allNotes = [...customNotes, ...defaultNotes];
+  // Keep Cloud Card and Add Card, render custom cards in between
+  const cloudCard = grid.querySelector(".cloud-card");
+  const addCard = document.getElementById("addCardTrigger");
 
-  // Update counts in hero
-  const customCount = customNotes.length;
-  document.getElementById("customNotesCount").textContent = customCount;
-  document.getElementById("totalNotesCount").textContent = defaultNotes.length;
+  // Remove existing custom cards
+  grid.querySelectorAll(".custom-card").forEach(c => c.remove());
 
-  const grid = document.getElementById("notesGrid");
-  grid.innerHTML = "";
-
-  const q = searchQuery.trim().toLowerCase();
-
-  const filtered = allNotes.filter(note => {
-    // Module filter
-    if (activeModule === "custom" && !note.isCustom) return false;
-    if (activeModule === "cloud" && note.module !== "cloud") return false;
-
-    // Priority filter
-    if (activePriority !== "all" && note.priority !== activePriority) return false;
-
-    // Search query
-    if (q) {
-      const matchText = [
-        note.title,
-        note.summary,
-        note.moduleName,
-        note.trap,
-        note.code,
-        ...(note.points || [])
-      ].join(" ").toLowerCase();
-      if (!matchText.includes(q)) return false;
-    }
-
-    return true;
-  });
-
-  if (filtered.length === 0) {
-    grid.innerHTML = `
-      <div class="empty-state">
-        <div style="font-size:36px">☁</div>
-        <h3>No notes match your filters</h3>
-        <p>Try searching for a different cloud keyword or click "+ Add Note" to create a custom note.</p>
-        <button class="nav-btn primary" style="margin-top:14px" onclick="document.getElementById('addNoteBtn').click()">+ Add Note Now</button>
-      </div>
-    `;
-    return;
-  }
-
-  filtered.forEach(note => {
+  customMods.forEach(mod => {
     const card = document.createElement("article");
-    card.className = `note-card ${note.isCustom ? "custom-note" : ""}`;
+    card.className = "mod-card custom-card";
 
-    let priorityClass = "badge-high";
-    let priorityLabel = "HIGH";
-    if (note.priority === "medium") { priorityClass = "badge-med"; priorityLabel = "MEDIUM"; }
-    else if (note.priority === "cheat") { priorityClass = "badge-cheat"; priorityLabel = "CHEAT SHEET"; }
-    else if (note.priority === "trap") { priorityClass = "badge-high"; priorityLabel = "MCQ TRAP"; }
-
-    const pointsHtml = (note.points && note.points.length > 0)
-      ? `<div class="key-points">
-          <h4>Key Remember Points</h4>
-          <ul>${note.points.map(p => `<li>${escapeHtml(p)}</li>`).join("")}</ul>
-         </div>`
+    const tagsHtml = (mod.tags && mod.tags.length > 0)
+      ? `<div class="tag-list">${mod.tags.map(t => `<span class="tag-item">${escapeHtml(t)}</span>`).join("")}</div>`
       : "";
 
-    const codeHtml = note.code
-      ? `<pre class="code-box"><code>${escapeHtml(note.code)}</code></pre>`
-      : "";
-
-    const trapHtml = note.trap
-      ? `<div class="trap-box">
-          <strong>⚡ Placement Clue / Trap</strong>
-          <span>${escapeHtml(note.trap)}</span>
-         </div>`
-      : "";
-
-    const deleteBtn = note.isCustom
-      ? `<button class="card-action-btn" title="Delete note" onclick="deleteCustomNote('${note.id}')">🗑</button>`
-      : "";
+    const linkHref = mod.link ? mod.link : "#";
 
     card.innerHTML = `
-      <div class="card-top">
-        <div class="badges-wrap">
-          <span class="badge badge-cloud">☁ ${escapeHtml(note.moduleName)}</span>
-          <span class="badge ${priorityClass}">${priorityLabel}</span>
-          ${note.isCustom ? '<span class="badge badge-custom">MY NOTE</span>' : ''}
-        </div>
-        <div class="card-actions">
-          ${deleteBtn}
+      <div class="card-header">
+        <div class="card-icon">📖</div>
+        <div style="display:flex;align-items:center;gap:6px">
+          <span class="card-badge" style="background:rgba(16,124,65,.1);color:#107c41">${escapeHtml(mod.badge || "Notes")}</span>
+          <button class="delete-card-btn" title="Delete module notes" onclick="deleteModule('${mod.id}')">🗑</button>
         </div>
       </div>
-      <h3>${escapeHtml(note.title)}</h3>
-      <p class="summary">${escapeHtml(note.summary)}</p>
-      ${pointsHtml}
-      ${codeHtml}
-      ${trapHtml}
+      <h3>${escapeHtml(mod.title)}</h3>
+      <p>${escapeHtml(mod.desc)}</p>
+      ${tagsHtml}
+      <a href="${escapeHtml(linkHref)}" class="open-card-btn">
+        Open Notes →
+      </a>
     `;
 
-    grid.appendChild(card);
+    grid.insertBefore(card, addCard);
   });
 }
 
@@ -821,147 +476,69 @@ function escapeHtml(str) {
     .replace(/'/g, "&#039;");
 }
 
-function deleteCustomNote(id) {
-  if (confirm("Are you sure you want to delete this custom note?")) {
-    const notes = getStoredNotes().filter(n => n.id !== id);
-    saveStoredNotes(notes);
-    renderNotes();
+function deleteModule(id) {
+  if (confirm("Are you sure you want to remove this module notes card?")) {
+    const mods = getStoredModules().filter(m => m.id !== id);
+    saveStoredModules(mods);
+    renderModules();
   }
 }
 
-// Module tabs click
-document.querySelectorAll(".tab-btn").forEach(btn => {
-  btn.addEventListener("click", () => {
-    document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
-    activeModule = btn.getAttribute("data-mod");
-    renderNotes();
-  });
-});
-
-// Priority pills click
-document.querySelectorAll(".priority-pill").forEach(pill => {
-  pill.addEventListener("click", () => {
-    document.querySelectorAll(".priority-pill").forEach(p => p.classList.remove("active"));
-    pill.classList.add("active");
-    activePriority = pill.getAttribute("data-priority");
-    renderNotes();
-  });
-});
-
-// Search input
-const searchInput = document.getElementById("searchInput");
-searchInput.addEventListener("input", (e) => {
-  searchQuery = e.target.value;
-  renderNotes();
-});
-
-document.getElementById("clearSearch").addEventListener("click", () => {
-  searchInput.value = "";
-  searchQuery = "";
-  renderNotes();
-  searchInput.focus();
-});
-
-// Modal open / close
-const modal = document.getElementById("noteModal");
-const addNoteBtn = document.getElementById("addNoteBtn");
-const closeModalBtn = document.getElementById("closeModalBtn");
-const cancelModalBtn = document.getElementById("cancelModalBtn");
-const noteForm = document.getElementById("noteForm");
+// Modal handling
+const modal = document.getElementById("moduleModal");
+const addBtn = document.getElementById("addModuleBtn");
+const addTrigger = document.getElementById("addCardTrigger");
+const closeBtn = document.getElementById("closeModalBtn");
+const cancelBtn = document.getElementById("cancelModalBtn");
+const form = document.getElementById("moduleForm");
 
 function openModal() {
   modal.classList.add("open");
-  document.getElementById("noteTitle").focus();
+  document.getElementById("modTitle").focus();
 }
 
 function closeModal() {
   modal.classList.remove("open");
-  noteForm.reset();
+  form.reset();
 }
 
-addNoteBtn.addEventListener("click", openModal);
-closeModalBtn.addEventListener("click", closeModal);
-cancelModalBtn.addEventListener("click", closeModal);
+addBtn.addEventListener("click", openModal);
+addTrigger.addEventListener("click", openModal);
+closeBtn.addEventListener("click", closeModal);
+cancelBtn.addEventListener("click", closeModal);
 modal.addEventListener("click", (e) => {
   if (e.target === modal) closeModal();
 });
 
-// Form submit
-noteForm.addEventListener("submit", (e) => {
+form.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  const modSelect = document.getElementById("noteModule");
-  const modValue = modSelect.value;
-  const modText = modSelect.options[modSelect.selectedIndex].text;
+  const title = document.getElementById("modTitle").value.trim();
+  const badge = document.getElementById("modBadge").value.trim();
+  const desc = document.getElementById("modDesc").value.trim();
+  const tagsStr = document.getElementById("modTags").value.trim();
+  const link = document.getElementById("modLink").value.trim();
 
-  const pointsText = document.getElementById("notePoints").value.trim();
-  const points = pointsText ? pointsText.split("\n").map(p => p.trim()).filter(Boolean) : [];
+  const tags = tagsStr ? tagsStr.split(",").map(t => t.trim()).filter(Boolean) : [];
 
-  const newNote = {
-    id: "custom-" + Date.now(),
-    isCustom: true,
-    module: modValue,
-    moduleName: modText,
-    priority: document.getElementById("notePriority").value,
-    title: document.getElementById("noteTitle").value.trim(),
-    summary: document.getElementById("noteSummary").value.trim(),
-    points: points,
-    code: document.getElementById("noteCode").value.trim(),
-    trap: document.getElementById("noteTrap").value.trim()
+  const newMod = {
+    id: "mod-" + Date.now(),
+    title,
+    badge,
+    desc,
+    tags,
+    link
   };
 
-  const stored = getStoredNotes();
-  stored.unshift(newNote);
-  saveStoredNotes(stored);
+  const current = getStoredModules();
+  current.push(newMod);
+  saveStoredModules(current);
 
   closeModal();
-  renderNotes();
+  renderModules();
 });
 
-// Export & Import
-document.getElementById("exportBtn").addEventListener("click", () => {
-  const custom = getStoredNotes();
-  const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(custom, null, 2));
-  const downloadAnchor = document.createElement("a");
-  downloadAnchor.setAttribute("href", dataStr);
-  downloadAnchor.setAttribute("download", `placementprep_notes_backup_${Date.now()}.json`);
-  document.body.appendChild(downloadAnchor);
-  downloadAnchor.click();
-  downloadAnchor.remove();
-});
-
-document.getElementById("importInput").addEventListener("change", (e) => {
-  const file = e.target.files[0];
-  if (!file) return;
-
-  const reader = new FileReader();
-  reader.onload = (event) => {
-    try {
-      const imported = JSON.parse(event.target.result);
-      if (Array.isArray(imported)) {
-        const current = getStoredNotes();
-        const merged = [...imported, ...current];
-        const unique = Array.from(new Map(merged.map(item => [item.id || Math.random(), item])).values());
-        saveStoredNotes(unique);
-        renderNotes();
-        alert(`Successfully imported ${imported.length} notes!`);
-      }
-    } catch(err) {
-      alert("Failed to parse JSON file.");
-    }
-  };
-  reader.readAsText(file);
-});
-
-document.getElementById("clearCustomBtn").addEventListener("click", () => {
-  if (confirm("Clear all your custom added notes? Built-in Cloud Computing notes will remain.")) {
-    localStorage.removeItem(STORAGE_KEY);
-    renderNotes();
-  }
-});
-
-// Dark Theme Sync
+// Dark theme sync
 const body = document.body;
 const themeBtn = document.getElementById("themeBtn");
 const savedTheme = localStorage.getItem("placementprep-theme") || localStorage.getItem("theme") || localStorage.getItem("cloud-theme");
@@ -981,7 +558,7 @@ themeBtn.addEventListener("click", () => {
 });
 
 // Initial Render
-renderNotes();
+renderModules();
 </script>
 
 </body>
