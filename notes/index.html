@@ -223,6 +223,23 @@ a { text-decoration: none; color: inherit; }
 .mod-card.cloud-card:hover {
   border-color: var(--blue);
 }
+
+/* Networking Card */
+.mod-card.networking-card {
+  border-top: 5px solid #0284c7;
+}
+.mod-card.networking-card:hover {
+  border-color: #0284c7;
+}
+.mod-card.networking-card .card-icon {
+  background: rgba(2, 132, 199, 0.12); color: #0284c7;
+}
+.mod-card.networking-card .open-card-btn {
+  background: linear-gradient(135deg, #0284c7, #2563eb);
+}
+.mod-card.networking-card .open-card-btn:hover {
+  background: linear-gradient(135deg, #0369a1, #1d4ed8);
+}
 .card-header {
   display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px;
 }
@@ -469,6 +486,33 @@ textarea.form-control { min-height: 80px; resize: vertical; }
       </div>
       <a href="cloud-computing.html" class="open-card-btn">
         Open Cloud Computing Notes →
+      </a>
+    </article>
+
+    <!-- Networking & Computer Networks Module Card -->
+    <article class="mod-card networking-card">
+      <div class="card-header">
+        <div class="card-icon">🌐</div>
+        <span class="card-badge">31 Sections · High Yield</span>
+      </div>
+      <h3>Networking / Computer Networks</h3>
+      <p>
+        Complete 2026 placement study notes and last-minute cheat sheet. 
+        Covers OSI 7 layers, TCP/IP 4 layers, TCP vs UDP, 3-Way Handshake, DNS resolution, DHCP DORA flow, 
+        HTTP vs HTTPS, IP vs MAC, IPv4 vs IPv6, standard ports, 8 real-world scenarios, 13 MCQ traps, and 23 spoken interview answers.
+      </p>
+      <div class="tag-list">
+        <span class="tag-item">OSI 7 Layers</span>
+        <span class="tag-item">TCP vs UDP</span>
+        <span class="tag-item">Handshake</span>
+        <span class="tag-item">DNS / DHCP</span>
+        <span class="tag-item">IP vs MAC</span>
+        <span class="tag-item">HTTP / HTTPS</span>
+        <span class="tag-item">23 Interview Q&amp;A</span>
+        <span class="tag-item">15-Min Cheat Sheet</span>
+      </div>
+      <a href="networking.html" class="open-card-btn">
+        Open Networking Notes →
       </a>
     </article>
 

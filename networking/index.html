@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Networking - 2026 Campus Placement Practice & Assessment</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="app-header">
+        <div class="header-container">
+            <div class="header-left">
+                <a href="../index.html" class="back-link" aria-label="Return to PlacementPrep Dashboard">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                    Dashboard
+                </a>
+                <div class="header-divider"></div>
+                <div class="module-title-area">
+                    <div class="topic-tag">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="6" height="6" rx="1"/>
+                            <rect x="16" y="2" width="6" height="6" rx="1"/>
+                            <rect x="9" y="16" width="6" height="6" rx="1"/>
+                            <path d="M5 8v3a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8"/>
+                            <path d="M12 12v4"/>
+                        </svg>
+                        <span>Networking</span>
+                    </div>
+                    <span id="header-mode-badge" class="badge mode-tag">Practice Mode</span>
+                </div>
+            </div>
+
+            <div class="header-center">
+                <!-- 45:00 Timer for Exam Mode -->
+                <div id="timer-box" class="timer-box hidden" aria-live="polite">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    <span id="timer-display" class="timer-text">45:00</span>
+                </div>
+            </div>
+
+            <div class="header-right">
+                <a href="../notes/networking.html" class="notes-nav-btn" style="display:inline-flex;align-items:center;gap:6px;padding:6px 12px;background:var(--card-bg, #fff);border:1px solid var(--border-color, #e2e8f0);border-radius:10px;font-size:12px;font-weight:700;color:var(--text-color, #0f172a);text-decoration:none;transition:.2s;" title="Read Comprehensive Networking Placement Notes">
+                    📖 Study Notes
+                </a>
+                <div id="score-counter" class="score-pill">
+                    Score: <strong id="score-value">0</strong>
+                </div>
+
+                <button id="theme-toggle" class="icon-btn theme-toggle" aria-label="Toggle dark mode" title="Toggle dark/light mode">
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="4.22" x2="19.78" y2="5.64"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Application Container -->
+    <main class="app-main">
+
+        <!-- SCREEN 1: Mode Selection Screen -->
+        <section id="screen-mode-select" class="screen-view">
+            <div class="welcome-hero">
+                <div class="net-hero-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="2" width="6" height="6" rx="1"/>
+                        <rect x="16" y="2" width="6" height="6" rx="1"/>
+                        <rect x="9" y="16" width="6" height="6" rx="1"/>
+                        <path d="M5 8v3a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8"/>
+                        <path d="M12 12v4"/>
+                    </svg>
+                </div>
+                <h1>Computer Networks Placement Module</h1>
+                <p class="hero-desc">
+                    Master OSI 7-layer architecture, TCP/IP protocols, 3-way handshakes, routing & switching devices, and <strong>18 realistic enterprise scenarios</strong> reported in <strong>2026 technical assessments</strong> for <strong>TCS NQT, Accenture, Capgemini, Cognizant, Infosys, Wipro, LTIMindtree & Deloitte</strong>.
+                </p>
+
+                <div class="exam-spec-banner">
+                    <div class="spec-pill"><span class="pill-dot teal"></span> 60 Target Questions</div>
+                    <div class="spec-pill"><span class="pill-dot blue"></span> 18 Scenario-Based (30%)</div>
+                    <div class="spec-pill"><span class="pill-dot amber"></span> 8 Tricky Trap Misconceptions</div>
+                    <div class="spec-pill"><span class="pill-dot purple"></span> 45 Min Placement Timer</div>
+                </div>
+            </div>
+
+            <div class="modes-grid">
+                <!-- Mode 1: Practice Mode -->
+                <div class="mode-card" data-mode="practice">
+                    <div class="mode-icon-wrapper teal">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                        </svg>
+                    </div>
+                    <h3>Interactive Practice</h3>
+                    <p>Self-paced learning with immediate answer feedback, in-depth architectural reasoning, distractor analysis ("Why Others Failed"), and placement interview tips.</p>
+                    <ul class="mode-perks">
+                        <li>Instant correct/incorrect verification</li>
+                        <li>Detailed breakdown of every option</li>
+                        <li>Filter by Scenarios, Tricky, or Difficulty</li>
+                    </ul>
+                    <button class="btn btn-primary start-mode-btn" data-mode="practice">Start Practice</button>
+                </div>
+
+                <!-- Mode 2: Placement Exam Mode -->
+                <div class="mode-card highlighted" data-mode="exam">
+                    <div class="mode-badge-hot">2026 MNC Exam</div>
+                    <div class="mode-icon-wrapper amber">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                    </div>
+                    <h3>Placement Timed Exam</h3>
+                    <p>Strict 45-minute simulation with 60 questions, randomized options, real-time question palette, auto-submit on timeout, and detailed diagnostics.</p>
+                    <ul class="mode-perks">
+                        <li>45:00 countdown timer with auto-submit</li>
+                        <li>Question & option randomization</li>
+                        <li>Diagnostic scorecard & performance metrics</li>
+                    </ul>
+                    <button class="btn btn-accent start-mode-btn" data-mode="exam">Start Timed Exam (45m)</button>
+                </div>
+
+                <!-- Mode 3: Flashcard Study Mode -->
+                <div class="mode-card" data-mode="flashcards">
+                    <div class="mode-icon-wrapper indigo">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                        </svg>
+                    </div>
+                    <h3>Flashcard Study</h3>
+                    <p>Rapid recall flip-card mode. Ideal for memorizing OSI layer duties, well-known port numbers, TCP/UDP comparisons, and RFC 1918 private IP ranges.</p>
+                    <ul class="mode-perks">
+                        <li>Interactive card flip reveal</li>
+                        <li>Quick concept testing & active recall</li>
+                        <li>Keyboard shortcuts (Space to flip)</li>
+                    </ul>
+                    <button class="btn btn-secondary start-mode-btn" data-mode="flashcards">Open Flashcards</button>
+                </div>
+            </div>
+
+            <!-- Syllabus Matrix Roadmap -->
+            <div class="syllabus-matrix-section">
+                <div class="matrix-header">
+                    <h2>Core Placement Syllabus & Concept Map</h2>
+                    <p>Essential domains tested across 2025-2026 entry-level engineering drives:</p>
+                </div>
+                <div class="topics-grid">
+                    <div class="topic-badge-card">
+                        <div class="topic-card-title">
+                            <span>OSI 7-Layer Reference Model</span>
+                            <span class="badge mode-tag">Must Do</span>
+                        </div>
+                        <p class="topic-card-desc">All 7 layers, PDUs (Bits, Frames, Packets, Segments), header encapsulation, troubleshooting bottom-up.</p>
+                    </div>
+                    <div class="topic-badge-card">
+                        <div class="topic-card-title">
+                            <span>TCP/IP & Transport Layer</span>
+                            <span class="badge mode-tag">High Weight</span>
+                        </div>
+                        <p class="topic-card-desc">TCP 3-way handshake, TCP vs UDP tradeoffs, flow control vs congestion control, connection termination.</p>
+                    </div>
+                    <div class="topic-badge-card">
+                        <div class="topic-card-title">
+                            <span>Network Hardware & Devices</span>
+                            <span class="badge mode-tag">Core L1-L3</span>
+                        </div>
+                        <p class="topic-card-desc">Hubs (L1), Switches & MAC CAM tables (L2), Routers & Routing tables (L3), Repeaters, Bridges, and Wireless APs.</p>
+                    </div>
+                    <div class="topic-badge-card">
+                        <div class="topic-card-title">
+                            <span>Application Protocols & Ports</span>
+                            <span class="badge mode-tag">Standard PYQ</span>
+                        </div>
+                        <p class="topic-card-desc">HTTP (80), HTTPS (443), SSH (22), DNS (53), DHCP DORA (67/68), SMTP (25), POP3 (110), IMAP (143).</p>
+                    </div>
+                    <div class="topic-badge-card">
+                        <div class="topic-card-title">
+                            <span>IP Addressing & Subnetting</span>
+                            <span class="badge mode-tag">Numerical</span>
+                        </div>
+                        <p class="topic-card-desc">IPv4 vs IPv6, MAC vs IP, RFC 1918 Private ranges (10.x, 172.16.x, 192.168.x), 2^H - 2 host calculations.</p>
+                    </div>
+                    <div class="topic-badge-card">
+                        <div class="topic-card-title">
+                            <span>Browser URL Life Cycle</span>
+                            <span class="badge mode-tag">Interview Fav</span>
+                        </div>
+                        <p class="topic-card-desc">Step-by-step: Cache check -> DNS resolution -> TCP Handshake -> TLS Handshake -> HTTP GET -> HTML Render.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCREEN 2: Practice & Exam Workspace -->
+        <section id="screen-quiz-workspace" class="screen-view hidden">
+            
+            <!-- Filter & Status Bar (Visible in Practice & Review Modes) -->
+            <div id="quiz-filter-bar" class="quiz-filter-bar">
+                <div class="filter-group">
+                    <span class="filter-label">Filter:</span>
+                    <button class="filter-pill active" data-filter-type="all">All (60)</button>
+                    <button class="filter-pill scenario-pill" data-filter-type="Scenario-Based">⚡ Scenarios (18)</button>
+                    <button class="filter-pill" data-filter-type="Tricky">⚠️ Tricky (8)</button>
+                    <button class="filter-pill" data-filter-type="Comparison">⚖️ Comparison (8)</button>
+                    <button class="filter-pill" data-filter-type="Conceptual">📖 Conceptual (18)</button>
+                </div>
+                <div class="filter-group">
+                    <span class="filter-label">Difficulty:</span>
+                    <button class="filter-pill active" data-filter-diff="all">All</button>
+                    <button class="filter-pill" data-filter-diff="Easy">Easy (20)</button>
+                    <button class="filter-pill" data-filter-diff="Medium">Medium (24)</button>
+                    <button class="filter-pill" data-filter-diff="Hard">Hard (16)</button>
+                </div>
+                <div class="workspace-actions">
+                    <button id="btn-change-mode" class="btn-text">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+                        Change Mode
+                    </button>
+                </div>
+            </div>
+
+            <!-- Quiz Layout: Main Card + Navigator Sidebar -->
+            <div class="workspace-grid">
+                
+                <!-- Main Question Area -->
+                <div class="question-main-col">
+                    
+                    <!-- Progress bar -->
+                    <div class="progress-bar-wrapper">
+                        <div class="progress-info">
+                            <span id="question-progress-label">Question 1 of 60</span>
+                            <span id="question-progress-percent">0% Completed</span>
+                        </div>
+                        <div class="progress-track">
+                            <div id="progress-bar-fill" class="progress-fill" style="width: 1.6%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Flashcard Card Component -->
+                    <div id="flashcard-container" class="flashcard-container">
+                        
+                        <!-- Question Meta Header -->
+                        <div class="card-meta-row">
+                            <div class="meta-badges">
+                                <span id="badge-q-number" class="badge badge-num">Q1</span>
+                                <span id="badge-q-type" class="badge badge-scenario">⚡ Scenario-Based</span>
+                                <span id="badge-q-diff" class="badge badge-diff easy">Easy</span>
+                                <span id="badge-q-topic" class="badge badge-topic">Networking Fundamentals</span>
+                            </div>
+                            <button id="btn-mark-review" class="btn-bookmark" aria-label="Mark question for review">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                                </svg>
+                                <span id="mark-text">Mark</span>
+                            </button>
+                        </div>
+
+                        <!-- Source / Placement Note Banner -->
+                        <div id="source-note-box" class="source-note-box">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                            <span><strong>Target Context:</strong> <span id="source-note-text">Reported in TCS NQT & Cognizant technical assessment</span></span>
+                        </div>
+
+                        <!-- Question Text -->
+                        <div class="question-body">
+                            <h2 id="question-text" class="question-title">Loading question...</h2>
+                        </div>
+
+                        <!-- Options List -->
+                        <div id="options-container" class="options-container">
+                            <!-- Option buttons injected by JS -->
+                        </div>
+
+                        <!-- Flashcard Flip Reveal Button (Only in Flashcards Mode) -->
+                        <div id="flashcard-reveal-row" class="flashcard-reveal-row hidden">
+                            <button id="btn-flip-card" class="btn btn-secondary btn-flip">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+                                Reveal Answer & Explanation
+                            </button>
+                        </div>
+
+                        <!-- Explanation Panel -->
+                        <div id="explanation-panel" class="explanation-panel hidden">
+                            <div class="explanation-status-header">
+                                <div id="explanation-status-icon-box" class="status-indicator-icon correct">
+                                    <span id="explanation-status-icon">✓</span>
+                                </div>
+                                <div class="status-indicator-text">
+                                    <h3 id="explanation-status-heading">Correct Answer!</h3>
+                                    <p id="explanation-status-sub">Technical reasoning & protocol analysis:</p>
+                                </div>
+                            </div>
+
+                            <div class="explanation-body">
+                                <div class="explanation-main-text">
+                                    <p id="explanation-summary-text"></p>
+                                </div>
+
+                                <div class="explanation-details-grid">
+                                    <div class="explanation-box correct-box">
+                                        <div class="box-title">
+                                            <span class="box-badge green">Why This Answer Is Correct</span>
+                                        </div>
+                                        <p id="explanation-why-correct"></p>
+                                    </div>
+                                    <div class="explanation-box distractor-box">
+                                        <div class="box-title">
+                                            <span class="box-badge red">Why Other Options Are Incorrect</span>
+                                        </div>
+                                        <div id="explanation-distractor-list" class="distractor-list"></div>
+                                    </div>
+                                </div>
+
+                                <div id="real-world-box" class="real-world-box">
+                                    <strong>Real-World Application:</strong>
+                                    <p id="explanation-real-world"></p>
+                                </div>
+
+                                <div class="placement-tip-box">
+                                    <div class="tip-icon">💡</div>
+                                    <div class="tip-content">
+                                        <strong>Placement Technical Round Tip:</strong>
+                                        <p id="explanation-placement-tip"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Navigation Footer Controls -->
+                    <div class="card-footer-nav">
+                        <button id="btn-prev" class="btn btn-secondary nav-btn" disabled>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                            Previous
+                        </button>
+                        
+                        <div class="nav-center-actions">
+                            <button id="btn-retry-q" class="btn btn-secondary nav-btn hidden">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+                                Retry
+                            </button>
+                            <button id="btn-submit-exam" class="btn btn-danger hidden">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                Finish & Submit Exam
+                            </button>
+                        </div>
+
+                        <button id="btn-next" class="btn btn-primary nav-btn">
+                            Next
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        </button>
+                    </div>
+
+                </div>
+
+                <!-- Right Column: Sidebar Question Navigator -->
+                <aside class="sidebar-col">
+                    <div class="navigator-card">
+                        <div class="navigator-header">
+                            <h3>Question Navigator</h3>
+                            <span id="nav-count-badge" class="nav-counter">0 / 60</span>
+                        </div>
+
+                        <!-- Legend -->
+                        <div class="navigator-legend">
+                            <div class="legend-pill"><span class="legend-dot unvisited"></span>Unvisited</div>
+                            <div class="legend-pill"><span class="legend-dot answered"></span>Answered</div>
+                            <div class="legend-pill"><span class="legend-dot marked"></span>Marked</div>
+                            <div class="legend-pill"><span class="legend-dot current"></span>Current</div>
+                        </div>
+
+                        <!-- Grid -->
+                        <div id="navigator-grid" class="navigator-grid">
+                            <!-- 60 buttons injected via JS -->
+                        </div>
+
+                        <!-- Quick stats in sidebar -->
+                        <div class="sidebar-stats">
+                            <div class="stat-mini">
+                                <span class="stat-mini-label">Answered</span>
+                                <span id="side-stat-answered" class="stat-mini-val">0</span>
+                            </div>
+                            <div class="stat-mini">
+                                <span class="stat-mini-label">Marked</span>
+                                <span id="side-stat-marked" class="stat-mini-val">0</span>
+                            </div>
+                            <div class="stat-mini">
+                                <span class="stat-mini-label">Remaining</span>
+                                <span id="side-stat-remaining" class="stat-mini-val">60</span>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+
+            </div>
+
+        </section>
+
+        <!-- SCREEN 3: Results & Analytics Screen -->
+        <section id="screen-results" class="screen-view hidden">
+            <div class="results-container">
+                <div class="results-card">
+                    <div class="results-header">
+                        <div class="results-badge-congrats">Assessment Completed</div>
+                        <h1 id="results-headline">Networking Placement Diagnostic Report</h1>
+                        <p id="results-subtext">Comprehensive score analysis against 2026 MNC technical benchmarks.</p>
+                    </div>
+
+                    <div class="results-score-row">
+                        <div class="score-circle-wrapper">
+                            <div class="score-circle">
+                                <span id="results-percentage" class="score-num">0%</span>
+                                <span class="score-denom">Accuracy</span>
+                            </div>
+                        </div>
+                        <div class="score-summary-details">
+                            <div class="summary-stat-box">
+                                <span class="stat-label">Total Score</span>
+                                <span id="results-score-fraction" class="stat-val primary">0 / 60</span>
+                            </div>
+                            <div class="summary-stat-box">
+                                <span class="stat-label">Correct Answers</span>
+                                <span id="results-correct-count" class="stat-val" style="color: #16A34A;">0</span>
+                            </div>
+                            <div class="summary-stat-box">
+                                <span class="stat-label">Incorrect Answers</span>
+                                <span id="results-incorrect-count" class="stat-val" style="color: #DC2626;">0</span>
+                            </div>
+                            <div class="summary-stat-box">
+                                <span class="stat-label">Time Taken</span>
+                                <span id="results-time-taken" class="stat-val">00:00</span>
+                            </div>
+                            <div class="summary-stat-box">
+                                <span class="stat-label">Placement Readiness</span>
+                                <span id="results-readiness-tag" class="stat-val badge-readiness">Pending</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Category Breakdown -->
+                    <div class="breakdown-section">
+                        <h3>Performance Breakdown by Domain & Type</h3>
+                        <div class="breakdown-grid">
+                            <!-- Scenarios -->
+                            <div class="breakdown-card">
+                                <div class="breakdown-card-header">
+                                    <span class="breakdown-icon">⚡</span>
+                                    <div>
+                                        <strong>18 Realistic Scenarios</strong>
+                                        <p>Problem-solving & troubleshooting</p>
+                                    </div>
+                                </div>
+                                <div class="breakdown-card-score">
+                                    <span id="stat-scenario-score">0 / 18</span>
+                                    <span id="stat-scenario-percent" class="breakdown-percent">0%</span>
+                                </div>
+                            </div>
+
+                            <!-- Tricky Questions -->
+                            <div class="breakdown-card">
+                                <div class="breakdown-card-header">
+                                    <span class="breakdown-icon">⚠️</span>
+                                    <div>
+                                        <strong>8 Tricky / Trap Questions</strong>
+                                        <p>Misconceptions & trap avoidance</p>
+                                    </div>
+                                </div>
+                                <div class="breakdown-card-score">
+                                    <span id="stat-tricky-score">0 / 8</span>
+                                    <span id="stat-tricky-percent" class="breakdown-percent">0%</span>
+                                </div>
+                            </div>
+
+                            <!-- Comparisons -->
+                            <div class="breakdown-card">
+                                <div class="breakdown-card-header">
+                                    <span class="breakdown-icon">⚖️</span>
+                                    <div>
+                                        <strong>8 Comparison Questions</strong>
+                                        <p>TCP vs UDP, IPv4 vs IPv6, Hub vs Switch</p>
+                                    </div>
+                                </div>
+                                <div class="breakdown-card-score">
+                                    <span id="stat-comparison-score">0 / 8</span>
+                                    <span id="stat-comparison-percent" class="breakdown-percent">0%</span>
+                                </div>
+                            </div>
+
+                            <!-- Easy -->
+                            <div class="breakdown-card">
+                                <div class="breakdown-card-header">
+                                    <span class="breakdown-diff-dot green"></span>
+                                    <div><strong>Easy Level</strong> (20)</div>
+                                </div>
+                                <div class="breakdown-card-score">
+                                    <span id="stat-easy-score">0 / 20</span>
+                                </div>
+                            </div>
+
+                            <!-- Medium -->
+                            <div class="breakdown-card">
+                                <div class="breakdown-card-header">
+                                    <span class="breakdown-diff-dot amber"></span>
+                                    <div><strong>Medium Level</strong> (24)</div>
+                                </div>
+                                <div class="breakdown-card-score">
+                                    <span id="stat-medium-score">0 / 24</span>
+                                </div>
+                            </div>
+
+                            <!-- Hard -->
+                            <div class="breakdown-card">
+                                <div class="breakdown-card-header">
+                                    <span class="breakdown-diff-dot red"></span>
+                                    <div><strong>Hard Level</strong> (16)</div>
+                                </div>
+                                <div class="breakdown-card-score">
+                                    <span id="stat-hard-score">0 / 16</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic-wise Performance -->
+                    <div class="breakdown-section">
+                        <h3>Topic-Wise Accuracy</h3>
+                        <div id="topic-performance-container" class="topic-performance-list">
+                            <!-- Injected by script -->
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="results-actions">
+                        <button id="btn-review-answers" class="btn btn-primary btn-large">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                            Review All 60 Explanations
+                        </button>
+                        <button id="btn-retake-exam" class="btn btn-secondary btn-large">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+                            Retake Exam
+                        </button>
+                        <a href="../index.html" class="btn btn-text btn-large">
+                            Back to Dashboard
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Questions Data Embedded & External Script -->
+    <script src="questions.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

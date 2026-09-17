@@ -1,0 +1,1627 @@
+const questionsData = [
+  {
+    "id": 1,
+    "question": "A newly founded tech startup rents a single-floor office space with 40 desktop computers, 2 network printers, and a local storage server. All devices must communicate with each other at gigabit speeds with minimal latency. Which network type is best suited for this environment?",
+    "question_type": "Scenario-Based",
+    "difficulty": "Easy",
+    "topic": "Networking Fundamentals",
+    "concept": "Local Area Network (LAN)",
+    "options": [
+      "Local Area Network (LAN)",
+      "Wide Area Network (WAN)",
+      "Metropolitan Area Network (MAN)",
+      "Personal Area Network (PAN)"
+    ],
+    "correct_answer": "Local Area Network (LAN)",
+    "correct_option_index": 0,
+    "explanation": "A Local Area Network (LAN) spans a geographically confined area such as a single room, office floor, or building. It provides high data transfer rates, low latency, and low error rates for locally interconnected devices.",
+    "why_other_options_are_wrong": {
+      "A": "Correct: LAN is specifically designed for high-speed local office communication.",
+      "B": "Incorrect: A WAN connects geographically dispersed locations across cities, countries, or continents (e.g., the Internet).",
+      "C": "Incorrect: A MAN spans an entire metropolitan area or city (e.g., city cable TV or municipal broadband network).",
+      "D": "Incorrect: A PAN covers an individual's personal workspace, usually within 10 meters (e.g., Bluetooth devices)."
+    },
+    "real_world_example": "Ethernet cabling connecting desktop workstations and a local NAS drive inside an IT company's Bangalore office floor.",
+    "placement_tip": "Look at the geographical scope: Room/Floor = LAN; City = MAN; Country/Global = WAN; Around 1 person = PAN.",
+    "source_type": "Reported Interview Question",
+    "source_note": "Reported in TCS NQT & Cognizant GenC technical assessments"
+  },
+  {
+    "id": 2,
+    "question": "A multinational financial institution needs to interconnect its headquarters in Mumbai with regional branches in London, New York, and Singapore to synchronize financial transaction databases securely. Which network type represents this architecture?",
+    "question_type": "Scenario-Based",
+    "difficulty": "Easy",
+    "topic": "Networking Fundamentals",
+    "concept": "Wide Area Network (WAN)",
+    "options": [
+      "Storage Area Network (SAN)",
+      "Wide Area Network (WAN)",
+      "Metropolitan Area Network (MAN)",
+      "Campus Area Network (CAN)"
+    ],
+    "correct_answer": "Wide Area Network (WAN)",
+    "correct_option_index": 1,
+    "explanation": "A Wide Area Network (WAN) interconnects geographically separated networks spanning across different cities, countries, or continents. It commonly relies on telecommunications carriers, leased lines, or satellite links.",
+    "why_other_options_are_wrong": {
+      "A": "Incorrect: A SAN is a dedicated high-speed network connecting servers to block-level storage devices within data centers.",
+      "B": "Correct: WAN connects networks across vast geographical distances such as international borders.",
+      "C": "Incorrect: A MAN is limited to a single metropolitan city or municipality.",
+      "D": "Incorrect: A CAN is confined to a university or corporate campus spanning several adjacent buildings."
+    },
+    "real_world_example": "Banking networks using MPLS or SD-WAN circuits to connect ATMs and international branch branches to core data centers.",
+    "placement_tip": "When a question mentions connecting offices across different cities or countries, the answer is always WAN.",
+    "source_type": "Common Placement Pattern",
+    "source_note": "Frequently tested in Accenture and Infosys recruitment rounds"
+  },
+  {
+    "id": 3,
+    "question": "An employee's laptop connects successfully to the office Wi-Fi network and receives an IP address, but cannot open any external websites. The network administrator observes that the laptop can ping other computers in the same subnet, but cannot reach external public IP addresses like 8.8.8.8. What is the most probable cause?",
+    "question_type": "Scenario-Based",
+    "difficulty": "Medium",
+    "topic": "Networking Fundamentals",
+    "concept": "Default Gateway Configuration",
+    "options": [
+      "The laptop has a faulty Network Interface Card (NIC)",
+      "The Default Gateway is missing or misconfigured on the laptop",
+      "The laptop's MAC address is corrupted",
+      "The office switch has experienced a total hardware crash"
+    ],
+    "correct_answer": "The Default Gateway is missing or misconfigured on the laptop",
+    "correct_option_index": 1,
+    "explanation": "Because the laptop can ping local peers, its NIC, physical connection, and local Data Link/Network layers are operational. Communication beyond the local subnet requires a Default Gateway (the local router IP) to route packets to external networks.",
+    "why_other_options_are_wrong": {
+      "A": "Incorrect: If the NIC were faulty, the laptop could not connect to Wi-Fi or ping local peers.",
+      "B": "Correct: The Default Gateway is responsible for forwarding traffic destined for addresses outside the local subnet.",
+      "C": "Incorrect: A corrupted MAC address would prevent any local Layer 2 frame transmission entirely.",
+      "D": "Incorrect: If the switch crashed, intra-subnet communication between local computers would also fail."
+    },
+    "real_world_example": "A home router's LAN interface functioning properly, but the static IP configuration on a PC had a typo in the Default Gateway field.",
+    "placement_tip": "If local communication works but outside communication fails, immediately check the Default Gateway or NAT routing.",
+    "source_type": "Reported Interview Question",
+    "source_note": "Reported in Capgemini & Wipro technical interview rounds"
+  },
+  {
+    "id": 4,
+    "question": "A developer can access an internal portal by typing 'http://192.168.10.45' into the browser, but typing 'http://devportal.company.local' yields a 'Server Not Found' error. Other coworkers on the same network can access the portal using the domain name. What is the root cause on the developer's machine?",
+    "question_type": "Scenario-Based",
+    "difficulty": "Medium",
+    "topic": "Application Protocols",
+    "concept": "DNS Client Configuration",
+    "options": [
+      "The developer's machine is configured with an incorrect or unreachable DNS server IP",
+      "HTTP port 80 is blocked on the web server",
+      "The web server's MAC address is blocked by the core switch",
+      "The developer's Ethernet cable has severed copper pins"
+    ],
+    "correct_answer": "The developer's machine is configured with an incorrect or unreachable DNS server IP",
+    "correct_option_index": 0,
+    "explanation": "Accessing the website via IP address proves that routing, web server operation, and HTTP services are completely functional. The failure to resolve 'devportal.company.local' points directly to a Domain Name System (DNS) resolution failure on the client machine.",
+    "why_other_options_are_wrong": {
+      "A": "Correct: DNS translates human-readable domain names into IP addresses. Failure by name while working by IP indicates DNS misconfiguration.",
+      "B": "Incorrect: Port 80 is demonstrably open and responding because direct IP navigation succeeds.",
+      "C": "Incorrect: If the MAC address were blocked, the web server would not respond to direct IP requests either.",
+      "D": "Incorrect: If the physical cable were broken, no network traffic or IP communication could occur."
+    },
+    "real_world_example": "A workstation configured with public DNS (8.8.8.8) which cannot resolve private corporate intranet domains.",
+    "placement_tip": "Can reach by IP but not by URL? The issue is almost always DNS resolution.",
+    "source_type": "Reported PYQ",
+    "source_note": "Reported in LTIMindtree & HCLTech technical assessments"
+  },
+  {
+    "id": 5,
+    "question": "When a customer visits 'https://bank.secure.com', the browser displays a locked padlock icon. Which combination of protocol, default port, and security mechanism ensures confidentiality and data integrity during this transaction?",
+    "question_type": "Scenario-Based",
+    "difficulty": "Easy",
+    "topic": "Application Protocols",
+    "concept": "HTTPS and TLS Handshake",
+    "options": [
+      "HTTP on Port 80 using symmetric hashing",
+      "HTTPS on Port 443 using TLS/SSL encryption and digital certificates",
+      "FTP on Port 21 using SSH tunneling",
+      "DNS on Port 53 using IPsec encapsulation"
+    ],
+    "correct_answer": "HTTPS on Port 443 using TLS/SSL encryption and digital certificates",
+    "correct_option_index": 1,
+    "explanation": "HTTPS (HyperText Transfer Protocol Secure) operates over default TCP port 443. It layers standard HTTP on top of TLS (Transport Layer Security), which provides encryption, server authentication via digital certificates, and message integrity.",
+    "why_other_options_are_wrong": {
+      "A": "Incorrect: Standard HTTP operates on port 80 and transmits data in plaintext without encryption.",
+      "B": "Correct: HTTPS uses TCP port 443 with TLS encryption and X.509 digital certificates.",
+      "C": "Incorrect: FTP operates on port 21 for file transfer, not web page delivery.",
+      "D": "Incorrect: DNS operates on port 53 for name resolution, not secure web transactions."
+    },
+    "real_world_example": "Online banking portals requiring encrypted sessions to protect user credentials, OTPs, and credit card numbers from eavesdropping.",
+    "placement_tip": "Remember port pairings: HTTP = 80; HTTPS = 443. HTTPS = HTTP + TLS/SSL.",
+    "source_type": "Reported Interview Question",
+    "source_note": "Reported in TCS NQT & Tech Mahindra placement exams"
+  },
+  {
+    "id": 6,
+    "question": "A medical imaging system must transfer high-resolution MRI scans (several gigabytes in size) from an scanning facility to a hospital archive. Every single byte must arrive intact without corruption, truncation, or missing segments. Which transport protocol must be chosen?",
+    "question_type": "Scenario-Based",
+    "difficulty": "Easy",
+    "topic": "TCP/IP & Transport",
+    "concept": "TCP Reliability and Guarantees",
+    "options": [
+      "User Datagram Protocol (UDP) because it has lower transmission overhead",
+      "Transmission Control Protocol (TCP) because it provides acknowledgments, sequencing, and retransmission",
+      "Internet Control Message Protocol (ICMP) because it tests connectivity",
+      "Address Resolution Protocol (ARP) because it maps IP to MAC"
+    ],
+    "correct_answer": "Transmission Control Protocol (TCP) because it provides acknowledgments, sequencing, and retransmission",
+    "correct_option_index": 1,
+    "explanation": "TCP is a connection-oriented transport protocol that guarantees delivery through positive acknowledgments (ACKs), sequence numbers for ordered reassembly, and automated retransmission of lost or corrupted packets.",
+    "why_other_options_are_wrong": {
+      "A": "Incorrect: UDP is connectionless and does not guarantee delivery, packet order, or retransmission.",
+      "B": "Correct: Critical files like medical images and executables require TCP's zero-data-loss guarantee.",
+      "C": "Incorrect: ICMP is a Network-layer diagnostic protocol (used by ping), not a data transfer protocol.",
+      "D": "Incorrect: ARP operates at Layer 2/3 to resolve IPv4 addresses to physical MAC addresses."
+    },
+    "real_world_example": "Protocols like FTP, SFTP, and HTTP/HTTPS rely on TCP to ensure downloaded files match the source bit-for-bit.",
+    "placement_tip": "When 100% accuracy and zero loss are mandatory (files, emails, payments), TCP is always the answer.",
+    "source_type": "Common Placement Pattern",
+    "source_note": "Frequently asked in Cognizant & Accenture entry-level rounds"
+  },
+  {
+    "id": 7,
+    "question": "In a fast-paced multiplayer First-Person Shooter (FPS) online game, player coordinates and aim angles are updated 60 times per second. If a single coordinate packet is delayed or dropped, retransmitting it is useless because newer coordinates have already been generated. Which transport protocol is chosen for these player state updates?",
+    "question_type": "Scenario-Based",
+    "difficulty": "Medium",
+    "topic": "TCP/IP & Transport",
+    "concept": "UDP Low Latency Use Case",
+    "options": [
+      "TCP, to ensure no coordinate packets are ever dropped",
+      "UDP, to avoid retransmission delays, head-of-line blocking, and connection overhead",
+      "BGP, to find the most cost-effective path across ISPs",
+      "SMTP, to queue coordinate updates sequentially"
+    ],
+    "correct_answer": "UDP, to avoid retransmission delays, head-of-line blocking, and connection overhead",
+    "correct_option_index": 1,
+    "explanation": "UDP (User Datagram Protocol) does not incur connection-establishment delays, does not retransmit lost packets, and avoids Head-of-Line (HoL) blocking. For real-time multiplayer gaming, timeliness is far more critical than 100% reliability.",
+    "why_other_options_are_wrong": {
+      "A": "Incorrect: TCP's retransmission mechanism would stall newer packets (Head-of-Line blocking), causing severe lag spikes.",
+      "B": "Correct: UDP delivers real-time updates with minimal latency; outdated coordinate packets are simply discarded.",
+      "C": "Incorrect: BGP is an exterior gateway routing protocol used between Autonomous Systems on the Internet.",
+      "D": "Incorrect: SMTP is an email transfer protocol, completely irrelevant for real-time game physics."
+    },
+    "real_world_example": "Online games like Valorant, CS:GO, and Call of Duty send continuous player position telemetry using UDP.",
+    "placement_tip": "When speed and low latency matter more than guaranteed delivery (gaming, live audio), choose UDP.",
+    "source_type": "Reported Interview Question",
+    "source_note": "Reported in Deloitte & Infosys technical interviews"
+  },
+  {
+    "id": 8,
+    "question": "During a live Zoom video conference, a user on an unstable cellular connection notices slight audio stuttering and momentary video pixelation, but the call continues in real time without pausing to buffer. What fundamental protocol behavior explains this outcome?",
+    "question_type": "Scenario-Based",
+    "difficulty": "Medium",
+    "topic": "TCP/IP & Transport",
+    "concept": "UDP Behavior in Real-Time Media Streaming",
+    "options": [
+      "TCP paused the entire video stream until lost frames were re-sent and acknowledged",
+      "UDP dropped the lost packets without retransmitting them, prioritizing real-time continuity over perfect frame recovery",
+      "DNS re-routed the video call through an alternate satellite link",
+      "ARP replaced the missing video data with synthetic broadcast frames"
+    ],
+    "correct_answer": "UDP dropped the lost packets without retransmitting them, prioritizing real-time continuity over perfect frame recovery",
+    "correct_option_index": 1,
+    "explanation": "Live interactive communication (VoIP, WebRTC) uses UDP. Because waiting for retransmissions would cause conversational latency and desynchronization, UDP simply drops missing packets, resulting in minor audio/video artifacts while maintaining real-time interaction.",
+    "why_other_options_are_wrong": {
+      "A": "Incorrect: If TCP were used, the call would freeze and buffer every time packet loss occurred.",
+      "B": "Correct: UDP accepts minor packet loss in exchange for immediate, continuous real-time delivery.",
+      "C": "Incorrect: DNS only resolves domain names at session initiation; it does not route packets during an active media stream.",
+      "D": "Incorrect: ARP maps IP addresses to MAC addresses and cannot reconstruct video data."
+    },
+    "real_world_example": "WebRTC, Zoom, and Teams utilizing RTP over UDP for live video, where human ears tolerate 1% packet loss better than a 1-second delay.",
+    "placement_tip": "Live interactive calls prioritize timeliness over completeness, making UDP the ideal protocol.",
+    "source_type": "Expected 2026 Pattern",
+    "source_note": "Expected 2026 Pattern based on cloud-calling & WebRTC placement assessments"
+  },
+  {
+    "id": 9,
+    "question": "A college student brings a new smartphone into the university campus library and connects to the open student Wi-Fi. Within two seconds, the phone is automatically assigned the IP address 10.20.14.88, subnet mask 255.255.240.0, and a default gateway. What protocol and four-step process enabled this automatic configuration?",
+    "question_type": "Scenario-Based",
+    "difficulty": "Medium",
+    "topic": "Application Protocols",
+    "concept": "DHCP Protocol and DORA Process",
+    "options": [
+      "DNS through Lookup, Query, Response, and Cache",
+      "DHCP through the DORA process (Discover, Offer, Request, Acknowledge)",
+      "ARP through Request, Reply, Broadcast, and Unicast",
+      "NAT through Translation, Mapping, Forwarding, and Binding"
+    ],
+    "correct_answer": "DHCP through the DORA process (Discover, Offer, Request, Acknowledge)",
+    "correct_option_index": 1,
+    "explanation": "Dynamic Host Configuration Protocol (DHCP) assigns dynamic IP configuration to joining clients using the 4-step DORA process: DHCP Discover (broadcast), DHCP Offer (server responds with IP), DHCP Request (client requests offered IP), and DHCP Acknowledge (server confirms lease).",
+    "why_other_options_are_wrong": {
+      "A": "Incorrect: DNS resolves hostnames to IP addresses; it does not assign IP configurations to client interfaces.",
+      "B": "Correct: DHCP uses the DORA sequence over UDP ports 67 (server) and 68 (client).",
+      "C": "Incorrect: ARP maps known IP addresses to unknown MAC addresses within a local subnet.",
+      "D": "Incorrect: NAT translates private IP addresses to public IP addresses at the network perimeter."
+    },
+    "real_world_example": "Every home Wi-Fi router runs a built-in DHCP server assigning 192.168.1.X addresses to smartphones and laptops.",
+    "placement_tip": "Remember the acronym DORA: Discover, Offer, Request, Acknowledge.",
+    "source_type": "Reported PYQ",
+    "source_note": "Reported in Capgemini & Wipro placement exams"
+  },
+  {
+    "id": 10,
+    "question": "A network technician arrives at a workstation where the user complains of total network disconnection. The technician inspects the back of the PC and notices that the Ethernet RJ-45 cable connector has a broken retention clip and is dangling loose, with no link LED illuminated on the NIC. At which layer of the OSI model does this fault originate?",
+    "question_type": "Scenario-Based",
+    "difficulty": "Easy",
+    "topic": "OSI Model",
+    "concept": "Physical Layer Troubleshooting",
+    "options": [
+      "Layer 1 - Physical Layer",
+      "Layer 2 - Data Link Layer",
+      "Layer 3 - Network Layer",
+      "Layer 4 - Transport Layer"
+    ],
+    "correct_answer": "Layer 1 - Physical Layer",
+    "correct_option_index": 0,
+    "explanation": "The Physical Layer (Layer 1) encompasses cables, connectors, pinouts, voltages, radio frequencies, and network interface card link lights. A loose RJ-45 cable or unlit link LED represents a Physical Layer failure.",
+    "why_other_options_are_wrong": {
+      "A": "Correct: Physical hardware, cabling, electrical signals, and mechanical connectors belong to Layer 1.",
+      "B": "Incorrect: Layer 2 deals with frames, MAC addresses, and switches; it cannot function without Layer 1 signal connectivity.",
+      "C": "Incorrect: Layer 3 deals with logical IP addressing and routing.",
+      "D": "Incorrect: Layer 4 deals with end-to-end transport protocols (TCP/UDP)."
+    },
+    "real_world_example": "Unplugged patch cords, damaged fiber optics, faulty RJ-45 connectors, and bent transceiver pins are classic Layer 1 issues.",
+    "placement_tip": "Troubleshoot bottom-up: always verify Physical Layer (Layer 1 link light) before checking IP configuration.",
+    "source_type": "Reported Interview Question",
+    "source_note": "Reported in TCS NQT & HCLTech technical rounds"
+  },
+  {
+    "id": 11,
+    "question": "Host A (MAC: 00:AA:22:33:44:55) sends an Ethernet frame destined for Host B (MAC: 00:BB:66:77:88:99) connected to Port 4 of an Ethernet switch. If the switch has just booted up and its MAC address table is completely empty, how does the switch handle this frame?",
+    "question_type": "Scenario-Based",
+    "difficulty": "Hard",
+    "topic": "Network Devices",
+    "concept": "Switch MAC Learning and Flooding",
+    "options": [
+      "It immediately discards the frame because the destination MAC address is unknown",
+      "It records Host A's MAC address on the incoming port and floods the frame out all other ports except the incoming port",
+      "It queries the default gateway router via ARP to discover the destination port",
+      "It converts the frame into an IP packet and routes it across the subnet"
+    ],
+    "correct_answer": "It records Host A's MAC address on the incoming port and floods the frame out all other ports except the incoming port",
+    "correct_option_index": 1,
+    "explanation": "When an Ethernet switch receives a frame with an unknown unicast destination, it records the source MAC address and incoming port in its CAM/MAC table (learning phase), and then forwards ('floods') the frame to all other active ports in that VLAN.",
+    "why_other_options_are_wrong": {
+      "A": "Incorrect: Switches do not drop unknown unicast frames; they flood them to ensure delivery.",
+      "B": "Correct: This is the standard backward-learning and unknown-unicast flooding mechanism of Layer 2 switches.",
+      "C": "Incorrect: Switches do not use ARP or consult routers to locate ports for local Layer 2 frames.",
+      "D": "Incorrect: Layer 2 switches forward Ethernet frames; they do not inspect IP packet headers or route."
+    },
+    "real_world_example": "When Host B replies to the flooded frame, the switch learns Host B's port, enabling direct unicast forwarding for all future frames.",
+    "placement_tip": "Switches learn from the SOURCE MAC address and forward/filter based on the DESTINATION MAC address.",
+    "source_type": "Reported PYQ",
+    "source_note": "Reported in Accenture & Cognizant technical assessments"
+  },
+  {
+    "id": 12,
+    "question": "Workstation A on subnet 192.168.1.0/24 needs to send data to Workstation B located on subnet 10.0.5.0/24. Workstation A transmits the packet to its local router interface. How does the router determine the next path for this packet?",
+    "question_type": "Scenario-Based",
+    "difficulty": "Medium",
+    "topic": "Network Devices",
+    "concept": "Router IP Lookup and Forwarding",
+    "options": [
+      "It inspects the destination IP address in the packet header and consults its Routing Table",
+      "It broadcasts an ARP request across all external networks worldwide",
+      "It reads the destination MAC address and looks up its internal CAM table",
+      "It converts the packet into an HTTP request and queries the DNS server"
+    ],
+    "correct_answer": "It inspects the destination IP address in the packet header and consults its Routing Table",
+    "correct_option_index": 0,
+    "explanation": "Routers operate at Layer 3 (Network Layer). When a router receives an IP packet, it strips the Layer 2 frame, examines the destination IP address, searches its routing table for the longest prefix match, re-encapsulates the packet into a new Layer 2 frame, and forwards it to the next-hop router.",
+    "why_other_options_are_wrong": {
+      "A": "Correct: Routing decisions are made at Layer 3 using destination IP addresses and routing tables.",
+      "B": "Incorrect: ARP broadcasts are strictly confined to the local broadcast domain and are never broadcast across the Internet.",
+      "C": "Incorrect: CAM tables and MAC addresses are used by Layer 2 switches, not Layer 3 inter-network routing.",
+      "D": "Incorrect: Routers do not convert packets into HTTP requests; HTTP is an Application-layer protocol."
+    },
+    "real_world_example": "Core internet routers evaluating BGP and OSPF routing tables with hundreds of thousands of IP prefix entries.",
+    "placement_tip": "Switches forward frames using MAC tables; Routers forward packets using Routing Tables.",
+    "source_type": "Common Placement Pattern",
+    "source_note": "Frequently tested across TCS, Infosys, and Tech Mahindra"
+  },
+  {
+    "id": 13,
+    "question": "A software company's new office has high-speed Ethernet cabling installed throughout the ceiling, but employees use laptops and smartphones without physical Ethernet ports. Which device must be connected to the wired switch to provide Wi-Fi coverage across the floor?",
+    "question_type": "Scenario-Based",
+    "difficulty": "Easy",
+    "topic": "Network Devices",
+    "concept": "Wireless Access Point (WAP)",
+    "options": [
+      "Wireless Access Point (WAP)",
+      "Analog Modem",
+      "Coaxial Splitter",
+      "Unmanaged Hub"
+    ],
+    "correct_answer": "Wireless Access Point (WAP)",
+    "correct_option_index": 0,
+    "explanation": "A Wireless Access Point (WAP or AP) bridges wireless radio signals (IEEE 802.11 Wi-Fi) with a wired Ethernet network (IEEE 802.3), allowing wireless client devices to join the local wired network.",
+    "why_other_options_are_wrong": {
+      "A": "Correct: Access Points are specifically designed to broadcast Wi-Fi and bridge wireless traffic to wired infrastructure.",
+      "B": "Incorrect: A modem modulates and demodulates digital signals over analog lines (e.g., telephone or cable lines).",
+      "C": "Incorrect: A coaxial splitter divides television/cable RF signals passively.",
+      "D": "Incorrect: A hub is a legacy wired multiport repeater with zero wireless radio capabilities."
+    },
+    "real_world_example": "Cisco or Aruba ceiling-mounted access points in universities providing seamless Wi-Fi roaming across campus.",
+    "placement_tip": "Do not confuse a standalone Wireless Access Point with a multi-function Home Wi-Fi Router (which bundles an AP, switch, router, and firewall).",
+    "source_type": "Reported Interview Question",
+    "source_note": "Reported in Tech Mahindra & Wipro recruitment drives"
+  },
+  {
+    "id": 14,
+    "question": "A DevOps engineer needs to manage a cloud-hosted Linux server remotely over the public internet. The communication channel must provide end-to-end encryption, strong cryptographic authentication, and command-line shell access. Which protocol must the engineer use?",
+    "question_type": "Scenario-Based",
+    "difficulty": "Medium",
+    "topic": "Application Protocols",
+    "concept": "Secure Shell (SSH)",
+    "options": [
+      "Telnet on Port 23",
+      "Secure Shell (SSH) on Port 22",
+      "FTP on Port 21",
+      "SNMP on Port 161"
+    ],
+    "correct_answer": "Secure Shell (SSH) on Port 22",
+    "correct_option_index": 1,
+    "explanation": "SSH (Secure Shell) runs on TCP port 22. It provides an encrypted channel for command-line execution, file transfers (SFTP/SCP), and secure port forwarding, completely replacing insecure legacy protocols like Telnet.",
+    "why_other_options_are_wrong": {
+      "A": "Incorrect: Telnet transmits usernames, passwords, and commands in plaintext, making it vulnerable to packet sniffing.",
+      "B": "Correct: SSH encrypts all communications and provides secure remote terminal access.",
+      "C": "Incorrect: FTP is an unencrypted file transfer protocol, not an interactive command-line shell.",
+      "D": "Incorrect: SNMP is used for network device monitoring and telemetry, not interactive remote server administration."
+    },
+    "real_world_example": "Running 'ssh -i mykey.pem ubuntu@ec2-54-210-10-20.compute-1.amazonaws.com' to configure an AWS production server.",
+    "placement_tip": "Whenever an interview question asks for secure remote command-line access, the answer is SSH (Port 22). Telnet is insecure.",
+    "source_type": "Reported PYQ",
+    "source_note": "Reported in TCS NQT & Infosys technical interviews"
+  },
+  {
+    "id": 15,
+    "question": "An e-commerce platform generates automated order confirmation emails from its web backend and must push these messages to customers' external mail servers (such as Gmail, Yahoo, and Outlook). Which protocol is exclusively responsible for sending and relaying emails between servers?",
+    "question_type": "Scenario-Based",
+    "difficulty": "Easy",
+    "topic": "Application Protocols",
+    "concept": "Simple Mail Transfer Protocol (SMTP)",
+    "options": [
+      "Post Office Protocol 3 (POP3)",
+      "Internet Message Access Protocol (IMAP)",
+      "Simple Mail Transfer Protocol (SMTP)",
+      "HyperText Transfer Protocol (HTTP)"
+    ],
+    "correct_answer": "Simple Mail Transfer Protocol (SMTP)",
+    "correct_option_index": 2,
+    "explanation": "SMTP (Simple Mail Transfer Protocol) is the standard protocol for sending emails from a client to a mail server and for relaying emails between different mail servers across the internet (typically using ports 25, 587, or 465).",
+    "why_other_options_are_wrong": {
+      "A": "Incorrect: POP3 is an email retrieval protocol used by clients to download messages from their mailbox.",
+      "B": "Incorrect: IMAP is also an email retrieval protocol designed for synchronizing mailboxes across devices.",
+      "C": "Correct: SMTP is the push protocol used to transmit and relay outgoing emails.",
+      "D": "Incorrect: HTTP is used for web browsing, not the standardized transfer of electronic mail between mail relays."
+    },
+    "real_world_example": "An order service connecting to Amazon SES (Simple Email Service) over SMTP port 587 to dispatch receipts.",
+    "placement_tip": "Remember: SMTP is for PUSHING/SENDING mail; POP3 and IMAP are for PULLING/RETRIEVING mail.",
+    "source_type": "Common Placement Pattern",
+    "source_note": "Frequently asked in Accenture, Capgemini, and Cognizant rounds"
+  },
+  {
+    "id": 16,
+    "question": "An executive accesses company email on a smartphone, office desktop, and home tablet. When the executive marks an email as 'read' or creates a new folder on the phone, the change immediately reflects on the desktop and tablet. Which email protocol enables this server-synchronized behavior?",
+    "question_type": "Scenario-Based",
+    "difficulty": "Medium",
+    "topic": "Application Protocols",
+    "concept": "IMAP vs POP3 Synchronization",
+    "options": [
+      "POP3 (Post Office Protocol 3)",
+      "IMAP (Internet Message Access Protocol)",
+      "SMTP (Simple Mail Transfer Protocol)",
+      "ICMP (Internet Control Message Protocol)"
+    ],
+    "correct_answer": "IMAP (Internet Message Access Protocol)",
+    "correct_option_index": 1,
+    "explanation": "IMAP (Internet Message Access Protocol) stores emails directly on the central mail server and synchronizes folder states, read/unread flags, and message status across all connected client devices in real time.",
+    "why_other_options_are_wrong": {
+      "A": "Incorrect: POP3 downloads emails to a single device and traditionally deletes them from the server, preventing multi-device sync.",
+      "B": "Correct: IMAP maintains all messages and states centrally on the server, making it ideal for multi-device access.",
+      "C": "Incorrect: SMTP is used for sending/relaying outgoing emails, not retrieving or synchronizing mailboxes.",
+      "D": "Incorrect: ICMP is an error-reporting and network diagnostic tool, not an email protocol."
+    },
+    "real_world_example": "Using Apple Mail on an iPhone and Outlook on a PC, where deleting an email on one device removes it everywhere.",
+    "placement_tip": "IMAP = Multi-device synchronized email retrieval; POP3 = Single-device download-and-delete retrieval.",
+    "source_type": "Reported Interview Question",
+    "source_note": "Reported in Cognizant & LTIMindtree placement drives"
+  },
+  {
+    "id": 17,
+    "question": "A nationwide Internet Service Provider (ISP) is rapidly exhausting its remaining pool of 32-bit public addresses due to millions of new 5G mobile subscribers. To permanently solve global address exhaustion and eliminate the need for complex carrier-grade NAT, which standard should the ISP implement?",
+    "question_type": "Scenario-Based",
+    "difficulty": "Easy",
+    "topic": "IP Addressing",
+    "concept": "IPv6 Transition and Address Space",
+    "options": [
+      "IPv6, providing a 128-bit address space with 3.4 x 10^38 unique addresses",
+      "Classful Subnetting, reverting to legacy Class A, B, and C allocations",
+      "ARP Poisoning, recycling existing MAC addresses",
+      "DNSSEC, which expands 32-bit addresses into 64-bit domain records"
+    ],
+    "correct_answer": "IPv6, providing a 128-bit address space with 3.4 x 10^38 unique addresses",
+    "correct_option_index": 0,
+    "explanation": "IPv4 provides only ~4.3 billion (2^32) addresses, which have been exhausted globally. IPv6 uses 128-bit addresses (2^128, or ~3.4 x 10^38 addresses), providing an astronomical address pool that allows every connected device worldwide to have a unique globally routable address.",
+    "why_other_options_are_wrong": {
+      "A": "Correct: IPv6's 128-bit address architecture was created specifically to eliminate IP exhaustion permanently.",
+      "B": "Incorrect: Classful addressing is obsolete and wasted huge blocks of IP space, which worsened exhaustion.",
+      "C": "Incorrect: ARP poisoning is a malicious man-in-the-middle attack, not an addressing standard.",
+      "D": "Incorrect: DNSSEC adds cryptographic authentication to DNS records; it does not expand network layer IP addresses."
+    },
+    "real_world_example": "Modern cellular networks like Jio, Airtel, and Verizon assign native IPv6 addresses to every mobile smartphone.",
+    "placement_tip": "IPv4 = 32 bits (~4.3 billion); IPv6 = 128 bits (340 undecillion). IPv6 addresses are written in hexadecimal separated by colons.",
+    "source_type": "Reported PYQ",
+    "source_note": "Reported in TCS NQT & Deloitte entry-level technical assessments"
+  },
+  {
+    "id": 18,
+    "question": "A user tries to browse 'www.example.com' and receives 'DNS_PROBE_FINISHED_NXDOMAIN'. However, running 'ping 93.184.216.34' in the command prompt succeeds with 0% packet loss and normal latency. What does this diagnosis confirm?",
+    "question_type": "Scenario-Based",
+    "difficulty": "Hard",
+    "topic": "Application Protocols",
+    "concept": "DNS Resolution Failure Diagnosis",
+    "options": [
+      "Network connectivity and IP routing to the server are fully operational, but the DNS resolver cannot translate the domain name into an IP address",
+      "The physical Ethernet cable between the user's PC and router is severed",
+      "The web server's firewall has blocked all incoming ICMP and IP traffic",
+      "The user's computer has an IP address conflict with the default gateway"
+    ],
+    "correct_answer": "Network connectivity and IP routing to the server are fully operational, but the DNS resolver cannot translate the domain name into an IP address",
+    "correct_option_index": 0,
+    "explanation": "Successful ping to the server's IP address verifies that the local physical connection, default gateway, intermediate routers, and remote server IP stack are all working. The NXDOMAIN error indicates the Domain Name System failed to resolve the hostname.",
+    "why_other_options_are_wrong": {
+      "A": "Correct: The lower layers (IP, routing, ICMP) work, isolating the issue entirely to Layer 7 DNS name resolution.",
+      "B": "Incorrect: If the physical cable were severed, pinging 93.184.216.34 would fail immediately.",
+      "C": "Incorrect: If the firewall blocked ICMP/IP traffic, the ping command would return 'Request timed out'.",
+      "D": "Incorrect: An IP conflict with the gateway would disrupt all outbound internet traffic, including ping."
+    },
+    "real_world_example": "A client whose network settings point to a dead DNS server (like a decommissioned local server) while external IP routing remains intact.",
+    "placement_tip": "Testing connectivity by IP bypasses DNS. If IP works but domain fails, the problem is 100% DNS.",
+    "source_type": "Common Placement Pattern",
+    "source_note": "Frequently tested in Accenture, Capgemini & Tech Mahindra interviews"
+  },
+  {
+    "id": 19,
+    "question": "Which statement accurately captures the distinction between a MAC address and an IP address?",
+    "question_type": "Tricky",
+    "difficulty": "Medium",
+    "topic": "IP Addressing",
+    "concept": "MAC Address vs IP Address Distinctions",
+    "options": [
+      "A MAC address is a 48-bit physical address burned into the NIC for local frame delivery, whereas an IP address is a logical address used for end-to-end routing across networks",
+      "A MAC address changes automatically whenever a laptop moves to a new Wi-Fi network, whereas an IP address is permanently hardwired into silicon",
+      "An IP address operates exclusively at Layer 2, while a MAC address operates at Layer 3 of the OSI model",
+      "MAC addresses are used by internet routers to navigate between countries, while IP addresses are only used within a single home router"
+    ],
+    "correct_answer": "A MAC address is a 48-bit physical address burned into the NIC for local frame delivery, whereas an IP address is a logical address used for end-to-end routing across networks",
+    "correct_option_index": 0,
+    "explanation": "A MAC (Media Access Control) address is a 48-bit physical/hardware address assigned to the NIC by the manufacturer (operating at Layer 2 for local hop-to-hop frame delivery). An IP address is a logical address (32-bit in IPv4, 128-bit in IPv6) assigned dynamically or statically, operating at Layer 3 for hierarchical internet routing.",
+    "why_other_options_are_wrong": {
+      "A": "Correct: MAC is physical/hardware (48 bits) at Layer 2; IP is logical (32/128 bits) at Layer 3.",
+      "B": "Incorrect: This is reversed: the IP address changes when connecting to different networks, while the MAC address remains fixed.",
+      "C": "Incorrect: MAC operates at Layer 2 (Data Link); IP operates at Layer 3 (Network).",
+      "D": "Incorrect: Routers route using Layer 3 IP addresses; MAC addresses change at every single router hop."
+    },
+    "real_world_example": "A letter has a person's name (like a MAC address) and a mailing postal address (like a hierarchical IP address).",
+    "placement_tip": "Common trap: Remember that MAC addresses do NOT cross router boundaries; they change at every router hop!",
+    "source_type": "Reported PYQ",
+    "source_note": "Reported in TCS NQT & Infosys technical assessment"
+  },
+  {
+    "id": 20,
+    "question": "A candidate in a placement interview states: 'A switch and a router do the exact same job because both forward network data through multiple ports.' What is the critical architectural reason this statement is false?",
+    "question_type": "Tricky",
+    "difficulty": "Medium",
+    "topic": "Network Devices",
+    "concept": "Switch vs Router Architecture",
+    "options": [
+      "A switch operates primarily at Layer 2 using MAC addresses to forward frames within a single network, whereas a router operates at Layer 3 using IP addresses to route packets between different networks",
+      "A router can only connect devices using Bluetooth, while a switch can only connect devices using fiber optic cables",
+      "A switch connects different continents, whereas a router can only connect computers located on the same office desk",
+      "A router creates a single collision domain, while a switch creates multiple broadcast domains"
+    ],
+    "correct_answer": "A switch operates primarily at Layer 2 using MAC addresses to forward frames within a single network, whereas a router operates at Layer 3 using IP addresses to route packets between different networks",
+    "correct_option_index": 0,
+    "explanation": "A Layer 2 switch operates within a single local network/broadcast domain and forwards frames based on MAC addresses. A router connects distinct logical networks/subnets and forwards packets across network boundaries based on IP routing tables.",
+    "why_other_options_are_wrong": {
+      "A": "Correct: Layer 2 MAC switching inside a broadcast domain vs Layer 3 IP routing between distinct subnets.",
+      "B": "Incorrect: Routers and switches both support Ethernet, fiber, copper, and various physical media.",
+      "C": "Incorrect: Switches are local network devices; routers handle inter-network and global WAN transit.",
+      "D": "Incorrect: This is reversed: a switch creates separate collision domains per port, while a router breaks up broadcast domains."
+    },
+    "real_world_example": "All PCs in an office plug into a switch; that switch plugs into the router's LAN port to reach the internet.",
+    "placement_tip": "Remember: A switch breaks collision domains; a router breaks broadcast domains.",
+    "source_type": "Reported Interview Question",
+    "source_note": "Reported in Capgemini & Cognizant technical interviews"
+  },
+  {
+    "id": 21,
+    "question": "Which statement correctly distinguishes the role of DNS from that of DHCP in computer networking?",
+    "question_type": "Tricky",
+    "difficulty": "Easy",
+    "topic": "Application Protocols",
+    "concept": "DNS vs DHCP Core Distinction",
+    "options": [
+      "DNS translates human-readable domain names into IP addresses, whereas DHCP automatically assigns IP addresses and network configuration settings to hosts",
+      "DHCP translates domain names into MAC addresses, whereas DNS assigns default gateways to client laptops",
+      "DNS operates at Layer 2 to filter frames, whereas DHCP operates at Layer 4 to control TCP window sizes",
+      "DNS is only used on mobile phones, whereas DHCP is only used on mainframe supercomputers"
+    ],
+    "correct_answer": "DNS translates human-readable domain names into IP addresses, whereas DHCP automatically assigns IP addresses and network configuration settings to hosts",
+    "correct_option_index": 0,
+    "explanation": "DNS (Domain Name System) acts as the phonebook of the internet, resolving domain names (e.g., google.com) into routable IP addresses. DHCP (Dynamic Host Configuration Protocol) assigns dynamic IP addresses, subnet masks, DNS server IPs, and default gateway configurations to devices when they join a network.",
+    "why_other_options_are_wrong": {
+      "A": "Correct: DNS = Name-to-IP resolution; DHCP = Automatic host IP and parameter assignment.",
+      "B": "Incorrect: DHCP does not translate domain names; ARP translates IP to MAC.",
+      "C": "Incorrect: Both DNS and DHCP are Application-layer (Layer 7) protocols running over UDP.",
+      "D": "Incorrect: DNS and DHCP are universal protocols used across all modern operating systems and network devices."
+    },
+    "real_world_example": "DHCP gives your laptop the IP 192.168.1.15 when you connect to Wi-Fi; DNS resolves 'prep.com' so you can study.",
+    "placement_tip": "Do not mix up the 'D's: DNS = Domain Names; DHCP = Dynamic Host Configuration.",
+    "source_type": "Common Placement Pattern",
+    "source_note": "Frequently tested in Accenture & Wipro placement exams"
+  },
+  {
+    "id": 22,
+    "question": "Why is submitting credit card details over standard HTTP considered dangerous, and how does HTTPS eliminate this vulnerability?",
+    "question_type": "Tricky",
+    "difficulty": "Hard",
+    "topic": "Application Protocols",
+    "concept": "HTTP vs HTTPS Security and Encryption",
+    "options": [
+      "HTTP transmits all data in cleartext allowing packet sniffers to read passwords and card numbers, whereas HTTPS encrypts the payload using TLS/SSL",
+      "HTTP packets travel twice as fast as HTTPS packets, causing payment numbers to collide and corrupt",
+      "HTTP uses UDP which drops credit card numbers randomly, whereas HTTPS uses TCP which preserves money transfers",
+      "HTTP is an open-source protocol banned by banking regulations, whereas HTTPS is a proprietary protocol owned by Visa"
+    ],
+    "correct_answer": "HTTP transmits all data in cleartext allowing packet sniffers to read passwords and card numbers, whereas HTTPS encrypts the payload using TLS/SSL",
+    "correct_option_index": 0,
+    "explanation": "HTTP sends requests and responses in unencrypted cleartext. Anyone with access to an intermediate router or Wi-Fi hotspot can read or tamper with the data using packet sniffers. HTTPS encapsulates HTTP within an encrypted TLS session, ensuring confidentiality, authentication, and integrity.",
+    "why_other_options_are_wrong": {
+      "A": "Correct: Cleartext transmission in HTTP vs cryptographic encryption and integrity verification in HTTPS.",
+      "B": "Incorrect: HTTP is not faster in a way that causes packet collision or data corruption.",
+      "C": "Incorrect: Both standard HTTP and HTTPS run over TCP (Port 80 and Port 443 respectively).",
+      "D": "Incorrect: Both HTTP and HTTPS are open RFC internet standards defined by the IETF, not proprietary corporate software."
+    },
+    "real_world_example": "Entering credentials on public cafe Wi-Fi: HTTP allows anyone running Wireshark to capture your password; HTTPS scrambles it completely.",
+    "placement_tip": "HTTPS = HTTP + TLS. Default port HTTP = 80; default port HTTPS = 443.",
+    "source_type": "Reported Interview Question",
+    "source_note": "Reported in TCS NQT & Cognizant technical interviews"
+  },
+  {
+    "id": 23,
+    "question": "A student claims: 'TCP is reliable, which means it must also be faster and have lower latency than UDP because reliable protocols are better engineered.' Why is this claim factually incorrect?",
+    "question_type": "Tricky",
+    "difficulty": "Medium",
+    "topic": "TCP/IP & Transport",
+    "concept": "TCP Overhead vs Speed Trade-off",
+    "options": [
+      "TCP's 3-way handshake, acknowledgment packets, sequence tracking, and retransmission mechanisms introduce computational and transmission overhead, making it slower than UDP",
+      "TCP is intentionally throttled by ISPs because it consumes less bandwidth than UDP",
+      "UDP is faster only because it compresses all files using gzip before transmission",
+      "TCP packets travel over copper cables while UDP packets travel exclusively through fiber optics"
+    ],
+    "correct_answer": "TCP's 3-way handshake, acknowledgment packets, sequence tracking, and retransmission mechanisms introduce computational and transmission overhead, making it slower than UDP",
+    "correct_option_index": 0,
+    "explanation": "Reliability comes at a cost. TCP requires a 3-way handshake before data transmission, continuous acknowledgment packets, packet ordering checks, flow control windows, and retransmissions when packets are dropped. UDP has no handshake, no acknowledgments, and a small 8-byte header (vs TCP's 20-60 byte header), giving UDP lower latency.",
+    "why_other_options_are_wrong": {
+      "A": "Correct: TCP reliability requires acknowledgments, handshakes, and retransmissions, adding latency and overhead.",
+      "B": "Incorrect: ISPs do not arbitrarily throttle TCP; the latency is an inherent protocol design characteristic.",
+      "C": "Incorrect: UDP does not perform data compression; it simply transmits datagrams without guarantees.",
+      "D": "Incorrect: Transport protocols are physical-media independent and run over copper, fiber, or wireless equally."
+    },
+    "real_world_example": "DNS lookups use UDP because a single request-and-reply packet avoids the multi-round-trip overhead of setting up a TCP session.",
+    "placement_tip": "Placement trap: 'Reliable' never means 'faster'. TCP trades latency for correctness; UDP trades reliability for speed.",
+    "source_type": "Reported Interview Question",
+    "source_note": "Reported in Deloitte & Infosys technical interviews"
+  },
+  {
+    "id": 24,
+    "question": "Many beginners assume: 'Video streaming services like Netflix and YouTube must always use UDP because UDP is meant for video.' Why do modern Video-on-Demand (VoD) services actually stream video over TCP (via HTTP/HTTPS) instead of UDP?",
+    "question_type": "Tricky",
+    "difficulty": "Hard",
+    "topic": "TCP/IP & Transport",
+    "concept": "Video-on-Demand Streaming over TCP",
+    "options": [
+      "Pre-recorded video can be buffered ahead of playback time, making guaranteed byte-for-byte delivery via TCP and CDN caching far more valuable than raw real-time speed",
+      "UDP is completely incapable of carrying video data under any technical circumstances",
+      "Web browsers are legally prohibited from executing UDP sockets by international telecommunication treaties",
+      "TCP video streaming automatically doubles the user's monitor refresh rate"
+    ],
+    "correct_answer": "Pre-recorded video can be buffered ahead of playback time, making guaranteed byte-for-byte delivery via TCP and CDN caching far more valuable than raw real-time speed",
+    "correct_option_index": 0,
+    "explanation": "In Video-on-Demand (VoD like Netflix or YouTube), video is pre-recorded. The client buffers several seconds or minutes of video ahead of the playback head. Because playback is buffered, TCP's retransmission of dropped packets happens transparently without interrupting viewing, ensuring pristine image quality and leveraging HTTP web caching (CDNs).",
+    "why_other_options_are_wrong": {
+      "A": "Correct: VoD utilizes client-side buffering and HTTP-based adaptive streaming (DASH/HLS) over TCP.",
+      "B": "Incorrect: UDP is widely used for live real-time media (Zoom, WebRTC, Twitch live ingestion, QUIC/HTTP3).",
+      "C": "Incorrect: There are no legal bans; modern browsers support WebRTC and QUIC which utilize UDP.",
+      "D": "Incorrect: Transport protocols handle packet delivery and have zero relation to monitor hardware refresh rates."
+    },
+    "real_world_example": "HLS (HTTP Live Streaming) and DASH deliver chunks of video files over standard HTTPS/TCP connections.",
+    "placement_tip": "Key distinction: Live interactive calls (Zoom) use UDP; Pre-recorded buffered video (Netflix/YouTube) uses TCP/HTTPS.",
+    "source_type": "Expected 2026 Pattern",
+    "source_note": "Expected 2026 Pattern in modern enterprise network & cloud interviews"
+  },
+  {
+    "id": 25,
+    "question": "What is the fundamental architectural difference between the Internet and an Intranet?",
+    "question_type": "Tricky",
+    "difficulty": "Easy",
+    "topic": "Networking Fundamentals",
+    "concept": "Internet vs Intranet Boundaries",
+    "options": [
+      "The Internet is a globally distributed public network accessible to anyone, whereas an Intranet is a private, restricted network accessible only to authorized members of an organization",
+      "The Internet uses fiber optics while an Intranet can only operate using satellite dishes",
+      "The Internet does not use IP addresses, whereas an Intranet relies entirely on IPv6",
+      "An Intranet can only connect two computers together, whereas the Internet connects at least five"
+    ],
+    "correct_answer": "The Internet is a globally distributed public network accessible to anyone, whereas an Intranet is a private, restricted network accessible only to authorized members of an organization",
+    "correct_option_index": 0,
+    "explanation": "The Internet is a global system of interconnected computer networks using the standard Internet Protocol Suite (TCP/IP), open to the public worldwide. An Intranet is a private network belonging to an organization, protected by firewalls and access controls, and accessible only to internal personnel.",
+    "why_other_options_are_wrong": {
+      "A": "Correct: Public global network of networks vs private, organization-restricted secured network.",
+      "B": "Incorrect: Both use standard networking media (Ethernet, fiber, Wi-Fi).",
+      "C": "Incorrect: Both the Internet and Intranets rely on the TCP/IP suite and standard IP addressing.",
+      "D": "Incorrect: An Intranet can connect hundreds of thousands of computers across global corporate branches."
+    },
+    "real_world_example": "A company employee accessing internal payroll records on 'intranet.corp' vs reading public news on 'bbc.com'.",
+    "placement_tip": "Inter-net = Between networks (Global/Public); Intra-net = Within one organization (Private).",
+    "source_type": "Reported Interview Question",
+    "source_note": "Reported in HCLTech & Tech Mahindra entry-level rounds"
+  },
+  {
+    "id": 26,
+    "question": "A server with a single IP address (198.51.100.10) is simultaneously hosting a public website, an SSH management terminal, and an outgoing mail relay. How does the server's operating system direct incoming network traffic to the correct application?",
+    "question_type": "Tricky",
+    "difficulty": "Easy",
+    "topic": "TCP/IP & Transport",
+    "concept": "Port Number vs IP Address Demultiplexing",
+    "options": [
+      "The IP address identifies the host device on the network, while the destination Port Number identifies the specific application or process running on that host",
+      "The server generates a new physical MAC address for every single open socket connection",
+      "The server changes its IP address dynamically every time a new client connects",
+      "The Ethernet cable separates packets into different copper strands based on the file type"
+    ],
+    "correct_answer": "The IP address identifies the host device on the network, while the destination Port Number identifies the specific application or process running on that host",
+    "correct_option_index": 0,
+    "explanation": "The IP address (Layer 3) routes packets to the correct target computer/host across the network. The Port Number (Layer 4) allows the host's operating system to demultiplex incoming transport segments and deliver them to the specific application listening on that port (e.g., port 80 for web, port 22 for SSH, port 25 for mail).",
+    "why_other_options_are_wrong": {
+      "A": "Correct: IP address locates the machine; Port number locates the software process inside that machine.",
+      "B": "Incorrect: The physical MAC address belongs to the NIC and does not change per socket connection.",
+      "C": "Incorrect: Servers maintain static IP addresses so clients can reliably locate them.",
+      "D": "Incorrect: Physical copper strands carry serialized electrical bitstreams, not application-segregated flows."
+    },
+    "real_world_example": "An apartment building has a single street address (IP address), but individual mail reaches tenants via their apartment numbers (Port numbers).",
+    "placement_tip": "Socket = IP Address + Port Number. IP identifies the host; Port identifies the process.",
+    "source_type": "Reported PYQ",
+    "source_note": "Reported in TCS NQT & Capgemini technical rounds"
+  },
+  {
+    "id": 27,
+    "question": "Which of the following tables accurately summarizes the technical differences between TCP and UDP?",
+    "question_type": "Comparison",
+    "difficulty": "Medium",
+    "topic": "TCP/IP & Transport",
+    "concept": "TCP vs UDP Comparison",
+    "options": [
+      "TCP is connection-oriented, provides guaranteed in-order delivery with acknowledgments and flow control; UDP is connectionless, provides best-effort delivery with no retransmission and minimal overhead",
+      "TCP is connectionless with zero packet overhead; UDP is connection-oriented and requires a 5-way cryptographic handshake",
+      "TCP operates at Layer 2 of the OSI model; UDP operates exclusively at Layer 7",
+      "TCP does not support error checking; UDP guarantees that all dropped packets are recovered within 10 milliseconds"
+    ],
+    "correct_answer": "TCP is connection-oriented, provides guaranteed in-order delivery with acknowledgments and flow control; UDP is connectionless, provides best-effort delivery with no retransmission and minimal overhead",
+    "correct_option_index": 0,
+    "explanation": "TCP establishes a virtual connection using a 3-way handshake, ensures reliable ordered packet delivery through sequence numbers and acknowledgments, and implements congestion and flow control. UDP sends independent datagrams without establishing a connection, providing low-latency best-effort transmission.",
+    "why_other_options_are_wrong": {
+      "A": "Correct: Full contrast of connection-oriented reliable TCP vs connectionless lightweight UDP.",
+      "B": "Incorrect: Reverses the protocols: TCP is connection-oriented; UDP is connectionless.",
+      "C": "Incorrect: Both TCP and UDP operate at Layer 4 (Transport Layer) of the OSI model.",
+      "D": "Incorrect: Both protocols include checksums for error detection, but only TCP performs retransmission."
+    },
+    "real_world_example": "Downloading a ZIP file uses TCP (a single flipped bit corrupts the archive); DNS lookups use UDP for instant query-response.",
+    "placement_tip": "High frequency interview question: Always state 'Connection-oriented vs Connectionless' first, then mention reliability, ordering, and overhead.",
+    "source_type": "Reported Interview Question",
+    "source_note": "Reported in TCS NQT, Accenture, Infosys, and Cognizant"
+  },
+  {
+    "id": 28,
+    "question": "When comparing IPv4 and IPv6 header architectures and addressing formats, which statement is completely accurate?",
+    "question_type": "Comparison",
+    "difficulty": "Medium",
+    "topic": "IP Addressing",
+    "concept": "IPv4 vs IPv6 Architecture",
+    "options": [
+      "IPv4 uses 32-bit addresses formatted as dotted-decimal numbers, whereas IPv6 uses 128-bit addresses formatted in hexadecimal notation separated by colons",
+      "IPv4 addresses are 64 bits long, whereas IPv6 addresses are 256 bits long",
+      "IPv4 headers have a fixed size of 40 bytes, whereas IPv6 headers contain variable checksum fields that cannot be compressed",
+      "IPv4 supports stateless address autoconfiguration (SLAAC) natively, whereas IPv6 requires manual configuration for all hosts"
+    ],
+    "correct_answer": "IPv4 uses 32-bit addresses formatted as dotted-decimal numbers, whereas IPv6 uses 128-bit addresses formatted in hexadecimal notation separated by colons",
+    "correct_option_index": 0,
+    "explanation": "IPv4 uses a 32-bit address space (e.g., 192.168.1.1) yielding ~4.29 billion addresses. IPv6 uses 128 bits (e.g., 2001:0db8:85a3:0000:0000:8a2e:0370:7334) formatted in 8 groups of 4 hexadecimal digits separated by colons, with a simplified fixed 40-byte base header.",
+    "why_other_options_are_wrong": {
+      "A": "Correct: 32-bit dotted-decimal (IPv4) vs 128-bit colon-hexadecimal (IPv6).",
+      "B": "Incorrect: IPv4 is 32 bits (not 64); IPv6 is 128 bits (not 256).",
+      "C": "Incorrect: IPv6 has a fixed 40-byte header and actually eliminated the header checksum to speed up router processing.",
+      "D": "Incorrect: SLAAC is an IPv6 feature; IPv4 relies on DHCP or static assignment."
+    },
+    "real_world_example": "IPv4: 172.217.16.206; IPv6: 2607:f8b0:4004:808::200e (both reach Google).",
+    "placement_tip": "Remember: IPv4 = 32 bits / 4 bytes; IPv6 = 128 bits / 16 bytes. IPv6 eliminated broadcast (uses multicast instead).",
+    "source_type": "Common Placement Pattern",
+    "source_note": "Frequently tested in LTIMindtree, Wipro & Capgemini"
+  },
+  {
+    "id": 29,
+    "question": "Why is replacing a legacy network Hub with an Ethernet Switch considered a massive performance and security upgrade for an office LAN?",
+    "question_type": "Comparison",
+    "difficulty": "Easy",
+    "topic": "Network Devices",
+    "concept": "Hub vs Switch Collision Domains and Unicast",
+    "options": [
+      "A hub broadcasts incoming electrical signals out all ports creating a single shared collision domain, whereas a switch maintains a MAC table to forward frames directly to target ports, giving each port its own collision domain",
+      "A hub converts Ethernet into optical fiber, whereas a switch converts electrical signals into Wi-Fi",
+      "A hub operates at Layer 3 and routes IP packets, whereas a switch operates at Layer 1 and amplifies analog radio waves",
+      "A hub encrypts all data automatically using AES-256, whereas a switch transmits data without security"
+    ],
+    "correct_answer": "A hub broadcasts incoming electrical signals out all ports creating a single shared collision domain, whereas a switch maintains a MAC table to forward frames directly to target ports, giving each port its own collision domain",
+    "correct_option_index": 0,
+    "explanation": "A hub is a Layer 1 multiport repeater that repeats incoming bits out of every connected port, causing collisions if two devices transmit simultaneously (single collision domain) and allowing any device to eavesdrop on all traffic. A switch operates at Layer 2, learns MAC addresses, isolates collision domains to individual ports, and forwards frames only to the intended recipient.",
+    "why_other_options_are_wrong": {
+      "A": "Correct: Hub = Layer 1 broadcast to all ports (one collision domain); Switch = Layer 2 selective unicast forwarding (isolated collision domains).",
+      "B": "Incorrect: Neither device fundamentally changes physical media unless specifically built as media converters.",
+      "C": "Incorrect: Hub is Layer 1 (not Layer 3); Switch is Layer 2 (not Layer 1).",
+      "D": "Incorrect: Hubs have zero encryption or intelligence; switches forward standard Ethernet frames."
+    },
+    "real_world_example": "Plugging 10 computers into a 100 Mbps hub forces them to share 100 Mbps; plugging them into a switch gives each port dedicated full-duplex bandwidth.",
+    "placement_tip": "Interview catchphrase: 'Hub = Multiport repeater (L1, 1 collision domain); Switch = Intelligent bridge (L2, separate collision domains)'.",
+    "source_type": "Reported Interview Question",
+    "source_note": "Reported in TCS NQT, Cognizant & Tech Mahindra"
+  },
+  {
+    "id": 30,
+    "question": "What is the primary operational difference between POP3 and IMAP when an email client connects to a mail server?",
+    "question_type": "Comparison",
+    "difficulty": "Medium",
+    "topic": "Application Protocols",
+    "concept": "POP3 vs IMAP Protocol Comparison",
+    "options": [
+      "POP3 downloads emails to the local device and typically removes them from the server, while IMAP maintains messages on the server and synchronizes changes across all clients",
+      "POP3 is used to send emails to external servers, while IMAP is used to route web traffic",
+      "POP3 encrypts data with TLS while IMAP only supports unencrypted cleartext",
+      "POP3 requires an active internet connection to read downloaded emails, whereas IMAP cannot function on mobile phones"
+    ],
+    "correct_answer": "POP3 downloads emails to the local device and typically removes them from the server, while IMAP maintains messages on the server and synchronizes changes across all clients",
+    "correct_option_index": 0,
+    "explanation": "POP3 (Post Office Protocol 3, default port 110) follows a store-and-forward model where mail is downloaded to the local hard drive and deleted from the mailbox server. IMAP (Internet Message Access Protocol, default port 143) keeps all folders and emails on the server, synchronizing changes across multiple client devices.",
+    "why_other_options_are_wrong": {
+      "A": "Correct: POP3 downloads and deletes (single device); IMAP synchronizes on the server (multi-device).",
+      "B": "Incorrect: SMTP sends emails; neither POP3 nor IMAP is used for sending outbound mail or routing web traffic.",
+      "C": "Incorrect: Both POP3 and IMAP support TLS encryption (POP3S on port 995, IMAPS on port 993).",
+      "D": "Incorrect: POP3 allows offline reading of downloaded messages, and IMAP is the predominant protocol used on mobile smartphones."
+    },
+    "real_world_example": "If you read an email on your phone using IMAP, it shows as read on your laptop. With POP3, reading it on one device leaves it unread or missing on the other.",
+    "placement_tip": "Port numbers: POP3 = 110 (POP3S = 995); IMAP = 143 (IMAPS = 993); SMTP = 25 / 587.",
+    "source_type": "Reported PYQ",
+    "source_note": "Reported in Infosys & Accenture technical assessments"
+  },
+  {
+    "id": 31,
+    "question": "In telecommunications and computer networking, how does a digital Repeater differ from an analog Amplifier when extending transmission distance over long cables?",
+    "question_type": "Comparison",
+    "difficulty": "Hard",
+    "topic": "Network Devices",
+    "concept": "Repeater vs Amplifier Signal Processing",
+    "options": [
+      "An amplifier boosts the entire incoming analog signal including any accumulated background noise, whereas a repeater regenerates, reshapes, and retimes the original clean digital bitstream",
+      "An amplifier operates at the Transport Layer while a repeater operates at the Application Layer",
+      "A repeater changes the destination IP address of packets, while an amplifier changes the MAC address",
+      "An amplifier can only be used on fiber optic cables, while repeaters only work on Wi-Fi"
+    ],
+    "correct_answer": "An amplifier boosts the entire incoming analog signal including any accumulated background noise, whereas a repeater regenerates, reshapes, and retimes the original clean digital bitstream",
+    "correct_option_index": 0,
+    "explanation": "An amplifier is an analog device that increases the amplitude of whatever signal enters it, meaning any noise or distortion is amplified right along with the signal. A repeater is a digital Layer 1 device that reads incoming pulses, extracts the binary 1s and 0s, and generates a brand-new, clean, full-strength signal free of noise.",
+    "why_other_options_are_wrong": {
+      "A": "Correct: Amplifier = Boosts signal + noise; Repeater = Regenerates clean digital bits.",
+      "B": "Incorrect: Both devices operate at Layer 1 (Physical Layer).",
+      "C": "Incorrect: Neither device inspects or modifies Layer 2 MAC addresses or Layer 3 IP addresses.",
+      "D": "Incorrect: Amplifiers and repeaters exist for electrical copper cables, wireless RF, and optical fiber systems."
+    },
+    "real_world_example": "Submarine transatlantic fiber optic cables use digital repeaters every 50-100 km to reconstitute degraded light pulses.",
+    "placement_tip": "Key interview word: Repeaters REGENERATE signals; Amplifiers merely MAGNIFY signals (including noise).",
+    "source_type": "Common Placement Pattern",
+    "source_note": "Frequently tested in TCS NQT & HCLTech technical rounds"
+  },
+  {
+    "id": 32,
+    "question": "Which of the following describes the difference in scope and layer operation between a network Bridge and a network Gateway?",
+    "question_type": "Comparison",
+    "difficulty": "Hard",
+    "topic": "Network Devices",
+    "concept": "Bridge vs Gateway Scope and Protocol Translation",
+    "options": [
+      "A bridge connects two similar network segments at Layer 2 using MAC addresses, whereas a gateway connects dissimilar networks and can translate protocols across all OSI layers",
+      "A bridge only connects satellite dishes, whereas a gateway can only connect USB flash drives",
+      "A bridge operates at Layer 7 to translate languages, whereas a gateway operates at Layer 1 to splice cables",
+      "A bridge creates public IP addresses, whereas a gateway deletes private IP addresses"
+    ],
+    "correct_answer": "A bridge connects two similar network segments at Layer 2 using MAC addresses, whereas a gateway connects dissimilar networks and can translate protocols across all OSI layers",
+    "correct_option_index": 0,
+    "explanation": "A Bridge is a Layer 2 device that links two segments of the same network type (e.g., two Ethernet segments) and filters frames based on MAC addresses. A Gateway acts as a protocol converter or entry/exit point between completely dissimilar network architectures, translating data formats, addresses, or protocols across multiple OSI layers.",
+    "why_other_options_are_wrong": {
+      "A": "Correct: Bridge = Layer 2 link between homogeneous segments; Gateway = Multi-layer translator between heterogeneous networks.",
+      "B": "Incorrect: Both are enterprise networking devices, not consumer peripheral interfaces.",
+      "C": "Incorrect: Reverses layer hierarchy: bridges are Layer 2 devices; gateways can operate up to Layer 7.",
+      "D": "Incorrect: Neither device's primary function is generating or deleting IP addresses."
+    },
+    "real_world_example": "A VoIP gateway translating analog telephone signals (PSTN) into IP packets (SIP/RTP) for a modern corporate VoIP network.",
+    "placement_tip": "Bridge = Connects similar networks (L2); Gateway = Connects dissimilar/heterogeneous networks (translating protocols).",
+    "source_type": "Reported Interview Question",
+    "source_note": "Reported in Capgemini & Cognizant technical rounds"
+  },
+  {
+    "id": 33,
+    "question": "How does Half-Duplex transmission differ from Full-Duplex transmission in computer networks?",
+    "question_type": "Comparison",
+    "difficulty": "Easy",
+    "topic": "Networking Fundamentals",
+    "concept": "Half-Duplex vs Full-Duplex Communication",
+    "options": [
+      "In half-duplex, data can travel in both directions but only in one direction at a time; in full-duplex, data can travel in both directions simultaneously",
+      "In half-duplex, data travels at 50% of the speed of light; in full-duplex, data travels at 100% of the speed of light",
+      "Half-duplex only works on Sundays, whereas full-duplex works seven days a week",
+      "Half-duplex uses two fiber pairs while full-duplex requires no physical media whatsoever"
+    ],
+    "correct_answer": "In half-duplex, data can travel in both directions but only in one direction at a time; in full-duplex, data can travel in both directions simultaneously",
+    "correct_option_index": 0,
+    "explanation": "In half-duplex transmission (like a walkie-talkie or traditional hub-connected Ethernet using CSMA/CD), both parties can transmit and receive, but not at the exact same moment. In full-duplex transmission (like a telephone conversation or switched Ethernet with separate Tx and Rx pairs), both parties can transmit and receive simultaneously.",
+    "why_other_options_are_wrong": {
+      "A": "Correct: Bidirectional alternate (half-duplex) vs bidirectional simultaneous (full-duplex).",
+      "B": "Incorrect: Duplex mode refers to transmission concurrency, not electromagnetic propagation speed.",
+      "C": "Incorrect: Humorous distractor; duplex mode is a hardware capability.",
+      "D": "Incorrect: Full-duplex twisted-pair Ethernet uses dedicated wire pairs for transmitting and receiving."
+    },
+    "real_world_example": "Walkie-talkie = Half Duplex (must say 'Over' before the other speaks); Telephone call = Full Duplex (both can speak at once).",
+    "placement_tip": "Remember: Simplex = One direction only (TV broadcast); Half-Duplex = Both ways, one at a time; Full-Duplex = Both ways simultaneously.",
+    "source_type": "Common Placement Pattern",
+    "source_note": "Frequently tested in TCS, Wipro & Tech Mahindra"
+  },
+  {
+    "id": 34,
+    "question": "In network security (such as during a TLS/HTTPS connection establishment), how is Asymmetric Encryption compared against Symmetric Encryption?",
+    "question_type": "Comparison",
+    "difficulty": "Hard",
+    "topic": "Application Protocols",
+    "concept": "Symmetric vs Asymmetric Encryption in TLS",
+    "options": [
+      "Asymmetric encryption uses a public and private key pair for secure key exchange and authentication, but is computationally slower; symmetric encryption uses a single shared secret key and is much faster for bulk data encryption",
+      "Symmetric encryption uses three public keys, while asymmetric encryption uses no keys",
+      "Asymmetric encryption can only encrypt plain text strings under 10 characters long",
+      "Symmetric encryption operates at Layer 1, while asymmetric encryption operates exclusively at Layer 2"
+    ],
+    "correct_answer": "Asymmetric encryption uses a public and private key pair for secure key exchange and authentication, but is computationally slower; symmetric encryption uses a single shared secret key and is much faster for bulk data encryption",
+    "correct_option_index": 0,
+    "explanation": "Asymmetric encryption (e.g., RSA, ECC) uses mathematically linked key pairs (public key to encrypt, private key to decrypt), making it ideal for identity authentication and exchanging secrets across an insecure medium. However, because it is mathematically intensive, TLS uses asymmetric encryption only during the initial handshake to negotiate a symmetric session key (e.g., AES), which then encrypts the bulk payload efficiently.",
+    "why_other_options_are_wrong": {
+      "A": "Correct: Asymmetric (slow, 2 keys) used for handshake/exchange; Symmetric (fast, 1 shared key) used for bulk payload.",
+      "B": "Incorrect: Symmetric encryption uses exactly one shared secret key.",
+      "C": "Incorrect: Asymmetric encryption algorithms can encrypt data up to the modulus/key size.",
+      "D": "Incorrect: Both cryptographic systems operate at Layer 6/7 or Layer 4 (TLS security layer), not Physical or Data Link layers."
+    },
+    "real_world_example": "When connecting to an HTTPS site, RSA/ECDHE authenticates the server and securely exchanges an AES session key, which then encrypts all page traffic.",
+    "placement_tip": "TLS combines both: Asymmetric for authentication and key exchange; Symmetric for bulk data encryption.",
+    "source_type": "Reported Interview Question",
+    "source_note": "Reported in Deloitte & Accenture technical interviews"
+  },
+  {
+    "id": 35,
+    "question": "What is the correct sequence of the 7 layers of the OSI model from Layer 1 (bottom) to Layer 7 (top)?",
+    "question_type": "Conceptual",
+    "difficulty": "Easy",
+    "topic": "OSI Model",
+    "concept": "OSI Model Layer Hierarchy",
+    "options": [
+      "Physical, Data Link, Network, Transport, Session, Presentation, Application",
+      "Application, Presentation, Session, Transport, Network, Data Link, Physical",
+      "Physical, Network, Data Link, Transport, Application, Session, Presentation",
+      "Data Link, Physical, Network, Transport, Session, Presentation, Application"
+    ],
+    "correct_answer": "Physical, Data Link, Network, Transport, Session, Presentation, Application",
+    "correct_option_index": 0,
+    "explanation": "The OSI (Open Systems Interconnection) reference model defines 7 hierarchical layers from bottom to top: Layer 1 = Physical, Layer 2 = Data Link, Layer 3 = Network, Layer 4 = Transport, Layer 5 = Session, Layer 6 = Presentation, Layer 7 = Application.",
+    "why_other_options_are_wrong": {
+      "A": "Correct: Correct order from Layer 1 (bottom) to Layer 7 (top).",
+      "B": "Incorrect: This is top-down (Layer 7 to Layer 1), but the question specified Layer 1 (bottom) to Layer 7 (top).",
+      "C": "Incorrect: Network and Data Link are swapped.",
+      "D": "Incorrect: Data Link and Physical are swapped."
+    },
+    "real_world_example": "Mnemonic: 'Please Do Not Throw Sausage Pizza Away' (Physical to Application) or 'All People Seem To Need Data Processing' (Application to Physical).",
+    "placement_tip": "Pay close attention to whether the question asks bottom-up (1 to 7) or top-down (7 to 1).",
+    "source_type": "Reported PYQ",
+    "source_note": "Reported across almost every major IT campus drive (TCS, Infosys, Wipro)"
+  },
+  {
+    "id": 36,
+    "question": "In the context of OSI data encapsulation, what are the correct Protocol Data Unit (PDU) names at the Transport, Network, Data Link, and Physical layers respectively?",
+    "question_type": "Conceptual",
+    "difficulty": "Medium",
+    "topic": "OSI Model",
+    "concept": "Protocol Data Units (PDUs)",
+    "options": [
+      "Segment, Packet, Frame, Bits",
+      "Packet, Segment, Bits, Frame",
+      "Frame, Packet, Segment, Bits",
+      "Data, Datagram, Byte, Signal"
+    ],
+    "correct_answer": "Segment, Packet, Frame, Bits",
+    "correct_option_index": 0,
+    "explanation": "As data travels down the OSI stack: Layer 4 (Transport) PDU is the Segment (or Datagram in UDP); Layer 3 (Network) PDU is the Packet; Layer 2 (Data Link) PDU is the Frame; Layer 1 (Physical) PDU is raw Bits.",
+    "why_other_options_are_wrong": {
+      "A": "Correct: L4 = Segment; L3 = Packet; L2 = Frame; L1 = Bits.",
+      "B": "Incorrect: Swaps Transport and Network, and Data Link and Physical.",
+      "C": "Incorrect: Lists Frame at Transport layer and Segment at Data Link layer.",
+      "D": "Incorrect: Uses informal terms rather than standard ISO/OSI PDU definitions."
+    },
+    "real_world_example": "A Wireshark packet capture shows Ethernet Frames containing IP Packets containing TCP Segments containing HTTP Data.",
+    "placement_tip": "Mnemonic for PDUs: Some People Fear Bad times -> Segment (L4), Packet (L3), Frame (L2), Bits (L1).",
+    "source_type": "Reported Interview Question",
+    "source_note": "Reported in Cognizant & Accenture technical rounds"
+  },
+  {
+    "id": 37,
+    "question": "Which of the following functions is a primary responsibility of the Data Link Layer (Layer 2) of the OSI model?",
+    "question_type": "Conceptual",
+    "difficulty": "Easy",
+    "topic": "OSI Model",
+    "concept": "Data Link Layer Responsibilities",
+    "options": [
+      "Framing, physical MAC addressing, and error detection on the local link",
+      "End-to-end routing of packets across multiple autonomous systems",
+      "Translating ASCII data into Unicode representations",
+      "Managing user login sessions and database transactions"
+    ],
+    "correct_answer": "Framing, physical MAC addressing, and error detection on the local link",
+    "correct_option_index": 0,
+    "explanation": "The Data Link Layer is divided into two sublayers: LLC (Logical Link Control) and MAC (Media Access Control). Its main jobs are packaging bits into frames, addressing using physical MAC addresses, controlling access to the shared medium, and detecting transmission errors using Frame Check Sequences (CRC).",
+    "why_other_options_are_wrong": {
+      "A": "Correct: Framing, node-to-node delivery, MAC addressing, and link-level error detection belong to Layer 2.",
+      "B": "Incorrect: End-to-end inter-network routing is performed at Layer 3 (Network Layer).",
+      "C": "Incorrect: Data translation, formatting, and character encoding belong to Layer 6 (Presentation Layer).",
+      "D": "Incorrect: Session management belongs to Layer 5 (Session Layer)."
+    },
+    "real_world_example": "Ethernet headers adding source and destination MAC addresses and a 4-byte CRC checksum to ensure the frame was not corrupted on the wire.",
+    "placement_tip": "Whenever you see 'MAC address', 'Switches', 'Framing', or 'CRC / FCS', think Layer 2 (Data Link).",
+    "source_type": "Common Placement Pattern",
+    "source_note": "Frequently tested in Capgemini & Infosys technical rounds"
+  },
+  {
+    "id": 38,
+    "question": "What is the primary role of the Network Layer (Layer 3) in the OSI model?",
+    "question_type": "Conceptual",
+    "difficulty": "Hard",
+    "topic": "OSI Model",
+    "concept": "Network Layer Responsibilities",
+    "options": [
+      "Logical addressing (IP) and routing packets across different networks",
+      "Mechanical specification of electrical cables and transceiver voltage pins",
+      "Data encryption, compression, and MIME-type formatting",
+      "Re-ordering out-of-sequence transport segments"
+    ],
+    "correct_answer": "Logical addressing (IP) and routing packets across different networks",
+    "correct_option_index": 0,
+    "explanation": "The Network Layer (Layer 3) handles logical host addressing (IPv4/IPv6) and path determination (routing). It enables packets to be forwarded across multiple intermediate routers from the original source to the final destination.",
+    "why_other_options_are_wrong": {
+      "A": "Correct: Logical addressing and path routing across networks are the core duties of Layer 3.",
+      "B": "Incorrect: Electrical and mechanical specifications belong to Layer 1 (Physical Layer).",
+      "C": "Incorrect: Encryption and data compression belong to Layer 6 (Presentation Layer).",
+      "D": "Incorrect: Re-ordering out-of-sequence segments belongs to Layer 4 (Transport Layer)."
+    },
+    "real_world_example": "Routers using OSPF or BGP protocols to forward IP packets across the global internet.",
+    "placement_tip": "Key terms for Layer 3: IP Address, Packets, Routers, Routing Protocols, ICMP.",
+    "source_type": "Reported PYQ",
+    "source_note": "Reported in TCS NQT & Tech Mahindra"
+  },
+  {
+    "id": 39,
+    "question": "Which crucial capability is provided by the Transport Layer (Layer 4) of the OSI model?",
+    "question_type": "Conceptual",
+    "difficulty": "Easy",
+    "topic": "OSI Model",
+    "concept": "Transport Layer Responsibilities",
+    "options": [
+      "Process-to-process (end-to-end) communication, port addressing, segmentation, and optional flow control",
+      "Modulating digital square waves into analog radio signals",
+      "Resolving domain names into numeric IP addresses",
+      "Regenerating weakened electrical signals along coaxial cables"
+    ],
+    "correct_answer": "Process-to-process (end-to-end) communication, port addressing, segmentation, and optional flow control",
+    "correct_option_index": 0,
+    "explanation": "The Transport Layer is responsible for process-to-process delivery (distinguishing applications using port numbers), breaking data into manageable segments, reassembly at the receiving host, and providing end-to-end error recovery and flow control (when using TCP).",
+    "why_other_options_are_wrong": {
+      "A": "Correct: Process-to-process delivery, port numbers, segmentation, and reliability mechanisms are Layer 4 functions.",
+      "B": "Incorrect: Signal modulation belongs to Layer 1 (Physical Layer).",
+      "C": "Incorrect: Domain name resolution is an Application-layer service (DNS, Layer 7).",
+      "D": "Incorrect: Signal regeneration is performed by repeaters at Layer 1."
+    },
+    "real_world_example": "A user having 10 browser tabs open at once: Layer 4 port numbers ensure incoming data reaches the exact tab that requested it.",
+    "placement_tip": "Process-to-process = Layer 4; Host-to-host = Layer 3; Hop-to-hop = Layer 2.",
+    "source_type": "Reported Interview Question",
+    "source_note": "Reported in LTIMindtree & Wipro placement interviews"
+  },
+  {
+    "id": 40,
+    "question": "Which of the following functions are exclusively performed at the Presentation Layer (Layer 6) of the OSI model?",
+    "question_type": "Conceptual",
+    "difficulty": "Medium",
+    "topic": "OSI Model",
+    "concept": "Presentation Layer Functions",
+    "options": [
+      "Data representation, encryption/decryption, character code translation, and compression",
+      "Establishing, managing, and terminating bidirectional dialogue sessions between hosts",
+      "Selecting the best physical path for packet forwarding",
+      "Detecting collisions on shared CSMA/CD Ethernet segments"
+    ],
+    "correct_answer": "Data representation, encryption/decryption, character code translation, and compression",
+    "correct_option_index": 0,
+    "explanation": "Layer 6 (Presentation Layer) ensures that data sent from the application layer of one system can be read by the application layer of another. It handles syntax and semantics, data format translation (e.g., EBCDIC to ASCII), data compression, and cryptographic encryption/decryption.",
+    "why_other_options_are_wrong": {
+      "A": "Correct: Translation, compression, and encryption are the hallmark functions of Layer 6.",
+      "B": "Incorrect: Session management, checkpointing, and dialog control belong to Layer 5 (Session Layer).",
+      "C": "Incorrect: Path selection is performed at Layer 3 (Network Layer).",
+      "D": "Incorrect: Collision detection on Ethernet is performed at Layer 2 (Data Link Layer)."
+    },
+    "real_world_example": "Converting JPEG images, compressing MP3 audio, and formatting SSL/TLS cryptographic syntax before presentation to the application.",
+    "placement_tip": "Remember the 'Three C's and E' of Layer 6: Code conversion, Compression, and Encryption.",
+    "source_type": "Common Placement Pattern",
+    "source_note": "Frequently tested in Accenture & Cognizant technical rounds"
+  },
+  {
+    "id": 41,
+    "question": "What is the primary responsibility of the Session Layer (Layer 5) in the OSI model?",
+    "question_type": "Conceptual",
+    "difficulty": "Medium",
+    "topic": "OSI Model",
+    "concept": "Session Layer Dialog Control and Checkpoints",
+    "options": [
+      "Establishing, maintaining, synchronizing, and terminating communication sessions between applications",
+      "Calculating CRC checksums for incoming Ethernet frames",
+      "Assigning 32-bit logical IP addresses to network interfaces",
+      "Broadcasting Wi-Fi beacon frames"
+    ],
+    "correct_answer": "Establishing, maintaining, synchronizing, and terminating communication sessions between applications",
+    "correct_option_index": 0,
+    "explanation": "The Session Layer (Layer 5) allows processes on different hosts to establish, use, and terminate connections (sessions). It provides dialog control (who sends when) and inserts synchronization checkpoints into data streams so transfers can resume without restarting from scratch if interrupted.",
+    "why_other_options_are_wrong": {
+      "A": "Correct: Dialog control, session management, and synchronization checkpoints belong to Layer 5.",
+      "B": "Incorrect: CRC calculation is performed at Layer 2 (Data Link Layer).",
+      "C": "Incorrect: Logical IP address assignment belongs to Layer 3.",
+      "D": "Incorrect: Wi-Fi beacon frames are handled at Layer 1/2."
+    },
+    "real_world_example": "Downloading a 10 GB file where synchronization checkpoints allow the download to resume at 70% if the connection briefly drops.",
+    "placement_tip": "Whenever you see 'Dialog control', 'Synchronization checkpoints', or 'Session termination', choose Layer 5.",
+    "source_type": "Reported Interview Question",
+    "source_note": "Reported in TCS NQT & HCLTech technical interviews"
+  },
+  {
+    "id": 42,
+    "question": "When data is transmitted from a sender to a receiver across a network, what happens during the Encapsulation process at the sender?",
+    "question_type": "Conceptual",
+    "difficulty": "Medium",
+    "topic": "OSI Model",
+    "concept": "Data Encapsulation Stack Flow",
+    "options": [
+      "As data moves down the OSI stack from Layer 7 to Layer 1, each layer wraps the payload with its own protocol header (and trailer at Layer 2)",
+      "All protocol headers are stripped away until only raw HTML remains",
+      "The data is encrypted seven times using seven different public keys",
+      "The physical network cable converts the data directly into an optical laser without software involvement"
+    ],
+    "correct_answer": "As data moves down the OSI stack from Layer 7 to Layer 1, each layer wraps the payload with its own protocol header (and trailer at Layer 2)",
+    "correct_option_index": 0,
+    "explanation": "Data encapsulation occurs as data moves down the stack from the Application layer to the Physical layer. Each layer treats the data received from the layer above as a payload and adds its own header (e.g., L4 adds port headers, L3 adds IP headers, L2 adds MAC header and FCS trailer). At the receiver, decapsulation strips these headers in reverse order.",
+    "why_other_options_are_wrong": {
+      "A": "Correct: Top-down encapsulation adds specific layer headers (and L2 trailer) at each step.",
+      "B": "Incorrect: Stripping headers is decapsulation, which happens on the receiving end moving up from Layer 1 to Layer 7.",
+      "C": "Incorrect: Encapsulation is structural protocol multiplexing, not 7-fold encryption.",
+      "D": "Incorrect: Software protocol stacks build frames before physical transceivers encode them."
+    },
+    "real_world_example": "Putting a letter inside an envelope, then placing that envelope inside a FedEx shipping pouch with an outer barcode label.",
+    "placement_tip": "Sender = Encapsulation (Down: 7 -> 1); Receiver = Decapsulation (Up: 1 -> 7).",
+    "source_type": "Reported PYQ",
+    "source_note": "Reported in Capgemini & Infosys placement rounds"
+  },
+  {
+    "id": 43,
+    "question": "Which sequence of control flags correctly represents the standard TCP Three-Way Handshake used to establish a reliable connection?",
+    "question_type": "Conceptual",
+    "difficulty": "Easy",
+    "topic": "TCP/IP & Transport",
+    "concept": "TCP Three-Way Handshake Sequence",
+    "options": [
+      "SYN -> SYN-ACK -> ACK",
+      "ACK -> SYN -> FIN",
+      "SYN -> FIN -> ACK",
+      "HELLO -> READY -> START"
+    ],
+    "correct_answer": "SYN -> SYN-ACK -> ACK",
+    "correct_option_index": 0,
+    "explanation": "To establish a TCP connection, the client sends a segment with the SYN flag set and an initial sequence number (ISN). The server responds with SYN and ACK flags set (acknowledging client's ISN and offering its own ISN). Finally, the client sends back an ACK flag acknowledging the server's sequence number.",
+    "why_other_options_are_wrong": {
+      "A": "Correct: Step 1 = SYN (client); Step 2 = SYN-ACK (server); Step 3 = ACK (client).",
+      "B": "Incorrect: A connection cannot start with ACK, and FIN is used to terminate a connection.",
+      "C": "Incorrect: FIN is used for connection termination, not establishment.",
+      "D": "Incorrect: Informal non-standard terms; TCP uses SYN and ACK flags in the header."
+    },
+    "real_world_example": "Client says: 'Let's synchronize (SYN)'; Server replies: 'I acknowledge your sync, here is mine (SYN-ACK)'; Client replies: 'Got it, let's talk (ACK)'.",
+    "placement_tip": "A universal placement question: Always remember SYN -> SYN-ACK -> ACK for connection establishment.",
+    "source_type": "Reported Interview Question",
+    "source_note": "Asked in virtually every IT technical interview (TCS, Accenture, Cognizant, Wipro)"
+  },
+  {
+    "id": 44,
+    "question": "How does TCP gracefully terminate an established connection between a client and a server?",
+    "question_type": "Conceptual",
+    "difficulty": "Medium",
+    "topic": "TCP/IP & Transport",
+    "concept": "TCP Four-Way Handshake Connection Termination",
+    "options": [
+      "Through a 4-step handshake: FIN -> ACK -> FIN -> ACK",
+      "Through a 1-step broadcast of a DROP packet",
+      "By clearing the server's MAC address table",
+      "By immediately pulling the physical Ethernet cable"
+    ],
+    "correct_answer": "Through a 4-step handshake: FIN -> ACK -> FIN -> ACK",
+    "correct_option_index": 0,
+    "explanation": "Because TCP is full-duplex, each half of the connection must be closed independently. Host A sends a FIN (finish) segment; Host B replies with an ACK. When Host B is finished sending its remaining data, Host B sends its own FIN segment; Host A replies with a final ACK.",
+    "why_other_options_are_wrong": {
+      "A": "Correct: FIN and ACK in both directions allow each side to finish transmission cleanly.",
+      "B": "Incorrect: Abrupt teardowns use RST (Reset), but standard graceful termination uses the 4-way FIN exchange.",
+      "C": "Incorrect: MAC address tables belong to Layer 2 switches and have no role in Layer 4 TCP connection state.",
+      "D": "Incorrect: Physical disconnections are abnormal faults, not graceful protocol terminations."
+    },
+    "real_world_example": "When a web browser finishes downloading all assets on a webpage, it closes the HTTP/1.1 TCP connection via FIN-ACK.",
+    "placement_tip": "Connection establishment = 3-way (SYN, SYN-ACK, ACK); Graceful connection termination = 4-way (FIN, ACK, FIN, ACK).",
+    "source_type": "Common Placement Pattern",
+    "source_note": "Frequently asked in Infosys & LTIMindtree technical interviews"
+  },
+  {
+    "id": 45,
+    "question": "Which of the following correctly pairs four essential internet protocols with their standard default well-known port numbers?",
+    "question_type": "Conceptual",
+    "difficulty": "Hard",
+    "topic": "Application Protocols",
+    "concept": "Standard Application Port Numbers",
+    "options": [
+      "HTTP: 80, HTTPS: 443, SSH: 22, DNS: 53",
+      "HTTP: 21, HTTPS: 22, SSH: 80, DNS: 443",
+      "HTTP: 443, HTTPS: 80, SSH: 25, DNS: 110",
+      "HTTP: 25, HTTPS: 53, SSH: 143, DNS: 80"
+    ],
+    "correct_answer": "HTTP: 80, HTTPS: 443, SSH: 22, DNS: 53",
+    "correct_option_index": 0,
+    "explanation": "Standard well-known ports (0-1023) assigned by IANA: HTTP uses port 80; HTTPS uses port 443; SSH uses port 22; DNS uses port 53 (primarily UDP, and TCP for zone transfers or large responses).",
+    "why_other_options_are_wrong": {
+      "A": "Correct: All four protocols are accurately mapped to their standard well-known ports.",
+      "B": "Incorrect: FTP is 21, SSH is 22, HTTP is 80, HTTPS is 443.",
+      "C": "Incorrect: Inverts HTTP and HTTPS, and assigns SMTP (25) and POP3 (110) incorrectly.",
+      "D": "Incorrect: SMTP is 25, DNS is 53, IMAP is 143."
+    },
+    "real_world_example": "When you type 'https://google.com', your browser automatically connects to destination port 443 without you having to type ':443'.",
+    "placement_tip": "Must-know ports: FTP 20/21, SSH 22, Telnet 23, SMTP 25, DNS 53, DHCP 67/68, HTTP 80, POP3 110, IMAP 143, HTTPS 443.",
+    "source_type": "Reported PYQ",
+    "source_note": "Reported in TCS NQT, Accenture & Cognizant placement exams"
+  },
+  {
+    "id": 46,
+    "question": "According to RFC 1918, which of the following blocks represents a designated private IPv4 address range that is not routable across the public internet?",
+    "question_type": "Conceptual",
+    "difficulty": "Medium",
+    "topic": "IP Addressing",
+    "concept": "Private IPv4 Address Ranges (RFC 1918)",
+    "options": [
+      "192.168.0.0 to 192.168.255.255 (192.168.0.0/16)",
+      "8.8.0.0 to 8.8.255.255",
+      "1.1.1.0 to 1.1.1.255",
+      "200.100.50.0 to 200.100.50.255"
+    ],
+    "correct_answer": "192.168.0.0 to 192.168.255.255 (192.168.0.0/16)",
+    "correct_option_index": 0,
+    "explanation": "RFC 1918 reserves three address blocks for private networks: Class A: 10.0.0.0/8 (10.0.0.0 to 10.255.255.255); Class B: 172.16.0.0/12 (172.16.0.0 to 172.31.255.255); Class C: 192.168.0.0/16 (192.168.0.0 to 192.168.255.255). These addresses are never routed over the public internet.",
+    "why_other_options_are_wrong": {
+      "A": "Correct: Standard RFC 1918 Class C private address range used in homes and offices.",
+      "B": "Incorrect: 8.8.8.8 / 8.8.0.0 is public IP space owned by Google.",
+      "C": "Incorrect: 1.1.1.1 is public IP space owned by Cloudflare.",
+      "D": "Incorrect: 200.X.X.X is publicly routable Class C address space."
+    },
+    "real_world_example": "Your home Wi-Fi assigning 192.168.1.10 to your phone; your router uses NAT to translate this to a single public IP provided by your ISP.",
+    "placement_tip": "Memorize the 3 private ranges: 10.0.0.0/8, 172.16.0.0/12, and 192.168.0.0/16.",
+    "source_type": "Reported Interview Question",
+    "source_note": "Reported in Capgemini & Tech Mahindra interviews"
+  },
+  {
+    "id": 47,
+    "question": "What is the technical distinction between Flow Control and Congestion Control in TCP?",
+    "question_type": "Conceptual",
+    "difficulty": "Hard",
+    "topic": "TCP/IP & Transport",
+    "concept": "Flow Control vs Congestion Control",
+    "options": [
+      "Flow control prevents a fast sender from overwhelming a slow receiver using the Sliding Window, while congestion control prevents sender traffic from overwhelming intermediate network routers",
+      "Flow control is managed by the DNS server, while congestion control is handled by the physical Ethernet cable",
+      "Flow control operates only in UDP, while congestion control operates only in HTTP",
+      "Flow control controls the physical temperature of the NIC, while congestion control monitors CPU utilization"
+    ],
+    "correct_answer": "Flow control prevents a fast sender from overwhelming a slow receiver using the Sliding Window, while congestion control prevents sender traffic from overwhelming intermediate network routers",
+    "correct_option_index": 0,
+    "explanation": "Flow Control is an end-to-end mechanism where the receiver advertises its available buffer space via the TCP Receive Window (rwnd), preventing the sender from overflowing the receiver's memory. Congestion Control is a network-wide mechanism where the sender dynamically calculates the Congestion Window (cwnd) using algorithms like Slow Start and Congestion Avoidance to avoid overwhelming intermediate switches and routers.",
+    "why_other_options_are_wrong": {
+      "A": "Correct: Flow control = Protects the receiver (rwnd); Congestion control = Protects the network path/routers (cwnd).",
+      "B": "Incorrect: DNS and physical cables have no involvement in TCP windowing or congestion dynamics.",
+      "C": "Incorrect: UDP does not provide flow control or congestion control; both are signature features of TCP.",
+      "D": "Incorrect: Neither mechanism is related to hardware temperature or server CPU utilization."
+    },
+    "real_world_example": "A high-speed server throttles transmission because a mobile phone's buffer is almost full (flow control).",
+    "placement_tip": "Flow control = End-to-end (Sender vs Receiver buffer); Congestion control = Network-wide (Sender vs Network capacity).",
+    "source_type": "Common Placement Pattern",
+    "source_note": "Frequently tested in Deloitte & Infosys technical rounds"
+  },
+  {
+    "id": 48,
+    "question": "When a user types 'https://www.google.com' into a web browser and hits Enter, what is the very first networking operation that must occur before any web server can be contacted?",
+    "question_type": "Conceptual",
+    "difficulty": "Easy",
+    "topic": "Application Protocols",
+    "concept": "Browser URL Resolution Sequence",
+    "options": [
+      "The browser initiates DNS resolution to translate the domain name into an IP address (checking browser cache, OS cache, router cache, and DNS resolvers)",
+      "The browser sends an HTTP GET request to all computers on the local Wi-Fi",
+      "The router encrypts the user's hard drive using a TLS session key",
+      "The web server downloads the user's browser history"
+    ],
+    "correct_answer": "The browser initiates DNS resolution to translate the domain name into an IP address (checking browser cache, OS cache, router cache, and DNS resolvers)",
+    "correct_option_index": 0,
+    "explanation": "Computers communicate across networks using IP addresses. Before any TCP connection can be established or HTTP request sent, the browser must discover the IP address corresponding to 'www.google.com' through the hierarchical DNS resolution process.",
+    "why_other_options_are_wrong": {
+      "A": "Correct: Step 1 is always resolving the hostname to an IP address via DNS.",
+      "B": "Incorrect: The browser cannot send an HTTP GET request without knowing the destination IP address.",
+      "C": "Incorrect: Routers do not encrypt user hard drives; TLS encrypts transport data across the connection.",
+      "D": "Incorrect: Servers do not download client browser history."
+    },
+    "real_world_example": "Looking up someone's phone number in your contact list before dialing their phone.",
+    "placement_tip": "Famous interview question: 'What happens when you type a URL in a browser?' Always start with browser cache check followed by DNS resolution!",
+    "source_type": "Reported Interview Question",
+    "source_note": "Standard question across Google, TCS NQT, Accenture, and Amazon"
+  },
+  {
+    "id": 49,
+    "question": "What is the primary function of a Subnet Mask (such as 255.255.255.0) when paired with an IPv4 address?",
+    "question_type": "Conceptual",
+    "difficulty": "Medium",
+    "topic": "IP Addressing",
+    "concept": "Subnet Mask Network vs Host ID Division",
+    "options": [
+      "It distinguishes which portion of the IP address represents the Network ID and which portion represents the Host ID",
+      "It encrypts the IP address so hackers cannot see it on Wi-Fi",
+      "It controls how many gigabytes of data a user can download each month",
+      "It converts IPv4 packets into IPv6 packets"
+    ],
+    "correct_answer": "It distinguishes which portion of the IP address represents the Network ID and which portion represents the Host ID",
+    "correct_option_index": 0,
+    "explanation": "A subnet mask is a 32-bit number where contiguous binary 1s indicate the Network portion and binary 0s indicate the Host portion. By performing a bitwise AND operation between its IP address and subnet mask, a computer determines whether a destination IP is on the same local subnet or requires a router.",
+    "why_other_options_are_wrong": {
+      "A": "Correct: The subnet mask splits the IP address into Network prefix and Host identifier.",
+      "B": "Incorrect: Subnet masks provide zero encryption; they are structural routing identifiers.",
+      "C": "Incorrect: Subnetting does not set ISP data usage quotas.",
+      "D": "Incorrect: Subnet masks do not perform IPv4 to IPv6 translation."
+    },
+    "real_world_example": "In 192.168.1.50 with mask 255.255.255.0 (/24), '192.168.1' identifies the network (the street) and '.50' identifies the host (the house number).",
+    "placement_tip": "Bitwise AND operation: IP & Subnet Mask = Network Address.",
+    "source_type": "Reported PYQ",
+    "source_note": "Reported in Cognizant & Tech Mahindra recruitment rounds"
+  },
+  {
+    "id": 50,
+    "question": "When a computer knows the destination IPv4 address of another device on the same local subnet, which protocol does it use to discover that device's physical MAC address?",
+    "question_type": "Conceptual",
+    "difficulty": "Easy",
+    "topic": "Networking Fundamentals",
+    "concept": "Address Resolution Protocol (ARP)",
+    "options": [
+      "Address Resolution Protocol (ARP)",
+      "Dynamic Host Configuration Protocol (DHCP)",
+      "Border Gateway Protocol (BGP)",
+      "Internet Message Access Protocol (IMAP)"
+    ],
+    "correct_answer": "Address Resolution Protocol (ARP)",
+    "correct_option_index": 0,
+    "explanation": "ARP operates between the Data Link and Network layers. It broadcasts an 'ARP Request' to all devices on the local segment asking 'Who has this IP address? Tell me your MAC address'. The owner replies with a unicast 'ARP Reply' containing its MAC address.",
+    "why_other_options_are_wrong": {
+      "A": "Correct: ARP maps a known IP address to an unknown physical MAC address.",
+      "B": "Incorrect: DHCP assigns IP addresses and network parameters to clients.",
+      "C": "Incorrect: BGP is a routing protocol used between Autonomous Systems on the internet.",
+      "D": "Incorrect: IMAP is an email synchronization protocol."
+    },
+    "real_world_example": "Running 'arp -a' in the Windows Command Prompt displays the IP-to-MAC address resolution cache on your machine.",
+    "placement_tip": "Remember: ARP resolves IP -> MAC address. RARP (Reverse ARP) resolves MAC -> IP address.",
+    "source_type": "Common Placement Pattern",
+    "source_note": "Frequently tested in TCS NQT, Wipro & Capgemini"
+  },
+  {
+    "id": 51,
+    "question": "Which of the following statements accurately defines a Collision Domain and a Broadcast Domain?",
+    "question_type": "Conceptual",
+    "difficulty": "Hard",
+    "topic": "Networking Fundamentals",
+    "concept": "Collision Domains vs Broadcast Domains",
+    "options": [
+      "A collision domain is a network segment where simultaneous transmissions cause data packets to collide; a broadcast domain is a network area where any broadcast frame reaches all connected devices",
+      "A collision domain only exists inside hard disk drives, while a broadcast domain only exists in television broadcasting studios",
+      "Routers create a single collision domain, while hubs eliminate all broadcast domains",
+      "Switches combine all connected ports into one single collision domain"
+    ],
+    "correct_answer": "A collision domain is a network segment where simultaneous transmissions cause data packets to collide; a broadcast domain is a network area where any broadcast frame reaches all connected devices",
+    "correct_option_index": 0,
+    "explanation": "In a collision domain, packets can collide if sent at the same time (a switch isolates each port into its own collision domain). In a broadcast domain, a broadcast frame (FF:FF:FF:FF:FF:FF) is received by all nodes (switches forward broadcasts, while routers do not forward Layer 2 broadcasts, thereby bounding the broadcast domain).",
+    "why_other_options_are_wrong": {
+      "A": "Correct: Accurate definition of collision domains (isolated by switches/bridges) and broadcast domains (bounded by routers).",
+      "B": "Incorrect: Both are fundamental local area network architectural boundaries.",
+      "C": "Incorrect: Routers break broadcast domains; hubs create one large shared collision domain.",
+      "D": "Incorrect: A switch separates collision domains, so every port is an isolated collision domain."
+    },
+    "real_world_example": "An 8-port hub has 1 collision domain and 1 broadcast domain. An 8-port switch has 8 collision domains and 1 broadcast domain. A router separates broadcast domains.",
+    "placement_tip": "Quick rule: Hub = 1 Collision, 1 Broadcast; Switch = N Collisions (N ports), 1 Broadcast; Router = N Collisions, N Broadcasts (N interfaces).",
+    "source_type": "Reported Interview Question",
+    "source_note": "Reported in Accenture, TCS & Cognizant technical assessments"
+  },
+  {
+    "id": 52,
+    "question": "The network diagnostic utility 'ping' tests reachability between two hosts. Which protocol and message types does 'ping' rely upon?",
+    "question_type": "Conceptual",
+    "difficulty": "Easy",
+    "topic": "Networking Fundamentals",
+    "concept": "ICMP Echo Request and Reply",
+    "options": [
+      "Internet Control Message Protocol (ICMP) using Echo Request (Type 8) and Echo Reply (Type 0)",
+      "Transmission Control Protocol (TCP) using SYN and ACK segments",
+      "User Datagram Protocol (UDP) using Broadcast Datagrams",
+      "HyperText Transfer Protocol (HTTP) using HEAD requests"
+    ],
+    "correct_answer": "Internet Control Message Protocol (ICMP) using Echo Request (Type 8) and Echo Reply (Type 0)",
+    "correct_option_index": 0,
+    "explanation": "The 'ping' command uses ICMP (Internet Control Message Protocol), a network-layer protocol. The sending host transmits an ICMP Echo Request (Type 8, Code 0); if the target host is reachable and not blocking ICMP, it responds with an ICMP Echo Reply (Type 0, Code 0).",
+    "why_other_options_are_wrong": {
+      "A": "Correct: Ping utilizes ICMP Echo Request (Type 8) and Echo Reply (Type 0).",
+      "B": "Incorrect: Standard ping does not establish a TCP connection or send SYN segments.",
+      "C": "Incorrect: Ping operates via ICMP directly over IP (protocol number 1), not UDP.",
+      "D": "Incorrect: Ping is transport/network agnostic and does not send HTTP application requests."
+    },
+    "real_world_example": "Executing 'ping 8.8.8.8' sends 32-byte ICMP Echo Requests to test whether your internet connection has packet loss or latency spikes.",
+    "placement_tip": "Remember: ICMP operates at the Network Layer (Layer 3) encapsulated directly inside IP packets without a TCP or UDP header.",
+    "source_type": "Reported PYQ",
+    "source_note": "Reported in TCS NQT & Wipro placement exams"
+  },
+  {
+    "id": 53,
+    "question": "In the process of opening 'http://example.com' in a browser, immediately after the browser receives the web server's IP address from DNS, what is the next network action the browser performs?",
+    "question_type": "Application",
+    "difficulty": "Medium",
+    "topic": "TCP/IP & Transport",
+    "concept": "URL Flow: Transport Layer Handshake",
+    "options": [
+      "It initiates a TCP Three-Way Handshake with the server on port 80 to establish a reliable transport connection",
+      "It immediately downloads all images and CSS stylesheets",
+      "It sends an ARP broadcast to the DNS root servers in Europe",
+      "It compiles the JavaScript files locally on the operating system"
+    ],
+    "correct_answer": "It initiates a TCP Three-Way Handshake with the server on port 80 to establish a reliable transport connection",
+    "correct_option_index": 0,
+    "explanation": "Once the IP address is known, an HTTP request cannot be transmitted until an underlying transport connection exists. The browser initiates a TCP 3-way handshake (SYN, SYN-ACK, ACK) to the destination IP on port 80 (or 443 for HTTPS). Only after the connection is established does the browser send its HTTP GET request.",
+    "why_other_options_are_wrong": {
+      "A": "Correct: Establishing the Layer 4 TCP connection is the mandatory prerequisite before any HTTP request can be transmitted.",
+      "B": "Incorrect: The browser cannot download web assets before establishing a transport session and requesting the HTML.",
+      "C": "Incorrect: ARP broadcasts cannot cross internet routers, and DNS has already completed.",
+      "D": "Incorrect: JavaScript cannot be compiled before the HTML and script files have been requested and received."
+    },
+    "real_world_example": "Looking at the network timing waterfall in Chrome DevTools reveals: DNS Lookup -> Initial Connection (TCP Handshake) -> SSL/TLS Negotiation -> Request Sent -> TTFB.",
+    "placement_tip": "Sequence: 1. DNS Resolution -> 2. TCP 3-Way Handshake -> 3. TLS Handshake (if HTTPS) -> 4. HTTP GET -> 5. Server Response (HTML) -> 6. Render.",
+    "source_type": "Expected 2026 Pattern",
+    "source_note": "High-probability question in 2026 full-stack & MNC technical rounds"
+  },
+  {
+    "id": 54,
+    "question": "When accessing an HTTPS website ('https://shop.online.com'), during the TLS handshake, what is the primary purpose of the web server sending its digital SSL/TLS Certificate to the client browser?",
+    "question_type": "Application",
+    "difficulty": "Hard",
+    "topic": "Application Protocols",
+    "concept": "TLS Certificate Authentication and Public Key",
+    "options": [
+      "To prove the server's authentic identity through a trusted Certificate Authority (CA) and provide the server's public key for secure key exchange",
+      "To force the client browser to delete all local cookies and browsing history",
+      "To provide the server's private key directly to the client for temporary decryption",
+      "To assign a new IPv6 address to the client's home router"
+    ],
+    "correct_answer": "To prove the server's authentic identity through a trusted Certificate Authority (CA) and provide the server's public key for secure key exchange",
+    "correct_option_index": 0,
+    "explanation": "The digital certificate serves two essential functions: 1) Authentication: it proves to the browser that the website truly is 'shop.online.com' as verified by a trusted Certificate Authority (e.g., Let's Encrypt, DigiCert); 2) Key Exchange: it contains the server's public key, enabling the client to securely negotiate a symmetric session key without risk of eavesdropping.",
+    "why_other_options_are_wrong": {
+      "A": "Correct: Authentication of the domain identity and delivery of the public key for cryptographic key exchange.",
+      "B": "Incorrect: Certificates have no control over client browser cookie storage or history.",
+      "C": "Incorrect: The server's private key must NEVER be shared with clients; it remains strictly secret on the server.",
+      "D": "Incorrect: IP assignment is handled by DHCP or SLAAC, not TLS certificates."
+    },
+    "real_world_example": "If an attacker intercepts your traffic, their fake certificate won't be signed by a trusted CA, prompting the browser to alert: 'Your connection is not private'.",
+    "placement_tip": "Never forget: The certificate contains the PUBLIC key. The PRIVATE key is never sent over the network.",
+    "source_type": "Reported Interview Question",
+    "source_note": "Reported in Accenture & Deloitte technical rounds"
+  },
+  {
+    "id": 55,
+    "question": "A network engineer configures a local subnet with the IPv4 network address 192.168.10.0 and a subnet mask of 255.255.255.0 (a /24 prefix). Exactly how many usable host IP addresses can be assigned to client computers in this subnet?",
+    "question_type": "Application",
+    "difficulty": "Medium",
+    "topic": "IP Addressing",
+    "concept": "Usable Host Calculation Formula (2^H - 2)",
+    "options": [
+      "254",
+      "256",
+      "255",
+      "128"
+    ],
+    "correct_answer": "254",
+    "correct_option_index": 0,
+    "explanation": "In a /24 subnet, 24 bits are allocated to the network and 8 bits remain for hosts (H = 8). The total number of IP addresses is 2^8 = 256. However, 2 addresses are reserved and cannot be assigned to hosts: the Network ID (all host bits 0: 192.168.10.0) and the Broadcast Address (all host bits 1: 192.168.10.255). Thus, usable hosts = 2^H - 2 = 256 - 2 = 254.",
+    "why_other_options_are_wrong": {
+      "A": "Correct: 2^8 - 2 = 254 usable host addresses (192.168.10.1 through 192.168.10.254).",
+      "B": "Incorrect: 256 is the total number of addresses, but Network and Broadcast addresses cannot be assigned to hosts.",
+      "C": "Incorrect: 255 is an invalid count; two addresses must be subtracted, not one.",
+      "D": "Incorrect: 128 is the total address count for a /25 subnet."
+    },
+    "real_world_example": "A standard home router using 192.168.1.0/24 can support up to 254 simultaneous phones, tablets, and smart TVs.",
+    "placement_tip": "Universal formula for usable hosts: 2^H - 2, where H is the number of host bits remaining (32 minus prefix length).",
+    "source_type": "Reported PYQ",
+    "source_note": "Reported in TCS NQT, Capgemini & Cognizant technical tests"
+  },
+  {
+    "id": 56,
+    "question": "When setting up a corporate Wireless Access Point (WAP), which wireless security standard should be chosen to provide robust enterprise authentication (integrating individual user credentials via a RADIUS server) rather than a shared static pre-shared key?",
+    "question_type": "Application",
+    "difficulty": "Hard",
+    "topic": "Network Devices",
+    "concept": "Wireless Security: WPA Enterprise vs Personal",
+    "options": [
+      "WPA2/WPA3 Enterprise (802.1X)",
+      "Wired Equivalent Privacy (WEP)",
+      "WPA Personal (WPA-PSK)",
+      "Open SSID without encryption"
+    ],
+    "correct_answer": "WPA2/WPA3 Enterprise (802.1X)",
+    "correct_option_index": 0,
+    "explanation": "WPA Enterprise (utilizing IEEE 802.1X and RADIUS) requires each user to authenticate with their own individual username and password or digital certificate. This prevents employees from sharing a single common passphrase and allows immediate credential revocation when someone leaves the company.",
+    "why_other_options_are_wrong": {
+      "A": "Correct: 802.1X / WPA Enterprise enables individual authentication through a centralized RADIUS or Active Directory server.",
+      "B": "Incorrect: WEP is severely broken and can be cracked in seconds using tools like Aircrack-ng.",
+      "C": "Incorrect: WPA Personal (PSK) uses one single shared password for all users, which is unsuitable for enterprise security.",
+      "D": "Incorrect: An open network provides zero encryption and exposes all traffic to passive wireless sniffing."
+    },
+    "real_world_example": "University eduroam networks requiring students to log in with their college student ID and password rather than a shared password.",
+    "placement_tip": "Home Wi-Fi = WPA-Personal (Pre-Shared Key); Corporate/College Wi-Fi = WPA-Enterprise (802.1X with individual credentials).",
+    "source_type": "Common Placement Pattern",
+    "source_note": "Frequently asked in Infosys & Tech Mahindra technical interviews"
+  },
+  {
+    "id": 57,
+    "question": "To log in securely to a remote server via SSH without typing a password each time, a developer generates an SSH keypair consisting of a private key and a public key. Which key must be copied to the remote server's '~/.ssh/authorized_keys' file, and which key must remain strictly on the developer's local machine?",
+    "question_type": "Application",
+    "difficulty": "Medium",
+    "topic": "Application Protocols",
+    "concept": "SSH Keypair Architecture and Deployment",
+    "options": [
+      "The Public key is placed on the remote server's authorized_keys file, while the Private key remains securely stored on the developer's local machine",
+      "The Private key is placed on the remote server, while the Public key is deleted immediately",
+      "Both keys must be uploaded to the server and made publicly readable by all users",
+      "Both keys must be stored on a floppy disk kept inside the server room"
+    ],
+    "correct_answer": "The Public key is placed on the remote server's authorized_keys file, while the Private key remains securely stored on the developer's local machine",
+    "correct_option_index": 0,
+    "explanation": "In asymmetric authentication, the Public Key can be distributed freely and is placed in the remote server's '~/.ssh/authorized_keys' file. During authentication, the server challenges the client by encrypting a random number with the public key; only the client possessing the matching Private Key (stored safely on the local machine) can decrypt and solve the challenge.",
+    "why_other_options_are_wrong": {
+      "A": "Correct: Public key goes on the server; Private key stays on your local machine and is never shared.",
+      "B": "Incorrect: Revealing your private key completely compromises your security.",
+      "C": "Incorrect: Storing the private key on the remote server defeats the purpose of client-side keypair authentication.",
+      "D": "Incorrect: Humorous obsolete distractor."
+    },
+    "real_world_example": "Using 'ssh-copy-id user@server' to append your local id_rsa.pub to the remote server's authorized_keys.",
+    "placement_tip": "Rule of thumb for public key crypto: Public key = The lock (give to anyone); Private key = The key (keep in your pocket).",
+    "source_type": "Reported Interview Question",
+    "source_note": "Reported in TCS NQT & Cognizant technical interviews"
+  },
+  {
+    "id": 58,
+    "question": "A network engineer runs 'ping 10.50.2.1' from a workstation and receives the following response:\n\n'Reply from 192.168.1.1: Destination host unreachable.'\n\nWhat is the exact technical diagnosis of this output?",
+    "question_type": "Output / Situation-Reasoning",
+    "difficulty": "Hard",
+    "topic": "Networking Fundamentals",
+    "concept": "Interpreting Ping ICMP Diagnostic Output",
+    "options": [
+      "The local default gateway (192.168.1.1) responded stating it has no route in its routing table to forward packets to the 10.50.2.0 network",
+      "The destination host (10.50.2.1) received the packet and sent an acknowledgment before shutting down",
+      "The workstation's monitor has failed to refresh the graphics card buffer",
+      "The DNS server successfully resolved the domain name into an IPv6 multicast"
+    ],
+    "correct_answer": "The local default gateway (192.168.1.1) responded stating it has no route in its routing table to forward packets to the 10.50.2.0 network",
+    "correct_option_index": 0,
+    "explanation": "Notice the IP reporting the error: 'Reply from 192.168.1.1'. The local router/gateway received the packet from the workstation, looked up its internal routing table for 10.50.2.1, found no matching route or received an ARP failure on the remote subnet, and returned an ICMP Type 3 (Destination Unreachable) message back to the sender.",
+    "why_other_options_are_wrong": {
+      "A": "Correct: The gateway (192.168.1.1) informed the workstation that it cannot find or reach the destination subnet.",
+      "B": "Incorrect: If the destination host replied, the message would say 'Reply from 10.50.2.1: bytes=32 time=...'.",
+      "C": "Incorrect: Diagnostic command line text is generated by software, not related to GPU buffer faults.",
+      "D": "Incorrect: Ping was executed directly on an IP address (10.50.2.1), so DNS was not queried."
+    },
+    "real_world_example": "A router lacking an entry in its routing table for a newly added branch office subnet drops the packet and issues ICMP Destination Unreachable.",
+    "placement_tip": "Look at WHO is replying in the ping error: If it's your gateway's IP, the router cannot find a route; if it's 'Request timed out', the packet left but no reply returned.",
+    "source_type": "Common Placement Pattern",
+    "source_note": "Frequently tested in Capgemini & LTIMindtree technical interviews"
+  },
+  {
+    "id": 59,
+    "question": "How does the 'traceroute' (or 'tracert' in Windows) utility determine the IP addresses of all intermediate routers along the path to a destination host?",
+    "question_type": "Output / Situation-Reasoning",
+    "difficulty": "Hard",
+    "topic": "Networking Fundamentals",
+    "concept": "Traceroute Mechanics via IP TTL Expiration",
+    "options": [
+      "It deliberately sends packets with incrementally increasing Time-To-Live (TTL) values starting at 1, capturing the ICMP Time Exceeded messages sent back by each router when TTL reaches 0",
+      "It queries the root DNS servers to retrieve the global satellite GPS coordinates of all cables",
+      "It sends an SSH command to every router requesting its administrative password",
+      "It establishes a persistent TCP connection to port 80 of every internet router in the world"
+    ],
+    "correct_answer": "It deliberately sends packets with incrementally increasing Time-To-Live (TTL) values starting at 1, capturing the ICMP Time Exceeded messages sent back by each router when TTL reaches 0",
+    "correct_option_index": 0,
+    "explanation": "Every IP packet header has a Time-To-Live (TTL) field. Each router decrements the TTL by 1 before forwarding. If TTL hits 0, the router drops the packet and sends an 'ICMP Time Exceeded' (Type 11) message back to the sender. Traceroute sends packets with TTL=1 (discovering hop 1), TTL=2 (discovering hop 2), TTL=3 (discovering hop 3), and so forth until reaching the destination.",
+    "why_other_options_are_wrong": {
+      "A": "Correct: Incremental TTL expiration and ICMP Type 11 (Time Exceeded) replies enable hop-by-hop path discovery.",
+      "B": "Incorrect: DNS resolves names, not physical router path telemetry or GPS coordinates.",
+      "C": "Incorrect: Traceroute has no authentication credentials or SSH administrative access to transit routers.",
+      "D": "Incorrect: Transit routers forward packets; they do not open TCP web sessions on intermediate hops."
+    },
+    "real_world_example": "Running 'tracert google.com' prints 12 lines showing each router hop from your home ISP through backbone tier-1 carriers to Google's edge data center.",
+    "placement_tip": "High frequency interview question: 'How does traceroute work?' The magic phrase is: 'Incrementally increasing TTL and listening for ICMP Time Exceeded messages'.",
+    "source_type": "Reported Interview Question",
+    "source_note": "Reported in TCS NQT, Accenture & Deloitte technical rounds"
+  },
+  {
+    "id": 60,
+    "question": "A network administrator analyzes a Wireshark packet capture between a client (192.168.1.10) and a database server (192.168.1.50) on port 3306. The trace shows the client sending: \n\n[SYN] Seq=0\n\nfollowed immediately by the server replying with: \n\n[RST, ACK] Seq=1 Ack=1\n\nWhat does the server's '[RST, ACK]' response indicate?",
+    "question_type": "Output / Situation-Reasoning",
+    "difficulty": "Hard",
+    "topic": "TCP/IP & Transport",
+    "concept": "TCP Reset Flag (RST) on Closed Port",
+    "options": [
+      "The database server received the connection request, but port 3306 is currently closed because no database service is actively listening on that port",
+      "The database server successfully accepted the connection and is ready to receive SQL queries",
+      "The client's network cable was severed during transmission",
+      "The database server has experienced a power outage"
+    ],
+    "correct_answer": "The database server received the connection request, but port 3306 is currently closed because no database service is actively listening on that port",
+    "correct_option_index": 0,
+    "explanation": "When an active host receives a TCP SYN packet on a port where no application or service is listening, the host's operating system kernel immediately generates a TCP packet with the RST (Reset) and ACK flags set to inform the client that the connection is refused. If the server were offline or blocked by a drop-all firewall, no reply at all would be received ('Request timed out').",
+    "why_other_options_are_wrong": {
+      "A": "Correct: RST-ACK means the host is up, but the target port is closed / connection refused.",
+      "B": "Incorrect: If the server accepted the connection, it would respond with [SYN, ACK], not [RST, ACK].",
+      "C": "Incorrect: If the cable were severed, the client would receive no response at all.",
+      "D": "Incorrect: If the server had no power, it could not actively compose and send an RST-ACK packet back."
+    },
+    "real_world_example": "Trying to connect to MySQL before starting the service: the OS returns 'Connection refused' because port 3306 is closed.",
+    "placement_tip": "Wireshark knowledge: SYN -> SYN-ACK = Port Open; SYN -> RST-ACK = Port Closed (Connection Refused); SYN -> No response = Port Filtered/Firewalled.",
+    "source_type": "Expected 2026 Pattern",
+    "source_note": "Expected 2026 Pattern in senior fresher & digital placement roles"
+  }
+];
+
+if (typeof window !== 'undefined') {
+  window.NETWORKING_QUESTIONS = questionsData;
+  window.questionsData = questionsData;
+}
