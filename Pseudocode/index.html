@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pseudocode & Programming Logic - 2026 Campus Placement Practice & Assessment</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="app-header">
+        <div class="header-container">
+            <div class="header-left">
+                <a href="../index.html" class="back-link" aria-label="Return to PlacementPrep Dashboard">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                    Dashboard
+                </a>
+                <div class="header-divider"></div>
+                <div class="module-title-area">
+                    <div class="topic-tag">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="16 18 22 12 16 6"></polyline>
+                            <polyline points="8 6 2 12 8 18"></polyline>
+                        </svg>
+                        <span>Pseudocode Logic</span>
+                    </div>
+                    <span id="header-mode-badge" class="badge mode-tag">Practice Mode</span>
+                </div>
+            </div>
+
+            <div class="header-center">
+                <!-- 60:00 Timer for Exam Mode -->
+                <div id="timer-box" class="timer-box hidden" aria-live="polite">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    <span id="timer-display" class="timer-text">60:00</span>
+                </div>
+            </div>
+
+            <div class="header-right">
+                <div id="score-counter" class="score-pill">
+                    Score: <strong id="score-value">0</strong>
+                </div>
+
+                <button id="theme-toggle" class="icon-btn theme-toggle" aria-label="Toggle dark mode" title="Toggle dark/light mode">
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="4.22" x2="19.78" y2="5.64"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="app-main">
+
+        <!-- SCREEN 1: Mode Selection Screen -->
+        <section id="screen-mode-select" class="screen-view active">
+            <div class="welcome-hero">
+                <div class="code-hero-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="16 18 22 12 16 6"></polyline>
+                        <polyline points="8 6 2 12 8 18"></polyline>
+                    </svg>
+                </div>
+                <h1>Pseudocode & Programming Logic</h1>
+                <p class="hero-desc">
+                    Comprehensive <strong>100-Question Assessment Bank</strong> designed for <strong>2026 Campus Placements</strong>. Master code tracing, loop unwinding, operator traps, recursion trees, bitwise manipulation, and array logic asked in top tech assessments.
+                </p>
+
+                <div class="hero-badges-row">
+                    <span class="company-pill">Accenture</span>
+                    <span class="company-pill">Capgemini</span>
+                    <span class="company-pill">TCS NQT</span>
+                    <span class="company-pill">Infosys</span>
+                    <span class="company-pill">Wipro</span>
+                    <span class="company-pill">Cognizant</span>
+                    <span class="company-pill">LTIMindtree</span>
+                    <span class="company-pill">Deloitte</span>
+                </div>
+            </div>
+
+            <!-- Mode Options Grid -->
+            <div class="mode-cards-grid">
+                <!-- Practice Mode -->
+                <div class="mode-card featured">
+                    <span class="mode-card-badge">Self-Paced</span>
+                    <div class="mode-icon-wrapper">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 20h9"></path>
+                            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                        </svg>
+                    </div>
+                    <h3>Interactive Practice</h3>
+                    <p>Instant step-by-step logic tracing, variable tracking tables, placement traps, and distractor breakdowns on every question.</p>
+                    <ul class="mode-highlights">
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Instant feedback with complete code trace
+                        </li>
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Filter by Topic, Style & Difficulty
+                        </li>
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Bookmark tricky questions for quick revision
+                        </li>
+                    </ul>
+                    <button class="btn-start-mode" onclick="window.PseudocodeApp.startMode('practice')">
+                        Start Practice
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </button>
+                </div>
+
+                <!-- 60-Minute Exam Mode -->
+                <div class="mode-card">
+                    <span class="mode-card-badge" style="background:var(--topic-loops);">60 Mins</span>
+                    <div class="mode-icon-wrapper" style="background:var(--topic-loops-light);color:var(--topic-loops);">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                    </div>
+                    <h3>Placement Exam Mode</h3>
+                    <p>Simulate authentic IT service company technical assessments. 100 questions, 60-minute countdown, question palette, and diagnostic score card.</p>
+                    <ul class="mode-highlights">
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            100 Question Full Assessment
+                        </li>
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Interactive 100-question matrix palette
+                        </li>
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Detailed performance diagnostics report
+                        </li>
+                    </ul>
+                    <button class="btn-start-mode" style="background:linear-gradient(135deg, var(--topic-loops), #047857); box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);" onclick="window.PseudocodeApp.startMode('exam')">
+                        Launch 60-Min Test
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </button>
+                </div>
+
+                <!-- Flashcard Mode -->
+                <div class="mode-card">
+                    <span class="mode-card-badge" style="background:var(--topic-recursion);">Mental Tracing</span>
+                    <div class="mode-icon-wrapper" style="background:var(--topic-recursion-light);color:var(--topic-recursion);">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="3" y1="9" x2="21" y2="9"></line>
+                            <line x1="9" y1="21" x2="9" y2="9"></line>
+                        </svg>
+                    </div>
+                    <h3>Flashcard Drill</h3>
+                    <p>Focus purely on dry-running code mentally without looking at options first. Flip to see execution traces and final variable values.</p>
+                    <ul class="mode-highlights">
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Zero-distraction mental code execution
+                        </li>
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Click to reveal trace table & traps
+                        </li>
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Rapid review before recruitment drives
+                        </li>
+                    </ul>
+                    <button class="btn-start-mode" style="background:linear-gradient(135deg, var(--topic-recursion), #6d28d9); box-shadow: 0 4px 14px rgba(124, 58, 237, 0.3);" onclick="window.PseudocodeApp.startMode('flashcards')">
+                        Open Flashcards
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Curriculum & Question Blueprint Matrix -->
+            <div class="curriculum-section">
+                <div class="curriculum-header">
+                    <h2>2026 MNC Placement Question Blueprint (130 Questions)</h2>
+                    <span class="badge mode-tag">0 Easy • 18 Medium • 67 Hard • 45 Very Hard</span>
+                </div>
+                <div class="curriculum-grid">
+                    <div class="curriculum-item">
+                        <span class="topic-name">Programming Fundamentals</span>
+                        <span class="topic-stat">35 Questions (Variables, Constants, Types, Precedence, Conversions)</span>
+                    </div>
+                    <div class="curriculum-item">
+                        <span class="topic-name">Conditional Statements</span>
+                        <span class="topic-stat">25 Questions (Nested if, compound conditions, ternary, De Morgan)</span>
+                    </div>
+                    <div class="curriculum-item">
+                        <span class="topic-name">Loops & Iterations</span>
+                        <span class="topic-stat">40 Questions (for, while, do-while, nested, infinite, break/continue)</span>
+                    </div>
+                    <div class="curriculum-item">
+                        <span class="topic-name">Recursion & Call Stack</span>
+                        <span class="topic-stat">30 Questions (Base Cases, Tree Recursion, Loops, Depth, Returns)</span>
+                    </div>
+                    <div class="curriculum-item">
+                        <span class="topic-name">Code Output Tracing</span>
+                        <span class="topic-stat">45 Questions (Mental step-by-step evaluation, loops & recursion)</span>
+                    </div>
+                    <div class="curriculum-item">
+                        <span class="topic-name">Logic Analysis & Flow</span>
+                        <span class="topic-stat">16 Questions (Condition simplification, short-circuit, paths)</span>
+                    </div>
+                    <div class="curriculum-item">
+                        <span class="topic-name">Real-World MNC Scenarios</span>
+                        <span class="topic-stat">15 Questions (Inventory, electricity slab, banking limits, discounts)</span>
+                    </div>
+                    <div class="curriculum-item">
+                        <span class="topic-name">Final Value & Propagation</span>
+                        <span class="topic-stat">14 Questions (Complex arithmetic, boundary convergence, stack returns)</span>
+                    </div>
+                    <div class="curriculum-item">
+                        <span class="topic-name">Iteration & Call Counting</span>
+                        <span class="topic-stat">12 Questions (Exact loop counts, recursion tree invocations)</span>
+                    </div>
+                    <div class="curriculum-item">
+                        <span class="topic-name">Error & Termination Analysis</span>
+                        <span class="topic-stat">10 Questions (Infinite loops, infinite recursion, scope leaks)</span>
+                    </div>
+                    <div class="curriculum-item">
+                        <span class="topic-name">Concept Application</span>
+                        <span class="topic-stat">7 Questions (Kernighan's algorithm, Euclid GCD, prime bounds)</span>
+                    </div>
+                    <div class="curriculum-item">
+                        <span class="topic-name">Direct Conceptual Reasoning</span>
+                        <span class="topic-stat">5 Questions (IEEE-754 precision, short-circuit rules, type casting)</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCREEN 2: Workspace Screen (Practice / Exam / Flashcards) -->
+        <section id="screen-quiz-workspace" class="screen-view">
+            
+            <!-- Filter Bar (Practice & Flashcards) -->
+            <div id="quiz-filter-bar" class="filter-bar-container">
+                <div class="filter-row">
+                    <span class="filter-label">Style:</span>
+                    <button class="filter-chip active" data-filter-type="all" onclick="window.PseudocodeApp.applyTypeFilter('all')">All Styles (130)</button>
+                    <button class="filter-chip" data-filter-type="output_tracing" onclick="window.PseudocodeApp.applyTypeFilter('output_tracing')">Code Tracing (45)</button>
+                    <button class="filter-chip" data-filter-type="logic_analysis" onclick="window.PseudocodeApp.applyTypeFilter('logic_analysis')">Logic Analysis (16)</button>
+                    <button class="filter-chip" data-filter-type="scenario_based" onclick="window.PseudocodeApp.applyTypeFilter('scenario_based')">MNC Scenarios (15)</button>
+                    <button class="filter-chip" data-filter-type="find_final_value" onclick="window.PseudocodeApp.applyTypeFilter('find_final_value')">Final Value (14)</button>
+                    <button class="filter-chip" data-filter-type="iteration_counting" onclick="window.PseudocodeApp.applyTypeFilter('iteration_counting')">Iteration / Calls (12)</button>
+                    <button class="filter-chip" data-filter-type="error_identification" onclick="window.PseudocodeApp.applyTypeFilter('error_identification')">Error / Debugging (10)</button>
+                    <button class="filter-chip" data-filter-type="concept_application" onclick="window.PseudocodeApp.applyTypeFilter('concept_application')">Applications (7)</button>
+                    <button class="filter-chip" data-filter-type="direct_conceptual" onclick="window.PseudocodeApp.applyTypeFilter('direct_conceptual')">Conceptual (5)</button>
+                </div>
+                <div class="filter-row">
+                    <span class="filter-label">Topic:</span>
+                    <button class="filter-chip active" data-filter-topic="all" onclick="window.PseudocodeApp.applyTopicFilter('all')">All Topics</button>
+                    <button class="filter-chip" data-filter-topic="Programming Fundamentals" onclick="window.PseudocodeApp.applyTopicFilter('Programming Fundamentals')">Fundamentals (35)</button>
+                    <button class="filter-chip" data-filter-topic="Conditional Statements" onclick="window.PseudocodeApp.applyTopicFilter('Conditional Statements')">Conditionals (25)</button>
+                    <button class="filter-chip" data-filter-topic="Loops" onclick="window.PseudocodeApp.applyTopicFilter('Loops')">Loops (40)</button>
+                    <button class="filter-chip" data-filter-topic="Recursion" onclick="window.PseudocodeApp.applyTopicFilter('Recursion')">Recursion (30)</button>
+                </div>
+                <div class="filter-row">
+                    <span class="filter-label">Difficulty:</span>
+                    <button class="filter-chip active" data-filter-diff="all" onclick="window.PseudocodeApp.applyDiffFilter('all')">All Levels</button>
+                    <button class="filter-chip" data-filter-diff="Medium" onclick="window.PseudocodeApp.applyDiffFilter('Medium')">Medium (18)</button>
+                    <button class="filter-chip" data-filter-diff="Hard" onclick="window.PseudocodeApp.applyDiffFilter('Hard')">Hard (67)</button>
+                    <button class="filter-chip" data-filter-diff="Very Hard" onclick="window.PseudocodeApp.applyDiffFilter('Very Hard')">Very Hard (45)</button>
+                    <button class="filter-chip" data-filter-diff="Bookmarked" onclick="window.PseudocodeApp.applyDiffFilter('Bookmarked')">★ Bookmarked</button>
+                </div>
+            </div>
+
+            <!-- Progress Header -->
+            <div class="progress-card">
+                <div class="progress-info">
+                    <span id="question-progress-label">Question 1 of 100</span>
+                    <span id="question-progress-percent">1% Complete</span>
+                </div>
+                <div class="progress-track">
+                    <div id="progress-bar-fill" class="progress-fill" style="width: 1%;"></div>
+                </div>
+            </div>
+
+            <!-- Layout: Workspace + Sidebar Navigator -->
+            <div class="workspace-layout">
+                
+                <!-- Main Center Column -->
+                <div class="workspace-main-column">
+                    <div class="question-card">
+                        
+                        <!-- Metadata Row -->
+                        <div class="question-meta-row">
+                            <div class="meta-badges-left">
+                                <span id="badge-q-number" class="q-index-badge">Q1</span>
+                                <span id="badge-q-type" class="badge badge-type-tag">Output Prediction</span>
+                                <span id="badge-q-diff" class="badge badge-diff-easy">Easy</span>
+                                <span id="badge-q-topic" class="badge badge-topic-tag">Programming Fundamentals</span>
+                            </div>
+                            <div class="meta-actions-right">
+                                <button id="btn-mark-review" class="btn-bookmark" onclick="window.PseudocodeApp.toggleBookmark()" title="Bookmark question">
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                    </svg>
+                                    <span id="mark-text">Bookmark</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Question Prompt -->
+                        <div id="question-text" class="question-prompt-text">
+                            What will be the output of the following pseudocode?
+                        </div>
+
+                        <!-- Pseudocode Code Block -->
+                        <div class="code-editor-box">
+                            <div class="code-editor-header">
+                                <div class="code-editor-dots">
+                                    <span class="editor-dot red"></span>
+                                    <span class="editor-dot yellow"></span>
+                                    <span class="editor-dot green"></span>
+                                </div>
+                                <span class="code-editor-title">PSEUDOCODE LOGIC</span>
+                                <span id="source-note-text" style="font-size:0.75rem;color:#94a3b8;">Pattern: Accenture / Capgemini</span>
+                            </div>
+                            <pre id="pseudocode-display" class="pseudocode-block"><code>// Loading pseudocode snippet...</code></pre>
+                        </div>
+
+                        <!-- Flashcard Flip Trigger -->
+                        <div id="flashcard-reveal-row" class="flashcard-reveal-card hidden">
+                            <button id="btn-flip-card" class="btn-flip-card" onclick="window.PseudocodeApp.flipFlashcard()">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                                Reveal Solution & Tracing Table
+                            </button>
+                        </div>
+
+                        <!-- Options Grid -->
+                        <div id="options-container" class="options-grid">
+                            <!-- Injected dynamically via script.js -->
+                        </div>
+
+                        <!-- Explanation Panel -->
+                        <div id="explanation-panel" class="explanation-panel hidden">
+                            <div class="explanation-status-header">
+                                <div id="explanation-status-icon-box" class="exp-status-icon correct">
+                                    <span id="explanation-status-icon">✓</span>
+                                </div>
+                                <div>
+                                    <h4 id="explanation-status-heading" class="exp-status-title">Correct Answer!</h4>
+                                    <p id="explanation-status-sub" style="font-size:0.85rem;color:var(--text-muted);">Step-by-step trace verified</p>
+                                </div>
+                            </div>
+
+                            <div class="exp-section">
+                                <div class="exp-label">Logic Explanation</div>
+                                <div id="explanation-summary-text" class="exp-content"></div>
+                            </div>
+
+                            <div class="exp-section">
+                                <div class="exp-label">Execution Trace / Variable Tracking</div>
+                                <div id="explanation-trace-box" class="exp-trace-box"></div>
+                            </div>
+
+                            <div class="exp-section">
+                                <div class="exp-label">Distractor Analysis (Why Other Options Are Wrong)</div>
+                                <ul id="explanation-distractor-list" class="distractor-list"></ul>
+                            </div>
+
+                            <div class="placement-callout-grid">
+                                <div class="callout-box trap">
+                                    <strong>Placement Trap</strong>
+                                    <span id="explanation-trap-text"></span>
+                                </div>
+                                <div class="callout-box tip">
+                                    <strong>Placement Exam Tip</strong>
+                                    <span id="explanation-tip-text"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Bottom Navigation Controls -->
+                        <div class="workspace-actions-bar">
+                            <div class="nav-btn-group">
+                                <button id="btn-prev" class="btn-secondary" onclick="window.PseudocodeApp.prevQuestion()">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                                    Previous
+                                </button>
+                                <button id="btn-next" class="btn-secondary" onclick="window.PseudocodeApp.nextQuestion()">
+                                    Next
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                </button>
+                                <button id="btn-retry-q" class="btn-secondary hidden" onclick="window.PseudocodeApp.retryCurrentQuestion()">
+                                    Reset
+                                </button>
+                            </div>
+
+                            <div class="nav-btn-group">
+                                <button id="btn-change-mode" class="btn-secondary" onclick="window.PseudocodeApp.showModeSelect()">
+                                    Exit Mode
+                                </button>
+                                <button id="btn-submit-exam" class="btn-primary-action hidden" onclick="window.PseudocodeApp.submitExam()">
+                                    Finish & Submit Exam
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Sidebar Column: Question Palette (100 Matrix) -->
+                <aside class="sidebar-panel">
+                    <div class="sidebar-header">
+                        <h3>Question Navigator</h3>
+                        <span id="nav-count-badge" class="badge mode-tag">100 Qs</span>
+                    </div>
+
+                    <div class="sidebar-stats-row">
+                        <div class="stat-dot-item">
+                            <span class="dot-indicator answered"></span>
+                            <span>Answered: <strong id="side-stat-answered">0</strong></span>
+                        </div>
+                        <div class="stat-dot-item">
+                            <span class="dot-indicator flagged"></span>
+                            <span>Marked: <strong id="side-stat-marked">0</strong></span>
+                        </div>
+                        <div class="stat-dot-item">
+                            <span class="dot-indicator unvisited"></span>
+                            <span>Left: <strong id="side-stat-remaining">100</strong></span>
+                        </div>
+                    </div>
+
+                    <!-- 100 Palette Chips -->
+                    <div id="navigator-grid" class="palette-grid">
+                        <!-- Chips 1..100 rendered via JS -->
+                    </div>
+                </aside>
+
+            </div>
+        </section>
+
+        <!-- SCREEN 3: Results & Diagnostic Report Screen -->
+        <section id="screen-results" class="screen-view">
+            <div class="results-container">
+                <div class="results-header-box">
+                    <div id="results-score-circle" class="results-score-circle" style="--percent: 0;">
+                        <div class="results-circle-inner">
+                            <div id="results-percentage" class="results-percent-val">0%</div>
+                            <div id="results-score-fraction" class="results-fraction">0/100</div>
+                        </div>
+                    </div>
+                    <h2 id="results-headline">Assessment Complete!</h2>
+                    <p id="results-subtext">Detailed programming logic breakdown & placement readiness analysis.</p>
+                    <span id="results-readiness-tag" class="readiness-badge" style="background:var(--accent-emerald-light);color:var(--accent-emerald);">
+                        Strong Placement Readiness
+                    </span>
+                </div>
+
+                <!-- 4 Top Level KPI Metrics -->
+                <div class="metrics-summary-grid">
+                    <div class="metric-card">
+                        <div id="results-correct-count" class="metric-num" style="color:var(--accent-emerald);">0</div>
+                        <div class="metric-label">Correct Answers</div>
+                    </div>
+                    <div class="metric-card">
+                        <div id="results-incorrect-count" class="metric-num" style="color:var(--accent-rose);">0</div>
+                        <div class="metric-label">Incorrect</div>
+                    </div>
+                    <div class="metric-card">
+                        <div id="results-unattempted-count" class="metric-num" style="color:var(--text-muted);">0</div>
+                        <div class="metric-label">Unattempted</div>
+                    </div>
+                    <div class="metric-card">
+                        <div id="results-time-taken" class="metric-num" style="color:var(--primary);">00:00</div>
+                        <div class="metric-label">Time Elapsed</div>
+                    </div>
+                </div>
+
+                <!-- Detailed Topic & Style Diagnostics -->
+                <div class="diagnostic-section">
+                    <h3>Performance by Core Topic</h3>
+                    <div class="breakdown-list">
+                        <div class="breakdown-row">
+                            <div class="breakdown-labels">
+                                <span>Programming Fundamentals (35 Qs)</span>
+                                <span id="stat-fund-score">0 / 35 (0%)</span>
+                            </div>
+                            <div class="breakdown-bar-track">
+                                <div id="bar-fund" class="breakdown-bar-fill" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                        <div class="breakdown-row">
+                            <div class="breakdown-labels">
+                                <span>Conditional Statements (25 Qs)</span>
+                                <span id="stat-cond-score">0 / 25 (0%)</span>
+                            </div>
+                            <div class="breakdown-bar-track">
+                                <div id="bar-cond" class="breakdown-bar-fill" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                        <div class="breakdown-row">
+                            <div class="breakdown-labels">
+                                <span>Loops & Iterations (40 Qs)</span>
+                                <span id="stat-loop-score">0 / 40 (0%)</span>
+                            </div>
+                            <div class="breakdown-bar-track">
+                                <div id="bar-loop" class="breakdown-bar-fill" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                        <div class="breakdown-row">
+                            <div class="breakdown-labels">
+                                <span>Recursion & Call Stack (30 Qs)</span>
+                                <span id="stat-rec-score">0 / 30 (0%)</span>
+                            </div>
+                            <div class="breakdown-bar-track">
+                                <div id="bar-rec" class="breakdown-bar-fill" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="diagnostic-section">
+                    <h3>Performance by Assessment Style</h3>
+                    <div class="breakdown-list">
+                        <div class="breakdown-row">
+                            <div class="breakdown-labels">
+                                <span>Code Output Tracing (45 Qs)</span>
+                                <span id="stat-output-score">0 / 45 (0%)</span>
+                            </div>
+                            <div class="breakdown-bar-track">
+                                <div id="bar-output-pred" class="breakdown-bar-fill" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                        <div class="breakdown-row">
+                            <div class="breakdown-labels">
+                                <span>Logic Analysis (16 Qs)</span>
+                                <span id="stat-logic-score">0 / 16 (0%)</span>
+                            </div>
+                            <div class="breakdown-bar-track">
+                                <div id="bar-logic-analysis" class="breakdown-bar-fill" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                        <div class="breakdown-row">
+                            <div class="breakdown-labels">
+                                <span>MNC Scenarios (15 Qs)</span>
+                                <span id="stat-scenario-score">0 / 15 (0%)</span>
+                            </div>
+                            <div class="breakdown-bar-track">
+                                <div id="bar-scenario" class="breakdown-bar-fill" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                        <div class="breakdown-row">
+                            <div class="breakdown-labels">
+                                <span>Final Value & Propagation (14 Qs)</span>
+                                <span id="stat-value-score">0 / 14 (0%)</span>
+                            </div>
+                            <div class="breakdown-bar-track">
+                                <div id="bar-final-value" class="breakdown-bar-fill" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                        <div class="breakdown-row">
+                            <div class="breakdown-labels">
+                                <span>Iteration & Call Counting (12 Qs)</span>
+                                <span id="stat-iter-score">0 / 12 (0%)</span>
+                            </div>
+                            <div class="breakdown-bar-track">
+                                <div id="bar-iter-counting" class="breakdown-bar-fill" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                        <div class="breakdown-row">
+                            <div class="breakdown-labels">
+                                <span>Error & Termination (10 Qs)</span>
+                                <span id="stat-error-score">0 / 10 (0%)</span>
+                            </div>
+                            <div class="breakdown-bar-track">
+                                <div id="bar-error" class="breakdown-bar-fill" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                        <div class="breakdown-row">
+                            <div class="breakdown-labels">
+                                <span>Concept Applications (7 Qs)</span>
+                                <span id="stat-app-score">0 / 7 (0%)</span>
+                            </div>
+                            <div class="breakdown-bar-track">
+                                <div id="bar-app" class="breakdown-bar-fill" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                        <div class="breakdown-row">
+                            <div class="breakdown-labels">
+                                <span>Direct Conceptual (5 Qs)</span>
+                                <span id="stat-concept-score">0 / 5 (0%)</span>
+                            </div>
+                            <div class="breakdown-bar-track">
+                                <div id="bar-concept" class="breakdown-bar-fill" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Difficulty Breakdown -->
+                <div class="diagnostic-section">
+                    <h3>Difficulty Level Accuracy</h3>
+                    <div class="breakdown-list">
+                        <div class="breakdown-row">
+                            <div class="breakdown-labels">
+                                <span>Medium (18 Qs)</span>
+                                <span id="stat-medium-score">0 / 18 (0%)</span>
+                            </div>
+                            <div class="breakdown-bar-track">
+                                <div id="bar-medium" class="breakdown-bar-fill" style="width: 0%; background:var(--accent-amber);"></div>
+                            </div>
+                        </div>
+                        <div class="breakdown-row">
+                            <div class="breakdown-labels">
+                                <span>Hard (67 Qs)</span>
+                                <span id="stat-hard-score">0 / 67 (0%)</span>
+                            </div>
+                            <div class="breakdown-bar-track">
+                                <div id="bar-hard" class="breakdown-bar-fill" style="width: 0%; background:var(--accent-rose);"></div>
+                            </div>
+                        </div>
+                        <div class="breakdown-row">
+                            <div class="breakdown-labels">
+                                <span>Very Hard (45 Qs)</span>
+                                <span id="stat-veryhard-score">0 / 45 (0%)</span>
+                            </div>
+                            <div class="breakdown-bar-track">
+                                <div id="bar-veryhard" class="breakdown-bar-fill" style="width: 0%; background:var(--accent-purple);"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="results-action-buttons">
+                    <button class="btn-primary-action" onclick="window.PseudocodeApp.reviewSubmittedExam()">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                        Review Detailed Solutions & Traces
+                    </button>
+                    <button class="btn-secondary" onclick="window.PseudocodeApp.startMode('exam')">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+                        Retake Assessment
+                    </button>
+                    <button class="btn-secondary" onclick="window.PseudocodeApp.showModeSelect()">
+                        Change Mode
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Load Data & Controller Logic -->
+    <script src="questions.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
