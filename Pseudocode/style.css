@@ -603,6 +603,11 @@ code, pre, .mono {
 @media (max-width: 1024px) {
     .workspace-layout {
         grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+    .palette-grid {
+        grid-template-columns: repeat(auto-fill, minmax(36px, 1fr));
+        max-height: 240px;
     }
 }
 
@@ -1528,4 +1533,85 @@ code, pre, .mono {
 #bar-cond { background: var(--topic-conditionals) !important; }
 #bar-loop { background: var(--topic-loops) !important; }
 #bar-rec { background: var(--topic-recursion) !important; }
+
+/* Responsive Multi-Device Breakpoints */
+@media (max-width: 768px) {
+    .header-container {
+        padding: 0.65rem 1rem;
+        gap: 0.5rem;
+    }
+    .header-divider, .mode-tag {
+        display: none;
+    }
+    .main-workspace-container {
+        padding: 1.25rem 1rem;
+    }
+    .hero-banner h1 {
+        font-size: clamp(1.6rem, 5vw, 2.1rem);
+    }
+    .modes-selection-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .header-container {
+        padding: 0.6rem 0.75rem;
+    }
+    .back-link {
+        padding: 0.35rem 0.65rem;
+        font-size: 0.8rem;
+    }
+    .notes-nav-btn {
+        padding: 0.35rem 0.65rem !important;
+        font-size: 0.78rem !important;
+    }
+    .score-pill, .timer-badge {
+        padding: 0.35rem 0.65rem;
+        font-size: 0.8rem;
+    }
+    .brand-tag span {
+        display: none;
+    }
+    .card-workspace {
+        padding: 1.25rem 1rem;
+    }
+    .question-stem {
+        font-size: 1.1rem;
+        line-height: 1.5;
+    }
+    .code-editor-window {
+        padding: 0.85rem;
+    }
+    .option-row {
+        padding: 0.85rem 1rem;
+        gap: 0.75rem;
+        font-size: 0.9rem;
+    }
+    .bottom-nav-bar {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    .bottom-nav-bar .btn {
+        width: 100%;
+    }
+    .results-card {
+        padding: 1.25rem 1rem;
+    }
+    .metrics-summary-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem;
+    }
+}
+
+@media (max-width: 440px) {
+    .stem-meta-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.6rem;
+    }
+    .metrics-summary-grid {
+        grid-template-columns: 1fr;
+    }
+}
 

@@ -34,9 +34,10 @@ h1, h2, h3, h4 {
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 1240px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 1.5rem;
+    width: 100%;
 }
 
 /* Navbar */
@@ -115,25 +116,28 @@ h1, h2, h3, h4 {
 }
 
 .hero h1 {
-    font-size: 3.5rem;
-    line-height: 1.2;
+    font-size: clamp(2rem, 5.5vw, 3.5rem);
+    line-height: 1.18;
     margin-bottom: 1rem;
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
+    word-break: break-word;
 }
 
 .hero p {
-    font-size: 1.25rem;
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
     color: var(--text-secondary);
     max-width: 600px;
     margin: 0 auto 2.5rem;
+    line-height: 1.6;
 }
 
 .hero-ctas {
     display: flex;
     justify-content: center;
     gap: 1rem;
+    flex-wrap: wrap;
 }
 
 .btn {
@@ -193,8 +197,8 @@ h1, h2, h3, h4 {
 /* Modules Grid */
 .module-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+    gap: 1.5rem;
 }
 
 .module-card {
@@ -457,8 +461,26 @@ footer {
     }
 }
 
-/* Responsive */
+/* Responsive Breakpoints */
+@media (max-width: 992px) {
+    .container {
+        padding: 0 1.25rem;
+    }
+    
+    .section {
+        padding: 3rem 0;
+    }
+}
+
 @media (max-width: 768px) {
+    .container {
+        padding: 0 1.25rem;
+    }
+
+    .navbar {
+        padding: 0.75rem 0;
+    }
+
     .nav-links {
         display: none;
         flex-direction: column;
@@ -466,10 +488,11 @@ footer {
         top: 100%;
         left: 0;
         width: 100%;
-        background: white;
+        background: #ffffff;
         padding: 1rem 0;
         border-bottom: 1px solid var(--bg-secondary);
-        box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+        box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
+        z-index: 1001;
     }
     
     .nav-links.active {
@@ -478,33 +501,126 @@ footer {
     
     .nav-links li {
         text-align: center;
-        padding: 0.5rem 0;
+        padding: 0.6rem 0;
+    }
+
+    .nav-links a {
+        font-size: 1rem;
+        display: block;
+        padding: 0.25rem 1rem;
     }
 
     .mobile-menu-btn {
-        display: block;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 6px;
+        border-radius: 6px;
     }
     
     .user-profile {
         display: none;
     }
 
-    .hero h1 {
-        font-size: 2.5rem;
+    .hero {
+        padding: 3.5rem 0 2rem;
     }
 
     .hero-ctas {
         flex-direction: column;
-        padding: 0 2rem;
+        align-items: center;
+        width: 100%;
+        max-width: 320px;
+        margin: 0 auto;
+        gap: 0.75rem;
+    }
+
+    .hero-ctas .btn {
+        width: 100%;
+    }
+
+    .section-header {
+        margin-bottom: 2rem;
+    }
+
+    .section-header h2 {
+        font-size: 1.65rem;
+    }
+
+    .section-header p {
+        font-size: 0.95rem;
     }
     
     .recommended-card {
         flex-direction: column;
         text-align: center;
-        gap: 1rem;
+        gap: 1.25rem;
+        padding: 1.5rem;
     }
     
     .rec-action {
         flex-direction: column;
+        width: 100%;
+        gap: 1rem;
+    }
+
+    .rec-action .btn {
+        width: 100%;
+        max-width: 280px;
+    }
+
+    .progress-bar-container {
+        width: 100%;
+        max-width: 220px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 1rem;
+    }
+
+    .hero h1 {
+        font-size: clamp(1.75rem, 6.5vw, 2.25rem);
+    }
+
+    .module-card {
+        padding: 1.25rem;
+    }
+
+    .module-card h3 {
+        font-size: 1.15rem;
+    }
+
+    .module-card p {
+        margin-bottom: 1.25rem;
+        font-size: 0.88rem;
+    }
+
+    .quick-practice-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .progress-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .stat-card {
+        padding: 1rem 0.5rem;
+    }
+
+    .stat-value {
+        font-size: 1.6rem;
+    }
+
+    .stat-label {
+        font-size: 0.75rem;
+    }
+
+    .footer-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.75rem 1.25rem;
     }
 }

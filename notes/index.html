@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8VNQVXVYBN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-8VNQVXVYBN');
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Placement Notes and Last-Minute Revision Hub for Campus Recruitment and Technical Interviews.">
@@ -320,8 +328,8 @@ a { text-decoration: none; color: inherit; }
 .modal-backdrop.open { display: grid; }
 .modal-card {
   background: var(--card); border: 1px solid var(--border); border-radius: 24px;
-  width: 100%; max-width: 560px; max-height: 90vh; overflow-y: auto;
-  box-shadow: var(--shadow-lg); padding: 28px; animation: modalPop .2s ease-out;
+  width: calc(100% - 32px); max-width: 560px; max-height: 90vh; overflow-y: auto;
+  box-shadow: var(--shadow-lg); padding: clamp(20px, 4vw, 28px); animation: modalPop .2s ease-out;
 }
 @keyframes modalPop {
   from { opacity: 0; transform: scale(.96) translateY(10px); }
@@ -344,14 +352,35 @@ a { text-decoration: none; color: inherit; }
 .form-control:focus { border-color: var(--blue); }
 textarea.form-control { min-height: 80px; resize: vertical; }
 
-.modal-footer { display: flex; justify-content: flex-end; gap: 10px; margin-top: 24px; }
+.modal-footer { display: flex; justify-content: flex-end; gap: 10px; margin-top: 24px; flex-wrap: wrap; }
 
-/* Responsive */
+/* Responsive Breakpoints */
+.show-small { display: none; }
+
+@media(max-width: 920px) {
+  .hero-layout { grid-template-columns: 1fr; gap: 24px; }
+  .brand-showcase { min-height: 200px; }
+}
+
 @media(max-width: 768px) {
   .modules-grid { grid-template-columns: 1fr; }
-  .topbar { padding: 0 16px; }
-  .container { padding: 84px 16px 40px; }
+  .topbar { padding: 0 14px; height: 62px; }
+  .container { padding: 78px 14px 40px; }
   .hide-mobile { display: none; }
+  .hero { padding: 26px 18px; border-radius: 20px; }
+  .hero h1 { font-size: clamp(24px, 5.5vw, 36px); }
+  .brand small { display: none; }
+}
+
+@media(max-width: 520px) {
+  .topbar { padding: 0 10px; }
+  .brand { font-size: 14px; }
+  .logo { width: 32px; height: 32px; font-size: 16px; border-radius: 9px; }
+  .nav-btn { height: 34px; padding: 0 9px; font-size: 11px; }
+  .icon-btn { width: 34px; height: 34px; font-size: 14px; }
+  .hide-small { display: none; }
+  .show-small { display: inline; }
+  .mod-card { padding: 20px 16px; }
 }
 </style>
 </head>
@@ -373,7 +402,7 @@ textarea.form-control { min-height: 80px; resize: vertical; }
       <span>←</span> <span class="hide-mobile">Dashboard</span>
     </a>
     <button class="nav-btn primary" id="addModuleBtn">
-      <span>+</span> Add Module Notes
+      <span>+</span> <span class="hide-small">Add Module Notes</span><span class="show-small">Add Notes</span>
     </button>
     <button class="icon-btn" id="themeBtn" title="Toggle theme">☾</button>
   </div>
