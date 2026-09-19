@@ -1,4 +1,5 @@
-// Microsoft Office Suite (Excel, Word, PowerPoint) - 90 Placement MCQs\nconst questionsData = [
+// Microsoft Office Suite (Excel, Word, PowerPoint) - 90 Placement MCQs
+const questionsData = [
   {
     "id": 1,
     "app": "Excel",
@@ -2039,4 +2040,7 @@
     "whyOthersAreWrong": {},
     "realWorldApplication": "Creating a subtle, consistent animated corporate logo that fades in on the corner of every content slide."
   }
-];\n\n// Alias for cross-compatibility\nconst questions = questionsData;\n
+];
+
+// Alias for cross-compatibility
+const questions = questionsData;
