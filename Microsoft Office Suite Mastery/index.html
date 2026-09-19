@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8VNQVXVYBN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-8VNQVXVYBN');
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Microsoft Office Suite Mastery (Excel, Word, PowerPoint) - PlacementPrep</title>
+    <meta name="description" content="Comprehensive Microsoft Office placement assessment preparation covering MS Excel, MS Word, and MS PowerPoint with 90 placement MCQs, timed exams, and interactive flashcards.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="app-header">
+        <div class="header-container">
+            <div class="header-left">
+                <a href="../index.html" class="back-link" aria-label="Return to PlacementPrep Dashboard">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                    <span>Dashboard</span>
+                </a>
+                <div class="header-divider"></div>
+                <div class="module-title-area">
+                    <div class="topic-tag office-brand-badge">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="14" width="7" height="7"></rect>
+                            <rect x="3" y="14" width="7" height="7"></rect>
+                        </svg>
+                        <span>MS Office Suite</span>
+                    </div>
+                    <span id="header-mode-badge" class="badge mode-tag">Practice Mode</span>
+                </div>
+            </div>
+
+            <div class="header-center">
+                <!-- Exam Timer -->
+                <div id="timer-box" class="timer-box hidden" aria-live="polite">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    <span id="timer-display" class="timer-text">45:00</span>
+                </div>
+            </div>
+
+            <div class="header-right">
+                <div id="score-counter" class="score-pill">
+                    Score: <strong id="score-value">0</strong>
+                </div>
+
+                <button id="theme-toggle" class="icon-btn theme-toggle" aria-label="Toggle dark mode" title="Toggle dark/light mode">
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="4.22" x2="19.78" y2="5.64"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Application Container -->
+    <main class="app-main">
+
+        <!-- SCREEN 1: Mode Selection Screen -->
+        <section id="screen-mode-select" class="screen-view">
+            <div class="welcome-hero">
+                <div class="office-hero-icons">
+                    <span class="app-hero-pill pill-excel">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="9" x2="9" y2="21"/><line x1="15" y1="9" x2="15" y2="21"/></svg>
+                        Excel
+                    </span>
+                    <span class="app-hero-pill pill-word">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                        Word
+                    </span>
+                    <span class="app-hero-pill pill-ppt">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+                        PowerPoint
+                    </span>
+                </div>
+                <h1>Microsoft Office Suite Mastery</h1>
+                <p class="hero-desc">
+                    Comprehensive preparation combining <strong>Excel</strong> (Formulas, VLOOKUP, Pivot Tables, Shortcuts), <strong>Word</strong> (Formatting, Mail Merge, Styles, Macros), and <strong>PowerPoint</strong> (Slide Master, Animations, Transitions, Presentation delivery) tailored for <strong>Accenture, TCS, Cognizant, Infosys, Capgemini &amp; Wipro</strong> recruitment drives.
+                </p>
+
+                <div class="exam-spec-banner">
+                    <div class="spec-pill"><span class="pill-dot green"></span> 90 High-Yield MCQs</div>
+                    <div class="spec-pill"><span class="pill-dot blue"></span> 3 Core Productivity Tools</div>
+                    <div class="spec-pill"><span class="pill-dot amber"></span> Easy / Medium / Hard Tiers</div>
+                    <div class="spec-pill"><span class="pill-dot purple"></span> Diagnostic Performance Analytics</div>
+                </div>
+
+                <!-- App Filter Quick Selector -->
+                <div class="app-quick-filter-container">
+                    <span class="filter-headline">Focus Module:</span>
+                    <div class="app-filter-buttons">
+                        <button class="app-pill-btn active" data-app-target="all">
+                            <span class="dot-multi"></span> All Applications (90)
+                        </button>
+                        <button class="app-pill-btn btn-excel-filter" data-app-target="excel">
+                            <span class="dot-green"></span> 📗 MS Excel (30)
+                        </button>
+                        <button class="app-pill-btn btn-word-filter" data-app-target="word">
+                            <span class="dot-blue"></span> 📘 MS Word (30)
+                        </button>
+                        <button class="app-pill-btn btn-ppt-filter" data-app-target="powerpoint">
+                            <span class="dot-orange"></span> 📙 MS PowerPoint (30)
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modes-grid">
+                <!-- Mode 1: Practice Mode -->
+                <div class="mode-card" data-mode="practice">
+                    <div class="mode-icon-wrapper multi-color">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                        </svg>
+                    </div>
+                    <h3>Interactive Practice</h3>
+                    <p>Self-paced learning with instant answer feedback, in-depth explanations, why distractors are wrong, and real-world corporate applications.</p>
+                    <ul class="mode-perks">
+                        <li>Instant correct/incorrect verification</li>
+                        <li>Detailed rationale &amp; distractor breakdown</li>
+                        <li>Filter dynamically across Excel, Word, or PPT</li>
+                    </ul>
+                    <button class="btn btn-primary start-mode-btn" data-mode="practice">Start Practice</button>
+                </div>
+
+                <!-- Mode 2: Placement Exam Mode -->
+                <div class="mode-card highlighted" data-mode="exam">
+                    <div class="mode-badge-hot">MNC Simulation</div>
+                    <div class="mode-icon-wrapper amber">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                    </div>
+                    <h3>Placement Timed Exam</h3>
+                    <p>Authentic timed simulation with question palette, review tagging, countdown timer, and comprehensive per-application score breakdown.</p>
+                    <ul class="mode-perks">
+                        <li>45-min full suite / 20-min single app timer</li>
+                        <li>Question navigation &amp; mark for review</li>
+                        <li>App-by-app &amp; difficulty competency report</li>
+                    </ul>
+                    <button class="btn btn-accent start-mode-btn" data-mode="exam">Start Timed Exam</button>
+                </div>
+
+                <!-- Mode 3: Flashcard Study Mode -->
+                <div class="mode-card" data-mode="flashcards">
+                    <div class="mode-icon-wrapper purple">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                        </svg>
+                    </div>
+                    <h3>Flashcard Study</h3>
+                    <p>Interactive card revision mode. Ideal for rapid recall of keyboard shortcuts, menu locations, formula syntax, and view modes.</p>
+                    <ul class="mode-perks">
+                        <li>Interactive card flip reveal</li>
+                        <li>Quick shortcut &amp; concept mastery</li>
+                        <li>Keyboard shortcuts enabled (Space to flip)</li>
+                    </ul>
+                    <button class="btn btn-secondary start-mode-btn" data-mode="flashcards">Open Flashcards</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCREEN 2: Practice & Exam Workspace -->
+        <section id="screen-quiz-workspace" class="screen-view hidden">
+            
+            <!-- Filter & Status Bar (Visible in Practice & Flashcard Modes) -->
+            <div id="quiz-filter-bar" class="quiz-filter-bar">
+                <div class="filter-group">
+                    <span class="filter-label">App:</span>
+                    <button class="filter-pill active" data-filter-app="all">All (90)</button>
+                    <button class="filter-pill pill-excel-tag" data-filter-app="excel">📗 Excel (30)</button>
+                    <button class="filter-pill pill-word-tag" data-filter-app="word">📘 Word (30)</button>
+                    <button class="filter-pill pill-ppt-tag" data-filter-app="powerpoint">📙 PowerPoint (30)</button>
+                </div>
+                <div class="filter-group">
+                    <span class="filter-label">Difficulty:</span>
+                    <button class="filter-pill active" data-filter-diff="all">All</button>
+                    <button class="filter-pill" data-filter-diff="Easy">Easy</button>
+                    <button class="filter-pill" data-filter-diff="Medium">Medium</button>
+                    <button class="filter-pill" data-filter-diff="Hard">Hard</button>
+                </div>
+                <div class="workspace-actions">
+                    <button id="btn-change-mode" class="btn-text">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+                        <span>Change Mode</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Workspace Layout: Left Question Card + Right Palette -->
+            <div class="workspace-layout">
+                
+                <!-- Left: Question & Interaction Card -->
+                <div class="question-main-area">
+                    
+                    <!-- Progress Bar -->
+                    <div class="progress-bar-wrapper">
+                        <div class="progress-info">
+                            <span id="question-progress-label">Question 1 of 90</span>
+                            <span id="question-progress-percent">1%</span>
+                        </div>
+                        <div class="progress-track">
+                            <div id="progress-bar-fill" class="progress-fill" style="width: 1.11%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Question Container -->
+                    <div class="question-card" id="active-question-card">
+                        <div class="question-card-header">
+                            <div class="q-meta-badges">
+                                <span id="badge-q-number" class="badge badge-number">Q1</span>
+                                <span id="badge-q-app" class="badge badge-app-excel">Excel</span>
+                                <span id="badge-q-topic" class="badge badge-topic">Excel Basics</span>
+                                <span id="badge-q-diff" class="badge badge-diff-easy">Easy</span>
+                            </div>
+                            <button id="btn-mark-review" class="btn-icon-text" title="Flag for review">
+                                <svg id="mark-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                <span id="mark-text">Flag</span>
+                            </button>
+                        </div>
+
+                        <div class="question-body">
+                            <h2 id="question-text" class="question-text">Loading question...</h2>
+                        </div>
+
+                        <!-- Options List -->
+                        <div id="options-container" class="options-container" role="radiogroup" aria-label="Question Options">
+                            <!-- Injected dynamically -->
+                        </div>
+
+                        <!-- Flashcard Flip Reveal Button (Only visible in Flashcard mode) -->
+                        <div id="flashcard-reveal-row" class="flashcard-reveal-row hidden">
+                            <button id="btn-flip-card" class="btn btn-secondary">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+                                Reveal Explanation (Space)
+                            </button>
+                        </div>
+
+                        <!-- Rich Explanation Panel (Revealed on Answer in Practice/Review, or Flip in Flashcards) -->
+                        <div id="explanation-panel" class="explanation-panel hidden">
+                            <div class="explanation-header">
+                                <div id="explanation-status-icon" class="status-icon correct">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                                </div>
+                                <div>
+                                    <h4 id="explanation-status-heading">Correct Answer!</h4>
+                                    <p id="explanation-status-sub">Comprehensive Conceptual Breakdown</p>
+                                </div>
+                            </div>
+                            <div class="explanation-content">
+                                <div class="explanation-block">
+                                    <strong>Summary &amp; Core Concept:</strong>
+                                    <p id="explanation-summary-text"></p>
+                                </div>
+                                <div id="why-correct-block" class="explanation-block">
+                                    <strong>Why this option is correct:</strong>
+                                    <p id="explanation-why-correct"></p>
+                                </div>
+                                <div id="distractor-section" class="explanation-block">
+                                    <strong>Why other options are wrong:</strong>
+                                    <ul id="distractor-list" class="distractor-list"></ul>
+                                </div>
+                                <div id="real-world-block" class="explanation-block real-world-box">
+                                    <strong>🏢 Real-World Application:</strong>
+                                    <p id="text-real-world"></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Footer Navigation Buttons -->
+                        <div class="question-card-footer">
+                            <button id="btn-prev" class="btn btn-outline" disabled>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+                                Previous
+                            </button>
+                            <div class="footer-center-info">
+                                <span id="shortcut-hint" class="shortcut-hint">Use [1-4] to select, [N] Next, [P] Prev</span>
+                            </div>
+                            <div class="footer-actions-right">
+                                <button id="btn-next" class="btn btn-primary">
+                                    Next
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                                </button>
+                                <button id="btn-submit-exam" class="btn btn-accent hidden">
+                                    Submit Exam
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Question Palette & Stats Sidebar -->
+                <aside class="palette-sidebar">
+                    <div class="palette-card">
+                        <div class="palette-header">
+                            <h3>Question Navigator</h3>
+                            <span id="nav-count-badge" class="badge">90 Questions</span>
+                        </div>
+
+                        <!-- App Filter inside Palette -->
+                        <div class="palette-app-tabs">
+                            <button class="pal-tab active" data-pal-filter="all">All</button>
+                            <button class="pal-tab tab-excel" data-pal-filter="excel">Excel</button>
+                            <button class="pal-tab tab-word" data-pal-filter="word">Word</button>
+                            <button class="pal-tab tab-ppt" data-pal-filter="powerpoint">PPT</button>
+                        </div>
+
+                        <!-- Legend -->
+                        <div class="palette-legend">
+                            <div class="legend-item"><span class="legend-dot answered"></span> Answered</div>
+                            <div class="legend-item"><span class="legend-dot marked"></span> Flagged</div>
+                            <div class="legend-item"><span class="legend-dot current"></span> Current</div>
+                            <div class="legend-item"><span class="legend-dot unvisited"></span> Unvisited</div>
+                        </div>
+
+                        <!-- 90 Questions Grid -->
+                        <div id="navigator-grid" class="navigator-grid" role="navigation" aria-label="Questions Palette">
+                            <!-- Injected dynamically -->
+                        </div>
+
+                        <div class="palette-footer-stats">
+                            <div class="side-stat">
+                                <span class="side-stat-val" id="side-stat-answered">0</span>
+                                <span class="side-stat-lbl">Answered</span>
+                            </div>
+                            <div class="side-stat">
+                                <span class="side-stat-val" id="side-stat-marked">0</span>
+                                <span class="side-stat-lbl">Flagged</span>
+                            </div>
+                            <div class="side-stat">
+                                <span class="side-stat-val" id="side-stat-remaining">90</span>
+                                <span class="side-stat-lbl">Remaining</span>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <!-- SCREEN 3: Exam Results & Diagnostic Analytics Screen -->
+        <section id="screen-results" class="screen-view hidden">
+            <div class="results-container">
+                <div class="results-hero-card">
+                    <div class="results-trophy-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path>
+                            <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path>
+                            <path d="M4 22h16"></path>
+                            <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path>
+                            <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path>
+                            <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path>
+                        </svg>
+                    </div>
+                    <h2>MS Office Assessment Summary</h2>
+                    <p class="results-subtitle">Placement readiness analysis across Excel, Word, and PowerPoint</p>
+
+                    <div class="score-circle-area">
+                        <div class="score-circle">
+                            <span id="results-percentage" class="score-percent">0%</span>
+                            <span id="results-score-fraction" class="score-fraction">0 / 90</span>
+                        </div>
+                        <div class="score-meta">
+                            <div class="readiness-badge" id="results-readiness-tag">Evaluating...</div>
+                            <p class="time-taken-text">Time Elapsed: <strong id="results-time-taken">00:00</strong></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Application Breakdown Grid (Excel, Word, PowerPoint) -->
+                <div class="results-section">
+                    <h3>Application Performance Breakdown</h3>
+                    <div class="app-breakdown-grid" id="app-breakdown-grid">
+                        <!-- Injected dynamically -->
+                    </div>
+                </div>
+
+                <!-- Difficulty Breakdown -->
+                <div class="results-section">
+                    <h3>Difficulty Breakdown</h3>
+                    <div class="diff-breakdown-grid" id="diff-breakdown-grid">
+                        <!-- Injected dynamically -->
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="results-actions">
+                    <button id="btn-review-answers" class="btn btn-primary">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                        Review Explanations &amp; Answers
+                    </button>
+                    <button id="btn-retake-exam" class="btn btn-secondary">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+                        Retake Assessment
+                    </button>
+                    <a href="../index.html" class="btn btn-outline">
+                        Return to Dashboard
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Question Data and Application Scripts -->
+    <script src="questions.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
