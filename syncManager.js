@@ -13,6 +13,7 @@
     const STORAGE_KEY_USER = 'prep_username';
     const STORAGE_KEY_DATA = 'prep_user_data_cache';
     const STORAGE_KEY_FIREBASE = 'prep_firebase_url';
+    const DEFAULT_FIREBASE_URL = 'https://placementprep-acaf7-default-rtdb.asia-southeast1.firebasedatabase.app';
 
     // Default User Data Schema
     function createDefaultUserData(username) {
@@ -33,7 +34,7 @@
     class PlacementSyncManager {
         constructor() {
             this.username = localStorage.getItem(STORAGE_KEY_USER) || '';
-            this.firebaseUrl = localStorage.getItem(STORAGE_KEY_FIREBASE) || '';
+            this.firebaseUrl = localStorage.getItem(STORAGE_KEY_FIREBASE) || DEFAULT_FIREBASE_URL;
             this.cache = this.loadLocalCache();
             this.isSyncing = false;
             this.cloudConnected = false;
