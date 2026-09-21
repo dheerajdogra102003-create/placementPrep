@@ -34,7 +34,9 @@
     class PlacementSyncManager {
         constructor() {
             this.username = localStorage.getItem(STORAGE_KEY_USER) || '';
-            this.firebaseUrl = localStorage.getItem(STORAGE_KEY_FIREBASE) || DEFAULT_FIREBASE_URL;
+            // Always enforce DEFAULT_FIREBASE_URL so users never get stuck on a broken or empty custom URL
+            this.firebaseUrl = DEFAULT_FIREBASE_URL;
+            localStorage.setItem(STORAGE_KEY_FIREBASE, DEFAULT_FIREBASE_URL);
             this.cache = this.loadLocalCache();
             this.isSyncing = false;
             this.cloudConnected = false;
@@ -254,8 +256,9 @@
             this.notifyListeners();
 
             try {
-                const endpoint = `${this.firebaseUrl}/users/${encodeURIComponent(this.username)}.json`;
-                const res = await fetch(endpoint, { method: 'GET' });
+                // Cache-busting timestamp and cache: 'no-store' prevents stale mobile browser caches
+                const endpoint = `${this.firebaseUrl}/users/${encodeURIComponent(this.username)}.json?t=${Date.now()}`;
+                const res = await fetch(endpoint, { method: 'GET', cache: 'no-store' });
 
                 if (res.ok) {
                     const cloudData = await res.json();
@@ -263,6 +266,10 @@
                         const merged = this.mergeData(this.cache, cloudData);
                         this.saveLocalCache(merged);
                         this.cloudConnected = true;
+                        // If merged state contains local answers that cloud lacked, push back immediately
+                        if (JSON.stringify(merged.stats) !== JSON.stringify(cloudData.stats)) {
+                            this.pushToCloud();
+                        }
                     } else {
                         // Document doesn't exist yet on cloud, push local
                         await this.pushToCloud();
@@ -479,9 +486,9 @@
                 is_correct: details.isCorrect ? 1 : 0
             });
 
-            // Push to Firebase if configured
+            // Push to Firebase immediately so device switches never lose answers
             if (this.firebaseUrl) {
-                this.debounceCloudPush();
+                this.pushToCloud();
             }
             this.notifyListeners();
         }
@@ -641,5 +648,19 @@
 
     // Expose global instance
     window.SyncManager = new PlacementSyncManager();
+
+    // Auto-flush to cloud when user switches tabs, locks phone, or leaves page
+    if (typeof window !== 'undefined') {
+        window.addEventListener('visibilitychange', () => {
+            if (document.visibilityState === 'hidden' && window.SyncManager) {
+                window.SyncManager.pushToCloud();
+            }
+        });
+        window.addEventListener('beforeunload', () => {
+            if (window.SyncManager) {
+                window.SyncManager.pushToCloud();
+            }
+        });
+    }
 
 })(window);

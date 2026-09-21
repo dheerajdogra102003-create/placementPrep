@@ -25,11 +25,19 @@ document.addEventListener('DOMContentLoaded', () => {
         userAnswers: (() => {
             let answers = {};
             if (window.SyncManager) {
-                answers = window.SyncManager.getModuleData('programming_fundamentals').answers || {};
+                const mod = window.SyncManager.getModuleData('programming_fundamentals');
+                const rawAnswers = mod.answers || {};
+                if (Array.isArray(rawAnswers)) {
+                    rawAnswers.forEach((val, idx) => {
+                        if (val) answers[idx] = val;
+                    });
+                } else {
+                    answers = { ...rawAnswers };
+                }
             }
             try {
                 const localAnswers = JSON.parse(localStorage.getItem('prog_user_answers') || '{}');
-                answers = { ...localAnswers, ...answers };
+                answers = { ...answers, ...localAnswers };
             } catch (e) {}
             return answers;
         })(),
@@ -1107,13 +1115,29 @@ document.addEventListener('DOMContentLoaded', () => {
             updateSyncUI();
             const modData = window.SyncManager.getModuleData('programming_fundamentals');
             if (modData && modData.answers) {
-                state.userAnswers = { ...state.userAnswers, ...modData.answers };
-                state.score = Object.values(state.userAnswers).filter(a => a.isCorrect).length;
+                let incAnswers = modData.answers;
+                if (Array.isArray(incAnswers)) {
+                    const ansObj = {};
+                    incAnswers.forEach((val, idx) => {
+                        if (val) ansObj[idx] = val;
+                    });
+                    incAnswers = ansObj;
+                }
+                state.userAnswers = { ...state.userAnswers, ...incAnswers };
+                state.score = Object.values(state.userAnswers).filter(a => a && a.isCorrect).length;
+                localStorage.setItem('prog_user_answers', JSON.stringify(state.userAnswers));
                 updateScoreBadge();
             }
             if (modData && modData.bookmarks) {
                 state.bookmarks = new Set([...state.bookmarks, ...modData.bookmarks]);
+                localStorage.setItem('prog_bookmarks', JSON.stringify([...state.bookmarks]));
                 updateBookmarkBadge();
+            }
+
+            // Real-time UI refresh: re-render question and palette if currently in quiz workspace
+            if (dom.screenQuizWorkspace && !dom.screenQuizWorkspace.classList.contains('hidden') && state.filteredQuestions && state.filteredQuestions.length > 0) {
+                renderQuestion();
+                renderPalette();
             }
         });
     }
@@ -1216,6 +1240,8 @@ document.addEventListener('DOMContentLoaded', () => {
     updateBookmarkBadge();
     updateSyncUI();
     applyFilters();
+    state.score = Object.values(state.userAnswers).filter(a => a && a.isCorrect).length;
+    updateScoreBadge();
 
     // Auto-prompt on first visit if no username set
     if (window.SyncManager && !window.SyncManager.getUsername() && !sessionStorage.getItem('prep_sync_prompted')) {
