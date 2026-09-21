@@ -170,7 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         syncModalError.classList.remove('hidden');
                     }
                 } finally {
-                    if (saveBtn) saveBtn.textContent = 'Save & Sync';
+                    if (saveBtn) saveBtn.textContent = 'Save';
                 }
             });
         }

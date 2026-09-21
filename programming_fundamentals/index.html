@@ -517,50 +517,29 @@
 
     </main>
 
-    <!-- Student Cloud Profile Modal Dialog -->
+    <!-- Simple Sync Modal -->
     <div id="sync-modal" class="sync-modal-overlay hidden" role="dialog" aria-modal="true">
-        <div class="sync-modal-card">
-            <div class="sync-modal-header">
-                <div class="sync-modal-icon">👤</div>
-                <h3>Student Cloud Profile</h3>
-                <p>Sync your quiz progress, scores, and bookmarks across your phone and laptop automatically.</p>
+        <div class="sync-modal-card" style="max-width: 380px;">
+            <div class="sync-modal-header" style="margin-bottom: 1.25rem;">
+                <div class="sync-modal-icon">☁️</div>
+                <h3>Sync Progress</h3>
+                <p>Enter your username to keep your progress synced across all your devices.</p>
             </div>
 
             <form id="sync-form" class="sync-form">
                 <div class="sync-input-group">
-                    <label for="sync-username-input" style="display: flex; justify-content: space-between; align-items: center;">
-                        <span>Student Handle / Username</span>
-                        <span id="sync-cloud-status-badge" class="sync-status-badge">☁️ Cloud Ready</span>
-                    </label>
-                    <div class="sync-input-wrapper">
-                        <span class="sync-input-prefix">@</span>
-                        <input type="text" id="sync-username-input" placeholder="your_name" required autocomplete="off" minlength="2" maxlength="30">
-                    </div>
-                    <small class="sync-help-text">
-                        No password needed. Enter this exact handle on your phone or laptop to instantly sync both devices.
-                    </small>
-                </div>
-
-                <div class="sync-highlights">
-                    <div class="sync-highlight-item">
-                        <span>⚡</span>
-                        <span>Instant automatic cloud sync on every question answered</span>
-                    </div>
-                    <div class="sync-highlight-item">
-                        <span>📱</span>
-                        <span>Practice smoothly across laptop, tablet, and mobile</span>
-                    </div>
+                    <input type="text" id="sync-username-input" placeholder="Enter username" required autocomplete="off" minlength="2" maxlength="30" style="padding: 0.75rem 1rem; border-radius: 8px; font-size: 1rem;">
                 </div>
 
                 <div id="sync-modal-error" class="sync-error hidden"></div>
 
                 <div class="sync-modal-actions">
-                    <button type="submit" class="btn btn-primary" id="btn-save-sync">Save &amp; Sync Progress</button>
-                    <button type="button" class="btn btn-secondary" id="btn-close-sync">Close</button>
+                    <button type="submit" class="btn btn-primary" id="btn-save-sync">Save</button>
+                    <button type="button" class="btn btn-secondary" id="btn-close-sync">Cancel</button>
                 </div>
 
-                <div id="sync-logout-area" class="sync-logout-area hidden">
-                    <button type="button" id="btn-logout-sync" class="btn-text-danger">Switch / Disconnect Account</button>
+                <div id="sync-logout-area" class="sync-logout-area hidden" style="margin-top: 0.5rem; padding-top: 0.5rem;">
+                    <button type="button" id="btn-logout-sync" class="btn-text-danger">Log out</button>
                 </div>
             </form>
         </div>
