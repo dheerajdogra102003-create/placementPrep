@@ -1118,32 +1118,37 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    function openSyncModal() {
+        if (!syncModal) return;
+        const currentUsername = window.SyncManager ? window.SyncManager.getUsername() : '';
+        if (syncUsernameInput) syncUsernameInput.value = currentUsername;
+        if (syncModalError) {
+            syncModalError.classList.add('hidden');
+            syncModalError.textContent = '';
+        }
+        if (currentUsername) {
+            if (syncLogoutArea) syncLogoutArea.classList.remove('hidden');
+        } else {
+            if (syncLogoutArea) syncLogoutArea.classList.add('hidden');
+        }
+        syncModal.classList.remove('hidden');
+        if (syncUsernameInput) syncUsernameInput.focus();
+    }
+
     if (navSyncBtn && syncModal) {
-        navSyncBtn.addEventListener('click', () => {
-            const currentUsername = window.SyncManager ? window.SyncManager.getUsername() : '';
-            if (syncUsernameInput) syncUsernameInput.value = currentUsername;
-            if (syncModalError) {
-                syncModalError.classList.add('hidden');
-                syncModalError.textContent = '';
-            }
-            if (currentUsername) {
-                if (syncLogoutArea) syncLogoutArea.classList.remove('hidden');
-            } else {
-                if (syncLogoutArea) syncLogoutArea.classList.add('hidden');
-            }
-            syncModal.classList.remove('hidden');
-            if (syncUsernameInput) syncUsernameInput.focus();
-        });
+        navSyncBtn.addEventListener('click', openSyncModal);
 
         if (btnCloseSync) {
             btnCloseSync.addEventListener('click', () => {
                 syncModal.classList.add('hidden');
+                sessionStorage.setItem('prep_sync_prompted', 'true');
             });
         }
 
         syncModal.addEventListener('click', (e) => {
             if (e.target === syncModal) {
                 syncModal.classList.add('hidden');
+                sessionStorage.setItem('prep_sync_prompted', 'true');
             }
         });
 
@@ -1158,6 +1163,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         await window.SyncManager.setUsername(username);
                     }
                     syncModal.classList.add('hidden');
+                    sessionStorage.setItem('prep_sync_prompted', 'true');
                     updateSyncUI();
                 } catch (err) {
                     if (syncModalError) {
@@ -1187,5 +1193,12 @@ document.addEventListener('DOMContentLoaded', () => {
     updateBookmarkBadge();
     updateSyncUI();
     applyFilters();
+
+    // Auto-prompt on first visit if no username set
+    if (window.SyncManager && !window.SyncManager.getUsername() && !sessionStorage.getItem('prep_sync_prompted')) {
+        setTimeout(() => {
+            openSyncModal();
+        }, 650);
+    }
 });
 

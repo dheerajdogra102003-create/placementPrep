@@ -93,30 +93,34 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Modal Interaction
+    function openSyncModal() {
+        if (!syncModal) return;
+        const currentUsername = window.SyncManager ? window.SyncManager.getUsername() : '';
+        if (syncUsernameInput) {
+            syncUsernameInput.value = currentUsername;
+        }
+        if (syncModalError) {
+            syncModalError.classList.add('hidden');
+            syncModalError.textContent = '';
+        }
+
+        if (currentUsername) {
+            if (syncLogoutArea) syncLogoutArea.classList.remove('hidden');
+        } else {
+            if (syncLogoutArea) syncLogoutArea.classList.add('hidden');
+        }
+
+        syncModal.classList.remove('hidden');
+        if (syncUsernameInput) syncUsernameInput.focus();
+    }
+
     if (navSyncBtn && syncModal) {
-        navSyncBtn.addEventListener('click', () => {
-            const currentUsername = window.SyncManager ? window.SyncManager.getUsername() : '';
-            if (syncUsernameInput) {
-                syncUsernameInput.value = currentUsername;
-            }
-            if (syncModalError) {
-                syncModalError.classList.add('hidden');
-                syncModalError.textContent = '';
-            }
-
-            if (currentUsername) {
-                if (syncLogoutArea) syncLogoutArea.classList.remove('hidden');
-            } else {
-                if (syncLogoutArea) syncLogoutArea.classList.add('hidden');
-            }
-
-            syncModal.classList.remove('hidden');
-            if (syncUsernameInput) syncUsernameInput.focus();
-        });
+        navSyncBtn.addEventListener('click', openSyncModal);
 
         if (btnCloseSync) {
             btnCloseSync.addEventListener('click', () => {
                 syncModal.classList.add('hidden');
+                sessionStorage.setItem('prep_sync_prompted', 'true');
             });
         }
 
@@ -124,6 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
         syncModal.addEventListener('click', (e) => {
             if (e.target === syncModal) {
                 syncModal.classList.add('hidden');
+                sessionStorage.setItem('prep_sync_prompted', 'true');
             }
         });
 
@@ -140,6 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         await window.SyncManager.setUsername(username);
                     }
                     syncModal.classList.add('hidden');
+                    sessionStorage.setItem('prep_sync_prompted', 'true');
                     updateDashboardUI();
                 } catch (err) {
                     if (syncModalError) {
@@ -170,5 +176,12 @@ document.addEventListener('DOMContentLoaded', () => {
             updateDashboardUI();
         });
         updateDashboardUI();
+
+        // Automatically ask for username on first arrival if not logged in
+        if (!window.SyncManager.getUsername() && !sessionStorage.getItem('prep_sync_prompted')) {
+            setTimeout(() => {
+                openSyncModal();
+            }, 650);
+        }
     }
 });
