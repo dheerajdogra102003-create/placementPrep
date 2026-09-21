@@ -1120,31 +1120,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Modal Elements
     const syncCloudStatusBadge = document.getElementById('sync-cloud-status-badge');
-    const syncBackupArea = document.getElementById('sync-backup-area');
-    const btnCopyBackup = document.getElementById('btn-copy-backup');
-    const btnRestoreBackup = document.getElementById('btn-restore-backup');
-    const btnCloseSyncUser = document.getElementById('btn-close-sync-user');
-
-    // Tab Switching
-    document.querySelectorAll('.sync-tab-btn').forEach(tabBtn => {
-        tabBtn.addEventListener('click', () => {
-            const targetId = tabBtn.getAttribute('data-tab');
-            document.querySelectorAll('.sync-tab-btn').forEach(b => b.classList.remove('active'));
-            document.querySelectorAll('.sync-tab-pane').forEach(p => p.classList.add('hidden'));
-
-            tabBtn.classList.add('active');
-            const targetPane = document.getElementById(`pane-${targetId}`);
-            if (targetPane) targetPane.classList.remove('hidden');
-        });
-    });
 
     function refreshModalData() {
         if (!window.SyncManager) return;
         const currentUsername = window.SyncManager.getUsername();
         if (syncUsernameInput) syncUsernameInput.value = currentUsername;
-
-        // Backup Area
-        if (syncBackupArea) syncBackupArea.value = window.SyncManager.exportTransferPayload();
 
         // Cloud status badge
         if (syncCloudStatusBadge) {
@@ -1186,49 +1166,12 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        if (btnCloseSyncUser) {
-            btnCloseSyncUser.addEventListener('click', () => {
-                syncModal.classList.add('hidden');
-                sessionStorage.setItem('prep_sync_prompted', 'true');
-            });
-        }
-
         syncModal.addEventListener('click', (e) => {
             if (e.target === syncModal) {
                 syncModal.classList.add('hidden');
                 sessionStorage.setItem('prep_sync_prompted', 'true');
             }
         });
-
-
-
-        // Copy Backup Token
-        if (btnCopyBackup && syncBackupArea) {
-            btnCopyBackup.addEventListener('click', () => {
-                syncBackupArea.select();
-                navigator.clipboard.writeText(syncBackupArea.value).then(() => {
-                    const orig = btnCopyBackup.textContent;
-                    btnCopyBackup.textContent = 'Copied Backup!';
-                    setTimeout(() => { btnCopyBackup.textContent = orig; }, 2000);
-                });
-            });
-        }
-
-        // Restore Backup Token
-        if (btnRestoreBackup && syncBackupArea) {
-            btnRestoreBackup.addEventListener('click', () => {
-                const token = syncBackupArea.value.trim();
-                if (!token) return;
-                const res = window.SyncManager.importTransferPayload(token);
-                if (res.success) {
-                    syncModal.classList.add('hidden');
-                    window.SyncManager.showToast(`🎉 Restored! Logged in as @${res.username}`);
-                    updateSyncUI();
-                } else {
-                    alert('Invalid backup token: ' + (res.error || 'Check the text'));
-                }
-            });
-        }
 
         // Form Submit: Set Username
         if (syncForm) {

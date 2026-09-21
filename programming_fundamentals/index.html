@@ -517,61 +517,52 @@
 
     </main>
 
-    <!-- Username & Cross-Device Sync Modal Dialog -->
+    <!-- Student Cloud Profile Modal Dialog -->
     <div id="sync-modal" class="sync-modal-overlay hidden" role="dialog" aria-modal="true">
         <div class="sync-modal-card">
             <div class="sync-modal-header">
-                <div class="sync-modal-icon">📲</div>
-                <h3>Cross-Device Sync</h3>
-                <p>Maintain your progress, test scores, and bookmarks across your phone and laptop.</p>
+                <div class="sync-modal-icon">👤</div>
+                <h3>Student Cloud Profile</h3>
+                <p>Sync your quiz progress, scores, and bookmarks across your phone and laptop automatically.</p>
             </div>
 
-            <!-- Modal Navigation Tabs -->
-            <div class="sync-modal-tabs">
-                <button type="button" class="sync-tab-btn active" data-tab="tab-user">👤 Cloud Account</button>
-                <button type="button" class="sync-tab-btn" data-tab="tab-backup">💾 Backup Code</button>
-            </div>
-
-            <!-- Tab 1: Username & Continuous Cloud Sync -->
-            <div id="pane-tab-user" class="sync-tab-pane">
-                <form id="sync-form" class="sync-form">
-                    <div class="sync-input-group">
-                        <label for="sync-username-input" style="display: flex; justify-content: space-between; align-items: center;">
-                            <span>Choose Your Username</span>
-                            <span id="sync-cloud-status-badge" class="sync-status-badge">☁️ Cloud Ready</span>
-                        </label>
-                        <input type="text" id="sync-username-input" placeholder="e.g. your_name or roll_number" required autocomplete="off" minlength="2" maxlength="30">
-                        <small style="color: var(--text-secondary); font-size: 0.78rem; line-height: 1.4; margin-top: 0.35rem; display: block;">
-                            Enter your username. Your quiz answers, scores, and bookmarks will automatically sync across any phone or laptop!
-                        </small>
-                    </div>
-
-                    <div id="sync-modal-error" class="sync-error hidden"></div>
-
-                    <div class="sync-modal-actions">
-                        <button type="submit" class="btn btn-primary" id="btn-save-sync">Save &amp; Sync</button>
-                        <button type="button" class="btn btn-secondary" id="btn-close-sync-user">Continue</button>
-                    </div>
-
-                    <div id="sync-logout-area" class="sync-logout-area hidden">
-                        <button type="button" id="btn-logout-sync" class="btn-text-danger">Switch / Disconnect User</button>
-                    </div>
-                </form>
-            </div>
-
-            <!-- Tab 2: Backup & Restore JSON Code -->
-            <div id="pane-tab-backup" class="sync-tab-pane hidden">
+            <form id="sync-form" class="sync-form">
                 <div class="sync-input-group">
-                    <label for="sync-backup-area">Progress Backup Token</label>
-                    <textarea id="sync-backup-area" rows="3" style="width: 100%; border-radius: 8px; border: 1.5px solid var(--border-color); background: var(--bg-card); color: var(--text-primary); padding: 0.5rem; font-family: monospace; font-size: 0.78rem;" placeholder="Paste a sync backup token here to restore progress..."></textarea>
+                    <label for="sync-username-input" style="display: flex; justify-content: space-between; align-items: center;">
+                        <span>Student Handle / Username</span>
+                        <span id="sync-cloud-status-badge" class="sync-status-badge">☁️ Cloud Ready</span>
+                    </label>
+                    <div class="sync-input-wrapper">
+                        <span class="sync-input-prefix">@</span>
+                        <input type="text" id="sync-username-input" placeholder="your_name" required autocomplete="off" minlength="2" maxlength="30">
+                    </div>
+                    <small class="sync-help-text">
+                        No password needed. Enter this exact handle on your phone or laptop to instantly sync both devices.
+                    </small>
                 </div>
+
+                <div class="sync-highlights">
+                    <div class="sync-highlight-item">
+                        <span>⚡</span>
+                        <span>Instant automatic cloud sync on every question answered</span>
+                    </div>
+                    <div class="sync-highlight-item">
+                        <span>📱</span>
+                        <span>Practice smoothly across laptop, tablet, and mobile</span>
+                    </div>
+                </div>
+
+                <div id="sync-modal-error" class="sync-error hidden"></div>
+
                 <div class="sync-modal-actions">
-                    <button type="button" id="btn-copy-backup" class="btn btn-primary">Copy Current Backup</button>
-                    <button type="button" id="btn-restore-backup" class="btn btn-accent">Restore from Token</button>
+                    <button type="submit" class="btn btn-primary" id="btn-save-sync">Save &amp; Sync Progress</button>
                     <button type="button" class="btn btn-secondary" id="btn-close-sync">Close</button>
                 </div>
-            </div>
 
+                <div id="sync-logout-area" class="sync-logout-area hidden">
+                    <button type="button" id="btn-logout-sync" class="btn-text-danger">Switch / Disconnect Account</button>
+                </div>
+            </form>
         </div>
     </div>
 

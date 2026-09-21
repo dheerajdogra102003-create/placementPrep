@@ -1826,84 +1826,54 @@ body {
     text-decoration: underline;
 }
 
-/* Modal Tabs & QR Display */
-.sync-modal-tabs {
+/* Student Cloud Profile Modal Styles */
+.sync-input-wrapper {
+    position: relative;
     display: flex;
-    gap: 0.4rem;
-    border-bottom: 1.5px solid var(--border-color);
-    margin-bottom: 1.25rem;
-    padding-bottom: 0.4rem;
-}
-
-.sync-tab-btn {
-    flex: 1;
-    padding: 0.5rem 0.35rem;
-    font-size: 0.83rem;
-    font-weight: 600;
-    border: none;
-    background: none;
-    color: var(--text-secondary);
-    border-radius: var(--radius-sm);
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.sync-tab-btn.active {
-    color: var(--track-var);
-    background: var(--track-var-light);
-}
-
-.sync-tab-pane {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.sync-tab-pane.hidden {
-    display: none !important;
-}
-
-.sync-qr-box {
-    display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding: 1.25rem;
-    background: var(--bg-elevated);
-    border-radius: var(--radius-md);
-    text-align: center;
 }
 
-.sync-qr-img {
-    width: 180px;
-    height: 180px;
-    border-radius: var(--radius-sm);
-    background: #FFFFFF;
-    padding: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-}
-
-.sync-qr-hint {
-    margin-top: 0.75rem;
-    font-size: 0.82rem;
+.sync-input-prefix {
+    position: absolute;
+    left: 1rem;
+    font-size: 1.1rem;
+    font-weight: 700;
     color: var(--text-secondary);
-    line-height: 1.4;
+    pointer-events: none;
+    user-select: none;
 }
 
-.sync-link-copy-row {
-    display: flex;
-    gap: 0.5rem;
+.sync-input-wrapper input {
     width: 100%;
+    padding-left: 2.3rem !important;
+    font-size: 1.05rem !important;
+    font-weight: 600;
+    letter-spacing: 0.02em;
 }
 
-.sync-link-input {
-    flex: 1;
-    font-size: 0.82rem !important;
-    padding: 0.5rem 0.75rem !important;
-    background: var(--bg-card) !important;
-    border: 1px solid var(--border-color) !important;
-    color: var(--text-primary) !important;
-    border-radius: var(--radius-sm) !important;
+.sync-help-text {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    line-height: 1.4;
+    margin-top: 0.35rem;
+}
+
+.sync-highlights {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    background: var(--bg-elevated);
+    padding: 0.85rem 1rem;
+    border-radius: var(--radius-md);
+    font-size: 0.84rem;
+    color: var(--text-primary);
+}
+
+.sync-highlight-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    line-height: 1.35;
 }
 
 .sync-status-badge {
