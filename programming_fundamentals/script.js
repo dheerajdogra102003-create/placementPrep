@@ -1119,9 +1119,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Modal Elements
-    const syncQrImg = document.getElementById('sync-qr-img');
-    const syncTransferLinkInput = document.getElementById('sync-transfer-link-input');
-    const btnCopyTransferLink = document.getElementById('btn-copy-transfer-link');
     const syncCloudStatusBadge = document.getElementById('sync-cloud-status-badge');
     const syncBackupArea = document.getElementById('sync-backup-area');
     const btnCopyBackup = document.getElementById('btn-copy-backup');
@@ -1145,12 +1142,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!window.SyncManager) return;
         const currentUsername = window.SyncManager.getUsername();
         if (syncUsernameInput) syncUsernameInput.value = currentUsername;
-
-        // Update QR & Link
-        const qrUrl = window.SyncManager.getQRCodeUrl();
-        const transferUrl = window.SyncManager.getTransferUrl();
-        if (syncQrImg && qrUrl) syncQrImg.src = qrUrl;
-        if (syncTransferLinkInput) syncTransferLinkInput.value = transferUrl;
 
         // Backup Area
         if (syncBackupArea) syncBackupArea.value = window.SyncManager.exportTransferPayload();
@@ -1209,17 +1200,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Copy Transfer Link
-        if (btnCopyTransferLink && syncTransferLinkInput) {
-            btnCopyTransferLink.addEventListener('click', () => {
-                syncTransferLinkInput.select();
-                navigator.clipboard.writeText(syncTransferLinkInput.value).then(() => {
-                    const originalText = btnCopyTransferLink.textContent;
-                    btnCopyTransferLink.textContent = 'Copied!';
-                    setTimeout(() => { btnCopyTransferLink.textContent = originalText; }, 2000);
-                });
-            });
-        }
+
 
         // Copy Backup Token
         if (btnCopyBackup && syncBackupArea) {
