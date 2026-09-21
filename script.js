@@ -96,7 +96,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const syncQrImg = document.getElementById('sync-qr-img');
     const syncTransferLinkInput = document.getElementById('sync-transfer-link-input');
     const btnCopyTransferLink = document.getElementById('btn-copy-transfer-link');
-    const syncFirebaseInput = document.getElementById('sync-firebase-input');
     const syncCloudStatusBadge = document.getElementById('sync-cloud-status-badge');
     const syncBackupArea = document.getElementById('sync-backup-area');
     const btnCopyBackup = document.getElementById('btn-copy-backup');
@@ -120,7 +119,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!window.SyncManager) return;
         const currentUsername = window.SyncManager.getUsername();
         if (syncUsernameInput) syncUsernameInput.value = currentUsername;
-        if (syncFirebaseInput) syncFirebaseInput.value = window.SyncManager.getFirebaseUrl();
 
         // Update QR & Link
         const qrUrl = window.SyncManager.getQRCodeUrl();
@@ -136,9 +134,12 @@ document.addEventListener('DOMContentLoaded', () => {
             if (window.SyncManager.cloudConnected) {
                 syncCloudStatusBadge.className = 'sync-status-badge';
                 syncCloudStatusBadge.textContent = '🟢 Cloud Connected';
+            } else if (currentUsername) {
+                syncCloudStatusBadge.className = 'sync-status-badge';
+                syncCloudStatusBadge.textContent = '🟡 Syncing...';
             } else {
                 syncCloudStatusBadge.className = 'sync-status-badge local';
-                syncCloudStatusBadge.textContent = window.SyncManager.getFirebaseUrl() ? '🟡 Connecting...' : '🟡 Local Device';
+                syncCloudStatusBadge.textContent = '☁️ Cloud Ready';
             }
         }
 
@@ -223,18 +224,16 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // Form Submit: Set Username & Firebase URL
+        // Form Submit: Set Username
         if (syncForm) {
             syncForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
                 const username = syncUsernameInput.value.trim();
-                const fbUrl = syncFirebaseInput ? syncFirebaseInput.value.trim() : '';
                 const saveBtn = document.getElementById('btn-save-sync');
 
                 try {
                     if (saveBtn) saveBtn.textContent = 'Saving...';
                     if (window.SyncManager) {
-                        if (fbUrl) window.SyncManager.setFirebaseUrl(fbUrl);
                         await window.SyncManager.setUsername(username);
                     }
                     syncModal.classList.add('hidden');

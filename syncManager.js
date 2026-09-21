@@ -160,7 +160,6 @@
                 u: this.username || 'guest',
                 s: this.cache?.stats || {},
                 m: this.cache?.modules || {},
-                fb: this.firebaseUrl || '',
                 ts: Date.now()
             };
             try {
@@ -190,11 +189,6 @@
                 const merged = this.mergeData(this.cache, incomingData);
                 this.username = payload.u;
                 localStorage.setItem(STORAGE_KEY_USER, payload.u);
-                
-                if (payload.fb) {
-                    this.firebaseUrl = payload.fb;
-                    localStorage.setItem(STORAGE_KEY_FIREBASE, payload.fb);
-                }
 
                 this.saveLocalCache(merged);
                 this.initGoogleAnalytics(this.username);

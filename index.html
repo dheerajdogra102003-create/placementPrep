@@ -414,18 +414,13 @@
             <div id="pane-tab-user" class="sync-tab-pane hidden">
                 <form id="sync-form" class="sync-form">
                     <div class="sync-input-group">
-                        <label for="sync-username-input">Enter Username</label>
-                        <input type="text" id="sync-username-input" placeholder="e.g. nitin_prep" required autocomplete="off" minlength="2" maxlength="30">
-                    </div>
-
-                    <div class="sync-input-group">
-                        <label for="sync-firebase-input" style="display: flex; justify-content: space-between; align-items: center;">
-                            <span>Firebase Cloud URL (Optional)</span>
-                            <span id="sync-cloud-status-badge" class="sync-status-badge local">🟡 Local Device</span>
+                        <label for="sync-username-input" style="display: flex; justify-content: space-between; align-items: center;">
+                            <span>Choose Your Username</span>
+                            <span id="sync-cloud-status-badge" class="sync-status-badge">☁️ Cloud Ready</span>
                         </label>
-                        <input type="url" id="sync-firebase-input" placeholder="https://your-project-default-rtdb.firebaseio.com" autocomplete="off" style="font-size: 0.85rem;">
-                        <small style="color: var(--text-secondary); font-size: 0.76rem; line-height: 1.3;">
-                            Enter a free Google Firebase Realtime DB URL for automatic continuous cloud sync without scanning QR codes.
+                        <input type="text" id="sync-username-input" placeholder="e.g. your_name or roll_number" required autocomplete="off" minlength="2" maxlength="30">
+                        <small style="color: var(--text-secondary); font-size: 0.78rem; line-height: 1.4; margin-top: 0.35rem; display: block;">
+                            Enter your username. Your quiz answers, scores, and bookmarks will automatically sync across any phone or laptop!
                         </small>
                     </div>
 
