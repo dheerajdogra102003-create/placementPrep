@@ -517,28 +517,81 @@
 
     </main>
 
-    <!-- Username Sync Modal Dialog -->
+    <!-- Username & Cross-Device Sync Modal Dialog -->
     <div id="sync-modal" class="sync-modal-overlay hidden" role="dialog" aria-modal="true">
         <div class="sync-modal-card">
             <div class="sync-modal-header">
-                <div class="sync-modal-icon">☁️</div>
+                <div class="sync-modal-icon">📲</div>
                 <h3>Cross-Device Sync</h3>
-                <p>Enter your username to sync your progress, scores, and bookmarks across all your devices.</p>
+                <p>Maintain your progress, test scores, and bookmarks across your phone and laptop.</p>
             </div>
-            <form id="sync-form" class="sync-form">
-                <div class="sync-input-group">
-                    <label for="sync-username-input">Enter Username</label>
-                    <input type="text" id="sync-username-input" placeholder="e.g. nitin_prep" required autocomplete="off" minlength="2" maxlength="30">
+
+            <!-- Modal Navigation Tabs -->
+            <div class="sync-modal-tabs">
+                <button type="button" class="sync-tab-btn active" data-tab="tab-qr">📱 Scan on Phone</button>
+                <button type="button" class="sync-tab-btn" data-tab="tab-user">👤 Cloud Account</button>
+                <button type="button" class="sync-tab-btn" data-tab="tab-backup">💾 Backup Code</button>
+            </div>
+
+            <!-- Tab 1: Instant Phone QR Code Transfer -->
+            <div id="pane-tab-qr" class="sync-tab-pane">
+                <div class="sync-qr-box">
+                    <img id="sync-qr-img" class="sync-qr-img" src="" alt="QR Code to open session on mobile phone">
+                    <p class="sync-qr-hint">Scan this QR code with your phone camera to instantly load all your questions, bookmarks, and scores!</p>
                 </div>
-                <div id="sync-modal-error" class="sync-error hidden"></div>
+                <div class="sync-link-copy-row">
+                    <input type="text" id="sync-transfer-link-input" class="sync-link-input" readonly>
+                    <button type="button" id="btn-copy-transfer-link" class="btn btn-primary" style="padding: 0.5rem 0.85rem; font-size: 0.85rem;">Copy Link</button>
+                </div>
                 <div class="sync-modal-actions">
-                    <button type="submit" class="btn btn-primary" id="btn-save-sync">Sync &amp; Continue</button>
-                    <button type="button" class="btn btn-secondary" id="btn-close-sync">Continue as Guest</button>
+                    <button type="button" class="btn btn-secondary" id="btn-close-sync">Close</button>
                 </div>
-                <div id="sync-logout-area" class="sync-logout-area hidden">
-                    <button type="button" id="btn-logout-sync" class="btn-text-danger">Switch / Disconnect User</button>
+            </div>
+
+            <!-- Tab 2: Username & Continuous Cloud Sync -->
+            <div id="pane-tab-user" class="sync-tab-pane hidden">
+                <form id="sync-form" class="sync-form">
+                    <div class="sync-input-group">
+                        <label for="sync-username-input">Enter Username</label>
+                        <input type="text" id="sync-username-input" placeholder="e.g. nitin_prep" required autocomplete="off" minlength="2" maxlength="30">
+                    </div>
+
+                    <div class="sync-input-group">
+                        <label for="sync-firebase-input" style="display: flex; justify-content: space-between; align-items: center;">
+                            <span>Firebase Cloud URL (Optional)</span>
+                            <span id="sync-cloud-status-badge" class="sync-status-badge local">🟡 Local Device</span>
+                        </label>
+                        <input type="url" id="sync-firebase-input" placeholder="https://your-project-default-rtdb.firebaseio.com" autocomplete="off" style="font-size: 0.85rem;">
+                        <small style="color: var(--text-secondary); font-size: 0.76rem; line-height: 1.3;">
+                            Enter a free Google Firebase Realtime DB URL for automatic continuous cloud sync without scanning QR codes.
+                        </small>
+                    </div>
+
+                    <div id="sync-modal-error" class="sync-error hidden"></div>
+
+                    <div class="sync-modal-actions">
+                        <button type="submit" class="btn btn-primary" id="btn-save-sync">Save &amp; Sync</button>
+                        <button type="button" class="btn btn-secondary" id="btn-close-sync-user">Continue</button>
+                    </div>
+
+                    <div id="sync-logout-area" class="sync-logout-area hidden">
+                        <button type="button" id="btn-logout-sync" class="btn-text-danger">Switch / Disconnect User</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Tab 3: Backup & Restore JSON Code -->
+            <div id="pane-tab-backup" class="sync-tab-pane hidden">
+                <div class="sync-input-group">
+                    <label for="sync-backup-area">Progress Backup Token</label>
+                    <textarea id="sync-backup-area" rows="3" style="width: 100%; border-radius: 8px; border: 1.5px solid var(--border-color); background: var(--bg-card); color: var(--text-primary); padding: 0.5rem; font-family: monospace; font-size: 0.78rem;" placeholder="Paste a sync backup token here to restore progress..."></textarea>
                 </div>
-            </form>
+                <div class="sync-modal-actions">
+                    <button type="button" id="btn-copy-backup" class="btn btn-primary">Copy Current Backup</button>
+                    <button type="button" id="btn-restore-backup" class="btn btn-accent">Restore from Token</button>
+                </div>
+            </div>
+
         </div>
     </div>
 

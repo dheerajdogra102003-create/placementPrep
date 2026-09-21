@@ -798,3 +798,98 @@ footer {
     text-decoration: underline;
 }
 
+/* Modal Tabs & QR Display */
+.sync-modal-tabs {
+    display: flex;
+    gap: 0.4rem;
+    border-bottom: 1.5px solid var(--bg-secondary);
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.4rem;
+}
+
+.sync-tab-btn {
+    flex: 1;
+    padding: 0.5rem 0.35rem;
+    font-size: 0.83rem;
+    font-weight: 600;
+    border: none;
+    background: none;
+    color: var(--text-secondary);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all var(--transition-speed);
+}
+
+.sync-tab-btn.active {
+    color: var(--accent-red);
+    background: rgba(239, 68, 68, 0.08);
+}
+
+.sync-tab-pane {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.sync-tab-pane.hidden {
+    display: none !important;
+}
+
+.sync-qr-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.25rem;
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    text-align: center;
+}
+
+.sync-qr-img {
+    width: 180px;
+    height: 180px;
+    border-radius: 8px;
+    background: #FFFFFF;
+    padding: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.sync-qr-hint {
+    margin-top: 0.75rem;
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+}
+
+.sync-link-copy-row {
+    display: flex;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+.sync-link-input {
+    flex: 1;
+    font-size: 0.82rem !important;
+    padding: 0.5rem 0.75rem !important;
+    background: #FFFFFF !important;
+}
+
+.sync-status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.35rem 0.75rem;
+    border-radius: 9999px;
+    background: rgba(16, 185, 129, 0.1);
+    color: #059669;
+}
+
+.sync-status-badge.local {
+    background: rgba(245, 158, 11, 0.1);
+    color: #D97706;
+}
+
+

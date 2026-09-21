@@ -1118,21 +1118,70 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Modal Elements
+    const syncQrImg = document.getElementById('sync-qr-img');
+    const syncTransferLinkInput = document.getElementById('sync-transfer-link-input');
+    const btnCopyTransferLink = document.getElementById('btn-copy-transfer-link');
+    const syncFirebaseInput = document.getElementById('sync-firebase-input');
+    const syncCloudStatusBadge = document.getElementById('sync-cloud-status-badge');
+    const syncBackupArea = document.getElementById('sync-backup-area');
+    const btnCopyBackup = document.getElementById('btn-copy-backup');
+    const btnRestoreBackup = document.getElementById('btn-restore-backup');
+    const btnCloseSyncUser = document.getElementById('btn-close-sync-user');
+
+    // Tab Switching
+    document.querySelectorAll('.sync-tab-btn').forEach(tabBtn => {
+        tabBtn.addEventListener('click', () => {
+            const targetId = tabBtn.getAttribute('data-tab');
+            document.querySelectorAll('.sync-tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.sync-tab-pane').forEach(p => p.classList.add('hidden'));
+
+            tabBtn.classList.add('active');
+            const targetPane = document.getElementById(`pane-${targetId}`);
+            if (targetPane) targetPane.classList.remove('hidden');
+        });
+    });
+
+    function refreshModalData() {
+        if (!window.SyncManager) return;
+        const currentUsername = window.SyncManager.getUsername();
+        if (syncUsernameInput) syncUsernameInput.value = currentUsername;
+        if (syncFirebaseInput) syncFirebaseInput.value = window.SyncManager.getFirebaseUrl();
+
+        // Update QR & Link
+        const qrUrl = window.SyncManager.getQRCodeUrl();
+        const transferUrl = window.SyncManager.getTransferUrl();
+        if (syncQrImg && qrUrl) syncQrImg.src = qrUrl;
+        if (syncTransferLinkInput) syncTransferLinkInput.value = transferUrl;
+
+        // Backup Area
+        if (syncBackupArea) syncBackupArea.value = window.SyncManager.exportTransferPayload();
+
+        // Cloud status badge
+        if (syncCloudStatusBadge) {
+            if (window.SyncManager.cloudConnected) {
+                syncCloudStatusBadge.className = 'sync-status-badge';
+                syncCloudStatusBadge.textContent = '🟢 Cloud Connected';
+            } else {
+                syncCloudStatusBadge.className = 'sync-status-badge local';
+                syncCloudStatusBadge.textContent = window.SyncManager.getFirebaseUrl() ? '🟡 Connecting...' : '🟡 Local Device';
+            }
+        }
+
+        if (syncLogoutArea) {
+            if (currentUsername) syncLogoutArea.classList.remove('hidden');
+            else syncLogoutArea.classList.add('hidden');
+        }
+    }
+
     function openSyncModal() {
         if (!syncModal) return;
-        const currentUsername = window.SyncManager ? window.SyncManager.getUsername() : '';
-        if (syncUsernameInput) syncUsernameInput.value = currentUsername;
+        refreshModalData();
         if (syncModalError) {
             syncModalError.classList.add('hidden');
             syncModalError.textContent = '';
         }
-        if (currentUsername) {
-            if (syncLogoutArea) syncLogoutArea.classList.remove('hidden');
-        } else {
-            if (syncLogoutArea) syncLogoutArea.classList.add('hidden');
-        }
         syncModal.classList.remove('hidden');
-        if (syncUsernameInput) syncUsernameInput.focus();
     }
 
     if (navSyncBtn && syncModal) {
@@ -1145,6 +1194,13 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
+        if (btnCloseSyncUser) {
+            btnCloseSyncUser.addEventListener('click', () => {
+                syncModal.classList.add('hidden');
+                sessionStorage.setItem('prep_sync_prompted', 'true');
+            });
+        }
+
         syncModal.addEventListener('click', (e) => {
             if (e.target === syncModal) {
                 syncModal.classList.add('hidden');
@@ -1152,26 +1208,70 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
+        // Copy Transfer Link
+        if (btnCopyTransferLink && syncTransferLinkInput) {
+            btnCopyTransferLink.addEventListener('click', () => {
+                syncTransferLinkInput.select();
+                navigator.clipboard.writeText(syncTransferLinkInput.value).then(() => {
+                    const originalText = btnCopyTransferLink.textContent;
+                    btnCopyTransferLink.textContent = 'Copied!';
+                    setTimeout(() => { btnCopyTransferLink.textContent = originalText; }, 2000);
+                });
+            });
+        }
+
+        // Copy Backup Token
+        if (btnCopyBackup && syncBackupArea) {
+            btnCopyBackup.addEventListener('click', () => {
+                syncBackupArea.select();
+                navigator.clipboard.writeText(syncBackupArea.value).then(() => {
+                    const orig = btnCopyBackup.textContent;
+                    btnCopyBackup.textContent = 'Copied Backup!';
+                    setTimeout(() => { btnCopyBackup.textContent = orig; }, 2000);
+                });
+            });
+        }
+
+        // Restore Backup Token
+        if (btnRestoreBackup && syncBackupArea) {
+            btnRestoreBackup.addEventListener('click', () => {
+                const token = syncBackupArea.value.trim();
+                if (!token) return;
+                const res = window.SyncManager.importTransferPayload(token);
+                if (res.success) {
+                    syncModal.classList.add('hidden');
+                    window.SyncManager.showToast(`🎉 Restored! Logged in as @${res.username}`);
+                    updateSyncUI();
+                } else {
+                    alert('Invalid backup token: ' + (res.error || 'Check the text'));
+                }
+            });
+        }
+
+        // Form Submit: Set Username & Firebase URL
         if (syncForm) {
             syncForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
                 const username = syncUsernameInput.value.trim();
+                const fbUrl = syncFirebaseInput ? syncFirebaseInput.value.trim() : '';
                 const saveBtn = document.getElementById('btn-save-sync');
                 try {
-                    if (saveBtn) saveBtn.textContent = 'Syncing...';
+                    if (saveBtn) saveBtn.textContent = 'Saving...';
                     if (window.SyncManager) {
+                        if (fbUrl) window.SyncManager.setFirebaseUrl(fbUrl);
                         await window.SyncManager.setUsername(username);
                     }
                     syncModal.classList.add('hidden');
                     sessionStorage.setItem('prep_sync_prompted', 'true');
                     updateSyncUI();
+                    window.SyncManager.showToast(`Saved as @${username}!`);
                 } catch (err) {
                     if (syncModalError) {
-                        syncModalError.textContent = err.message || 'Error syncing username';
+                        syncModalError.textContent = err.message || 'Error saving user';
                         syncModalError.classList.remove('hidden');
                     }
                 } finally {
-                    if (saveBtn) saveBtn.textContent = 'Sync & Continue';
+                    if (saveBtn) saveBtn.textContent = 'Save & Sync';
                 }
             });
         }
