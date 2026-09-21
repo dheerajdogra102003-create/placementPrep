@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8VNQVXVYBN"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-8VNQVXVYBN');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programming Fundamentals (Variables, Conditionals & Loops) - PlacementPrep</title>
+    <meta name="description" content="Master Core Programming Fundamentals: Variables & Data Types, Conditional Statements, and Loops with 150 placement MCQs, timed MNC exams, and interactive flashcards.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="app-header">
+        <div class="header-container">
+            <div class="header-left">
+                <a href="../index.html" class="back-link" aria-label="Return to PlacementPrep Dashboard">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                    <span>Dashboard</span>
+                </a>
+                <div class="header-divider"></div>
+                <div class="module-title-area">
+                    <div class="topic-tag prog-brand-badge">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="16 18 22 12 16 6"></polyline>
+                            <polyline points="8 6 2 12 8 18"></polyline>
+                        </svg>
+                        <span>Programming Fundamentals</span>
+                    </div>
+                    <span id="header-mode-badge" class="badge mode-tag">Practice Mode</span>
+                </div>
+            </div>
+
+            <div class="header-center">
+                <!-- Exam Timer -->
+                <div id="timer-box" class="timer-box hidden" aria-live="polite">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    <span id="timer-display" class="timer-text">30:00</span>
+                </div>
+            </div>
+
+            <div class="header-right">
+                <button id="sound-toggle" class="sound-toggle-pill sound-on" aria-label="Toggle sound FX" title="Click to turn sound ON or OFF">
+                    <svg id="sound-icon-on" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                        <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                    </svg>
+                    <svg id="sound-icon-off" class="hidden" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                        <line x1="23" y1="9" x2="17" y2="15"></line>
+                        <line x1="17" y1="9" x2="23" y2="15"></line>
+                    </svg>
+                    <span id="sound-toggle-text">Sound: ON</span>
+                </button>
+
+                <div id="score-counter" class="score-pill">
+                    Score: <strong id="score-value">0</strong>
+                </div>
+
+                <button id="theme-toggle" class="icon-btn theme-toggle" aria-label="Toggle dark mode" title="Toggle dark/light mode">
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="4.22" x2="19.78" y2="5.64"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Application Container -->
+    <main class="app-main">
+
+        <!-- SCREEN 1: Welcome & Mode Selection -->
+        <section id="screen-mode-select" class="screen-view">
+            <div class="welcome-hero">
+                <div class="track-hero-pills">
+                    <span class="track-hero-pill pill-var">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+                        Variables &amp; Types
+                    </span>
+                    <span class="track-hero-pill pill-cond">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="2" x2="12" y2="22"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                        Conditionals
+                    </span>
+                    <span class="track-hero-pill pill-loop">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                        Loops &amp; Iteration
+                    </span>
+                </div>
+
+                <h1>Programming Fundamentals Mastery</h1>
+                <p class="hero-desc">
+                    The complete placement practice suite combining <strong>Variables &amp; Data Types</strong>, <strong>Conditional Statements</strong>, and <strong>Loops &amp; Iteration</strong> across C, C++, Java, Python, and Pseudocode. Built for MNC screening tests (TCS, Infosys, Wipro, Cognizant, Accenture &amp; Capgemini).
+                </p>
+
+                <div class="exam-spec-banner">
+                    <div class="spec-pill"><span class="pill-dot purple"></span> 150 Placement MCQs</div>
+                    <div class="spec-pill"><span class="pill-dot magenta"></span> 3 Core Logic Tracks</div>
+                    <div class="spec-pill"><span class="pill-dot green"></span> 5 Programming Languages</div>
+                    <div class="spec-pill"><span class="pill-dot amber"></span> Detailed Distractor Analysis</div>
+                </div>
+
+                <!-- Track Quick Selector on Landing -->
+                <div class="track-quick-filter-container">
+                    <span class="filter-headline">Focus Practice Track:</span>
+                    <div class="track-filter-buttons">
+                        <button class="track-pill-btn active" data-track-target="all">
+                            <span class="dot-multi"></span> All Tracks (150)
+                        </button>
+                        <button class="track-pill-btn btn-var-filter" data-track-target="Variables & Data Types">
+                            <span class="dot-purple"></span> 📦 Variables &amp; Types (50)
+                        </button>
+                        <button class="track-pill-btn btn-cond-filter" data-track-target="Conditional Statements">
+                            <span class="dot-magenta"></span> 🔀 Conditionals (50)
+                        </button>
+                        <button class="track-pill-btn btn-loop-filter" data-track-target="Loops & Iteration">
+                            <span class="dot-green"></span> 🔁 Loops &amp; Iteration (50)
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mode Selection Cards -->
+            <div class="modes-grid">
+                <!-- Mode 1: Practice Mode -->
+                <div class="mode-card" data-mode="practice">
+                    <div class="mode-icon-wrapper multi-color">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                        </svg>
+                    </div>
+                    <h3>Interactive Practice</h3>
+                    <p>Learn at your pace with immediate answer checking, code syntax highlighting, detailed reasoning, why other options are wrong, and exam traps.</p>
+                    <ul class="mode-perks">
+                        <li>Instant correct/incorrect verification</li>
+                        <li>Full code line tracing &amp; pro-tips</li>
+                        <li>Filter by Track, Language &amp; Difficulty</li>
+                    </ul>
+                    <button class="btn btn-primary start-mode-btn" data-mode="practice">Start Practice</button>
+                </div>
+
+                <!-- Mode 2: Placement Exam Mode -->
+                <div class="mode-card highlighted" data-mode="exam">
+                    <div class="mode-badge-hot">MNC Test Simulation</div>
+                    <div class="mode-icon-wrapper amber">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                    </div>
+                    <h3>Placement Timed Exam</h3>
+                    <p>Experience real placement screening conditions. 30 randomized questions across all tracks, a 30-minute timer, question palette, and detailed diagnostic breakdown.</p>
+                    <ul class="mode-perks">
+                        <li>30-minute countdown with timer alerts</li>
+                        <li>Question navigation &amp; mark for review</li>
+                        <li>Track-by-track diagnostic score report</li>
+                    </ul>
+                    <button class="btn btn-accent start-mode-btn" data-mode="exam">Start Timed Exam</button>
+                </div>
+
+                <!-- Mode 3: Flashcard Study Mode -->
+                <div class="mode-card" data-mode="flashcards">
+                    <div class="mode-icon-wrapper purple">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                        </svg>
+                    </div>
+                    <h3>Flashcard Study</h3>
+                    <p>Rapid recall drills for quick syntax rules, scope boundaries, loop termination pitfalls, and operator precedence tricks right before interviews.</p>
+                    <ul class="mode-perks">
+                        <li>Smooth 3D flip card animation</li>
+                        <li>High-speed revision without distractions</li>
+                        <li>Supports Spacebar / arrow navigation</li>
+                    </ul>
+                    <button class="btn btn-secondary start-mode-btn" data-mode="flashcards">Open Flashcards</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCREEN 2: Practice & Exam Workspace -->
+        <section id="screen-quiz-workspace" class="screen-view hidden">
+            
+            <!-- Filter & Status Bar (Visible in Practice & Flashcard Modes) -->
+            <div id="quiz-filter-bar" class="quiz-filter-bar">
+                <div class="filter-group">
+                    <span class="filter-label">Track:</span>
+                    <button class="filter-pill active" data-filter-track="all">All (150)</button>
+                    <button class="filter-pill pill-var-tag" data-filter-track="Variables & Data Types">📦 Variables (50)</button>
+                    <button class="filter-pill pill-cond-tag" data-filter-track="Conditional Statements">🔀 Conditionals (50)</button>
+                    <button class="filter-pill pill-loop-tag" data-filter-track="Loops & Iteration">🔁 Loops (50)</button>
+                </div>
+                
+                <div class="filter-group">
+                    <span class="filter-label">Language:</span>
+                    <button class="filter-pill active" data-filter-lang="all">All</button>
+                    <button class="filter-pill" data-filter-lang="C">C</button>
+                    <button class="filter-pill" data-filter-lang="C++">C++</button>
+                    <button class="filter-pill" data-filter-lang="Java">Java</button>
+                    <button class="filter-pill" data-filter-lang="Python">Python</button>
+                    <button class="filter-pill" data-filter-lang="Pseudocode">Pseudo</button>
+                </div>
+
+                <div class="filter-group">
+                    <span class="filter-label">Difficulty:</span>
+                    <button class="filter-pill active" data-filter-diff="all">All</button>
+                    <button class="filter-pill" data-filter-diff="Easy">Easy</button>
+                    <button class="filter-pill" data-filter-diff="Medium">Medium</button>
+                    <button class="filter-pill" data-filter-diff="Hard">Hard</button>
+                </div>
+
+                <div class="workspace-actions">
+                    <button id="ws-sound-toggle" class="filter-pill btn-sound-filter sound-on" title="Click to turn sound FX ON or OFF">
+                        <span id="ws-sound-icon">🔊</span> <span id="ws-sound-text">Sound: ON</span>
+                    </button>
+                    <button id="btn-toggle-bookmarks" class="filter-pill btn-bookmark-filter" title="Filter bookmarked questions">
+                        ★ Bookmarks (<span id="bookmark-count-badge">0</span>)
+                    </button>
+                    <button id="btn-toggle-palette" class="btn-secondary-sm" title="Show Question Palette">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                        <span>Palette</span>
+                    </button>
+                    <button id="btn-change-mode" class="btn-text" title="Switch Practice/Exam Mode">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+                        <span>Change Mode</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Main Question Area Layout -->
+            <div class="quiz-container">
+                <div class="quiz-card-wrapper">
+                    
+                    <!-- Question Card -->
+                    <div id="question-card" class="question-card">
+                        
+                        <div class="card-meta-header">
+                            <div class="meta-badges">
+                                <span id="q-track-badge" class="badge badge-track">Variables &amp; Data Types</span>
+                                <span id="q-concept-badge" class="badge badge-concept">Scope &amp; Hoisting</span>
+                                <span id="q-lang-badge" class="badge badge-lang">C</span>
+                                <span id="q-diff-badge" class="badge badge-diff diff-medium">Medium</span>
+                            </div>
+
+                            <div class="meta-right-actions">
+                                <span class="q-counter">Question <strong id="current-q-num">1</strong> of <span id="total-q-num">150</span></span>
+                                <button id="btn-bookmark-q" class="bookmark-btn" aria-label="Bookmark this question" title="Bookmark question">
+                                    <svg class="star-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Progress Bar -->
+                        <div class="q-progress-bar-container">
+                            <div id="q-progress-bar" class="q-progress-bar" style="width: 1%;"></div>
+                        </div>
+
+                        <!-- Question Text -->
+                        <div class="question-text-box">
+                            <h2 id="q-text">Loading question text...</h2>
+                        </div>
+
+                        <!-- Code Block (Optional) -->
+                        <div id="q-code-container" class="code-container hidden">
+                            <div class="code-header">
+                                <span id="code-lang-label" class="code-lang-tag">C</span>
+                                <button id="btn-copy-code" class="btn-copy" title="Copy code snippet">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                                    <span>Copy</span>
+                                </button>
+                            </div>
+                            <pre><code id="q-code-content"></code></pre>
+                        </div>
+
+                        <!-- Options List -->
+                        <div id="options-grid" class="options-grid">
+                            <!-- Injected by JavaScript -->
+                        </div>
+
+                        <!-- Card Footer Controls -->
+                        <div class="card-footer-controls">
+                            <div class="footer-left">
+                                <button id="btn-prev-q" class="btn btn-secondary-sm">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                                    Previous
+                                </button>
+                                <button id="btn-review-mark" class="btn btn-outline-sm hidden" title="Mark for review in exam mode">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                    <span>Mark Review</span>
+                                </button>
+                            </div>
+
+                            <div class="footer-right">
+                                <button id="btn-show-expl" class="btn btn-outline-sm hidden" title="Toggle detailed explanation">
+                                    💡 Explanation
+                                </button>
+                                <button id="btn-next-q" class="btn btn-primary-sm">
+                                    Next
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                                </button>
+                                <button id="btn-submit-exam" class="btn btn-accent-sm hidden">
+                                    Submit Exam
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Detailed Explanation Drawer (Practice Mode) -->
+                        <div id="explanation-box" class="explanation-box hidden">
+                            <div class="expl-status-banner" id="expl-status-banner">
+                                <span class="status-icon" id="expl-status-icon">✓</span>
+                                <span class="status-title" id="expl-status-title">Correct! Well done.</span>
+                            </div>
+
+                            <div class="expl-section">
+                                <h4>Detailed Explanation</h4>
+                                <p id="expl-text"></p>
+                            </div>
+
+                            <div id="expl-why-others-container" class="expl-section hidden">
+                                <h4>Why Other Options Are Wrong</h4>
+                                <ul id="expl-why-others-list" class="distractor-list"></ul>
+                            </div>
+
+                            <div class="expl-grid-duo">
+                                <div id="expl-trap-box" class="expl-card trap-card">
+                                    <h5>⚠️ MNC Exam Trap &amp; Pro-Tip</h5>
+                                    <p id="expl-trap-text"></p>
+                                </div>
+                                <div id="expl-app-box" class="expl-card app-card">
+                                    <h5>🏢 Real-World Application</h5>
+                                    <p id="expl-app-text"></p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Slide-Out / Responsive Question Palette -->
+                <aside id="question-palette" class="question-palette hidden">
+                    <div class="palette-header">
+                        <h3>Question Navigator</h3>
+                        <button id="btn-close-palette" class="icon-btn-sm" aria-label="Close palette">✕</button>
+                    </div>
+
+                    <div class="palette-legend">
+                        <span class="legend-item"><span class="dot dot-answered"></span> Answered</span>
+                        <span class="legend-item"><span class="dot dot-review"></span> Review</span>
+                        <span class="legend-item"><span class="dot dot-unvisited"></span> Unvisited</span>
+                    </div>
+
+                    <div id="palette-grid" class="palette-grid">
+                        <!-- Injected by JavaScript -->
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <!-- SCREEN 3: Flashcards View -->
+        <section id="screen-flashcards" class="screen-view hidden">
+            <div class="flashcard-workspace">
+                <div class="flashcard-topbar">
+                    <div class="flashcard-track-filters">
+                        <button class="filter-pill active" data-fc-track="all">All Tracks</button>
+                        <button class="filter-pill" data-fc-track="Variables & Data Types">Variables</button>
+                        <button class="filter-pill" data-fc-track="Conditional Statements">Conditionals</button>
+                        <button class="filter-pill" data-fc-track="Loops & Iteration">Loops</button>
+                    </div>
+                    <div class="fc-counter">Card <strong id="fc-current-index">1</strong> of <span id="fc-total-count">150</span></div>
+                    <button id="btn-exit-fc" class="btn-secondary-sm">Exit to Menu</button>
+                </div>
+
+                <div class="flashcard-container">
+                    <div id="flashcard" class="flashcard">
+                        <!-- Front Face -->
+                        <div class="flashcard-face flashcard-front">
+                            <div class="fc-badge-strip">
+                                <span id="fc-track" class="badge badge-track">Variables &amp; Data Types</span>
+                                <span id="fc-lang" class="badge badge-lang">C</span>
+                                <span class="fc-hint">Click or press Space to reveal</span>
+                            </div>
+                            <div class="fc-content">
+                                <h3 id="fc-question">Flashcard question loading...</h3>
+                                <pre id="fc-code" class="fc-code hidden"><code></code></pre>
+                            </div>
+                            <div class="fc-footer">
+                                <span>💡 Flip Card for Answer &amp; Rationale</span>
+                            </div>
+                        </div>
+
+                        <!-- Back Face -->
+                        <div class="flashcard-face flashcard-back">
+                            <div class="fc-badge-strip">
+                                <span class="badge badge-correct">Correct Answer: <strong id="fc-correct-opt">A</strong></span>
+                            </div>
+                            <div class="fc-content">
+                                <div class="fc-answer-title" id="fc-answer-text">Answer text</div>
+                                <div class="fc-expl-body" id="fc-explanation">Explanation body...</div>
+                                <div class="fc-trap-pill" id="fc-trap">Exam Trap text...</div>
+                            </div>
+                            <div class="fc-footer">
+                                <span>🔄 Click to flip back</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Flashcard Controls -->
+                <div class="flashcard-controls">
+                    <button id="btn-fc-prev" class="btn btn-secondary">Previous Card</button>
+                    <button id="btn-fc-flip" class="btn btn-primary">Flip Card (Space)</button>
+                    <button id="btn-fc-next" class="btn btn-secondary">Next Card</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCREEN 4: Exam Results & Analytics Modal -->
+        <div id="modal-exam-results" class="modal-overlay hidden" role="dialog" aria-modal="true">
+            <div class="modal-card">
+                <div class="results-header">
+                    <div class="results-trophy">🏆</div>
+                    <h2>Placement Exam Scorecard</h2>
+                    <p id="results-subtitle">Comprehensive competency diagnostic</p>
+                </div>
+
+                <div class="results-metrics-grid">
+                    <div class="metric-box">
+                        <span class="metric-val" id="res-score">0 / 30</span>
+                        <span class="metric-lbl">Total Score</span>
+                    </div>
+                    <div class="metric-box">
+                        <span class="metric-val" id="res-accuracy">0%</span>
+                        <span class="metric-lbl">Accuracy</span>
+                    </div>
+                    <div class="metric-box">
+                        <span class="metric-val" id="res-time">00:00</span>
+                        <span class="metric-lbl">Time Taken</span>
+                    </div>
+                    <div class="metric-box">
+                        <span class="metric-val" id="res-percentile">MNC Ready</span>
+                        <span class="metric-lbl">Rating</span>
+                    </div>
+                </div>
+
+                <!-- Track Performance Breakdown -->
+                <div class="results-breakdown-section">
+                    <h3>Performance by Logic Track</h3>
+                    
+                    <div class="breakdown-bar-item">
+                        <div class="bar-header">
+                            <span>📦 Variables &amp; Data Types</span>
+                            <strong id="bar-var-text">0 / 10</strong>
+                        </div>
+                        <div class="bar-track"><div id="bar-var-fill" class="bar-fill purple" style="width: 0%;"></div></div>
+                    </div>
+
+                    <div class="breakdown-bar-item">
+                        <div class="bar-header">
+                            <span>🔀 Conditional Statements</span>
+                            <strong id="bar-cond-text">0 / 10</strong>
+                        </div>
+                        <div class="bar-track"><div id="bar-cond-fill" class="bar-fill magenta" style="width: 0%;"></div></div>
+                    </div>
+
+                    <div class="breakdown-bar-item">
+                        <div class="bar-header">
+                            <span>🔁 Loops &amp; Iteration</span>
+                            <strong id="bar-loop-text">0 / 10</strong>
+                        </div>
+                        <div class="bar-track"><div id="bar-loop-fill" class="bar-fill green" style="width: 0%;"></div></div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="results-actions">
+                    <button id="btn-results-review" class="btn btn-primary">Review Solutions</button>
+                    <button id="btn-results-retry" class="btn btn-accent">Take Another Exam</button>
+                    <button id="btn-results-home" class="btn btn-secondary">Dashboard</button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Scripts -->
+    <script src="questions.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

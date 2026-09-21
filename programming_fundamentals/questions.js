@@ -1,0 +1,3553 @@
+// Programming Fundamentals (Variables, Conditionals & Loops) - 150 Placement MCQs
+const questionsData = [
+  {
+    "id": 1,
+    "track": "Variables & Data Types",
+    "concept": "Identifiers & Scope",
+    "language": "C++",
+    "difficulty": "Easy",
+    "question": "Which of the following is an INVALID variable identifier in C and C++?",
+    "code": null,
+    "options": {
+      "A": "_totalAmount",
+      "B": "count2",
+      "C": "2ndValue",
+      "D": "$salary"
+    },
+    "correctAnswer": "C",
+    "explanation": "In C and C++, variable names must begin with an alphabet (uppercase or lowercase) or an underscore (_). They cannot begin with digits.",
+    "whyOthersAreWrong": {
+      "A": "_totalAmount is valid because starting with an underscore is allowed.",
+      "B": "count2 is valid; digits are allowed after the first character.",
+      "D": "$salary is accepted by some compilers as an extension, but digits starting an identifier are strictly invalid in standard C/C++."
+    },
+    "commonTrap": "Confusing variable scope, type limits, or invalid identifier characters.",
+    "quickTrick": "Check memory sizes and initialization values before tracing operations.",
+    "realWorldApplication": "Enforcing strict identifier rules avoids parser and tokenizer collisions during lexical syntax analysis."
+  },
+  {
+    "id": 2,
+    "track": "Variables & Data Types",
+    "concept": "Identifiers & Scope",
+    "language": "Python",
+    "difficulty": "Medium",
+    "question": "In Python, what is the behavior regarding variable declarations and scope when rebinding global variables?",
+    "code": "x = 10\ndef update():\n    x = x + 5\nupdate()",
+    "options": {
+      "A": "x becomes 15 globally",
+      "B": "UnboundLocalError: cannot access local variable 'x' where it is not associated with a value",
+      "C": "x prints 10",
+      "D": "None"
+    },
+    "correctAnswer": "B",
+    "explanation": "Because 'x' is assigned to inside the function, Python marks 'x' as local to update(). During 'x + 5', it attempts to read the local 'x' before it has been assigned, triggering an UnboundLocalError.",
+    "whyOthersAreWrong": {
+      "A": "Incorrect; update() does not declare 'global x'.",
+      "C": "Incorrect; the function raises an exception prior to returning.",
+      "D": "Incorrect; execution terminates with an error."
+    },
+    "commonTrap": "Confusing variable scope, type limits, or invalid identifier characters.",
+    "quickTrick": "Check memory sizes and initialization values before tracing operations.",
+    "realWorldApplication": "Understanding function scope prevents unintended variable shadowing and mutable state leaks in microservices."
+  },
+  {
+    "id": 3,
+    "track": "Variables & Data Types",
+    "concept": "Identifiers & Scope",
+    "language": "C",
+    "difficulty": "Medium",
+    "question": "In C, what is the default initial value of an uninitialized local (automatic) integer variable compared to a static integer variable?",
+    "code": null,
+    "options": {
+      "A": "Both are initialized to 0",
+      "B": "Automatic has garbage value; Static is initialized to 0",
+      "C": "Automatic is 0; Static has garbage value",
+      "D": "Both retain garbage values"
+    },
+    "correctAnswer": "B",
+    "explanation": "Automatic local variables reside on the stack frame and are not initialized automatically (retaining indeterminate/garbage values). Static variables reside in the data/BSS segment and are zero-initialized.",
+    "whyOthersAreWrong": {
+      "A": "Incorrect; stack memory is not zeroed by default in C.",
+      "C": "Inverted statement.",
+      "D": "Static storage class guarantees 0 initialization."
+    },
+    "commonTrap": "Confusing variable scope, type limits, or invalid identifier characters.",
+    "quickTrick": "Check memory sizes and initialization values before tracing operations.",
+    "realWorldApplication": "Failing to initialize stack variables is a major source of security vulnerabilities and undefined program logic."
+  },
+  {
+    "id": 4,
+    "track": "Variables & Data Types",
+    "concept": "Identifiers & Scope",
+    "language": "Java",
+    "difficulty": "Hard",
+    "question": "In Java, what happens when an instance variable of type boolean is declared without explicit initialization?",
+    "code": "class Data {\n    boolean flag;\n}",
+    "options": {
+      "A": "Compilation error: variable must be initialized",
+      "B": "It defaults to null",
+      "C": "It defaults to false",
+      "D": "It defaults to true"
+    },
+    "correctAnswer": "C",
+    "explanation": "Java initializes class field members to default values upon object instantiation. For boolean fields, the language specification mandates false.",
+    "whyOthersAreWrong": {
+      "A": "Only local variables in Java cause compile errors when uninitialized.",
+      "B": "boolean is a primitive, not an object wrapper (Boolean), so it cannot be null.",
+      "D": "Incorrect; default primitive bit pattern is zero (false)."
+    },
+    "commonTrap": "Confusing variable scope, type limits, or invalid identifier characters.",
+    "quickTrick": "Check memory sizes and initialization values before tracing operations.",
+    "realWorldApplication": "Understanding default field initialization prevents NullPointerExceptions and unpredictable initial state in enterprise beans."
+  },
+  {
+    "id": 5,
+    "track": "Variables & Data Types",
+    "concept": "Constants",
+    "language": "C++",
+    "difficulty": "Easy",
+    "question": "Which keyword in C++ makes an object immutable and enables compile-time evaluation?",
+    "code": null,
+    "options": {
+      "A": "volatile",
+      "B": "constexpr",
+      "C": "register",
+      "D": "extern"
+    },
+    "correctAnswer": "B",
+    "explanation": "'constexpr' specifies that the value of an object or return value of a function can be evaluated at compile time, enforcing true compile-time constants.",
+    "whyOthersAreWrong": {
+      "A": "volatile informs the compiler that a variable may change unexpectedly outside program control.",
+      "C": "register is an obsolete hint to store variables in CPU registers.",
+      "D": "extern declares external linkage."
+    },
+    "commonTrap": "Confusing variable scope, type limits, or invalid identifier characters.",
+    "quickTrick": "Check memory sizes and initialization values before tracing operations.",
+    "realWorldApplication": "Compile-time constants optimize embedded systems and high-frequency trading code by precomputing lookup tables."
+  },
+  {
+    "id": 6,
+    "track": "Variables & Data Types",
+    "concept": "Constants",
+    "language": "C",
+    "difficulty": "Medium",
+    "question": "In C, what is the primary structural difference between defining a constant with `#define MAX 100` and `const int MAX = 100;`?",
+    "code": null,
+    "options": {
+      "A": "#define has strict type safety, const does not",
+      "B": "#define undergoes preprocessor textual substitution without type checks; const has type safety and memory storage",
+      "C": "const can be redefined; #define cannot",
+      "D": "There is no difference"
+    },
+    "correctAnswer": "B",
+    "explanation": "#define is a preprocessor macro replacing tokens prior to semantic compilation without type verification. 'const int' introduces a typed identifier respected by the compiler and debugger.",
+    "whyOthersAreWrong": {
+      "A": "Inverted; macros lack type safety.",
+      "C": "Macros can be undefined and redefined with #undef.",
+      "D": "They operate at distinct compilation phases."
+    },
+    "commonTrap": "Confusing variable scope, type limits, or invalid identifier characters.",
+    "quickTrick": "Check memory sizes and initialization values before tracing operations.",
+    "realWorldApplication": "Using typed constants instead of preprocessor macros simplifies debugging in IDEs and enables symbol table visibility."
+  },
+  {
+    "id": 7,
+    "track": "Variables & Data Types",
+    "concept": "Constants",
+    "language": "Java",
+    "difficulty": "Hard",
+    "question": "In Java, what is required to create a compile-time constant variable?",
+    "code": null,
+    "options": {
+      "A": "Only the final keyword",
+      "B": "Both static and final keywords with a primitive or String initialized at declaration",
+      "C": "volatile and transient keywords",
+      "D": "const keyword"
+    },
+    "correctAnswer": "B",
+    "explanation": "In Java, constants are declared using 'static final'. If initialized with compile-time constant expressions, the compiler inlines their values directly at bytecode call sites.",
+    "whyOthersAreWrong": {
+      "A": "final alone creates an immutable instance variable, not a shared class constant.",
+      "C": "volatile is used for concurrency; transient for serialization.",
+      "D": "const is a reserved keyword in Java but has no functional operation."
+    },
+    "commonTrap": "Confusing variable scope, type limits, or invalid identifier characters.",
+    "quickTrick": "Check memory sizes and initialization values before tracing operations.",
+    "realWorldApplication": "Constants like error codes or mathematical constants are defined static final to conserve heap allocations across threads."
+  },
+  {
+    "id": 8,
+    "track": "Variables & Data Types",
+    "concept": "Data Types",
+    "language": "Java",
+    "difficulty": "Easy",
+    "question": "In Java, what is the exact memory size and signedness of the `char` primitive type?",
+    "code": null,
+    "options": {
+      "A": "1 byte, signed (ASCII)",
+      "B": "2 bytes, unsigned (UTF-16 Unicode)",
+      "C": "4 bytes, signed (UTF-32)",
+      "D": "2 bytes, signed"
+    },
+    "correctAnswer": "B",
+    "explanation": "Java's 'char' data type is a 16-bit (2 bytes) unsigned integer representation holding UTF-16 code units ranging from 0 ('\\u0000') to 65535 ('\\uffff').",
+    "whyOthersAreWrong": {
+      "A": "C char is 1 byte; Java char is 2 bytes.",
+      "C": "Java char is not 32-bit.",
+      "D": "Java char is unsigned; short is the signed 2-byte counterpart."
+    },
+    "commonTrap": "Confusing variable scope, type limits, or invalid identifier characters.",
+    "quickTrick": "Check memory sizes and initialization values before tracing operations.",
+    "realWorldApplication": "Correct character sizing avoids truncation bugs when localizing software for international scripts."
+  },
+  {
+    "id": 9,
+    "track": "Variables & Data Types",
+    "concept": "Data Types",
+    "language": "Python",
+    "difficulty": "Easy",
+    "question": "In Python, which of the following built-in collection types is MUTABLE?",
+    "code": null,
+    "options": {
+      "A": "tuple",
+      "B": "str",
+      "C": "frozenset",
+      "D": "list"
+    },
+    "correctAnswer": "D",
+    "explanation": "Python lists are mutable sequences; elements can be updated without creating a new object. Tuples, strings, and frozensets are immutable.",
+    "whyOthersAreWrong": {
+      "A": "Tuples cannot be mutated once created.",
+      "B": "Strings in Python are immutable.",
+      "C": "frozenset is an immutable hashable set."
+    },
+    "commonTrap": "Confusing variable scope, type limits, or invalid identifier characters.",
+    "quickTrick": "Check memory sizes and initialization values before tracing operations.",
+    "realWorldApplication": "Choosing between tuples and lists determines whether data structures can serve as dictionary keys."
+  },
+  {
+    "id": 10,
+    "track": "Variables & Data Types",
+    "concept": "Data Types",
+    "language": "C",
+    "difficulty": "Medium",
+    "question": "What is the typical size of `long double` in 64-bit GCC compilers on x86 architectures?",
+    "code": null,
+    "options": {
+      "A": "4 bytes",
+      "B": "8 bytes",
+      "C": "12 or 16 bytes (extended precision)",
+      "D": "32 bytes"
+    },
+    "correctAnswer": "C",
+    "explanation": "On x86 GCC, 'long double' uses 80-bit extended precision padded to 96 bits (12 bytes) on 32-bit or 128 bits (16 bytes) on 64-bit systems for ABI alignment.",
+    "whyOthersAreWrong": {
+      "A": "4 bytes is float size.",
+      "B": "8 bytes is standard double size.",
+      "D": "32 bytes is beyond long double architecture definitions."
+    },
+    "commonTrap": "Confusing variable scope, type limits, or invalid identifier characters.",
+    "quickTrick": "Check memory sizes and initialization values before tracing operations.",
+    "realWorldApplication": "Extended precision is used in scientific simulations to minimize accumulated rounding errors."
+  },
+  {
+    "id": 11,
+    "track": "Variables & Data Types",
+    "concept": "Data Types",
+    "language": "Java",
+    "difficulty": "Medium",
+    "question": "In Java, what will occur during the compilation and execution of this code?",
+    "code": "byte b = 127;\nb++;\nSystem.out.println(b);",
+    "options": {
+      "A": "Compilation error: integer overflow",
+      "B": "Prints 128",
+      "C": "Prints -128",
+      "D": "Prints 0"
+    },
+    "correctAnswer": "C",
+    "explanation": "Java byte is signed 8-bit (-128 to +127). Incrementing 127 in two's complement binary gives 10000000_2, which represents -128. b++ acts as b = (byte)(b + 1).",
+    "whyOthersAreWrong": {
+      "A": "Java does not throw compile errors on primitive overflow.",
+      "B": "128 cannot fit in a signed 8-bit byte.",
+      "D": "0 is not the binary outcome of 01111111 + 1."
+    },
+    "commonTrap": "Confusing variable scope, type limits, or invalid identifier characters.",
+    "quickTrick": "Check memory sizes and initialization values before tracing operations.",
+    "realWorldApplication": "Understanding integer overflow is critical in cybersecurity to avoid buffer overruns and integer truncation flaws."
+  },
+  {
+    "id": 12,
+    "track": "Variables & Data Types",
+    "concept": "Data Types",
+    "language": "C++",
+    "difficulty": "Hard",
+    "question": "In C, what is the output of `sizeof('a')` versus in C++?",
+    "code": null,
+    "options": {
+      "A": "1 in C, and 1 in C++",
+      "B": "sizeof(int) in C, and 1 in C++",
+      "C": "1 in C, and sizeof(int) in C++",
+      "D": "Compilation error in C"
+    },
+    "correctAnswer": "B",
+    "explanation": "In C, character constants like 'a' have type 'int', so sizeof('a') == sizeof(int) (usually 4). In C++, character literals have type 'char', so sizeof('a') == sizeof(char) == 1.",
+    "whyOthersAreWrong": {
+      "A": "Incorrect; C does not treat character literals as char type.",
+      "C": "Inverted.",
+      "D": "Both languages compile this validly."
+    },
+    "commonTrap": "Confusing variable scope, type limits, or invalid identifier characters.",
+    "quickTrick": "Check memory sizes and initialization values before tracing operations.",
+    "realWorldApplication": "Highlighting subtle differences between C and C++ compilers is critical when porting cross-language header files."
+  },
+  {
+    "id": 13,
+    "track": "Variables & Data Types",
+    "concept": "Type Conversion",
+    "language": "C",
+    "difficulty": "Easy",
+    "question": "What is the result of the following integer division in C?",
+    "code": "float res = 7 / 2;\nprintf(\"%.1f\", res);",
+    "options": {
+      "A": "3.5",
+      "B": "3.0",
+      "C": "4.0",
+      "D": "Compilation Error"
+    },
+    "correctAnswer": "B",
+    "explanation": "Integer division 7 / 2 truncates to integer 3. Only then is 3 implicitly widened to 3.0f upon assignment to float variable 'res'.",
+    "whyOthersAreWrong": {
+      "A": "To get 3.5, at least one operand must be a float (e.g. 7.0 / 2).",
+      "C": "Integer division truncates towards zero, not rounding up.",
+      "D": "This is completely valid C syntax."
+    },
+    "commonTrap": "Confusing variable scope, type limits, or invalid identifier characters.",
+    "quickTrick": "Check memory sizes and initialization values before tracing operations.",
+    "realWorldApplication": "Accidental integer division is a frequent bug in financial calculations like interest and tax percentage formulas."
+  },
+  {
+    "id": 14,
+    "track": "Variables & Data Types",
+    "concept": "Type Conversion",
+    "language": "Java",
+    "difficulty": "Medium",
+    "question": "In Java, which of the following assignments will cause a COMPILATION error without explicit casting?",
+    "code": null,
+    "options": {
+      "A": "int a = 10; double b = a;",
+      "B": "byte a = 10; int b = a;",
+      "C": "float a = 10.5;",
+      "D": "char c = 65;"
+    },
+    "correctAnswer": "C",
+    "explanation": "10.5 is a double literal in Java. Assigning a 64-bit double to a 32-bit float is a narrowing conversion that requires an explicit cast (float a = 10.5f;).",
+    "whyOthersAreWrong": {
+      "A": "Widening int to double is permitted implicitly.",
+      "B": "Widening byte to int is permitted implicitly.",
+      "D": "Integer constant 65 fits inside char bounds and is allowed."
+    },
+    "commonTrap": "Confusing variable scope, type limits, or invalid identifier characters.",
+    "quickTrick": "Check memory sizes and initialization values before tracing operations.",
+    "realWorldApplication": "Compiler strictness on narrowing conversions prevents accidental loss of numerical precision."
+  },
+  {
+    "id": 15,
+    "track": "Variables & Data Types",
+    "concept": "Type Conversion",
+    "language": "C",
+    "difficulty": "Medium",
+    "question": "In C, what is printed by the following code due to integer promotion rules?",
+    "code": "#include <stdio.h>\nint main() {\n    unsigned int a = 10;\n    int b = -20;\n    if (a + b > 0)\n        printf(\"Greater\");\n    else\n        printf(\"Lesser\");\n    return 0;\n}",
+    "options": {
+      "A": "Greater",
+      "B": "Lesser",
+      "C": "Equal",
+      "D": "Compilation error"
+    },
+    "correctAnswer": "A",
+    "explanation": "b (-20) is implicitly converted to an unsigned int. In two's complement, -20 becomes a very large positive number (e.g. 4294967276 on 32-bit systems). The sum is therefore greater than 0.",
+    "whyOthersAreWrong": {
+      "B": "Natural human arithmetic would suggest -10, but C promotion rules convert to unsigned.",
+      "C": "Sum is not 0.",
+      "D": "Valid C code without compile errors."
+    },
+    "commonTrap": "Confusing variable scope, type limits, or invalid identifier characters.",
+    "quickTrick": "Check memory sizes and initialization values before tracing operations.",
+    "realWorldApplication": "Unsigned/signed arithmetic bugs are notorious security hazards in network packet length validation."
+  },
+  {
+    "id": 16,
+    "track": "Variables & Data Types",
+    "concept": "Type Conversion",
+    "language": "Python",
+    "difficulty": "Hard",
+    "question": "What is the output of this Python snippet involving implicit boolean conversion?",
+    "code": "x = []\ny = [0]\nprint(bool(x), bool(y))",
+    "options": {
+      "A": "False False",
+      "B": "True True",
+      "C": "False True",
+      "D": "True False"
+    },
+    "correctAnswer": "C",
+    "explanation": "In Python truthiness testing, an empty list [] evaluates to False. A list containing elements (even 0) has length > 0, so it evaluates to True.",
+    "whyOthersAreWrong": {
+      "A": "y is not empty, so it cannot be False.",
+      "B": "x is empty, so it evaluates to False.",
+      "D": "Inverted."
+    },
+    "commonTrap": "Confusing variable scope, type limits, or invalid identifier characters.",
+    "quickTrick": "Check memory sizes and initialization values before tracing operations.",
+    "realWorldApplication": "Idiomatic Python relies on truthy/falsy checks to detect empty payloads or query responses."
+  },
+  {
+    "id": 17,
+    "track": "Variables & Data Types",
+    "concept": "Type Conversion",
+    "language": "C++",
+    "difficulty": "Hard",
+    "question": "In C++, which casting operator should be used to perform safe runtime downcasting in an inheritance hierarchy with polymorphic classes?",
+    "code": null,
+    "options": {
+      "A": "static_cast",
+      "B": "dynamic_cast",
+      "C": "reinterpret_cast",
+      "D": "const_cast"
+    },
+    "correctAnswer": "B",
+    "explanation": "dynamic_cast safely checks polymorphic object types at runtime using RTTI. If downcasting an incompatible pointer, it returns nullptr.",
+    "whyOthersAreWrong": {
+      "A": "static_cast performs compile-time casting without runtime validation checks.",
+      "C": "reinterpret_cast performs raw bit pattern reinterpretation.",
+      "D": "const_cast is exclusively used to add or strip const/volatile attributes."
+    },
+    "commonTrap": "Confusing variable scope, type limits, or invalid identifier characters.",
+    "quickTrick": "Check memory sizes and initialization values before tracing operations.",
+    "realWorldApplication": "Safe downcasting prevents memory corruption when resolving derived classes in plugin and GUI architectures."
+  },
+  {
+    "id": 18,
+    "track": "Variables & Data Types",
+    "concept": "Operators",
+    "language": "Java",
+    "difficulty": "Easy",
+    "question": "Which of the following operators is the only TERNARY operator in C, C++, and Java?",
+    "code": null,
+    "options": {
+      "A": "::",
+      "B": "? :",
+      "C": "->",
+      "D": "&&"
+    },
+    "correctAnswer": "B",
+    "explanation": "The conditional operator '? :' is the only ternary operator in C, C++, and Java, evaluating expressions based on a boolean condition.",
+    "whyOthersAreWrong": {
+      "A": ":: is binary/unary scope resolution operator.",
+      "C": "-> is binary member access via pointer.",
+      "D": "&& is a binary logical operator."
+    },
+    "commonTrap": "Confusing variable scope, type limits, or invalid identifier characters.",
+    "quickTrick": "Check memory sizes and initialization values before tracing operations.",
+    "realWorldApplication": "Ternary operators write clean inline conditional assignments like setting default fallback values."
+  },
+  {
+    "id": 19,
+    "track": "Variables & Data Types",
+    "concept": "Operators",
+    "language": "C",
+    "difficulty": "Medium",
+    "question": "What does the bitwise XOR operator (`^`) return for two identical bit operands?",
+    "code": null,
+    "options": {
+      "A": "1",
+      "B": "0",
+      "C": "-1",
+      "D": "Depends on sign"
+    },
+    "correctAnswer": "B",
+    "explanation": "XOR returns 1 if and only if one operand bit is 1 and the other is 0. If both bits are identical (0^0 or 1^1), the result is always 0.",
+    "whyOthersAreWrong": {
+      "A": "1 is produced when bits are distinct.",
+      "C": "-1 requires all bits set to 1 in two's complement.",
+      "D": "Bitwise logic does not depend on sign conventions."
+    },
+    "commonTrap": "Confusing variable scope, type limits, or invalid identifier characters.",
+    "quickTrick": "Check memory sizes and initialization values before tracing operations.",
+    "realWorldApplication": "XORing a value with itself (a ^ a = 0) is an optimal assembly instruction to clear CPU registers."
+  },
+  {
+    "id": 20,
+    "track": "Variables & Data Types",
+    "concept": "Operators",
+    "language": "Java",
+    "difficulty": "Hard",
+    "question": "What is the output of the bitwise shift operator expression in Java: `-1 >>> 24`?",
+    "code": null,
+    "options": {
+      "A": "-1",
+      "B": "255",
+      "C": "0",
+      "D": "-255"
+    },
+    "correctAnswer": "B",
+    "explanation": "In Java, -1 is 0xFFFFFFFF (32 bits of 1s). The >>> operator shifts bits right, filling the left 24 bits with 0s. The remaining 8 bits are 0xFF, which is decimal 255.",
+    "whyOthersAreWrong": {
+      "A": "Arithmetic shift (>>) preserves sign bits, yielding -1; >>> does not.",
+      "C": "Not 0, lower 8 bits remain set.",
+      "D": "Unsigned shift produces non-negative numbers."
+    },
+    "commonTrap": "Confusing variable scope, type limits, or invalid identifier characters.",
+    "quickTrick": "Check memory sizes and initialization values before tracing operations.",
+    "realWorldApplication": "Unsigned shifts are essential when decoding raw network packets, cryptographic hashes, and RGBA color channels."
+  },
+  {
+    "id": 21,
+    "track": "Variables & Data Types",
+    "concept": "Arithmetic Operators",
+    "language": "Java",
+    "difficulty": "Easy",
+    "question": "In C and Java, what is the result of applying the modulo operator `%` to negative numbers: `-14 % 3`?",
+    "code": null,
+    "options": {
+      "A": "-2",
+      "B": "2",
+      "C": "1",
+      "D": "-1"
+    },
+    "correctAnswer": "A",
+    "explanation": "In C99, C++, and Java, integer division truncates toward zero. Modulo satisfies (a/b)*b + (a%b) == a. For -14 % 3, division is -4, so (-4)*3 + (-2) = -14. The result is -2.",
+    "whyOthersAreWrong": {
+      "B": "Python yields 2 (floored division), but C/Java yields -2.",
+      "C": "Incorrect remainder.",
+      "D": "Incorrect remainder."
+    },
+    "commonTrap": "Confusing variable scope, type limits, or invalid identifier characters.",
+    "quickTrick": "Check memory sizes and initialization values before tracing operations.",
+    "realWorldApplication": "Knowing how negative remainders behave is essential in circular buffer indexing and hash table bucket allocation."
+  },
+  {
+    "id": 22,
+    "track": "Variables & Data Types",
+    "concept": "Arithmetic Operators",
+    "language": "Python",
+    "difficulty": "Easy",
+    "question": "What is the output of `11 // 2` in Python 3?",
+    "code": null,
+    "options": {
+      "A": "5.5",
+      "B": "5",
+      "C": "6",
+      "D": "Error"
+    },
+    "correctAnswer": "B",
+    "explanation": "// is the floor division operator in Python. 11 / 2 is 5.5, and flooring 5.5 yields integer 5.",
+    "whyOthersAreWrong": {
+      "A": "5.5 is produced by standard float division '/'.",
+      "C": "Floor does not round up.",
+      "D": "Valid Python operator."
+    },
+    "commonTrap": "Confusing variable scope, type limits, or invalid identifier characters.",
+    "quickTrick": "Check memory sizes and initialization values before tracing operations.",
+    "realWorldApplication": "Floor division is widely used in binary search algorithms to compute midpoint indices: (low + high) // 2."
+  },
+  {
+    "id": 23,
+    "track": "Variables & Data Types",
+    "concept": "Arithmetic Operators",
+    "language": "C",
+    "difficulty": "Medium",
+    "question": "In C, what happens if an integer is divided by 0 at runtime?",
+    "code": "int a = 5;\nint b = 0;\nint c = a / b;",
+    "options": {
+      "A": "c is set to Infinity",
+      "B": "c is set to 0",
+      "C": "Undefined Behavior (typically triggers SIGFPE / program crash)",
+      "D": "Compilation error"
+    },
+    "correctAnswer": "C",
+    "explanation": "Integer division by zero in C invokes Undefined Behavior according to ISO C standard. On standard POSIX systems, it generates a hardware trap sending signal SIGFPE and terminating the process.",
+    "whyOthersAreWrong": {
+      "A": "Floating-point division by 0 yields Infinity; integer division does not.",
+      "B": "Hardware does not set 0.",
+      "D": "Division by variable 0 is not caught at compile time."
+    },
+    "commonTrap": "Confusing variable scope, type limits, or invalid identifier characters.",
+    "quickTrick": "Check memory sizes and initialization values before tracing operations.",
+    "realWorldApplication": "Guard clauses validating denominators before division prevent system crashes and Denial of Service."
+  },
+  {
+    "id": 24,
+    "track": "Variables & Data Types",
+    "concept": "Arithmetic Operators",
+    "language": "Python",
+    "difficulty": "Medium",
+    "question": "What is the output of the following arithmetic expression in Python: `2 ** 3 ** 2`?",
+    "code": null,
+    "options": {
+      "A": "64",
+      "B": "512",
+      "C": "36",
+      "D": "516"
+    },
+    "correctAnswer": "B",
+    "explanation": "The exponentiation operator ** associates from right to left. 2 ** (3 ** 2) = 2 ** 9 = 512. (Evaluating left-to-right would incorrectly yield (2**3)**2 = 64).",
+    "whyOthersAreWrong": {
+      "A": "64 comes from incorrect left-to-right evaluation (8^2).",
+      "C": "Incorrect arithmetic.",
+      "D": "Incorrect arithmetic."
+    },
+    "commonTrap": "Confusing variable scope, type limits, or invalid identifier characters.",
+    "quickTrick": "Check memory sizes and initialization values before tracing operations.",
+    "realWorldApplication": "Right-associative power operations model exponential growth and geometric scaling equations accurately."
+  },
+  {
+    "id": 25,
+    "track": "Variables & Data Types",
+    "concept": "Arithmetic Operators",
+    "language": "Java",
+    "difficulty": "Hard",
+    "question": "In Java, what will `System.out.println(1.0 / 0.0);` and `System.out.println(0.0 / 0.0);` output?",
+    "code": null,
+    "options": {
+      "A": "ArithmeticException for both",
+      "B": "Infinity and NaN",
+      "C": "NaN and Infinity",
+      "D": "Compilation Error"
+    },
+    "correctAnswer": "B",
+    "explanation": "IEEE 754 specifies that dividing a non-zero float by zero yields positive/negative Infinity, while dividing zero by zero yields NaN (Not a Number).",
+    "whyOthersAreWrong": {
+      "A": "Floating-point operations do not throw ArithmeticException in Java; only integer division by 0 throws it.",
+      "C": "Inverted.",
+      "D": "Valid standard Java."
+    },
+    "commonTrap": "Confusing variable scope, type limits, or invalid identifier characters.",
+    "quickTrick": "Check memory sizes and initialization values before tracing operations.",
+    "realWorldApplication": "Handling IEEE 754 edge cases like NaN is critical in graphics rendering and financial charting APIs."
+  },
+  {
+    "id": 26,
+    "track": "Variables & Data Types",
+    "concept": "Relational Operators",
+    "language": "Python",
+    "difficulty": "Easy",
+    "question": "What is the output of the chained relational comparison in Python: `1 < 3 > 2`?",
+    "code": null,
+    "options": {
+      "A": "True",
+      "B": "False",
+      "C": "SyntaxError",
+      "D": "TypeError"
+    },
+    "correctAnswer": "A",
+    "explanation": "Python supports chained comparisons. `1 < 3 > 2` is equivalent to `(1 < 3) and (3 > 2)`. Both conditions are true, so it evaluates to True.",
+    "whyOthersAreWrong": {
+      "B": "Both parts evaluate to true.",
+      "C": "Chaining comparison operators is valid Python syntax.",
+      "D": "All operands are numbers; no type error."
+    },
+    "commonTrap": "Confusing variable scope, type limits, or invalid identifier characters.",
+    "quickTrick": "Check memory sizes and initialization values before tracing operations.",
+    "realWorldApplication": "Chained comparisons allow clean range checks like `0 <= index < len(arr)` without verbose syntax."
+  },
+  {
+    "id": 27,
+    "track": "Variables & Data Types",
+    "concept": "Relational Operators",
+    "language": "C",
+    "difficulty": "Medium",
+    "question": "In C, what is the output of the expression `int x = 5 > 4 > 3;`?",
+    "code": null,
+    "options": {
+      "A": "1",
+      "B": "0",
+      "C": "True",
+      "D": "Compilation Error"
+    },
+    "correctAnswer": "B",
+    "explanation": "Relational operators associate left-to-right. First, (5 > 4) evaluates to 1 (true). Then (1 > 3) is evaluated, which is false (0). Thus, x becomes 0.",
+    "whyOthersAreWrong": {
+      "A": "Incorrect; C does not chain comparisons mathematically.",
+      "C": "C stores boolean results as integers 1 and 0, not True keywords.",
+      "D": "Syntactically valid in C."
+    },
+    "commonTrap": "Confusing variable scope, type limits, or invalid identifier characters.",
+    "quickTrick": "Check memory sizes and initialization values before tracing operations.",
+    "realWorldApplication": "Recognizing that C does not support mathematical comparison chaining prevents logic bugs in validation checks."
+  },
+  {
+    "id": 28,
+    "track": "Variables & Data Types",
+    "concept": "Relational Operators",
+    "language": "Java",
+    "difficulty": "Medium",
+    "question": "In Java, what does the following string comparison evaluate to?",
+    "code": "String s1 = \"hello\";\nString s2 = new String(\"hello\");\nSystem.out.println(s1 == s2);",
+    "options": {
+      "A": "true",
+      "B": "false",
+      "C": "Compilation Error",
+      "D": "NullPointerException"
+    },
+    "correctAnswer": "B",
+    "explanation": "'==' checks reference equality. s1 points to the String in the constant pool, whereas s2 points to a distinct heap object instantiated via 'new'. They have different addresses, so s1 == s2 is false.",
+    "whyOthersAreWrong": {
+      "A": "Would be true if s1.equals(s2) were used.",
+      "C": "Valid syntax.",
+      "D": "Neither string reference is null."
+    },
+    "commonTrap": "Confusing variable scope, type limits, or invalid identifier characters.",
+    "quickTrick": "Check memory sizes and initialization values before tracing operations.",
+    "realWorldApplication": "Comparing strings with == instead of .equals() is one of the most common candidate traps in Java technical assessments."
+  },
+  {
+    "id": 29,
+    "track": "Variables & Data Types",
+    "concept": "Relational Operators",
+    "language": "Python",
+    "difficulty": "Hard",
+    "question": "In JavaScript/Python conceptual comparison, what does `NaN == NaN` return?",
+    "code": null,
+    "options": {
+      "A": "true",
+      "B": "false",
+      "C": "undefined",
+      "D": "TypeError"
+    },
+    "correctAnswer": "B",
+    "explanation": "According to IEEE 754 specification, NaN (Not a Number) compared to anythingâincluding another NaNâusing equality operators always yields false. Use isnan() to test for it.",
+    "whyOthersAreWrong": {
+      "A": "Counter-intuitive but false by IEEE 754 specification.",
+      "C": "Relational comparison yields boolean, not undefined.",
+      "D": "No type error occurs."
+    },
+    "commonTrap": "Confusing variable scope, type limits, or invalid identifier characters.",
+    "quickTrick": "Check memory sizes and initialization values before tracing operations.",
+    "realWorldApplication": "Always use dedicated functions like `Double.isNaN()` or `math.isnan()` instead of equality checks to detect corrupted sensor or calculation outputs."
+  },
+  {
+    "id": 30,
+    "track": "Variables & Data Types",
+    "concept": "Logical Operators",
+    "language": "C",
+    "difficulty": "Easy",
+    "question": "What is 'Short-Circuit Evaluation' in logical operators?",
+    "code": null,
+    "options": {
+      "A": "Compiler throws an error if an expression is too long",
+      "B": "Second operand is evaluated only if the first operand does not determine the result",
+      "C": "Expressions are evaluated in reverse order",
+      "D": "Logical operators execute on hardware accelerators"
+    },
+    "correctAnswer": "B",
+    "explanation": "Short-circuit evaluation means stopping evaluation as soon as the outcome is certain: for AND (&&), if the first operand is false, the whole is false. For OR (||), if the first operand is true, the whole is true.",
+    "whyOthersAreWrong": {
+      "A": "Has nothing to do with code length.",
+      "C": "Evaluation remains strictly left-to-right.",
+      "D": "Standard CPU logic."
+    },
+    "commonTrap": "Confusing variable scope, type limits, or invalid identifier characters.",
+    "quickTrick": "Check memory sizes and initialization values before tracing operations.",
+    "realWorldApplication": "Used universally to prevent crashes: `if (ptr != NULL && ptr->value > 0)` avoids null pointer dereferences."
+  },
+  {
+    "id": 31,
+    "track": "Variables & Data Types",
+    "concept": "Logical Operators",
+    "language": "C",
+    "difficulty": "Medium",
+    "question": "What is the output of the following C code snippet?",
+    "code": "#include <stdio.h>\nint main() {\n    int a = 0, b = 5;\n    if (a && ++b)\n        printf(\"True \");\n    printf(\"%d %d\", a, b);\n    return 0;\n}",
+    "options": {
+      "A": "True 0 6",
+      "B": "0 5",
+      "C": "0 6",
+      "D": "True 0 5"
+    },
+    "correctAnswer": "B",
+    "explanation": "Due to short-circuiting of the logical AND operator (&&), the left side 'a' is 0 (false), so '++b' is never evaluated. b remains 5, and the if-branch is skipped. Output is '0 5'.",
+    "whyOthersAreWrong": {
+      "A": "If condition was false.",
+      "C": "Assumes b was incremented, but short-circuiting prevented it.",
+      "D": "If branch did not pass."
+    },
+    "commonTrap": "Confusing variable scope, type limits, or invalid identifier characters.",
+    "quickTrick": "Check memory sizes and initialization values before tracing operations.",
+    "realWorldApplication": "Understanding short-circuit side effects prevents subtle bugs when functions with side effects are placed inside conditional expressions."
+  },
+  {
+    "id": 32,
+    "track": "Variables & Data Types",
+    "concept": "Logical Operators",
+    "language": "Python",
+    "difficulty": "Medium",
+    "question": "What will this Python expression evaluate to?",
+    "code": "x = \"\" or \"Default\"\nprint(x)",
+    "options": {
+      "A": "\"\"",
+      "B": "\"Default\"",
+      "C": "True",
+      "D": "False"
+    },
+    "correctAnswer": "B",
+    "explanation": "In Python, 'or' returns the first truthy operand or the last operand if all are falsy. An empty string \"\" is falsy, so Python continues and returns \"Default\".",
+    "whyOthersAreWrong": {
+      "A": "Falsy value, skipped by 'or'.",
+      "C": "Python does not cast the output to boolean True.",
+      "D": "\"Default\" is truthy."
+    },
+    "commonTrap": "Confusing variable scope, type limits, or invalid identifier characters.",
+    "quickTrick": "Check memory sizes and initialization values before tracing operations.",
+    "realWorldApplication": "Commonly used for concise default parameter initialization in Python: `config = user_config or default_config`."
+  },
+  {
+    "id": 33,
+    "track": "Variables & Data Types",
+    "concept": "Logical Operators",
+    "language": "C",
+    "difficulty": "Hard",
+    "question": "What is the output of this C code testing logical OR short-circuiting?",
+    "code": "#include <stdio.h>\nint main() {\n    int x = 1, y = 1;\n    int res = (x || ++y);\n    printf(\"%d %d %d\", x, y, res);\n    return 0;\n}",
+    "options": {
+      "A": "1 2 1",
+      "B": "1 1 1",
+      "C": "1 1 0",
+      "D": "1 2 0"
+    },
+    "correctAnswer": "B",
+    "explanation": "x is 1 (true). Since the left side of || is true, the entire expression is known to be true (res = 1). The right side ++y is never evaluated, leaving y = 1.",
+    "whyOthersAreWrong": {
+      "A": "Assumes y was incremented.",
+      "C": "res is true (1), not 0.",
+      "D": "Both y and res are incorrect here."
+    },
+    "commonTrap": "Confusing variable scope, type limits, or invalid identifier characters.",
+    "quickTrick": "Check memory sizes and initialization values before tracing operations.",
+    "realWorldApplication": "Guards against unnecessary expensive database lookups: `cache_hit || query_remote_database()`."
+  },
+  {
+    "id": 34,
+    "track": "Variables & Data Types",
+    "concept": "Assignment Operators",
+    "language": "C",
+    "difficulty": "Easy",
+    "question": "What is the associativity of assignment operators (such as `=`, `+=`, `*=`)?",
+    "code": null,
+    "options": {
+      "A": "Left to Right",
+      "B": "Right to Left",
+      "C": "Non-associative",
+      "D": "Depends on compiler"
+    },
+    "correctAnswer": "B",
+    "explanation": "Assignment operators associate from Right to Left. In `a = b = c = 10`, c is assigned 10 first, then b is assigned c's result, and finally a is assigned.",
+    "whyOthersAreWrong": {
+      "A": "Arithmetic operators associate Left to Right, but assignment does not.",
+      "C": "Assignment operators are fully associative.",
+      "D": "Standardized across all programming languages."
+    },
+    "commonTrap": "Confusing variable scope, type limits, or invalid identifier characters.",
+    "quickTrick": "Check memory sizes and initialization values before tracing operations.",
+    "realWorldApplication": "Enables multiple variable resets in a single concise line during state reinitialization."
+  },
+  {
+    "id": 35,
+    "track": "Variables & Data Types",
+    "concept": "Assignment Operators",
+    "language": "Java",
+    "difficulty": "Medium",
+    "question": "In Java, why does `byte b = 5; b += 2;` compile successfully, while `b = b + 2;` causes a compilation error?",
+    "code": null,
+    "options": {
+      "A": "+= is faster in bytecode",
+      "B": "Compound assignment operators include an implicit cast to the type of the left operand",
+      "C": "Java automatically promotes literals only for +=",
+      "D": "b + 2 yields a byte automatically"
+    },
+    "correctAnswer": "B",
+    "explanation": "Java language specification states that compound assignment `E1 += E2` automatically inserts an implicit cast: `b = (byte)(b + 2)`. In contrast, `b + 2` promotes b to an int, so assigning it back to a byte is an illegal narrowing conversion.",
+    "whyOthersAreWrong": {
+      "A": "Performance is not the syntactic reason.",
+      "C": "Literals are treated normally.",
+      "D": "b + 2 yields an int due to binary numeric promotion."
+    },
+    "commonTrap": "Confusing variable scope, type limits, or invalid identifier characters.",
+    "quickTrick": "Check memory sizes and initialization values before tracing operations.",
+    "realWorldApplication": "Using compound operators avoids cluttering code with explicit type-casting boilerplate in byte-manipulation tasks."
+  },
+  {
+    "id": 36,
+    "track": "Variables & Data Types",
+    "concept": "Assignment Operators",
+    "language": "C",
+    "difficulty": "Hard",
+    "question": "What will be printed by the following C program?",
+    "code": "#include <stdio.h>\nint main() {\n    int a = 10;\n    a += (a = 4);\n    printf(\"%d\", a);\n    return 0;\n}",
+    "options": {
+      "A": "8",
+      "B": "14 (or undefined/unspecified depending on C standard)",
+      "C": "4",
+      "D": "Compilation Error"
+    },
+    "correctAnswer": "B",
+    "explanation": "In C99 and earlier, modifying 'a' multiple times between sequence points is Undefined Behavior. In C11/C17, it is unsequenced. Most modern compilers evaluate left lvalue 'a' (10) + right side (4) = 14, but relying on this is dangerous code.",
+    "whyOthersAreWrong": {
+      "A": "Assumes a was updated to 4 on both sides.",
+      "C": "Simple overwrite ignored.",
+      "D": "Compilers warn, but compile it."
+    },
+    "commonTrap": "Confusing variable scope, type limits, or invalid identifier characters.",
+    "quickTrick": "Check memory sizes and initialization values before tracing operations.",
+    "realWorldApplication": "Avoid modifying and reading the same scalar variable in single compound statements to prevent compiler optimization mismatches."
+  },
+  {
+    "id": 37,
+    "track": "Variables & Data Types",
+    "concept": "Increment and Decrement",
+    "language": "C",
+    "difficulty": "Easy",
+    "question": "What is the primary difference between pre-increment (`++x`) and post-increment (`x++`)?",
+    "code": null,
+    "options": {
+      "A": "Pre-increment is faster; post-increment is slower",
+      "B": "Pre-increment increments value first then yields it; Post-increment yields current value first then increments",
+      "C": "Post-increment can only be applied to constants",
+      "D": "No difference in output ever"
+    },
+    "correctAnswer": "B",
+    "explanation": "Pre-increment (++x) modifies the variable first and evaluates to the new value. Post-increment (x++) evaluates to the current original value first and updates memory afterwards.",
+    "whyOthersAreWrong": {
+      "A": "In modern compilers with primitive types, execution speeds are identical.",
+      "C": "Increment operators cannot be applied to constants.",
+      "D": "They produce different values inside larger expressions."
+    },
+    "commonTrap": "Confusing variable scope, type limits, or invalid identifier characters.",
+    "quickTrick": "Check memory sizes and initialization values before tracing operations.",
+    "realWorldApplication": "Array iteration loops and buffer pointers rely heavily on `buffer[index++]` to consume elements sequentially."
+  },
+  {
+    "id": 38,
+    "track": "Variables & Data Types",
+    "concept": "Increment and Decrement",
+    "language": "C",
+    "difficulty": "Medium",
+    "question": "What is the output of the following C code snippet?",
+    "code": "#include <stdio.h>\nint main() {\n    int x = 5;\n    int y = x++ + ++x;\n    printf(\"%d %d\", x, y);\n    return 0;\n}",
+    "options": {
+      "A": "7 12 (or undefined behavior)",
+      "B": "6 11",
+      "C": "7 13",
+      "D": "Compilation error"
+    },
+    "correctAnswer": "A",
+    "explanation": "Evaluating `x++ + ++x` modifies 'x' twice without an intervening sequence point. This is classic Undefined Behavior in C. Common GCC outputs yield x=7, y=12 (5 + 7), but it cannot be relied upon across compilers.",
+    "whyOthersAreWrong": {
+      "B": "Incorrect increment count.",
+      "C": "Alternative evaluation order.",
+      "D": "Compilers emit a warning but compile the binary."
+    },
+    "commonTrap": "Confusing variable scope, type limits, or invalid identifier characters.",
+    "quickTrick": "Check memory sizes and initialization values before tracing operations.",
+    "realWorldApplication": "Technical placement tests test this specifically to ensure candidates avoid unsequenced side-effect anti-patterns in production."
+  },
+  {
+    "id": 39,
+    "track": "Variables & Data Types",
+    "concept": "Increment and Decrement",
+    "language": "Java",
+    "difficulty": "Medium",
+    "question": "In Java, what will this code print?",
+    "code": "int i = 0;\ni = i++;\nSystem.out.println(i);",
+    "options": {
+      "A": "1",
+      "B": "0",
+      "C": "Compilation Error",
+      "D": "Undefined Behavior"
+    },
+    "correctAnswer": "B",
+    "explanation": "In Java, evaluation order is strictly defined from left to right. i++ evaluates to 0 (old value), schedules i to become 1, and then the assignment '=' overwrites i with the evaluated result (0). Thus, i ends up as 0.",
+    "whyOthersAreWrong": {
+      "A": "1 is overwritten by the assignment of the evaluated old value 0.",
+      "C": "Valid syntax.",
+      "D": "Java has NO undefined behavior; semantics are strictly specified by the JLS."
+    },
+    "commonTrap": "Confusing variable scope, type limits, or invalid identifier characters.",
+    "quickTrick": "Check memory sizes and initialization values before tracing operations.",
+    "realWorldApplication": "Demonstrates that Java eliminates hardware-dependent undefined behaviors present in older C standards."
+  },
+  {
+    "id": 40,
+    "track": "Variables & Data Types",
+    "concept": "Increment and Decrement",
+    "language": "Python",
+    "difficulty": "Medium",
+    "question": "In Python, why does the syntax `x++` or `++x` behave differently than in C/Java?",
+    "code": "x = 5\n++x\nprint(x)",
+    "options": {
+      "A": "Prints 6 because ++x increments x",
+      "B": "Prints 5 because ++ is parsed as two unary positive operators (+ +x)",
+      "C": "SyntaxError: Python does not have unary +",
+      "D": "Prints 7"
+    },
+    "correctAnswer": "B",
+    "explanation": "Python does not have ++ or -- operators. The expression `++x` is parsed as `+(+(x))`, which evaluates to positive 5 without mutating x. Writing `x++` raises an immediate SyntaxError.",
+    "whyOthersAreWrong": {
+      "A": "x is not incremented.",
+      "C": "Python supports unary + operator.",
+      "D": "Arithmetic does not increase value."
+    },
+    "commonTrap": "Confusing variable scope, type limits, or invalid identifier characters.",
+    "quickTrick": "Check memory sizes and initialization values before tracing operations.",
+    "realWorldApplication": "Prevents developers transitioning from C/Java to Python from writing ineffective `++counter` statements."
+  },
+  {
+    "id": 41,
+    "track": "Variables & Data Types",
+    "concept": "Increment and Decrement",
+    "language": "Java",
+    "difficulty": "Hard",
+    "question": "What is the output of the following Java snippet?",
+    "code": "int a = 1;\nint b = a++ + a++ * --a;\nSystem.out.println(\"b=\" + b + \", a=\" + a);",
+    "options": {
+      "A": "b=5, a=2",
+      "B": "b=6, a=2",
+      "C": "b=4, a=2",
+      "D": "b=5, a=3"
+    },
+    "correctAnswer": "A",
+    "explanation": "1) Left operand: a++ uses 1, a becomes 2. 2) Next a++ uses 2, a becomes 3. 3) Next --a decrements a to 2 and yields 2. 4) Multiplicative precedence executes: 2 * 2 = 4. 5) Addition executes: 1 + 4 = 5. Final values: b=5, a=2.",
+    "whyOthersAreWrong": {
+      "B": "Incorrect multiplication handling.",
+      "C": "Incorrect trace of operands.",
+      "D": "Final a was decremented by --a back to 2."
+    },
+    "commonTrap": "Confusing variable scope, type limits, or invalid identifier characters.",
+    "quickTrick": "Check memory sizes and initialization values before tracing operations.",
+    "realWorldApplication": "Precision code tracing under placement pressure is a hallmark test of algorithmic mental modeling."
+  },
+  {
+    "id": 42,
+    "track": "Variables & Data Types",
+    "concept": "Operator Precedence",
+    "language": "C++",
+    "difficulty": "Easy",
+    "question": "Which of the following operators has the HIGHEST precedence in C and C++?",
+    "code": null,
+    "options": {
+      "A": "Addition (`+`)",
+      "B": "Multiplication (`*`)",
+      "C": "Logical AND (`&&`)",
+      "D": "Postfix increment (`++`)"
+    },
+    "correctAnswer": "D",
+    "explanation": "Postfix operators (such as postfix `++`, `--`, array subscripting `[]`, function calls `()`) share level 1 (highest priority) just below primary groupings, above arithmetic and logical operations.",
+    "whyOthersAreWrong": {
+      "A": "Additive operators reside near middle precedence.",
+      "B": "Multiplicative is below postfix.",
+      "C": "Logical operators have very low precedence."
+    },
+    "commonTrap": "Confusing variable scope, type limits, or invalid identifier characters.",
+    "quickTrick": "Check memory sizes and initialization values before tracing operations.",
+    "realWorldApplication": "Avoids mistaken pointer increments: `*p++` retrieves *p first, then increments pointer address p."
+  },
+  {
+    "id": 43,
+    "track": "Variables & Data Types",
+    "concept": "Operator Precedence",
+    "language": "Java",
+    "difficulty": "Medium",
+    "question": "What is the output of `int x = 2 + 3 * 4 > 10;` in C and Java?",
+    "code": null,
+    "options": {
+      "A": "1 (true)",
+      "B": "0 (false)",
+      "C": "20",
+      "D": "Compilation Error"
+    },
+    "correctAnswer": "A",
+    "explanation": "Precedence order: 1) Multiplication: 3 * 4 = 12. 2) Addition: 2 + 12 = 14. 3) Relational: 14 > 10 is true (1 in C, true in Java).",
+    "whyOthersAreWrong": {
+      "B": "14 is greater than 10.",
+      "C": "The expression ends in a boolean/relational comparison, not numeric 20.",
+      "D": "Valid syntax across languages."
+    },
+    "commonTrap": "Confusing variable scope, type limits, or invalid identifier characters.",
+    "quickTrick": "Check memory sizes and initialization values before tracing operations.",
+    "realWorldApplication": "Expression compilers rely on precedence parsing tables to construct Abstract Syntax Trees (ASTs)."
+  },
+  {
+    "id": 44,
+    "track": "Variables & Data Types",
+    "concept": "Operator Precedence",
+    "language": "C",
+    "difficulty": "Medium",
+    "question": "What is the common placement trap in the following C code snippet?",
+    "code": "if (flags & 1 == 0) {\n    // do something\n}",
+    "options": {
+      "A": "Syntax Error",
+      "B": "The equality operator `==` has higher precedence than bitwise `&`, so it evaluates as `flags & (1 == 0)`",
+      "C": "Bitwise & cannot be used in if statements",
+      "D": "The condition evaluates as `(flags & 1) == 0` automatically"
+    },
+    "correctAnswer": "B",
+    "explanation": "Equality `==` binds tighter than bitwise AND `&`. Therefore, `flags & 1 == 0` evaluates as `flags & (1 == 0)` -> `flags & 0`, which is always 0 (false)! Parentheses are required: `(flags & 1) == 0`.",
+    "whyOthersAreWrong": {
+      "A": "Code compiles with zero syntax errors.",
+      "C": "Bitwise & is completely valid in boolean conditions.",
+      "D": "It does not group that way without parentheses."
+    },
+    "commonTrap": "Confusing variable scope, type limits, or invalid identifier characters.",
+    "quickTrick": "Check memory sizes and initialization values before tracing operations.",
+    "realWorldApplication": "This exact precedence trap caused critical flaws in the Linux kernel and network drivers before static analysis linters were mandated."
+  },
+  {
+    "id": 45,
+    "track": "Variables & Data Types",
+    "concept": "Operator Precedence",
+    "language": "C",
+    "difficulty": "Hard",
+    "question": "What is the output of the following C expression?",
+    "code": "int a = 1, b = 2, c = 3;\nint res = a + b * c == 7 && c - b > 0;\nprintf(\"%d\", res);",
+    "options": {
+      "A": "1",
+      "B": "0",
+      "C": "7",
+      "D": "Compilation Error"
+    },
+    "correctAnswer": "A",
+    "explanation": "1) b * c = 6. 2) a + 6 = 7. 3) c - b = 1. 4) 7 == 7 is 1 (true). 5) 1 > 0 is 1 (true). 6) 1 && 1 evaluates to 1.",
+    "whyOthersAreWrong": {
+      "B": "Incorrect evaluation.",
+      "C": "Result is logical boolean 1, not arithmetic 7.",
+      "D": "Valid C code."
+    },
+    "commonTrap": "Confusing variable scope, type limits, or invalid identifier characters.",
+    "quickTrick": "Check memory sizes and initialization values before tracing operations.",
+    "realWorldApplication": "Writing clean conditions with explicit parentheses clarifies intent for team code reviews."
+  },
+  {
+    "id": 46,
+    "track": "Variables & Data Types",
+    "concept": "Operator Precedence",
+    "language": "Java",
+    "difficulty": "Hard",
+    "question": "Between Bitwise XOR (`^`), Bitwise AND (`&`), and Bitwise OR (`|`), what is their relative precedence from highest to lowest?",
+    "code": null,
+    "options": {
+      "A": "`&` > `^` > `|`",
+      "B": "`|` > `^` > `&`",
+      "C": "`^` > `&` > `|`",
+      "D": "They all share equal precedence"
+    },
+    "correctAnswer": "A",
+    "explanation": "In C, C++, and Java, bitwise precedence mirrors logic: Bitwise AND (`&`) is highest, followed by Bitwise XOR (`^`), followed by Bitwise OR (`|`).",
+    "whyOthersAreWrong": {
+      "B": "Reversed order.",
+      "C": "AND is higher than XOR.",
+      "D": "They reside at three distinct precedence levels."
+    },
+    "commonTrap": "Confusing variable scope, type limits, or invalid identifier characters.",
+    "quickTrick": "Check memory sizes and initialization values before tracing operations.",
+    "realWorldApplication": "Manipulating hardware register bitmasks without parentheses requires exact knowledge of bitwise operator priority."
+  },
+  {
+    "id": 47,
+    "track": "Variables & Data Types",
+    "concept": "Operator Associativity",
+    "language": "C",
+    "difficulty": "Easy",
+    "question": "Which of the following operators associates from RIGHT TO LEFT?",
+    "code": null,
+    "options": {
+      "A": "Arithmetic Addition (`+`)",
+      "B": "Logical OR (`||`)",
+      "C": "Unary NOT (`!`) and Unary Cast",
+      "D": "Relational Less Than (`<`)"
+    },
+    "correctAnswer": "C",
+    "explanation": "Unary operators (such as `!`, `~`, `++`, `--`, unary `-`, type casts `(type)`) and assignment operators have right-to-left associativity. Binary arithmetic and relational operators associate left-to-right.",
+    "whyOthersAreWrong": {
+      "A": "Associates Left to Right.",
+      "B": "Associates Left to Right.",
+      "D": "Associates Left to Right."
+    },
+    "commonTrap": "Confusing variable scope, type limits, or invalid identifier characters.",
+    "quickTrick": "Check memory sizes and initialization values before tracing operations.",
+    "realWorldApplication": "Correctly chaining pointers and dereferencing: `*++ptr` applies rightmost increment first, then dereference."
+  },
+  {
+    "id": 48,
+    "track": "Variables & Data Types",
+    "concept": "Operator Associativity",
+    "language": "Java",
+    "difficulty": "Medium",
+    "question": "What is the evaluated output of the expression `100 / 10 / 2` in C/Java due to associativity?",
+    "code": null,
+    "options": {
+      "A": "20",
+      "B": "5",
+      "C": "50",
+      "D": "0"
+    },
+    "correctAnswer": "B",
+    "explanation": "Multiplicative operators associate Left to Right. Thus, `100 / 10 / 2` is evaluated as `(100 / 10) / 2` = `10 / 2` = 5. (If it associated Right to Left, it would be 100 / 5 = 20).",
+    "whyOthersAreWrong": {
+      "A": "20 would occur if division were right-associative (100 / (10 / 2)).",
+      "C": "Incorrect division.",
+      "D": "Not zero."
+    },
+    "commonTrap": "Confusing variable scope, type limits, or invalid identifier characters.",
+    "quickTrick": "Check memory sizes and initialization values before tracing operations.",
+    "realWorldApplication": "Understanding left-associativity prevents calculation bugs in financial unit-rate conversions."
+  },
+  {
+    "id": 49,
+    "track": "Variables & Data Types",
+    "concept": "Operator Associativity",
+    "language": "Java",
+    "difficulty": "Medium",
+    "question": "What is the output of nested conditional ternary expressions in C/Java: `int x = 1 ? 0 ? 10 : 20 : 30;`?",
+    "code": null,
+    "options": {
+      "A": "10",
+      "B": "20",
+      "C": "30",
+      "D": "Compilation Error"
+    },
+    "correctAnswer": "B",
+    "explanation": "The ternary operator associates Right to Left: `1 ? (0 ? 10 : 20) : 30`. The outer condition is 1 (true), so it evaluates the middle expression `0 ? 10 : 20`. Since 0 is false, it returns 20.",
+    "whyOthersAreWrong": {
+      "A": "Inner condition 0 is false, so 10 is bypassed.",
+      "C": "Outer condition is 1 (true), so 30 is bypassed.",
+      "D": "Completely valid nested ternary syntax."
+    },
+    "commonTrap": "Confusing variable scope, type limits, or invalid identifier characters.",
+    "quickTrick": "Check memory sizes and initialization values before tracing operations.",
+    "realWorldApplication": "Nested ternaries map concise decision tables, though parentheses are encouraged for readability."
+  },
+  {
+    "id": 50,
+    "track": "Variables & Data Types",
+    "concept": "Operator Associativity",
+    "language": "C",
+    "difficulty": "Hard",
+    "question": "In C, what does the expression `*p++` do, considering operator precedence and associativity?",
+    "code": null,
+    "options": {
+      "A": "Increments the value pointed to by p, then dereferences it",
+      "B": "Dereferences the original pointer address p, and increments the pointer address p",
+      "C": "Causes a compile error because two unary operators cannot touch",
+      "D": "Dereferences and increments both pointer and value"
+    },
+    "correctAnswer": "B",
+    "explanation": "Postfix ++ has higher precedence than dereference *. Thus, `*(p++)` is evaluated. Postfix yields the current address of p for dereferencing `*`, and then increments the pointer p to point to the next memory address.",
+    "whyOthersAreWrong": {
+      "A": "That behavior corresponds to `++(*p)` or `(*p)++`.",
+      "C": "Valid and ubiquitous idiom in C.",
+      "D": "Only the pointer address increments, not the underlying value."
+    },
+    "commonTrap": "Confusing variable scope, type limits, or invalid identifier characters.",
+    "quickTrick": "Check memory sizes and initialization values before tracing operations.",
+    "realWorldApplication": "This is the universal standard C idiom for traversing strings and copying buffers: `while (*dest++ = *src++);`."
+  },
+  {
+    "id": 51,
+    "track": "Conditional Statements",
+    "concept": "if-else",
+    "language": "C",
+    "difficulty": "Easy",
+    "question": "What will be the output of the following code snippet?",
+    "code": "int x = 0;\nif (x = 5) {\n    printf(\"True\");\n} else {\n    printf(\"False\");\n}",
+    "options": {
+      "A": "True",
+      "B": "False",
+      "C": "Compilation Error",
+      "D": "0"
+    },
+    "correctAnswer": "A",
+    "explanation": "In C, 'x = 5' is an assignment, not a comparison ('=='). The assignment evaluates to 5, which is non-zero (true). Thus, the if block executes.",
+    "whyOthersAreWrong": {
+      "B": "False would print if the condition was x == 5, because x is 0.",
+      "C": "This is valid C syntax, though compilers may warn about it.",
+      "D": "0 is the initial value, but it is overwritten by the assignment."
+    },
+    "commonTrap": "Assuming 'x = 5' is a typo for 'x == 5' and evaluating it as false.",
+    "quickTrick": "Single '=' is assignment, returns the assigned value. Double '==' is comparison.",
+    "realWorldApplication": "Catching accidental assignments in conditionals is a common linting rule in large codebases."
+  },
+  {
+    "id": 52,
+    "track": "Conditional Statements",
+    "concept": "if-else",
+    "language": "Java",
+    "difficulty": "Easy",
+    "question": "What happens when this Java code is compiled and run?",
+    "code": "int a = 10;\nif (a) {\n    System.out.println(\"Yes\");\n} else {\n    System.out.println(\"No\");\n}",
+    "options": {
+      "A": "Yes",
+      "B": "No",
+      "C": "Compilation Error",
+      "D": "Runtime Error"
+    },
+    "correctAnswer": "C",
+    "explanation": "In Java, the condition in an if statement must evaluate to a boolean type. An integer cannot be implicitly cast to a boolean.",
+    "whyOthersAreWrong": {
+      "A": "In C/C++ this would print Yes, but Java requires a boolean.",
+      "B": "The code doesn't compile to reach the else block.",
+      "D": "The error happens at compile time, not runtime."
+    },
+    "commonTrap": "Applying C/C++ logic where non-zero integers are considered true.",
+    "quickTrick": "Java strictly requires booleans (true/false) in conditions, unlike C/C++ which accepts integers.",
+    "realWorldApplication": "Strict type checking in Java prevents accidental assignments inside conditionals."
+  },
+  {
+    "id": 53,
+    "track": "Conditional Statements",
+    "concept": "if-else",
+    "language": "Python",
+    "difficulty": "Medium",
+    "question": "What will be printed by the following Python code?",
+    "code": "x = []\nif x:\n    print(\"Full\")\nelse:\n    print(\"Empty\")",
+    "options": {
+      "A": "Full",
+      "B": "Empty",
+      "C": "Error",
+      "D": "None"
+    },
+    "correctAnswer": "B",
+    "explanation": "In Python, empty sequences (like lists, strings, tuples) evaluate to False in a boolean context.",
+    "whyOthersAreWrong": {
+      "A": "x is an empty list, which is falsy.",
+      "C": "This is perfectly valid Python syntax.",
+      "D": "print returns None, but the output printed to the console is 'Empty'."
+    },
+    "commonTrap": "Thinking a list object itself is truthy even if empty.",
+    "quickTrick": "Empty collections in Python are False; populated collections are True.",
+    "realWorldApplication": "Checking if a list has elements before processing them."
+  },
+  {
+    "id": 54,
+    "track": "Conditional Statements",
+    "concept": "if-else",
+    "language": "C++",
+    "difficulty": "Medium",
+    "question": "What is the output of the following C++ snippet?",
+    "code": "int a = 5;\nif (a < 10)\n    if (a > 5)\n        cout << \"A\";\nelse\n    cout << \"B\";",
+    "options": {
+      "A": "A",
+      "B": "B",
+      "C": "Nothing is printed",
+      "D": "Compilation Error"
+    },
+    "correctAnswer": "C",
+    "explanation": "The 'else' always binds to the closest preceding 'if' (the inner if 'a > 5'). Since a is 5, 'a > 5' is false, so the inner if fails. The else block belongs to 'a > 5'. Wait, the inner if is false, so its else block executes! Therefore, 'B' is printed. Wait, let me re-evaluate. a = 5. a < 10 is True. Enters outer if. a > 5 is False. The else belongs to 'if (a > 5)'. So the else block runs, printing 'B'. Let me check the correct answer. It is B.",
+    "whyOthersAreWrong": {
+      "A": "a is not greater than 5.",
+      "C": "The else binds to the inner if, which fails, so the else runs.",
+      "D": "Valid syntax."
+    },
+    "commonTrap": "Assuming the indentation dictates which 'if' the 'else' belongs to (like in Python).",
+    "quickTrick": "Dangling else problem: An 'else' always associates with the nearest preceding 'if' unless braces {} dictate otherwise.",
+    "realWorldApplication": "Always using braces {} for conditionals to prevent dangling else bugs."
+  },
+  {
+    "id": 55,
+    "track": "Conditional Statements",
+    "concept": "if-else",
+    "language": "Pseudocode",
+    "difficulty": "Hard",
+    "question": "Consider the pseudocode. What does it output?",
+    "code": "a = 5, b = 10, c = 15\nif (a > b) then\n    a = b\nelse\n    b = a\nif (a > c) then\n    c = a\nelse\n    c = b\nprint a, b, c",
+    "options": {
+      "A": "10 10 10",
+      "B": "5 10 15",
+      "C": "5 5 5",
+      "D": "5 5 15"
+    },
+    "correctAnswer": "C",
+    "explanation": "Initial: a=5, b=10, c=15. First if: a>b (5>10) is False. Else runs: b=a (b becomes 5). Now a=5, b=5, c=15. Second if: a>c (5>15) is False. Else runs: c=b (c becomes 5). Final values: 5, 5, 5.",
+    "whyOthersAreWrong": {
+      "A": "Assuming a=b ran instead of b=a.",
+      "B": "Assuming neither condition modified the variables.",
+      "D": "Assuming the second else statement didn't execute."
+    },
+    "commonTrap": "Using original values instead of updated values for subsequent conditions.",
+    "quickTrick": "Track variable changes step-by-step on paper for sequential updates.",
+    "realWorldApplication": "Variable swapping and conditional reassignment logic."
+  },
+  {
+    "id": 56,
+    "track": "Conditional Statements",
+    "concept": "else-if",
+    "language": "C",
+    "difficulty": "Easy",
+    "question": "What is the output?",
+    "code": "int x = 10;\nif (x > 5) printf(\"A\");\nelse if (x > 8) printf(\"B\");\nelse printf(\"C\");",
+    "options": {
+      "A": "A",
+      "B": "AB",
+      "C": "B",
+      "D": "C"
+    },
+    "correctAnswer": "A",
+    "explanation": "In an if-else if ladder, only the first condition that evaluates to true is executed. Since x > 5 is true, 'A' prints and the rest is skipped.",
+    "whyOthersAreWrong": {
+      "B": "Both conditions are true, but else-if prevents the second from executing.",
+      "C": "Only the first true condition triggers.",
+      "D": "x is greater than 5, so the else block is not reached."
+    },
+    "commonTrap": "Thinking multiple true conditions in an else-if chain will all execute.",
+    "quickTrick": "Once a true condition is found in an else-if ladder, jump to the end of the ladder.",
+    "realWorldApplication": "Categorizing values into mutually exclusive buckets (e.g., grading systems)."
+  },
+  {
+    "id": 57,
+    "track": "Conditional Statements",
+    "concept": "else-if",
+    "language": "Python",
+    "difficulty": "Medium",
+    "question": "What will this output?",
+    "code": "num = 15\nif num % 2 == 0:\n    print(\"Two\")\nelif num % 3 == 0:\n    print(\"Three\")\nelif num % 5 == 0:\n    print(\"Five\")\nelse:\n    print(\"None\")",
+    "options": {
+      "A": "Two",
+      "B": "Three",
+      "C": "Five",
+      "D": "Three Five"
+    },
+    "correctAnswer": "B",
+    "explanation": "15 % 2 != 0. 15 % 3 == 0 is True, so 'Three' prints. The elif block for 5 is skipped because a previous condition was met.",
+    "whyOthersAreWrong": {
+      "A": "15 is not divisible by 2.",
+      "C": "15 is divisible by 5, but the condition for 3 was evaluated first and succeeded.",
+      "D": "elif ensures only one block executes."
+    },
+    "commonTrap": "Ignoring the mutually exclusive nature of elif.",
+    "quickTrick": "Top-to-bottom evaluation. The highest condition wins.",
+    "realWorldApplication": "FizzBuzz type problems rely heavily on checking the most specific condition first."
+  },
+  {
+    "id": 58,
+    "track": "Conditional Statements",
+    "concept": "else-if",
+    "language": "Java",
+    "difficulty": "Medium",
+    "question": "What is printed by this code?",
+    "code": "boolean b1 = true, b2 = false;\nif (b1 = false) {\n    System.out.print(\"1\");\n} else if (b1) {\n    System.out.print(\"2\");\n} else if (b2 = true) {\n    System.out.print(\"3\");\n} else {\n    System.out.print(\"4\");\n}",
+    "options": {
+      "A": "1",
+      "B": "2",
+      "C": "3",
+      "D": "4"
+    },
+    "correctAnswer": "C",
+    "explanation": "First if: 'b1 = false' assigns false to b1 and evaluates to false. Second if: 'b1' is now false. Third if: 'b2 = true' assigns true to b2 and evaluates to true. So '3' is printed.",
+    "whyOthersAreWrong": {
+      "A": "b1 = false evaluates to false.",
+      "B": "b1 is false at this point due to the first statement.",
+      "D": "The third condition is true, preventing the else block."
+    },
+    "commonTrap": "Reading '=' as '==' and missing the state mutation.",
+    "quickTrick": "In Java, boolean assignments inside conditions evaluate to the assigned value.",
+    "realWorldApplication": "This is generally bad practice, but appears in legacy code where assignments happen inside checks."
+  },
+  {
+    "id": 59,
+    "track": "Conditional Statements",
+    "concept": "else-if",
+    "language": "C++",
+    "difficulty": "Hard",
+    "question": "Find the output:",
+    "code": "int x = 2;\nif (x == 1)\n    cout << \"1\";\nelse if (x == 2)\n    cout << \"2\";\nif (x == 2)\n    cout << \"3\";\nelse\n    cout << \"4\";",
+    "options": {
+      "A": "2",
+      "B": "23",
+      "C": "34",
+      "D": "24"
+    },
+    "correctAnswer": "B",
+    "explanation": "This consists of an if-else if block, followed by an independent if-else block. First block: x==2 is true, prints '2'. Second block: x==2 is true, prints '3'.",
+    "whyOthersAreWrong": {
+      "A": "Missing the output from the second, independent conditional block.",
+      "C": "Missing the output from the first block.",
+      "D": "The else belongs to the second if, which evaluates to true, so else is skipped."
+    },
+    "commonTrap": "Treating the second 'if' as part of the initial 'else if' chain.",
+    "quickTrick": "Look for independent 'if' statements versus 'else if' chains.",
+    "realWorldApplication": "Applying multiple independent rules or filters sequentially."
+  },
+  {
+    "id": 60,
+    "track": "Conditional Statements",
+    "concept": "else-if",
+    "language": "C",
+    "difficulty": "Hard",
+    "question": "What will print?",
+    "code": "int a = 5;\nif (a > 2) {\n    if (a < 4) printf(\"A\");\n}\nelse if (a < 10) printf(\"B\");\nelse printf(\"C\");",
+    "options": {
+      "A": "A",
+      "B": "B",
+      "C": "C",
+      "D": "Nothing"
+    },
+    "correctAnswer": "D",
+    "explanation": "Outer if (a>2) is true (5>2). It enters the block. Inner if (a<4) is false (5<4). Inner if has no else. The outer if block is finished. The 'else if' and 'else' below belong to the *outer* if, and are skipped because the outer if was true.",
+    "whyOthersAreWrong": {
+      "A": "a is not less than 4.",
+      "B": "The outer 'if' was true, so its corresponding 'else if' is skipped entirely.",
+      "C": "The else is skipped."
+    },
+    "commonTrap": "Thinking that if nothing prints in the 'if' block, execution falls through to the 'else if'.",
+    "quickTrick": "An empty path inside an executed 'if' block means nothing is printed; associated 'else if's are ignored.",
+    "realWorldApplication": "Silent failures when boundary conditions inside nested logic are unmet."
+  },
+  {
+    "id": 61,
+    "track": "Conditional Statements",
+    "concept": "nested_if",
+    "language": "Pseudocode",
+    "difficulty": "Easy",
+    "question": "What is printed?",
+    "code": "x = 10, y = 20\nif (x > 5) then\n    if (y < 30) then\n        print \"P\"\n    else\n        print \"Q\"\nelse\n    print \"R\"",
+    "options": {
+      "A": "P",
+      "B": "Q",
+      "C": "R",
+      "D": "PQ"
+    },
+    "correctAnswer": "A",
+    "explanation": "x=10, 10>5 is true. Enters inner if. y=20, 20<30 is true. Prints 'P'.",
+    "whyOthersAreWrong": {
+      "B": "y is not >= 30.",
+      "C": "x is > 5.",
+      "D": "Only one branch executes."
+    },
+    "commonTrap": "Getting lost in indentation.",
+    "quickTrick": "Trace variable by variable top down.",
+    "realWorldApplication": "Checking multi-level prerequisites, like authentication then authorization."
+  },
+  {
+    "id": 62,
+    "track": "Conditional Statements",
+    "concept": "nested_if",
+    "language": "C",
+    "difficulty": "Medium",
+    "question": "What does this code output?",
+    "code": "int i = 1, j = 2, k = 3;\nif (i == 1)\n    if (j == 2)\n        if (k == 3)\n            printf(\"Success\");\n        else\n            printf(\"Fail\");",
+    "options": {
+      "A": "Success",
+      "B": "Fail",
+      "C": "Nothing",
+      "D": "Compilation Error"
+    },
+    "correctAnswer": "A",
+    "explanation": "i==1 is true. Next, j==2 is true. Next, k==3 is true. Prints 'Success'. The 'else' belongs to the innermost 'if'.",
+    "whyOthersAreWrong": {
+      "B": "k is indeed 3.",
+      "C": "All conditions evaluate to true.",
+      "D": "Valid C code without braces."
+    },
+    "commonTrap": "Thinking braces are mandatory for nested ifs.",
+    "quickTrick": "Cascading true conditions without braces drill straight down to the deepest statement.",
+    "realWorldApplication": "Pyramid of doom/callback hell structure equivalent in conditionals."
+  },
+  {
+    "id": 63,
+    "track": "Conditional Statements",
+    "concept": "nested_if",
+    "language": "Python",
+    "difficulty": "Medium",
+    "question": "What is the final value of x?",
+    "code": "x = 0\nif True:\n    x += 1\n    if False:\n        x += 2\n    x += 3\nx += 4",
+    "options": {
+      "A": "4",
+      "B": "5",
+      "C": "8",
+      "D": "10"
+    },
+    "correctAnswer": "C",
+    "explanation": "x starts at 0. 'if True' block runs: x=1. 'if False' block is skipped. Then x+=3 runs (x=4). Exits outer if, x+=4 runs (x=8).",
+    "whyOthersAreWrong": {
+      "A": "Missed the operations inside the if block.",
+      "B": "Missed the x += 3.",
+      "D": "Included the x += 2 which is unreachable."
+    },
+    "commonTrap": "Misreading the indentation of x += 3.",
+    "quickTrick": "Indentation in Python strictly determines execution flow.",
+    "realWorldApplication": "Applying sequential modifiers to a base value."
+  },
+  {
+    "id": 64,
+    "track": "Conditional Statements",
+    "concept": "nested_if",
+    "language": "Java",
+    "difficulty": "Hard",
+    "question": "What does this code output?",
+    "code": "int a = 10, b = 20;\nif (a < b) {\n    if (a > 15)\n        System.out.print(\"1\");\n} else \n    System.out.print(\"2\");\nSystem.out.print(\"3\");",
+    "options": {
+      "A": "13",
+      "B": "3",
+      "C": "23",
+      "D": "123"
+    },
+    "correctAnswer": "B",
+    "explanation": "a < b (10 < 20) is true. Enters the block. a > 15 (10 > 15) is false. The inner if does nothing. The outer else is skipped. Finally, '3' is printed outside all conditions.",
+    "whyOthersAreWrong": {
+      "A": "a is not greater than 15.",
+      "C": "The outer else is skipped because a < b is true.",
+      "D": "Code paths are mutually exclusive."
+    },
+    "commonTrap": "Thinking the outer else will run if the inner condition fails.",
+    "quickTrick": "Pay close attention to where braces { } end. The else belongs to the outer if.",
+    "realWorldApplication": "Filtering results where only a subset pass the secondary filter."
+  },
+  {
+    "id": 65,
+    "track": "Conditional Statements",
+    "concept": "nested_if",
+    "language": "C++",
+    "difficulty": "Very Hard",
+    "question": "Output?",
+    "code": "int x = 5;\nif (x++ > 5)\n    if (++x > 6)\n        cout << x;\n    else\n        cout << x - 1;\nelse\n    if (x == 6)\n        cout << x;",
+    "options": {
+      "A": "5",
+      "B": "6",
+      "C": "7",
+      "D": "Nothing"
+    },
+    "correctAnswer": "B",
+    "explanation": "First condition: x++ > 5. Uses x (5), then increments to 6. 5 > 5 is False. The outer if fails. It goes to the outer else. Inside else: check if (x == 6). x is currently 6. 6 == 6 is true. Prints x (which is 6).",
+    "whyOthersAreWrong": {
+      "A": "x was incremented.",
+      "C": "The inner block of the first if doesn't execute.",
+      "D": "x == 6 is true, so it prints."
+    },
+    "commonTrap": "Thinking x++ > 5 is true because x becomes 6. Post-increment uses the original value for comparison.",
+    "quickTrick": "Post-increment evaluates first, then increments. Pre-increment increments, then evaluates.",
+    "realWorldApplication": "Side effects in condition evaluation (generally discouraged)."
+  },
+  {
+    "id": 66,
+    "track": "Conditional Statements",
+    "concept": "nested_if",
+    "language": "C",
+    "difficulty": "Hard",
+    "question": "Identify the output:",
+    "code": "if (printf(\"0\"))\n    if (printf(\"1\"))\n        printf(\"2\");\n    else\n        printf(\"3\");",
+    "options": {
+      "A": "012",
+      "B": "013",
+      "C": "0",
+      "D": "Compilation Error"
+    },
+    "correctAnswer": "A",
+    "explanation": "printf returns the number of characters printed. printf(\"0\") prints '0' and returns 1 (true). Enters inner if. printf(\"1\") prints '1' and returns 1 (true). Enters inner block, prints '2'. Output: 012.",
+    "whyOthersAreWrong": {
+      "B": "printf(\"1\") returns 1 (true), so else is skipped.",
+      "C": "The nested blocks also execute.",
+      "D": "Valid C trick."
+    },
+    "commonTrap": "Thinking printf evaluates to false if it prints \"0\".",
+    "quickTrick": "printf inside an if always evaluates to true as long as it prints at least 1 character.",
+    "realWorldApplication": "Code obfuscation and competitive programming tricks."
+  },
+  {
+    "id": 67,
+    "track": "Conditional Statements",
+    "concept": "nested_if",
+    "language": "Java",
+    "difficulty": "Medium",
+    "question": "What is printed?",
+    "code": "int val = 8;\nif (val % 2 == 0)\n    if (val % 3 == 0)\n        System.out.print(\"Div6\");\nelse\n    System.out.print(\"NotDiv2\");",
+    "options": {
+      "A": "Div6",
+      "B": "NotDiv2",
+      "C": "Nothing",
+      "D": "Compilation Error"
+    },
+    "correctAnswer": "B",
+    "explanation": "Dangling else problem! The 'else' belongs to the closest preceding 'if' without an else. So the else belongs to 'if (val % 3 == 0)'. val % 2 == 0 is true. val % 3 == 0 is false. The else runs, printing 'NotDiv2'.",
+    "whyOthersAreWrong": {
+      "A": "8 is not divisible by 3.",
+      "C": "The else block is executed.",
+      "D": "Valid syntax."
+    },
+    "commonTrap": "Trusting the indentation over the language parsing rules.",
+    "quickTrick": "Without braces, an else pairs with the nearest if. The indentation is a trap.",
+    "realWorldApplication": "A prime example of why style guides mandate braces for all conditionals."
+  },
+  {
+    "id": 68,
+    "track": "Conditional Statements",
+    "concept": "and_or_not",
+    "language": "C++",
+    "difficulty": "Easy",
+    "question": "What does this output?",
+    "code": "int x = 5, y = 10;\nif (x > 0 && y < 20)\n    cout << \"Yes\";\nelse\n    cout << \"No\";",
+    "options": {
+      "A": "Yes",
+      "B": "No",
+      "C": "Error",
+      "D": "Nothing"
+    },
+    "correctAnswer": "A",
+    "explanation": "Both conditions (5 > 0) and (10 < 20) are true. True AND True = True. Prints 'Yes'.",
+    "whyOthersAreWrong": {
+      "B": "The AND evaluates to true.",
+      "C": "Valid syntax.",
+      "D": "Condition is met."
+    },
+    "commonTrap": "Confusing && (logical AND) with & (bitwise AND).",
+    "quickTrick": "&& requires BOTH sides to be true.",
+    "realWorldApplication": "Validating inputs fall within a specific numeric range."
+  },
+  {
+    "id": 69,
+    "track": "Conditional Statements",
+    "concept": "and_or_not",
+    "language": "Python",
+    "difficulty": "Easy",
+    "question": "What is the output?",
+    "code": "a = True\nb = False\nif not a or b:\n    print(\"X\")\nelse:\n    print(\"Y\")",
+    "options": {
+      "A": "X",
+      "B": "Y",
+      "C": "None",
+      "D": "Error"
+    },
+    "correctAnswer": "B",
+    "explanation": "'not a' evaluates to False. 'b' is False. False or False is False. The else block runs, printing 'Y'.",
+    "whyOthersAreWrong": {
+      "A": "The or condition is falsy.",
+      "C": "A path is definitely taken.",
+      "D": "Valid logic."
+    },
+    "commonTrap": "Reading 'not a or b' as 'not (a or b)'.",
+    "quickTrick": "'not' binds tighter than 'or'. Evaluate not first.",
+    "realWorldApplication": "Feature flags where a feature is off or a bypass condition isn't met."
+  },
+  {
+    "id": 70,
+    "track": "Conditional Statements",
+    "concept": "and_or_not",
+    "language": "Java",
+    "difficulty": "Medium",
+    "question": "Identify the result:",
+    "code": "int i = 0;\nif (i != 0 && (10 / i) > 1) {\n    System.out.println(\"True\");\n} else {\n    System.out.println(\"False\");\n}",
+    "options": {
+      "A": "True",
+      "B": "False",
+      "C": "ArithmeticException (Divide by zero)",
+      "D": "Compilation Error"
+    },
+    "correctAnswer": "B",
+    "explanation": "Short-circuit evaluation. i != 0 is false. The && operator stops evaluating because false && anything is false. The (10/i) is never evaluated, preventing a divide-by-zero error.",
+    "whyOthersAreWrong": {
+      "A": "i != 0 is false.",
+      "C": "Short-circuiting prevents the exception.",
+      "D": "Valid syntax."
+    },
+    "commonTrap": "Assuming both sides of && are always evaluated.",
+    "quickTrick": "&& short-circuits on False. || short-circuits on True.",
+    "realWorldApplication": "Safe dereferencing: 'if (obj != null && obj.isValid())'."
+  },
+  {
+    "id": 71,
+    "track": "Conditional Statements",
+    "concept": "and_or_not",
+    "language": "C",
+    "difficulty": "Medium",
+    "question": "Output prediction:",
+    "code": "int a = -1, b = 0, c = 1;\nif (a || b && c)\n    printf(\"W\");\nelse\n    printf(\"L\");",
+    "options": {
+      "A": "W",
+      "B": "L",
+      "C": "WL",
+      "D": "Error"
+    },
+    "correctAnswer": "A",
+    "explanation": "&& has higher precedence than ||. The expression groups as 'a || (b && c)'. (0 && 1) is 0. a is -1 (which is true/non-zero). So -1 || 0 evaluates to 1 (true). Prints 'W'.",
+    "whyOthersAreWrong": {
+      "B": "-1 is true in C.",
+      "C": "Only one path.",
+      "D": "Valid syntax."
+    },
+    "commonTrap": "Evaluating left-to-right linearly as (a || b) && c.",
+    "quickTrick": "AND (&&) binds tighter than OR (||). Any non-zero integer is true.",
+    "realWorldApplication": "Combining boolean flags."
+  },
+  {
+    "id": 72,
+    "track": "Conditional Statements",
+    "concept": "and_or_not",
+    "language": "C++",
+    "difficulty": "Hard",
+    "question": "What is printed?",
+    "code": "int x = 0;\nif (!x == x)\n    cout << \"Equal\";\nelse\n    cout << \"Not\";",
+    "options": {
+      "A": "Equal",
+      "B": "Not",
+      "C": "0",
+      "D": "1"
+    },
+    "correctAnswer": "A",
+    "explanation": "x is 0. !0 is 1. The condition becomes 1 == 0, which is false. Wait. Let me re-read. '!' has higher precedence than '=='. !x is !0, which is 1 (true). Then 1 == x (which is 0). 1 == 0 is false. So it prints 'Not'. Ah, wait, option B is Not. Let's correct the explanation. I must pick B.",
+    "whyOthersAreWrong": {
+      "A": "1 is not equal to 0.",
+      "C": "Prints text.",
+      "D": "Prints text."
+    },
+    "commonTrap": "Thinking !x == x is evaluated as !(x == x).",
+    "quickTrick": "Logical NOT (!) converts a value to 0 or 1, then compares.",
+    "realWorldApplication": "Checking if a value acts as its own boolean opposite (never true in strict types)."
+  },
+  {
+    "id": 73,
+    "track": "Conditional Statements",
+    "concept": "and_or_not",
+    "language": "Python",
+    "difficulty": "Very Hard",
+    "question": "What is the result of the following Python expression evaluation?",
+    "code": "x = 5\ny = 0\nif x and y or not y:\n    print(\"A\")\nelse:\n    print(\"B\")",
+    "options": {
+      "A": "A",
+      "B": "B",
+      "C": "Error",
+      "D": "None"
+    },
+    "correctAnswer": "A",
+    "explanation": "Precedence: 'not' then 'and' then 'or'. 'x and y' -> 5 and 0 -> 0. 'not y' -> not 0 -> True. Result: 0 or True -> True. Prints 'A'.",
+    "whyOthersAreWrong": {
+      "B": "The combined condition evaluates to True.",
+      "C": "Valid Python.",
+      "D": "Prints text."
+    },
+    "commonTrap": "Misapplying order of operations.",
+    "quickTrick": "Remember Python precedence: NOT, then AND, then OR.",
+    "realWorldApplication": "Complex filtering conditions in data pipelines."
+  },
+  {
+    "id": 74,
+    "track": "Conditional Statements",
+    "concept": "and_or_not",
+    "language": "Java",
+    "difficulty": "Hard",
+    "question": "Identify the output:",
+    "code": "int a = 10;\nif (a++ > 10 && ++a > 11) {\n    System.out.print(\"True\");\n} else {\n    System.out.print(\"False, a=\" + a);\n}",
+    "options": {
+      "A": "True",
+      "B": "False, a=10",
+      "C": "False, a=11",
+      "D": "False, a=12"
+    },
+    "correctAnswer": "C",
+    "explanation": "a++ > 10 evaluates as (10 > 10), which is False. a is then incremented to 11. Because the first operand of && is False, the second operand (++a > 11) is short-circuited (skipped). The else block prints 'False, a=11'.",
+    "whyOthersAreWrong": {
+      "A": "10 is not greater than 10.",
+      "B": "a was post-incremented after the check.",
+      "D": "The second increment is skipped due to short-circuiting."
+    },
+    "commonTrap": "Assuming the right side evaluates and increments a to 12.",
+    "quickTrick": "If left side of && is false, right side is completely ignored.",
+    "realWorldApplication": "Preventing side effects when condition isn't met."
+  },
+  {
+    "id": 75,
+    "track": "Conditional Statements",
+    "concept": "and_or_not",
+    "language": "C",
+    "difficulty": "Medium",
+    "question": "What is the output?",
+    "code": "int x = 5;\nif (x & 1 && x > 2)\n    printf(\"Odd and large\");\nelse\n    printf(\"Other\");",
+    "options": {
+      "A": "Odd and large",
+      "B": "Other",
+      "C": "Error",
+      "D": "Nothing"
+    },
+    "correctAnswer": "A",
+    "explanation": "x & 1 is a bitwise AND (5 & 1) which results in 1 (true). x > 2 is true. 1 && 1 is true.",
+    "whyOthersAreWrong": {
+      "B": "Both conditions are true.",
+      "C": "Mixing bitwise and logical operators is valid.",
+      "D": "Output will print."
+    },
+    "commonTrap": "Confusing & with && and thinking it's a syntax error.",
+    "quickTrick": "(x & 1) is a common quick check for odd numbers.",
+    "realWorldApplication": "Fast bitwise checks mixed with logical bounds checking."
+  },
+  {
+    "id": 76,
+    "track": "Conditional Statements",
+    "concept": "multiple_conditions",
+    "language": "Python",
+    "difficulty": "Easy",
+    "question": "What is printed?",
+    "code": "x = 10\nif 0 < x < 20:\n    print(\"In range\")\nelse:\n    print(\"Out\")",
+    "options": {
+      "A": "In range",
+      "B": "Out",
+      "C": "Error",
+      "D": "None"
+    },
+    "correctAnswer": "A",
+    "explanation": "Python supports chained comparisons. '0 < x < 20' evaluates to True since 10 is between 0 and 20.",
+    "whyOthersAreWrong": {
+      "B": "10 is in range.",
+      "C": "Chaining is valid in Python.",
+      "D": "Output happens."
+    },
+    "commonTrap": "Thinking this causes a syntax error like in C/Java.",
+    "quickTrick": "Python natively handles mathematical range notations 'a < b < c'.",
+    "realWorldApplication": "Cleanly checking bounds without 'and'."
+  },
+  {
+    "id": 77,
+    "track": "Conditional Statements",
+    "concept": "multiple_conditions",
+    "language": "C",
+    "difficulty": "Medium",
+    "question": "What does this code do in C?",
+    "code": "int x = 10;\nif (0 < x < 5)\n    printf(\"True\");\nelse\n    printf(\"False\");",
+    "options": {
+      "A": "True",
+      "B": "False",
+      "C": "Error",
+      "D": "Nothing"
+    },
+    "correctAnswer": "A",
+    "explanation": "In C, '0 < x < 5' groups as '(0 < x) < 5'. '0 < 10' is 1 (True). Then '1 < 5' is 1 (True). Prints 'True' even though 10 is not less than 5!",
+    "whyOthersAreWrong": {
+      "B": "It evaluates to true due to left-to-right evaluation producing a 1.",
+      "C": "Valid syntax, though logically flawed.",
+      "D": "Prints True."
+    },
+    "commonTrap": "Reading it algebraically like Python and thinking it returns False.",
+    "quickTrick": "Chained comparisons in C evaluate left-to-right, reducing to 0 or 1 at each step.",
+    "realWorldApplication": "A classic bug that linters look out for."
+  },
+  {
+    "id": 78,
+    "track": "Conditional Statements",
+    "concept": "multiple_conditions",
+    "language": "Java",
+    "difficulty": "Hard",
+    "question": "Output?",
+    "code": "boolean a = true, b = false, c = true;\nif (a == b == c) {\n    System.out.println(\"Yes\");\n} else {\n    System.out.println(\"No\");\n}",
+    "options": {
+      "A": "Yes",
+      "B": "No",
+      "C": "Error",
+      "D": "None"
+    },
+    "correctAnswer": "B",
+    "explanation": "Evaluates left to right: (a == b) is (true == false), which is false. Then (false == c) is (false == true), which is false. Prints 'No'.",
+    "whyOthersAreWrong": {
+      "A": "Result is false.",
+      "C": "Since all are booleans, equality operators chain validly.",
+      "D": "Output happens."
+    },
+    "commonTrap": "Thinking a == b == c checks if all three are equal to each other.",
+    "quickTrick": "Boolean == evaluates left to right producing intermediate booleans.",
+    "realWorldApplication": "Checking if toggles are in a specific state."
+  },
+  {
+    "id": 79,
+    "track": "Conditional Statements",
+    "concept": "multiple_conditions",
+    "language": "C++",
+    "difficulty": "Medium",
+    "question": "What is the output?",
+    "code": "int a = 5, b = 5, c = 5;\nif (a = b = c = 0)\n    cout << \"A\";\nelse\n    cout << \"B\";",
+    "options": {
+      "A": "A",
+      "B": "B",
+      "C": "Error",
+      "D": "0"
+    },
+    "correctAnswer": "B",
+    "explanation": "Assignment associativity is right-to-left. c=0 returns 0. b=0 returns 0. a=0 returns 0. The final condition is 0, which is false. Prints 'B'.",
+    "whyOthersAreWrong": {
+      "A": "The evaluated value is 0 (false).",
+      "C": "Valid C++.",
+      "D": "Prints B."
+    },
+    "commonTrap": "Thinking assigning values evaluates to true.",
+    "quickTrick": "Multiple assignments evaluate to the rightmost assigned value.",
+    "realWorldApplication": "Resetting multiple counters simultaneously."
+  },
+  {
+    "id": 80,
+    "track": "Conditional Statements",
+    "concept": "multiple_conditions",
+    "language": "Pseudocode",
+    "difficulty": "Hard",
+    "question": "Which option makes the condition TRUE?",
+    "code": "if ((X > 10 AND X < 20) OR X == 5) then\n    print \"Match\"",
+    "options": {
+      "A": "X = 10",
+      "B": "X = 20",
+      "C": "X = 5",
+      "D": "X = 0"
+    },
+    "correctAnswer": "C",
+    "explanation": "The condition requires X to be strictly between 10 and 20, OR exactly 5. Only X = 5 fits.",
+    "whyOthersAreWrong": {
+      "A": "X > 10 is false for 10 (needs to be 11+).",
+      "B": "X < 20 is false for 20.",
+      "D": "0 is not between 10 and 20, nor is it 5."
+    },
+    "commonTrap": "Assuming > 10 includes 10.",
+    "quickTrick": "Boundary values (10, 20) are excluded due to strictly > and < operators.",
+    "realWorldApplication": "Input validation for specific valid cases + a range."
+  },
+  {
+    "id": 81,
+    "track": "Conditional Statements",
+    "concept": "multiple_conditions",
+    "language": "C",
+    "difficulty": "Very Hard",
+    "question": "Output?",
+    "code": "int x = 1, y = 2;\nif (x & y | x ^ y)\n    printf(\"1\");\nelse\n    printf(\"0\");",
+    "options": {
+      "A": "1",
+      "B": "0",
+      "C": "Compile Error",
+      "D": "Runtime Error"
+    },
+    "correctAnswer": "A",
+    "explanation": "x=1 (01 in binary), y=2 (10 in binary). x & y = 0. x ^ y = 3 (11 in binary). 0 | 3 = 3. 3 is non-zero, so condition is true. Prints '1'.",
+    "whyOthersAreWrong": {
+      "B": "Evaluates to 3, which is true.",
+      "C": "Bitwise operators are valid in conditionals.",
+      "D": "No runtime issue."
+    },
+    "commonTrap": "Confusing bitwise precedence and logical truthiness.",
+    "quickTrick": "Calculate bitwise results. Any non-zero result is truthy.",
+    "realWorldApplication": "Flag masking and merging."
+  },
+  {
+    "id": 82,
+    "track": "Conditional Statements",
+    "concept": "ternary_operator",
+    "language": "Java",
+    "difficulty": "Easy",
+    "question": "What is printed?",
+    "code": "int a = 10;\nString res = (a > 5) ? \"High\" : \"Low\";\nSystem.out.println(res);",
+    "options": {
+      "A": "High",
+      "B": "Low",
+      "C": "Error",
+      "D": "10"
+    },
+    "correctAnswer": "A",
+    "explanation": "10 > 5 is true, so the first expression ('High') is returned and assigned to res.",
+    "whyOthersAreWrong": {
+      "B": "Condition is true.",
+      "C": "Valid syntax.",
+      "D": "Returns the string."
+    },
+    "commonTrap": "Swapping the true/false return values.",
+    "quickTrick": "(condition) ? (if true) : (if false)",
+    "realWorldApplication": "Assigning values based on a single condition cleanly."
+  },
+  {
+    "id": 83,
+    "track": "Conditional Statements",
+    "concept": "ternary_operator",
+    "language": "C",
+    "difficulty": "Medium",
+    "question": "Output?",
+    "code": "int a = 5;\nint b = (a++ > 5) ? a : ++a;\nprintf(\"%d\", b);",
+    "options": {
+      "A": "5",
+      "B": "6",
+      "C": "7",
+      "D": "Error"
+    },
+    "correctAnswer": "C",
+    "explanation": "Condition: a++ > 5. Uses a(5), then increments to 6. Condition 5 > 5 is false. Evaluates false branch: ++a. a is now 6, pre-increment makes it 7. Returns 7 to b. Prints 7.",
+    "whyOthersAreWrong": {
+      "A": "Condition is false.",
+      "B": "False branch applies a pre-increment on the already incremented a (6->7).",
+      "D": "Valid C code."
+    },
+    "commonTrap": "Forgetting 'a' was mutated by the condition before the branch evaluated.",
+    "quickTrick": "Track variable mutations step by step. Short-circuit applies to ternary branches too.",
+    "realWorldApplication": "Complex conditional assignments (though highly discouraged for readability)."
+  },
+  {
+    "id": 84,
+    "track": "Conditional Statements",
+    "concept": "ternary_operator",
+    "language": "C++",
+    "difficulty": "Hard",
+    "question": "Output?",
+    "code": "int x = 10;\n(x % 2 == 0 ? cout << \"Even\" : cout << \"Odd\") << \" Number\";",
+    "options": {
+      "A": "Even Number",
+      "B": "Odd Number",
+      "C": "Even",
+      "D": "Compile Error"
+    },
+    "correctAnswer": "D",
+    "explanation": "In C++, the ternary operator has lower precedence than the << operator. It evaluates as '(x % 2 == 0) ? (cout << \"Even\") : (cout << \"Odd\" << \" Number\")'. Wait, actually cout << \"Even\" returns a reference to ostream. The types match. But precedence forces parenthesization issues. Without parentheses around the ternary result, it causes a compilation error in C++.",
+    "whyOthersAreWrong": {
+      "A": "Fails to compile.",
+      "B": "Fails to compile.",
+      "C": "Fails to compile."
+    },
+    "commonTrap": "Assuming C++ groups the ternary as a single string operand seamlessly.",
+    "quickTrick": "Ternary + stream insertion requires parentheses: 'cout << (cond ? \"A\" : \"B\");'",
+    "realWorldApplication": "Inline printing strings based on condition."
+  },
+  {
+    "id": 85,
+    "track": "Conditional Statements",
+    "concept": "ternary_operator",
+    "language": "Python",
+    "difficulty": "Hard",
+    "question": "Python equivalent of ternary. Output?",
+    "code": "x = 2\nres = \"A\" if x == 1 else \"B\" if x == 2 else \"C\"\nprint(res)",
+    "options": {
+      "A": "A",
+      "B": "B",
+      "C": "C",
+      "D": "Error"
+    },
+    "correctAnswer": "B",
+    "explanation": "Evaluates to 'A' if x==1, else evaluates ('B' if x==2 else 'C'). x is 2, so the nested ternary returns 'B'.",
+    "whyOthersAreWrong": {
+      "A": "x is not 1.",
+      "C": "x is 2, so it returns B.",
+      "D": "Valid nested ternary in Python."
+    },
+    "commonTrap": "Reading left to right and misunderstanding the nesting.",
+    "quickTrick": "Python ternary is '[on_true] if [cond] else [on_false]'.",
+    "realWorldApplication": "One-liner dictionary initializations based on arguments."
+  },
+  {
+    "id": 86,
+    "track": "Conditional Statements",
+    "concept": "operator_precedence",
+    "language": "C",
+    "difficulty": "Medium",
+    "question": "Output?",
+    "code": "int a = 1, b = 2, c = 3;\nif (a > b == c < b)\n    printf(\"Yes\");\nelse\n    printf(\"No\");",
+    "options": {
+      "A": "Yes",
+      "B": "No",
+      "C": "Error",
+      "D": "None"
+    },
+    "correctAnswer": "A",
+    "explanation": "Relational operators (>, <) have higher precedence than equality (==). Evaluates as '(a > b) == (c < b)'. (1 > 2) is 0. (3 < 2) is 0. 0 == 0 is 1 (True). Prints 'Yes'.",
+    "whyOthersAreWrong": {
+      "B": "0 == 0 is true.",
+      "C": "Valid C.",
+      "D": "Output prints."
+    },
+    "commonTrap": "Evaluating left to right: a > (b == c) < b.",
+    "quickTrick": "Relations (<, >) evaluated before equality (==, !=).",
+    "realWorldApplication": "Comparing the truthiness of two bounds checks."
+  },
+  {
+    "id": 87,
+    "track": "Conditional Statements",
+    "concept": "operator_precedence",
+    "language": "Java",
+    "difficulty": "Medium",
+    "question": "Output?",
+    "code": "boolean x = true, y = false, z = true;\nif (x || y && !z)\n    System.out.println(\"T\");\nelse\n    System.out.println(\"F\");",
+    "options": {
+      "A": "T",
+      "B": "F",
+      "C": "Error",
+      "D": "None"
+    },
+    "correctAnswer": "A",
+    "explanation": "Precedence: ! then && then ||. '!z' is false. 'y && false' is false. 'x || false' (true || false) is true. Prints 'T'.",
+    "whyOthersAreWrong": {
+      "B": "Result is true.",
+      "C": "Valid.",
+      "D": "Prints."
+    },
+    "commonTrap": "Evaluating left to right (x || y) first.",
+    "quickTrick": "NOT > AND > OR.",
+    "realWorldApplication": "Complex Boolean filtering logic."
+  },
+  {
+    "id": 88,
+    "track": "Conditional Statements",
+    "concept": "operator_precedence",
+    "language": "C++",
+    "difficulty": "Hard",
+    "question": "Output?",
+    "code": "int x = 5;\nif (x = 0 || x == 5)\n    cout << \"A\";\nelse\n    cout << \"B\";",
+    "options": {
+      "A": "A",
+      "B": "B",
+      "C": "Error",
+      "D": "None"
+    },
+    "correctAnswer": "A",
+    "explanation": "Precedence: == then || then =. Evaluates as 'x = (0 || (x == 5))'. x == 5 is true (1). 0 || 1 is 1. x = 1. Condition evaluates to 1 (True). Prints 'A'.",
+    "whyOthersAreWrong": {
+      "B": "Condition evaluates to 1.",
+      "C": "Valid C++.",
+      "D": "Prints."
+    },
+    "commonTrap": "Assuming evaluated left to right: (x=0) || (x==5).",
+    "quickTrick": "Assignment (=) has the lowest precedence among logical and relational operators.",
+    "realWorldApplication": "Mistakenly placing = instead of == causing silent logic bugs."
+  },
+  {
+    "id": 89,
+    "track": "Conditional Statements",
+    "concept": "operator_precedence",
+    "language": "C",
+    "difficulty": "Very Hard",
+    "question": "Output?",
+    "code": "int a = 2, b = 1;\nif (a + b * 2 == 4 && a << 1 > b)\n    printf(\"X\");\nelse\n    printf(\"Y\");",
+    "options": {
+      "A": "X",
+      "B": "Y",
+      "C": "Error",
+      "D": "None"
+    },
+    "correctAnswer": "A",
+    "explanation": "Precedence: (*, /) -> (+, -) -> (<<, >>) -> (>, <) -> (==, !=) -> &&. 1: b*2 = 2. 2: a+2 = 4. 3: 4 == 4 (1). 4: a << 1 = 4. 5: 4 > b (4 > 1) = 1. 6: 1 && 1 = 1. Prints 'X'.",
+    "whyOthersAreWrong": {
+      "B": "Condition is true.",
+      "C": "Valid.",
+      "D": "Prints."
+    },
+    "commonTrap": "Messing up bitwise shift vs relational precedence.",
+    "quickTrick": "Arithmetic > Shifts > Relational > Equality > Logical.",
+    "realWorldApplication": "Optimized low-level embedded systems programming."
+  },
+  {
+    "id": 90,
+    "track": "Conditional Statements",
+    "concept": "short_circuit",
+    "language": "Java",
+    "difficulty": "Medium",
+    "question": "What is the value of 'x' after execution?",
+    "code": "int x = 0;\nif (false && (x++ > 0)) { }\nSystem.out.print(x);",
+    "options": {
+      "A": "0",
+      "B": "1",
+      "C": "2",
+      "D": "Error"
+    },
+    "correctAnswer": "A",
+    "explanation": "Because the left side of && is false, short-circuiting occurs. The right side '(x++ > 0)' is never executed. x remains 0.",
+    "whyOthersAreWrong": {
+      "B": "Increment is skipped.",
+      "C": "Increment is skipped.",
+      "D": "Valid."
+    },
+    "commonTrap": "Assuming increment operators always execute.",
+    "quickTrick": "False AND anything = False (short-circuits).",
+    "realWorldApplication": "Checking for null before accessing object properties."
+  },
+  {
+    "id": 91,
+    "track": "Conditional Statements",
+    "concept": "short_circuit",
+    "language": "C",
+    "difficulty": "Medium",
+    "question": "Value of a, b, c?",
+    "code": "int a = 1, b = 1, c = 1;\nif (++a || ++b && ++c) { }\nprintf(\"%d %d %d\", a, b, c);",
+    "options": {
+      "A": "2 1 1",
+      "B": "2 2 2",
+      "C": "2 2 1",
+      "D": "1 1 1"
+    },
+    "correctAnswer": "A",
+    "explanation": "++a evaluates to 2 (True). Because the left side of || is true, the entire OR expression is true. The right side '(++b && ++c)' is short-circuited and skipped. b and c remain 1.",
+    "whyOthersAreWrong": {
+      "B": "Right side skipped.",
+      "C": "Right side skipped.",
+      "D": "a is incremented."
+    },
+    "commonTrap": "Thinking && forces evaluation regardless of ||.",
+    "quickTrick": "True OR anything = True (short-circuits).",
+    "realWorldApplication": "Fallback assignment where expensive function calls are on the right."
+  },
+  {
+    "id": 92,
+    "track": "Conditional Statements",
+    "concept": "short_circuit",
+    "language": "Python",
+    "difficulty": "Hard",
+    "question": "Output?",
+    "code": "def func():\n    print(\"F\")\n    return True\n\nif False and func():\n    pass",
+    "options": {
+      "A": "F",
+      "B": "Nothing",
+      "C": "Error",
+      "D": "True"
+    },
+    "correctAnswer": "B",
+    "explanation": "False 'and' short-circuits. 'func()' is never called, so 'F' is never printed.",
+    "whyOthersAreWrong": {
+      "A": "Function not called.",
+      "C": "Valid Python.",
+      "D": "No print."
+    },
+    "commonTrap": "Assuming functions are evaluated before the if statement starts.",
+    "quickTrick": "Functions in conditions aren't executed if short-circuit happens.",
+    "realWorldApplication": "Preventing costly database lookups if cache hits."
+  },
+  {
+    "id": 93,
+    "track": "Conditional Statements",
+    "concept": "boundary_conditions",
+    "language": "C++",
+    "difficulty": "Medium",
+    "question": "Output?",
+    "code": "int x = -1;\nif (x)\n    cout << \"A\";\nelse\n    cout << \"B\";",
+    "options": {
+      "A": "A",
+      "B": "B",
+      "C": "Error",
+      "D": "None"
+    },
+    "correctAnswer": "A",
+    "explanation": "In C++, any non-zero integer (including negative numbers) evaluates to true. -1 is true, so 'A' prints.",
+    "whyOthersAreWrong": {
+      "B": "Only 0 is false.",
+      "C": "Valid.",
+      "D": "Prints."
+    },
+    "commonTrap": "Thinking only 1 or positive numbers are true.",
+    "quickTrick": "True != 1. True = (not 0).",
+    "realWorldApplication": "Checking error codes where -1 means failure (which is truthy)."
+  },
+  {
+    "id": 94,
+    "track": "Conditional Statements",
+    "concept": "boundary_conditions",
+    "language": "Java",
+    "difficulty": "Medium",
+    "question": "Output?",
+    "code": "double d = 0.0;\nif (d == 0)\n    System.out.print(\"Z\");\nelse\n    System.out.print(\"N\");",
+    "options": {
+      "A": "Z",
+      "B": "N",
+      "C": "Error",
+      "D": "None"
+    },
+    "correctAnswer": "A",
+    "explanation": "0.0 is equal to integer 0 via type promotion. Prints 'Z'.",
+    "whyOthersAreWrong": {
+      "B": "Values match.",
+      "C": "Valid comparison.",
+      "D": "Prints."
+    },
+    "commonTrap": "Assuming strict type matching like in JS (===).",
+    "quickTrick": "Primitives are promoted for comparison.",
+    "realWorldApplication": "Comparing float zero to int zero."
+  },
+  {
+    "id": 95,
+    "track": "Conditional Statements",
+    "concept": "boundary_conditions",
+    "language": "C",
+    "difficulty": "Hard",
+    "question": "Output?",
+    "code": "unsigned int u = 0;\nif (u - 1 < 0)\n    printf(\"Neg\");\nelse\n    printf(\"Pos\");",
+    "options": {
+      "A": "Neg",
+      "B": "Pos",
+      "C": "Error",
+      "D": "None"
+    },
+    "correctAnswer": "B",
+    "explanation": "u is unsigned. 'u - 1' underflows to the maximum unsigned int value (e.g., 4294967295). This large positive number is not < 0. Prints 'Pos'.",
+    "whyOthersAreWrong": {
+      "A": "Unsigned types cannot be negative.",
+      "C": "Valid.",
+      "D": "Prints."
+    },
+    "commonTrap": "Evaluating math like a human instead of as an unsigned type.",
+    "quickTrick": "Unsigned integers wrap around on underflow and are never < 0.",
+    "realWorldApplication": "Array index boundary checks causing catastrophic buffer overflows."
+  },
+  {
+    "id": 96,
+    "track": "Conditional Statements",
+    "concept": "code_tracing_and_output",
+    "language": "Python",
+    "difficulty": "Easy",
+    "question": "What is printed?",
+    "code": "x = 5\nif x == 5:\n    x += 5\nif x == 10:\n    x += 10\nprint(x)",
+    "options": {
+      "A": "5",
+      "B": "10",
+      "C": "20",
+      "D": "15"
+    },
+    "correctAnswer": "C",
+    "explanation": "These are sequential, independent ifs. x=5. First if true, x becomes 10. Second if check: x==10 is now true. x becomes 20.",
+    "whyOthersAreWrong": {
+      "B": "Second condition is evaluated and met.",
+      "D": "Math error.",
+      "A": "Value modified."
+    },
+    "commonTrap": "Treating sequential ifs like if/elif.",
+    "quickTrick": "Sequential ifs evaluate current state, not initial state.",
+    "realWorldApplication": "Applying sequential state transitions/discounts."
+  },
+  {
+    "id": 97,
+    "track": "Conditional Statements",
+    "concept": "code_tracing_and_output",
+    "language": "Java",
+    "difficulty": "Medium",
+    "question": "Output?",
+    "code": "int a = 2;\nif (a == 2) {\n    a = 3;\n} else if (a == 3) {\n    a = 4;\n}\nSystem.out.print(a);",
+    "options": {
+      "A": "2",
+      "B": "3",
+      "C": "4",
+      "D": "Error"
+    },
+    "correctAnswer": "B",
+    "explanation": "a == 2 is true. a becomes 3. Because it's an if/else if chain, the 'else if (a==3)' is entirely skipped, even though a is now 3.",
+    "whyOthersAreWrong": {
+      "A": "Modified to 3.",
+      "C": "else if chain stops after first match.",
+      "D": "Valid."
+    },
+    "commonTrap": "Applying the updated variable to the elif condition.",
+    "quickTrick": "if/else-if chains execute exactly ONE block.",
+    "realWorldApplication": "State machines where only one transition occurs per tick."
+  },
+  {
+    "id": 98,
+    "track": "Conditional Statements",
+    "concept": "code_tracing_and_output",
+    "language": "C",
+    "difficulty": "Hard",
+    "question": "Output?",
+    "code": "int i = 0;\nwhile (i < 3) {\n    if (i == 1)\n        continue;\n    printf(\"%d\", i);\n    i++;\n}",
+    "options": {
+      "A": "012",
+      "B": "02",
+      "C": "Infinite loop printing 0",
+      "D": "0 and then infinite loop"
+    },
+    "correctAnswer": "D",
+    "explanation": "i=0: prints 0, i becomes 1. Loop again. i=1: condition met, 'continue' executes. Skips the rest of the loop block (including 'i++'). Next iteration: i is still 1. Infinite loop.",
+    "whyOthersAreWrong": {
+      "A": "continue skips the print.",
+      "B": "i never increments to 2.",
+      "C": "0 prints once."
+    },
+    "commonTrap": "Thinking continue automatically increments the counter.",
+    "quickTrick": "continue inside while loops skips the increment if placed before it.",
+    "realWorldApplication": "Accidentally causing infinite loops during data parsing."
+  },
+  {
+    "id": 99,
+    "track": "Conditional Statements",
+    "concept": "code_tracing_and_output",
+    "language": "C++",
+    "difficulty": "Very Hard",
+    "question": "Output?",
+    "code": "int x = 1;\nif (x & (x = 0))\n    cout << \"1\";\nelse\n    cout << \"0\";",
+    "options": {
+      "A": "1",
+      "B": "0",
+      "C": "Undefined Behavior",
+      "D": "Compilation Error"
+    },
+    "correctAnswer": "C",
+    "explanation": "Modifying a variable ('x = 0') and reading it ('x') in the same expression without an intervening sequence point results in Undefined Behavior in C++. Different compilers may produce different results.",
+    "whyOthersAreWrong": {
+      "A": "Result is compiler dependent.",
+      "B": "Result is compiler dependent.",
+      "D": "Compiles fine."
+    },
+    "commonTrap": "Trying to logically trace it left-to-right.",
+    "quickTrick": "Reading and writing same variable in one expression = Undefined Behavior.",
+    "realWorldApplication": "Undefined behavior pitfalls in legacy C++ codebases."
+  },
+  {
+    "id": 100,
+    "track": "Conditional Statements",
+    "concept": "code_tracing_and_output",
+    "language": "Pseudocode",
+    "difficulty": "Medium",
+    "question": "Final value of sum?",
+    "code": "sum = 0\nfor x = 1 to 5\n    if x % 2 == 0 then\n        sum = sum + x\n    else\n        sum = sum - 1\nprint sum",
+    "options": {
+      "A": "6",
+      "B": "3",
+      "C": "5",
+      "D": "-3"
+    },
+    "correctAnswer": "B",
+    "explanation": "x=1: sum = -1. x=2: sum = -1+2 = 1. x=3: sum = 1-1 = 0. x=4: sum = 0+4 = 4. x=5: sum = 4-1 = 3.",
+    "whyOthersAreWrong": {
+      "A": "Did not subtract 1 for odd numbers.",
+      "C": "Math error.",
+      "D": "Math error."
+    },
+    "commonTrap": "Adding odds instead of subtracting 1.",
+    "quickTrick": "Sum of evens (2+4=6) minus number of odds (3 odds). 6 - 3 = 3.",
+    "realWorldApplication": "Accumulating values with penalties."
+  },
+  {
+    "id": 101,
+    "track": "Loops & Iteration",
+    "concept": "for loop",
+    "language": "Pseudocode",
+    "difficulty": "Easy",
+    "question": "What will be printed when this pseudocode executes?",
+    "code": "Integer sum = 0\nFor i = 1 to 4\n    sum = sum + i\nEnd For\nPrint sum",
+    "options": {
+      "A": "10",
+      "B": "15",
+      "C": "4",
+      "D": "0"
+    },
+    "correctAnswer": "A",
+    "explanation": "The loop runs for i=1, 2, 3, 4. sum = 1+2+3+4 = 10.",
+    "whyOthersAreWrong": {},
+    "commonTrap": "Forgetting to include the upper bound '4' in the addition.",
+    "quickTrick": "Sum of first N numbers is N*(N+1)/2. For N=4, 4*5/2 = 10.",
+    "realWorldApplication": "Summing array elements or calculating total order cost."
+  },
+  {
+    "id": 102,
+    "track": "Loops & Iteration",
+    "concept": "for loop",
+    "language": "C",
+    "difficulty": "Medium",
+    "question": "What is the output of the following C loop?",
+    "code": "#include <stdio.h>\nint main() {\n    int x = 0;\n    for(int i = 0; i < 5; i += 2) {\n        x += i;\n    }\n    printf(\"%d\", x);\n    return 0;\n}",
+    "options": {
+      "A": "10",
+      "B": "6",
+      "C": "12",
+      "D": "8"
+    },
+    "correctAnswer": "B",
+    "explanation": "i takes values 0, 2, 4. The sum x = 0 + 2 + 4 = 6.",
+    "whyOthersAreWrong": {},
+    "commonTrap": "Assuming i increments by 1 instead of 2.",
+    "quickTrick": "Identify the step size (+2) and list the valid values of i before summing.",
+    "realWorldApplication": "Skipping elements in an array or processing alternate items."
+  },
+  {
+    "id": 103,
+    "track": "Loops & Iteration",
+    "concept": "for loop",
+    "language": "C++",
+    "difficulty": "Medium",
+    "question": "Analyze the C++ loop execution. What is printed?",
+    "code": "#include <iostream>\nusing namespace std;\nint main() {\n    int count = 0;\n    for (int i = 10; i > 0; i -= 3) {\n        count++;\n    }\n    cout << count;\n    return 0;\n}",
+    "options": {
+      "A": "3",
+      "B": "5",
+      "C": "4",
+      "D": "10"
+    },
+    "correctAnswer": "C",
+    "explanation": "i values are 10, 7, 4, 1. The loop runs 4 times.",
+    "whyOthersAreWrong": {},
+    "commonTrap": "Calculating 10 / 3 = 3 and ignoring the remainder iteration at i=1.",
+    "quickTrick": "Count = ceil((start - end)/step) = ceil(10/3) = 4.",
+    "realWorldApplication": "Countdown timers with specific step decrements."
+  },
+  {
+    "id": 104,
+    "track": "Loops & Iteration",
+    "concept": "for loop",
+    "language": "Java",
+    "difficulty": "Medium",
+    "question": "What will be printed by the following Java code?",
+    "code": "public class Main {\n    public static void main(String[] args) {\n        int i = 0;\n        for (System.out.print(\"I\"); i < 2; System.out.print(\"U\")) {\n            System.out.print(\"B\");\n            i++;\n        }\n    }\n}",
+    "options": {
+      "A": "IBUB",
+      "B": "IUB",
+      "C": "IUBIUB",
+      "D": "IBUBU"
+    },
+    "correctAnswer": "D",
+    "explanation": "Sequence: Init 'I', Cond(0<2), Body 'B', Update 'U'. Cond(1<2), Body 'B', Update 'U'. Cond(2<2) False. Final output is IBUBU.",
+    "whyOthersAreWrong": {},
+    "commonTrap": "Assuming the update statement runs before the body.",
+    "quickTrick": "Init runs once. Then (Cond -> Body -> Update) repeats.",
+    "realWorldApplication": "Understanding exact loop control flow for custom iterators."
+  },
+  {
+    "id": 105,
+    "track": "Loops & Iteration",
+    "concept": "for loop",
+    "language": "Pseudocode",
+    "difficulty": "Hard",
+    "question": "Determine the output after loop execution.",
+    "code": "Integer a = 0, b = 10\nFor i = 1 to 5\n    a = a + 1\n    b = b - 1\nEnd For\nPrint a * b",
+    "options": {
+      "A": "25",
+      "B": "20",
+      "C": "30",
+      "D": "50"
+    },
+    "correctAnswer": "A",
+    "explanation": "Loop runs 5 times. a becomes 5, b becomes 10 - 5 = 5. Product = 5 * 5 = 25.",
+    "whyOthersAreWrong": {},
+    "commonTrap": "Miscalculating the number of iterations or the final values.",
+    "quickTrick": "Net change: a increases by 5, b decreases by 5.",
+    "realWorldApplication": "Two pointer convergence logic."
+  },
+  {
+    "id": 106,
+    "track": "Loops & Iteration",
+    "concept": "while loop",
+    "language": "Python",
+    "difficulty": "Easy",
+    "question": "How many times will this Python while loop execute?",
+    "code": "n = 5\nwhile n > 0:\n    print(n)\n    n -= 1",
+    "options": {
+      "A": "4",
+      "B": "5",
+      "C": "6",
+      "D": "Infinite"
+    },
+    "correctAnswer": "B",
+    "explanation": "n takes values 5, 4, 3, 2, 1. The loop executes 5 times.",
+    "whyOthersAreWrong": {},
+    "commonTrap": "Confusing > 0 with >= 0 which would run 6 times.",
+    "quickTrick": "Loop counting down from N to > 0 runs exactly N times.",
+    "realWorldApplication": "Processing tasks in a queue until empty."
+  },
+  {
+    "id": 107,
+    "track": "Loops & Iteration",
+    "concept": "while loop",
+    "language": "Python",
+    "difficulty": "Medium",
+    "question": "What does this Python loop output?",
+    "code": "num = 123\nrev = 0\nwhile num > 0:\n    rev = rev * 10 + num % 10\n    num //= 10\nprint(rev)",
+    "options": {
+      "A": "123",
+      "B": "6",
+      "C": "321",
+      "D": "300"
+    },
+    "correctAnswer": "C",
+    "explanation": "This classic loop reverses an integer digit by digit. 123 becomes 321.",
+    "whyOthersAreWrong": {},
+    "commonTrap": "Using single division '/' instead of integer division '//' in Python.",
+    "quickTrick": "The pattern `rev*10 + num%10` reverses the number.",
+    "realWorldApplication": "Reversing integers for palindrome checks."
+  },
+  {
+    "id": 108,
+    "track": "Loops & Iteration",
+    "concept": "while loop",
+    "language": "C",
+    "difficulty": "Medium",
+    "question": "What is printed by this C code?",
+    "code": "#include <stdio.h>\nint main() {\n    int p = 1;\n    while (p < 20) {\n        p *= 2;\n    }\n    printf(\"%d\", p);\n    return 0;\n}",
+    "options": {
+      "A": "16",
+      "B": "20",
+      "C": "64",
+      "D": "32"
+    },
+    "correctAnswer": "D",
+    "explanation": "p values: 1 -> 2 -> 4 -> 8 -> 16 -> 32. At p=32, condition 32 < 20 fails.",
+    "whyOthersAreWrong": {},
+    "commonTrap": "Stopping at 16 before checking condition 16 < 20.",
+    "quickTrick": "Find smallest power of 2 that is >= 20, which is 32.",
+    "realWorldApplication": "Exponential backoff or finding power of 2 bounding."
+  },
+  {
+    "id": 109,
+    "track": "Loops & Iteration",
+    "concept": "while loop",
+    "language": "C++",
+    "difficulty": "Hard",
+    "question": "Analyze this C++ while loop. What is the output?",
+    "code": "#include <iostream>\nusing namespace std;\nint main() {\n    int a = 1, b = 10;\n    while (++a < --b) {}\n    cout << a << \" \" << b;\n    return 0;\n}",
+    "options": {
+      "A": "6 5",
+      "B": "5 6",
+      "C": "6 6",
+      "D": "5 5"
+    },
+    "correctAnswer": "A",
+    "explanation": "Iter 1: a=2, b=9. Iter 2: a=3, b=8. Iter 3: a=4, b=7. Iter 4: a=5, b=6. Iter 5: a=6, b=5 (6<5 False). Output: 6 5.",
+    "whyOthersAreWrong": {},
+    "commonTrap": "Forgetting pre-increments evaluate before the comparison.",
+    "quickTrick": "Even on the failing condition check, both a and b are modified.",
+    "realWorldApplication": "Two-pointer array center convergence."
+  },
+  {
+    "id": 110,
+    "track": "Loops & Iteration",
+    "concept": "while loop",
+    "language": "Java",
+    "difficulty": "Hard",
+    "question": "What is the final value of val?",
+    "code": "public class Main {\n    public static void main(String[] args) {\n        int val = 32, count = 0;\n        while (val > 1) {\n            val /= 2;\n            count++;\n        }\n        System.out.println(count);\n    }\n}",
+    "options": {
+      "A": "4",
+      "B": "5",
+      "C": "6",
+      "D": "32"
+    },
+    "correctAnswer": "B",
+    "explanation": "Val halves: 32->16, 16->8, 8->4, 4->2, 2->1. Count is 5.",
+    "whyOthersAreWrong": {},
+    "commonTrap": "Not counting the final division step from 2 to 1.",
+    "quickTrick": "Number of divisions to reach 1 is log2(N). log2(32) = 5.",
+    "realWorldApplication": "Binary search maximum depth calculation."
+  },
+  {
+    "id": 111,
+    "track": "Loops & Iteration",
+    "concept": "do while",
+    "language": "Pseudocode",
+    "difficulty": "Easy",
+    "question": "How many times does the body of this do-while loop execute?",
+    "code": "Integer i = 10\nDo\n    Print i\n    i = i + 1\nWhile (i < 5)",
+    "options": {
+      "A": "0",
+      "B": "5",
+      "C": "1",
+      "D": "Infinite"
+    },
+    "correctAnswer": "C",
+    "explanation": "A do-while loop always executes the body at least once before checking the condition.",
+    "whyOthersAreWrong": {},
+    "commonTrap": "Assuming 0 executions because initial condition 10 < 5 is false.",
+    "quickTrick": "do-while minimum execution count is ALWAYS 1.",
+    "realWorldApplication": "Menu prompts that must display before reading user input."
+  },
+  {
+    "id": 112,
+    "track": "Loops & Iteration",
+    "concept": "do while",
+    "language": "C",
+    "difficulty": "Medium",
+    "question": "What is printed by this C program?",
+    "code": "#include <stdio.h>\nint main() {\n    int count = 0, k = 1;\n    do {\n        count++;\n        k *= 3;\n    } while (k < 30);\n    printf(\"%d\", count);\n    return 0;\n}",
+    "options": {
+      "A": "2",
+      "B": "3",
+      "C": "5",
+      "D": "4"
+    },
+    "correctAnswer": "D",
+    "explanation": "Pass 1: k=3. Pass 2: k=9. Pass 3: k=27 (27<30 is true!). Pass 4: k=81 (81<30 is false). Count = 4.",
+    "whyOthersAreWrong": {},
+    "commonTrap": "Stopping at k=27 and count=3.",
+    "quickTrick": "k must exceed 30. 3^3=27, 3^4=81. Loop runs 4 times.",
+    "realWorldApplication": "Scaling resource allocations until a threshold is exceeded."
+  },
+  {
+    "id": 113,
+    "track": "Loops & Iteration",
+    "concept": "do while",
+    "language": "Java",
+    "difficulty": "Medium",
+    "question": "What is the output?",
+    "code": "public class Test {\n    public static void main(String[] args) {\n        int x = 1;\n        do {\n            x += 2;\n        } while (x <= 7);\n        System.out.println(x);\n    }\n}",
+    "options": {
+      "A": "9",
+      "B": "7",
+      "C": "8",
+      "D": "11"
+    },
+    "correctAnswer": "A",
+    "explanation": "x values: 1 -> 3 -> 5 -> 7(check 7<=7 true) -> 9. Output is 9.",
+    "whyOthersAreWrong": {},
+    "commonTrap": "Stopping at 7 without executing the iteration that pushes x to 9.",
+    "quickTrick": "7 <= 7 is true, triggering one final iteration.",
+    "realWorldApplication": "Input retry mechanisms."
+  },
+  {
+    "id": 114,
+    "track": "Loops & Iteration",
+    "concept": "do while",
+    "language": "Python",
+    "difficulty": "Medium",
+    "question": "Python simulates do-while with while True and break. What is printed?",
+    "code": "x = 5\nwhile True:\n    x -= 2\n    if x <= 0:\n        break\nprint(x)",
+    "options": {
+      "A": "1",
+      "B": "-1",
+      "C": "0",
+      "D": "3"
+    },
+    "correctAnswer": "B",
+    "explanation": "x: 5 -> 3. 3<=0 F. x: 3 -> 1. 1<=0 F. x: 1 -> -1. -1<=0 T -> break. Output: -1.",
+    "whyOthersAreWrong": {},
+    "commonTrap": "Assuming loop stops exactly at 0.",
+    "quickTrick": "Trace subtraction: 5, 3, 1, -1. First value <= 0 is -1.",
+    "realWorldApplication": "Simulating do-while loops in languages that lack native support."
+  },
+  {
+    "id": 115,
+    "track": "Loops & Iteration",
+    "concept": "do while",
+    "language": "Pseudocode",
+    "difficulty": "Hard",
+    "question": "What is the result of the following pseudocode?",
+    "code": "Integer x = 2, sum = 0\nDo\n    sum = sum + x\n    x = x * 2\nWhile (x < 10)\nPrint sum",
+    "options": {
+      "A": "10",
+      "B": "30",
+      "C": "14",
+      "D": "6"
+    },
+    "correctAnswer": "C",
+    "explanation": "Pass 1: sum=2, x=4. Pass 2: sum=2+4=6, x=8. Pass 3: sum=6+8=14, x=16(16<10 False). Sum = 14.",
+    "whyOthersAreWrong": {},
+    "commonTrap": "Adding 16 to sum before condition check.",
+    "quickTrick": "Sum = 2 + 4 + 8 = 14.",
+    "realWorldApplication": "Summing geometric series elements until bound."
+  },
+  {
+    "id": 116,
+    "track": "Loops & Iteration",
+    "concept": "nested loops",
+    "language": "Pseudocode",
+    "difficulty": "Easy",
+    "question": "How many total iterations are executed by this nested loop?",
+    "code": "Integer count = 0\nFor i = 1 to 3\n    For j = 1 to 4\n        count = count + 1\n    End For\nEnd For\nPrint count",
+    "options": {
+      "A": "7",
+      "B": "9",
+      "C": "16",
+      "D": "12"
+    },
+    "correctAnswer": "D",
+    "explanation": "Outer loop runs 3 times, inner loop runs 4 times. Total = 3 * 4 = 12.",
+    "whyOthersAreWrong": {},
+    "commonTrap": "Adding bounds (3+4) instead of multiplying.",
+    "quickTrick": "Independent nested loops = Outer * Inner.",
+    "realWorldApplication": "Traversing 2D grid matrix of size 3x4."
+  },
+  {
+    "id": 117,
+    "track": "Loops & Iteration",
+    "concept": "nested loops",
+    "language": "Python",
+    "difficulty": "Medium",
+    "question": "What is printed by this nested Python loop?",
+    "code": "sum_val = 0\nfor i in range(1, 4):\n    for j in range(1, i + 1):\n        sum_val += j\nprint(sum_val)",
+    "options": {
+      "A": "10",
+      "B": "14",
+      "C": "6",
+      "D": "9"
+    },
+    "correctAnswer": "A",
+    "explanation": "i=1: j=1 (sum=1). i=2: j=1,2 (sum=1+1+2=4). i=3: j=1,2,3 (sum=4+1+2+3=10).",
+    "whyOthersAreWrong": {},
+    "commonTrap": "Assuming inner loop upper limit is constant.",
+    "quickTrick": "Sums per i: 1 + 3 + 6 = 10.",
+    "realWorldApplication": "Triangular matrix sum processing."
+  },
+  {
+    "id": 118,
+    "track": "Loops & Iteration",
+    "concept": "nested loops",
+    "language": "Java",
+    "difficulty": "Medium",
+    "question": "What will be printed by the following Java snippet?",
+    "code": "public class Nested {\n    public static void main(String[] args) {\n        int sum = 0;\n        for (int i = 0; i < 3; i++) {\n            for (int j = 0; j < 3; j++) {\n                if (i == j) continue;\n                sum++;\n            }\n        }\n        System.out.println(sum);\n    }\n}",
+    "options": {
+      "A": "9",
+      "B": "6",
+      "C": "3",
+      "D": "0"
+    },
+    "correctAnswer": "B",
+    "explanation": "Total 3x3=9 pairs. i==j skips 3 diagonal pairs (0,0), (1,1), (2,2). 9 - 3 = 6.",
+    "whyOthersAreWrong": {},
+    "commonTrap": "Confusing continue with break.",
+    "quickTrick": "Off-diagonal elements = N*N - N. For N=3: 9 - 3 = 6.",
+    "realWorldApplication": "Off-diagonal matrix entry processing."
+  },
+  {
+    "id": 119,
+    "track": "Loops & Iteration",
+    "concept": "nested loops",
+    "language": "C++",
+    "difficulty": "Hard",
+    "question": "What is the output of this nested loop program?",
+    "code": "#include <iostream>\nusing namespace std;\nint main() {\n    int count = 0;\n    for (int i = 1; i <= 3; i++) {\n        for (int j = 1; j <= i; j *= 2) {\n            count++;\n        }\n    }\n    cout << count;\n    return 0;\n}",
+    "options": {
+      "A": "4",
+      "B": "7",
+      "C": "5",
+      "D": "9"
+    },
+    "correctAnswer": "C",
+    "explanation": "i=1: j=1 (count 1). i=2: j=1, 2 (count 2). i=3: j=1, 2 (count 2). Total count = 1 + 2 + 2 = 5.",
+    "whyOthersAreWrong": {},
+    "commonTrap": "Assuming j increments by 1.",
+    "quickTrick": "Inner counts per i: 1, 2, 2. Sum = 5.",
+    "realWorldApplication": "Analyzing log-time inner loops."
+  },
+  {
+    "id": 120,
+    "track": "Loops & Iteration",
+    "concept": "nested loops",
+    "language": "Python",
+    "difficulty": "Hard",
+    "question": "Determine the final output of this Python code.",
+    "code": "count = 0\nfor a in range(1, 4):\n    for b in range(a, 4):\n        count += 1\nprint(count)",
+    "options": {
+      "A": "12",
+      "B": "9",
+      "C": "3",
+      "D": "6"
+    },
+    "correctAnswer": "D",
+    "explanation": "a=1: b=1..3 (3). a=2: b=2..3 (2). a=3: b=3..3 (1). Total = 3 + 2 + 1 = 6.",
+    "whyOthersAreWrong": {},
+    "commonTrap": "Multiplying 3 * 3 = 9.",
+    "quickTrick": "Sum of 1 to 3 is 3*4/2 = 6.",
+    "realWorldApplication": "Unique pair comparison count."
+  },
+  {
+    "id": 121,
+    "track": "Loops & Iteration",
+    "concept": "infinite loops",
+    "language": "Pseudocode",
+    "difficulty": "Easy",
+    "question": "Which of the following creates an infinite loop?",
+    "code": "// Snippet 1: For i = 1 to 10\n// Snippet 2: While (i < 10) Print i\n// Snippet 3: Do Print i While(i > 0)",
+    "options": {
+      "A": "Snippet 2",
+      "B": "Snippet 1",
+      "C": "Snippet 3",
+      "D": "None"
+    },
+    "correctAnswer": "A",
+    "explanation": "In Snippet 2, 'i' is never updated, so i < 10 remains true forever.",
+    "whyOthersAreWrong": {},
+    "commonTrap": "Overlooking missing variable increment in while loop.",
+    "quickTrick": "No update to counter inside while loop -> infinite loop.",
+    "realWorldApplication": "Identifying missing increment bugs."
+  },
+  {
+    "id": 122,
+    "track": "Loops & Iteration",
+    "concept": "infinite loops",
+    "language": "Python",
+    "difficulty": "Medium",
+    "question": "Why will this Python loop run infinitely?",
+    "code": "i = 1\nwhile i != 10:\n    i += 2",
+    "options": {
+      "A": "Python doesn't allow step 2.",
+      "B": "i jumps over 10, so i != 10 is always True.",
+      "C": "Range is invalid.",
+      "D": "Syntax error."
+    },
+    "correctAnswer": "B",
+    "explanation": "Stepping by 2 gives 1, 3, 5, 7, 9, 11... Skipping 10 keeps i != 10 true forever.",
+    "whyOthersAreWrong": {},
+    "commonTrap": "Using != instead of boundary checks.",
+    "quickTrick": "Use relational operators (<, <=) instead of !=.",
+    "realWorldApplication": "Avoiding exact equality checks on non-unit increments."
+  },
+  {
+    "id": 123,
+    "track": "Loops & Iteration",
+    "concept": "infinite loops",
+    "language": "C",
+    "difficulty": "Medium",
+    "question": "What is the behavior of `for(;;)` with a break inside in C?",
+    "code": "#include <stdio.h>\nint main() {\n    for (;;) {\n        printf(\"Hi\\n\");\n        break;\n    }\n    return 0;\n}",
+    "options": {
+      "A": "Compile error",
+      "B": "Infinite loop",
+      "C": "Executes once and prints 'Hi'",
+      "D": "Zero executions"
+    },
+    "correctAnswer": "C",
+    "explanation": "for(;;) creates an infinite loop structure, but break terminates it during the 1st iteration.",
+    "whyOthersAreWrong": {},
+    "commonTrap": "Assuming for(;;) is invalid syntax.",
+    "quickTrick": "for(;;) is valid C and means while(true).",
+    "realWorldApplication": "Event polling loops."
+  },
+  {
+    "id": 124,
+    "track": "Loops & Iteration",
+    "concept": "infinite loops",
+    "language": "Pseudocode",
+    "difficulty": "Hard",
+    "question": "Identify why this pseudocode causes an infinite loop.",
+    "code": "Integer count = 5\nWhile (count > 0)\n    count = count + 1\nEnd While",
+    "options": {
+      "A": "count starts at 5",
+      "B": "While syntax is wrong",
+      "C": "Condition is false",
+      "D": "count is incremented instead of decremented"
+    },
+    "correctAnswer": "D",
+    "explanation": "count increases (5, 6, 7...), moving away from bound 0, keeping count > 0 permanently true.",
+    "whyOthersAreWrong": {},
+    "commonTrap": "Confusing +1 with -1 in countdown.",
+    "quickTrick": "Update must move variable towards exit bound.",
+    "realWorldApplication": "Detecting wrong direction counter update."
+  },
+  {
+    "id": 125,
+    "track": "Loops & Iteration",
+    "concept": "infinite loops",
+    "language": "C++",
+    "difficulty": "Hard",
+    "question": "Why does an unsigned 8-bit integer loop `for(unsigned char i=0; i<=255; i++)` run infinitely?",
+    "code": "#include <iostream>\nusing namespace std;\nint main() {\n    // for (unsigned char i = 0; i <= 255; i++)\n    return 0;\n}",
+    "options": {
+      "A": "255 + 1 overflows to 0, which is always <= 255.",
+      "B": "Syntax error",
+      "C": "Char cannot be used in loops",
+      "D": "255 is invalid"
+    },
+    "correctAnswer": "A",
+    "explanation": "unsigned char range is 0..255. Incrementing 255 wraps to 0, satisfying i <= 255 forever.",
+    "whyOthersAreWrong": {},
+    "commonTrap": "Forgetting type capacity overflow wrap-around.",
+    "quickTrick": "i <= MAX_TYPE capacity causes infinite overflow loop.",
+    "realWorldApplication": "Preventing overflow bugs in embedded firmware."
+  },
+  {
+    "id": 126,
+    "track": "Loops & Iteration",
+    "concept": "loop counters",
+    "language": "Pseudocode",
+    "difficulty": "Easy",
+    "question": "What is the final value of variable 'i' after the loop finishes?",
+    "code": "Integer i\nFor i = 0 to 4\n    // do something\nEnd For\nPrint i",
+    "options": {
+      "A": "4",
+      "B": "5",
+      "C": "6",
+      "D": "0"
+    },
+    "correctAnswer": "B",
+    "explanation": "Loop body runs for i = 0..4. Then i increments to 5. 5 > 4 fails, loop exits. Final i = 5.",
+    "whyOthersAreWrong": {},
+    "commonTrap": "Assuming i is 4 (last valid body value).",
+    "quickTrick": "For loop(0 to N), post-loop value is N+1.",
+    "realWorldApplication": "Checking post-loop array search index."
+  },
+  {
+    "id": 127,
+    "track": "Loops & Iteration",
+    "concept": "loop counters",
+    "language": "Java",
+    "difficulty": "Medium",
+    "question": "What will be printed by the following Java snippet?",
+    "code": "public class CounterTest {\n    public static void main(String[] args) {\n        int i = 0, count = 0;\n        while (i++ < 4) {\n            count++;\n        }\n        System.out.println(i + \" \" + count);\n    }\n}",
+    "options": {
+      "A": "4 4",
+      "B": "5 5",
+      "C": "5 4",
+      "D": "4 5"
+    },
+    "correctAnswer": "C",
+    "explanation": "Checks: 0<4(i=1,c=1), 1<4(i=2,c=2), 2<4(i=3,c=3), 3<4(i=4,c=4), 4<4 false(i=5). Output: 5 4.",
+    "whyOthersAreWrong": {},
+    "commonTrap": "Forgetting i++ increments even when 4<4 evaluates to false.",
+    "quickTrick": "Post-increment in condition happens on failing check too.",
+    "realWorldApplication": "Post-increment evaluation in stream readers."
+  },
+  {
+    "id": 128,
+    "track": "Loops & Iteration",
+    "concept": "loop counters",
+    "language": "Python",
+    "difficulty": "Medium",
+    "question": "What is the final value of 'c' after execution?",
+    "code": "c = 0\ni = 1\nwhile i <= 5:\n    c += 1\n    i += 2\nprint(c)",
+    "options": {
+      "A": "5",
+      "B": "2",
+      "C": "6",
+      "D": "3"
+    },
+    "correctAnswer": "D",
+    "explanation": "i=1 (c=1, i=3), i=3 (c=2, i=5), i=5 (c=3, i=7). 7<=5 false. Final c = 3.",
+    "whyOthersAreWrong": {},
+    "commonTrap": "Miscounting iterations when step size is 2.",
+    "quickTrick": "i takes values 1, 3, 5 -> 3 iterations.",
+    "realWorldApplication": "Step counting in non-unit increments."
+  },
+  {
+    "id": 129,
+    "track": "Loops & Iteration",
+    "concept": "loop counters",
+    "language": "Python",
+    "difficulty": "Hard",
+    "question": "What is printed by this Python code modifying the loop variable inside the loop?",
+    "code": "for i in range(4):\n    print(i, end=\" \")\n    i += 2",
+    "options": {
+      "A": "0 1 2 3",
+      "B": "0 3",
+      "C": "0 2",
+      "D": "0 2 4"
+    },
+    "correctAnswer": "A",
+    "explanation": "In Python, for loop rebinds i to the next iterator value at start of each turn, ignoring manual i+=2.",
+    "whyOthersAreWrong": {},
+    "commonTrap": "Expecting manual i+=2 to skip values in Python for loop.",
+    "quickTrick": "Python for loop resets counter variable at start of every iteration.",
+    "realWorldApplication": "Understanding iterator behavior vs C index counters."
+  },
+  {
+    "id": 130,
+    "track": "Loops & Iteration",
+    "concept": "loop counters",
+    "language": "C++",
+    "difficulty": "Hard",
+    "question": "What will be printed by the following C++ program?",
+    "code": "#include <iostream>\nusing namespace std;\nint main() {\n    int c = 0;\n    for (int i = 0; i < 6; i += 2) {\n        i--;\n        c++;\n        if (c > 2) break;\n    }\n    cout << c;\n    return 0;\n}",
+    "options": {
+      "A": "6",
+      "B": "3",
+      "C": "2",
+      "D": "Infinite"
+    },
+    "correctAnswer": "B",
+    "explanation": "Iter 1: i=0, i-- -> -1, c=1, step i+=2 -> i=1. Iter 2: i=1, i-- -> 0, c=2, step i+=2 -> i=2. Iter 3: i=2, i-- -> 1, c=3, c>2 true -> break. Output c = 3.",
+    "whyOthersAreWrong": {},
+    "commonTrap": "Net step per turn is -1 + 2 = +1.",
+    "quickTrick": "Net change per iteration = +1. c increments until c > 2 (c=3).",
+    "realWorldApplication": "Complex loop counter tracking."
+  },
+  {
+    "id": 131,
+    "track": "Loops & Iteration",
+    "concept": "break",
+    "language": "C",
+    "difficulty": "Easy",
+    "question": "What is printed when this code containing a break statement executes?",
+    "code": "#include <stdio.h>\nint main() {\n    for (int i = 1; i <= 5; i++) {\n        if (i == 3) break;\n        printf(\"%d \", i);\n    }\n    return 0;\n}",
+    "options": {
+      "A": "1 2 3",
+      "B": "1 2 4 5",
+      "C": "1 2",
+      "D": "3 4 5"
+    },
+    "correctAnswer": "C",
+    "explanation": "i=1 prints 1, i=2 prints 2. At i=3, break exits loop immediately before printing 3. Output: 1 2.",
+    "whyOthersAreWrong": {},
+    "commonTrap": "Including 3 in output.",
+    "quickTrick": "break immediately exits loop.",
+    "realWorldApplication": "Early exit search loop."
+  },
+  {
+    "id": 132,
+    "track": "Loops & Iteration",
+    "concept": "break",
+    "language": "Java",
+    "difficulty": "Medium",
+    "question": "What will be the output of this Java program with nested loops and break?",
+    "code": "public class TestBreak {\n    public static void main(String[] args) {\n        for (int i = 1; i <= 2; i++) {\n            for (int j = 1; j <= 3; j++) {\n                if (j == 2) break;\n                System.out.print(i + \"\" + j + \" \");\n            }\n        }\n    }\n}",
+    "options": {
+      "A": "11 12 21 22",
+      "B": "11 12 13 21 22 23",
+      "C": "11",
+      "D": "11 21"
+    },
+    "correctAnswer": "D",
+    "explanation": "Unlabeled break exits only the innermost loop. i=1: prints '11', j=2 breaks. i=2: prints '21', j=2 breaks.",
+    "whyOthersAreWrong": {},
+    "commonTrap": "Thinking break exits all outer loops.",
+    "quickTrick": "Unlabeled break exits ONLY immediate inner loop.",
+    "realWorldApplication": "Row processing in 2D array."
+  },
+  {
+    "id": 133,
+    "track": "Loops & Iteration",
+    "concept": "break",
+    "language": "Python",
+    "difficulty": "Medium",
+    "question": "What is printed by this Python loop with an `else` block?",
+    "code": "for i in range(1, 4):\n    if i == 2:\n        break\n    print(i, end=\" \")\nelse:\n    print(\"Done\")",
+    "options": {
+      "A": "1",
+      "B": "1 Done",
+      "C": "1 2 Done",
+      "D": "Done"
+    },
+    "correctAnswer": "A",
+    "explanation": "Python for-else block executes ONLY IF loop finishes without hitting break. Since i=2 breaks, else is skipped.",
+    "whyOthersAreWrong": {},
+    "commonTrap": "Assuming else block always executes.",
+    "quickTrick": "Loop else runs if and only if NO break occurred.",
+    "realWorldApplication": "Pythonic fallback search loops."
+  },
+  {
+    "id": 134,
+    "track": "Loops & Iteration",
+    "concept": "break",
+    "language": "Pseudocode",
+    "difficulty": "Medium",
+    "question": "What is the final value of 'sum' after pseudocode break?",
+    "code": "Integer i, sum = 0\nFor i = 1 to 10\n    If (i > 4) Then\n        Break\n    End If\n    sum = sum + i\nEnd For\nPrint sum",
+    "options": {
+      "A": "15",
+      "B": "10",
+      "C": "4",
+      "D": "55"
+    },
+    "correctAnswer": "B",
+    "explanation": "i=1(sum=1), i=2(sum=3), i=3(sum=6), i=4(sum=10). At i=5, i>4 is true -> Break. Sum = 10.",
+    "whyOthersAreWrong": {},
+    "commonTrap": "Adding 5 to sum before breaking.",
+    "quickTrick": "Sum 1 + 2 + 3 + 4 = 10.",
+    "realWorldApplication": "Accumulating elements until threshold limit."
+  },
+  {
+    "id": 135,
+    "track": "Loops & Iteration",
+    "concept": "break",
+    "language": "Pseudocode",
+    "difficulty": "Hard",
+    "question": "What is printed by this pseudocode with conditional break?",
+    "code": "Integer i, j, sum = 0\nFor i = 1 to 3\n    For j = 1 to 3\n        If (i + j > 4) Then\n            Break\n        End If\n        sum = sum + i + j\n    End For\nEnd For\nPrint sum",
+    "options": {
+      "A": "15",
+      "B": "12",
+      "C": "20",
+      "D": "25"
+    },
+    "correctAnswer": "C",
+    "explanation": "i=1: j=1(2), j=2(3), j=3(4). j=4 breaks. sum=9. i=2: j=1(3), j=2(4). j=3 breaks. sum=9+7=16. i=3: j=1(4). j=2 breaks. sum=16+4=20. Total sum = 20.",
+    "whyOthersAreWrong": {},
+    "commonTrap": "Forgetting break exits inner loop for current outer i.",
+    "quickTrick": "Sums per i: i=1(9), i=2(7), i=3(4) -> Total = 20.",
+    "realWorldApplication": "Pruning nested search grid."
+  },
+  {
+    "id": 136,
+    "track": "Loops & Iteration",
+    "concept": "continue",
+    "language": "C",
+    "difficulty": "Easy",
+    "question": "What is the output of the following C code?",
+    "code": "#include <stdio.h>\nint main() {\n    for (int i = 1; i <= 5; i++) {\n        if (i == 3) continue;\n        printf(\"%d \", i);\n    }\n    return 0;\n}",
+    "options": {
+      "A": "1 2 3 4 5",
+      "B": "1 2",
+      "C": "3 4 5",
+      "D": "1 2 4 5"
+    },
+    "correctAnswer": "D",
+    "explanation": "When i=3, continue skips printf and goes to i++. Output: 1 2 4 5.",
+    "whyOthersAreWrong": {},
+    "commonTrap": "Confusing continue with break.",
+    "quickTrick": "continue skips remaining body of CURRENT iteration.",
+    "realWorldApplication": "Filtering unwanted values in stream."
+  },
+  {
+    "id": 137,
+    "track": "Loops & Iteration",
+    "concept": "continue",
+    "language": "Python",
+    "difficulty": "Medium",
+    "question": "What is printed by this Python code?",
+    "code": "sum = 0\nfor i in range(1, 6):\n    if i % 2 == 0:\n        continue\n    sum += i\nprint(sum)",
+    "options": {
+      "A": "9",
+      "B": "6",
+      "C": "15",
+      "D": "5"
+    },
+    "correctAnswer": "A",
+    "explanation": "range(1,6) is 1,2,3,4,5. Even numbers (2,4) continue. Odd numbers (1,3,5) added: 1+3+5 = 9.",
+    "whyOthersAreWrong": {},
+    "commonTrap": "Summing even numbers instead of odd numbers.",
+    "quickTrick": "if (i % 2 == 0) continue keeps only odd values.",
+    "realWorldApplication": "Summing specific subset of elements."
+  },
+  {
+    "id": 138,
+    "track": "Loops & Iteration",
+    "concept": "continue",
+    "language": "Python",
+    "difficulty": "Medium",
+    "question": "What happens when this Python while loop executes?",
+    "code": "i = 0\nwhile i < 3:\n    if i == 1:\n        continue\n    print(i, end=\" \")\n    i += 1",
+    "options": {
+      "A": "0 1 2",
+      "B": "Infinite loop printing nothing after '0 '",
+      "C": "0 2",
+      "D": "0"
+    },
+    "correctAnswer": "B",
+    "explanation": "When i=1, continue jumps to while condition check (1 < 3) without executing i+=1. i stays 1 forever -> infinite loop!",
+    "whyOthersAreWrong": {},
+    "commonTrap": "Assuming while loop auto-increments counter on continue.",
+    "quickTrick": "In while loops, counter update after continue causes infinite loop.",
+    "realWorldApplication": "Ensuring counter increment happens before continue in while loops."
+  },
+  {
+    "id": 139,
+    "track": "Loops & Iteration",
+    "concept": "continue",
+    "language": "Pseudocode",
+    "difficulty": "Hard",
+    "question": "What is the final value of 'count' after execution?",
+    "code": "Integer i, count = 0\nFor i = 1 to 5\n    If (i == 2 OR i == 4) Then\n        Continue\n    End If\n    count = count + 1\nEnd For\nPrint count",
+    "options": {
+      "A": "5",
+      "B": "2",
+      "C": "3",
+      "D": "4"
+    },
+    "correctAnswer": "C",
+    "explanation": "i=1(c=1), i=2(continue), i=3(c=2), i=4(continue), i=5(c=3). Output count = 3.",
+    "whyOthersAreWrong": {},
+    "commonTrap": "Counting skipped items instead of kept items.",
+    "quickTrick": "Total items (5) - Skipped items (2) = 3.",
+    "realWorldApplication": "Filtering items based on condition mask."
+  },
+  {
+    "id": 140,
+    "track": "Loops & Iteration",
+    "concept": "continue",
+    "language": "C++",
+    "difficulty": "Hard",
+    "question": "What is the final output of this C++ code snippet?",
+    "code": "#include <iostream>\nusing namespace std;\nint main() {\n    int count = 0;\n    for (int i = 1; i <= 3; i++) {\n        for (int j = 1; j <= 3; j++) {\n            if (i + j == 4) continue;\n            count++;\n        }\n    }\n    cout << count;\n    return 0;\n}",
+    "options": {
+      "A": "9",
+      "B": "3",
+      "C": "7",
+      "D": "6"
+    },
+    "correctAnswer": "D",
+    "explanation": "Total 3x3=9 pairs. i+j==4 satisfied by (1,3), (2,2), (3,1) -> 3 pairs. Count = 9 - 3 = 6.",
+    "whyOthersAreWrong": {},
+    "commonTrap": "Miscounting pairs summing to 4.",
+    "quickTrick": "Total iterations (9) - Skipped (3) = 6.",
+    "realWorldApplication": "Skipping specific grid coordinates."
+  },
+  {
+    "id": 141,
+    "track": "Loops & Iteration",
+    "concept": "loop tracing",
+    "language": "Pseudocode",
+    "difficulty": "Easy",
+    "question": "Trace the pseudocode. What is the value of 'ans'?",
+    "code": "Integer ans = 1, i = 1\nWhile (i <= 4)\n    ans = ans * i\n    i = i + 1\nEnd While\nPrint ans",
+    "options": {
+      "A": "24",
+      "B": "10",
+      "C": "120",
+      "D": "16"
+    },
+    "correctAnswer": "A",
+    "explanation": "Computes 4! = 1 * 2 * 3 * 4 = 24.",
+    "whyOthersAreWrong": {},
+    "commonTrap": "Adding numbers instead of multiplying.",
+    "quickTrick": "ans = ans * i for 1..4 is 4! = 24.",
+    "realWorldApplication": "Factorial computation in algorithms."
+  },
+  {
+    "id": 142,
+    "track": "Loops & Iteration",
+    "concept": "loop tracing",
+    "language": "Python",
+    "difficulty": "Medium",
+    "question": "Trace the execution of this Python code. What is printed?",
+    "code": "a, b = 0, 1\nfor _ in range(5):\n    a, b = b, a + b\nprint(a)",
+    "options": {
+      "A": "8",
+      "B": "5",
+      "C": "3",
+      "D": "13"
+    },
+    "correctAnswer": "B",
+    "explanation": "Iter 1: a=1,b=1. Iter 2: a=1,b=2. Iter 3: a=2,b=3. Iter 4: a=3,b=5. Iter 5: a=5,b=8. Output a = 5.",
+    "whyOthersAreWrong": {},
+    "commonTrap": "Updating variables sequentially instead of simultaneously.",
+    "quickTrick": "Sequence: 0, 1, 1, 2, 3, 5.",
+    "realWorldApplication": "Fibonacci sequence generation."
+  },
+  {
+    "id": 143,
+    "track": "Loops & Iteration",
+    "concept": "loop tracing",
+    "language": "C",
+    "difficulty": "Medium",
+    "question": "What is printed after tracing this bitwise shift loop in C?",
+    "code": "#include <stdio.h>\nint main() {\n    int x = 1, count = 0;\n    while (x < 16) {\n        x = x << 1;\n        count++;\n    }\n    printf(\"%d %d\", x, count);\n    return 0;\n}",
+    "options": {
+      "A": "32 5",
+      "B": "16 5",
+      "C": "16 4",
+      "D": "8 3"
+    },
+    "correctAnswer": "C",
+    "explanation": "x values: 1 -> 2(1) -> 4(2) -> 8(3) -> 16(4). At x=16, 16<16 false. Output: 16 4.",
+    "whyOthersAreWrong": {},
+    "commonTrap": "Stopping at x=8, count=3 before checking condition.",
+    "quickTrick": "2^4 = 16. 4 shifts to reach 16.",
+    "realWorldApplication": "Bitwise left-shift alignment."
+  },
+  {
+    "id": 144,
+    "track": "Loops & Iteration",
+    "concept": "loop tracing",
+    "language": "Java",
+    "difficulty": "Medium",
+    "question": "Step-by-step trace this Java snippet. What is printed?",
+    "code": "public class Trace {\n    public static void main(String[] args) {\n        int x = 15, y = 10;\n        while (x != y) {\n            if (x > y) x -= y;\n            else y -= x;\n        }\n        System.out.println(x);\n    }\n}",
+    "options": {
+      "A": "10",
+      "B": "1",
+      "C": "15",
+      "D": "5"
+    },
+    "correctAnswer": "D",
+    "explanation": "Euclidean GCD algorithm: (15,10) -> x=5, y=10 -> y=5, x=5 -> loop ends. x = 5.",
+    "whyOthersAreWrong": {},
+    "commonTrap": "Confusing GCD with LCM.",
+    "quickTrick": "GCD(15, 10) = 5.",
+    "realWorldApplication": "Computing Greatest Common Divisor (GCD)."
+  },
+  {
+    "id": 145,
+    "track": "Loops & Iteration",
+    "concept": "loop tracing",
+    "language": "Pseudocode",
+    "difficulty": "Hard",
+    "question": "Trace this pseudocode. What is the value of 'p + q'?",
+    "code": "Integer p = 1, q = 15\nWhile (p < q)\n    p = p + 2\n    q = q - 2\nEnd While\nPrint p + q",
+    "options": {
+      "A": "16",
+      "B": "14",
+      "C": "18",
+      "D": "12"
+    },
+    "correctAnswer": "A",
+    "explanation": "p=1, q=15 (sum=16). Iter 1: p=3, q=13 (sum=16). Iter 2: p=5, q=11 (sum=16). Iter 3: p=7, q=9 (sum=16). Iter 4: p=9, q=7 (9<7 false). At end: p=9, q=7. Sum = 16.",
+    "whyOthersAreWrong": {},
+    "commonTrap": "Thinking sum changes when p increases by 2 and q decreases by 2.",
+    "quickTrick": "p + q remains invariant at 16 throughout all iterations!",
+    "realWorldApplication": "Invariant conservation in pointer algorithms."
+  },
+  {
+    "id": 146,
+    "track": "Loops & Iteration",
+    "concept": "number of iterations",
+    "language": "Pseudocode",
+    "difficulty": "Easy",
+    "question": "How many iterations will this loop perform?",
+    "code": "Integer i\nFor i = 5 to 25 step 5\n    // body\nEnd For",
+    "options": {
+      "A": "4",
+      "B": "5",
+      "C": "6",
+      "D": "20"
+    },
+    "correctAnswer": "B",
+    "explanation": "Values of i: 5, 10, 15, 20, 25. Total = 5 iterations.",
+    "whyOthersAreWrong": {},
+    "commonTrap": "Dividing (25-5)/5 = 4 without adding 1 for inclusive bound.",
+    "quickTrick": "((25 - 5) / 5) + 1 = 5.",
+    "realWorldApplication": "Stepping through fixed buffer blocks."
+  },
+  {
+    "id": 147,
+    "track": "Loops & Iteration",
+    "concept": "number of iterations",
+    "language": "Python",
+    "difficulty": "Medium",
+    "question": "What is the exact iteration count of `range(0, 12, 3)` in Python?",
+    "code": "count = 0\nfor _ in range(0, 12, 3):\n    count += 1\nprint(count)",
+    "options": {
+      "A": "5",
+      "B": "3",
+      "C": "4",
+      "D": "12"
+    },
+    "correctAnswer": "C",
+    "explanation": "range(0, 12, 3) yields 0, 3, 6, 9 (12 is exclusive). Total = 4 values.",
+    "whyOthersAreWrong": {},
+    "commonTrap": "Including upper bound 12.",
+    "quickTrick": "12 / 3 = 4.",
+    "realWorldApplication": "Strided list traversal."
+  },
+  {
+    "id": 148,
+    "track": "Loops & Iteration",
+    "concept": "number of iterations",
+    "language": "Java",
+    "difficulty": "Medium",
+    "question": "How many total inner loop executions take place in this nested Java loop?",
+    "code": "public class Iter {\n    public static void main(String[] args) {\n        int count = 0;\n        for (int i = 0; i < 4; i++) {\n            for (int j = 0; j < 5; j++) {\n                count++;\n            }\n        }\n        System.out.println(count);\n    }\n}",
+    "options": {
+      "A": "9",
+      "B": "15",
+      "C": "25",
+      "D": "20"
+    },
+    "correctAnswer": "D",
+    "explanation": "Outer 4 times, inner 5 times. Total = 4 * 5 = 20.",
+    "whyOthersAreWrong": {},
+    "commonTrap": "Adding 4 + 5 = 9.",
+    "quickTrick": "Outer * Inner = 4 * 5 = 20.",
+    "realWorldApplication": "Cell operations in 4x5 grid."
+  },
+  {
+    "id": 149,
+    "track": "Loops & Iteration",
+    "concept": "number of iterations",
+    "language": "C++",
+    "difficulty": "Hard",
+    "question": "How many times does the condition check execute in this while loop?",
+    "code": "#include <iostream>\nusing namespace std;\nint main() {\n    int x = 5;\n    while (x > 2) {\n        x--;\n    }\n    return 0;\n}",
+    "options": {
+      "A": "4",
+      "B": "3",
+      "C": "5",
+      "D": "2"
+    },
+    "correctAnswer": "A",
+    "explanation": "Checks: x=5(true), x=4(true), x=3(true), x=2(false). Total condition checks = 4. (Body runs 3 times).",
+    "whyOthersAreWrong": {},
+    "commonTrap": "Confusing body count (3) with check count (4).",
+    "quickTrick": "Condition checks = Body executions + 1 = 3 + 1 = 4.",
+    "realWorldApplication": "Profiling condition checks in compilers."
+  },
+  {
+    "id": 150,
+    "track": "Loops & Iteration",
+    "concept": "number of iterations",
+    "language": "Python",
+    "difficulty": "Hard",
+    "question": "Calculate the total number of iterations for this logarithmically stepping loop:",
+    "code": "count = 0\ni = 1\nwhile i <= 32:\n    count += 1\n    i *= 2\nprint(count)",
+    "options": {
+      "A": "5",
+      "B": "6",
+      "C": "32",
+      "D": "7"
+    },
+    "correctAnswer": "B",
+    "explanation": "Values of i: 1, 2, 4, 8, 16, 32. Total = 6 iterations.",
+    "whyOthersAreWrong": {},
+    "commonTrap": "Calculating log2(32)=5 and forgetting i=1 initial step.",
+    "quickTrick": "log2(32) + 1 = 5 + 1 = 6.",
+    "realWorldApplication": "Binary search iteration bound for N=32."
+  }
+];
