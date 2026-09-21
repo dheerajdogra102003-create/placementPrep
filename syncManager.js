@@ -354,15 +354,45 @@
             // Deep merge modules
             merged.modules = { ...(local.modules || {}) };
             for (const [modId, modData] of Object.entries(incoming.modules || {})) {
+                if (!modData) continue;
+
+                // Normalize incoming answers if Firebase stored numeric keys as array
+                let incAnswers = modData.answers || {};
+                if (Array.isArray(incAnswers)) {
+                    const ansObj = {};
+                    incAnswers.forEach((val, idx) => {
+                        if (val) ansObj[idx] = val;
+                    });
+                    incAnswers = ansObj;
+                }
+
                 if (!merged.modules[modId]) {
-                    merged.modules[modId] = modData;
-                } else {
-                    merged.modules[modId].answers = {
-                        ...(merged.modules[modId].answers || {}),
-                        ...(modData.answers || {})
+                    merged.modules[modId] = {
+                        ...modData,
+                        answers: incAnswers,
+                        bookmarks: Array.isArray(modData.bookmarks) ? modData.bookmarks : []
                     };
-                    const bSet = new Set([...(merged.modules[modId].bookmarks || []), ...(modData.bookmarks || [])]);
+                } else {
+                    let localAnswers = merged.modules[modId].answers || {};
+                    if (Array.isArray(localAnswers)) {
+                        const ansObj = {};
+                        localAnswers.forEach((val, idx) => {
+                            if (val) ansObj[idx] = val;
+                        });
+                        localAnswers = ansObj;
+                    }
+
+                    merged.modules[modId].answers = {
+                        ...localAnswers,
+                        ...incAnswers
+                    };
+
+                    const bSet = new Set([
+                        ...(merged.modules[modId].bookmarks || []),
+                        ...(modData.bookmarks || [])
+                    ]);
                     merged.modules[modId].bookmarks = [...bSet];
+
                     if (modData.bestExamScore) {
                         const prevScore = merged.modules[modId].bestExamScore?.score || 0;
                         if ((modData.bestExamScore.score || 0) >= prevScore) {
@@ -376,9 +406,13 @@
             let calcAttempted = 0;
             let calcCorrect = 0;
             for (const mod of Object.values(merged.modules)) {
-                for (const ans of Object.values(mod.answers || {})) {
-                    calcAttempted++;
-                    if (ans.isCorrect) calcCorrect++;
+                if (!mod || !mod.answers) continue;
+                const ansList = Array.isArray(mod.answers) ? mod.answers.filter(Boolean) : Object.values(mod.answers);
+                for (const ans of ansList) {
+                    if (ans && (ans.selected !== undefined)) {
+                        calcAttempted++;
+                        if (ans.isCorrect) calcCorrect++;
+                    }
                 }
             }
             if (calcAttempted > 0) {
