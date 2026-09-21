@@ -70,6 +70,11 @@
                     <span id="sound-toggle-text">Sound: ON</span>
                 </button>
 
+                <button id="nav-sync-btn" class="nav-sync-pill" aria-label="Sync user progress" title="Sync progress across devices">
+                    <span class="sync-dot"></span>
+                    <span id="nav-sync-text">Sync Progress</span>
+                </button>
+
                 <div id="score-counter" class="score-pill">
                     Score: <strong id="score-value">0</strong>
                 </div>
@@ -512,7 +517,33 @@
 
     </main>
 
+    <!-- Username Sync Modal Dialog -->
+    <div id="sync-modal" class="sync-modal-overlay hidden" role="dialog" aria-modal="true">
+        <div class="sync-modal-card">
+            <div class="sync-modal-header">
+                <div class="sync-modal-icon">☁️</div>
+                <h3>Cross-Device Sync</h3>
+                <p>Enter your username to sync your progress, scores, and bookmarks across all your devices.</p>
+            </div>
+            <form id="sync-form" class="sync-form">
+                <div class="sync-input-group">
+                    <label for="sync-username-input">Enter Username</label>
+                    <input type="text" id="sync-username-input" placeholder="e.g. nitin_prep" required autocomplete="off" minlength="2" maxlength="30">
+                </div>
+                <div id="sync-modal-error" class="sync-error hidden"></div>
+                <div class="sync-modal-actions">
+                    <button type="submit" class="btn btn-primary" id="btn-save-sync">Sync &amp; Continue</button>
+                    <button type="button" class="btn btn-secondary" id="btn-close-sync">Cancel</button>
+                </div>
+                <div id="sync-logout-area" class="sync-logout-area hidden">
+                    <button type="button" id="btn-logout-sync" class="btn-text-danger">Switch / Disconnect User</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <!-- Scripts -->
+    <script src="../syncManager.js"></script>
     <script src="questions.js"></script>
     <script src="script.js"></script>
 </body>

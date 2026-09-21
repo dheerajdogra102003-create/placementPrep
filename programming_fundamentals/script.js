@@ -21,9 +21,29 @@ document.addEventListener('DOMContentLoaded', () => {
         filterDiff: 'all',
         filterBookmarksOnly: false,
 
-        // User Data
-        userAnswers: JSON.parse(localStorage.getItem('prog_user_answers') || '{}'),
-        bookmarks: new Set(JSON.parse(localStorage.getItem('prog_bookmarks') || '[]')),
+        // User Data Initialized from SyncManager + LocalStorage
+        userAnswers: (() => {
+            let answers = {};
+            if (window.SyncManager) {
+                answers = window.SyncManager.getModuleData('programming_fundamentals').answers || {};
+            }
+            try {
+                const localAnswers = JSON.parse(localStorage.getItem('prog_user_answers') || '{}');
+                answers = { ...localAnswers, ...answers };
+            } catch (e) {}
+            return answers;
+        })(),
+        bookmarks: (() => {
+            let bookmarks = [];
+            if (window.SyncManager) {
+                bookmarks = window.SyncManager.getModuleData('programming_fundamentals').bookmarks || [];
+            }
+            try {
+                const localBm = JSON.parse(localStorage.getItem('prog_bookmarks') || '[]');
+                bookmarks = [...new Set([...localBm, ...bookmarks])];
+            } catch (e) {}
+            return new Set(bookmarks);
+        })(),
         score: 0,
 
         // Exam Mode State
@@ -506,6 +526,16 @@ document.addEventListener('DOMContentLoaded', () => {
             state.userAnswers[q.id] = { selected: selectedLetter, isCorrect };
             localStorage.setItem('prog_user_answers', JSON.stringify(state.userAnswers));
 
+            if (window.SyncManager) {
+                window.SyncManager.recordAnswer('programming_fundamentals', q.id, {
+                    selected: selectedLetter,
+                    isCorrect: isCorrect,
+                    track: q.track,
+                    language: q.language,
+                    difficulty: q.difficulty
+                });
+            }
+
             if (isCorrect) {
                 state.score += 1;
                 soundCorrect();
@@ -608,6 +638,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         localStorage.setItem('prog_bookmarks', JSON.stringify([...state.bookmarks]));
+        if (window.SyncManager) {
+            window.SyncManager.toggleBookmark('programming_fundamentals', q.id);
+        }
         updateBookmarkBadge();
         soundClick();
     });
@@ -823,6 +856,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         dom.modalExamResults.classList.remove('hidden');
+        if (window.SyncManager) {
+            window.SyncManager.recordExamResult('programming_fundamentals', {
+                score: totalCorrect,
+                total: totalQs,
+                accuracy: accuracy,
+                timeTaken: timeFormatted
+            });
+        }
         if (accuracy >= 70) soundCorrect();
         else soundWrong();
     }
@@ -1034,9 +1075,117 @@ document.addEventListener('DOMContentLoaded', () => {
             .replace(/'/g, '&#039;');
     }
 
+    // ==========================================
+    // 14. SYNC CONTROLLER & MODAL
+    // ==========================================
+    const navSyncBtn = document.getElementById('nav-sync-btn');
+    const navSyncText = document.getElementById('nav-sync-text');
+    const syncModal = document.getElementById('sync-modal');
+    const syncForm = document.getElementById('sync-form');
+    const syncUsernameInput = document.getElementById('sync-username-input');
+    const syncModalError = document.getElementById('sync-modal-error');
+    const btnCloseSync = document.getElementById('btn-close-sync');
+    const btnLogoutSync = document.getElementById('btn-logout-sync');
+    const syncLogoutArea = document.getElementById('sync-logout-area');
+
+    function updateSyncUI() {
+        if (!window.SyncManager || !navSyncBtn || !navSyncText) return;
+        const username = window.SyncManager.getUsername();
+        if (username) {
+            navSyncText.textContent = username;
+            navSyncBtn.classList.add('synced');
+            navSyncBtn.title = `Synced across devices as @${username}`;
+        } else {
+            navSyncText.textContent = 'Sync Progress';
+            navSyncBtn.classList.remove('synced');
+            navSyncBtn.title = 'Click to sync your progress across devices';
+        }
+    }
+
+    if (window.SyncManager) {
+        window.SyncManager.subscribe(() => {
+            updateSyncUI();
+            const modData = window.SyncManager.getModuleData('programming_fundamentals');
+            if (modData && modData.answers) {
+                state.userAnswers = { ...state.userAnswers, ...modData.answers };
+                state.score = Object.values(state.userAnswers).filter(a => a.isCorrect).length;
+                updateScoreBadge();
+            }
+            if (modData && modData.bookmarks) {
+                state.bookmarks = new Set([...state.bookmarks, ...modData.bookmarks]);
+                updateBookmarkBadge();
+            }
+        });
+    }
+
+    if (navSyncBtn && syncModal) {
+        navSyncBtn.addEventListener('click', () => {
+            const currentUsername = window.SyncManager ? window.SyncManager.getUsername() : '';
+            if (syncUsernameInput) syncUsernameInput.value = currentUsername;
+            if (syncModalError) {
+                syncModalError.classList.add('hidden');
+                syncModalError.textContent = '';
+            }
+            if (currentUsername) {
+                if (syncLogoutArea) syncLogoutArea.classList.remove('hidden');
+            } else {
+                if (syncLogoutArea) syncLogoutArea.classList.add('hidden');
+            }
+            syncModal.classList.remove('hidden');
+            if (syncUsernameInput) syncUsernameInput.focus();
+        });
+
+        if (btnCloseSync) {
+            btnCloseSync.addEventListener('click', () => {
+                syncModal.classList.add('hidden');
+            });
+        }
+
+        syncModal.addEventListener('click', (e) => {
+            if (e.target === syncModal) {
+                syncModal.classList.add('hidden');
+            }
+        });
+
+        if (syncForm) {
+            syncForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const username = syncUsernameInput.value.trim();
+                const saveBtn = document.getElementById('btn-save-sync');
+                try {
+                    if (saveBtn) saveBtn.textContent = 'Syncing...';
+                    if (window.SyncManager) {
+                        await window.SyncManager.setUsername(username);
+                    }
+                    syncModal.classList.add('hidden');
+                    updateSyncUI();
+                } catch (err) {
+                    if (syncModalError) {
+                        syncModalError.textContent = err.message || 'Error syncing username';
+                        syncModalError.classList.remove('hidden');
+                    }
+                } finally {
+                    if (saveBtn) saveBtn.textContent = 'Sync & Continue';
+                }
+            });
+        }
+
+        if (btnLogoutSync) {
+            btnLogoutSync.addEventListener('click', () => {
+                if (window.SyncManager) {
+                    window.SyncManager.logout();
+                }
+                syncModal.classList.add('hidden');
+                updateSyncUI();
+            });
+        }
+    }
+
     // Init Application
     initTheme();
     updateSoundIcons();
     updateBookmarkBadge();
+    updateSyncUI();
     applyFilters();
 });
+

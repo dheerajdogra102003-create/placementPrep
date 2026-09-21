@@ -624,3 +624,177 @@ footer {
         gap: 0.75rem 1.25rem;
     }
 }
+
+/* ==========================================================================
+   CROSS-DEVICE SYNC PILL & MODAL STYLES
+   ========================================================================== */
+.nav-sync-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.45rem 0.95rem;
+    border-radius: 9999px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    border: 1.5px solid var(--bg-secondary);
+    background: #FFFFFF;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all var(--transition-speed);
+}
+
+.nav-sync-pill:hover {
+    border-color: var(--accent-red);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.nav-sync-pill.synced {
+    border-color: #10B981;
+    background: rgba(16, 185, 129, 0.08);
+}
+
+.sync-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #94A3B8;
+    transition: background-color var(--transition-speed);
+}
+
+.nav-sync-pill.synced .sync-dot {
+    background: #10B981;
+    box-shadow: 0 0 6px #10B981;
+}
+
+/* Sync Modal */
+.sync-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    padding: 1.25rem;
+}
+
+.sync-modal-overlay.hidden {
+    display: none !important;
+}
+
+.sync-modal-card {
+    background: #FFFFFF;
+    border-radius: 16px;
+    max-width: 440px;
+    width: 100%;
+    padding: 2.25rem;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
+    animation: modalPop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes modalPop {
+    from { opacity: 0; transform: scale(0.92); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.sync-modal-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.sync-modal-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.sync-modal-header h3 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin-bottom: 0.35rem;
+    color: var(--text-primary);
+}
+
+.sync-modal-header p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.sync-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.sync-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.sync-input-group label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+}
+
+.sync-input-group input {
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    border: 1.5px solid var(--bg-secondary);
+    font-size: 1rem;
+    font-family: inherit;
+    outline: none;
+    transition: border-color var(--transition-speed);
+}
+
+.sync-input-group input:focus {
+    border-color: var(--accent-red);
+}
+
+.sync-error {
+    color: #DC2626;
+    font-size: 0.82rem;
+    background: rgba(220, 38, 38, 0.08);
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+}
+
+.sync-error.hidden {
+    display: none;
+}
+
+.sync-modal-actions {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.sync-modal-actions button {
+    flex: 1;
+}
+
+.sync-logout-area {
+    text-align: center;
+    margin-top: 0.5rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--bg-secondary);
+}
+
+.sync-logout-area.hidden {
+    display: none;
+}
+
+.btn-text-danger {
+    background: none;
+    border: none;
+    color: #DC2626;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
