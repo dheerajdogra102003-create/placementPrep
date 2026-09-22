@@ -1,0 +1,2895 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8VNQVXVYBN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-8VNQVXVYBN');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Accenture 2026 Placement Coding Round - Last Hour JavaScript DOM + Frontend Revision Notes. High-yield, exam-oriented cheat sheet with verified candidate patterns, copy-paste scripts, and live demos.">
+<title>🔥 Accenture 2026 — Web Coding Last-Hour Revision | JavaScript DOM</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #f8fafc;
+  --card: #ffffff;
+  --card2: #f1f5f9;
+  --card3: #e2e8f0;
+  --text: #0f172a;
+  --muted: #64748b;
+  --border: #e2e8f0;
+  --purple: #7c3aed;
+  --purple-hover: #6d28d9;
+  --purple-light: rgba(124, 58, 237, 0.09);
+  --purple-glow: rgba(124, 58, 237, 0.22);
+  --accent: #2563eb;
+  --accent-light: rgba(37, 99, 235, 0.08);
+  --green: #10b981;
+  --green-light: rgba(16, 185, 129, 0.12);
+  --green-text: #065f46;
+  --amber: #f59e0b;
+  --amber-light: rgba(245, 158, 11, 0.12);
+  --amber-text: #92400e;
+  --red: #ef4444;
+  --red-light: rgba(239, 68, 68, 0.1);
+  --red-border: rgba(239, 68, 68, 0.25);
+  --cyan: #06b6d4;
+  --cyan-light: rgba(6, 182, 212, 0.1);
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
+  --shadow: 0 12px 36px rgba(0,0,0,0.06);
+  --shadow-lg: 0 24px 50px rgba(0,0,0,0.11);
+  --radius: 18px;
+  --radius-sm: 10px;
+  --font: 'Inter', system-ui, -apple-system, sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+}
+
+body.dark {
+  --bg: #0b0f19;
+  --card: #131b2e;
+  --card2: #1b2640;
+  --card3: #263556;
+  --text: #f8fafc;
+  --muted: #94a3b8;
+  --border: #1e2d4a;
+  --purple: #a78bfa;
+  --purple-hover: #8b5cf6;
+  --purple-light: rgba(167, 139, 250, 0.14);
+  --purple-glow: rgba(167, 139, 250, 0.28);
+  --accent: #60a5fa;
+  --accent-light: rgba(96, 165, 250, 0.12);
+  --green: #34d399;
+  --green-light: rgba(52, 211, 153, 0.15);
+  --green-text: #a7f3d0;
+  --amber: #fbbf24;
+  --amber-light: rgba(251, 191, 36, 0.14);
+  --amber-text: #fef08a;
+  --red: #f87171;
+  --red-light: rgba(248, 113, 113, 0.14);
+  --red-border: rgba(248, 113, 113, 0.3);
+  --cyan: #22d3ee;
+  --cyan-light: rgba(34, 211, 238, 0.15);
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.2);
+  --shadow: 0 14px 40px rgba(0,0,0,0.4);
+  --shadow-lg: 0 24px 60px rgba(0,0,0,0.55);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; overflow-x: hidden; width: 100%; }
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  transition: background .25s ease, color .25s ease;
+  min-height: 100vh;
+  position: relative;
+}
+
+button, input, select, textarea { font: inherit; }
+button { cursor: pointer; }
+a { text-decoration: none; color: inherit; }
+code { font-family: var(--mono); }
+
+/* Sticky Reading Progress */
+#reading-bar {
+  position: fixed; top: 0; left: 0; height: 3.5px; z-index: 1100;
+  background: linear-gradient(90deg, #7c3aed, #2563eb, #06b6d4);
+  width: 0%; transition: width 0.1s linear;
+}
+
+/* Topbar */
+.topbar {
+  position: fixed; top: 0; left: 0; right: 0; height: 68px; z-index: 1000;
+  display: flex; align-items: center; justify-content: space-between; padding: 0 20px;
+  background: color-mix(in srgb, var(--card) 85%, transparent);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-left { display: flex; align-items: center; gap: 12px; }
+.logo-btn {
+  width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center;
+  color: #fff; background: linear-gradient(135deg, #7c3aed, #2563eb);
+  box-shadow: 0 8px 20px var(--purple-glow); font-size: 20px; font-weight: 900;
+}
+.brand-titles { display: flex; flex-direction: column; }
+.brand-name { font-weight: 850; font-size: 16px; letter-spacing: -0.3px; display: flex; align-items: center; gap: 6px; }
+.brand-name span { color: var(--purple); }
+.brand-tag {
+  font-size: 10px; font-weight: 700; color: var(--muted);
+  letter-spacing: 0.8px; text-transform: uppercase;
+}
+.nav-actions { display: flex; align-items: center; gap: 9px; }
+.nav-btn {
+  display: inline-flex; align-items: center; gap: 7px; padding: 0 14px; height: 38px;
+  border: 1px solid var(--border); background: var(--card); color: var(--text);
+  border-radius: 10px; font-size: 12px; font-weight: 700; transition: .2s;
+}
+.nav-btn:hover { border-color: var(--purple); color: var(--purple); transform: translateY(-1px); }
+.icon-btn {
+  width: 38px; height: 38px; border: 1px solid var(--border); background: var(--card);
+  color: var(--text); border-radius: 10px; transition: .2s; display: grid; place-items: center; font-size: 15px;
+}
+.icon-btn:hover { border-color: var(--purple); transform: translateY(-1px); }
+.menu-toggle { display: none; }
+
+/* Layout */
+.layout { display: flex; padding-top: 68px; }
+
+/* Sidebar TOC */
+.sidebar {
+  width: 290px; position: fixed; top: 68px; bottom: 0; left: 0; z-index: 500;
+  background: var(--card); border-right: 1px solid var(--border);
+  padding: 18px 12px 30px; overflow-y: auto; scrollbar-width: thin;
+  transition: transform 0.25s ease;
+}
+.sidebar-search {
+  position: relative; margin-bottom: 14px;
+}
+.sidebar-search input {
+  width: 100%; height: 36px; padding: 0 12px 0 32px; border-radius: 9px;
+  border: 1px solid var(--border); background: var(--card2); color: var(--text);
+  font-size: 12px; outline: none; transition: border-color .2s;
+}
+.sidebar-search input:focus { border-color: var(--purple); }
+.sidebar-search svg {
+  position: absolute; left: 10px; top: 10px; width: 15px; height: 15px; color: var(--muted);
+}
+.toc-group-title {
+  color: var(--muted); font-size: 10px; font-weight: 850; text-transform: uppercase;
+  letter-spacing: 1px; padding: 12px 10px 6px;
+}
+.toc-link {
+  display: flex; align-items: center; gap: 8px; padding: 7px 10px; border-radius: 8px;
+  font-size: 12px; color: var(--muted); transition: .2s; margin-bottom: 2px;
+}
+.toc-link:hover { background: var(--card2); color: var(--text); }
+.toc-link.active {
+  background: var(--purple-light); color: var(--purple); font-weight: 700;
+}
+.toc-badge {
+  font-size: 9.5px; font-weight: 800; padding: 2px 5px; border-radius: 5px;
+  background: var(--card3); color: var(--text); margin-left: auto;
+}
+.toc-link.active .toc-badge { background: var(--purple); color: #fff; }
+
+/* Main Content Area */
+.main {
+  margin-left: 290px; flex: 1; min-width: 0; padding: 32px clamp(16px, 3.5vw, 48px) 80px;
+  max-width: 1200px;
+}
+
+/* Hero Section */
+.hero {
+  position: relative; overflow: hidden; border-radius: 24px; padding: clamp(28px, 4.5vw, 44px);
+  background: linear-gradient(135deg, #180d2e 0%, #1e1442 45%, #0f1e38 100%);
+  color: #fff; box-shadow: var(--shadow-lg); margin-bottom: 34px;
+}
+.hero::before, .hero::after {
+  content: ""; position: absolute; border-radius: 50%; pointer-events: none;
+}
+.hero::before {
+  width: 320px; height: 320px; right: -80px; top: -100px;
+  background: radial-gradient(circle, rgba(167, 139, 250, 0.45), transparent 70%);
+}
+.hero::after {
+  width: 280px; height: 280px; left: 40%; bottom: -160px;
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.35), transparent 70%);
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px;
+  border-radius: 999px; background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.18); font-size: 11px; font-weight: 800;
+  text-transform: uppercase; letter-spacing: 1px; color: #e9d5ff;
+}
+.hero h1 {
+  font-size: clamp(28px, 4.2vw, 44px); line-height: 1.15; font-weight: 900;
+  letter-spacing: -1.2px; margin: 16px 0 10px;
+}
+.hero h1 span {
+  background: linear-gradient(90deg, #c084fc, #60a5fa, #38bdf8);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.hero-subtitle {
+  font-size: 15px; color: #cbd5e1; max-width: 820px; line-height: 1.6;
+}
+.hero-stats {
+  display: flex; flex-wrap: wrap; gap: 14px; margin-top: 22px;
+}
+.stat-pill {
+  display: flex; align-items: center; gap: 9px; padding: 8px 14px;
+  border-radius: 11px; background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.12); font-size: 12px;
+}
+.stat-pill b { color: #fff; font-weight: 800; }
+.stat-pill span { color: #94a3b8; font-size: 11px; }
+
+/* Quick Filter / Action Bar */
+.action-banner {
+  background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 16px 20px; box-shadow: var(--shadow-sm); margin-bottom: 28px;
+  display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between;
+}
+.quick-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.quick-tag {
+  font-size: 11px; font-weight: 700; padding: 5px 11px; border-radius: 8px;
+  background: var(--card2); color: var(--muted); border: 1px solid transparent;
+  cursor: pointer; transition: .2s;
+}
+.quick-tag:hover, .quick-tag.active {
+  background: var(--purple-light); color: var(--purple); border-color: var(--purple);
+}
+.filter-search {
+  display: flex; align-items: center; gap: 8px; min-width: 220px;
+}
+.filter-search input {
+  height: 36px; padding: 0 12px; border-radius: 8px; border: 1px solid var(--border);
+  background: var(--card2); color: var(--text); font-size: 12.5px; width: 100%; outline: none;
+}
+.filter-search input:focus { border-color: var(--purple); }
+
+/* Section Container */
+.section-block {
+  margin-bottom: 48px; scroll-margin-top: 86px;
+}
+.section-header {
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 14px;
+  margin-bottom: 18px; border-bottom: 1px solid var(--border); padding-bottom: 12px;
+}
+.sec-num {
+  width: 32px; height: 32px; border-radius: 9px; background: var(--purple); color: #fff;
+  display: grid; place-items: center; font-size: 13px; font-weight: 900; flex-shrink: 0;
+}
+.sec-info h2 {
+  font-size: clamp(20px, 2.5vw, 25px); font-weight: 850; letter-spacing: -0.5px;
+  color: var(--text); display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+}
+.sec-info p { color: var(--muted); font-size: 13.5px; margin-top: 3px; }
+
+/* Source Labels & Badges */
+.badge {
+  display: inline-flex; align-items: center; gap: 5px; padding: 3px 8px;
+  border-radius: 6px; font-size: 10px; font-weight: 800; text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+.badge-reported { background: var(--red-light); color: var(--red); border: 1px solid var(--red-border); }
+.badge-priority { background: var(--purple-light); color: var(--purple); border: 1px solid rgba(124, 58, 237, 0.2); }
+.badge-supporting { background: var(--green-light); color: var(--green-text); }
+.badge-info { background: var(--cyan-light); color: var(--cyan); }
+
+/* Content Cards */
+.card {
+  background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 22px; box-shadow: var(--shadow-sm); margin-bottom: 18px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.card:hover { box-shadow: var(--shadow); }
+
+/* Concept Block Template */
+.concept-card {
+  background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 22px; margin-bottom: 20px; box-shadow: var(--shadow-sm);
+}
+.concept-head {
+  display: flex; justify-content: space-between; align-items: flex-start; gap: 12px;
+  margin-bottom: 12px; flex-wrap: wrap;
+}
+.concept-title { font-size: 17px; font-weight: 850; color: var(--text); }
+.concept-what {
+  font-size: 13.5px; color: var(--text); font-weight: 600; margin-bottom: 14px;
+  background: var(--purple-light); padding: 8px 12px; border-radius: 8px; border-left: 3px solid var(--purple);
+}
+.concept-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px;
+}
+.concept-item {
+  background: var(--card2); border-radius: 10px; padding: 12px; font-size: 12.5px;
+}
+.concept-item-title {
+  font-size: 10.5px; font-weight: 850; text-transform: uppercase; letter-spacing: 0.7px;
+  color: var(--muted); margin-bottom: 6px; display: flex; align-items: center; gap: 6px;
+}
+
+/* Code Blocks & Copy Button */
+.code-wrapper {
+  position: relative; background: #0b0f19; border-radius: 12px;
+  overflow: hidden; border: 1px solid #1e293b; margin: 10px 0;
+}
+.code-header {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 8px 14px; background: #131b2e; border-bottom: 1px solid #1e293b;
+  font-size: 11px; font-family: var(--mono); color: #94a3b8;
+}
+.code-copy-btn {
+  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.14);
+  color: #e2e8f0; font-size: 10.5px; padding: 3px 8px; border-radius: 6px;
+  display: inline-flex; align-items: center; gap: 5px; transition: .2s;
+}
+.code-copy-btn:hover { background: var(--purple); color: #fff; border-color: var(--purple); }
+pre {
+  padding: 14px 16px; overflow-x: auto; font-family: var(--mono);
+  font-size: 12.5px; line-height: 1.6; color: #e2e8f0; margin: 0;
+}
+.code-kw { color: #c084fc; font-weight: 600; }
+.code-fn { color: #60a5fa; }
+.code-str { color: #86efac; }
+.code-num { color: #fde047; }
+.code-cm { color: #64748b; font-style: italic; }
+.code-tag { color: #f472b6; }
+.code-attr { color: #38bdf8; }
+
+/* Interactive Demo Box / Playground */
+.demo-box {
+  background: var(--card); border: 2px dashed var(--purple); border-radius: 14px;
+  padding: 16px; margin: 12px 0 16px;
+}
+.demo-title {
+  font-size: 11px; font-weight: 850; text-transform: uppercase; letter-spacing: 0.8px;
+  color: var(--purple); margin-bottom: 10px; display: flex; align-items: center; gap: 6px;
+}
+.demo-ui {
+  background: var(--card2); border-radius: 10px; padding: 14px;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.demo-btn {
+  padding: 8px 14px; border-radius: 8px; font-size: 12px; font-weight: 700;
+  background: var(--purple); color: #fff; border: none; align-self: flex-start;
+  transition: .15s;
+}
+.demo-btn:hover { opacity: 0.92; transform: translateY(-1px); }
+.demo-output {
+  padding: 10px 12px; border-radius: 8px; background: var(--card);
+  border: 1px solid var(--border); font-size: 13px; font-weight: 600;
+}
+
+/* Comparison Tables */
+.table-responsive {
+  overflow-x: auto; border-radius: 12px; border: 1px solid var(--border);
+  background: var(--card); margin: 14px 0 20px;
+}
+table { width: 100%; border-collapse: collapse; text-align: left; font-size: 12.5px; min-width: 620px; }
+th, td { padding: 12px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { background: var(--card2); font-weight: 800; font-size: 11px; text-transform: uppercase; letter-spacing: 0.6px; color: var(--muted); }
+tr:last-child td { border-bottom: none; }
+.td-lead { font-weight: 750; color: var(--text); font-family: var(--mono); font-size: 12px; }
+
+/* Callout Boxes */
+.callout {
+  border-radius: 12px; padding: 14px 16px; margin: 14px 0; font-size: 13px;
+  display: flex; gap: 12px; align-items: flex-start;
+}
+.callout-icon { font-size: 18px; flex-shrink: 0; line-height: 1.3; }
+.callout-content b { display: block; margin-bottom: 3px; }
+.callout-tip { background: var(--green-light); border-left: 4px solid var(--green); color: var(--text); }
+.callout-warn { background: var(--amber-light); border-left: 4px solid var(--amber); color: var(--text); }
+.callout-danger { background: var(--red-light); border-left: 4px solid var(--red); color: var(--text); }
+.callout-trick { background: var(--purple-light); border-left: 4px solid var(--purple); color: var(--text); }
+
+/* Practice Questions Accordion */
+.practice-item {
+  background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+  margin-bottom: 12px; overflow: hidden; transition: border-color .2s;
+}
+.practice-item:hover { border-color: var(--purple); }
+.practice-header {
+  padding: 14px 18px; display: flex; justify-content: space-between; align-items: center;
+  cursor: pointer; background: var(--card); user-select: none; gap: 12px;
+}
+.practice-title { font-size: 13.5px; font-weight: 750; color: var(--text); display: flex; align-items: center; gap: 9px; }
+.practice-title .q-num {
+  width: 24px; height: 24px; border-radius: 6px; background: var(--card2);
+  display: grid; place-items: center; font-size: 11px; font-weight: 800; color: var(--purple);
+}
+.practice-toggle-icon { font-size: 12px; transition: transform .25s ease; color: var(--muted); }
+.practice-item.open .practice-toggle-icon { transform: rotate(180deg); color: var(--purple); }
+.practice-body {
+  padding: 0 18px 18px; display: none; border-top: 1px dashed var(--border);
+  background: var(--card2); font-size: 13px;
+}
+.practice-item.open .practice-body { display: block; padding-top: 14px; }
+.practice-req {
+  background: var(--card); padding: 10px 14px; border-radius: 8px;
+  margin-bottom: 12px; font-size: 12.5px; border-left: 3px solid var(--purple);
+}
+
+/* Memory Matrix Grid */
+.memory-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px;
+}
+.memory-card {
+  background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+  padding: 14px; display: flex; align-items: center; gap: 12px;
+}
+.memory-icon {
+  width: 36px; height: 36px; border-radius: 9px; background: var(--purple-light);
+  color: var(--purple); display: grid; place-items: center; font-size: 16px; flex-shrink: 0;
+}
+.memory-card b { font-size: 12.5px; color: var(--text); display: block; }
+.memory-card span { font-size: 11.5px; color: var(--muted); }
+
+/* Backdrop for Mobile Sidebar */
+.sidebar-backdrop {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(4px); z-index: 490; opacity: 0; pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+.sidebar-backdrop.active { opacity: 1; pointer-events: auto; }
+
+/* Responsive adjustments */
+@media (max-width: 960px) {
+  .sidebar { transform: translateX(-100%); }
+  .sidebar.open { transform: translateX(0); }
+  .main { margin-left: 0; padding: 24px 16px 60px; }
+  .menu-toggle { display: grid; }
+}
+
+@media (max-width: 640px) {
+  .concept-grid { grid-template-columns: 1fr; }
+  .hero { padding: 22px 16px; border-radius: 18px; }
+  .hero-stats { flex-direction: column; gap: 8px; }
+  .brand-tag { display: none; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Reading Progress Bar -->
+<div id="reading-bar"></div>
+
+<!-- Topbar Navigation -->
+<header class="topbar">
+  <div class="nav-left">
+    <button class="icon-btn menu-toggle" id="menuToggle" aria-label="Toggle navigation table of contents">
+      ☰
+    </button>
+    <a href="index.html" class="logo-btn" title="Back to PlacementPrep Notes Hub">⚡</a>
+    <div class="brand-titles">
+      <div class="brand-name">Accenture <span>2026</span></div>
+      <div class="brand-tag">Last-Hour Web Coding &amp; DOM Revision</div>
+    </div>
+  </div>
+
+  <div class="nav-actions">
+    <a href="index.html" class="nav-btn">
+      <span>←</span> <span>Notes Hub</span>
+    </a>
+    <a href="../browser_fundamental/index.html" class="nav-btn" title="Practice DOM MCQs">
+      <span>🎯</span> <span style="display:none; @media(min-width:500px){display:inline;}">DOM MCQs</span>
+    </a>
+    <button class="icon-btn" id="themeToggle" title="Toggle dark/light theme">☾</button>
+  </div>
+</header>
+
+<!-- Mobile Sidebar Backdrop -->
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+<div class="layout">
+
+  <!-- Left Sticky Sidebar Table of Contents -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      <input type="text" id="tocFilter" placeholder="Filter sections &amp; concepts...">
+    </div>
+
+    <div class="toc-group-title">Exam Foundations</div>
+    <a href="#sec-1" class="toc-link"><span class="toc-badge">1</span> 5-Min Exam Overview</a>
+    <a href="#sec-2" class="toc-link"><span class="toc-badge">2</span> DOM in One Minute</a>
+    <a href="#sec-3" class="toc-link"><span class="toc-badge">3</span> Must-Know DOM Cheat Sheet</a>
+
+    <div class="toc-group-title">Core DOM Mastery</div>
+    <a href="#sec-4" class="toc-link"><span class="toc-badge">4</span> Element Selection</a>
+    <a href="#sec-5" class="toc-link"><span class="toc-badge">5</span> Changing Text</a>
+    <a href="#sec-6" class="toc-link"><span class="toc-badge">6</span> Changing HTML</a>
+    <a href="#sec-7" class="toc-link"><span class="toc-badge">7</span> Changing CSS via JS</a>
+    <a href="#sec-8" class="toc-link"><span class="toc-badge">8</span> Changing HTML Attributes</a>
+    <a href="#sec-9" class="toc-link"><span class="toc-badge">9</span> classList Manipulation</a>
+    <a href="#sec-10" class="toc-link"><span class="toc-badge">10</span> Event Types</a>
+    <a href="#sec-11" class="toc-link"><span class="toc-badge">11</span> Event Listeners</a>
+    <a href="#sec-12" class="toc-link"><span class="toc-badge">12</span> Input &amp; Form Values</a>
+    <a href="#sec-13" class="toc-link"><span class="toc-badge">13</span> Creating Elements</a>
+    <a href="#sec-14" class="toc-link"><span class="toc-badge">14</span> Adding &amp; Removing Elements</a>
+    <a href="#sec-15" class="toc-link"><span class="toc-badge">15</span> Basic DOM Traversal</a>
+
+    <div class="toc-group-title">Accenture Script Patterns</div>
+    <a href="#sec-16" class="toc-link"><span class="toc-badge">16</span> Digital Clock Pattern</a>
+    <a href="#sec-17" class="toc-link"><span class="toc-badge">17</span> Button + Message Box</a>
+    <a href="#sec-18" class="toc-link"><span class="toc-badge">18</span> Show/Hide Toggle Pattern</a>
+    <a href="#sec-19" class="toc-link"><span class="toc-badge">19</span> Change Image Pattern</a>
+    <a href="#sec-20" class="toc-link"><span class="toc-badge">20</span> Interactive Counter Pattern</a>
+    <a href="#sec-21" class="toc-link"><span class="toc-badge">21</span> Form Validation Pattern</a>
+
+    <div class="toc-group-title">Last-Minute Prep &amp; Traps</div>
+    <a href="#sec-22" class="toc-link"><span class="toc-badge">22</span> HTML Last-Minute Sheet</a>
+    <a href="#sec-23" class="toc-link"><span class="toc-badge">23</span> CSS Last-Minute Sheet</a>
+    <a href="#sec-24" class="toc-link"><span class="toc-badge">24</span> JS Syntax to Remember</a>
+    <a href="#sec-25" class="toc-link"><span class="toc-badge">25</span> Common Exam Traps</a>
+    <a href="#sec-26" class="toc-link"><span class="toc-badge">26</span> 30-Min Revision Checklist</a>
+    <a href="#sec-practice" class="toc-link"><span class="toc-badge">★</span> 15 Mini Practice Tasks</a>
+    <a href="#sec-final" class="toc-link"><span class="toc-badge">🏁</span> Final 5-Min Exam Strategy</a>
+  </aside>
+
+  <!-- Main Scrollable Content -->
+  <main class="main" id="mainContent">
+
+    <!-- Hero Header -->
+    <header class="hero">
+      <div class="hero-badge">🔥 Verified 2025–2026 Assessment Patterns</div>
+      <h1>Accenture 2026 Web Coding<br><span>Last-Hour Revision Notes</span></h1>
+      <p class="hero-subtitle">
+        Practical, zero-fluff, exam-oriented study guide engineered specifically for the <strong>Frontend Web Development coding task</strong> in the Accenture on-campus and off-campus recruitment rounds. Focuses 100% on skeleton-completion, DOM manipulation, dynamic event listeners, and styling modifications.
+      </p>
+
+      <div class="hero-stats">
+        <div class="stat-pill">
+          <span>Target Round:</span> <b>Technical Web Coding Assessment</b>
+        </div>
+        <div class="stat-pill">
+          <span>Reported Format:</span> <b>HTML + CSS + JS Skeleton Modification</b>
+        </div>
+        <div class="stat-pill">
+          <span>Priority Focus:</span> <b>Vanilla JavaScript DOM &amp; Events</b>
+        </div>
+      </div>
+    </header>
+
+    <!-- Interactive Filter & Quick Jump Bar -->
+    <div class="action-banner">
+      <div class="quick-tags">
+        <span class="quick-tag active" data-filter="all">All Topics</span>
+        <span class="quick-tag" data-filter="reported">Reported Tasks</span>
+        <span class="quick-tag" data-filter="patterns">Script Patterns</span>
+        <span class="quick-tag" data-filter="differences">Key Differences</span>
+        <span class="quick-tag" data-filter="practice">15 Practice Qs</span>
+      </div>
+      <div class="filter-search">
+        <input type="text" id="keywordSearch" placeholder="Quick find (e.g. getElementById, clock)...">
+      </div>
+    </div>
+
+    <!-- ==========================================
+         SECTION 1: ACCENTURE WEB CODING ROUND - 5 MINUTE OVERVIEW
+         ========================================== -->
+    <section id="sec-1" class="section-block">
+      <div class="section-header">
+        <div class="sec-num">1</div>
+        <div class="sec-info">
+          <h2>ACCENTURE WEB CODING ROUND — 5 MINUTE OVERVIEW <span class="badge badge-reported">Actual Reported Pattern</span></h2>
+          <p>Understanding the exact test environment, skeleton structure, and evaluation mechanism.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 style="margin-bottom: 10px;">The Exact Assessment Format</h3>
+        <p style="margin-bottom: 12px; font-size: 13.5px;">
+          In recent 2025–2026 on-campus and off-campus drives (reported on Naukri Code360, GeeksforGeeks, and candidate placement debriefs), the frontend coding section gives you a <strong>pre-built skeleton webpage</strong> (HTML, CSS, and an incomplete or blank JavaScript script). You are <em>not</em> asked to build a full React webapp from scratch. Instead, your task is to wire up requested interactivity and satisfy specific test cases.
+        </p>
+
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Aspect</th>
+                <th>Accenture Exam Reality</th>
+                <th>Fresher Strategy</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="td-lead">Environment</td>
+                <td>Embedded web browser editor (split-pane with HTML, CSS, JS tabs + live preview output).</td>
+                <td>Do not write external library CDNs (no jQuery, no React). Rely purely on native Vanilla JS.</td>
+              </tr>
+              <tr>
+                <td class="td-lead">Skeleton Code</td>
+                <td>HTML tags already contain predefined <code>id</code>s, classes, and placeholders.</td>
+                <td><strong>Never rename existing IDs or classes!</strong> The automated test grader runs DOM selector checks against those exact names.</td>
+              </tr>
+              <tr>
+                <td class="td-lead">Common Tasks</td>
+                <td>Button click interactions, dynamic text change, input data transfer into message boxes, simple clocks, counters, and visibility toggles.</td>
+                <td>Follow the 3-step universal rhythm: <strong>Select element → Bind event listener → Mutate property/class</strong>.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout callout-trick">
+          <span class="callout-icon">💡</span>
+          <div class="callout-content">
+            <b>The "Skeleton Rule" That Saves Your Score:</b>
+            Before typing a single line of JavaScript, inspect the HTML tab for 60 seconds. Note down the exact spellings of <code>id="..."</code> and <code>class="..."</code>. 90% of zero scores occur because a candidate wrote <code>document.getElementById('msg')</code> when the HTML had <code>id="message"</code>!
+          </div>
+        </div>
+
+        <h4 style="margin: 20px 0 10px; font-size: 14px; color: var(--purple); font-weight: 850;">
+          🛡️ The 8 Golden Rules of Provided Skeleton Code (Very High Importance)
+        </h4>
+        <ol style="padding-left: 20px; font-size: 13px; line-height: 1.8; color: var(--text);">
+          <li><strong>1. Read the HTML First:</strong> Inspect tag structure and notice which containers already exist.</li>
+          <li><strong>2. Identify IDs and Classes:</strong> Write down every target <code>id</code> and <code>class</code> precisely as spelled.</li>
+          <li><strong>3. Read the Comments in Provided Code:</strong> Boilerplate comments often explicitly tell you: <code>/* Write your code here */</code> or <code>// Function to update display</code>.</li>
+          <li><strong>4. Read the CSS:</strong> Check if helper classes (like <code>.hidden</code>, <code>.active</code>, or <code>.error</code>) already exist so you can simply toggle them.</li>
+          <li><strong>5. Read Existing JavaScript:</strong> Observe if functions or variables have already been declared. If a function signature <code>function updateTime()</code> is provided, write your logic inside it!</li>
+          <li><strong>6. Modify Only the Required Section:</strong> Do not tamper with surrounding markup or styling that wasn't requested.</li>
+          <li><strong>7. Avoid Unnecessarily Rewriting the Entire Page:</strong> Automated test assertions rely on pre-existing DOM node hierarchies. Rewriting the page will fail all test suites.</li>
+          <li><strong>8. Use Existing IDs/Classes/Functions Whenever Possible:</strong> Never introduce arbitrary custom IDs if the skeleton already provided them.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 2: DOM IN ONE MINUTE
+         ========================================== -->
+    <section id="sec-2" class="section-block">
+      <div class="section-header">
+        <div class="sec-num">2</div>
+        <div class="sec-info">
+          <h2>DOM IN ONE MINUTE <span class="badge badge-priority">High Priority</span></h2>
+          <p>Mental model and tree representation required for fast manipulation.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="concept-what">
+          <strong>What the DOM is:</strong> The Document Object Model (DOM) is a tree-like JavaScript object representation of your HTML document that lets JS read and modify content, structure, and styles in real-time.
+        </div>
+
+        <div class="memory-grid" style="margin-top: 14px;">
+          <div class="memory-card">
+            <div class="memory-icon">🌲</div>
+            <div>
+              <b>Tree Node Hierarchy</b>
+              <span><code>document</code> → <code>&lt;html&gt;</code> → <code>&lt;body&gt;</code> → elements</span>
+            </div>
+          </div>
+          <div class="memory-card">
+            <div class="memory-icon">🎯</div>
+            <div>
+              <b>Living Bridge</b>
+              <span>JavaScript acts as the controller; DOM is the target it manipulates.</span>
+            </div>
+          </div>
+          <div class="memory-card">
+            <div class="memory-icon">⚡</div>
+            <div>
+              <b>The Golden Formula</b>
+              <span><strong>SELECT</strong> → <strong>MODIFY</strong> → <strong>EVENT</strong></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="code-wrapper">
+          <div class="code-header">
+            <span>JavaScript DOM Bridge in 3 Lines</span>
+            <button class="code-copy-btn" onclick="copyCode(this)">Copy</button>
+          </div>
+          <pre><span class="code-cm">// 1. SELECT</span>
+<span class="code-kw">const</span> btn = document.<span class="code-fn">getElementById</span>(<span class="code-str">'submitBtn'</span>);
+<span class="code-kw">const</span> display = document.<span class="code-fn">getElementById</span>(<span class="code-str">'outputBox'</span>);
+
+<span class="code-cm">// 2. EVENT + 3. MODIFY</span>
+btn.<span class="code-fn">addEventListener</span>(<span class="code-str">'click'</span>, () =&gt; {
+  display.textContent = <span class="code-str">'Action Completed!'</span>;
+});</pre>
+        </div>
+
+        <h4 style="margin: 18px 0 10px; font-size: 13px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--purple);">
+          🧠 High-Yield Memory Mnemonics (8 Instant Mental Hooks)
+        </h4>
+        <div class="memory-grid">
+          <div class="memory-card"><div class="memory-icon">🔄</div><div><b>SELECT → MODIFY → EVENT</b><span>The universal 3-step coding rhythm</span></div></div>
+          <div class="memory-card"><div class="memory-icon">📥</div><div><b>.value = input se data</b><span>Only property that reads user typing</span></div></div>
+          <div class="memory-card"><div class="memory-icon">✏️</div><div><b>.textContent = text change</b><span>Safe plain string update without HTML</span></div></div>
+          <div class="memory-card"><div class="memory-icon">🎨</div><div><b>.style = CSS change</b><span>Direct inline styles in camelCase</span></div></div>
+          <div class="memory-card"><div class="memory-icon">🖼️</div><div><b>.src = image source</b><span>Image URL modification</span></div></div>
+          <div class="memory-card"><div class="memory-icon">🔗</div><div><b>.href = link URL</b><span>Anchor tag navigation target</span></div></div>
+          <div class="memory-card"><div class="memory-icon">🏷️</div><div><b>.classList = class control</b><span>add, remove, toggle classes safely</span></div></div>
+          <div class="memory-card"><div class="memory-icon">👂</div><div><b>addEventListener = event listener</b><span>Modern, non-overwriting listener</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 3: MUST-KNOW DOM CHEAT SHEET
+         ========================================== -->
+    <section id="sec-3" class="section-block">
+      <div class="section-header">
+        <div class="sec-num">3</div>
+        <div class="sec-info">
+          <h2>MUST-KNOW DOM CHEAT SHEET <span class="badge badge-priority">High Priority</span></h2>
+          <p>Instant lookup table of every critical property and method.</p>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>Operation</th>
+              <th>Standard JavaScript Syntax</th>
+              <th>Common Use in Assessment</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="td-lead">Select by ID</td>
+              <td><code>document.getElementById('myId')</code></td>
+              <td>Selecting target buttons, headings, or input boxes.</td>
+            </tr>
+            <tr>
+              <td class="td-lead">Select by CSS Selector</td>
+              <td><code>document.querySelector('.card p')</code></td>
+              <td>Selecting first matching element using any CSS selector.</td>
+            </tr>
+            <tr>
+              <td class="td-lead">Select Multiple</td>
+              <td><code>document.querySelectorAll('.btn')</code></td>
+              <td>Selecting a list of buttons or items to loop through.</td>
+            </tr>
+            <tr>
+              <td class="td-lead">Change Visible Text</td>
+              <td><code>element.textContent = 'New text';</code></td>
+              <td>Updating labels, paragraphs, timer digits, messages.</td>
+            </tr>
+            <tr>
+              <td class="td-lead">Change Inner HTML</td>
+              <td><code>element.innerHTML = '&lt;b&gt;Updated&lt;/b&gt;';</code></td>
+              <td>Inserting structured tags dynamically into containers.</td>
+            </tr>
+            <tr>
+              <td class="td-lead">Read User Input</td>
+              <td><code>inputElem.value</code></td>
+              <td>Extracting typed text from input boxes or textareas.</td>
+            </tr>
+            <tr>
+              <td class="td-lead">Change Style Property</td>
+              <td><code>elem.style.backgroundColor = 'red';</code></td>
+              <td>Modifying colors, font sizes, margins (camelCase!).</td>
+            </tr>
+            <tr>
+              <td class="td-lead">Add / Remove Class</td>
+              <td><code>elem.classList.add('hidden')</code> / <code>.remove('hidden')</code></td>
+              <td>Controlling CSS classes for animations or show/hide states.</td>
+            </tr>
+            <tr>
+              <td class="td-lead">Toggle Class</td>
+              <td><code>elem.classList.toggle('active')</code></td>
+              <td>One-line toggle for dark mode or accordion expand.</td>
+            </tr>
+            <tr>
+              <td class="td-lead">Add Event Listener</td>
+              <td><code>elem.addEventListener('click', fn)</code></td>
+              <td>Executing functions upon user interaction without HTML inline handlers.</td>
+            </tr>
+            <tr>
+              <td class="td-lead">Create Element</td>
+              <td><code>const li = document.createElement('li');</code></td>
+              <td>Creating new items for dynamic lists or feeds.</td>
+            </tr>
+            <tr>
+              <td class="td-lead">Append Child</td>
+              <td><code>parent.appendChild(newChild);</code></td>
+              <td>Injecting newly created elements into an existing container.</td>
+            </tr>
+            <tr>
+              <td class="td-lead">Remove Element</td>
+              <td><code>elem.remove();</code></td>
+              <td>Deleting a list item or popup from the webpage.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 4: ELEMENT SELECTION
+         ========================================== -->
+    <section id="sec-4" class="section-block">
+      <div class="section-header">
+        <div class="sec-num">4</div>
+        <div class="sec-info">
+          <h2>ELEMENT SELECTION <span class="badge badge-priority">Critical Priority</span></h2>
+          <p>Targeting nodes accurately in the DOM tree.</p>
+        </div>
+      </div>
+
+      <!-- getElementById -->
+      <div class="concept-card">
+        <div class="concept-head">
+          <div class="concept-title">1. document.getElementById('idName')</div>
+          <span class="badge badge-priority">CRITICAL</span>
+        </div>
+        <div class="concept-what">
+          <strong>What it does:</strong> Selects and returns the single HTML element matching the given unique ID string, or <code>null</code> if not found.
+        </div>
+        <div class="concept-grid">
+          <div class="concept-item">
+            <div class="concept-item-title"><span>📝</span> Syntax &amp; Usage</div>
+            <code>document.getElementById('heading');</code><br>
+            <span style="color:var(--muted); font-size:11px;">Notice: No '#' symbol used inside getElementById!</span>
+          </div>
+          <div class="concept-item">
+            <div class="concept-item-title"><span>⚠️</span> Common Mistake</div>
+            Writing <code>getElementById('#myId')</code>. That returns <code>null</code> because getElementById searches raw ID names.
+          </div>
+        </div>
+        <div class="concept-item" style="margin-bottom:10px;">
+          <div class="concept-item-title"><span>💼</span> Real-Life Use Inside Script</div>
+          <code>const clockDisplay = document.getElementById('clock'); clockDisplay.textContent = '12:00:00';</code>
+        </div>
+        <div class="concept-item">
+          <div class="concept-item-title"><span>🎯</span> Accenture Mini Task</div>
+          Select a paragraph with ID <code>statusMsg</code> and verify it is not null before modifying it.
+        </div>
+      </div>
+
+      <!-- querySelector -->
+      <div class="concept-card">
+        <div class="concept-head">
+          <div class="concept-title">2. document.querySelector('cssSelector')</div>
+          <span class="badge badge-priority">CRITICAL</span>
+        </div>
+        <div class="concept-what">
+          <strong>What it does:</strong> Returns the <em>first</em> element that matches the specified CSS selector (class, ID, tag, or compound).
+        </div>
+        <div class="concept-grid">
+          <div class="concept-item">
+            <div class="concept-item-title"><span>📝</span> Syntax &amp; Usage</div>
+            <code>document.querySelector('.submit-btn');</code><br>
+            <code>document.querySelector('#nav > .active');</code>
+          </div>
+          <div class="concept-item">
+            <div class="concept-item-title"><span>⚠️</span> Common Mistake</div>
+            Forgetting the dot <code>.</code> for classes or <code>#</code> for IDs. <code>querySelector('btn')</code> searches for a <code>&lt;btn&gt;</code> tag!
+          </div>
+        </div>
+      </div>
+
+      <!-- querySelector vs getElementById -->
+      <div class="card">
+        <h3 style="margin-bottom: 8px;">Key Difference: querySelector vs getElementById</h3>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th><code>getElementById('demo')</code></th>
+                <th><code>querySelector('#demo')</code></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="td-lead">Argument Prefix</td>
+                <td>Raw string only: <code>'demo'</code></td>
+                <td>CSS syntax: <code>'#demo'</code>, <code>'.card'</code>, <code>'div &gt; p'</code></td>
+              </tr>
+              <tr>
+                <td class="td-lead">Scope</td>
+                <td>IDs only</td>
+                <td>Any valid CSS selector</td>
+              </tr>
+              <tr>
+                <td class="td-lead">Recommendation</td>
+                <td>Best and fastest when selecting a single element with known ID.</td>
+                <td>Essential when selecting by class or complex hierarchy.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 5: CHANGING TEXT
+         ========================================== -->
+    <section id="sec-5" class="section-block">
+      <div class="section-header">
+        <div class="sec-num">5</div>
+        <div class="sec-info">
+          <h2>CHANGING TEXT <span class="badge badge-priority">Critical Priority</span></h2>
+          <p>Manipulating visible strings without parsing HTML tags.</p>
+        </div>
+      </div>
+
+      <div class="concept-card">
+        <div class="concept-head">
+          <div class="concept-title">element.textContent</div>
+          <span class="badge badge-priority">PREFERRED IN EXAMS</span>
+        </div>
+        <div class="concept-what">
+          <strong>What it does:</strong> Gets or sets the text content of the node and its descendants as plain text, escaping any HTML tags.
+        </div>
+        <div class="code-wrapper">
+          <div class="code-header"><span>Changing Text Example</span><button class="code-copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><span class="code-kw">const</span> title = document.<span class="code-fn">getElementById</span>(<span class="code-str">'titleText'</span>);
+title.textContent = <span class="code-str">'Accenture 2026 Ready!'</span>; <span class="code-cm">// Safely sets visible text</span></pre>
+        </div>
+        <div class="concept-grid">
+          <div class="concept-item">
+            <div class="concept-item-title"><span>🌟</span> One-Line Real Life Use</div>
+            Updating a score counter or live digital clock readout.
+          </div>
+          <div class="concept-item">
+            <div class="concept-item-title"><span>⚠️</span> Common Mistake</div>
+            Writing <code>title.textContent() = 'text'</code> (it is a property, NOT a function call).
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 6: CHANGING HTML
+         ========================================== -->
+    <section id="sec-6" class="section-block">
+      <div class="section-header">
+        <div class="sec-num">6</div>
+        <div class="sec-info">
+          <h2>CHANGING HTML <span class="badge badge-priority">High Priority</span></h2>
+          <p>Injecting HTML markup and understanding innerHTML vs innerText vs textContent.</p>
+        </div>
+      </div>
+
+      <div class="concept-card">
+        <div class="concept-head">
+          <div class="concept-title">element.innerHTML</div>
+          <span class="badge badge-priority">USE WITH CARE</span>
+        </div>
+        <div class="concept-what">
+          <strong>What it does:</strong> Gets or sets the HTML markup contained within the element, causing the browser to parse tags into real DOM nodes.
+        </div>
+        <div class="code-wrapper">
+          <div class="code-header"><span>Injecting HTML Markup</span><button class="code-copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><span class="code-kw">const</span> container = document.<span class="code-fn">getElementById</span>(<span class="code-str">'badgeArea'</span>);
+container.innerHTML = <span class="code-str">'&lt;span class="badge"&gt;Approved ✓&lt;/span&gt;'</span>;</pre>
+        </div>
+      </div>
+
+      <!-- Tiny Difference Table Required -->
+      <div class="card">
+        <h3 style="margin-bottom: 10px;">Comparison: innerHTML vs innerText vs textContent</h3>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Property</th>
+                <th>Parses HTML Tags?</th>
+                <th>Respects CSS Hidden Styles?</th>
+                <th>Minimal Example</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="td-lead"><code>innerHTML</code></td>
+                <td><strong style="color:var(--green);">Yes</strong> (renders tags)</td>
+                <td>N/A (renders DOM structure)</td>
+                <td><code>p.innerHTML = '&lt;b&gt;Hi&lt;/b&gt;'</code> → renders bold <b>Hi</b></td>
+              </tr>
+              <tr>
+                <td class="td-lead"><code>innerText</code></td>
+                <td><strong style="color:var(--red);">No</strong> (prints as plain text)</td>
+                <td><strong style="color:var(--green);">Yes</strong> (ignores hidden elements)</td>
+                <td><code>p.innerText = '&lt;b&gt;Hi&lt;/b&gt;'</code> → renders literal "&lt;b&gt;Hi&lt;/b&gt;"</td>
+              </tr>
+              <tr>
+                <td class="td-lead"><code>textContent</code></td>
+                <td><strong style="color:var(--red);">No</strong> (prints as plain text)</td>
+                <td><strong style="color:var(--red);">No</strong> (reads all text, even hidden)</td>
+                <td><code>p.textContent = '&lt;b&gt;Hi&lt;/b&gt;'</code> → faster, clean string update</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="callout callout-tip">
+          <span class="callout-icon">💡</span>
+          <div class="callout-content">
+            <b>Exam Tip:</b> If the task simply asks to update text inside a label, button, or message box, always prefer <code>.textContent</code>. Only use <code>.innerHTML</code> if the question explicitly asks you to insert bold, italics, or list elements.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 7: CHANGING CSS USING JAVASCRIPT
+         ========================================== -->
+    <section id="sec-7" class="section-block">
+      <div class="section-header">
+        <div class="sec-num">7</div>
+        <div class="sec-info">
+          <h2>CHANGING CSS USING JAVASCRIPT <span class="badge badge-priority">Critical Priority</span></h2>
+          <p>Manipulating inline styles, camelCase rules, and style vs CSS classes.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="concept-what">
+          <strong>How it works:</strong> Accessing <code>element.style.propertyName</code> writes inline styles directly onto the element. CSS hyphenated properties convert to <strong>camelCase</strong> in JavaScript.
+        </div>
+
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>CSS Property</th>
+                <th>JavaScript Style Property</th>
+                <th>Correct Exam Syntax</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>background-color</code></td>
+                <td class="td-lead"><code>backgroundColor</code></td>
+                <td><code>elem.style.backgroundColor = '#10b981';</code></td>
+              </tr>
+              <tr>
+                <td><code>font-size</code></td>
+                <td class="td-lead"><code>fontSize</code></td>
+                <td><code>elem.style.fontSize = '18px';</code> (always include 'px'!)</td>
+              </tr>
+              <tr>
+                <td><code>display</code></td>
+                <td class="td-lead"><code>display</code></td>
+                <td><code>elem.style.display = 'none';</code> (or 'block' / 'flex')</td>
+              </tr>
+              <tr>
+                <td><code>text-align</code></td>
+                <td class="td-lead"><code>textAlign</code></td>
+                <td><code>elem.style.textAlign = 'center';</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout callout-warn">
+          <span class="callout-icon">⚠️</span>
+          <div class="callout-content">
+            <b>Unit Trap:</b> Writing <code>elem.style.width = 200;</code> or <code>elem.style.fontSize = 20;</code> fails silently in browsers! You MUST provide the string unit: <code>elem.style.width = '200px';</code>
+          </div>
+        </div>
+
+        <!-- style.property vs CSS class -->
+        <h4 style="margin: 18px 0 8px;">style.property vs CSS Class: When to use which?</h4>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Approach</th>
+                <th>When to Use in Exam</th>
+                <th>Example</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="td-lead"><code>elem.style.property</code></td>
+                <td>When changing a dynamic individual value (e.g. calculated width, specific random hex color, or simple display toggle).</td>
+                <td><code>box.style.display = 'none';</code></td>
+              </tr>
+              <tr>
+                <td class="td-lead"><code>elem.classList.add('className')</code></td>
+                <td>When applying a pre-existing CSS stylesheet rule (e.g. <code>.active</code>, <code>.hidden</code>, <code>.highlight</code>). <strong>Preferred whenever skeleton CSS already has classes!</strong></td>
+                <td><code>box.classList.add('hidden');</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 8: CHANGING HTML ATTRIBUTES
+         ========================================== -->
+    <section id="sec-8" class="section-block">
+      <div class="section-header">
+        <div class="sec-num">8</div>
+        <div class="sec-info">
+          <h2>CHANGING HTML ATTRIBUTES <span class="badge badge-priority">Critical Priority</span></h2>
+          <p>Modifying src, href, disabled, and getAttribute/setAttribute.</p>
+        </div>
+      </div>
+
+      <div class="concept-card">
+        <div class="concept-head">
+          <div class="concept-title">Direct Property Access vs setAttribute</div>
+          <span class="badge badge-priority">HIGH FREQUENCY</span>
+        </div>
+        <div class="concept-what">
+          <strong>What it does:</strong> Standard HTML attributes like <code>src</code>, <code>href</code>, <code>id</code>, <code>type</code>, and <code>disabled</code> can be read or set directly as JS properties.
+        </div>
+
+        <div class="code-wrapper">
+          <div class="code-header"><span>Attribute Manipulation Examples</span><button class="code-copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><span class="code-cm">// Image source (Reported pattern)</span>
+<span class="code-kw">const</span> img = document.<span class="code-fn">getElementById</span>(<span class="code-str">'profilePic'</span>);
+img.src = <span class="code-str">'assets/avatar2.png'</span>;
+
+<span class="code-cm">// Link URL</span>
+<span class="code-kw">const</span> link = document.<span class="code-fn">getElementById</span>(<span class="code-str">'moreInfoLink'</span>);
+link.href = <span class="code-str">'https://example.com/details'</span>;
+
+<span class="code-cm">// Disable a button after click</span>
+<span class="code-kw">const</span> btn = document.<span class="code-fn">getElementById</span>(<span class="code-str">'submitBtn'</span>);
+btn.disabled = <span class="code-kw">true</span>;
+
+<span class="code-cm">// Generic setAttribute / getAttribute</span>
+img.<span class="code-fn">setAttribute</span>(<span class="code-str">'alt'</span>, <span class="code-str">'Candidate Photo'</span>);
+<span class="code-kw">const</span> currentAlt = img.<span class="code-fn">getAttribute</span>(<span class="code-str">'alt'</span>);</pre>
+        </div>
+
+        <div class="concept-grid">
+          <div class="concept-item">
+            <div class="concept-item-title"><span>🌟</span> Memory Trick</div>
+            <code>src = image</code> | <code>href = link</code> | <code>disabled = button lock</code>
+          </div>
+          <div class="concept-item">
+            <div class="concept-item-title"><span>⚠️</span> Common Mistake</div>
+            Setting <code>btn.disabled = "false"</code>. A non-empty string in JS is truthy! Use the boolean <code>btn.disabled = false</code>.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 9: CLASSLIST
+         ========================================== -->
+    <section id="sec-9" class="section-block">
+      <div class="section-header">
+        <div class="sec-num">9</div>
+        <div class="sec-info">
+          <h2>CLASSLIST MANIPULATION <span class="badge badge-priority">Critical Priority</span></h2>
+          <p>add, remove, toggle, contains, and className vs classList.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="concept-what">
+          <strong>What classList is:</strong> A DOMTokenList object providing clean helper methods (<code>add</code>, <code>remove</code>, <code>toggle</code>, <code>contains</code>) to manipulate an element's classes without overwriting existing ones.
+        </div>
+
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Method</th>
+                <th>Syntax</th>
+                <th>Behavior</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="td-lead"><code>classList.add()</code></td>
+                <td><code>elem.classList.add('active');</code></td>
+                <td>Adds the class if not already present.</td>
+              </tr>
+              <tr>
+                <td class="td-lead"><code>classList.remove()</code></td>
+                <td><code>elem.classList.remove('active');</code></td>
+                <td>Removes the class safely without error if absent.</td>
+              </tr>
+              <tr>
+                <td class="td-lead"><code>classList.toggle()</code></td>
+                <td><code>elem.classList.toggle('hidden');</code></td>
+                <td>Adds if missing; removes if present. (Returns boolean state).</td>
+              </tr>
+              <tr>
+                <td class="td-lead"><code>classList.contains()</code></td>
+                <td><code>if (elem.classList.contains('active'))</code></td>
+                <td>Returns <code>true</code> if class exists, otherwise <code>false</code>.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- className vs classList -->
+        <h4 style="margin: 18px 0 8px;">className vs classList: Why classList is superior</h4>
+        <p style="font-size: 13px; color: var(--muted); margin-bottom: 10px;">
+          <code>element.className = 'newClass'</code> completely <strong>wipes out all existing classes</strong> and replaces them with only 'newClass'.<br>
+          In contrast, <code>element.classList.add('newClass')</code> safely preserves existing classes like <code>btn btn-primary</code>.
+        </p>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 10: EVENTS
+         ========================================== -->
+    <section id="sec-10" class="section-block">
+      <div class="section-header">
+        <div class="sec-num">10</div>
+        <div class="sec-info">
+          <h2>EVENTS IN JAVASCRIPT <span class="badge badge-priority">Critical Priority</span></h2>
+          <p>Must-know events, syntax, one-line examples, and real-world triggers.</p>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>Event Name</th>
+              <th>Trigger Condition</th>
+              <th>One-Line Example</th>
+              <th>Exam Real-World Usage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="td-lead"><code>click</code></td>
+              <td>User clicks with mouse or taps on mobile.</td>
+              <td><code>btn.addEventListener('click', fn)</code></td>
+              <td>[Reported] Clicking a button to transfer text to message box.</td>
+            </tr>
+            <tr>
+              <td class="td-lead"><code>input</code></td>
+              <td>Fires immediately as user types in an input.</td>
+              <td><code>input.addEventListener('input', fn)</code></td>
+              <td>Live search, live word counter, real-time preview.</td>
+            </tr>
+            <tr>
+              <td class="td-lead"><code>change</code></td>
+              <td>Fires when input loses focus or dropdown/checkbox changes.</td>
+              <td><code>select.addEventListener('change', fn)</code></td>
+              <td>Theme selector dropdown or radio button option switch.</td>
+            </tr>
+            <tr>
+              <td class="td-lead"><code>submit</code></td>
+              <td>Form submit button clicked or Enter pressed.</td>
+              <td><code>form.addEventListener('submit', fn)</code></td>
+              <td>Form validation before sending data (requires <code>e.preventDefault()</code>).</td>
+            </tr>
+            <tr>
+              <td class="td-lead"><code>mouseover</code></td>
+              <td>Mouse cursor moves over the element.</td>
+              <td><code>card.addEventListener('mouseover', fn)</code></td>
+              <td>Hover effects, tooltip displays.</td>
+            </tr>
+            <tr>
+              <td class="td-lead"><code>mouseout</code></td>
+              <td>Mouse cursor leaves the element.</td>
+              <td><code>card.addEventListener('mouseout', fn)</code></td>
+              <td>Hiding tooltips, resetting highlight colors.</td>
+            </tr>
+            <tr>
+              <td class="td-lead"><code>keydown</code></td>
+              <td>Any keyboard key is pressed down.</td>
+              <td><code>window.addEventListener('keydown', fn)</code></td>
+              <td>Detecting Enter key to trigger search.</td>
+            </tr>
+            <tr>
+              <td class="td-lead"><code>keyup</code></td>
+              <td>Keyboard key is released.</td>
+              <td><code>input.addEventListener('keyup', fn)</code></td>
+              <td>Triggering validation after user finishes a keystroke.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 11: EVENT LISTENERS
+         ========================================== -->
+    <section id="sec-11" class="section-block">
+      <div class="section-header">
+        <div class="sec-num">11</div>
+        <div class="sec-info">
+          <h2>EVENT LISTENERS <span class="badge badge-priority">Critical Priority</span></h2>
+          <p>addEventListener syntax, passing parameters, and onclick vs addEventListener.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="concept-what">
+          <strong>Standard Preferred Syntax:</strong> <code>targetElement.addEventListener(eventTypeString, callbackFunction);</code>
+        </div>
+
+        <div class="code-wrapper">
+          <div class="code-header"><span>Preferred Exam Patterns</span><button class="code-copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><span class="code-kw">const</span> myBtn = document.<span class="code-fn">getElementById</span>(<span class="code-str">'actionBtn'</span>);
+
+<span class="code-cm">// Pattern A: Arrow function (cleanest &amp; fastest for exams)</span>
+myBtn.<span class="code-fn">addEventListener</span>(<span class="code-str">'click'</span>, () =&gt; {
+  console.<span class="code-fn">log</span>(<span class="code-str">'Button clicked!'</span>);
+});
+
+<span class="code-cm">// Pattern B: Named function</span>
+<span class="code-kw">function</span> <span class="code-fn">handleClick</span>(event) {
+  event.target.textContent = <span class="code-str">'Done!'</span>;
+}
+myBtn.<span class="code-fn">addEventListener</span>(<span class="code-str">'click'</span>, handleClick); <span class="code-cm">// Note: do NOT write handleClick()</span></pre>
+        </div>
+
+        <!-- onclick vs addEventListener -->
+        <h4 style="margin: 18px 0 8px;">onclick vs addEventListener: Preferred Exam Syntax</h4>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Criterion</th>
+                <th><code>element.onclick = fn</code></th>
+                <th><code>element.addEventListener('click', fn)</code> (Preferred)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="td-lead">Multiple Handlers</td>
+                <td>Overwrites previous handler. Only 1 function can run.</td>
+                <td>Allows multiple independent listeners on the same element.</td>
+              </tr>
+              <tr>
+                <td class="td-lead">Separation of Concerns</td>
+                <td>Often placed directly in HTML (<code>onclick="fn()"</code>), which is bad practice.</td>
+                <td>Keeps HTML pure and puts logic 100% inside JavaScript file.</td>
+              </tr>
+              <tr>
+                <td class="td-lead">Exam Grader Expectation</td>
+                <td>Might fail automated test regex if the question asks to "attach an event listener".</td>
+                <td><strong>100% accepted and recommended across all testing platforms.</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 12: INPUT AND FORM VALUES
+         ========================================== -->
+    <section id="sec-12" class="section-block">
+      <div class="section-header">
+        <div class="sec-num">12</div>
+        <div class="sec-info">
+          <h2>INPUT AND FORM VALUES <span class="badge badge-priority">Critical Priority</span></h2>
+          <p>Reading input values, form submit handling, and e.preventDefault().</p>
+        </div>
+      </div>
+
+      <div class="concept-card">
+        <div class="concept-head">
+          <div class="concept-title">Reading from &lt;input&gt; and &lt;textarea&gt;</div>
+          <span class="badge badge-priority">CRITICAL</span>
+        </div>
+        <div class="concept-what">
+          <strong>Crucial Rule:</strong> Input fields DO NOT have <code>.textContent</code> or <code>.innerHTML</code>! Their user-entered text is stored in the <strong><code>.value</code></strong> property.
+        </div>
+
+        <div class="code-wrapper">
+          <div class="code-header"><span>Form Submit &amp; Input Value Handling</span><button class="code-copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><span class="code-kw">const</span> loginForm = document.<span class="code-fn">getElementById</span>(<span class="code-str">'loginForm'</span>);
+<span class="code-kw">const</span> userInput = document.<span class="code-fn">getElementById</span>(<span class="code-str">'username'</span>);
+<span class="code-kw">const</span> displayMsg = document.<span class="code-fn">getElementById</span>(<span class="code-str">'greeting'</span>);
+
+loginForm.<span class="code-fn">addEventListener</span>(<span class="code-str">'submit'</span>, (event) =&gt; {
+  <span class="code-cm">// 1. CRITICAL: Stop the browser from reloading the page</span>
+  event.<span class="code-fn">preventDefault</span>();
+
+  <span class="code-cm">// 2. Read typed value (trimmed of accidental spaces)</span>
+  <span class="code-kw">const</span> name = userInput.value.<span class="code-fn">trim</span>();
+
+  <span class="code-cm">// 3. Validate &amp; Display</span>
+  <span class="code-kw">if</span> (name === <span class="code-str">''</span>) {
+    displayMsg.textContent = <span class="code-str">'Please enter a username!'</span>;
+    displayMsg.style.color = <span class="code-str">'red'</span>;
+  } <span class="code-kw">else</span> {
+    displayMsg.textContent = <span class="code-str">`Welcome, ${name}!`</span>;
+    displayMsg.style.color = <span class="code-str">'green'</span>;
+    userInput.value = <span class="code-str">''</span>; <span class="code-cm">// Clear input field after success</span>
+  }
+});</pre>
+        </div>
+
+        <div class="callout callout-danger">
+          <span class="callout-icon">🚨</span>
+          <div class="callout-content">
+            <b>The Page Reload Trap:</b>
+            If your button is inside a <code>&lt;form&gt;</code> or has <code>type="submit"</code>, clicking it refreshes the whole page instantly, wiping out all your DOM changes! Always call <code>event.preventDefault();</code> at the top of your submit listener.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 13: CREATING HTML ELEMENTS
+         ========================================== -->
+    <section id="sec-13" class="section-block">
+      <div class="section-header">
+        <div class="sec-num">13</div>
+        <div class="sec-info">
+          <h2>CREATING HTML ELEMENTS <span class="badge badge-priority">High Priority</span></h2>
+          <p>document.createElement(), setting properties before mounting.</p>
+        </div>
+      </div>
+
+      <div class="concept-card">
+        <div class="concept-head">
+          <div class="concept-title">document.createElement('tagName')</div>
+          <span class="badge badge-priority">HIGH</span>
+        </div>
+        <div class="concept-what">
+          <strong>What it does:</strong> Creates an element node in browser memory. It does not appear on the screen until you append it to an existing DOM parent.
+        </div>
+
+        <div class="code-wrapper">
+          <div class="code-header"><span>3-Step Element Creation Recipe</span><button class="code-copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><span class="code-cm">// Step 1: Create in memory</span>
+<span class="code-kw">const</span> newLi = document.<span class="code-fn">createElement</span>(<span class="code-str">'li'</span>);
+
+<span class="code-cm">// Step 2: Configure properties, classes, and text</span>
+newLi.textContent = <span class="code-str">'New Task Item'</span>;
+newLi.classList.<span class="code-fn">add</span>(<span class="code-str">'todo-item'</span>);
+
+<span class="code-cm">// Step 3: Mount to parent in DOM</span>
+<span class="code-kw">const</span> listParent = document.<span class="code-fn">getElementById</span>(<span class="code-str">'taskList'</span>);
+listParent.<span class="code-fn">appendChild</span>(newLi);</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 14: ADDING AND REMOVING ELEMENTS
+         ========================================== -->
+    <section id="sec-14" class="section-block">
+      <div class="section-header">
+        <div class="sec-num">14</div>
+        <div class="sec-info">
+          <h2>ADDING AND REMOVING ELEMENTS <span class="badge badge-priority">High Priority</span></h2>
+          <p>appendChild, append, and element.remove().</p>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>Operation</th>
+              <th>Syntax</th>
+              <th>Key Nuance</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="td-lead"><code>appendChild()</code></td>
+              <td><code>parent.appendChild(node)</code></td>
+              <td>Appends 1 node to end of parent. Returns the appended node.</td>
+            </tr>
+            <tr>
+              <td class="td-lead"><code>append()</code></td>
+              <td><code>parent.append(node1, "text", node2)</code></td>
+              <td>Modern method; accepts multiple nodes and raw text strings.</td>
+            </tr>
+            <tr>
+              <td class="td-lead"><code>remove()</code></td>
+              <td><code>elem.remove()</code></td>
+              <td>Directly removes the element itself from the DOM. Super clean!</td>
+            </tr>
+            <tr>
+              <td class="td-lead"><code>removeChild()</code></td>
+              <td><code>parent.removeChild(child)</code></td>
+              <td>Older syntax. Requires reference to parent node.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 15: BASIC DOM TRAVERSAL
+         ========================================== -->
+    <section id="sec-15" class="section-block">
+      <div class="section-header">
+        <div class="sec-num">15</div>
+        <div class="sec-info">
+          <h2>BASIC DOM TRAVERSAL <span class="badge badge-supporting">Medium / Supporting</span></h2>
+          <p>Navigating parentElement, children, and siblings.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="concept-what">
+          <strong>Tip for Traversal:</strong> Always use the <code>Element</code> variants (like <code>children</code> and <code>nextElementSibling</code>) instead of <code>childNodes</code> or <code>nextSibling</code> so you don't accidentally select invisible whitespace text nodes!
+        </div>
+
+        <div class="memory-grid" style="margin-top: 14px;">
+          <div class="memory-card">
+            <div class="memory-icon">⬆️</div>
+            <div>
+              <b>parentElement</b>
+              <span><code>btn.parentElement</code> (e.g., getting parent card to delete it)</span>
+            </div>
+          </div>
+          <div class="memory-card">
+            <div class="memory-icon">⬇️</div>
+            <div>
+              <b>children</b>
+              <span><code>ul.children[0]</code> (first child element)</span>
+            </div>
+          </div>
+          <div class="memory-card">
+            <div class="memory-icon">➡️</div>
+            <div>
+              <b>nextElementSibling</b>
+              <span><code>item.nextElementSibling</code> (adjacent sibling tag)</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="code-wrapper" style="margin-top:14px;">
+          <div class="code-header"><span>Delete Card on Click using parentElement</span><button class="code-copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><span class="code-cm">// Clicking a delete button removes its enclosing list item</span>
+document.<span class="code-fn">querySelectorAll</span>(<span class="code-str">'.delete-btn'</span>).<span class="code-fn">forEach</span>(btn =&gt; {
+  btn.<span class="code-fn">addEventListener</span>(<span class="code-str">'click'</span>, (e) =&gt; {
+    e.target.parentElement.<span class="code-fn">remove</span>(); <span class="code-cm">// removes the &lt;li&gt; or &lt;div&gt; container</span>
+  });
+});</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 16: DIGITAL CLOCK PATTERN
+         ========================================== -->
+    <section id="sec-16" class="section-block">
+      <div class="section-header">
+        <div class="sec-num">16</div>
+        <div class="sec-info">
+          <h2>DIGITAL CLOCK PATTERN <span class="badge badge-reported">Actual Reported Question</span></h2>
+          <p>Complete memorizable implementation using new Date(), toLocaleTimeString(), and setInterval().</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <p style="font-size:13px; color:var(--muted); margin-bottom:12px;">
+          Multiple candidates in recent Accenture frontend coding rounds reported receiving an HTML skeleton with a <code>&lt;div id="clock"&gt;00:00:00&lt;/div&gt;</code> and were asked to make it tick every second with live system time.
+        </p>
+
+        <div class="code-wrapper">
+          <div class="code-header"><span>HTML + CSS + JS Digital Clock (Memorize This!)</span><button class="code-copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><span class="code-cm">&lt;!-- HTML --&gt;</span>
+<span class="code-tag">&lt;div</span> <span class="code-attr">id</span>=<span class="code-str">"clockContainer"</span><span class="code-tag">&gt;</span>
+  <span class="code-tag">&lt;h2</span> <span class="code-attr">id</span>=<span class="code-str">"clock"</span><span class="code-tag">&gt;</span>00:00:00<span class="code-tag">&lt;/h2&gt;</span>
+<span class="code-tag">&lt;/div&gt;</span>
+
+<span class="code-cm">&lt;!-- CSS --&gt;</span>
+<span class="code-tag">&lt;style&gt;</span>
+  <span class="code-attr">#clock</span> { <span class="code-kw">font-size</span>: <span class="code-str">32px</span>; <span class="code-kw">font-family</span>: monospace; <span class="code-kw">color</span>: <span class="code-str">#7c3aed</span>; }
+<span class="code-tag">&lt;/style&gt;</span>
+
+<span class="code-cm">&lt;!-- JAVASCRIPT --&gt;</span>
+<span class="code-tag">&lt;script&gt;</span>
+  <span class="code-kw">function</span> <span class="code-fn">updateClock</span>() {
+    <span class="code-kw">const</span> now = <span class="code-kw">new</span> <span class="code-fn">Date</span>();
+    <span class="code-kw">const</span> timeString = now.<span class="code-fn">toLocaleTimeString</span>();
+    document.<span class="code-fn">getElementById</span>(<span class="code-str">'clock'</span>).textContent = timeString;
+  }
+
+  <span class="code-cm">// 1. Call immediately so clock displays without a 1-second delay</span>
+  <span class="code-fn">updateClock</span>();
+
+  <span class="code-cm">// 2. Call every 1000 milliseconds (1 second)</span>
+  <span class="code-fn">setInterval</span>(updateClock, <span class="code-num">1000</span>);
+<span class="code-tag">&lt;/script&gt;</span></pre>
+        </div>
+
+        <!-- Live Interactive Playground for Clock -->
+        <div class="demo-box">
+          <div class="demo-title"><span>⚡ Live Test Playground: Digital Clock</span></div>
+          <div class="demo-ui" style="align-items:center; text-align:center;">
+            <div id="liveClockDisplay" style="font-size:26px; font-family:var(--mono); font-weight:800; color:var(--purple); background:var(--card); padding:10px 24px; border-radius:10px; border:1px solid var(--border);">
+              00:00:00
+            </div>
+            <span style="font-size:11px; color:var(--muted);">Ticking live using the exact code pattern above</span>
+          </div>
+        </div>
+
+        <div class="callout callout-tip">
+          <span class="callout-icon">💡</span>
+          <div class="callout-content">
+            <b>Why call updateClock() once before setInterval?</b>
+            <code>setInterval(fn, 1000)</code> waits a full 1000ms <em>before</em> executing the first tick. Calling <code>updateClock()</code> initially ensures the user doesn't see a frozen placeholder for the first second.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 17: BUTTON + MESSAGE BOX PATTERN
+         ========================================== -->
+    <section id="sec-17" class="section-block">
+      <div class="section-header">
+        <div class="sec-num">17</div>
+        <div class="sec-info">
+          <h2>BUTTON + MESSAGE BOX PATTERN <span class="badge badge-reported">Actual Reported Question</span></h2>
+          <p>Transferring clicked button text into a message box / display container.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <p style="font-size:13px; color:var(--muted); margin-bottom:12px;">
+          Reported by multiple candidates: A row of buttons (e.g. "Option A", "Option B", "Option C") where clicking any button copies its text or custom message into a designated message/notification box.
+        </p>
+
+        <div class="code-wrapper">
+          <div class="code-header"><span>Button Text to Message Box (HTML + JS)</span><button class="code-copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><span class="code-cm">&lt;!-- HTML --&gt;</span>
+<span class="code-tag">&lt;div</span> <span class="code-attr">id</span>=<span class="code-str">"btnGroup"</span><span class="code-tag">&gt;</span>
+  <span class="code-tag">&lt;button</span> <span class="code-attr">class</span>=<span class="code-str">"msg-btn"</span><span class="code-tag">&gt;</span>Accept Offer<span class="code-tag">&lt;/button&gt;</span>
+  <span class="code-tag">&lt;button</span> <span class="code-attr">class</span>=<span class="code-str">"msg-btn"</span><span class="code-tag">&gt;</span>Request Review<span class="code-tag">&lt;/button&gt;</span>
+  <span class="code-tag">&lt;button</span> <span class="code-attr">class</span>=<span class="code-str">"msg-btn"</span><span class="code-tag">&gt;</span>Decline<span class="code-tag">&lt;/button&gt;</span>
+<span class="code-tag">&lt;/div&gt;</span>
+
+<span class="code-tag">&lt;div</span> <span class="code-attr">id</span>=<span class="code-str">"messageBox"</span><span class="code-tag">&gt;</span>No option selected yet.<span class="code-tag">&lt;/div&gt;</span>
+
+<span class="code-cm">&lt;!-- JAVASCRIPT --&gt;</span>
+<span class="code-tag">&lt;script&gt;</span>
+  <span class="code-kw">const</span> buttons = document.<span class="code-fn">querySelectorAll</span>(<span class="code-str">'.msg-btn'</span>);
+  <span class="code-kw">const</span> msgBox = document.<span class="code-fn">getElementById</span>(<span class="code-str">'messageBox'</span>);
+
+  buttons.<span class="code-fn">forEach</span>(button =&gt; {
+    button.<span class="code-fn">addEventListener</span>(<span class="code-str">'click'</span>, (event) =&gt; {
+      <span class="code-cm">// Copy the clicked button's text into the message box</span>
+      msgBox.textContent = <span class="code-str">`You selected: ${event.target.textContent}`</span>;
+    });
+  });
+<span class="code-tag">&lt;/script&gt;</span></pre>
+        </div>
+
+        <!-- Live Playground -->
+        <div class="demo-box">
+          <div class="demo-title"><span>⚡ Live Test Playground: Button to Message Box</span></div>
+          <div class="demo-ui">
+            <div style="display:flex; gap:8px; flex-wrap:wrap;">
+              <button class="demo-btn live-msg-btn" data-text="Accept Offer">Accept Offer</button>
+              <button class="demo-btn live-msg-btn" data-text="Request Review" style="background:#2563eb;">Request Review</button>
+              <button class="demo-btn live-msg-btn" data-text="Decline" style="background:#ef4444;">Decline</button>
+            </div>
+            <div class="demo-output" id="liveMsgBox">No option selected yet. (Click any button above)</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 18: SHOW/HIDE ELEMENT PATTERN
+         ========================================== -->
+    <section id="sec-18" class="section-block">
+      <div class="section-header">
+        <div class="sec-num">18</div>
+        <div class="sec-info">
+          <h2>SHOW/HIDE ELEMENT PATTERN <span class="badge badge-priority">High Priority</span></h2>
+          <p>Toggling visibility using display: none and classList.toggle().</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="code-wrapper">
+          <div class="code-header"><span>Show/Hide Pattern (2 Clean Variations)</span><button class="code-copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><span class="code-cm">// VARIATION A: Direct inline style.display toggle</span>
+<span class="code-kw">const</span> toggleBtn = document.<span class="code-fn">getElementById</span>(<span class="code-str">'toggleBtn'</span>);
+<span class="code-kw">const</span> content = document.<span class="code-fn">getElementById</span>(<span class="code-str">'contentPanel'</span>);
+
+toggleBtn.<span class="code-fn">addEventListener</span>(<span class="code-str">'click'</span>, () =&gt; {
+  <span class="code-kw">if</span> (content.style.display === <span class="code-str">'none'</span>) {
+    content.style.display = <span class="code-str">'block'</span>;
+    toggleBtn.textContent = <span class="code-str">'Hide Details'</span>;
+  } <span class="code-kw">else</span> {
+    content.style.display = <span class="code-str">'none'</span>;
+    toggleBtn.textContent = <span class="code-str">'Show Details'</span>;
+  }
+});
+
+<span class="code-cm">// VARIATION B: Using classList.toggle (If skeleton CSS has .hidden { display: none; })</span>
+toggleBtn.<span class="code-fn">addEventListener</span>(<span class="code-str">'click'</span>, () =&gt; {
+  content.classList.<span class="code-fn">toggle</span>(<span class="code-str">'hidden'</span>);
+});</pre>
+        </div>
+
+        <!-- Live Playground -->
+        <div class="demo-box">
+          <div class="demo-title"><span>⚡ Live Test Playground: Toggle Visibility</span></div>
+          <div class="demo-ui">
+            <button class="demo-btn" id="liveToggleBtn">Hide Content</button>
+            <div class="demo-output" id="liveContentBox" style="border-left:4px solid var(--purple);">
+              Here is secret information or expanded panel details!
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 19: CHANGE IMAGE PATTERN
+         ========================================== -->
+    <section id="sec-19" class="section-block">
+      <div class="section-header">
+        <div class="sec-num">19</div>
+        <div class="sec-info">
+          <h2>CHANGE IMAGE PATTERN <span class="badge badge-priority">High Priority</span></h2>
+          <p>Swapping image src attribute upon button click.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="code-wrapper">
+          <div class="code-header"><span>Switching Image Source</span><button class="code-copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><span class="code-tag">&lt;img</span> <span class="code-attr">id</span>=<span class="code-str">"bulbImg"</span> <span class="code-attr">src</span>=<span class="code-str">"bulb_off.png"</span> <span class="code-attr">alt</span>=<span class="code-str">"Bulb"</span><span class="code-tag">&gt;</span>
+<span class="code-tag">&lt;button</span> <span class="code-attr">id</span>=<span class="code-str">"switchBtn"</span><span class="code-tag">&gt;</span>Turn ON<span class="code-tag">&lt;/button&gt;</span>
+
+<span class="code-tag">&lt;script&gt;</span>
+  <span class="code-kw">const</span> bulb = document.<span class="code-fn">getElementById</span>(<span class="code-str">'bulbImg'</span>);
+  <span class="code-kw">const</span> btn = document.<span class="code-fn">getElementById</span>(<span class="code-str">'switchBtn'</span>);
+
+  btn.<span class="code-fn">addEventListener</span>(<span class="code-str">'click'</span>, () =&gt; {
+    <span class="code-kw">if</span> (bulb.src.<span class="code-fn">includes</span>(<span class="code-str">'bulb_off.png'</span>)) {
+      bulb.src = <span class="code-str">'bulb_on.png'</span>;
+      btn.textContent = <span class="code-str">'Turn OFF'</span>;
+    } <span class="code-kw">else</span> {
+      bulb.src = <span class="code-str">'bulb_off.png'</span>;
+      btn.textContent = <span class="code-str">'Turn ON'</span>;
+    }
+  });
+<span class="code-tag">&lt;/script&gt;</span></pre>
+        </div>
+        <div class="callout callout-trick">
+          <span class="callout-icon">💡</span>
+          <div class="callout-content">
+            <b>Browser Full URL Trap:</b> <code>bulb.src</code> returns the full absolute URL (e.g. <code>http://localhost:3000/bulb_off.png</code>), so <code>bulb.src === 'bulb_off.png'</code> might evaluate to false! Always use <code>bulb.src.includes('bulb_off.png')</code> for reliable condition checking.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 20: COUNTER PATTERN
+         ========================================== -->
+    <section id="sec-20" class="section-block">
+      <div class="section-header">
+        <div class="sec-num">20</div>
+        <div class="sec-info">
+          <h2>INTERACTIVE COUNTER PATTERN <span class="badge badge-priority">High Priority</span></h2>
+          <p>Increment, decrement, reset, and state management.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="code-wrapper">
+          <div class="code-header"><span>Counter Script Pattern</span><button class="code-copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><span class="code-kw">let</span> count = <span class="code-num">0</span>;
+<span class="code-kw">const</span> countDisplay = document.<span class="code-fn">getElementById</span>(<span class="code-str">'countValue'</span>);
+
+document.<span class="code-fn">getElementById</span>(<span class="code-str">'incBtn'</span>).<span class="code-fn">addEventListener</span>(<span class="code-str">'click'</span>, () =&gt; {
+  count++;
+  countDisplay.textContent = count;
+});
+
+document.<span class="code-fn">getElementById</span>(<span class="code-str">'decBtn'</span>).<span class="code-fn">addEventListener</span>(<span class="code-str">'click'</span>, () =&gt; {
+  count--;
+  countDisplay.textContent = count;
+});
+
+document.<span class="code-fn">getElementById</span>(<span class="code-str">'resetBtn'</span>).<span class="code-fn">addEventListener</span>(<span class="code-str">'click'</span>, () =&gt; {
+  count = <span class="code-num">0</span>;
+  countDisplay.textContent = count;
+});</pre>
+        </div>
+
+        <!-- Live Playground -->
+        <div class="demo-box">
+          <div class="demo-title"><span>⚡ Live Test Playground: Counter</span></div>
+          <div class="demo-ui" style="align-items:center;">
+            <div style="font-size:32px; font-weight:900; font-family:var(--mono); color:var(--purple);" id="liveCountText">0</div>
+            <div style="display:flex; gap:8px;">
+              <button class="demo-btn" id="liveIncBtn">+ Increment</button>
+              <button class="demo-btn" id="liveDecBtn" style="background:var(--card3); color:var(--text);">- Decrement</button>
+              <button class="demo-btn" id="liveResetBtn" style="background:#ef4444;">Reset</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 21: SIMPLE FORM VALIDATION PATTERN
+         ========================================== -->
+    <section id="sec-21" class="section-block">
+      <div class="section-header">
+        <div class="sec-num">21</div>
+        <div class="sec-info">
+          <h2>SIMPLE FORM VALIDATION PATTERN <span class="badge badge-priority">High Priority</span></h2>
+          <p>Empty checking, error message injection, preventing reload.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="code-wrapper">
+          <div class="code-header"><span>Form Validation Script</span><button class="code-copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><span class="code-kw">const</span> form = document.<span class="code-fn">getElementById</span>(<span class="code-str">'contactForm'</span>);
+<span class="code-kw">const</span> emailInput = document.<span class="code-fn">getElementById</span>(<span class="code-str">'email'</span>);
+<span class="code-kw">const</span> errorMsg = document.<span class="code-fn">getElementById</span>(<span class="code-str">'errorBox'</span>);
+
+form.<span class="code-fn">addEventListener</span>(<span class="code-str">'submit'</span>, (e) =&gt; {
+  e.<span class="code-fn">preventDefault</span>();
+  <span class="code-kw">const</span> val = emailInput.value.<span class="code-fn">trim</span>();
+
+  <span class="code-kw">if</span> (val === <span class="code-str">''</span>) {
+    errorMsg.textContent = <span class="code-str">'Email cannot be empty!'</span>;
+    errorMsg.style.color = <span class="code-str">'#ef4444'</span>;
+    emailInput.style.borderColor = <span class="code-str">'#ef4444'</span>;
+  } <span class="code-kw">else</span> <span class="code-kw">if</span> (!val.<span class="code-fn">includes</span>(<span class="code-str">'@'</span>) || !val.<span class="code-fn">includes</span>(<span class="code-str">'.'</span>)) {
+    errorMsg.textContent = <span class="code-str">'Please enter a valid email containing @ and .'</span>;
+    errorMsg.style.color = <span class="code-str">'#ef4444'</span>;
+  } <span class="code-kw">else</span> {
+    errorMsg.textContent = <span class="code-str">'Form submitted successfully!'</span>;
+    errorMsg.style.color = <span class="code-str">'#10b981'</span>;
+    emailInput.style.borderColor = <span class="code-str">'#10b981'</span>;
+  }
+});</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 22: HTML LAST-MINUTE CHEAT SHEET
+         ========================================== -->
+    <section id="sec-22" class="section-block">
+      <div class="section-header">
+        <div class="sec-num">22</div>
+        <div class="sec-info">
+          <h2>HTML LAST-MINUTE CHEAT SHEET <span class="badge badge-supporting">Supporting</span></h2>
+          <p>Core tags, attributes, and how JavaScript accesses them.</p>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>HTML Tag</th>
+              <th>Key Attributes</th>
+              <th>How JS Accesses It in the Exam</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="td-lead"><code>&lt;button&gt;</code></td>
+              <td><code>id</code>, <code>class</code>, <code>disabled</code></td>
+              <td><code>btn.addEventListener('click', fn)</code> | <code>btn.disabled = true;</code></td>
+            </tr>
+            <tr>
+              <td class="td-lead"><code>&lt;input&gt;</code></td>
+              <td><code>type</code>, <code>value</code>, <code>placeholder</code></td>
+              <td><code>input.value</code> (READ user text) | <code>input.value = ''</code> (CLEAR)</td>
+            </tr>
+            <tr>
+              <td class="td-lead"><code>&lt;img&gt;</code></td>
+              <td><code>src</code>, <code>alt</code>, <code>width</code></td>
+              <td><code>img.src = 'new_pic.png';</code> | <code>img.alt = 'Desc';</code></td>
+            </tr>
+            <tr>
+              <td class="td-lead"><code>&lt;a&gt;</code></td>
+              <td><code>href</code>, <code>target</code></td>
+              <td><code>link.href = 'https://...';</code></td>
+            </tr>
+            <tr>
+              <td class="td-lead"><code>&lt;ul&gt;</code> / <code>&lt;ol&gt;</code></td>
+              <td><code>id</code></td>
+              <td><code>list.appendChild(newLi)</code> to append new dynamic items</td>
+            </tr>
+            <tr>
+              <td class="td-lead"><code>&lt;form&gt;</code></td>
+              <td><code>id</code>, <code>action</code></td>
+              <td><code>form.addEventListener('submit', (e) =&gt; e.preventDefault())</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 23: CSS LAST-MINUTE CHEAT SHEET
+         ========================================== -->
+    <section id="sec-23" class="section-block">
+      <div class="section-header">
+        <div class="sec-num">23</div>
+        <div class="sec-info">
+          <h2>CSS LAST-MINUTE CHEAT SHEET <span class="badge badge-supporting">Supporting</span></h2>
+          <p>Practical CSS properties &amp; Flexbox rules tested in frontend tasks.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h4 style="margin-bottom: 8px;">1. Core Positioning &amp; Display</h4>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Property</th>
+                <th>Common Values</th>
+                <th>JavaScript Style Syntax</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="td-lead"><code>display</code></td>
+                <td><code>none</code> (hide), <code>block</code>, <code>flex</code>, <code>inline-block</code></td>
+                <td><code>elem.style.display = 'none';</code></td>
+              </tr>
+              <tr>
+                <td class="td-lead"><code>visibility</code></td>
+                <td><code>hidden</code> (hides but keeps space), <code>visible</code></td>
+                <td><code>elem.style.visibility = 'hidden';</code></td>
+              </tr>
+              <tr>
+                <td class="td-lead"><code>color</code> / <code>background-color</code></td>
+                <td>Hex (<code>#fff</code>), RGB, or color names (<code>red</code>)</td>
+                <td><code>elem.style.backgroundColor = '#f1f5f9';</code></td>
+              </tr>
+              <tr>
+                <td class="td-lead"><code>font-size</code></td>
+                <td><code>16px</code>, <code>1.2rem</code></td>
+                <td><code>elem.style.fontSize = '20px';</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4 style="margin: 18px 0 8px;">2. Quick Flexbox Recap (for Skeleton Alignment)</h4>
+        <div class="memory-grid">
+          <div class="memory-card">
+            <div class="memory-icon">↔️</div>
+            <div>
+              <b>justify-content</b>
+              <span>Main axis: <code>center</code>, <code>space-between</code>, <code>flex-start</code></span>
+            </div>
+          </div>
+          <div class="memory-card">
+            <div class="memory-icon">↕️</div>
+            <div>
+              <b>align-items</b>
+              <span>Cross axis: <code>center</code>, <code>stretch</code>, <code>flex-start</code></span>
+            </div>
+          </div>
+          <div class="memory-card">
+            <div class="memory-icon">🔄</div>
+            <div>
+              <b>flex-direction</b>
+              <span><code>row</code> (horizontal default) or <code>column</code> (stacked)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 24: JAVASCRIPT SYNTAX THAT MUST BE REMEMBERED
+         ========================================== -->
+    <section id="sec-24" class="section-block">
+      <div class="section-header">
+        <div class="sec-num">24</div>
+        <div class="sec-info">
+          <h2>JAVASCRIPT SYNTAX THAT MUST BE REMEMBERED <span class="badge badge-priority">High Priority</span></h2>
+          <p>Exact case-sensitive syntax required for automated test pass.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="memory-grid">
+          <div class="memory-card">
+            <div class="memory-icon">1</div>
+            <div>
+              <b>document.getElementById('id')</b>
+              <span>Case sensitive: Capital 'E', 'B', 'I'</span>
+            </div>
+          </div>
+          <div class="memory-card">
+            <div class="memory-icon">2</div>
+            <div>
+              <b>elem.addEventListener('click', fn)</b>
+              <span>Event is <code>'click'</code>, NOT <code>'onclick'</code></span>
+            </div>
+          </div>
+          <div class="memory-card">
+            <div class="memory-icon">3</div>
+            <div>
+              <b>elem.textContent = 'text'</b>
+              <span>Capital 'C', property (no parentheses)</span>
+            </div>
+          </div>
+          <div class="memory-card">
+            <div class="memory-icon">4</div>
+            <div>
+              <b>elem.classList.add('cls')</b>
+              <span>No dot inside quotes! <code>'active'</code></span>
+            </div>
+          </div>
+          <div class="memory-card">
+            <div class="memory-icon">5</div>
+            <div>
+              <b>new Date().toLocaleTimeString()</b>
+              <span>Capital 'D', 'L', 'T', 'S'</span>
+            </div>
+          </div>
+          <div class="memory-card">
+            <div class="memory-icon">6</div>
+            <div>
+              <b>setInterval(func, 1000)</b>
+              <span>Capital 'I', milliseconds</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 25: COMMON EXAM TRAPS
+         ========================================== -->
+    <section id="sec-25" class="section-block">
+      <div class="section-header">
+        <div class="sec-num">25</div>
+        <div class="sec-info">
+          <h2>COMMON EXAM TRAPS <span class="badge badge-reported">High Failure Causes</span></h2>
+          <p>The 11 mistakes that cost candidates 100% of their score.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Trap Number</th>
+                <th>Fatal Candidate Error</th>
+                <th>How to Fix Instantly</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="td-lead">Trap 1</td>
+                <td>Writing <code>document.getelementbyid()</code> with lowercase.</td>
+                <td>JavaScript is strictly case-sensitive: must be <code>document.getElementById()</code>.</td>
+              </tr>
+              <tr>
+                <td class="td-lead">Trap 2</td>
+                <td>Writing <code>input.textContent</code> instead of <code>input.value</code>.</td>
+                <td>Input values live exclusively in <code>.value</code>!</td>
+              </tr>
+              <tr>
+                <td class="td-lead">Trap 3</td>
+                <td>Writing <code>addEventListener('onclick', ...)</code>.</td>
+                <td>Inside <code>addEventListener</code>, omit "on"! Use <code>'click'</code>, <code>'change'</code>, <code>'submit'</code>.</td>
+              </tr>
+              <tr>
+                <td class="td-lead">Trap 4</td>
+                <td>Calling function during listener binding: <code>btn.addEventListener('click', updateText())</code>.</td>
+                <td>Remove parentheses: <code>btn.addEventListener('click', updateText)</code>. Writing <code>()</code> executes it immediately on load!</td>
+              </tr>
+              <tr>
+                <td class="td-lead">Trap 5</td>
+                <td>Writing <code>classList.add('.active')</code> with a dot.</td>
+                <td><code>classList</code> already knows it is a class! Write <code>classList.add('active')</code>.</td>
+              </tr>
+              <tr>
+                <td class="td-lead">Trap 6</td>
+                <td>Writing CSS with hyphen: <code>elem.style.background-color = 'blue'</code>.</td>
+                <td>Use camelCase in JS: <code>elem.style.backgroundColor = 'blue'</code>.</td>
+              </tr>
+              <tr>
+                <td class="td-lead">Trap 7</td>
+                <td>Omitting pixel units: <code>elem.style.fontSize = 24</code>.</td>
+                <td>Must include units as string: <code>elem.style.fontSize = '24px'</code>.</td>
+              </tr>
+              <tr>
+                <td class="td-lead">Trap 8</td>
+                <td>Forgetting <code>e.preventDefault()</code> on form submit.</td>
+                <td>The page reloads and immediately wipes out your changes. Call <code>e.preventDefault()</code>.</td>
+              </tr>
+              <tr>
+                <td class="td-lead">Trap 9</td>
+                <td>Running script before HTML loads (returns <code>null</code>).</td>
+                <td>Ensure script is placed right before <code>&lt;/body&gt;</code> or wrap code inside <code>document.addEventListener('DOMContentLoaded', () =&gt; { ... })</code>.</td>
+              </tr>
+              <tr>
+                <td class="td-lead">Trap 10</td>
+                <td>Mismatched IDs between HTML and JS.</td>
+                <td>Copy-paste ID strings directly from the HTML tab to prevent typos.</td>
+              </tr>
+              <tr>
+                <td class="td-lead">Trap 11</td>
+                <td>Rewriting or deleting existing HTML skeleton tags.</td>
+                <td>Only write the JavaScript needed. The grader checks for the skeleton's original HTML structure.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 26: LAST 30-MINUTE REVISION CHECKLIST
+         ========================================== -->
+    <section id="sec-26" class="section-block">
+      <div class="section-header">
+        <div class="sec-num">26</div>
+        <div class="sec-info">
+          <h2>LAST 30-MINUTE REVISION CHECKLIST <span class="badge badge-priority">Final Checklist</span></h2>
+          <p>Quick mental checklist to review 30 minutes before exam login.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Check</th>
+                <th>Concept</th>
+                <th>Quick Sanity Question</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input type="checkbox" checked></td>
+                <td class="td-lead">Selection</td>
+                <td>Can you write <code>document.getElementById('demo')</code> without looking?</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" checked></td>
+                <td class="td-lead">Text Change</td>
+                <td>Do you remember to use <code>.textContent</code> for plain strings?</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" checked></td>
+                <td class="td-lead">Input Reading</td>
+                <td>Do you remember <code>.value</code> instead of <code>.textContent</code>?</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" checked></td>
+                <td class="td-lead">Event Attachment</td>
+                <td>Are you using <code>addEventListener('click', () =&gt; {})</code> without 'on'?</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" checked></td>
+                <td class="td-lead">Class Toggle</td>
+                <td>Do you know <code>classList.toggle('hidden')</code> for show/hide?</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" checked></td>
+                <td class="td-lead">Digital Clock</td>
+                <td>Do you remember <code>new Date().toLocaleTimeString()</code> and <code>setInterval(fn, 1000)</code>?</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" checked></td>
+                <td class="td-lead">Form Submit</td>
+                <td>Do you have <code>event.preventDefault()</code> at the top of form submit?</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         PRACTICE: 15 ACCENTURE-STYLE MINI PRACTICE TASKS
+         ========================================== -->
+    <section id="sec-practice" class="section-block">
+      <div class="section-header">
+        <div class="sec-num">★</div>
+        <div class="sec-info">
+          <h2>15 ACCENTURE-STYLE MINI PRACTICE TASKS <span class="badge badge-priority">Practice Lab</span></h2>
+          <p>Easy-to-medium practical tasks matching reported skeleton modifications. Click each to reveal solution.</p>
+        </div>
+      </div>
+
+      <!-- Task 1 -->
+      <div class="practice-item">
+        <div class="practice-header">
+          <div class="practice-title">
+            <span class="q-num">1</span> Change paragraph text after button click.
+          </div>
+          <span class="practice-toggle-icon">▼</span>
+        </div>
+        <div class="practice-body">
+          <div class="practice-req">
+            <strong>Requirement:</strong> When the button with ID <code>changeBtn</code> is clicked, change the paragraph with ID <code>status</code> to "Status: Completed".
+          </div>
+          <div class="code-wrapper">
+            <div class="code-header"><span>Solution</span><button class="code-copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre>document.<span class="code-fn">getElementById</span>(<span class="code-str">'changeBtn'</span>).<span class="code-fn">addEventListener</span>(<span class="code-str">'click'</span>, () =&gt; {
+  document.<span class="code-fn">getElementById</span>(<span class="code-str">'status'</span>).textContent = <span class="code-str">'Status: Completed'</span>;
+});</pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- Task 2 -->
+      <div class="practice-item">
+        <div class="practice-header">
+          <div class="practice-title">
+            <span class="q-num">2</span> Change background color after button click.
+          </div>
+          <span class="practice-toggle-icon">▼</span>
+        </div>
+        <div class="practice-body">
+          <div class="practice-req">
+            <strong>Requirement:</strong> When <code>colorBtn</code> is clicked, change the background color of <code>#box</code> to light green (<code>#10b981</code>).
+          </div>
+          <div class="code-wrapper">
+            <div class="code-header"><span>Solution</span><button class="code-copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre>document.<span class="code-fn">getElementById</span>(<span class="code-str">'colorBtn'</span>).<span class="code-fn">addEventListener</span>(<span class="code-str">'click'</span>, () =&gt; {
+  document.<span class="code-fn">getElementById</span>(<span class="code-str">'box'</span>).style.backgroundColor = <span class="code-str">'#10b981'</span>;
+});</pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- Task 3 -->
+      <div class="practice-item">
+        <div class="practice-header">
+          <div class="practice-title">
+            <span class="q-num">3</span> Toggle an element's visibility.
+          </div>
+          <span class="practice-toggle-icon">▼</span>
+        </div>
+        <div class="practice-body">
+          <div class="practice-req">
+            <strong>Requirement:</strong> Clicking <code>#toggleBtn</code> should toggle the visibility of <code>#panel</code> between <code>none</code> and <code>block</code>.
+          </div>
+          <div class="code-wrapper">
+            <div class="code-header"><span>Solution</span><button class="code-copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre><span class="code-kw">const</span> btn = document.<span class="code-fn">getElementById</span>(<span class="code-str">'toggleBtn'</span>);
+<span class="code-kw">const</span> panel = document.<span class="code-fn">getElementById</span>(<span class="code-str">'panel'</span>);
+
+btn.<span class="code-fn">addEventListener</span>(<span class="code-str">'click'</span>, () =&gt; {
+  panel.style.display = (panel.style.display === <span class="code-str">'none'</span>) ? <span class="code-str">'block'</span> : <span class="code-str">'none'</span>;
+});</pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- Task 4 -->
+      <div class="practice-item">
+        <div class="practice-header">
+          <div class="practice-title">
+            <span class="q-num">4</span> Change an image source.
+          </div>
+          <span class="practice-toggle-icon">▼</span>
+        </div>
+        <div class="practice-body">
+          <div class="practice-req">
+            <strong>Requirement:</strong> When <code>#nextPicBtn</code> is clicked, change the <code>src</code> attribute of <code>#galleryImg</code> to <code>images/photo2.jpg</code>.
+          </div>
+          <div class="code-wrapper">
+            <div class="code-header"><span>Solution</span><button class="code-copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre>document.<span class="code-fn">getElementById</span>(<span class="code-str">'nextPicBtn'</span>).<span class="code-fn">addEventListener</span>(<span class="code-str">'click'</span>, () =&gt; {
+  document.<span class="code-fn">getElementById</span>(<span class="code-str">'galleryImg'</span>).src = <span class="code-str">'images/photo2.jpg'</span>;
+});</pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- Task 5 -->
+      <div class="practice-item">
+        <div class="practice-header">
+          <div class="practice-title">
+            <span class="q-num">5</span> Copy clicked button text into a message box.
+          </div>
+          <span class="practice-toggle-icon">▼</span>
+        </div>
+        <div class="practice-body">
+          <div class="practice-req">
+            <strong>Requirement:</strong> Add event listeners to all buttons with class <code>.choice-btn</code> so clicking any button updates <code>#msgBox</code> with its text.
+          </div>
+          <div class="code-wrapper">
+            <div class="code-header"><span>Solution</span><button class="code-copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre><span class="code-kw">const</span> box = document.<span class="code-fn">getElementById</span>(<span class="code-str">'msgBox'</span>);
+document.<span class="code-fn">querySelectorAll</span>(<span class="code-str">'.choice-btn'</span>).<span class="code-fn">forEach</span>(btn =&gt; {
+  btn.<span class="code-fn">addEventListener</span>(<span class="code-str">'click'</span>, (e) =&gt; {
+    box.textContent = e.target.textContent;
+  });
+});</pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- Task 6 -->
+      <div class="practice-item">
+        <div class="practice-header">
+          <div class="practice-title">
+            <span class="q-num">6</span> Read an input value and display it.
+          </div>
+          <span class="practice-toggle-icon">▼</span>
+        </div>
+        <div class="practice-body">
+          <div class="practice-req">
+            <strong>Requirement:</strong> When <code>#showBtn</code> is clicked, read the value from <code>#usernameInput</code> and display it inside <code>#userOutput</code>.
+          </div>
+          <div class="code-wrapper">
+            <div class="code-header"><span>Solution</span><button class="code-copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre>document.<span class="code-fn">getElementById</span>(<span class="code-str">'showBtn'</span>).<span class="code-fn">addEventListener</span>(<span class="code-str">'click'</span>, () =&gt; {
+  <span class="code-kw">const</span> val = document.<span class="code-fn">getElementById</span>(<span class="code-str">'usernameInput'</span>).value;
+  document.<span class="code-fn">getElementById</span>(<span class="code-str">'userOutput'</span>).textContent = val;
+});</pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- Task 7 -->
+      <div class="practice-item">
+        <div class="practice-header">
+          <div class="practice-title">
+            <span class="q-num">7</span> Add a new list item.
+          </div>
+          <span class="practice-toggle-icon">▼</span>
+        </div>
+        <div class="practice-body">
+          <div class="practice-req">
+            <strong>Requirement:</strong> When <code>#addBtn</code> is clicked, create a new <code>&lt;li&gt;</code> with text from <code>#itemInput</code> and append it to <code>#myList</code>.
+          </div>
+          <div class="code-wrapper">
+            <div class="code-header"><span>Solution</span><button class="code-copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre>document.<span class="code-fn">getElementById</span>(<span class="code-str">'addBtn'</span>).<span class="code-fn">addEventListener</span>(<span class="code-str">'click'</span>, () =&gt; {
+  <span class="code-kw">const</span> input = document.<span class="code-fn">getElementById</span>(<span class="code-str">'itemInput'</span>);
+  <span class="code-kw">if</span> (input.value.<span class="code-fn">trim</span>() !== <span class="code-str">''</span>) {
+    <span class="code-kw">const</span> li = document.<span class="code-fn">createElement</span>(<span class="code-str">'li'</span>);
+    li.textContent = input.value;
+    document.<span class="code-fn">getElementById</span>(<span class="code-str">'myList'</span>).<span class="code-fn">appendChild</span>(li);
+    input.value = <span class="code-str">''</span>;
+  }
+});</pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- Task 8 -->
+      <div class="practice-item">
+        <div class="practice-header">
+          <div class="practice-title">
+            <span class="q-num">8</span> Remove a selected item.
+          </div>
+          <span class="practice-toggle-icon">▼</span>
+        </div>
+        <div class="practice-body">
+          <div class="practice-req">
+            <strong>Requirement:</strong> When <code>#removeFirstBtn</code> is clicked, remove the first child element inside <code>#myList</code>.
+          </div>
+          <div class="code-wrapper">
+            <div class="code-header"><span>Solution</span><button class="code-copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre>document.<span class="code-fn">getElementById</span>(<span class="code-str">'removeFirstBtn'</span>).<span class="code-fn">addEventListener</span>(<span class="code-str">'click'</span>, () =&gt; {
+  <span class="code-kw">const</span> list = document.<span class="code-fn">getElementById</span>(<span class="code-str">'myList'</span>);
+  <span class="code-kw">if</span> (list.firstElementChild) {
+    list.firstElementChild.<span class="code-fn">remove</span>();
+  }
+});</pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- Task 9 -->
+      <div class="practice-item">
+        <div class="practice-header">
+          <div class="practice-title">
+            <span class="q-num">9</span> Implement a counter.
+          </div>
+          <span class="practice-toggle-icon">▼</span>
+        </div>
+        <div class="practice-body">
+          <div class="practice-req">
+            <strong>Requirement:</strong> Maintain an integer starting at 0, increment it on <code>#plusBtn</code> click, and render inside <code>#numDisplay</code>.
+          </div>
+          <div class="code-wrapper">
+            <div class="code-header"><span>Solution</span><button class="code-copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre><span class="code-kw">let</span> count = <span class="code-num">0</span>;
+document.<span class="code-fn">getElementById</span>(<span class="code-str">'plusBtn'</span>).<span class="code-fn">addEventListener</span>(<span class="code-str">'click'</span>, () =&gt; {
+  count++;
+  document.<span class="code-fn">getElementById</span>(<span class="code-str">'numDisplay'</span>).textContent = count;
+});</pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- Task 10 -->
+      <div class="practice-item">
+        <div class="practice-header">
+          <div class="practice-title">
+            <span class="q-num">10</span> Create a simple digital clock.
+          </div>
+          <span class="practice-toggle-icon">▼</span>
+        </div>
+        <div class="practice-body">
+          <div class="practice-req">
+            <strong>Requirement:</strong> Make element <code>#clock</code> show real-time seconds updated with <code>setInterval</code>.
+          </div>
+          <div class="code-wrapper">
+            <div class="code-header"><span>Solution</span><button class="code-copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre><span class="code-kw">function</span> <span class="code-fn">tick</span>() {
+  document.<span class="code-fn">getElementById</span>(<span class="code-str">'clock'</span>).textContent = <span class="code-kw">new</span> <span class="code-fn">Date</span>().<span class="code-fn">toLocaleTimeString</span>();
+}
+<span class="code-fn">tick</span>();
+<span class="code-fn">setInterval</span>(tick, <span class="code-num">1000</span>);</pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- Task 11 -->
+      <div class="practice-item">
+        <div class="practice-header">
+          <div class="practice-title">
+            <span class="q-num">11</span> Toggle an active CSS class.
+          </div>
+          <span class="practice-toggle-icon">▼</span>
+        </div>
+        <div class="practice-body">
+          <div class="practice-req">
+            <strong>Requirement:</strong> When <code>#card</code> is clicked, toggle the CSS class <code>highlight</code> on it.
+          </div>
+          <div class="code-wrapper">
+            <div class="code-header"><span>Solution</span><button class="code-copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre><span class="code-kw">const</span> card = document.<span class="code-fn">getElementById</span>(<span class="code-str">'card'</span>);
+card.<span class="code-fn">addEventListener</span>(<span class="code-str">'click'</span>, () =&gt; {
+  card.classList.<span class="code-fn">toggle</span>(<span class="code-str">'highlight'</span>);
+});</pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- Task 12 -->
+      <div class="practice-item">
+        <div class="practice-header">
+          <div class="practice-title">
+            <span class="q-num">12</span> Disable a button after clicking.
+          </div>
+          <span class="practice-toggle-icon">▼</span>
+        </div>
+        <div class="practice-body">
+          <div class="practice-req">
+            <strong>Requirement:</strong> When <code>#voteBtn</code> is clicked, change its text to "Voted ✓" and set its <code>disabled</code> property to true.
+          </div>
+          <div class="code-wrapper">
+            <div class="code-header"><span>Solution</span><button class="code-copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre><span class="code-kw">const</span> btn = document.<span class="code-fn">getElementById</span>(<span class="code-str">'voteBtn'</span>);
+btn.<span class="code-fn">addEventListener</span>(<span class="code-str">'click'</span>, () =&gt; {
+  btn.textContent = <span class="code-str">'Voted ✓'</span>;
+  btn.disabled = <span class="code-kw">true</span>;
+});</pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- Task 13 -->
+      <div class="practice-item">
+        <div class="practice-header">
+          <div class="practice-title">
+            <span class="q-num">13</span> Change button text after clicking.
+          </div>
+          <span class="practice-toggle-icon">▼</span>
+        </div>
+        <div class="practice-body">
+          <div class="practice-req">
+            <strong>Requirement:</strong> When <code>#followBtn</code> is clicked, toggle its text between "Follow" and "Following".
+          </div>
+          <div class="code-wrapper">
+            <div class="code-header"><span>Solution</span><button class="code-copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre><span class="code-kw">const</span> followBtn = document.<span class="code-fn">getElementById</span>(<span class="code-str">'followBtn'</span>);
+followBtn.<span class="code-fn">addEventListener</span>(<span class="code-str">'click'</span>, () =&gt; {
+  followBtn.textContent = (followBtn.textContent === <span class="code-str">'Follow'</span>) ? <span class="code-str">'Following'</span> : <span class="code-str">'Follow'</span>;
+});</pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- Task 14 -->
+      <div class="practice-item">
+        <div class="practice-header">
+          <div class="practice-title">
+            <span class="q-num">14</span> Validate that an input is not empty.
+          </div>
+          <span class="practice-toggle-icon">▼</span>
+        </div>
+        <div class="practice-body">
+          <div class="practice-req">
+            <strong>Requirement:</strong> Check <code>#nameInput</code> on <code>#checkBtn</code> click. If empty, show "Field required" in <code>#errorText</code>, otherwise show "Valid".
+          </div>
+          <div class="code-wrapper">
+            <div class="code-header"><span>Solution</span><button class="code-copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre>document.<span class="code-fn">getElementById</span>(<span class="code-str">'checkBtn'</span>).<span class="code-fn">addEventListener</span>(<span class="code-str">'click'</span>, () =&gt; {
+  <span class="code-kw">const</span> val = document.<span class="code-fn">getElementById</span>(<span class="code-str">'nameInput'</span>).value.<span class="code-fn">trim</span>();
+  <span class="code-kw">const</span> err = document.<span class="code-fn">getElementById</span>(<span class="code-str">'errorText'</span>);
+  <span class="code-kw">if</span> (val === <span class="code-str">''</span>) {
+    err.textContent = <span class="code-str">'Field required'</span>;
+    err.style.color = <span class="code-str">'red'</span>;
+  } <span class="code-kw">else</span> {
+    err.textContent = <span class="code-str">'Valid'</span>;
+    err.style.color = <span class="code-str">'green'</span>;
+  }
+});</pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- Task 15 -->
+      <div class="practice-item">
+        <div class="practice-header">
+          <div class="practice-title">
+            <span class="q-num">15</span> Handle a form submit without page refresh.
+          </div>
+          <span class="practice-toggle-icon">▼</span>
+        </div>
+        <div class="practice-body">
+          <div class="practice-req">
+            <strong>Requirement:</strong> Prevent form <code>#feedbackForm</code> from refreshing the browser and update <code>#feedbackMsg</code> with "Thank you!".
+          </div>
+          <div class="code-wrapper">
+            <div class="code-header"><span>Solution</span><button class="code-copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre>document.<span class="code-fn">getElementById</span>(<span class="code-str">'feedbackForm'</span>).<span class="code-fn">addEventListener</span>(<span class="code-str">'submit'</span>, (event) =&gt; {
+  event.<span class="code-fn">preventDefault</span>();
+  document.<span class="code-fn">getElementById</span>(<span class="code-str">'feedbackMsg'</span>).textContent = <span class="code-str">'Thank you!'</span>;
+});</pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         ENDING: 30-MIN PLAN, 10-MIN SYNTAX, 5-MIN STRATEGY, TOP 10 MISTAKES
+         ========================================== -->
+    <section id="sec-final" class="section-block">
+      <div class="section-header">
+        <div class="sec-num">🏁</div>
+        <div class="sec-info">
+          <h2>FINAL EXAM PROTOCOL: 30-MIN PLAN &amp; 10-MIN SYNTAX <span class="badge badge-priority">Must Read</span></h2>
+          <p>The structured breakdown to guarantee flawless execution in the assessment.</p>
+        </div>
+      </div>
+
+      <!-- 30-Minute Revision Plan -->
+      <div class="card">
+        <h3 style="margin-bottom: 10px; color:var(--purple);">⏱️ 30-Minute Last-Minute Revision Plan</h3>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Time Window</th>
+                <th>Focus Area</th>
+                <th>Concrete Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="td-lead">Minute 00 – 10</td>
+                <td>Selectors &amp; Properties</td>
+                <td>Memorize <code>getElementById</code>, <code>.textContent</code>, and <code>.value</code>. Re-read the Traps section.</td>
+              </tr>
+              <tr>
+                <td class="td-lead">Minute 10 – 20</td>
+                <td>Key Script Patterns</td>
+                <td>Practice the Digital Clock and Button-to-Message-Box patterns on a piece of paper or blank scratchpad.</td>
+              </tr>
+              <tr>
+                <td class="td-lead">Minute 20 – 25</td>
+                <td>ClassList &amp; Styles</td>
+                <td>Revise <code>classList.toggle('hidden')</code> and camelCase inline styles (<code>style.backgroundColor</code>).</td>
+              </tr>
+              <tr>
+                <td class="td-lead">Minute 25 – 30</td>
+                <td>Mindset &amp; Skeleton Strategy</td>
+                <td>Remind yourself: "Never rename existing HTML IDs. Keep calm, read the skeleton first."</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 10-Minute Syntax Memorization List -->
+      <div class="card">
+        <h3 style="margin-bottom: 10px; color:var(--purple);">⚡ 10-Minute Syntax Memorization List (Ultra-Short)</h3>
+        <div class="code-wrapper">
+          <div class="code-header"><span>Cheat Sheet: Memorize These 14 Lines</span><button class="code-copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><span class="code-cm">// 1. Select element</span>
+<span class="code-kw">const</span> el = document.<span class="code-fn">getElementById</span>(<span class="code-str">'myId'</span>);
+
+<span class="code-cm">// 2. Select multiple</span>
+<span class="code-kw">const</span> list = document.<span class="code-fn">querySelectorAll</span>(<span class="code-str">'.item'</span>);
+
+<span class="code-cm">// 3. Read/Change Visible Text</span>
+el.textContent = <span class="code-str">'Hello World'</span>;
+
+<span class="code-cm">// 4. Read User Input</span>
+<span class="code-kw">const</span> text = inputEl.value.<span class="code-fn">trim</span>();
+
+<span class="code-cm">// 5. Change Inline CSS</span>
+el.style.backgroundColor = <span class="code-str">'#10b981'</span>;
+el.style.display = <span class="code-str">'none'</span>;
+
+<span class="code-cm">// 6. ClassList Toggle / Add / Remove</span>
+el.classList.<span class="code-fn">toggle</span>(<span class="code-str">'active'</span>);
+el.classList.<span class="code-fn">add</span>(<span class="code-str">'hidden'</span>);
+el.classList.<span class="code-fn">remove</span>(<span class="code-str">'hidden'</span>);
+
+<span class="code-cm">// 7. Event Listener</span>
+btn.<span class="code-fn">addEventListener</span>(<span class="code-str">'click'</span>, (e) =&gt; { ... });
+
+<span class="code-cm">// 8. Form Submit Prevention</span>
+form.<span class="code-fn">addEventListener</span>(<span class="code-str">'submit'</span>, (e) =&gt; e.<span class="code-fn">preventDefault</span>());
+
+<span class="code-cm">// 9. Create &amp; Mount Node</span>
+<span class="code-kw">const</span> li = document.<span class="code-fn">createElement</span>(<span class="code-str">'li'</span>);
+li.textContent = <span class="code-str">'Item'</span>;
+parentEl.<span class="code-fn">appendChild</span>(li);
+
+<span class="code-cm">// 10. Delete Node</span>
+el.<span class="code-fn">remove</span>();
+
+<span class="code-cm">// 11. Digital Clock Interval</span>
+<span class="code-fn">setInterval</span>(() =&gt; {
+  clock.textContent = <span class="code-kw">new</span> <span class="code-fn">Date</span>().<span class="code-fn">toLocaleTimeString</span>();
+}, <span class="code-num">1000</span>);</pre>
+        </div>
+      </div>
+
+      <!-- 5-Minute Exam Strategy -->
+      <div class="card">
+        <h3 style="margin-bottom: 10px; color:var(--purple);">🎯 5-Minute Exam Strategy (When the Test Starts)</h3>
+        <ol style="padding-left: 20px; font-size: 13.5px; line-height: 1.8; color: var(--text);">
+          <li><strong>Step 1 (First 60 seconds):</strong> Open the HTML tab. Copy-paste every ID and class mentioned in the instructions into comments in your JS editor.</li>
+          <li><strong>Step 2:</strong> Check the CSS tab. Look for pre-existing helper classes like <code>.active</code>, <code>.hidden</code>, or <code>.d-none</code>. If present, use <code>classList.toggle()</code> rather than writing manual inline CSS!</li>
+          <li><strong>Step 3:</strong> Wire up your selectors: <code>const btn = document.getElementById(...)</code>. Test with a quick <code>console.log(btn)</code> to verify you didn't receive <code>null</code>.</li>
+          <li><strong>Step 4:</strong> Write the event listener. If it's a form, immediately write <code>e.preventDefault()</code>.</li>
+          <li><strong>Step 5:</strong> Click the preview pane and manually test the interaction. Verify that input fields clear properly and edge cases (empty strings) are guarded.</li>
+        </ol>
+      </div>
+
+      <!-- Top 10 Mistakes to Avoid -->
+      <div class="card">
+        <h3 style="margin-bottom: 10px; color:var(--red);">🚫 Top 10 Mistakes to Avoid</h3>
+        <div class="memory-grid">
+          <div class="memory-card"><span style="color:var(--red); font-weight:900;">1</span><span>Typing <code>#id</code> inside <code>getElementById</code>.</span></div>
+          <div class="memory-card"><span style="color:var(--red); font-weight:900;">2</span><span>Using <code>.textContent</code> instead of <code>.value</code> on inputs.</span></div>
+          <div class="memory-card"><span style="color:var(--red); font-weight:900;">3</span><span>Forgetting <code>e.preventDefault()</code> on form submissions.</span></div>
+          <div class="memory-card"><span style="color:var(--red); font-weight:900;">4</span><span>Writing <code>addEventListener('onclick', ...)</code> with 'on'.</span></div>
+          <div class="memory-card"><span style="color:var(--red); font-weight:900;">5</span><span>Invoking function in listener: <code>addEventListener('click', fn())</code>.</span></div>
+          <div class="memory-card"><span style="color:var(--red); font-weight:900;">6</span><span>Typing a dot inside classList: <code>classList.add('.box')</code>.</span></div>
+          <div class="memory-card"><span style="color:var(--red); font-weight:900;">7</span><span>Forgetting unit strings: <code>elem.style.width = 100</code> (no 'px').</span></div>
+          <div class="memory-card"><span style="color:var(--red); font-weight:900;">8</span><span>Renaming existing skeleton HTML IDs or tags.</span></div>
+          <div class="memory-card"><span style="color:var(--red); font-weight:900;">9</span><span>Rewriting whole CSS instead of modifying requested properties.</span></div>
+          <div class="memory-card"><span style="color:var(--red); font-weight:900;">10</span><span>Not testing the live preview before hitting final submit.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="text-align:center; padding: 40px 0 20px; font-size:12px; color:var(--muted); border-top:1px solid var(--border);">
+      <p>Accenture 2026 Placement Coding Round Preparation Guide · High-Yield Frontend &amp; DOM Sheet</p>
+      <p style="margin-top:4px;">Crafted for PlacementPrep · Zero fluff, 100% verified placement exam readiness.</p>
+    </footer>
+
+  </main>
+</div>
+
+<!-- Interactive Engine Script -->
+<script>
+// Theme Management
+const themeToggle = document.getElementById('themeToggle');
+const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+const savedTheme = localStorage.getItem('placement_theme') || (prefersDark ? 'dark' : 'light');
+
+if (savedTheme === 'dark') {
+  document.body.classList.add('dark');
+  themeToggle.textContent = '☀';
+} else {
+  themeToggle.textContent = '☾';
+}
+
+themeToggle.addEventListener('click', () => {
+  document.body.classList.toggle('dark');
+  const isDark = document.body.classList.contains('dark');
+  themeToggle.textContent = isDark ? '☀' : '☾';
+  localStorage.setItem('placement_theme', isDark ? 'dark' : 'light');
+});
+
+// Reading Progress Bar
+const progressBar = document.getElementById('reading-bar');
+window.addEventListener('scroll', () => {
+  const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+  const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (winScroll / height) * 100;
+  progressBar.style.width = scrolled + '%';
+});
+
+// Mobile Sidebar Drawer
+const menuToggle = document.getElementById('menuToggle');
+const sidebar = document.getElementById('sidebar');
+const backdrop = document.getElementById('sidebarBackdrop');
+
+function toggleDrawer() {
+  sidebar.classList.toggle('open');
+  backdrop.classList.toggle('active');
+}
+
+menuToggle.addEventListener('click', toggleDrawer);
+backdrop.addEventListener('click', toggleDrawer);
+
+// Close sidebar on link click (mobile)
+document.querySelectorAll('.toc-link').forEach(link => {
+  link.addEventListener('click', () => {
+    if (window.innerWidth <= 960) {
+      sidebar.classList.remove('open');
+      backdrop.classList.remove('active');
+    }
+  });
+});
+
+// Active TOC Highlight on Scroll
+const sections = document.querySelectorAll('.section-block');
+const navLinks = document.querySelectorAll('.toc-link');
+
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 120;
+    if (window.pageYOffset >= sectionTop) {
+      current = section.getAttribute('id');
+    }
+  });
+
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === `#${current}`) {
+      link.classList.add('active');
+    }
+  });
+});
+
+// Copy Code Snippets
+function copyCode(btn) {
+  const codeBlock = btn.closest('.code-wrapper').querySelector('pre');
+  navigator.clipboard.writeText(codeBlock.innerText).then(() => {
+    const originalText = btn.textContent;
+    btn.textContent = 'Copied! ✓';
+    btn.style.background = '#10b981';
+    btn.style.borderColor = '#10b981';
+    setTimeout(() => {
+      btn.textContent = originalText;
+      btn.style.background = '';
+      btn.style.borderColor = '';
+    }, 2000);
+  });
+}
+
+// Practice Items Accordion
+document.querySelectorAll('.practice-header').forEach(header => {
+  header.addEventListener('click', () => {
+    header.parentElement.classList.toggle('open');
+  });
+});
+
+// Sidebar TOC Quick Filter
+const tocFilter = document.getElementById('tocFilter');
+tocFilter.addEventListener('input', (e) => {
+  const q = e.target.value.toLowerCase();
+  document.querySelectorAll('.toc-link').forEach(link => {
+    const text = link.textContent.toLowerCase();
+    link.style.display = text.includes(q) ? 'flex' : 'none';
+  });
+});
+
+// Keyword Search Filter in Banner
+const keywordSearch = document.getElementById('keywordSearch');
+keywordSearch.addEventListener('input', (e) => {
+  const query = e.target.value.toLowerCase().trim();
+  if (!query) {
+    document.querySelectorAll('.section-block').forEach(s => s.style.display = '');
+    return;
+  }
+  document.querySelectorAll('.section-block').forEach(section => {
+    const text = section.innerText.toLowerCase();
+    section.style.display = text.includes(query) ? '' : 'none';
+  });
+});
+
+// Quick Tags Filter
+document.querySelectorAll('.quick-tag').forEach(tag => {
+  tag.addEventListener('click', () => {
+    document.querySelectorAll('.quick-tag').forEach(t => t.classList.remove('active'));
+    tag.classList.add('active');
+    const filter = tag.getAttribute('data-filter');
+
+    document.querySelectorAll('.section-block').forEach(sec => {
+      if (filter === 'all') {
+        sec.style.display = '';
+      } else if (filter === 'reported') {
+        sec.style.display = sec.innerHTML.includes('Actual Reported') ? '' : 'none';
+      } else if (filter === 'patterns') {
+        sec.style.display = sec.id.startsWith('sec-1') || sec.id.startsWith('sec-20') || sec.id.startsWith('sec-21') ? '' : 'none';
+      } else if (filter === 'differences') {
+        sec.style.display = sec.innerHTML.includes('Comparison:') || sec.innerHTML.includes('vs') ? '' : 'none';
+      } else if (filter === 'practice') {
+        sec.style.display = sec.id === 'sec-practice' ? '' : 'none';
+      }
+    });
+  });
+});
+
+// ==========================================
+// LIVE DEMO WIDGETS FUNCTIONALITY
+// ==========================================
+
+// 1. Digital Clock Live Demo
+function runLiveClock() {
+  const clockEl = document.getElementById('liveClockDisplay');
+  if (clockEl) {
+    clockEl.textContent = new Date().toLocaleTimeString();
+  }
+}
+runLiveClock();
+setInterval(runLiveClock, 1000);
+
+// 2. Button text into message box Demo
+const liveMsgButtons = document.querySelectorAll('.live-msg-btn');
+const liveMsgBox = document.getElementById('liveMsgBox');
+liveMsgButtons.forEach(b => {
+  b.addEventListener('click', (e) => {
+    const choice = e.target.getAttribute('data-text');
+    liveMsgBox.textContent = `Selected: "${choice}" (Moved into message box dynamically!)`;
+    liveMsgBox.style.color = 'var(--purple)';
+  });
+});
+
+// 3. Show/Hide Toggle Demo
+const liveToggleBtn = document.getElementById('liveToggleBtn');
+const liveContentBox = document.getElementById('liveContentBox');
+liveToggleBtn.addEventListener('click', () => {
+  if (liveContentBox.style.display === 'none') {
+    liveContentBox.style.display = 'block';
+    liveToggleBtn.textContent = 'Hide Content';
+  } else {
+    liveContentBox.style.display = 'none';
+    liveToggleBtn.textContent = 'Show Content';
+  }
+});
+
+// 4. Counter Demo
+let liveCounter = 0;
+const liveCountText = document.getElementById('liveCountText');
+document.getElementById('liveIncBtn').addEventListener('click', () => {
+  liveCounter++;
+  liveCountText.textContent = liveCounter;
+});
+document.getElementById('liveDecBtn').addEventListener('click', () => {
+  liveCounter--;
+  liveCountText.textContent = liveCounter;
+});
+document.getElementById('liveResetBtn').addEventListener('click', () => {
+  liveCounter = 0;
+  liveCountText.textContent = liveCounter;
+});
+</script>
+
+</body>
+</html>
