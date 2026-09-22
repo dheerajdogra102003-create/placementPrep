@@ -1,0 +1,27 @@
+# Security & Database rules (private configuration)
+database.rules.json
+*.rules.json
+*serviceAccount*.json
+
+# Environment variables & secrets
+.env
+.env.*
+*.key
+*.pem
+*.cert
+
+# Python bytecode & cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+
+# Local generator / development scripts
+generate_100_hard.py
+
+# Editor & OS artifacts
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.log
