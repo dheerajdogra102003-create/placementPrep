@@ -142,6 +142,25 @@
             if (modData && Array.isArray(modData.bookmarks)) {
                 modData.bookmarks.forEach(id => markedQuestions.add(id));
             }
+
+            // Real-time sync updates
+            window.SyncManager.subscribe(() => {
+                const fresh = window.SyncManager.getModuleData(MODULE_ID);
+                if (fresh && fresh.answers) {
+                    for (const [qId, ans] of Object.entries(fresh.answers)) {
+                        if (ans && ans.selected) {
+                            userAnswers[qId] = ans.selected;
+                            isAnswerSubmitted[qId] = true;
+                        }
+                    }
+                }
+                if (fresh && Array.isArray(fresh.bookmarks)) {
+                    fresh.bookmarks.forEach(id => markedQuestions.add(id));
+                }
+                if (currentMode === 'practice' || currentMode === 'flashcards') {
+                    renderQuestion();
+                }
+            });
         }
     }
 
@@ -423,7 +442,7 @@
 
             // Record to SyncManager if present
             if (window.SyncManager) {
-                window.SyncManager.recordAnswer(MODULE_ID, q.id, letter, isCorrect);
+                window.SyncManager.recordAnswer(MODULE_ID, q.id, { selected: letter, isCorrect: isCorrect });
             }
 
             renderQuestion();
@@ -443,7 +462,7 @@
 
             // Record to SyncManager if present
             if (window.SyncManager) {
-                window.SyncManager.recordAnswer(MODULE_ID, q.id, letter, isCorrect);
+                window.SyncManager.recordAnswer(MODULE_ID, q.id, { selected: letter, isCorrect: isCorrect });
             }
 
             renderQuestion();

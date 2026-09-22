@@ -45,6 +45,14 @@
             // Auto-detect incoming session transfer via ?sync= URL parameter
             this.checkUrlForSyncImport();
 
+            // Auto-flush pending push before navigation/unload
+            window.addEventListener('beforeunload', () => {
+                if (this._pushTimeout) {
+                    clearTimeout(this._pushTimeout);
+                    this.pushToCloud();
+                }
+            });
+
             // Auto-init GA4 and sync on startup if username exists
             if (this.username) {
                 this.initGoogleAnalytics(this.username);
@@ -86,9 +94,10 @@
         }
 
         async setUsername(newUsername) {
-            const clean = (newUsername || '').trim().toLowerCase().replace(/[^a-z0-9_]/g, '');
+            let clean = (newUsername || '').trim().toLowerCase().replace(/[^a-z0-9_]/g, '');
+            if (clean.length > 30) clean = clean.slice(0, 30);
             if (!clean || clean.length < 2) {
-                throw new Error('Username must be at least 2 characters (letters, numbers, underscore).');
+                throw new Error('Username must be between 2 and 30 characters (letters, numbers, underscore).');
             }
 
             this.username = clean;
@@ -289,6 +298,14 @@
 
         async pushToCloud() {
             if (!this.username || !this.firebaseUrl || !this.cache) return;
+
+            // Security: Enforce payload size limit (max 500 KB) to prevent abuse
+            const payloadStr = JSON.stringify(this.cache);
+            if (payloadStr.length > 500000) {
+                console.warn('[SyncManager] Payload size limit exceeded (>500KB), skipping push');
+                return;
+            }
+
             this.isSyncing = true;
             this.notifyListeners();
 
@@ -299,7 +316,7 @@
                 const res = await fetch(endpoint, {
                     method: 'PUT',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(this.cache)
+                    body: payloadStr
                 });
 
                 if (res.ok) {
@@ -486,9 +503,9 @@
                 is_correct: details.isCorrect ? 1 : 0
             });
 
-            // Push to Firebase immediately so device switches never lose answers
+            // Push to Firebase via debounce to prevent connection flooding
             if (this.firebaseUrl) {
-                this.pushToCloud();
+                this.debounceCloudPush();
             }
             this.notifyListeners();
         }
@@ -606,7 +623,7 @@
             clearTimeout(this._pushTimeout);
             this._pushTimeout = setTimeout(() => {
                 this.pushToCloud();
-            }, 2500);
+            }, 800);
         }
 
         showToast(message) {

@@ -2,6 +2,8 @@
 (function () {
     'use strict';
 
+    const MODULE_ID = 'browser_fundamental';
+
     // Application State
     let allQuestions = [];       // Master list of questions
     let activeQuestions = [];    // Filtered / active pool
@@ -102,6 +104,44 @@
         initTheme();
         loadQuestions();
         bindEvents();
+        initSyncManager();
+    }
+
+    // SyncManager Integration - Restore saved answers & bookmarks
+    function initSyncManager() {
+        if (!window.SyncManager) return;
+        const modData = window.SyncManager.getModuleData(MODULE_ID);
+        if (modData && modData.answers) {
+            for (const [qId, ans] of Object.entries(modData.answers)) {
+                if (ans && ans.selected !== undefined) {
+                    userAnswers[qId] = ans.selected;
+                    isAnswerSubmitted[qId] = true;
+                }
+            }
+        }
+        if (modData && Array.isArray(modData.bookmarks)) {
+            modData.bookmarks.forEach(id => markedQuestions.add(id));
+        }
+
+        // Real-time sync updates
+        window.SyncManager.subscribe(() => {
+            const fresh = window.SyncManager.getModuleData(MODULE_ID);
+            if (fresh && fresh.answers) {
+                for (const [qId, ans] of Object.entries(fresh.answers)) {
+                    if (ans && ans.selected !== undefined) {
+                        userAnswers[qId] = ans.selected;
+                        isAnswerSubmitted[qId] = true;
+                    }
+                }
+            }
+            if (fresh && Array.isArray(fresh.bookmarks)) {
+                fresh.bookmarks.forEach(id => markedQuestions.add(id));
+            }
+            if (currentMode === 'practice' || currentMode === 'review') {
+                renderCurrentQuestion();
+                updateSidebarStats();
+            }
+        });
     }
 
     // Theme Setup (shares storage key with cloud_Computing and dashboard)
@@ -440,6 +480,12 @@
         userAnswers[qId] = selectedLetter;
         isAnswerSubmitted[qId] = true;
 
+        // Record to SyncManager for cross-device persistence
+        if (window.SyncManager && currentMode !== 'exam') {
+            const isCorrect = (selectedLetter === q.correctAnswer);
+            window.SyncManager.recordAnswer(MODULE_ID, qId, { selected: selectedLetter, isCorrect: isCorrect });
+        }
+
         if (currentMode === 'practice') {
             // Instant feedback
             renderOptions(q);
@@ -510,6 +556,9 @@
         }
 
         updateNavigatorGridCell(qId);
+        if (window.SyncManager) {
+            window.SyncManager.toggleBookmark(MODULE_ID, qId);
+        }
         updateSidebarStats();
     }
 
@@ -675,6 +724,16 @@
             `;
             resultsBreakdownGrid.appendChild(card);
         });
+
+        // Record exam result in SyncManager
+        if (window.SyncManager) {
+            window.SyncManager.recordExamResult(MODULE_ID, {
+                score: totalCorrect,
+                total: totalQuestions,
+                accuracy: percent,
+                timeTaken: resultsTimeTaken.textContent
+            });
+        }
     }
 
     function startReviewMode() {

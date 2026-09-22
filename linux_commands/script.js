@@ -2,6 +2,8 @@
 (function () {
     'use strict';
 
+    const MODULE_ID = 'linux_commands';
+
     // Application State
     let allQuestions = [];          // Master list of 30 questions
     let activeQuestions = [];       // Filtered / active pool
@@ -84,8 +86,43 @@
     // Initialization
     function init() {
         initTheme();
+        initSyncManager();
         loadQuestions();
         bindEvents();
+    }
+
+    // SyncManager Integration - Restore saved answers & bookmarks
+    function initSyncManager() {
+        if (!window.SyncManager) return;
+        const modData = window.SyncManager.getModuleData(MODULE_ID);
+        if (modData && modData.answers) {
+            for (const [qId, ans] of Object.entries(modData.answers)) {
+                if (ans && ans.selected !== undefined) {
+                    userAnswers[qId] = ans.selected;
+                    isAnswerSubmitted[qId] = true;
+                }
+            }
+        }
+        if (modData && Array.isArray(modData.bookmarks)) {
+            modData.bookmarks.forEach(id => markedQuestions.add(id));
+        }
+
+        // Real-time sync updates
+        window.SyncManager.subscribe(() => {
+            const fresh = window.SyncManager.getModuleData(MODULE_ID);
+            if (fresh && fresh.answers) {
+                for (const [qId, ans] of Object.entries(fresh.answers)) {
+                    if (ans && ans.selected !== undefined) {
+                        userAnswers[qId] = ans.selected;
+                        isAnswerSubmitted[qId] = true;
+                    }
+                }
+            }
+            if (fresh && Array.isArray(fresh.bookmarks)) {
+                fresh.bookmarks.forEach(id => markedQuestions.add(id));
+            }
+            updateSidebarStats();
+        });
     }
 
     // Theme Setup (shares placementprep-theme key)
@@ -398,12 +435,25 @@
     function handlePracticeOptionClick(q, optIndex) {
         userAnswers[q.id] = optIndex;
         isAnswerSubmitted[q.id] = true;
+
+        if (window.SyncManager) {
+            const isCorrect = (optIndex === q.correctAnswer);
+            window.SyncManager.recordAnswer(MODULE_ID, q.id, { selected: optIndex, isCorrect: isCorrect });
+        }
+
         renderCurrentQuestion();
         updateScoreHeader();
     }
 
     function revealExplanation(q, optIndex) {
         userAnswers[q.id] = optIndex;
+        isAnswerSubmitted[q.id] = true;
+
+        if (window.SyncManager) {
+            const isCorrect = (optIndex === q.correctAnswer);
+            window.SyncManager.recordAnswer(MODULE_ID, q.id, { selected: optIndex, isCorrect: isCorrect });
+        }
+
         flashcardRevealRow.classList.add('hidden');
         renderExplanation(q, optIndex);
         explanationPanel.classList.remove('hidden');
@@ -534,6 +584,10 @@
             markText.textContent = 'Marked';
         }
 
+        if (window.SyncManager) {
+            window.SyncManager.toggleBookmark(MODULE_ID, qId);
+        }
+
         updateSidebarStats();
         highlightCurrentNavCell();
     }
@@ -610,6 +664,16 @@
 
         const totalQ = activeQuestions.length;
         const percentage = Math.round((correctCount / totalQ) * 100);
+
+        // Record exam result in SyncManager
+        if (window.SyncManager) {
+            window.SyncManager.recordExamResult(MODULE_ID, {
+                score: correctCount,
+                total: totalQ,
+                accuracy: percentage,
+                timeTaken: formattedTime
+            });
+        }
 
         // Update Results UI
         resultsPercentage.textContent = `${percentage}%`;

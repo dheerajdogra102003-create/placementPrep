@@ -2,6 +2,8 @@
 (function () {
     'use strict';
 
+    const MODULE_ID = 'ms_office';
+
     // Master Question Pools & State
     let allQuestions = [];          // Master list of 90 questions
     let activeQuestions = [];       // Filtered active pool
@@ -89,10 +91,47 @@
     // Init function
     function init() {
         initTheme();
+        initSyncManager();
         loadQuestions();
         checkUrlParams();
         bindEvents();
         updateScorePill();
+    }
+
+    // SyncManager Integration - Restore saved answers & bookmarks
+    function initSyncManager() {
+        if (!window.SyncManager) return;
+        const modData = window.SyncManager.getModuleData(MODULE_ID);
+        if (modData && modData.answers) {
+            for (const [qId, ans] of Object.entries(modData.answers)) {
+                if (ans && ans.selected !== undefined) {
+                    userAnswers[qId] = ans.selected;
+                    isAnswerSubmitted[qId] = true;
+                }
+            }
+        }
+        if (modData && Array.isArray(modData.bookmarks)) {
+            modData.bookmarks.forEach(id => markedQuestions.add(id));
+        }
+
+        // Real-time sync updates
+        window.SyncManager.subscribe(() => {
+            const fresh = window.SyncManager.getModuleData(MODULE_ID);
+            if (fresh && fresh.answers) {
+                for (const [qId, ans] of Object.entries(fresh.answers)) {
+                    if (ans && ans.selected !== undefined) {
+                        userAnswers[qId] = ans.selected;
+                        isAnswerSubmitted[qId] = true;
+                    }
+                }
+            }
+            if (fresh && Array.isArray(fresh.bookmarks)) {
+                fresh.bookmarks.forEach(id => markedQuestions.add(id));
+            }
+            renderPalette();
+            updateStats();
+            updateScorePill();
+        });
     }
 
     // Theme initialization
@@ -497,6 +536,17 @@
 
             userAnswers[q.id] = optIdx;
             isAnswerSubmitted[q.id] = true;
+
+            if (window.SyncManager) {
+                const isCorrect = (optIdx === q.correctAnswer);
+                window.SyncManager.recordAnswer(MODULE_ID, q.id, {
+                    selected: optIdx,
+                    isCorrect: isCorrect,
+                    track: q.app || 'MS Office',
+                    difficulty: q.difficulty || 'Medium'
+                });
+            }
+
             renderCurrentQuestion();
             renderPalette();
             updateStats();
@@ -593,6 +643,11 @@
         } else {
             markedQuestions.add(q.id);
         }
+
+        if (window.SyncManager) {
+            window.SyncManager.toggleBookmark(MODULE_ID, q.id);
+        }
+
         renderCurrentQuestion();
         renderPalette();
         updateStats();
@@ -724,7 +779,18 @@
         const elapsedSecs = examStartTime ? Math.round((examEndTime - examStartTime) / 1000) : 0;
         const eMins = Math.floor(elapsedSecs / 60);
         const eSecs = elapsedSecs % 60;
-        resultsTimeTaken.textContent = `${eMins}m ${eSecs}s`;
+        const formattedTime = `${eMins}m ${eSecs}s`;
+        resultsTimeTaken.textContent = formattedTime;
+
+        // Record exam result in SyncManager
+        if (window.SyncManager) {
+            window.SyncManager.recordExamResult(MODULE_ID, {
+                score: totalCorrect,
+                total: totalQuestions,
+                accuracy: overallPercent,
+                timeTaken: formattedTime
+            });
+        }
 
         // Readiness Assessment
         if (overallPercent >= 80) {
