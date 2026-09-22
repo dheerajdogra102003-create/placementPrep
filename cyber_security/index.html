@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8VNQVXVYBN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-8VNQVXVYBN');
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Security - 2026 Campus Placement Practice & Assessment</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="app-header">
+        <div class="header-container">
+            <div class="header-left">
+                <a href="../index.html" class="back-link" aria-label="Return to PlacementPrep Dashboard">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                    Dashboard
+                </a>
+                <div class="header-divider"></div>
+                <div class="module-title-area">
+                    <div class="topic-tag">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                        <span>Cyber Security</span>
+                    </div>
+                    <span id="header-mode-badge" class="badge mode-tag">Practice Mode</span>
+                </div>
+            </div>
+
+            <div class="header-center">
+                <!-- 45:00 Timer for Exam Mode -->
+                <div id="timer-box" class="timer-box hidden" aria-live="polite">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    <span id="timer-display" class="timer-text">45:00</span>
+                </div>
+            </div>
+
+            <div class="header-right">
+                <a href="../notes/cybersecurity.html" class="notes-nav-btn" style="display:inline-flex;align-items:center;gap:6px;padding:6px 12px;background:var(--card-bg, #fff);border:1px solid var(--border-color, #e2e8f0);border-radius:10px;font-size:12px;font-weight:700;color:var(--text-color, #0f172a);text-decoration:none;transition:.2s;" title="Read Comprehensive Cybersecurity Placement Final-Day Notes">
+                    📖 Study Notes
+                </a>
+                <div id="score-counter" class="score-pill">
+                    Score: <strong id="score-value">0</strong>
+                </div>
+
+                <button id="theme-toggle" class="icon-btn theme-toggle" aria-label="Toggle dark mode" title="Toggle dark/light mode">
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="4.22" x2="19.78" y2="5.64"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Application Container -->
+    <main class="app-main">
+
+        <!-- SCREEN 1: Mode Selection Screen -->
+        <section id="screen-mode-select" class="screen-view">
+            <div class="welcome-hero">
+                <div class="cyber-hero-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        <path d="M9 12l2 2 4-4"/>
+                    </svg>
+                </div>
+                <h1>Cybersecurity & Information Defense Question Bank 2026</h1>
+                <p class="hero-desc">
+                    Master Network Security, Cryptography, Cyber Attacks, Firewalls, and <strong>35 realistic enterprise scenarios</strong> modeled for technical assessments at <strong>Accenture, TCS, Capgemini, Infosys, Wipro, Cognizant, HCLTech, Deloitte, IBM & LTIMindtree</strong>.
+                </p>
+
+                <div class="exam-spec-banner">
+                    <div class="spec-pill"><span class="pill-dot cyan"></span> 100 Target Questions</div>
+                    <div class="spec-pill"><span class="pill-dot amber"></span> 35 Scenarios (35%)</div>
+                    <div class="spec-pill"><span class="pill-dot purple"></span> 15 Conceptual Traps</div>
+                    <div class="spec-pill"><span class="pill-dot emerald"></span> 45 Min Placement Timer</div>
+                </div>
+            </div>
+
+            <div class="modes-grid">
+                <!-- Mode 1: Practice Mode -->
+                <div class="mode-card" data-mode="practice">
+                    <div class="mode-icon-wrapper cyan">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                        </svg>
+                    </div>
+                    <h3>Interactive Practice</h3>
+                    <p>Self-paced learning with immediate answer feedback, deep-dive architectural reasoning, comprehensive distractor analysis (Options A, B, C, D), and practical real-world applications.</p>
+                    <ul class="mode-perks">
+                        <li>Instant correct/wrong verification</li>
+                        <li>Detailed "Why Correct" & "Why Other Options Failed"</li>
+                        <li>Filter by Topic, Question Type, or Difficulty</li>
+                    </ul>
+                    <button class="btn btn-primary start-mode-btn" data-mode="practice">Start Practice</button>
+                </div>
+
+                <!-- Mode 2: Placement Exam Mode -->
+                <div class="mode-card highlighted" data-mode="exam">
+                    <div class="mode-badge-hot">2026 MNC Exam</div>
+                    <div class="mode-icon-wrapper amber">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                    </div>
+                    <h3>Placement Timed Exam</h3>
+                    <p>Strict 45-minute exam simulation with 60 randomized questions, real-time question palette, auto-submit on timeout, and diagnostic score breakdown by domain.</p>
+                    <ul class="mode-perks">
+                        <li>45:00 countdown timer with auto-submit</li>
+                        <li>Question & option randomization</li>
+                        <li>Detailed domain diagnostics & readiness scorecard</li>
+                    </ul>
+                    <button class="btn btn-accent start-mode-btn" data-mode="exam">Start Timed Exam (45m)</button>
+                </div>
+
+                <!-- Mode 3: Flashcard Study Mode -->
+                <div class="mode-card" data-mode="flashcards">
+                    <div class="mode-icon-wrapper purple">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                        </svg>
+                    </div>
+                    <h3>Flashcard Study</h3>
+                    <p>Rapid recall flip-card mode. Ideal for memorizing core security primitives: AES vs RSA, hashing vs encryption, IDS vs IPS, phishing vs whaling, and CIA controls.</p>
+                    <ul class="mode-perks">
+                        <li>Interactive card flip reveal</li>
+                        <li>Active recall testing</li>
+                        <li>Spacebar key shortcut to flip</li>
+                    </ul>
+                    <button class="btn btn-secondary start-mode-btn" data-mode="flashcards">Open Flashcards</button>
+                </div>
+            </div>
+
+            <!-- Syllabus Matrix Roadmap -->
+            <div class="syllabus-matrix-section">
+                <div class="matrix-header">
+                    <h2>Core Cybersecurity Syllabus & Domain Matrix</h2>
+                    <p>Structured around high-probability technical assessment areas for 2026 entry-level engineering drives:</p>
+                </div>
+                <div class="topics-grid">
+                    <div class="topic-badge-card">
+                        <div class="topic-card-title">
+                            <span>17. Network Security & CIA Triad</span>
+                            <span class="badge mode-tag">15 Questions</span>
+                        </div>
+                        <p class="topic-card-desc">Confidentiality, Integrity, Availability trade-offs, least privilege, non-repudiation, disaster recovery, and incident classification.</p>
+                    </div>
+                    <div class="topic-badge-card">
+                        <div class="topic-card-title">
+                            <span>18. Cryptography & PKI</span>
+                            <span class="badge mode-tag">30 Questions</span>
+                        </div>
+                        <p class="topic-card-desc">Symmetric (AES) vs Asymmetric (RSA/ECC), hashing, salt, collisions, digital signatures, X.509 certificates, TLS 1.3 handshake & PFS.</p>
+                    </div>
+                    <div class="topic-badge-card">
+                        <div class="topic-card-title">
+                            <span>19. Cyber Attacks & Threats</span>
+                            <span class="badge mode-tag">35 Questions</span>
+                        </div>
+                        <p class="topic-card-desc">Phishing, Whaling, Malware (Virus vs Worm vs Trojan), Ransomware response, SQLi, XSS, CSRF, SYN flood, MITM & Social Engineering.</p>
+                    </div>
+                    <div class="topic-badge-card">
+                        <div class="topic-card-title">
+                            <span>20. Firewalls & Security Devices</span>
+                            <span class="badge mode-tag">20 Questions</span>
+                        </div>
+                        <p class="topic-card-desc">Stateful vs Stateless, WAF (L7), Forward vs Reverse Proxy, IDS vs IPS, VPN tunneling (IPsec/SSL), Antivirus heuristics & DMZ layout.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCREEN 2: Practice & Exam Workspace -->
+        <section id="screen-quiz-workspace" class="screen-view hidden">
+            
+            <!-- Filter & Status Bar (Visible in Practice Mode) -->
+            <div id="quiz-filter-bar" class="filter-bar">
+                <div class="filter-group">
+                    <label for="filter-topic">Topic:</label>
+                    <select id="filter-topic" class="filter-select">
+                        <option value="all">All Topics (100)</option>
+                        <option value="Network Security">Network Security (15)</option>
+                        <option value="Cryptography">Cryptography (30)</option>
+                        <option value="Cyber Attacks">Cyber Attacks (35)</option>
+                        <option value="Firewalls & Security Devices">Firewalls & Devices (20)</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="filter-diff">Difficulty:</label>
+                    <select id="filter-diff" class="filter-select">
+                        <option value="all">All Difficulties</option>
+                        <option value="Medium">Medium (20)</option>
+                        <option value="Medium-Hard">Medium-Hard (45)</option>
+                        <option value="Hard">Hard (35)</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="filter-type">Type:</label>
+                    <select id="filter-type" class="filter-select">
+                        <option value="all">All Question Types</option>
+                        <option value="Scenario-Based">Scenario-Based (35)</option>
+                        <option value="Application-Based">Application-Based (20)</option>
+                        <option value="Conceptual Trap">Conceptual Trap (15)</option>
+                        <option value="Direct Conceptual">Direct Conceptual (15)</option>
+                        <option value="Comparison">Comparison (10)</option>
+                        <option value="Log or Event Analysis">Log Analysis (5)</option>
+                    </select>
+                </div>
+
+                <div class="filter-group filter-actions">
+                    <button id="btn-change-mode" class="btn btn-outline-sm">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                        Change Mode
+                    </button>
+                </div>
+            </div>
+
+            <div class="quiz-grid-layout">
+                
+                <!-- Left Column: Question Card Area -->
+                <div class="quiz-card-col">
+                    
+                    <!-- Progress Bar -->
+                    <div class="progress-track-wrapper">
+                        <div class="progress-info-row">
+                            <span id="question-progress-label">Question 1 of 100</span>
+                            <span id="question-progress-percent">0% Completed</span>
+                        </div>
+                        <div class="progress-track">
+                            <div id="progress-bar-fill" class="progress-fill" style="width: 1%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Question Card Container -->
+                    <div id="flashcard-container" class="flashcard-container">
+                        
+                        <!-- Question Meta Header -->
+                        <div class="card-meta-row">
+                            <div class="meta-badges">
+                                <span id="badge-q-number" class="badge badge-num">Q1</span>
+                                <span id="badge-q-topic" class="badge badge-topic">Network Security</span>
+                                <span id="badge-q-diff" class="badge badge-diff">Medium</span>
+                                <span id="badge-q-type" class="badge badge-scenario">⚡ Scenario-Based</span>
+                            </div>
+                            <button id="btn-mark-review" class="btn-bookmark" aria-label="Mark question for review">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                                </svg>
+                                <span id="mark-text">Mark</span>
+                            </button>
+                        </div>
+
+                        <!-- Target Companies & Pattern Bar -->
+                        <div id="target-companies-box" class="target-companies-box">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                            <span>Target Placement Pattern:</span>
+                            <div id="companies-pill-list" class="companies-pill-list">
+                                <!-- Tags injected via JS -->
+                            </div>
+                            <span id="badge-source-status" class="badge-source">PATTERN-BASED</span>
+                        </div>
+
+                        <!-- Question Text -->
+                        <div class="question-body">
+                            <h2 id="question-text" class="question-title">Loading question...</h2>
+                        </div>
+
+                        <!-- Options List -->
+                        <div id="options-container" class="options-container">
+                            <!-- Option buttons injected by JS -->
+                        </div>
+
+                        <!-- Flashcard Flip Reveal Button (Only in Flashcards Mode) -->
+                        <div id="flashcard-reveal-row" class="flashcard-reveal-row hidden">
+                            <button id="btn-flip-card" class="btn btn-secondary btn-flip">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+                                Reveal Answer & Explanation
+                            </button>
+                        </div>
+
+                        <!-- Explanation Panel (Shown after answer in Practice or during Review) -->
+                        <div id="explanation-panel" class="explanation-panel hidden">
+                            <div class="explanation-status-header">
+                                <div class="status-indicator-icon">
+                                    <span id="explanation-status-icon">✓</span>
+                                </div>
+                                <div class="status-indicator-text">
+                                    <h3 id="explanation-status-heading">Correct Answer!</h3>
+                                    <p id="explanation-status-sub">Technical reasoning & distractor analysis:</p>
+                                </div>
+                            </div>
+
+                            <div class="explanation-body">
+                                <div class="explanation-main-text">
+                                    <p id="explanation-summary-text"></p>
+                                </div>
+
+                                <div class="explanation-details-grid">
+                                    <div class="explanation-box correct-box">
+                                        <div class="box-title">
+                                            <span class="box-badge green">Why This Answer Is Correct</span>
+                                        </div>
+                                        <p id="explanation-why-correct"></p>
+                                    </div>
+                                    <div class="explanation-box distractor-box">
+                                        <div class="box-title">
+                                            <span class="box-badge red">Why Other Options Are Incorrect</span>
+                                        </div>
+                                        <div id="explanation-why-others" class="distractor-list"></div>
+                                    </div>
+                                </div>
+
+                                <div class="placement-tip-box">
+                                    <div class="tip-icon">🛡️</div>
+                                    <div class="tip-content">
+                                        <strong>Real-World Enterprise Application:</strong>
+                                        <p id="explanation-real-world"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Navigation Footer Controls -->
+                    <div class="card-footer-nav">
+                        <button id="btn-prev" class="btn btn-secondary nav-btn" disabled>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                            Previous
+                        </button>
+                        
+                        <div class="nav-center-actions">
+                            <button id="btn-submit-exam" class="btn btn-danger hidden">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                Finish & Submit Exam
+                            </button>
+                        </div>
+
+                        <button id="btn-next" class="btn btn-primary nav-btn">
+                            Next
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        </button>
+                    </div>
+
+                </div>
+
+                <!-- Right Column: Sidebar Question Navigator -->
+                <aside class="sidebar-col">
+                    <div class="navigator-card">
+                        <div class="navigator-header">
+                            <h3>Question Navigator</h3>
+                            <span id="nav-count-badge" class="nav-counter">0 / 100</span>
+                        </div>
+
+                        <!-- Legend -->
+                        <div class="navigator-legend">
+                            <div class="legend-pill"><span class="legend-dot unvisited"></span>Unvisited</div>
+                            <div class="legend-pill"><span class="legend-dot answered"></span>Answered</div>
+                            <div class="legend-pill"><span class="legend-dot marked"></span>Marked</div>
+                            <div class="legend-pill"><span class="legend-dot current"></span>Current</div>
+                        </div>
+
+                        <!-- Grid -->
+                        <div id="navigator-grid" class="navigator-grid">
+                            <!-- 100 buttons injected via JS -->
+                        </div>
+
+                        <!-- Quick stats in sidebar -->
+                        <div class="sidebar-stats">
+                            <div class="stat-mini">
+                                <span class="stat-mini-label">Answered</span>
+                                <span id="side-stat-answered" class="stat-mini-val">0</span>
+                            </div>
+                            <div class="stat-mini">
+                                <span class="stat-mini-label">Marked</span>
+                                <span id="side-stat-marked" class="stat-mini-val">0</span>
+                            </div>
+                            <div class="stat-mini">
+                                <span class="stat-mini-label">Remaining</span>
+                                <span id="side-stat-remaining" class="stat-mini-val">100</span>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+
+            </div>
+
+        </section>
+
+        <!-- SCREEN 3: Results & Analytics Screen -->
+        <section id="screen-results" class="screen-view hidden">
+            <div class="results-container">
+                <div class="results-card">
+                    <div class="results-header">
+                        <div class="results-badge-congrats">Exam Completed</div>
+                        <h1 id="results-headline">Assessment Diagnostic Report</h1>
+                        <p id="results-subtext">Comprehensive domain analysis of your Cybersecurity placement readiness.</p>
+                    </div>
+
+                    <div class="results-score-row">
+                        <div class="score-circle-wrapper">
+                            <div class="score-circle">
+                                <span id="results-percentage" class="score-num">0%</span>
+                                <span class="score-denom">Accuracy</span>
+                            </div>
+                        </div>
+                        <div class="score-summary-details">
+                            <div class="summary-stat-box">
+                                <span class="stat-label">Total Score</span>
+                                <span id="results-score-fraction" class="stat-val primary">0 / 100</span>
+                            </div>
+                            <div class="summary-stat-box">
+                                <span class="stat-label">Time Taken</span>
+                                <span id="results-time-taken" class="stat-val">00:00</span>
+                            </div>
+                            <div class="summary-stat-box">
+                                <span class="stat-label">Placement Readiness</span>
+                                <span id="results-readiness-tag" class="stat-val badge-readiness">Pending</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Domain Breakdown Section -->
+                    <div class="breakdown-section">
+                        <h3>Performance by Cybersecurity Domain</h3>
+                        <div class="breakdown-grid">
+                            <!-- Network Security -->
+                            <div class="breakdown-card">
+                                <div class="breakdown-card-header">
+                                    <span class="breakdown-icon">🌐</span>
+                                    <div>
+                                        <strong>Network Security & CIA</strong>
+                                        <p>Confidentiality, Integrity, Availability controls</p>
+                                    </div>
+                                </div>
+                                <div class="breakdown-card-score">
+                                    <span id="stat-net-score">0 / 15</span>
+                                    <span id="stat-net-percent" class="breakdown-percent">0%</span>
+                                </div>
+                            </div>
+
+                            <!-- Cryptography -->
+                            <div class="breakdown-card">
+                                <div class="breakdown-card-header">
+                                    <span class="breakdown-icon">🔐</span>
+                                    <div>
+                                        <strong>Cryptography & PKI</strong>
+                                        <p>AES, RSA, Hashing, Signatures, Certificates</p>
+                                    </div>
+                                </div>
+                                <div class="breakdown-card-score">
+                                    <span id="stat-crypto-score">0 / 30</span>
+                                    <span id="stat-crypto-percent" class="breakdown-percent">0%</span>
+                                </div>
+                            </div>
+
+                            <!-- Cyber Attacks -->
+                            <div class="breakdown-card">
+                                <div class="breakdown-card-header">
+                                    <span class="breakdown-icon">⚠️</span>
+                                    <div>
+                                        <strong>Cyber Attacks & Threats</strong>
+                                        <p>Phishing, Malware, DDoS, SQLi, XSS, MITM</p>
+                                    </div>
+                                </div>
+                                <div class="breakdown-card-score">
+                                    <span id="stat-attacks-score">0 / 35</span>
+                                    <span id="stat-attacks-percent" class="breakdown-percent">0%</span>
+                                </div>
+                            </div>
+
+                            <!-- Firewalls & Security Devices -->
+                            <div class="breakdown-card">
+                                <div class="breakdown-card-header">
+                                    <span class="breakdown-icon">🛡️</span>
+                                    <div>
+                                        <strong>Firewalls & Security Devices</strong>
+                                        <p>Stateful firewalls, WAF, Proxies, IDS/IPS, VPNs</p>
+                                    </div>
+                                </div>
+                                <div class="breakdown-card-score">
+                                    <span id="stat-devices-score">0 / 20</span>
+                                    <span id="stat-devices-percent" class="breakdown-percent">0%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Difficulty & Question Type Breakdown -->
+                    <div class="breakdown-section">
+                        <h3>Performance by Difficulty & Reasoning Style</h3>
+                        <div class="breakdown-grid mini-grid">
+                            <div class="breakdown-card mini">
+                                <div class="breakdown-card-header">
+                                    <span class="breakdown-diff-dot green"></span>
+                                    <div><strong>Medium</strong> (20)</div>
+                                </div>
+                                <div class="breakdown-card-score">
+                                    <span id="stat-medium-score">0 / 20</span>
+                                </div>
+                            </div>
+
+                            <div class="breakdown-card mini">
+                                <div class="breakdown-card-header">
+                                    <span class="breakdown-diff-dot amber"></span>
+                                    <div><strong>Medium-Hard</strong> (45)</div>
+                                </div>
+                                <div class="breakdown-card-score">
+                                    <span id="stat-medhard-score">0 / 45</span>
+                                </div>
+                            </div>
+
+                            <div class="breakdown-card mini">
+                                <div class="breakdown-card-header">
+                                    <span class="breakdown-diff-dot red"></span>
+                                    <div><strong>Hard</strong> (35)</div>
+                                </div>
+                                <div class="breakdown-card-score">
+                                    <span id="stat-hard-score">0 / 35</span>
+                                </div>
+                            </div>
+
+                            <div class="breakdown-card mini">
+                                <div class="breakdown-card-header">
+                                    <span class="breakdown-diff-dot purple"></span>
+                                    <div><strong>Scenarios</strong> (35)</div>
+                                </div>
+                                <div class="breakdown-card-score">
+                                    <span id="stat-scenario-score">0 / 35</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="results-actions">
+                        <button id="btn-review-answers" class="btn btn-primary">Review All Answers</button>
+                        <button id="btn-retake-exam" class="btn btn-secondary">Retake Timed Exam</button>
+                        <button id="btn-back-home" class="btn btn-outline">Return to Mode Selection</button>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Embedded questions fallback script (guarantees zero CORS failures on local file://) -->
+    <script src="questions.js"></script>
+    <!-- Cross-module SyncManager integration -->
+    <script src="../syncManager.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
