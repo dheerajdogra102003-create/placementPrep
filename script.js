@@ -1,4 +1,27 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Theme initialization & toggle
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    function initTheme() {
+        const savedTheme = localStorage.getItem('placementPrep_theme') || 
+                           localStorage.getItem('placementprep-theme') || 
+                           localStorage.getItem('theme') || 
+                           localStorage.getItem('prep_theme') || 
+                           'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        if (themeToggleBtn) {
+            themeToggleBtn.addEventListener('click', () => {
+                const current = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+                const nextTheme = current === 'dark' ? 'light' : 'dark';
+                document.documentElement.setAttribute('data-theme', nextTheme);
+                localStorage.setItem('placementPrep_theme', nextTheme);
+                localStorage.setItem('placementprep-theme', nextTheme);
+                localStorage.setItem('theme', nextTheme);
+                localStorage.setItem('prep_theme', nextTheme);
+            });
+        }
+    }
+    initTheme();
+
     // Mobile menu toggle
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
     const navLinks = document.querySelector('.nav-links');

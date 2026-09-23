@@ -136,7 +136,10 @@
 
     // Theme initialization
     function initTheme() {
-        const savedTheme = localStorage.getItem('placementprep-theme') || localStorage.getItem('theme') || 'light';
+        const savedTheme = localStorage.getItem('placementPrep_theme') || 
+                           localStorage.getItem('placementprep-theme') || 
+                           localStorage.getItem('theme') || 
+                           'light';
         document.documentElement.setAttribute('data-theme', savedTheme);
 
         if (themeToggleBtn) {
@@ -144,6 +147,7 @@
                 const current = document.documentElement.getAttribute('data-theme') || 'light';
                 const next = current === 'dark' ? 'light' : 'dark';
                 document.documentElement.setAttribute('data-theme', next);
+                localStorage.setItem('placementPrep_theme', next);
                 localStorage.setItem('placementprep-theme', next);
                 localStorage.setItem('theme', next);
             });

@@ -214,17 +214,26 @@ document.addEventListener('DOMContentLoaded', () => {
     // 4. THEME & SOUND CONTROLLER
     // ==========================================
     function initTheme() {
-        const savedTheme = localStorage.getItem('prep_theme') || 'light';
+        const savedTheme = localStorage.getItem('placementPrep_theme') || 
+                           localStorage.getItem('prep_theme') || 
+                           localStorage.getItem('placementprep-theme') || 
+                           localStorage.getItem('theme') || 
+                           'light';
         document.documentElement.setAttribute('data-theme', savedTheme);
     }
 
-    dom.themeToggle.addEventListener('click', () => {
-        const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
-        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-        document.documentElement.setAttribute('data-theme', newTheme);
-        localStorage.setItem('prep_theme', newTheme);
-        soundClick();
-    });
+    if (dom.themeToggle) {
+        dom.themeToggle.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('placementPrep_theme', newTheme);
+            localStorage.setItem('prep_theme', newTheme);
+            localStorage.setItem('placementprep-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            soundClick();
+        });
+    }
 
     function toggleSound() {
         state.soundEnabled = !state.soundEnabled;

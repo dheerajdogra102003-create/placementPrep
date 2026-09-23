@@ -138,15 +138,24 @@
 
     // Theme Setup
     function initTheme() {
-        const savedTheme = localStorage.getItem('placementprep-theme') || 'light';
+        const savedTheme = localStorage.getItem('placementPrep_theme') || 
+                           localStorage.getItem('placementprep-theme') || 
+                           localStorage.getItem('theme') || 
+                           localStorage.getItem('cloud-theme') || 
+                           'light';
         document.documentElement.setAttribute('data-theme', savedTheme);
 
-        themeToggleBtn.addEventListener('click', () => {
-            const current = document.documentElement.getAttribute('data-theme') || 'light';
-            const next = current === 'dark' ? 'light' : 'dark';
-            document.documentElement.setAttribute('data-theme', next);
-            localStorage.setItem('placementprep-theme', next);
-        });
+        if (themeToggleBtn) {
+            themeToggleBtn.addEventListener('click', () => {
+                const current = document.documentElement.getAttribute('data-theme') || 'light';
+                const next = current === 'dark' ? 'light' : 'dark';
+                document.documentElement.setAttribute('data-theme', next);
+                localStorage.setItem('placementPrep_theme', next);
+                localStorage.setItem('placementprep-theme', next);
+                localStorage.setItem('theme', next);
+                localStorage.setItem('cloud-theme', next);
+            });
+        }
     }
 
     // Load Questions from embedded questions.js or fallback fetch

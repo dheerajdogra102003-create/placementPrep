@@ -34,17 +34,17 @@
 }
 
 body.dark {
-  --bg: #0d0d10;
-  --card: #17171a;
-  --card2: #212126;
-  --card3: #2a2a30;
-  --text: #f6f6f8;
-  --muted: #a4a4ab;
-  --border: #2c2c33;
+  --bg: #111827;
+  --card: #1F2937;
+  --card2: #273449;
+  --card3: #334155;
+  --text: #F1F5F9;
+  --muted: #94A3B8;
+  --border: #3B4A60;
   --blue: #38bdf8;
   --blue-hover: #0284c7;
-  --blue-light: rgba(56, 189, 248, 0.12);
-  --blue-glow: rgba(56, 189, 248, 0.25);
+  --blue-light: rgba(56, 189, 248, 0.16);
+  --blue-glow: rgba(56, 189, 248, 0.35);
   --shadow: 0 18px 50px rgba(0,0,0,.35);
   --shadow-lg: 0 24px 60px rgba(0,0,0,.5);
 }
@@ -405,20 +405,23 @@ textarea.form-control { min-height: 80px; resize: vertical; }
 
 @media(max-width: 768px) {
   .modules-grid { grid-template-columns: 1fr; }
-  .topbar { padding: 0 14px; height: 62px; }
-  .container { padding: 78px 14px 40px; }
+  .topbar { padding: 0 16px; height: 64px; }
+  .container { padding: 80px 16px 40px; }
   .hide-mobile { display: none; }
   .hero { padding: 26px 18px; border-radius: 20px; }
   .hero h1 { font-size: clamp(24px, 5.5vw, 36px); }
   .brand small { display: none; }
+  .nav-btn, .icon-btn { min-height: 44px; height: 44px; }
+  .icon-btn { width: 44px; min-width: 44px; }
 }
 
 @media(max-width: 520px) {
-  .topbar { padding: 0 10px; }
+  .topbar { padding: 0 12px; }
+  .container { padding: 76px 12px 36px; }
   .brand { font-size: 14px; }
-  .logo { width: 32px; height: 32px; font-size: 16px; border-radius: 9px; }
-  .nav-btn { height: 34px; padding: 0 9px; font-size: 11px; }
-  .icon-btn { width: 34px; height: 34px; font-size: 14px; }
+  .logo { width: 36px; height: 36px; font-size: 18px; border-radius: 9px; }
+  .nav-btn { min-height: 44px; height: 44px; padding: 0 10px; font-size: 12px; }
+  .icon-btn { width: 44px; height: 44px; font-size: 15px; }
   .hide-small { display: none; }
   .show-small { display: inline; }
   .mod-card { padding: 20px 16px; }
@@ -827,21 +830,31 @@ form.addEventListener("submit", (e) => {
 // Dark theme sync
 const body = document.body;
 const themeBtn = document.getElementById("themeBtn");
-const savedTheme = localStorage.getItem("placementprep-theme") || localStorage.getItem("theme") || localStorage.getItem("cloud-theme");
+const savedTheme = localStorage.getItem("placementPrep_theme") || 
+                   localStorage.getItem("placementprep-theme") || 
+                   localStorage.getItem("theme") || 
+                   localStorage.getItem("cloud-theme") || 
+                   'light';
 
 if (savedTheme === "dark") {
   body.classList.add("dark");
-  themeBtn.textContent = "☀";
+  if (themeBtn) themeBtn.textContent = "☀";
+} else {
+  body.classList.remove("dark");
+  if (themeBtn) themeBtn.textContent = "☾";
 }
 
-themeBtn.addEventListener("click", () => {
-  body.classList.toggle("dark");
-  const dark = body.classList.contains("dark");
-  localStorage.setItem("placementprep-theme", dark ? "dark" : "light");
-  localStorage.setItem("theme", dark ? "dark" : "light");
-  localStorage.setItem("cloud-theme", dark ? "dark" : "light");
-  themeBtn.textContent = dark ? "☀" : "☾";
-});
+if (themeBtn) {
+  themeBtn.addEventListener("click", () => {
+    body.classList.toggle("dark");
+    const dark = body.classList.contains("dark");
+    localStorage.setItem("placementPrep_theme", dark ? "dark" : "light");
+    localStorage.setItem("placementprep-theme", dark ? "dark" : "light");
+    localStorage.setItem("theme", dark ? "dark" : "light");
+    localStorage.setItem("cloud-theme", dark ? "dark" : "light");
+    themeBtn.textContent = dark ? "☀" : "☾";
+  });
+}
 
 // Initial Render
 renderModules();

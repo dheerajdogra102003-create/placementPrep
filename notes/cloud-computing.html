@@ -31,15 +31,16 @@
   --radius:18px;
 }
 body.dark{
-  --bg:#0d0d0f;
-  --card:#171719;
-  --card2:#202023;
-  --text:#f6f6f6;
-  --muted:#a7a7aa;
-  --border:#2b2b30;
+  --bg:#111827;
+  --card:#1F2937;
+  --card2:#273449;
+  --card3:#334155;
+  --text:#F1F5F9;
+  --muted:#94A3B8;
+  --border:#3B4A60;
   --mint:#1f351b;
   --mintText:#b7eaa7;
-  --shadow:0 18px 50px rgba(0,0,0,.30);
+  --shadow:0 18px 50px rgba(0,0,0,.35);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -908,20 +909,26 @@ const clearSearch=document.getElementById("clearSearch");
 const topSearch=document.getElementById("topSearch");
 
 // Synchronize theme with PlacementPrep platform theme or local cloud-theme
-const savedTheme=localStorage.getItem("cloud-theme") || localStorage.getItem("placementprep-theme") || localStorage.getItem("theme");
+const savedTheme=localStorage.getItem("placementPrep_theme") || localStorage.getItem("cloud-theme") || localStorage.getItem("placementprep-theme") || localStorage.getItem("theme") || 'light';
 if(savedTheme==="dark"){
   body.classList.add("dark");
-  themeBtn.textContent="☀";
+  if (themeBtn) themeBtn.textContent="☀";
+} else {
+  body.classList.remove("dark");
+  if (themeBtn) themeBtn.textContent="☾";
 }
 
-themeBtn.addEventListener("click",()=>{
-  body.classList.toggle("dark");
-  const dark=body.classList.contains("dark");
-  localStorage.setItem("cloud-theme",dark?"dark":"light");
-  localStorage.setItem("placementprep-theme",dark?"dark":"light");
-  localStorage.setItem("theme",dark?"dark":"light");
-  themeBtn.textContent=dark?"☀":"☾";
-});
+if (themeBtn) {
+  themeBtn.addEventListener("click",()=>{
+    body.classList.toggle("dark");
+    const dark=body.classList.contains("dark");
+    localStorage.setItem("placementPrep_theme",dark?"dark":"light");
+    localStorage.setItem("cloud-theme",dark?"dark":"light");
+    localStorage.setItem("placementprep-theme",dark?"dark":"light");
+    localStorage.setItem("theme",dark?"dark":"light");
+    themeBtn.textContent=dark?"☀":"☾";
+  });
+}
 
 const sidebarBackdrop = document.getElementById("sidebarBackdrop");
 

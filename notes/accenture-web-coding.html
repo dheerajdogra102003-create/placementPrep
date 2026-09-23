@@ -54,17 +54,17 @@
 }
 
 body.dark {
-  --bg: #0b0f19;
-  --card: #131b2e;
-  --card2: #1b2640;
-  --card3: #263556;
-  --text: #f8fafc;
-  --muted: #94a3b8;
-  --border: #1e2d4a;
+  --bg: #111827;
+  --card: #1F2937;
+  --card2: #273449;
+  --card3: #334155;
+  --text: #F1F5F9;
+  --muted: #94A3B8;
+  --border: #3B4A60;
   --purple: #a78bfa;
   --purple-hover: #8b5cf6;
-  --purple-light: rgba(167, 139, 250, 0.14);
-  --purple-glow: rgba(167, 139, 250, 0.28);
+  --purple-light: rgba(167, 139, 250, 0.16);
+  --purple-glow: rgba(167, 139, 250, 0.3);
   --accent: #60a5fa;
   --accent-light: rgba(96, 165, 250, 0.12);
   --green: #34d399;
@@ -2722,22 +2722,31 @@ el.<span class="code-fn">remove</span>();
 <script>
 // Theme Management
 const themeToggle = document.getElementById('themeToggle');
-const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-const savedTheme = localStorage.getItem('placement_theme') || (prefersDark ? 'dark' : 'light');
+const savedTheme = localStorage.getItem('placementPrep_theme') || 
+                   localStorage.getItem('placementprep-theme') || 
+                   localStorage.getItem('placement_theme') || 
+                   localStorage.getItem('theme') || 
+                   'light';
 
 if (savedTheme === 'dark') {
   document.body.classList.add('dark');
   themeToggle.textContent = '☀';
 } else {
+  document.body.classList.remove('dark');
   themeToggle.textContent = '☾';
 }
 
-themeToggle.addEventListener('click', () => {
-  document.body.classList.toggle('dark');
-  const isDark = document.body.classList.contains('dark');
-  themeToggle.textContent = isDark ? '☀' : '☾';
-  localStorage.setItem('placement_theme', isDark ? 'dark' : 'light');
-});
+if (themeToggle) {
+  themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark');
+    const isDark = document.body.classList.contains('dark');
+    themeToggle.textContent = isDark ? '☀' : '☾';
+    localStorage.setItem('placementPrep_theme', isDark ? 'dark' : 'light');
+    localStorage.setItem('placementprep-theme', isDark ? 'dark' : 'light');
+    localStorage.setItem('placement_theme', isDark ? 'dark' : 'light');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  });
+}
 
 // Reading Progress Bar
 const progressBar = document.getElementById('reading-bar');
