@@ -1,908 +1,1054 @@
 /**
- * AI DSA Mentor & Placement Coach - Application Controller
- * Handles 22-phase roadmap, prerequisite checks, 14-step daily learning algorithm,
- * practice studio, Python test execution, mentor interactions, and command palette.
+ * DSA Quest - Application Controller
+ * 100% Static Frontend for GitHub Pages.
+ * Handles:
+ * 1. 8-View SPA Navigation (Home, Roadmap, Learn, Pattern Lab, Practice, Daily, Placement, Progress)
+ * 2. LocalStorage Persistence (phases, topics, problems, streak, pattern scores, achievements)
+ * 3. Interactive Pointer Stepper Visualizer (Two Pointers & Sliding Window)
+ * 4. Pattern Recognition Lab with instant feedback
+ * 5. Practice Arena with 5-Level Progressive Hint Ladders
+ * 6. Daily Challenge & Streak Engine
+ * 7. Placement Arena Company Tracks
+ * 8. Gamified Achievements & Progress Dashboards
  */
 
 document.addEventListener('DOMContentLoaded', () => {
     'use strict';
 
-    // App State
-    let currentProblem = null;
-    let currentTestResults = null;
-    let practiceStartTime = null;
-    let sessionTimerInterval = null;
-    let sessionRemainingSeconds = 30 * 60;
-
-    // Cache Elements
-    const views = document.querySelectorAll('.app-view');
-    const navTabs = document.querySelectorAll('.dsa-nav-tab');
-    const themeToggleBtn = document.getElementById('theme-toggle');
-    const cmdPaletteOverlay = document.getElementById('cmd-palette-overlay');
-    const cmdInput = document.getElementById('cmd-palette-input');
-    const cmdResultsList = document.getElementById('cmd-results-list');
-    const openCmdBtn = document.getElementById('open-cmd-palette');
-    const toastContainer = document.getElementById('toast-container');
-
-    // Practice Elements
-    const codeTextarea = document.getElementById('code-editor-textarea');
-    const lineNumbersDiv = document.getElementById('editor-line-numbers');
-    const btnRunCode = document.getElementById('btn-run-code');
-    const btnSubmitCode = document.getElementById('btn-submit-code');
-    const btnResetCode = document.getElementById('btn-reset-code');
-    const testResultsContainer = document.getElementById('test-results-container');
-    const mentorChatStream = document.getElementById('mentor-chat-stream');
-    const studentThinkingInput = document.getElementById('student-thinking-input');
-    const btnSendThinking = document.getElementById('btn-send-thinking');
-
     // =========================================================================
-    // 1. THEME INITIALIZATION
+    // 1. STATE & STORAGE MANAGEMENT
     // =========================================================================
-    function initTheme() {
-        const savedTheme = localStorage.getItem('placementPrep_theme') || 'light';
-        document.documentElement.setAttribute('data-theme', savedTheme);
-        if (themeToggleBtn) {
-            themeToggleBtn.addEventListener('click', () => {
-                const current = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
-                const nextTheme = current === 'dark' ? 'light' : 'dark';
-                document.documentElement.setAttribute('data-theme', nextTheme);
-                localStorage.setItem('placementPrep_theme', nextTheme);
-                localStorage.setItem('placementprep-theme', nextTheme);
-            });
+    const STORAGE_KEY = 'dsa_quest_state_v1';
+
+    const defaultState = {
+        completedPhases: [],
+        completedTopics: [],
+        completedProblems: [],
+        patternScore: 0,
+        patternAnswered: {},
+        streak: 1,
+        lastActiveDate: new Date().toISOString().split('T')[0],
+        unlockedAchievements: [],
+        currentPhase: 0,
+        theme: 'light'
+    };
+
+    function loadState() {
+        try {
+            const raw = localStorage.getItem(STORAGE_KEY);
+            if (!raw) return defaultState;
+            const parsed = JSON.parse(raw);
+            return { ...defaultState, ...parsed };
+        } catch (e) {
+            console.warn('Failed to parse DSA Quest state from localStorage:', e);
+            return defaultState;
         }
+    }
+
+    let state = loadState();
+
+    function saveState() {
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+            updateGlobalUI();
+        } catch (e) {
+            console.error('Error saving state:', e);
+        }
+    }
+
+    // Update streak on daily visit
+    function checkDailyStreak() {
+        const today = new Date().toISOString().split('T')[0];
+        if (state.lastActiveDate !== today) {
+            const lastDate = new Date(state.lastActiveDate);
+            const currentDate = new Date(today);
+            const diffDays = Math.round((currentDate - lastDate) / (1000 * 60 * 60 * 24));
+
+            if (diffDays === 1) {
+                state.streak += 1;
+            } else if (diffDays > 1) {
+                state.streak = 1;
+            }
+            state.lastActiveDate = today;
+            saveState();
+        }
+    }
+    checkDailyStreak();
+
+    // =========================================================================
+    // 2. THEME ENGINE
+    // =========================================================================
+    const themeToggleBtn = document.getElementById('theme-toggle');
+
+    function initTheme() {
+        const savedTheme = localStorage.getItem('dsa_quest_theme') || localStorage.getItem('placementPrep_theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        state.theme = savedTheme;
+        if (themeToggleBtn) {
+            themeToggleBtn.innerHTML = savedTheme === 'dark' ? '☀️' : '🌓';
+        }
+    }
+
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', () => {
+            const current = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+            const nextTheme = current === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', nextTheme);
+            localStorage.setItem('dsa_quest_theme', nextTheme);
+            localStorage.setItem('placementPrep_theme', nextTheme);
+            themeToggleBtn.innerHTML = nextTheme === 'dark' ? '☀️' : '🌓';
+            showToast(`Theme switched to ${nextTheme} mode`, 'info');
+        });
     }
     initTheme();
 
     // =========================================================================
-    // 2. VIEW NAVIGATION
+    // 3. TOAST NOTIFICATIONS
     // =========================================================================
-    function switchView(viewId) {
-        views.forEach(v => v.classList.remove('active'));
-        navTabs.forEach(t => t.classList.remove('active'));
+    const toastContainer = document.getElementById('toast-container');
 
-        const targetView = document.getElementById(viewId);
-        if (targetView) targetView.classList.add('active');
-
-        const activeTab = document.querySelector(`.dsa-nav-tab[data-view="${viewId}"]`);
-        if (activeTab) activeTab.classList.add('active');
-
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-
-        if (viewId === 'view-dashboard') renderDashboard();
-        else if (viewId === 'view-roadmap') renderRoadmap();
-        else if (viewId === 'view-mistakes') renderMistakes();
-        else if (viewId === 'view-revision') renderRevision();
-        else if (viewId === 'view-analytics') renderAnalytics();
-        else if (viewId === 'view-notes') renderNotes();
-        else if (viewId === 'view-placement') renderPlacementMode();
-        else if (viewId === 'view-settings') renderSettings();
-    }
-
-    navTabs.forEach(tab => {
-        tab.addEventListener('click', (e) => {
-            const vId = e.currentTarget.getAttribute('data-view');
-            if (vId) switchView(vId);
-        });
-    });
-
-    document.addEventListener('click', (e) => {
-        const btn = e.target.closest('[data-switch-view]');
-        if (btn) {
-            const target = btn.getAttribute('data-switch-view');
-            if (target) switchView(target);
-        }
-    });
-
-    function showToast(message, icon = 'ℹ️', duration = 3000) {
+    function showToast(message, type = 'success') {
         if (!toastContainer) return;
         const toast = document.createElement('div');
-        toast.className = 'toast';
-        toast.innerHTML = `<span>${icon}</span><span>${message}</span>`;
+        toast.className = 'quest-toast';
+        toast.style.cssText = `
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border-left: 4px solid ${type === 'success' ? 'var(--success)' : type === 'warning' ? 'var(--warning)' : 'var(--accent)'};
+            border: 1px solid var(--border-color);
+            border-left-width: 4px;
+            padding: 0.85rem 1.25rem;
+            border-radius: var(--radius-sm);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            font-size: 0.88rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            animation: fadeIn 0.2s ease-out;
+            max-width: 360px;
+        `;
+        toast.innerHTML = message;
         toastContainer.appendChild(toast);
+
         setTimeout(() => {
             toast.style.opacity = '0';
             toast.style.transform = 'translateY(10px)';
-            setTimeout(() => toast.remove(), 250);
-        }, duration);
+            toast.style.transition = 'all 0.3s ease';
+            setTimeout(() => toast.remove(), 300);
+        }, 3200);
     }
 
     // =========================================================================
-    // 3. DASHBOARD & 14-STEP LEARNING ALGORITHM
+    // 4. VIEW NAVIGATION
     // =========================================================================
-    function renderDashboard() {
-        if (!window.DSAStorage) return;
-        const metrics = window.DSAStorage.getDashboardMetrics();
-        const dailyRecommendation = window.DSAStorage.runDailyLearningAlgorithm();
+    const views = document.querySelectorAll('.quest-view');
+    const menuButtons = document.querySelectorAll('.menu-item-btn, .mobile-nav-btn');
+    const currentViewTitle = document.getElementById('current-view-title');
 
-        const elRate = document.getElementById('dash-solve-rate');
-        const elAttempted = document.getElementById('dash-attempted');
-        const elStreak = document.getElementById('dash-streak');
-        const elRevision = document.getElementById('dash-revision-due');
-        const elWeakest = document.getElementById('dash-weakest-pattern');
+    const viewTitles = {
+        'view-home': 'Home',
+        'view-roadmap': 'Roadmap',
+        'view-learn': 'Interactive Lessons',
+        'view-patterns': 'Pattern Recognition Lab',
+        'view-practice': 'Practice Arena',
+        'view-daily': 'Daily Challenge',
+        'view-placement': 'Placement Arena',
+        'view-progress': 'Progress & Achievements'
+    };
 
-        if (elRate) elRate.textContent = `${metrics.independentSolveRate}%`;
-        if (elAttempted) elAttempted.textContent = metrics.totalAttempted;
-        if (elStreak) elStreak.textContent = `${metrics.streakDays}d`;
-        if (elRevision) elRevision.textContent = metrics.revisionDueCount;
-        if (elWeakest) elWeakest.textContent = metrics.currentTopic;
+    function switchView(viewId) {
+        // Toggle view visibility
+        views.forEach(v => {
+            if (v.id === viewId) {
+                v.classList.add('active');
+            } else {
+                v.classList.remove('active');
+            }
+        });
 
-        // Skills Bars
-        const skillsContainer = document.getElementById('dash-skills-list');
-        if (skillsContainer && metrics.skillScores) {
-            skillsContainer.innerHTML = '';
-            const labels = {
-                problem_understanding: "Problem Understanding",
-                logic_building: "Logic Building",
-                dry_run: "Dry-Run Tracing",
-                pattern_recognition: "Pattern Recognition",
-                coding: "Python Coding",
-                debugging: "Debugging",
-                optimization: "Time & Space Complexity"
-            };
+        // Update active class on nav buttons
+        menuButtons.forEach(btn => {
+            if (btn.getAttribute('data-view') === viewId) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
 
-            for (let [k, score] of Object.entries(metrics.skillScores)) {
-                const percent = Math.min(100, Math.round((score / 5) * 100));
-                const item = document.createElement('div');
-                item.className = 'skill-item';
-                item.innerHTML = `
-                    <div class="skill-header">
-                        <span>${labels[k] || k}</span>
-                        <span>${score.toFixed(1)} / 5.0</span>
-                    </div>
-                    <div class="skill-track">
-                        <div class="skill-fill" style="width: ${percent}%;"></div>
-                    </div>
+        // Update topbar breadcrumb
+        if (currentViewTitle && viewTitles[viewId]) {
+            currentViewTitle.textContent = viewTitles[viewId];
+        }
+
+        // Scroll to top
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        // Update state current view triggers
+        if (viewId === 'view-progress') {
+            renderProgressView();
+        } else if (viewId === 'view-roadmap') {
+            renderRoadmap();
+        }
+    }
+
+    // Wire up sidebar and mobile nav buttons
+    menuButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const targetView = btn.getAttribute('data-view');
+            if (targetView) {
+                switchView(targetView);
+            }
+        });
+    });
+
+    // Wire up all in-page links with data-switch-view
+    document.addEventListener('click', (e) => {
+        const switchBtn = e.target.closest('[data-switch-view]');
+        if (switchBtn) {
+            e.preventDefault();
+            const target = switchBtn.getAttribute('data-switch-view');
+            if (target) {
+                switchView(target);
+                const lessonKey = switchBtn.getAttribute('data-lesson-key');
+                if (lessonKey) {
+                    loadLesson(lessonKey);
+                }
+            }
+        }
+    });
+
+    // =========================================================================
+    // 5. ACHIEVEMENTS CHECKER
+    // =========================================================================
+    function checkAchievements() {
+        if (!window.DSA_QUEST_DATA) return;
+        const achievements = DSA_QUEST_DATA.achievements;
+        let newUnlocked = false;
+
+        achievements.forEach(ach => {
+            if (state.unlockedAchievements.includes(ach.id)) return;
+
+            let conditionMet = false;
+            switch (ach.id) {
+                case 'first_step':
+                    conditionMet = state.completedTopics.length > 0 || state.completedPhases.length > 0;
+                    break;
+                case 'streak_3':
+                    conditionMet = state.streak >= 3;
+                    break;
+                case 'ten_problems':
+                    conditionMet = state.completedProblems.length >= 8;
+                    break;
+                case 'pattern_hunter':
+                    conditionMet = state.patternScore >= 4;
+                    break;
+                case 'array_master':
+                    const arrayProblems = DSA_QUEST_DATA.problems.filter(p => p.topic === 'Arrays');
+                    conditionMet = arrayProblems.every(p => state.completedProblems.includes(p.id));
+                    break;
+                case 'tree_climber':
+                    conditionMet = state.completedPhases.includes(13);
+                    break;
+                case 'placement_ready':
+                    conditionMet = state.completedProblems.length >= 6;
+                    break;
+            }
+
+            if (conditionMet) {
+                state.unlockedAchievements.push(ach.id);
+                newUnlocked = true;
+                showToast(`🏆 Achievement Unlocked: <strong>${ach.title}</strong>!`, 'warning');
+            }
+        });
+
+        if (newUnlocked) {
+            saveState();
+        }
+    }
+
+    // =========================================================================
+    // 6. GLOBAL TOPBAR & SIDEBAR UI SYNC
+    // =========================================================================
+    function updateGlobalUI() {
+        const topbarStreakCount = document.getElementById('topbar-streak-count');
+        const topbarSolvedCount = document.getElementById('topbar-solved-count');
+        const sidebarStreakText = document.getElementById('sidebar-streak-text');
+        const sidebarPhaseText = document.getElementById('sidebar-phase-text');
+
+        if (topbarStreakCount) topbarStreakCount.textContent = state.streak;
+        if (topbarSolvedCount) topbarSolvedCount.textContent = state.completedProblems.length;
+        if (sidebarStreakText) sidebarStreakText.textContent = `${state.streak} Day Streak`;
+        if (sidebarPhaseText) sidebarPhaseText.textContent = `Phase ${state.currentPhase}: Foundation`;
+
+        checkAchievements();
+    }
+
+    // =========================================================================
+    // 7. ROADMAP ENGINE
+    // =========================================================================
+    const roadmapContainer = document.getElementById('roadmap-timeline-container');
+    const roadmapProgressBar = document.getElementById('roadmap-progress-bar');
+    const roadmapCompletionPercent = document.getElementById('roadmap-completion-percent');
+    const roadmapCompletedCount = document.getElementById('roadmap-completed-count');
+
+    function renderRoadmap() {
+        if (!roadmapContainer || !window.DSA_QUEST_DATA) return;
+        const phases = DSA_QUEST_DATA.phases;
+
+        const completedCount = state.completedPhases.length;
+        const totalPhases = phases.length;
+        const percent = Math.round((completedCount / totalPhases) * 100);
+
+        if (roadmapProgressBar) roadmapProgressBar.style.width = `${percent}%`;
+        if (roadmapCompletionPercent) roadmapCompletionPercent.textContent = `${percent}%`;
+        if (roadmapCompletedCount) roadmapCompletedCount.textContent = `${completedCount} of ${totalPhases} Phases Mastered`;
+
+        roadmapContainer.innerHTML = phases.map(phase => {
+            const isCompleted = state.completedPhases.includes(phase.id);
+            const isActive = phase.id === state.currentPhase;
+
+            const topicsHtml = phase.topics.map(topic => {
+                const isTopicDone = state.completedTopics.includes(topic);
+                return `
+                    <span class="topic-tag-chip" style="${isTopicDone ? 'background: var(--success-bg); color: var(--success); font-weight: 600;' : ''}">
+                        ${isTopicDone ? '✓ ' : ''}${topic}
+                    </span>
                 `;
-                skillsContainer.appendChild(item);
-            }
-        }
+            }).join('');
 
-        // Daily Algorithm Recommendation Box
-        const recBox = document.getElementById('dash-recommended-box');
-        if (recBox && dailyRecommendation && dailyRecommendation.problem) {
-            const p = dailyRecommendation.problem;
-            recBox.innerHTML = `
-                <div>
-                    <div class="problem-badge-row" style="margin-bottom: 0.35rem;">
-                        <span class="badge badge-easy">${p.difficulty}</span>
-                        <span class="badge badge-pattern">${p.pattern}</span>
-                        <span style="font-size: 0.75rem; color: var(--accent-primary); font-weight: 600;">⭐ ${dailyRecommendation.title}</span>
+            return `
+                <div class="phase-journey-card ${isCompleted ? 'completed' : ''} ${isActive ? 'active-phase' : ''}" data-phase-id="${phase.id}">
+                    <div class="phase-node-bullet">
+                        ${isCompleted ? '✓' : phase.icon}
                     </div>
-                    <h3 style="font-size: 1.15rem; font-weight: 700;">${p.title}</h3>
-                    <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.25rem;">${dailyRecommendation.reason}</p>
+                    <div class="phase-content-box">
+                        <div class="phase-box-top">
+                            <div>
+                                <span class="phase-badge-pill">${phase.badge}</span>
+                                <h3 style="font-size: 1.15rem; font-weight: 800; margin-top: 0.35rem;">Phase ${phase.id}: ${phase.name}</h3>
+                            </div>
+                            <button class="btn-outline toggle-phase-btn" data-phase-id="${phase.id}" style="padding: 0.35rem 0.75rem; font-size: 0.8rem;">
+                                ${isCompleted ? 'Completed ✓' : 'Mark Complete'}
+                            </button>
+                        </div>
+                        <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 0.75rem;">${phase.summary}</p>
+                        <div class="phase-topics-pills">
+                            ${topicsHtml}
+                        </div>
+                    </div>
                 </div>
-                <button class="btn btn-primary" id="btn-start-recommended" data-problem-id="${p.id}">
-                    <span>Start Practice</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                </button>
             `;
+        }).join('');
 
-            document.getElementById('btn-start-recommended')?.addEventListener('click', () => {
-                loadProblemIntoPractice(p);
+        // Wire up phase completion toggles
+        roadmapContainer.querySelectorAll('.toggle-phase-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const phaseId = parseInt(btn.getAttribute('data-phase-id'), 10);
+                if (state.completedPhases.includes(phaseId)) {
+                    state.completedPhases = state.completedPhases.filter(id => id !== phaseId);
+                    showToast(`Phase ${phaseId} unmarked`, 'info');
+                } else {
+                    state.completedPhases.push(phaseId);
+                    if (state.currentPhase <= phaseId && phaseId < 21) {
+                        state.currentPhase = phaseId + 1;
+                    }
+                    showToast(`🎉 Phase ${phaseId} Mastered! Keep going!`, 'success');
+                }
+                saveState();
+                renderRoadmap();
             });
-        }
+        });
     }
 
     // =========================================================================
-    // 4. PRACTICE STUDIO
+    // 8. INTERACTIVE LESSON & VISUALIZER STEPPER
     // =========================================================================
-    function loadProblemIntoPractice(problem) {
-        currentProblem = problem;
-        currentTestResults = null;
-        practiceStartTime = performance.now();
-        window.DSAMentorEngine?.resetHints(problem.id);
+    let currentLessonKey = 'two_pointers';
+    let currentStepIdx = 0;
+    const lessonContainer = document.getElementById('lesson-content-container');
+    const lessonChips = document.querySelectorAll('[data-lesson]');
 
-        switchView('view-practice');
+    function loadLesson(lessonKey) {
+        if (!window.DSA_QUEST_DATA || !DSA_QUEST_DATA.lessons[lessonKey]) return;
+        currentLessonKey = lessonKey;
+        currentStepIdx = 0;
 
-        document.getElementById('practice-problem-title').textContent = problem.title;
-        document.getElementById('practice-difficulty-badge').textContent = problem.difficulty;
-        document.getElementById('practice-pattern-badge').textContent = problem.pattern;
-        document.getElementById('practice-description').textContent = problem.description;
-        document.getElementById('practice-input-format').textContent = problem.input_format;
-        document.getElementById('practice-output-format').textContent = problem.output_format;
+        lessonChips.forEach(chip => {
+            if (chip.getAttribute('data-lesson') === lessonKey) {
+                chip.classList.add('active');
+            } else {
+                chip.classList.remove('active');
+            }
+        });
 
-        const phaseObj = (window.DSA_ROADMAP_PHASES || []).find(ph => ph.id === problem.phase);
-        document.getElementById('practice-phase-name').textContent = phaseObj ? phaseObj.name : problem.phase;
+        renderLessonContent();
+    }
 
-        const tagsContainer = document.getElementById('practice-company-tags');
-        if (tagsContainer) {
-            tagsContainer.innerHTML = (problem.companies || []).map(c => `<span class="company-pill">${c}</span>`).join('');
-        }
+    function renderLessonContent() {
+        if (!lessonContainer || !window.DSA_QUEST_DATA) return;
+        const lesson = DSA_QUEST_DATA.lessons[currentLessonKey];
+        if (!lesson) return;
 
-        const examplesContainer = document.getElementById('practice-examples-container');
-        if (examplesContainer) {
-            examplesContainer.innerHTML = (problem.examples || []).map((ex, i) => `
-                <div class="example-card">
-                    <strong>Example ${i + 1}:</strong><br>
-                    <strong>Input:</strong> ${ex.input}<br>
-                    <strong>Output:</strong> ${ex.output}<br>
-                    ${ex.explanation ? `<strong>Explanation:</strong> ${ex.explanation}` : ''}
+        const visData = lesson.visualizerData;
+        const step = visData.steps[currentStepIdx] || visData.steps[0];
+
+        // Generate Array cells with pointer markings
+        const arrayCellsHtml = visData.array.map((val, idx) => {
+            let pointerClass = '';
+            if (idx === step.left && idx === step.right) {
+                pointerClass = 'pointer-left pointer-right';
+            } else if (idx === step.left) {
+                pointerClass = 'pointer-left';
+            } else if (idx === step.right) {
+                pointerClass = 'pointer-right';
+            }
+
+            return `
+                <div class="array-cell ${pointerClass}">
+                    <span class="cell-idx">idx ${idx}</span>
+                    <span>${val}</span>
                 </div>
-            `).join('');
-        }
+            `;
+        }).join('');
 
-        const constraintsList = document.getElementById('practice-constraints-list');
-        if (constraintsList) {
-            constraintsList.innerHTML = (problem.constraints || []).map(c => `<li>${c}</li>`).join('');
-        }
+        lessonContainer.innerHTML = `
+            <div class="lesson-header">
+                <div>
+                    <span class="hero-tag">${lesson.badge}</span>
+                    <h2 style="font-size: 1.6rem; font-weight: 800; margin-top: 0.35rem;">${lesson.title}</h2>
+                </div>
+                <button class="btn-accent" data-switch-view="view-practice" style="padding: 0.5rem 1rem; font-size: 0.85rem;">
+                    Practice Pattern ➔
+                </button>
+            </div>
 
-        if (codeTextarea) {
-            codeTextarea.value = problem.starter_code;
-            updateLineNumbers();
-        }
+            <!-- What & Why -->
+            <div class="lesson-section">
+                <div class="lesson-section-title">💡 What is it?</div>
+                <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6;">${lesson.what}</p>
+            </div>
 
-        if (testResultsContainer) {
-            testResultsContainer.innerHTML = `<div style="color: var(--text-muted); font-size: 0.85rem; padding: 1rem; text-align: center;">Click <strong>Run Code</strong> to execute test cases against your Python function.</div>`;
-        }
+            <div class="lesson-section">
+                <div class="lesson-section-title">⚡ Why do we need it?</div>
+                <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6;">${lesson.why}</p>
+            </div>
 
-        if (mentorChatStream) {
-            mentorChatStream.innerHTML = '';
-            addMentorBubble(`👋 Hello! I am your AI DSA Mentor for **${problem.title}**.\n\nTake a moment to read the examples. **Before writing code**, tell me: what is the pattern or steps in plain English? Or click **'Pattern Questions'**!`);
-        }
+            <!-- Real World Analogy -->
+            <div class="lesson-section">
+                <div class="lesson-section-title">🌍 Real-World Analogy</div>
+                <div class="lesson-analogy-box">
+                    "${lesson.analogy}"
+                </div>
+            </div>
 
-        switchStudioBottomTab('tab-tests');
-    }
+            <!-- Interactive Stepper Visualizer -->
+            <div class="lesson-section">
+                <div class="lesson-section-title">🎬 Interactive Pointer Stepper &amp; Dry Run</div>
+                <div class="visualizer-stage">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-weight: 700; font-size: 0.95rem;">${visData.title}</span>
+                        <span class="phase-badge-pill">Step ${currentStepIdx + 1} of ${visData.steps.length}</span>
+                    </div>
 
-    function updateLineNumbers() {
-        if (!codeTextarea || !lineNumbersDiv) return;
-        const lineCount = codeTextarea.value.split('\n').length;
-        let numbersHtml = '';
-        for (let i = 1; i <= Math.max(lineCount, 12); i++) {
-            numbersHtml += `${i}<br>`;
-        }
-        lineNumbersDiv.innerHTML = numbersHtml;
-    }
+                    <div class="visualizer-array">
+                        ${arrayCellsHtml}
+                    </div>
 
-    if (codeTextarea) {
-        codeTextarea.addEventListener('input', updateLineNumbers);
-        codeTextarea.addEventListener('scroll', () => {
-            if (lineNumbersDiv) lineNumbersDiv.scrollTop = codeTextarea.scrollTop;
-        });
+                    <!-- Step state note -->
+                    <div style="background: var(--bg-card); border: 1px solid var(--border-color); padding: 1rem; border-radius: var(--radius-sm); margin-top: 2rem;">
+                        <div style="font-size: 0.85rem; font-weight: 700; color: var(--text-primary);">
+                            Calculation: <span style="font-family: 'JetBrains Mono', monospace; color: var(--accent);">${step.sum}</span>
+                        </div>
+                        <div style="font-size: 0.88rem; font-weight: 600; margin-top: 0.25rem;">
+                            Action: ${step.action}
+                        </div>
+                        <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.2rem;">
+                            💡 Note: ${step.note}
+                        </div>
+                    </div>
 
-        codeTextarea.addEventListener('keydown', (e) => {
-            if (e.key === 'Tab') {
-                e.preventDefault();
-                const start = codeTextarea.selectionStart;
-                const end = codeTextarea.selectionEnd;
-                codeTextarea.value = codeTextarea.value.substring(0, start) + "    " + codeTextarea.value.substring(end);
-                codeTextarea.selectionStart = codeTextarea.selectionEnd = start + 4;
-                updateLineNumbers();
-            }
-        });
-    }
+                    <div class="visualizer-stepper-ctrls">
+                        <button class="btn-outline" id="btn-vis-prev" ${currentStepIdx === 0 ? 'disabled style="opacity: 0.4; cursor: not-allowed;"' : ''}>
+                            ◀ Previous Step
+                        </button>
+                        <button class="btn-outline" id="btn-vis-reset">
+                            ↺ Reset Stepper
+                        </button>
+                        <button class="btn-accent" id="btn-vis-next" ${currentStepIdx === visData.steps.length - 1 ? 'disabled style="opacity: 0.4; cursor: not-allowed;"' : ''}>
+                            Next Step ▶
+                        </button>
+                    </div>
+                </div>
+            </div>
 
-    btnResetCode?.addEventListener('click', () => {
-        if (currentProblem && codeTextarea) {
-            if (confirm("Reset code back to starter template?")) {
-                codeTextarea.value = currentProblem.starter_code;
-                updateLineNumbers();
-                showToast("Code reset.", "🔄");
-            }
-        }
-    });
+            <!-- Syntax Code Block -->
+            <div class="lesson-section">
+                <div class="lesson-section-title">🐍 Python Syntax Template</div>
+                <pre class="code-snippet"><code>${lesson.syntax}</code></pre>
+            </div>
 
-    btnRunCode?.addEventListener('click', async () => {
-        if (!currentProblem || !codeTextarea) return;
-        btnRunCode.disabled = true;
-        btnRunCode.innerHTML = `<span>Running...</span>`;
+            <!-- Complexity & Mistakes -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin-top: 1.5rem;">
+                <div class="stat-quest-card">
+                    <div>
+                        <div style="font-weight: 700; font-size: 0.9rem; margin-bottom: 0.25rem;">⏱️ Time Complexity</div>
+                        <div style="font-size: 0.85rem; color: var(--accent); font-weight: 600;">${lesson.timeComplexity}</div>
+                    </div>
+                </div>
+                <div class="stat-quest-card">
+                    <div>
+                        <div style="font-weight: 700; font-size: 0.9rem; margin-bottom: 0.25rem;">💾 Space Complexity</div>
+                        <div style="font-size: 0.85rem; color: var(--accent); font-weight: 600;">${lesson.spaceComplexity}</div>
+                    </div>
+                </div>
+            </div>
 
-        switchStudioBottomTab('tab-tests');
-        testResultsContainer.innerHTML = `<div style="padding: 1.5rem; text-align: center;"><div class="stat-pill">⏳ Executing Python tests in browser...</div></div>`;
-
-        try {
-            const results = await window.PythonTestRunner.runTests(codeTextarea.value, currentProblem);
-            currentTestResults = results;
-            renderTestResults(results);
-
-            if (results.allPassed) {
-                showToast(`🎉 All tests passed! Ready to submit.`, "✅");
-                addMentorBubble(`🎯 **Awesome job!** All test cases passed cleanly! Click **Submit** to lock your mastery.`);
-            } else {
-                showToast(`${results.passedTests}/${results.totalTests} tests passed. Check failed cases.`, "⚠️");
-                addMentorBubble(`💡 Some test cases failed. Click **'Debug My Error'** or ask for a progressive hint!`);
-            }
-        } catch (err) {
-            testResultsContainer.innerHTML = `<div class="tc-card failed"><strong>Error:</strong> ${err.message}</div>`;
-        } finally {
-            btnRunCode.disabled = false;
-            btnRunCode.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg><span>Run Code</span>`;
-        }
-    });
-
-    btnSubmitCode?.addEventListener('click', async () => {
-        if (!currentProblem || !codeTextarea) return;
-        btnSubmitCode.disabled = true;
-        btnSubmitCode.innerHTML = `<span>Submitting...</span>`;
-
-        try {
-            const results = await window.PythonTestRunner.runTests(codeTextarea.value, currentProblem);
-            currentTestResults = results;
-            renderTestResults(results);
-
-            const timeTakenSec = practiceStartTime ? Math.round((performance.now() - practiceStartTime) / 1000) : 60;
-            const hintsUsed = window.DSAMentorEngine.getUnlockedHintLevel(currentProblem.id);
-
-            const attempt = window.DSAStorage.recordAttempt({
-                problem_id: currentProblem.id,
-                time_taken_seconds: timeTakenSec,
-                hints_used: hintsUsed,
-                solution_seen: hintsUsed === 5,
-                all_passed: results.allPassed,
-                code_submission: codeTextarea.value,
-                mistake_type: results.allPassed ? null : "logic mistake"
-            });
-
-            if (results.allPassed) {
-                showReviewModal(currentProblem, attempt);
-            } else {
-                alert(`⚠️ Not all tests passed (${results.passedTests}/${results.totalTests}). Fix errors before submitting.`);
-            }
-        } catch (e) {
-            alert("Submission error: " + e.message);
-        } finally {
-            btnSubmitCode.disabled = false;
-            btnSubmitCode.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Submit</span>`;
-        }
-    });
-
-    function renderTestResults(res) {
-        if (!testResultsContainer) return;
-        if (res.summaryError) {
-            testResultsContainer.innerHTML = `<div class="tc-card failed"><strong>Error:</strong> ${res.summaryError}</div>`;
-            return;
-        }
-
-        let html = `
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
-                <strong>Test Results: ${res.passedTests} / ${res.totalTests} Passed</strong>
-                <span class="badge ${res.allPassed ? 'badge-easy' : 'badge-hard'}">${res.allPassed ? 'Passed' : 'Failed'}</span>
+            <div class="lesson-section" style="margin-top: 1.5rem;">
+                <div class="lesson-section-title">⚠️ Common Mistakes to Avoid</div>
+                <p style="font-size: 0.9rem; color: var(--text-secondary);">${lesson.commonMistakes}</p>
             </div>
         `;
 
-        res.results.forEach((tc) => {
-            html += `
-                <div class="tc-card ${tc.passed ? 'passed' : 'failed'}">
-                    <div style="display: flex; justify-content: space-between;">
-                        <strong>${tc.name}</strong>
-                        <span style="font-weight: 700; color: ${tc.passed ? 'var(--accent-green)' : 'var(--accent-red)'}">
-                            ${tc.passed ? '✓ PASSED' : '✗ FAILED'} (${tc.executionTimeMs}ms)
-                        </span>
-                    </div>
-                    <div style="font-family: monospace; font-size: 0.8rem; margin-top: 0.35rem;">
-                        <strong>Input:</strong> ${tc.input}<br>
-                        <strong>Expected:</strong> ${JSON.stringify(tc.expected)}<br>
-                        <strong>Output:</strong> ${JSON.stringify(tc.actual)}
-                        ${tc.error ? `<br><strong style="color: var(--accent-red)">Error:</strong> ${tc.error}` : ''}
-                        ${tc.stdout ? `<br><strong>stdout:</strong> ${tc.stdout}` : ''}
-                    </div>
-                </div>
-            `;
-        });
+        // Wire up visualizer buttons
+        const btnNext = document.getElementById('btn-vis-next');
+        const btnPrev = document.getElementById('btn-vis-prev');
+        const btnReset = document.getElementById('btn-vis-reset');
 
-        testResultsContainer.innerHTML = html;
-    }
-
-    function switchStudioBottomTab(tabId) {
-        document.querySelectorAll('.bottom-tab').forEach(b => b.classList.remove('active'));
-        document.querySelectorAll('.bottom-tab-content').forEach(c => c.classList.remove('active'));
-
-        const targetBtn = document.querySelector(`.bottom-tab[data-tab="${tabId}"]`);
-        const targetContent = document.getElementById(tabId);
-        if (targetBtn) targetBtn.classList.add('active');
-        if (targetContent) targetContent.classList.add('active');
-    }
-
-    document.querySelectorAll('.bottom-tab').forEach(tab => {
-        tab.addEventListener('click', (e) => {
-            const tId = e.currentTarget.getAttribute('data-tab');
-            if (tId) switchStudioBottomTab(tId);
-        });
-    });
-
-    // =========================================================================
-    // 5. MENTOR CHAT & PATTERN TRAINING
-    // =========================================================================
-    function addMentorBubble(markdownText) {
-        if (!mentorChatStream) return;
-        const bubble = document.createElement('div');
-        bubble.className = 'chat-bubble mentor';
-        let parsed = markdownText
-            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-            .replace(/\*(.*?)\*/g, '<em>$1</em>')
-            .replace(/`([^`]+)`/g, '<code style="background: rgba(0,0,0,0.15); padding: 0.1rem 0.3rem; border-radius: 3px;">$1</code>')
-            .replace(/\n/g, '<br>');
-        bubble.innerHTML = parsed;
-        mentorChatStream.appendChild(bubble);
-        mentorChatStream.scrollTop = mentorChatStream.scrollHeight;
-    }
-
-    function addStudentBubble(text) {
-        if (!mentorChatStream) return;
-        const bubble = document.createElement('div');
-        bubble.className = 'chat-bubble student';
-        bubble.textContent = text;
-        mentorChatStream.appendChild(bubble);
-        mentorChatStream.scrollTop = mentorChatStream.scrollHeight;
-    }
-
-    async function handleMentorQuery(mode, userMessage = "") {
-        if (!currentProblem) return;
-        switchStudioBottomTab('tab-mentor');
-
-        if (userMessage) addStudentBubble(userMessage);
-
-        const typingBubble = document.createElement('div');
-        typingBubble.className = 'chat-bubble mentor';
-        typingBubble.innerHTML = '<em>Mentor is analyzing... 🤖</em>';
-        mentorChatStream.appendChild(typingBubble);
-        mentorChatStream.scrollTop = mentorChatStream.scrollHeight;
-
-        try {
-            const resp = await window.DSAMentorEngine.queryMentor({
-                mode: mode,
-                problem: currentProblem,
-                studentCode: codeTextarea?.value || "",
-                userMessage: userMessage,
-                testResults: currentTestResults
+        if (btnNext) {
+            btnNext.addEventListener('click', () => {
+                if (currentStepIdx < visData.steps.length - 1) {
+                    currentStepIdx++;
+                    renderLessonContent();
+                }
             });
-            typingBubble.remove();
-            addMentorBubble(resp.text);
-        } catch (e) {
-            typingBubble.remove();
-            addMentorBubble(`Error: ${e.message}`);
+        }
+
+        if (btnPrev) {
+            btnPrev.addEventListener('click', () => {
+                if (currentStepIdx > 0) {
+                    currentStepIdx--;
+                    renderLessonContent();
+                }
+            });
+        }
+
+        if (btnReset) {
+            btnReset.addEventListener('click', () => {
+                currentStepIdx = 0;
+                renderLessonContent();
+            });
         }
     }
 
-    document.querySelectorAll('.mentor-chip').forEach(chip => {
-        chip.addEventListener('click', (e) => {
-            const action = e.currentTarget.getAttribute('data-action');
-            if (action === 'get_hint') handleMentorQuery('hint');
-            else if (action === 'im_stuck') handleMentorQuery('stuck');
-            else if (action === 'pattern_guide') handleMentorQuery('pattern');
-            else if (action === 'dry_run') handleMentorQuery('dry_run');
-            else if (action === 'complexity') handleMentorQuery('complexity');
-            else if (action === 'interview_pitch') handleMentorQuery('interview');
-            else if (action === 'debug_error') handleMentorQuery('debug_error');
+    lessonChips.forEach(chip => {
+        chip.addEventListener('click', () => {
+            const key = chip.getAttribute('data-lesson');
+            if (key) loadLesson(key);
         });
     });
 
-    btnSendThinking?.addEventListener('click', () => {
-        if (!studentThinkingInput) return;
-        const text = studentThinkingInput.value.trim();
-        if (!text) return;
-        studentThinkingInput.value = '';
-        handleMentorQuery('pattern', text);
-    });
-
-    studentThinkingInput?.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') btnSendThinking?.click();
-    });
-
     // =========================================================================
-    // 6. REVIEW MODAL
+    // 9. PATTERN LAB ENGINE
     // =========================================================================
-    function showReviewModal(problem, attempt) {
-        const modal = document.getElementById('review-modal');
-        if (!modal) return;
+    let currentQuizIndex = 0;
+    const quizQuestionTracker = document.getElementById('quiz-question-tracker');
+    const quizScoreDisplay = document.getElementById('quiz-score');
+    const quizScenarioText = document.getElementById('quiz-scenario-text');
+    const quizCluesList = document.getElementById('quiz-clues-list');
+    const quizOptionsContainer = document.getElementById('quiz-options-container');
+    const quizExplanationBox = document.getElementById('quiz-explanation-box');
+    const quizFeedbackTitle = document.getElementById('quiz-feedback-title');
+    const quizFeedbackText = document.getElementById('quiz-feedback-text');
+    const btnNextQuiz = document.getElementById('btn-next-quiz');
 
-        document.getElementById('review-problem-title').textContent = problem.title;
-        document.getElementById('review-pattern-name').textContent = problem.pattern;
-        document.getElementById('review-time-complexity').textContent = problem.time_complexity;
-        document.getElementById('review-space-complexity').textContent = problem.space_complexity;
-        document.getElementById('review-explanation').textContent = problem.explanation;
-        document.getElementById('review-solution-code').textContent = problem.solution_code;
+    function renderPatternQuiz() {
+        if (!window.DSA_QUEST_DATA || !DSA_QUEST_DATA.patternLabQuizzes) return;
+        const quizzes = DSA_QUEST_DATA.patternLabQuizzes;
+        if (currentQuizIndex >= quizzes.length) {
+            currentQuizIndex = 0;
+        }
 
-        modal.classList.remove('hidden');
+        const quiz = quizzes[currentQuizIndex];
+        if (quizQuestionTracker) quizQuestionTracker.textContent = `Scenario ${currentQuizIndex + 1} of ${quizzes.length}`;
+        if (quizScoreDisplay) quizScoreDisplay.textContent = state.patternScore;
 
-        document.getElementById('btn-close-review')?.addEventListener('click', () => {
-            modal.classList.add('hidden');
-            switchView('view-dashboard');
-        }, { once: true });
+        if (quizScenarioText) quizScenarioText.textContent = quiz.scenario;
 
-        document.getElementById('btn-add-review-to-notes')?.addEventListener('click', () => {
-            window.DSAStorage.addNote(
-                "concept_notes",
-                `${problem.title} (${problem.pattern})`,
-                `Pattern: ${problem.pattern}\nTime: ${problem.time_complexity}\nSpace: ${problem.space_complexity}\n\nTakeaway: ${problem.explanation}`
-            );
-            showToast("Saved to Notes!", "📝");
-        }, { once: true });
+        if (quizCluesList) {
+            quizCluesList.innerHTML = quiz.clues.map(c => `<li>${c}</li>`).join('');
+        }
 
-        document.getElementById('btn-next-after-review')?.addEventListener('click', () => {
-            modal.classList.add('hidden');
-            const daily = window.DSAStorage.runDailyLearningAlgorithm();
-            if (daily?.problem) loadProblemIntoPractice(daily.problem);
-            else switchView('view-dashboard');
-        }, { once: true });
+        if (quizExplanationBox) {
+            quizExplanationBox.classList.remove('show');
+        }
+
+        if (quizOptionsContainer) {
+            quizOptionsContainer.innerHTML = quiz.options.map(opt => {
+                return `<button class="pattern-opt-btn" data-pattern="${opt}">${opt}</button>`;
+            }).join('');
+
+            quizOptionsContainer.querySelectorAll('.pattern-opt-btn').forEach(btn => {
+                btn.addEventListener('click', () => handleQuizOptionClick(btn, quiz));
+            });
+        }
+    }
+
+    function handleQuizOptionClick(selectedBtn, quiz) {
+        const selected = selectedBtn.getAttribute('data-pattern');
+        const isCorrect = selected === quiz.correct;
+
+        // Disable all buttons in grid
+        quizOptionsContainer.querySelectorAll('.pattern-opt-btn').forEach(b => {
+            b.disabled = true;
+            if (b.getAttribute('data-pattern') === quiz.correct) {
+                b.classList.add('correct');
+            } else if (b === selectedBtn && !isCorrect) {
+                b.classList.add('wrong');
+            }
+        });
+
+        if (isCorrect) {
+            if (!state.patternAnswered[quiz.id]) {
+                state.patternScore += 1;
+                state.patternAnswered[quiz.id] = true;
+                saveState();
+            }
+            if (quizScoreDisplay) quizScoreDisplay.textContent = state.patternScore;
+            if (quizFeedbackTitle) {
+                quizFeedbackTitle.textContent = "🎉 Correct Pattern!";
+                quizFeedbackTitle.style.color = "var(--success)";
+            }
+        } else {
+            if (quizFeedbackTitle) {
+                quizFeedbackTitle.textContent = "❌ Not Quite!";
+                quizFeedbackTitle.style.color = "var(--danger)";
+            }
+        }
+
+        if (quizFeedbackText) {
+            quizFeedbackText.innerHTML = `
+                <p><strong>Correct Pattern:</strong> ${quiz.correct}</p>
+                <p style="margin-top: 0.35rem;">${quiz.explanation}</p>
+            `;
+        }
+
+        if (quizExplanationBox) {
+            quizExplanationBox.classList.add('show');
+        }
+    }
+
+    if (btnNextQuiz) {
+        btnNextQuiz.addEventListener('click', () => {
+            currentQuizIndex = (currentQuizIndex + 1) % DSA_QUEST_DATA.patternLabQuizzes.length;
+            renderPatternQuiz();
+        });
     }
 
     // =========================================================================
-    // 7. ROADMAP VIEW WITH 22 PHASES & PREREQUISITE LOCKING
+    // 10. PRACTICE ARENA ENGINE
     // =========================================================================
-    function renderRoadmap() {
-        const container = document.getElementById('roadmap-phases-container');
-        if (!container || !window.DSA_ROADMAP_PHASES) return;
+    const practiceProblemsContainer = document.getElementById('practice-problems-list');
+    const searchInput = document.getElementById('practice-search-input');
+    let currentTopicFilter = 'all';
+    let currentDifficultyFilter = 'all';
 
-        const phases = window.DSA_ROADMAP_PHASES;
-        const attempts = window.DSAStorage?.state?.attempts || [];
-        const solvedIds = new Set(attempts.filter(a => a.result === 'passed').map(a => a.problem_id));
+    function renderPracticeProblems() {
+        if (!practiceProblemsContainer || !window.DSA_QUEST_DATA) return;
+        const problems = DSA_QUEST_DATA.problems;
+        const query = (searchInput?.value || '').toLowerCase().trim();
 
-        container.innerHTML = phases.map(phase => {
-            const isUnlocked = window.DSAStorage.isPhaseUnlocked(phase.id);
-            const phaseStatus = window.DSAStorage.state.phasesMastery?.[phase.id]?.status || "Not Started";
-            const phaseProbs = (window.DSA_PROBLEMS || []).filter(p => p.phase === phase.id);
-            const solvedCount = phaseProbs.filter(p => solvedIds.has(p.id)).length;
+        const filtered = problems.filter(p => {
+            const matchesTopic = currentTopicFilter === 'all' || p.topic === currentTopicFilter;
+            const matchesDifficulty = currentDifficultyFilter === 'all' || p.difficulty === currentDifficultyFilter;
+            const matchesSearch = query === '' ||
+                p.title.toLowerCase().includes(query) ||
+                p.topic.toLowerCase().includes(query) ||
+                p.pattern.toLowerCase().includes(query) ||
+                p.companies.some(c => c.toLowerCase().includes(query));
+
+            return matchesTopic && matchesDifficulty && matchesSearch;
+        });
+
+        if (filtered.length === 0) {
+            practiceProblemsContainer.innerHTML = `
+                <div style="text-align: center; padding: 3rem; background: var(--bg-card); border: 1px dashed var(--border-color); border-radius: var(--radius-md);">
+                    <div style="font-size: 2.2rem; margin-bottom: 0.5rem;">🔍</div>
+                    <div style="font-size: 1.1rem; font-weight: 700;">No problems found</div>
+                    <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">Try adjusting your filters or search keywords.</div>
+                </div>
+            `;
+            return;
+        }
+
+        practiceProblemsContainer.innerHTML = filtered.map(prob => {
+            const isSolved = state.completedProblems.includes(prob.id);
+            const difficultyBadgeClass = prob.difficulty === 'Easy' ? 'badge-easy' : prob.difficulty === 'Medium' ? 'badge-medium' : 'badge-hard';
+
+            const companiesHtml = prob.companies.map(c => `
+                <span style="font-size: 0.72rem; background: var(--bg-secondary); border: 1px solid var(--border-subtle); padding: 0.15rem 0.45rem; border-radius: 4px; color: var(--text-secondary);">
+                    ${c}
+                </span>
+            `).join('');
 
             return `
-                <div class="roadmap-phase-card" style="opacity: ${isUnlocked ? '1' : '0.75'}; border-color: ${isUnlocked ? 'var(--border-color)' : 'var(--border-subtle)'};">
-                    <div class="phase-header">
+                <div class="problem-quest-card ${isSolved ? 'solved-card' : ''}" id="card-${prob.id}" style="${isSolved ? 'border-left: 4px solid var(--success);' : ''}">
+                    <div class="problem-card-top">
                         <div>
-                            <div style="display: flex; align-items: center; gap: 0.5rem;">
-                                <h3 style="font-size: 1.1rem; font-weight: 700;">Phase ${phase.number}: ${phase.name}</h3>
-                                ${!isUnlocked ? '<span class="badge" style="background: rgba(230,0,35,0.1); color: var(--accent-red);">🔒 Prerequisite Locked</span>' : ''}
+                            <div style="display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.35rem;">
+                                <span class="badge-tag ${difficultyBadgeClass}">${prob.difficulty}</span>
+                                <span style="font-size: 0.8rem; font-weight: 700; color: var(--accent);">Pattern: ${prob.pattern}</span>
+                                <span style="font-size: 0.78rem; color: var(--text-muted);">| ${prob.topic}</span>
                             </div>
-                            <p style="font-size: 0.82rem; color: var(--text-muted); margin-top: 0.2rem;">${phase.goal}</p>
+                            <h3 style="font-size: 1.25rem; font-weight: 800;">${prob.title}</h3>
                         </div>
-                        <div style="display: flex; align-items: center; gap: 0.5rem;">
-                            <span class="badge ${phaseStatus === 'Mastered' ? 'badge-easy' : 'badge-pattern'}">
-                                ${phaseStatus}
-                            </span>
-                            ${!isUnlocked ? `
-                                <button class="btn btn-secondary btn-test-out" data-phase-id="${phase.id}" style="font-size: 0.75rem; padding: 0.25rem 0.55rem;">
-                                    ⚡ Test Out
-                                </button>
-                            ` : ''}
+
+                        <button class="btn-outline toggle-solved-btn" data-problem-id="${prob.id}" style="padding: 0.35rem 0.75rem; font-size: 0.8rem; display: flex; align-items: center; gap: 0.35rem; ${isSolved ? 'color: var(--success); border-color: var(--success);' : ''}">
+                            <span>${isSolved ? '✓ Solved' : 'Mark Solved'}</span>
+                        </button>
+                    </div>
+
+                    <p style="font-size: 0.92rem; color: var(--text-secondary); margin: 0.75rem 0 1rem; line-height: 1.55;">
+                        ${prob.description}
+                    </p>
+
+                    <div style="display: flex; gap: 0.35rem; flex-wrap: wrap; margin-bottom: 1rem;">
+                        <span style="font-size: 0.72rem; color: var(--text-muted); align-self: center; margin-right: 0.25rem;">Recruitment:</span>
+                        ${companiesHtml}
+                    </div>
+
+                    <!-- Collapsible Expected Thinking -->
+                    <details style="margin-bottom: 0.85rem; font-size: 0.88rem; background: var(--bg-secondary); padding: 0.75rem 1rem; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle);">
+                        <summary style="font-weight: 700; cursor: pointer; color: var(--text-primary);">
+                            🧠 Expected Algorithmic Thinking
+                        </summary>
+                        <p style="margin-top: 0.5rem; color: var(--text-secondary);">${prob.expectedThinking}</p>
+                    </details>
+
+                    <!-- 5-Level Progressive Hint Drawer -->
+                    <div class="hint-level-drawer">
+                        <div style="font-size: 0.82rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text-muted);">
+                            💡 5-Level Progressive Hint Ladder (No instant spoilers!):
+                        </div>
+                        <div style="display: flex; gap: 0.4rem; flex-wrap: wrap;">
+                            <button class="hint-trigger-btn" data-prob-id="${prob.id}" data-hint-idx="0">Hint 1: Input</button>
+                            <button class="hint-trigger-btn" data-prob-id="${prob.id}" data-hint-idx="1">Hint 2: Pattern</button>
+                            <button class="hint-trigger-btn" data-prob-id="${prob.id}" data-hint-idx="2">Hint 3: Data Structure</button>
+                            <button class="hint-trigger-btn" data-prob-id="${prob.id}" data-hint-idx="3">Hint 4: Algorithm</button>
+                            <button class="hint-trigger-btn" data-prob-id="${prob.id}" data-hint-idx="4" style="border-color: var(--accent); color: var(--accent);">Hint 5: Solution Code</button>
+                        </div>
+                        <div class="hint-content-box" id="hint-display-${prob.id}">
+                            <!-- Injected on hint click -->
                         </div>
                     </div>
 
-                    <!-- Topics Tags -->
-                    <div style="display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 0.75rem;">
-                        ${(phase.topics || []).map(t => `<span class="company-pill">${t}</span>`).join('')}
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.25rem; padding-top: 0.75rem; border-top: 1px solid var(--border-subtle); font-size: 0.78rem; color: var(--text-muted);">
+                        <span>${prob.complexity}</span>
+                        <span>Entry-Level Placement Standard</span>
                     </div>
-
-                    <!-- Problems Grid -->
-                    ${phaseProbs.length > 0 ? `
-                        <div class="phase-topics-grid">
-                            ${phaseProbs.map(p => {
-                                const isSolved = solvedIds.has(p.id);
-                                return `
-                                    <div class="topic-box ${isSolved ? 'completed' : ''}" data-problem-id="${p.id}" data-phase-id="${phase.id}">
-                                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem;">
-                                            <span class="badge badge-easy" style="font-size: 0.68rem;">${p.difficulty}</span>
-                                            <span>${isSolved ? '✅' : (isUnlocked ? '⏳' : '🔒')}</span>
-                                        </div>
-                                        <strong style="font-size: 0.9rem;">${p.title}</strong>
-                                        <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem;">${p.pattern}</div>
-                                    </div>
-                                `;
-                            }).join('')}
-                        </div>
-                    ` : `
-                        <div style="font-size: 0.8rem; color: var(--text-muted); padding: 0.5rem; background: var(--bg-surface-secondary); border-radius: var(--radius-sm);">
-                            Theory &amp; Concept Mastery: Practice unlocked after completing prerequisite problem sets.
-                        </div>
-                    `}
                 </div>
             `;
         }).join('');
 
-        // Problem Box Click Handlers with Prerequisite Guard
-        container.querySelectorAll('.topic-box').forEach(box => {
-            box.addEventListener('click', () => {
-                const phaseId = box.getAttribute('data-phase-id');
-                const isUnlocked = window.DSAStorage.isPhaseUnlocked(phaseId);
+        // Wire up hint buttons
+        practiceProblemsContainer.querySelectorAll('.hint-trigger-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const probId = btn.getAttribute('data-prob-id');
+                const hintIdx = parseInt(btn.getAttribute('data-hint-idx'), 10);
+                const prob = problems.find(p => p.id === probId);
+                const displayBox = document.getElementById(`hint-display-${probId}`);
 
-                if (!isUnlocked) {
-                    if (confirm(`🔒 Phase is locked! Prerequisite phases must be completed first.\n\nDo you want to Test Out of prerequisites to unlock this phase right now?`)) {
-                        window.DSAStorage.testOutPhase(phaseId);
-                        showToast(`Phase unlocked via Test-Out!`, "⚡");
-                        renderRoadmap();
-                    }
-                    return;
-                }
-
-                const pid = box.getAttribute('data-problem-id');
-                const prob = window.DSA_PROBLEMS.find(p => p.id === pid);
-                if (prob) loadProblemIntoPractice(prob);
-            });
-        });
-
-        // Test-Out Buttons
-        container.querySelectorAll('.btn-test-out').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const phId = btn.getAttribute('data-phase-id');
-                if (confirm(`⚡ Test Out of Phase Prerequisites:\nAre you ready to unlock this phase?`)) {
-                    window.DSAStorage.testOutPhase(phId);
-                    showToast(`Phase unlocked!`, "🎉");
-                    renderRoadmap();
+                if (prob && displayBox) {
+                    displayBox.classList.add('open');
+                    displayBox.innerHTML = `
+                        <div style="font-weight: 700; color: var(--accent); margin-bottom: 0.3rem;">Level ${hintIdx + 1} Hint:</div>
+                        <div style="white-space: pre-wrap; font-family: ${hintIdx === 4 ? 'monospace' : 'inherit'}; font-size: 0.85rem;">${prob.hints[hintIdx]}</div>
+                    `;
                 }
             });
         });
+
+        // Wire up mark solved buttons
+        practiceProblemsContainer.querySelectorAll('.toggle-solved-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const probId = btn.getAttribute('data-problem-id');
+                if (state.completedProblems.includes(probId)) {
+                    state.completedProblems = state.completedProblems.filter(id => id !== probId);
+                    showToast('Problem unmarked', 'info');
+                } else {
+                    state.completedProblems.push(probId);
+                    showToast('🎉 Problem Solved! Awesome work!', 'success');
+                }
+                saveState();
+                renderPracticeProblems();
+            });
+        });
+    }
+
+    if (searchInput) {
+        searchInput.addEventListener('input', () => {
+            renderPracticeProblems();
+        });
+    }
+
+    // Filter Chips
+    document.querySelectorAll('.filter-chip[data-filter-type]').forEach(chip => {
+        chip.addEventListener('click', () => {
+            const filterType = chip.getAttribute('data-filter-type');
+            const val = chip.getAttribute('data-filter-val');
+
+            document.querySelectorAll(`.filter-chip[data-filter-type="${filterType}"]`).forEach(c => c.classList.remove('active'));
+            chip.classList.add('active');
+
+            if (filterType === 'topic') {
+                currentTopicFilter = val;
+            } else if (filterType === 'difficulty') {
+                currentDifficultyFilter = val;
+            }
+
+            renderPracticeProblems();
+        });
+    });
+
+    // =========================================================================
+    // 11. DAILY CHALLENGE ENGINE
+    // =========================================================================
+    const dailyChallengeBox = document.getElementById('daily-challenge-box');
+    const dailyStreakDisplay = document.getElementById('daily-streak-display');
+    const dailyStatusDisplay = document.getElementById('daily-status-display');
+
+    function renderDailyChallenge() {
+        if (!dailyChallengeBox || !window.DSA_QUEST_DATA) return;
+        const challenges = DSA_QUEST_DATA.dailyChallenges;
+        // Cycle challenge by day of month
+        const dayOfMonth = new Date().getDate();
+        const challenge = challenges[dayOfMonth % challenges.length] || challenges[0];
+
+        const matchedProb = DSA_QUEST_DATA.problems.find(p => p.id === challenge.problemId);
+        const isSolved = state.completedProblems.includes(challenge.problemId);
+
+        if (dailyStreakDisplay) dailyStreakDisplay.textContent = `${state.streak} Day${state.streak > 1 ? 's' : ''}`;
+        if (dailyStatusDisplay) dailyStatusDisplay.textContent = isSolved ? 'Completed ✓' : 'In Progress';
+
+        dailyChallengeBox.innerHTML = `
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;">
+                <div>
+                    <span class="hero-tag">🔥 Day ${challenge.dayNumber} Challenge</span>
+                    <h2 style="font-size: 1.6rem; font-weight: 800; margin-top: 0.35rem;">${challenge.title}</h2>
+                    <div style="display: flex; gap: 0.5rem; margin-top: 0.25rem;">
+                        <span class="badge-tag badge-easy">${challenge.difficulty}</span>
+                        <span style="font-size: 0.8rem; color: var(--accent); font-weight: 700;">Pattern: ${challenge.pattern}</span>
+                    </div>
+                </div>
+
+                <div class="quest-pill" style="font-size: 0.85rem; padding: 0.5rem 1rem;">
+                    Streak: 🔥 ${state.streak} Days
+                </div>
+            </div>
+
+            <div style="font-style: italic; background: var(--bg-surface); padding: 0.85rem 1rem; border-radius: var(--radius-sm); margin-bottom: 1.25rem; border-left: 3px solid var(--accent); font-size: 0.92rem;">
+                "${challenge.motivation}"
+            </div>
+
+            ${matchedProb ? `
+                <p style="font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 1.25rem;">
+                    ${matchedProb.description}
+                </p>
+                <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                    <button class="btn-accent" data-switch-view="view-practice" id="btn-solve-daily">
+                        <span>Solve in Practice Arena</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </button>
+                    <button class="btn-outline toggle-solved-btn" data-problem-id="${matchedProb.id}">
+                        ${isSolved ? '✓ Marked as Completed' : 'Complete Today\'s Challenge'}
+                    </button>
+                </div>
+            ` : ''}
+        `;
+
+        const dailySolveBtn = dailyChallengeBox.querySelector('.toggle-solved-btn');
+        if (dailySolveBtn) {
+            dailySolveBtn.addEventListener('click', () => {
+                if (!state.completedProblems.includes(challenge.problemId)) {
+                    state.completedProblems.push(challenge.problemId);
+                    showToast('🎉 Daily Challenge Completed! Streak sustained!', 'success');
+                    saveState();
+                    renderDailyChallenge();
+                }
+            });
+        }
     }
 
     // =========================================================================
-    // 8. MISTAKES, REVISION, ANALYTICS, NOTES, SETTINGS
+    // 12. PLACEMENT ARENA ENGINE
     // =========================================================================
-    function renderMistakes() {
-        const container = document.getElementById('mistakes-list-container');
-        if (!container || !window.DSAStorage) return;
+    const placementContainer = document.getElementById('placement-companies-grid');
 
-        const mistakes = window.DSAStorage.state.mistakes || [];
-        if (mistakes.length === 0) {
-            container.innerHTML = `<div style="text-align: center; padding: 3rem 1rem; color: var(--text-muted);"><div style="font-size: 2.5rem;">🎉</div><h3>No mistakes recorded yet!</h3><p style="font-size: 0.85rem;">Solve problems and the mentor tracks syntax and logic traps here.</p></div>`;
-            return;
+    const placementCompaniesData = [
+        {
+            name: "Accenture",
+            logo: "🅰️",
+            focus: "Arrays, Strings, Frequency Map",
+            description: "High emphasis on single pass linear scans, counting odd/even characters, and in-place array manipulation.",
+            rounds: "2 Coding Questions (45 mins)"
+        },
+        {
+            name: "TCS (Ninja / Digital)",
+            logo: "🇹",
+            focus: "Sorting, Two Pointers, Hashing",
+            description: "Binary search on rotated arrays, pair sums, substring anagrams, and basic recursive series.",
+            rounds: "2 Coding Questions (Digital / Prime)"
+        },
+        {
+            name: "Capgemini",
+            logo: "🇨",
+            focus: "Strings, Stacks, Searching",
+            description: "Parentheses validation, palindrome checking, second largest element, and matrix diagonals.",
+            rounds: "Technical Assessment Round"
+        },
+        {
+            name: "Cognizant (GenC / Elevate)",
+            logo: "🔷",
+            focus: "Sliding Window, Prefix Sum, DP Basics",
+            description: "Maximum contiguous sum of size K, Fibonacci stair climbing, and duplicate detection.",
+            rounds: "Skill-based Coding Challenge"
+        },
+        {
+            name: "Infosys (SP / DSE)",
+            logo: "🇮",
+            focus: "Greedy, Sliding Window, Two Pointers",
+            description: "Interval selection, contiguous subarray metrics, and string deduplication.",
+            rounds: "Infosys HackWithInfy / SP Track"
+        },
+        {
+            name: "Wipro (Elite / Turbo)",
+            logo: "🇼",
+            focus: "Traversal, Math & Logic, Hashing",
+            description: "Two Sum, array rotation, prime counting, and dictionary complement lookups.",
+            rounds: "National Qualifier Coding"
         }
+    ];
 
-        container.innerHTML = mistakes.map(m => {
-            const prob = window.DSA_PROBLEMS?.find(p => p.id === m.problem_id);
-            return `
-                <div class="mistake-card">
-                    <div>
-                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.35rem;">
-                            <strong style="text-transform: capitalize; color: var(--accent-red);">${m.mistake_type}</strong>
-                            ${m.count >= 2 ? `<span class="mistake-badge-recurring">⚠️ RECURRING (${m.count}x)</span>` : ''}
-                        </div>
-                        <p style="font-size: 0.85rem; color: var(--text-secondary);">${m.description}</p>
-                    </div>
-                    ${prob ? `<button class="btn btn-secondary btn-retry-mistake" data-problem-id="${prob.id}">Practice Drill</button>` : ''}
+    function renderPlacementArena() {
+        if (!placementContainer) return;
+        placementContainer.innerHTML = placementCompaniesData.map(c => `
+            <div class="company-arena-card" data-company="${c.name}">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem;">
+                    <div style="font-size: 2rem;">${c.logo}</div>
+                    <span class="phase-badge-pill">${c.rounds}</span>
                 </div>
-            `;
-        }).join('');
-
-        container.querySelectorAll('.btn-retry-mistake').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const p = window.DSA_PROBLEMS.find(x => x.id === btn.getAttribute('data-problem-id'));
-                if (p) loadProblemIntoPractice(p);
-            });
-        });
-    }
-
-    function renderRevision() {
-        const container = document.getElementById('revision-items-container');
-        if (!container || !window.DSAStorage) return;
-
-        const revItems = window.DSAStorage.state.revisionItems || [];
-        const todayStr = new Date().toISOString().split('T')[0];
-
-        if (revItems.length === 0) {
-            container.innerHTML = `<div style="text-align: center; padding: 3rem 1rem; color: var(--text-muted);"><div style="font-size: 2.5rem;">📚</div><h3>Revision queue is empty</h3><p style="font-size: 0.85rem;">Solved problems are scheduled for spaced repetition at 1d, 3d, 7d, 14d.</p></div>`;
-            return;
-        }
-
-        container.innerHTML = revItems.map(item => {
-            const prob = window.DSA_PROBLEMS?.find(p => p.id === item.problem_id);
-            const isDue = item.next_revision_date <= todayStr;
-            return `
-                <div class="mistake-card" style="border-left-color: ${isDue ? 'var(--accent-amber)' : 'var(--accent-primary)'};">
-                    <div>
-                        <strong>${prob ? prob.title : item.problem_id}</strong>
-                        <span class="badge ${isDue ? 'badge-hard' : 'badge-pattern'}">${isDue ? 'Due Today' : item.next_revision_date}</span>
-                    </div>
-                    ${prob ? `<button class="btn btn-primary btn-start-revision" data-problem-id="${prob.id}">Review</button>` : ''}
+                <h3 style="font-size: 1.2rem; font-weight: 800; margin-bottom: 0.25rem;">${c.name} Track</h3>
+                <div style="font-size: 0.82rem; font-weight: 700; color: var(--accent); margin-bottom: 0.65rem;">
+                    Key Patterns: ${c.focus}
                 </div>
-            `;
-        }).join('');
-
-        container.querySelectorAll('.btn-start-revision').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const p = window.DSA_PROBLEMS.find(x => x.id === btn.getAttribute('data-problem-id'));
-                if (p) loadProblemIntoPractice(p);
-            });
-        });
-    }
-
-    function renderAnalytics() {
-        const metrics = window.DSAStorage?.getDashboardMetrics();
-        if (!metrics) return;
-        document.getElementById('analytics-solve-rate').textContent = `${metrics.independentSolveRate}%`;
-        document.getElementById('analytics-attempted').textContent = metrics.totalAttempted;
-        document.getElementById('analytics-independent').textContent = metrics.independentSolves;
-        document.getElementById('analytics-hints').textContent = metrics.hintSolves;
-        document.getElementById('analytics-solutions-seen').textContent = metrics.solutionSeen;
-    }
-
-    function renderPlacementMode() {
-        document.querySelectorAll('.company-track-card').forEach(card => {
-            card.onclick = () => {
-                const comp = card.getAttribute('data-company');
-                const matched = (window.DSA_PROBLEMS || []).filter(p => (p.companies || []).includes(comp));
-                if (matched.length > 0) {
-                    loadProblemIntoPractice(matched[0]);
-                    showToast(`Loaded ${comp} coding challenge!`, "🎯");
-                }
-            };
-        });
-    }
-
-    function renderNotes() {
-        const container = document.getElementById('notes-grid-container');
-        if (!container || !window.DSAStorage) return;
-        const notes = window.DSAStorage.state.notes || [];
-        container.innerHTML = notes.map(n => `
-            <div class="action-card" style="margin-bottom: 0.85rem;">
-                <div style="display: flex; justify-content: space-between;">
-                    <span class="badge badge-pattern">${n.category.replace('_', ' ')}</span>
-                    <button class="btn-delete-note" data-id="${n.id}" style="border:none;background:none;color:var(--accent-red);cursor:pointer;">Delete</button>
-                </div>
-                <h4 style="margin: 0.4rem 0;">${n.title}</h4>
-                <p style="font-size: 0.85rem; color: var(--text-secondary); white-space: pre-line;">${n.content}</p>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 1.25rem;">
+                    ${c.description}
+                </p>
+                <button class="btn-accent practice-company-btn" data-company-name="${c.name}" style="width: 100%; justify-content: center; font-size: 0.85rem; padding: 0.55rem;">
+                    Practice ${c.name} Problems ➔
+                </button>
             </div>
         `).join('');
 
-        container.querySelectorAll('.btn-delete-note').forEach(btn => {
-            btn.onclick = () => {
-                window.DSAStorage.deleteNote(btn.getAttribute('data-id'));
-                renderNotes();
-                showToast("Note deleted.", "🗑️");
-            };
+        placementContainer.querySelectorAll('.practice-company-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const comp = btn.getAttribute('data-company-name');
+                if (searchInput) searchInput.value = comp;
+                switchView('view-practice');
+                renderPracticeProblems();
+            });
         });
     }
-
-    document.getElementById('btn-add-new-note')?.addEventListener('click', () => {
-        const title = prompt("Note Title (e.g. 'Binary Search Invariant'):");
-        if (!title) return;
-        const content = prompt("Content / Key points:");
-        if (!content) return;
-        window.DSAStorage.addNote("concept_notes", title, content);
-        renderNotes();
-        showToast("Note saved!", "📝");
-    });
-
-    function renderSettings() {
-        const state = window.DSAStorage?.state;
-        if (!state) return;
-        const inputKey = document.getElementById('setting-ai-api-key');
-        if (inputKey) inputKey.value = state.settings.ai_api_key || "";
-        const inputName = document.getElementById('setting-student-name');
-        if (inputName) inputName.value = state.profile.name || "Student";
-    }
-
-    document.getElementById('btn-save-settings')?.addEventListener('click', () => {
-        const state = window.DSAStorage?.state;
-        if (!state) return;
-        const inputKey = document.getElementById('setting-ai-api-key');
-        const inputName = document.getElementById('setting-student-name');
-        if (inputKey) state.settings.ai_api_key = inputKey.value.trim();
-        if (inputName) state.profile.name = inputName.value.trim();
-        window.DSAStorage.saveState();
-        showToast("Settings saved!", "💾");
-    });
-
-    document.getElementById('btn-export-state')?.addEventListener('click', () => {
-        const jsonStr = window.DSAStorage.exportStateJSON();
-        navigator.clipboard.writeText(jsonStr).then(() => {
-            showToast("DSA state JSON copied to clipboard!", "📋");
-        }).catch(() => {
-            prompt("Your exported state JSON:", jsonStr);
-        });
-    });
-
-    document.getElementById('btn-import-state')?.addEventListener('click', () => {
-        const input = prompt("Paste exported DSA state JSON:");
-        if (!input) return;
-        const res = window.DSAStorage.importStateJSON(input);
-        if (res.success) {
-            showToast("State restored!", "🎉");
-            setTimeout(() => location.reload(), 600);
-        } else {
-            alert(res.error);
-        }
-    });
 
     // =========================================================================
-    // 9. EXTENDED COMMAND PALETTE
+    // 13. PROGRESS VIEW & ACHIEVEMENTS RENDERER
     // =========================================================================
-    const COMMANDS = [
-        { cmd: "start", label: "Start today's DSA session", action: () => { switchView('view-dashboard'); renderDashboard(); } },
-        { cmd: "next", label: "Tell me exactly what to practice next", action: () => { const d = window.DSAStorage.runDailyLearningAlgorithm(); if (d?.problem) loadProblemIntoPractice(d.problem); } },
-        { cmd: "learn", label: "Teach the current roadmap concept", action: () => handleMentorQuery('learn') },
-        { cmd: "practice", label: "Give a problem for current topic", action: () => { const d = window.DSAStorage.runDailyLearningAlgorithm(); if (d?.problem) loadProblemIntoPractice(d.problem); } },
-        { cmd: "hint", label: "Give only the next hint", action: () => handleMentorQuery('hint') },
-        { cmd: "solution", label: "Show simplest solution", action: () => handleMentorQuery('hint') },
-        { cmd: "dryrun", label: "Dry-run the solution step-by-step", action: () => handleMentorQuery('dry_run') },
-        { cmd: "debug", label: "Help debug my code", action: () => handleMentorQuery('debug_error') },
-        { cmd: "pattern", label: "Help identify the pattern", action: () => handleMentorQuery('pattern') },
-        { cmd: "complexity", label: "Analyze time and space complexity", action: () => handleMentorQuery('complexity') },
-        { cmd: "interview", label: "Start DSA interview practice (60s pitch)", action: () => handleMentorQuery('interview') },
-        { cmd: "revision", label: "Give revision problems queue", action: () => switchView('view-revision') },
-        { cmd: "weakness", label: "Show my weakest topics and patterns", action: () => switchView('view-analytics') },
-        { cmd: "roadmap", label: "Show complete 22-phase roadmap", action: () => switchView('view-roadmap') },
-        { cmd: "progress", label: "Show my progress dashboard", action: () => switchView('view-dashboard') },
-        { cmd: "timed", label: "Start timed placement practice", action: () => switchView('view-placement') },
-        { cmd: "placement", label: "Start placement-focused practice", action: () => switchView('view-placement') },
-        { cmd: "export_state", label: "Export DSA progress as compact JSON", action: () => document.getElementById('btn-export-state')?.click() },
-        { cmd: "import_state", label: "Restore DSA progress from JSON", action: () => document.getElementById('btn-import-state')?.click() }
-    ];
+    const achievementsContainer = document.getElementById('achievements-cards-container');
+    const progressTopicsCount = document.getElementById('progress-topics-count');
+    const progressProblemsCount = document.getElementById('progress-problems-count');
+    const progressStreakCount = document.getElementById('progress-streak-count');
+    const progressPatternsCount = document.getElementById('progress-patterns-count');
+    const overallReadinessPercent = document.getElementById('overall-readiness-percent');
+    const overallReadinessFill = document.getElementById('overall-readiness-fill');
+    const btnResetProgress = document.getElementById('btn-reset-progress');
+    const btnExportProgress = document.getElementById('btn-export-progress');
 
-    function openCommandPalette() {
-        if (!cmdPaletteOverlay) return;
-        cmdPaletteOverlay.classList.remove('hidden');
-        if (cmdInput) {
-            cmdInput.value = '';
-            cmdInput.focus();
+    function renderProgressView() {
+        if (!window.DSA_QUEST_DATA) return;
+
+        // Metric numbers
+        if (progressTopicsCount) progressTopicsCount.textContent = state.completedPhases.length;
+        if (progressProblemsCount) progressProblemsCount.textContent = state.completedProblems.length;
+        if (progressStreakCount) progressStreakCount.textContent = state.streak;
+        if (progressPatternsCount) progressPatternsCount.textContent = state.patternScore;
+
+        // Readiness calculation
+        const totalPossibleScore = (DSA_QUEST_DATA.phases.length * 2) + (DSA_QUEST_DATA.problems.length * 5) + 20;
+        const currentScore = (state.completedPhases.length * 2) + (state.completedProblems.length * 5) + (state.patternScore * 4);
+        const readiness = Math.min(100, Math.round((currentScore / totalPossibleScore) * 100));
+
+        if (overallReadinessPercent) overallReadinessPercent.textContent = `${readiness}%`;
+        if (overallReadinessFill) overallReadinessFill.style.width = `${readiness}%`;
+
+        // Render Achievements Grid
+        if (achievementsContainer) {
+            achievementsContainer.innerHTML = DSA_QUEST_DATA.achievements.map(ach => {
+                const isUnlocked = state.unlockedAchievements.includes(ach.id);
+                return `
+                    <div class="achievement-card ${isUnlocked ? 'unlocked' : ''}">
+                        <div class="achievement-icon">${ach.icon}</div>
+                        <div>
+                            <div style="font-weight: 800; font-size: 0.95rem; display: flex; align-items: center; gap: 0.4rem;">
+                                <span>${ach.title}</span>
+                                ${isUnlocked ? '<span style="font-size: 0.72rem; color: var(--warning); background: var(--warning-bg); padding: 0.1rem 0.4rem; border-radius: 4px;">UNLOCKED</span>' : ''}
+                            </div>
+                            <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.2rem;">
+                                ${ach.desc}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
         }
-        renderCommandResults('');
     }
 
-    function closeCommandPalette() {
-        cmdPaletteOverlay?.classList.add('hidden');
-    }
-
-    function renderCommandResults(query) {
-        if (!cmdResultsList) return;
-        const q = query.toLowerCase().trim().replace(/^\//, '');
-        const filtered = COMMANDS.filter(c => c.cmd.includes(q) || c.label.toLowerCase().includes(q));
-
-        if (filtered.length === 0) {
-            cmdResultsList.innerHTML = `<li style="padding: 1rem; color: var(--text-muted); text-align: center;">No matching command. Try /start, /learn, /pattern, /roadmap...</li>`;
-            return;
-        }
-
-        cmdResultsList.innerHTML = filtered.map((c, idx) => `
-            <li class="cmd-item ${idx === 0 ? 'selected' : ''}" data-cmd="${c.cmd}">
-                <div>
-                    <span class="kbd-shortcut" style="margin-right: 0.5rem;">/${c.cmd}</span>
-                    <span>${c.label}</span>
-                </div>
-                <span style="font-size: 0.72rem; color: var(--text-muted);">↵ Run</span>
-            </li>
-        `).join('');
-
-        cmdResultsList.querySelectorAll('.cmd-item').forEach(item => {
-            item.onclick = () => {
-                closeCommandPalette();
-                const found = COMMANDS.find(c => c.cmd === item.getAttribute('data-cmd'));
-                if (found) {
-                    found.action();
-                    showToast(`Ran /${found.cmd}`, "⚡");
-                }
-            };
-        });
-    }
-
-    openCmdBtn?.addEventListener('click', openCommandPalette);
-    cmdPaletteOverlay?.addEventListener('click', (e) => {
-        if (e.target === cmdPaletteOverlay) closeCommandPalette();
-    });
-
-    cmdInput?.addEventListener('input', (e) => renderCommandResults(e.target.value));
-    cmdInput?.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') {
-            const sel = cmdResultsList?.querySelector('.cmd-item.selected');
-            if (sel) {
-                closeCommandPalette();
-                const found = COMMANDS.find(c => c.cmd === sel.getAttribute('data-cmd'));
-                if (found) {
-                    found.action();
-                    showToast(`Ran /${found.cmd}`, "⚡");
-                }
+    if (btnResetProgress) {
+        btnResetProgress.addEventListener('click', () => {
+            if (confirm('Are you sure you want to reset all your local DSA Quest progress? This cannot be undone.')) {
+                state = { ...defaultState };
+                saveState();
+                showToast('Local progress reset successfully', 'info');
+                renderRoadmap();
+                renderPracticeProblems();
+                renderProgressView();
+                renderPatternQuiz();
+                renderDailyChallenge();
             }
-        } else if (e.key === 'Escape') {
-            closeCommandPalette();
-        }
-    });
+        });
+    }
 
-    window.addEventListener('keydown', (e) => {
-        if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
-            e.preventDefault();
-            if (cmdPaletteOverlay && !cmdPaletteOverlay.classList.contains('hidden')) closeCommandPalette();
-            else openCommandPalette();
-        }
-    });
+    if (btnExportProgress) {
+        btnExportProgress.addEventListener('click', () => {
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(state, null, 2));
+            const downloadAnchor = document.createElement('a');
+            downloadAnchor.setAttribute("href", dataStr);
+            downloadAnchor.setAttribute("download", `dsa_quest_backup_${new Date().toISOString().split('T')[0]}.json`);
+            document.body.appendChild(downloadAnchor);
+            downloadAnchor.click();
+            downloadAnchor.remove();
+            showToast('Progress JSON exported to downloads!', 'success');
+        });
+    }
 
-    // Session Timer
-    setInterval(() => {
-        sessionRemainingSeconds--;
-        if (sessionRemainingSeconds <= 0) sessionRemainingSeconds = 30 * 60;
-        const timerPill = document.getElementById('nav-session-timer');
-        if (timerPill) {
-            const m = Math.floor(sessionRemainingSeconds / 60);
-            const s = sessionRemainingSeconds % 60;
-            timerPill.textContent = `⏱️ ${m}:${s < 10 ? '0' : ''}${s}`;
-        }
-    }, 1000);
-
-    // Initial load
-    renderDashboard();
+    // =========================================================================
+    // 14. INITIAL BOOTSTRAP
+    // =========================================================================
+    renderRoadmap();
+    loadLesson('two_pointers');
+    renderPatternQuiz();
+    renderPracticeProblems();
+    renderDailyChallenge();
+    renderPlacementArena();
+    renderProgressView();
+    updateGlobalUI();
 });

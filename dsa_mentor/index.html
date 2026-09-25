@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI DSA Mentor &amp; Placement Coach - PlacementPrep</title>
-    <meta name="description" content="Personalized AI DSA mentor and coding practice coach for campus placement preparation (TCS, Accenture, Capgemini, Cognizant, Wipro, Infosys). Progressive hints, dry-run tracking, and independent problem-solving.">
+    <title>DSA Quest - Master DSA. One Problem at a Time.</title>
+    <meta name="description" content="An interactive, gamified DSA learning journey taking you from programming fundamentals to placement-ready problem solving with 22 structured phases, visual pointer steppers, pattern recognition labs, and 5-level hint ladders.">
 
-    <!-- Theme preservation script -->
+    <!-- Theme preservation script to prevent flash -->
     <script>
         (function () {
-            const theme = localStorage.getItem('placementPrep_theme') || 'light';
+            const theme = localStorage.getItem('dsa_quest_theme') || localStorage.getItem('placementPrep_theme') || 'light';
             document.documentElement.setAttribute('data-theme', theme);
         })();
     </script>
@@ -24,550 +24,531 @@
 </head>
 <body>
 
-    <!-- =========================================================================
-         TOP NAVIGATION BAR
-         ========================================================================= -->
-    <nav class="dsa-navbar">
-        <div class="dsa-nav-container">
-            <div style="display: flex; align-items: center; gap: 1rem;">
-                <a href="../index.html" class="dsa-brand" title="Back to PlacementPrep Home">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-red)">
-                        <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
-                        <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
-                    </svg>
-                    <span>PlacementPrep</span>
-                </a>
-                <span class="brand-badge">AI DSA Mentor</span>
-            </div>
-
-            <ul class="dsa-nav-links">
-                <li><button class="dsa-nav-tab active" data-view="view-dashboard">📊 Dashboard</button></li>
-                <li><button class="dsa-nav-tab" data-view="view-practice">💻 Practice Studio</button></li>
-                <li><button class="dsa-nav-tab" data-view="view-roadmap">🗺️ Roadmap</button></li>
-                <li><button class="dsa-nav-tab" data-view="view-mistakes">⚠️ Mistakes</button></li>
-                <li><button class="dsa-nav-tab" data-view="view-revision">🔄 Revision</button></li>
-                <li><button class="dsa-nav-tab" data-view="view-analytics">📈 Analytics</button></li>
-                <li><button class="dsa-nav-tab" data-view="view-placement">🎯 Placement Mode</button></li>
-                <li><button class="dsa-nav-tab" data-view="view-notes">📝 Notes</button></li>
-                <li><button class="dsa-nav-tab" data-view="view-settings">⚙️ Settings</button></li>
-            </ul>
-
-            <div class="dsa-nav-actions">
-                <span id="nav-session-timer" class="stat-pill" title="Current session countdown">⏱️ 30:00</span>
-                <button class="btn-cmd-palette" id="open-cmd-palette" title="Quick Commands (Ctrl+K)">
-                    <span>Commands</span>
-                    <span class="kbd-shortcut">Ctrl K</span>
-                </button>
-                <button id="theme-toggle" class="icon-btn" title="Toggle Dark/Light Mode" aria-label="Toggle theme">
-                    🌓
-                </button>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Main Container -->
-    <main class="dsa-app-layout">
+    <div class="app-wrapper">
 
         <!-- =========================================================================
-             1. DASHBOARD VIEW
+             SIDEBAR (DESKTOP)
              ========================================================================= -->
-        <section id="view-dashboard" class="app-view active">
-            <!-- Hero Card -->
-            <div class="hero-banner-card">
-                <div class="hero-content">
-                    <h2>Welcome to Your Placement DSA Coach 🎯</h2>
-                    <p>Build the independent problem-solving muscles needed to crack coding rounds at <strong>TCS, Accenture, Capgemini, Cognizant, Wipro &amp; Infosys</strong>. We focus on algorithm design, dry runs, and patterns—never code memorization.</p>
-                    <div class="hero-stats-pills">
-                        <span class="stat-pill">🎓 BCA / MCA Placement Track</span>
-                        <span class="stat-pill">🐍 Python Track</span>
-                        <span class="stat-pill">💡 5-Level Hint Engine Active</span>
+        <aside class="quest-sidebar" aria-label="Main Navigation">
+            <div class="sidebar-header">
+                <a href="#home" class="brand-title" id="brand-logo" data-view="view-home">
+                    <div class="brand-icon">⚔️</div>
+                    <div>
+                        <div style="font-size: 1.15rem; font-weight: 800; line-height: 1.1;">DSA Quest</div>
+                        <div style="font-size: 0.72rem; color: var(--text-muted); font-weight: 500;">Placement Adventure</div>
+                    </div>
+                </a>
+            </div>
+
+            <ul class="sidebar-menu">
+                <li>
+                    <button class="menu-item-btn active" data-view="view-home" id="nav-btn-home">
+                        <span class="menu-icon">🏠</span>
+                        <span>Home</span>
+                    </button>
+                </li>
+                <li>
+                    <button class="menu-item-btn" data-view="view-roadmap" id="nav-btn-roadmap">
+                        <span class="menu-icon">🗺️</span>
+                        <span>Roadmap</span>
+                    </button>
+                </li>
+                <li>
+                    <button class="menu-item-btn" data-view="view-learn" id="nav-btn-learn">
+                        <span class="menu-icon">📖</span>
+                        <span>Learn</span>
+                    </button>
+                </li>
+                <li>
+                    <button class="menu-item-btn" data-view="view-patterns" id="nav-btn-patterns">
+                        <span class="menu-icon">🧠</span>
+                        <span>Pattern Lab</span>
+                    </button>
+                </li>
+                <li>
+                    <button class="menu-item-btn" data-view="view-practice" id="nav-btn-practice">
+                        <span class="menu-icon">💻</span>
+                        <span>Practice</span>
+                    </button>
+                </li>
+                <li>
+                    <button class="menu-item-btn" data-view="view-daily" id="nav-btn-daily">
+                        <span class="menu-icon">⚡</span>
+                        <span>Daily Challenge</span>
+                    </button>
+                </li>
+                <li>
+                    <button class="menu-item-btn" data-view="view-placement" id="nav-btn-placement">
+                        <span class="menu-icon">🎯</span>
+                        <span>Placement Arena</span>
+                    </button>
+                </li>
+                <li>
+                    <button class="menu-item-btn" data-view="view-progress" id="nav-btn-progress">
+                        <span class="menu-icon">🏆</span>
+                        <span>Progress</span>
+                    </button>
+                </li>
+            </ul>
+
+            <div class="sidebar-footer">
+                <div class="sidebar-streak-badge">
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="font-size: 1.3rem;">🔥</span>
+                        <div>
+                            <div style="font-size: 0.8rem; font-weight: 700;" id="sidebar-streak-text">1 Day Streak</div>
+                            <div style="font-size: 0.7rem; color: var(--text-muted);" id="sidebar-phase-text">Phase 0: Foundation</div>
+                        </div>
                     </div>
                 </div>
-                <div>
-                    <button class="btn btn-primary" data-switch-view="view-practice" style="padding: 0.85rem 1.5rem; font-size: 1rem;">
-                        <span>Continue Practice</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </div>
+        </aside>
+
+        <!-- =========================================================================
+             MAIN CONTENT AREA
+             ========================================================================= -->
+        <main class="quest-main">
+
+            <!-- Topbar -->
+            <header class="quest-topbar">
+                <div class="topbar-left">
+                    <a href="../index.html" class="back-hub-btn" title="Back to PlacementPrep Hub">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="19" y1="12" x2="5" y2="12"></line>
+                            <polyline points="12 19 5 12 12 5"></polyline>
+                        </svg>
+                        <span>Hub Home</span>
+                    </a>
+                    <span style="color: var(--border-color)">|</span>
+                    <span id="current-view-title" style="font-size: 0.88rem; font-weight: 700; color: var(--text-primary);">Home</span>
+                </div>
+
+                <div class="topbar-actions">
+                    <span class="quest-pill" id="topbar-streak-pill">🔥 <span id="topbar-streak-count">1</span>d Streak</span>
+                    <span class="quest-pill" id="topbar-solved-pill">⚡ <span id="topbar-solved-count">0</span> Solved</span>
+                    <button id="theme-toggle" class="icon-btn" title="Toggle Theme" aria-label="Toggle Theme">
+                        🌓
                     </button>
                 </div>
-            </div>
+            </header>
 
-            <!-- Metrics Row -->
-            <div class="metrics-row">
-                <div class="metric-card">
-                    <div class="metric-header">
-                        <span>Independent Solve Rate</span>
-                        <span>🎯</span>
-                    </div>
-                    <div class="metric-val" id="dash-solve-rate">0%</div>
-                    <div class="metric-sub">Solved without seeing solutions</div>
-                </div>
-                <div class="metric-card">
-                    <div class="metric-header">
-                        <span>Problems Attempted</span>
-                        <span>📝</span>
-                    </div>
-                    <div class="metric-val" id="dash-attempted">0</div>
-                    <div class="metric-sub">Across all roadmap phases</div>
-                </div>
-                <div class="metric-card">
-                    <div class="metric-header">
-                        <span>Practice Streak</span>
-                        <span>🔥</span>
-                    </div>
-                    <div class="metric-val" id="dash-streak">1d</div>
-                    <div class="metric-sub">Continuous daily learning</div>
-                </div>
-                <div class="metric-card">
-                    <div class="metric-header">
-                        <span>Revision Queue</span>
-                        <span>🔄</span>
-                    </div>
-                    <div class="metric-val" id="dash-revision-due">0</div>
-                    <div class="metric-sub">Problems due for spaced review</div>
-                </div>
-                <div class="metric-card">
-                    <div class="metric-header">
-                        <span>Weakest Pattern</span>
-                        <span>⚠️</span>
-                    </div>
-                    <div class="metric-val" id="dash-weakest-pattern" style="font-size: 1.15rem; font-weight: 700; margin-top: 0.4rem;">Counting</div>
-                    <div class="metric-sub">Needs practice focus</div>
-                </div>
-            </div>
+            <!-- Container for all 8 views -->
+            <div class="quest-container">
 
-            <!-- Dashboard Split Columns -->
-            <div class="dashboard-grid">
-                <!-- Left Column -->
-                <div>
-                    <!-- Next Recommended Problem -->
-                    <div class="action-card">
-                        <div class="card-title-row">
-                            <h3 style="font-size: 1.1rem; font-weight: 700;">🚀 Next Recommended Practice</h3>
-                            <button class="btn btn-secondary" data-switch-view="view-roadmap" style="font-size: 0.8rem; padding: 0.35rem 0.75rem;">View Full Roadmap</button>
-                        </div>
-                        <div id="dash-recommended-box" class="recommended-box">
-                            <!-- Populated dynamically -->
+                <!-- =================================================================
+                     1. HOME VIEW
+                     ================================================================= -->
+                <section id="view-home" class="quest-view active">
+                    <div class="hero-box">
+                        <div class="hero-tag">🚀 Gamified Placement Track</div>
+                        <h1 class="hero-title">Master DSA.<br>One Problem at a Time.</h1>
+                        <p class="hero-subtitle">A structured journey from coding basics to placement-ready problem solving with 22 progressive phases, interactive pointer visualizers, and pattern mastery.</p>
+                        <div class="hero-actions">
+                            <button class="btn-accent" data-switch-view="view-roadmap">
+                                <span>Start Your Journey</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                            </button>
+                            <button class="btn-outline" data-switch-view="view-learn">
+                                <span>Interactive Lessons</span>
+                            </button>
+                            <button class="btn-outline" data-switch-view="view-patterns">
+                                <span>Pattern Lab</span>
+                            </button>
                         </div>
                     </div>
 
-                    <!-- Daily Session Duration Selector -->
-                    <div class="action-card">
-                        <h3 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem;">⏱️ Today's Session Duration</h3>
-                        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem;">Choose how much time you can dedicate right now. We tailor the exercise pace so you don't burn out on your phone or laptop:</p>
-                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.75rem;">
-                            <div class="module-card" style="padding: 1rem; border: 1px solid var(--border-color); border-radius: var(--radius-md); cursor: pointer;" onclick="document.getElementById('open-cmd-palette').click()">
-                                <strong>⚡ 15-Minute Short Drill</strong>
-                                <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">5m Warmup + 7m Problem + 3m Review</p>
+                    <!-- Quick Stats Row -->
+                    <div class="stats-cards-grid">
+                        <div class="stat-quest-card">
+                            <div class="stat-card-icon">🗺️</div>
+                            <div>
+                                <div class="stat-card-number">22</div>
+                                <div class="stat-card-label">Learning Phases</div>
                             </div>
-                            <div class="module-card" style="padding: 1rem; border: 1px solid var(--accent-primary); background: rgba(37, 99, 235, 0.05); border-radius: var(--radius-md); cursor: pointer;" onclick="document.getElementById('open-cmd-palette').click()">
-                                <strong>🎯 30-Minute Standard</strong>
-                                <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">5m Warmup + 5m Concept + 17m Coding + 3m Review</p>
+                        </div>
+                        <div class="stat-quest-card">
+                            <div class="stat-card-icon">🧠</div>
+                            <div>
+                                <div class="stat-card-number">12+</div>
+                                <div class="stat-card-label">DSA Patterns</div>
                             </div>
-                            <div class="module-card" style="padding: 1rem; border: 1px solid var(--border-color); border-radius: var(--radius-md); cursor: pointer;" onclick="document.getElementById('open-cmd-palette').click()">
-                                <strong>🚀 45-Minute Deep Practice</strong>
-                                <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">Warmup + 2 Coding Problems + Review</p>
+                        </div>
+                        <div class="stat-quest-card">
+                            <div class="stat-card-icon">📈</div>
+                            <div>
+                                <div class="stat-card-number">Easy → Adv</div>
+                                <div class="stat-card-label">Gradual Difficulty</div>
+                            </div>
+                        </div>
+                        <div class="stat-quest-card">
+                            <div class="stat-card-icon">🎯</div>
+                            <div>
+                                <div class="stat-card-number">Placement</div>
+                                <div class="stat-card-label">TCS, Accenture, Wipro</div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Right Column (Widgets) -->
-                <div>
-                    <!-- Skill Scores Radar/Bars -->
-                    <div class="sidebar-widget">
-                        <h3>📊 Core Skill Scores</h3>
-                        <div id="dash-skills-list">
-                            <!-- Populated dynamically -->
-                        </div>
-                    </div>
-
-                    <!-- Golden Mentorship Rules -->
-                    <div class="sidebar-widget">
-                        <h3>💡 Mentorship Principles</h3>
-                        <ul style="font-size: 0.82rem; color: var(--text-secondary); padding-left: 1.25rem; line-height: 1.6;">
-                            <li><strong>Understand first:</strong> Identify input and expected output before touching code.</li>
-                            <li><strong>Solve on paper:</strong> Trace a 3-element example manually.</li>
-                            <li><strong>Use progressive hints:</strong> Try Level 1 &amp; 2 hints before requesting pseudocode.</li>
-                            <li><strong>Dry run your loops:</strong> Notice what variables change on each iteration.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- =========================================================================
-             2. PRACTICE STUDIO (SPLIT SCREEN WORKSPACE)
-             ========================================================================= -->
-        <section id="view-practice" class="app-view">
-            <div class="practice-container">
-                <!-- Left Pane: Problem Description & 13-Step Guide -->
-                <div class="pane">
-                    <div class="pane-header">
-                        <div class="problem-badge-row" style="margin: 0;">
-                            <span id="practice-difficulty-badge" class="badge badge-easy">Easy</span>
-                            <span id="practice-pattern-badge" class="badge badge-pattern">Pattern</span>
-                            <span id="practice-phase-name" style="font-size: 0.78rem; color: var(--text-muted); font-weight: 600;">Phase 1</span>
-                        </div>
-                        <button class="btn btn-secondary" data-switch-view="view-dashboard" style="font-size: 0.78rem; padding: 0.25rem 0.6rem;">Dashboard</button>
-                    </div>
-
-                    <div class="pane-body">
-                        <h2 id="practice-problem-title" class="problem-title">Problem Title</h2>
-                        <div id="practice-company-tags" class="company-tags"></div>
-
-                        <div class="section-label">Problem Statement:</div>
-                        <p id="practice-description" style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;"></p>
-
-                        <div class="section-label">Input Format:</div>
-                        <p id="practice-input-format" style="font-size: 0.85rem; color: var(--text-muted);"></p>
-
-                        <div class="section-label">Output Format:</div>
-                        <p id="practice-output-format" style="font-size: 0.85rem; color: var(--text-muted);"></p>
-
-                        <div class="section-label">Examples:</div>
-                        <div id="practice-examples-container"></div>
-
-                        <div class="section-label">Constraints:</div>
-                        <ul id="practice-constraints-list" style="font-size: 0.82rem; color: var(--text-muted); padding-left: 1.25rem;"></ul>
-
-                        <!-- 13-Step Problem Solving Framework Accordion -->
-                        <div class="framework-accordion">
-                            <div class="accordion-header" onclick="this.nextElementSibling.classList.toggle('hidden')">
-                                <span>🧠 13-Step Problem Solving Framework &amp; Thinking Checklist</span>
-                                <span>▼</span>
-                            </div>
-                            <div class="accordion-content hidden">
-                                <ol class="step-list">
-                                    <li><strong>Understand:</strong> What exactly is being asked?</li>
-                                    <li><strong>Input &amp; Output:</strong> What data types enter and return?</li>
-                                    <li><strong>Small Example:</strong> Create a list of 3 items on paper.</li>
-                                    <li><strong>Solve Manually:</strong> How would you solve it with a pen?</li>
-                                    <li><strong>Brute Force:</strong> What is the simplest, most obvious loop?</li>
-                                    <li><strong>Pattern:</strong> Traversal? Counting? Two Pointers? Hashing?</li>
-                                    <li><strong>Pseudocode:</strong> Write the steps in plain English first.</li>
-                                    <li><strong>Dry Run:</strong> Step line-by-line with variables.</li>
-                                    <li><strong>Write Code:</strong> Keep syntax clean and readable.</li>
-                                    <li><strong>Test Edge Cases:</strong> Empty list? Negatives? Duplicates?</li>
-                                    <li><strong>Analyze Complexity:</strong> Time O(N)? Space O(1)?</li>
-                                </ol>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Right Pane: Code Editor & Console & Mentor -->
-                <div class="pane">
-                    <!-- Editor Toolbar -->
-                    <div class="editor-toolbar">
-                        <div class="editor-tabs">
-                            <span class="stat-pill" style="font-size: 0.78rem;">🐍 Python 3</span>
-                        </div>
+                    <!-- Interactive DSA Journey Preview -->
+                    <div class="section-heading-row">
                         <div>
-                            <button id="btn-reset-code" class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.25rem 0.6rem;">Reset Code</button>
+                            <h2>Interactive DSA Journey Preview</h2>
+                            <p style="font-size: 0.85rem; color: var(--text-muted);">Explore fundamental building blocks that unlock campus placement rounds:</p>
+                        </div>
+                        <button class="btn-outline" data-switch-view="view-roadmap" style="padding: 0.45rem 0.9rem; font-size: 0.85rem;">View Full 22 Phases ➔</button>
+                    </div>
+
+                    <div class="journey-carousel">
+                        <div class="journey-step-chip" data-switch-view="view-roadmap">
+                            <span class="chip-icon">📦</span>
+                            <div class="chip-name">Arrays</div>
+                            <div class="chip-meta">Traversal &amp; Two Pointers</div>
+                        </div>
+                        <div class="journey-step-chip" data-switch-view="view-roadmap">
+                            <span class="chip-icon">🔤</span>
+                            <div class="chip-name">Strings</div>
+                            <div class="chip-meta">Anagrams &amp; Palindromes</div>
+                        </div>
+                        <div class="journey-step-chip" data-switch-view="view-learn" data-lesson-key="hashing_basics">
+                            <span class="chip-icon">🗂️</span>
+                            <div class="chip-name">Hashing</div>
+                            <div class="chip-meta">O(1) Frequency &amp; Seen Set</div>
+                        </div>
+                        <div class="journey-step-chip" data-switch-view="view-roadmap">
+                            <span class="chip-icon">🌳</span>
+                            <div class="chip-name">Trees</div>
+                            <div class="chip-meta">DFS, BFS, Invert &amp; Depth</div>
+                        </div>
+                        <div class="journey-step-chip" data-switch-view="view-roadmap">
+                            <span class="chip-icon">🕸️</span>
+                            <div class="chip-name">Graphs</div>
+                            <div class="chip-meta">Adjacency, Islands &amp; Traversal</div>
+                        </div>
+                        <div class="journey-step-chip" data-switch-view="view-roadmap">
+                            <span class="chip-icon">🧠</span>
+                            <div class="chip-name">DP</div>
+                            <div class="chip-meta">Memoization &amp; Tabulation</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- =================================================================
+                     2. ROADMAP VIEW
+                     ================================================================= -->
+                <section id="view-roadmap" class="quest-view">
+                    <div style="margin-bottom: 2rem;">
+                        <span class="hero-tag">🗺️ 22-Phase Structured Roadmap</span>
+                        <h2 style="font-size: 1.85rem; font-weight: 800; margin-bottom: 0.5rem;">Your Complete Coding Adventure</h2>
+                        <p style="color: var(--text-secondary); max-width: 680px; font-size: 0.95rem;">
+                            Step by step from Python syntax to dynamic programming and placement mock rounds. Click on any topic to dive in or mark phases completed as you progress.
+                        </p>
+                    </div>
+
+                    <!-- Progress overview card -->
+                    <div class="stat-quest-card" style="margin-bottom: 2rem; display: flex; flex-direction: column; align-items: stretch; gap: 0.75rem;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span style="font-weight: 700; font-size: 0.95rem;">Overall Roadmap Completion</span>
+                            <span id="roadmap-completion-percent" style="font-weight: 800; color: var(--accent);">0%</span>
+                        </div>
+                        <div class="progress-bar-track" style="margin: 0;">
+                            <div class="progress-bar-fill" id="roadmap-progress-bar" style="width: 0%;"></div>
+                        </div>
+                        <div style="font-size: 0.78rem; color: var(--text-muted); display: flex; justify-content: space-between;">
+                            <span id="roadmap-completed-count">0 of 22 Phases Mastered</span>
+                            <span>Stored locally in browser</span>
                         </div>
                     </div>
 
-                    <!-- Code Editor -->
-                    <div class="code-editor-area">
-                        <div id="editor-line-numbers" class="line-numbers">1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10</div>
-                        <textarea id="code-editor-textarea" class="code-textarea" spellcheck="false" placeholder="def solution(nums):&#10;    # Write your solution here..."></textarea>
+                    <!-- Interactive Vertical Journey Timeline -->
+                    <div class="roadmap-timeline" id="roadmap-timeline-container">
+                        <!-- Populated dynamically by script.js from DSA_QUEST_DATA.phases -->
+                    </div>
+                </section>
+
+                <!-- =================================================================
+                     3. LEARN VIEW (INTERACTIVE LESSON & VISUALIZER)
+                     ================================================================= -->
+                <section id="view-learn" class="quest-view">
+                    <div style="margin-bottom: 1.5rem;">
+                        <span class="hero-tag">📖 Deep-Dive Interactive Lessons</span>
+                        <h2 style="font-size: 1.85rem; font-weight: 800; margin-bottom: 0.5rem;">Concept Mastery with Step-by-Step Dry Runs</h2>
+                        <p style="color: var(--text-secondary); font-size: 0.95rem;">
+                            We don't give you boring walls of text. Understand the real-world analogy, see the syntax, and interact with moving pointers in real time.
+                        </p>
                     </div>
 
-                    <!-- Action Bar -->
-                    <div class="editor-action-bar">
-                        <div class="action-btn-group">
-                            <button id="btn-run-code" class="btn btn-secondary" style="border-color: var(--accent-primary); color: var(--accent-primary);">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                                <span>Run Code</span>
-                            </button>
-                            <button id="btn-submit-code" class="btn btn-primary">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                <span>Submit</span>
-                            </button>
-                        </div>
-                        <div style="font-size: 0.78rem; color: var(--text-muted);">
-                            Press <strong>Tab</strong> for 4-space indent
-                        </div>
+                    <!-- Lesson Switcher Tabs -->
+                    <div style="display: flex; gap: 0.6rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
+                        <button class="filter-chip active" data-lesson="two_pointers" id="btn-lesson-two_pointers">👉 Two Pointers</button>
+                        <button class="filter-chip" data-lesson="sliding_window" id="btn-lesson-sliding_window">🪟 Sliding Window</button>
+                        <button class="filter-chip" data-lesson="hashing_basics" id="btn-lesson-hashing_basics">🗂️ Hashing &amp; Frequency</button>
                     </div>
 
-                    <!-- Bottom Studio Panel: Test Results & AI Mentor -->
-                    <div class="studio-bottom-panel">
-                        <div class="bottom-tabs">
-                            <button class="bottom-tab active" data-tab="tab-tests">🧪 Test Cases</button>
-                            <button class="bottom-tab" data-tab="tab-mentor">🤖 AI Mentor &amp; Hints</button>
+                    <!-- Active Lesson Container -->
+                    <div class="lesson-card" id="lesson-content-container">
+                        <!-- Rendered dynamically by script.js -->
+                    </div>
+                </section>
+
+                <!-- =================================================================
+                     4. PATTERN LAB VIEW
+                     ================================================================= -->
+                <section id="view-patterns" class="quest-view">
+                    <div style="margin-bottom: 1.75rem;">
+                        <span class="hero-tag">🧠 Pattern Recognition Lab</span>
+                        <h2 style="font-size: 1.85rem; font-weight: 800; margin-bottom: 0.5rem;">Train Your Algorithmic Intuition</h2>
+                        <p style="color: var(--text-secondary); max-width: 680px; font-size: 0.95rem;">
+                            The #1 skill tested in technical rounds isn't typing speed—it's reading an unfamiliar problem and immediately identifying the right pattern to deploy.
+                        </p>
+                    </div>
+
+                    <!-- Pattern Lab Quiz Card -->
+                    <div class="quiz-card" id="pattern-quiz-container">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                            <span class="phase-badge-pill" id="quiz-question-tracker">Scenario 1 of 5</span>
+                            <span class="quest-pill" id="quiz-score-pill">Score: <strong id="quiz-score">0</strong></span>
                         </div>
 
-                        <!-- Test Results Tab -->
-                        <div id="tab-tests" class="bottom-tab-content active">
-                            <div id="test-results-container">
-                                <!-- Populated dynamically -->
+                        <div class="quiz-scenario-box" id="quiz-scenario-text">
+                            Loading scenario...
+                        </div>
+
+                        <div style="margin-bottom: 0.5rem; font-size: 0.85rem; font-weight: 700; color: var(--text-primary);">
+                            🔍 Clues in the problem statement:
+                        </div>
+                        <ul class="clues-list" id="quiz-clues-list">
+                            <!-- Clues injected dynamically -->
+                        </ul>
+
+                        <div style="margin-bottom: 0.75rem; font-size: 0.85rem; font-weight: 700; color: var(--text-primary);">
+                            Select the matching DSA Pattern:
+                        </div>
+                        <div class="pattern-options-grid" id="quiz-options-container">
+                            <!-- Option buttons injected dynamically -->
+                        </div>
+
+                        <!-- Explanation and next button -->
+                        <div class="quiz-explanation-box" id="quiz-explanation-box">
+                            <div style="font-weight: 700; margin-bottom: 0.4rem;" id="quiz-feedback-title">Feedback</div>
+                            <div id="quiz-feedback-text">Explanation goes here.</div>
+                            <div style="margin-top: 1rem;">
+                                <button class="btn-accent" id="btn-next-quiz" style="padding: 0.55rem 1.25rem; font-size: 0.88rem;">Next Scenario ➔</button>
                             </div>
                         </div>
+                    </div>
+                </section>
 
-                        <!-- AI Mentor Tab -->
-                        <div id="tab-mentor" class="bottom-tab-content">
-                            <!-- Quick Action Chips -->
-                            <div class="mentor-quick-actions">
-                                <button class="mentor-chip" data-action="get_hint">💡 Get Progressive Hint</button>
-                                <button class="mentor-chip" data-action="pattern_guide">🔍 Pattern Questions</button>
-                                <button class="mentor-chip" data-action="im_stuck">🆘 I'm Stuck Protocol</button>
-                                <button class="mentor-chip" data-action="dry_run">📝 Dry Run With Me</button>
-                                <button class="mentor-chip" data-action="complexity">⏱️ Complexity</button>
-                                <button class="mentor-chip" data-action="interview_pitch">🎙️ 60s Interview Pitch</button>
-                                <button class="mentor-chip" data-action="debug_error">🔍 Debug My Error</button>
+                <!-- =================================================================
+                     5. PRACTICE ARENA VIEW
+                     ================================================================= -->
+                <section id="view-practice" class="quest-view">
+                    <div style="margin-bottom: 1.5rem;">
+                        <span class="hero-tag">💻 Placement Practice Arena</span>
+                        <h2 style="font-size: 1.85rem; font-weight: 800; margin-bottom: 0.5rem;">Handpicked Placement Problems</h2>
+                        <p style="color: var(--text-secondary); max-width: 680px; font-size: 0.95rem;">
+                            Practice with our <strong>5-level progressive hint ladder</strong> so you develop independent problem-solving skills without getting spoiled.
+                        </p>
+                    </div>
+
+                    <!-- Filter Bar -->
+                    <div class="filter-bar">
+                        <input type="text" id="practice-search-input" class="search-input" placeholder="Search by topic, keyword, or company (e.g. TCS, Two Pointers)...">
+                        
+                        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                            <button class="filter-chip active" data-filter-type="difficulty" data-filter-val="all">All Difficulties</button>
+                            <button class="filter-chip" data-filter-type="difficulty" data-filter-val="Easy">Easy</button>
+                            <button class="filter-chip" data-filter-type="difficulty" data-filter-val="Medium">Medium</button>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem;">
+                        <button class="filter-chip active" data-filter-type="topic" data-filter-val="all">All Topics</button>
+                        <button class="filter-chip" data-filter-type="topic" data-filter-val="Arrays">Arrays</button>
+                        <button class="filter-chip" data-filter-type="topic" data-filter-val="Strings">Strings</button>
+                        <button class="filter-chip" data-filter-type="topic" data-filter-val="Hashing">Hashing</button>
+                        <button class="filter-chip" data-filter-type="topic" data-filter-val="Searching">Searching</button>
+                        <button class="filter-chip" data-filter-type="topic" data-filter-val="Sliding Window">Sliding Window</button>
+                        <button class="filter-chip" data-filter-type="topic" data-filter-val="Stack">Stack</button>
+                        <button class="filter-chip" data-filter-type="topic" data-filter-val="Dynamic Programming">DP</button>
+                    </div>
+
+                    <!-- Problem Cards Grid / Container -->
+                    <div id="practice-problems-list">
+                        <!-- Injected dynamically by script.js -->
+                    </div>
+                </section>
+
+                <!-- =================================================================
+                     6. DAILY CHALLENGE VIEW
+                     ================================================================= -->
+                <section id="view-daily" class="quest-view">
+                    <div style="margin-bottom: 1.5rem;">
+                        <span class="hero-tag">⚡ Daily Habit Builder</span>
+                        <h2 style="font-size: 1.85rem; font-weight: 800; margin-bottom: 0.5rem;">Today's Focused DSA Challenge</h2>
+                        <p style="color: var(--text-secondary); max-width: 680px; font-size: 0.95rem;">
+                            One problem every single day keeps your thinking sharp. Keep your streak alive and build genuine consistency.
+                        </p>
+                    </div>
+
+                    <div class="challenge-banner" id="daily-challenge-box">
+                        <!-- Injected dynamically by script.js -->
+                    </div>
+
+                    <div class="stats-cards-grid">
+                        <div class="stat-quest-card">
+                            <div class="stat-card-icon">🔥</div>
+                            <div>
+                                <div class="stat-card-number" id="daily-streak-display">1 Day</div>
+                                <div class="stat-card-label">Current Streak</div>
                             </div>
-
-                            <!-- Chat Stream -->
-                            <div id="mentor-chat-stream" class="mentor-chat-stream" style="margin-top: 0.75rem; max-height: 240px; overflow-y: auto;">
-                                <!-- Bubbles populated dynamically -->
+                        </div>
+                        <div class="stat-quest-card">
+                            <div class="stat-card-icon">📅</div>
+                            <div>
+                                <div class="stat-card-number" id="daily-status-display">Active</div>
+                                <div class="stat-card-label">Today's Status</div>
                             </div>
-
-                            <!-- Student Thinking Input -->
-                            <div style="display: flex; gap: 0.5rem; margin-top: 0.75rem;">
-                                <input type="text" id="student-thinking-input" placeholder="Explain your thinking in plain English..." style="flex: 1; padding: 0.5rem 0.85rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color); background: var(--bg-surface-secondary); color: var(--text-primary); font-size: 0.85rem; outline: none;">
-                                <button id="btn-send-thinking" class="btn btn-secondary" style="font-size: 0.82rem; padding: 0.5rem 0.85rem;">Check Logic</button>
+                        </div>
+                        <div class="stat-quest-card">
+                            <div class="stat-card-icon">🎯</div>
+                            <div>
+                                <div class="stat-card-number">Entry-Level</div>
+                                <div class="stat-card-label">Placement Target</div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </section>
+
+                <!-- =================================================================
+                     7. PLACEMENT ARENA VIEW
+                     ================================================================= -->
+                <section id="view-placement" class="quest-view">
+                    <div style="margin-bottom: 1.5rem;">
+                        <span class="hero-tag">🎯 Placement Arena</span>
+                        <h2 style="font-size: 1.85rem; font-weight: 800; margin-bottom: 0.5rem;">Company-Focused Coding Preparation</h2>
+                        <p style="color: var(--text-secondary); max-width: 700px; font-size: 0.95rem;">
+                            Target patterns frequently evaluated in the online coding assessments of top hiring drives.
+                        </p>
+                        <div style="background: var(--bg-secondary); border-left: 3px solid var(--warning); padding: 0.65rem 0.85rem; border-radius: var(--radius-sm); font-size: 0.8rem; color: var(--text-secondary); margin-top: 0.75rem;">
+                            ℹ️ <em>Disclaimer: Problem archetypes are curated based on standard syllabus patterns for placement coding rounds. No proprietary assessment questions are distributed.</em>
+                        </div>
+                    </div>
+
+                    <div class="company-cards-grid" id="placement-companies-grid">
+                        <!-- Company cards injected dynamically -->
+                    </div>
+                </section>
+
+                <!-- =================================================================
+                     8. PROGRESS VIEW
+                     ================================================================= -->
+                <section id="view-progress" class="quest-view">
+                    <div style="margin-bottom: 1.5rem;">
+                        <span class="hero-tag">🏆 My Journey &amp; Achievements</span>
+                        <h2 style="font-size: 1.85rem; font-weight: 800; margin-bottom: 0.5rem;">Track Your Growth Locally</h2>
+                        <p style="color: var(--text-secondary); max-width: 680px; font-size: 0.95rem;">
+                            Every phase completed, pattern unlocked, and problem solved is automatically stored in your browser without requiring a login or backend.
+                        </p>
+                    </div>
+
+                    <!-- Metrics Grid -->
+                    <div class="stats-cards-grid">
+                        <div class="stat-quest-card">
+                            <div class="stat-card-icon">📚</div>
+                            <div>
+                                <div class="stat-card-number" id="progress-topics-count">0</div>
+                                <div class="stat-card-label">Completed Topics</div>
+                            </div>
+                        </div>
+                        <div class="stat-quest-card">
+                            <div class="stat-card-icon">💻</div>
+                            <div>
+                                <div class="stat-card-number" id="progress-problems-count">0</div>
+                                <div class="stat-card-label">Problems Solved</div>
+                            </div>
+                        </div>
+                        <div class="stat-quest-card">
+                            <div class="stat-card-icon">🔥</div>
+                            <div>
+                                <div class="stat-card-number" id="progress-streak-count">1</div>
+                                <div class="stat-card-label">Current Streak</div>
+                            </div>
+                        </div>
+                        <div class="stat-quest-card">
+                            <div class="stat-card-icon">🧠</div>
+                            <div>
+                                <div class="stat-card-number" id="progress-patterns-count">0</div>
+                                <div class="stat-card-label">Patterns Mastered</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Progress Bar -->
+                    <div class="stat-quest-card" style="margin-bottom: 2rem; display: flex; flex-direction: column; align-items: stretch; gap: 0.75rem;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span style="font-weight: 700; font-size: 0.95rem;">Placement Readiness Score</span>
+                            <span id="overall-readiness-percent" style="font-weight: 800; color: var(--accent);">0%</span>
+                        </div>
+                        <div class="progress-bar-track" style="margin: 0;">
+                            <div class="progress-bar-fill" id="overall-readiness-fill" style="width: 0%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Achievements Section -->
+                    <h3 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 0.5rem;">Unlocked Achievements</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">Gamified milestones to celebrate your consistency and problem-solving growth:</p>
+
+                    <div class="achievements-grid" id="achievements-cards-container">
+                        <!-- Populated dynamically by script.js -->
+                    </div>
+
+                    <!-- Local Storage Control Buttons -->
+                    <div style="margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color); display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <button class="btn-outline" id="btn-export-progress" style="font-size: 0.85rem; padding: 0.5rem 1rem;">
+                            📋 Export Progress JSON
+                        </button>
+                        <button class="btn-outline" id="btn-reset-progress" style="font-size: 0.85rem; padding: 0.5rem 1rem; color: var(--danger); border-color: var(--danger);">
+                            🗑️ Reset Local Data
+                        </button>
+                    </div>
+                </section>
+
             </div>
-        </section>
+        </main>
 
         <!-- =========================================================================
-             3. ROADMAP VIEW
+             MOBILE BOTTOM NAVIGATION
              ========================================================================= -->
-        <section id="view-roadmap" class="app-view">
-            <div class="roadmap-container">
-                <div style="margin-bottom: 1.5rem;">
-                    <h2 style="font-size: 1.5rem; font-weight: 800;">Campus Placement DSA Roadmap</h2>
-                    <p style="color: var(--text-secondary); font-size: 0.95rem;">Structured from foundational loops to dynamic programming. Click any problem to launch into the practice studio:</p>
-                </div>
-                <div id="roadmap-phases-container">
-                    <!-- Populated dynamically -->
-                </div>
-            </div>
-        </section>
+        <nav class="mobile-bottom-nav" aria-label="Mobile Navigation">
+            <button class="mobile-nav-btn active" data-view="view-home">
+                <span>🏠</span>
+                <span>Home</span>
+            </button>
+            <button class="mobile-nav-btn" data-view="view-roadmap">
+                <span>🗺️</span>
+                <span>Roadmap</span>
+            </button>
+            <button class="mobile-nav-btn" data-view="view-learn">
+                <span>📖</span>
+                <span>Learn</span>
+            </button>
+            <button class="mobile-nav-btn" data-view="view-practice">
+                <span>💻</span>
+                <span>Practice</span>
+            </button>
+            <button class="mobile-nav-btn" data-view="view-progress">
+                <span>🏆</span>
+                <span>Progress</span>
+            </button>
+        </nav>
 
-        <!-- =========================================================================
-             4. MISTAKES JOURNAL VIEW
-             ========================================================================= -->
-        <section id="view-mistakes" class="app-view">
-            <div style="max-width: 900px; margin: 0 auto;">
-                <div style="margin-bottom: 1.5rem;">
-                    <h2 style="font-size: 1.5rem; font-weight: 800;">Mistakes &amp; Recurring Traps Journal</h2>
-                    <p style="color: var(--text-secondary); font-size: 0.95rem;">We track 11 mistake types (indexing, off-by-one, loop conditions, complexity). When a mistake repeats, we flag it as recurring so you can drill it before placement rounds:</p>
-                </div>
-                <div id="mistakes-list-container" class="mistake-list">
-                    <!-- Populated dynamically -->
-                </div>
-            </div>
-        </section>
-
-        <!-- =========================================================================
-             5. REVISION VIEW (SPACED REPETITION)
-             ========================================================================= -->
-        <section id="view-revision" class="app-view">
-            <div style="max-width: 900px; margin: 0 auto;">
-                <div style="margin-bottom: 1.5rem;">
-                    <h2 style="font-size: 1.5rem; font-weight: 800;">Spaced Repetition Revision Center</h2>
-                    <p style="color: var(--text-secondary); font-size: 0.95rem;">Forgetting is natural. We automatically schedule past problems to return at 1-day, 3-day, 7-day, and 14-day intervals to lock patterns into your long-term memory:</p>
-                </div>
-                <div id="revision-items-container" class="mistake-list">
-                    <!-- Populated dynamically -->
-                </div>
-            </div>
-        </section>
-
-        <!-- =========================================================================
-             6. ANALYTICS & SKILLS VIEW
-             ========================================================================= -->
-        <section id="view-analytics" class="app-view">
-            <div style="max-width: 900px; margin: 0 auto;">
-                <div style="margin-bottom: 1.5rem;">
-                    <h2 style="font-size: 1.5rem; font-weight: 800;">Learning Analytics &amp; Mastery Metrics</h2>
-                    <p style="color: var(--text-secondary); font-size: 0.95rem;">Track your evolution from an MCQ-dependent learner into an independent coding problem solver:</p>
-                </div>
-
-                <div class="metrics-row">
-                    <div class="metric-card">
-                        <div class="metric-header">Independent Solve Rate</div>
-                        <div class="metric-val" id="analytics-solve-rate">0%</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-header">Total Attempted</div>
-                        <div class="metric-val" id="analytics-attempted">0</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-header">Solved Independently</div>
-                        <div class="metric-val" id="analytics-independent">0</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-header">Solved with Hints</div>
-                        <div class="metric-val" id="analytics-hints">0</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-header">Solution Seen</div>
-                        <div class="metric-val" id="analytics-solutions-seen">0</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- =========================================================================
-             7. PLACEMENT MODE VIEW (MNC TRACKS)
-             ========================================================================= -->
-        <section id="view-placement" class="app-view">
-            <div style="max-width: 900px; margin: 0 auto;">
-                <div style="margin-bottom: 1.5rem;">
-                    <h2 style="font-size: 1.5rem; font-weight: 800;">Company-Specific Placement Tracks</h2>
-                    <p style="color: var(--text-secondary); font-size: 0.95rem;">Curated coding patterns, constraints, and representative problems for entry-level engineering rounds:</p>
-                </div>
-
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem;">
-                    <div class="action-card company-track-card" data-company="TCS NQT" style="cursor: pointer;">
-                        <h3 style="color: #2563EB;">TCS NQT Track</h3>
-                        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.35rem;">High focus on number theory, arrays, string manipulations, and basic sliding window.</p>
-                        <button class="btn btn-secondary" style="margin-top: 0.85rem; font-size: 0.8rem;">Start TCS Practice</button>
-                    </div>
-                    <div class="action-card company-track-card" data-company="Accenture" style="cursor: pointer;">
-                        <h3 style="color: #8B5CF6;">Accenture Track</h3>
-                        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.35rem;">Clean linear algorithms, two-pointer string and array problems, and binary search.</p>
-                        <button class="btn btn-secondary" style="margin-top: 0.85rem; font-size: 0.8rem;">Start Accenture Practice</button>
-                    </div>
-                    <div class="action-card company-track-card" data-company="Capgemini" style="cursor: pointer;">
-                        <h3 style="color: #06B6D4;">Capgemini Track</h3>
-                        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.35rem;">Pseudocode interpretation, loop dry-runs, and second largest / frequency counting.</p>
-                        <button class="btn btn-secondary" style="margin-top: 0.85rem; font-size: 0.8rem;">Start Capgemini Practice</button>
-                    </div>
-                    <div class="action-card company-track-card" data-company="Cognizant" style="cursor: pointer;">
-                        <h3 style="color: #10B981;">Cognizant Track</h3>
-                        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.35rem;">Valid anagrams, duplicates, prefix sums, and stack-based parenthesis matching.</p>
-                        <button class="btn btn-secondary" style="margin-top: 0.85rem; font-size: 0.8rem;">Start Cognizant Practice</button>
-                    </div>
-                    <div class="action-card company-track-card" data-company="Wipro" style="cursor: pointer;">
-                        <h3 style="color: #F59E0B;">Wipro NLTH Track</h3>
-                        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.35rem;">Array traversals, frequency maps, in-place reversals, and basic recursion.</p>
-                        <button class="btn btn-secondary" style="margin-top: 0.85rem; font-size: 0.8rem;">Start Wipro Practice</button>
-                    </div>
-                    <div class="action-card company-track-card" data-company="Infosys" style="cursor: pointer;">
-                        <h3 style="color: #EC4899;">Infosys Springboard Track</h3>
-                        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.35rem;">String manipulation, two-sum variations, stack simulations, and recursive patterns.</p>
-                        <button class="btn btn-secondary" style="margin-top: 0.85rem; font-size: 0.8rem;">Start Infosys Practice</button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- =========================================================================
-             8. NOTES VIEW (PERSONAL DSA NOTEBOOK)
-             ========================================================================= -->
-        <section id="view-notes" class="app-view">
-            <div style="max-width: 900px; margin: 0 auto;">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-                    <div>
-                        <h2 style="font-size: 1.5rem; font-weight: 800;">Personal DSA Notebook</h2>
-                        <p style="color: var(--text-secondary); font-size: 0.95rem;">Compact cheat sheets, edge cases, and personal rules easy to read on your phone:</p>
-                    </div>
-                    <button id="btn-add-new-note" class="btn btn-primary">+ Add Note</button>
-                </div>
-                <div id="notes-grid-container">
-                    <!-- Populated dynamically -->
-                </div>
-            </div>
-        </section>
-
-        <!-- =========================================================================
-             9. SETTINGS & STATE BACKUP
-             ========================================================================= -->
-        <section id="view-settings" class="app-view">
-            <div style="max-width: 720px; margin: 0 auto;">
-                <div style="margin-bottom: 1.5rem;">
-                    <h2 style="font-size: 1.5rem; font-weight: 800;">Settings &amp; Multi-Device State Backup</h2>
-                    <p style="color: var(--text-secondary); font-size: 0.95rem;">Configure your preferences or export/restore your complete DSA journey as compact JSON:</p>
-                </div>
-
-                <div class="action-card">
-                    <h3 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 0.85rem;">Student Profile</h3>
-                    <div style="margin-bottom: 1rem;">
-                        <label style="font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 0.35rem;">Your Name / Username</label>
-                        <input type="text" id="setting-student-name" value="Student" style="width: 100%; padding: 0.6rem 0.85rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color); background: var(--bg-surface-secondary); color: var(--text-primary);">
-                    </div>
-                    <div style="margin-bottom: 1rem;">
-                        <label style="font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 0.35rem;">Optional Google Gemini API Key</label>
-                        <input type="password" id="setting-ai-api-key" placeholder="AIzaSy... (Leave empty to use built-in Heuristic AI Mentor)" style="width: 100%; padding: 0.6rem 0.85rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color); background: var(--bg-surface-secondary); color: var(--text-primary);">
-                        <small style="color: var(--text-muted); font-size: 0.78rem; display: block; margin-top: 0.25rem;">When empty, the platform uses its built-in offline heuristic mentor rules with 100% accuracy.</small>
-                    </div>
-                    <button id="btn-save-settings" class="btn btn-primary">Save Settings</button>
-                </div>
-
-                <div class="action-card">
-                    <h3 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 0.85rem;">Multi-Device State Backup (export_state / import_state)</h3>
-                    <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem;">Seamlessly transfer your progress between your phone, tablet, and laptop:</p>
-                    <div style="display: flex; gap: 0.75rem;">
-                        <button id="btn-export-state" class="btn btn-secondary">📋 Export Progress JSON</button>
-                        <button id="btn-import-state" class="btn btn-secondary">📥 Import Progress JSON</button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- =========================================================================
-         PROBLEM REVIEW MODAL
-         ========================================================================= -->
-    <div id="review-modal" class="modal-overlay hidden" role="dialog" aria-modal="true">
-        <div class="cmd-modal-card" style="max-width: 640px; padding: 1.5rem;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-                <span class="badge badge-easy">🎉 Problem Solved!</span>
-                <button id="btn-close-review" class="icon-btn" style="border: none;">✕</button>
-            </div>
-
-            <h3 id="review-problem-title" style="font-size: 1.35rem; font-weight: 800; margin-bottom: 0.4rem;">Problem Review</h3>
-            <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
-                <span class="badge badge-pattern" id="review-pattern-name">Pattern</span>
-                <span class="stat-pill" style="font-size: 0.75rem;">Time: <strong id="review-time-complexity">O(N)</strong></span>
-                <span class="stat-pill" style="font-size: 0.75rem;">Space: <strong id="review-space-complexity">O(1)</strong></span>
-            </div>
-
-            <div class="section-label">Algorithmic Reasoning:</div>
-            <p id="review-explanation" style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.55; margin-bottom: 1rem;"></p>
-
-            <div class="section-label">Optimal Python Solution:</div>
-            <pre style="background: var(--bg-code); color: var(--text-code); padding: 0.85rem; border-radius: var(--radius-sm); font-family: monospace; font-size: 0.85rem; overflow-x: auto; margin-bottom: 1.25rem;"><code id="review-solution-code"></code></pre>
-
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-                <button id="btn-add-review-to-notes" class="btn btn-secondary">📝 Save to Notes</button>
-                <button id="btn-next-after-review" class="btn btn-primary">Next Problem ➔</button>
-            </div>
-        </div>
     </div>
 
-    <!-- =========================================================================
-         GLOBAL COMMAND PALETTE (Ctrl+K)
-         ========================================================================= -->
-    <div id="cmd-palette-overlay" class="modal-overlay hidden" role="dialog" aria-modal="true">
-        <div class="cmd-modal-card">
-            <div class="cmd-input-row">
-                <span style="font-size: 1.1rem;">⚡</span>
-                <input type="text" id="cmd-palette-input" class="cmd-input" placeholder="Type a command (e.g. /start, /hint, /dryrun, /roadmap)...">
-                <span class="kbd-shortcut">ESC</span>
-            </div>
-            <ul id="cmd-results-list" class="cmd-results-list">
-                <!-- Populated dynamically -->
-            </ul>
-        </div>
-    </div>
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="toast-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999; display: flex; flex-direction: column; gap: 0.5rem;"></div>
 
-    <!-- Toast Container -->
-    <div id="toast-container" class="toast-container"></div>
-
-    <!-- Script Dependencies -->
-    <script src="../syncManager.js"></script>
-    <script src="problems.js"></script>
-    <script src="pythonRunner.js"></script>
-    <script src="storage.js"></script>
-    <script src="mentorEngine.js"></script>
+    <!-- Static Data Store and Application Controller -->
+    <script src="data.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
