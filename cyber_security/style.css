@@ -1,4 +1,5 @@
-:root {
+:root,
+[data-theme="light"] {
     /* Cyber Defense Theme - Light Mode */
     --bg-main: #F4F7FB;
     --bg-surface: #FFFFFF;

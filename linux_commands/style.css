@@ -1,4 +1,5 @@
-:root {
+:root,
+[data-theme="light"] {
     /* Linux Commands Theme - Light Mode (Mint / Emerald Green Accent) */
     --bg-main: #F8FAFC;
     --bg-surface: #FFFFFF;

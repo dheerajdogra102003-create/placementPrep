@@ -1,6 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
+    <script>
+        (function () {
+            const theme = localStorage.getItem('placementPrep_theme');
+            if (theme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                document.addEventListener('DOMContentLoaded', () => document.body.classList.add('dark'));
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        })();
+    </script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-8VNQVXVYBN"></script>
 <script>
@@ -908,9 +919,9 @@ const searchInput=document.getElementById("searchInput");
 const clearSearch=document.getElementById("clearSearch");
 const topSearch=document.getElementById("topSearch");
 
-// Synchronize theme with PlacementPrep platform theme or local cloud-theme
-const savedTheme=localStorage.getItem("placementPrep_theme") || localStorage.getItem("cloud-theme") || localStorage.getItem("placementprep-theme") || localStorage.getItem("theme") || 'light';
-if(savedTheme==="dark"){
+// Synchronize theme with PlacementPrep platform theme
+const savedTheme = localStorage.getItem("placementPrep_theme");
+if(savedTheme === "dark"){
   body.classList.add("dark");
   if (themeBtn) themeBtn.textContent="☀";
 } else {

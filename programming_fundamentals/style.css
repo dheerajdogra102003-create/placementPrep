@@ -3,7 +3,8 @@
    Variables & Data Types | Conditional Statements | Loops & Iteration
    ========================================================================== */
 
-:root {
+:root,
+[data-theme="light"] {
     /* Color Palette - Light Theme (Default) */
     --bg-base: #F8FAFC;
     --bg-card: #FFFFFF;

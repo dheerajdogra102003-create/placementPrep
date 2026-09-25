@@ -1,4 +1,5 @@
-:root {
+:root,
+[data-theme="light"] {
     /* Browser Fundamentals Theme - Light Mode (Indigo & Blue) */
     --bg-main: #F8FAFC;
     --bg-surface: #FFFFFF;

@@ -1,4 +1,5 @@
-:root {
+:root,
+[data-theme="light"] {
     /* MS Office Theme - Light Mode */
     --bg-main: #F8FAFC;
     --bg-surface: #FFFFFF;

@@ -214,12 +214,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // 4. THEME & SOUND CONTROLLER
     // ==========================================
     function initTheme() {
-        const savedTheme = localStorage.getItem('placementPrep_theme') || 
-                           localStorage.getItem('prep_theme') || 
-                           localStorage.getItem('placementprep-theme') || 
-                           localStorage.getItem('theme') || 
-                           'light';
-        document.documentElement.setAttribute('data-theme', savedTheme);
+        const savedTheme = localStorage.getItem('placementPrep_theme');
+        const activeTheme = savedTheme === 'dark' ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', activeTheme);
     }
 
     if (dom.themeToggle) {

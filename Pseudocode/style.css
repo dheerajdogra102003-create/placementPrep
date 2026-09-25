@@ -8,7 +8,8 @@
      - Recursion & Call Stack: Electric Amethyst Violet (#7c3aed / #c084fc)
    ========================================================================== */
 
-:root {
+:root,
+[data-theme="light"] {
     --font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     --font-code: 'JetBrains Mono', 'Fira Code', Consolas, Monaco, monospace;
 

@@ -1,6 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
+    <script>
+        (function () {
+            const theme = localStorage.getItem('placementPrep_theme');
+            if (theme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                document.addEventListener('DOMContentLoaded', () => document.body.classList.add('dark'));
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        })();
+    </script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-8VNQVXVYBN"></script>
 <script>
@@ -2722,11 +2733,7 @@ el.<span class="code-fn">remove</span>();
 <script>
 // Theme Management
 const themeToggle = document.getElementById('themeToggle');
-const savedTheme = localStorage.getItem('placementPrep_theme') || 
-                   localStorage.getItem('placementprep-theme') || 
-                   localStorage.getItem('placement_theme') || 
-                   localStorage.getItem('theme') || 
-                   'light';
+const savedTheme = localStorage.getItem('placementPrep_theme');
 
 if (savedTheme === 'dark') {
   document.body.classList.add('dark');

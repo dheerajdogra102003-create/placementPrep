@@ -2,12 +2,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Theme initialization & toggle
     const themeToggleBtn = document.getElementById('theme-toggle');
     function initTheme() {
-        const savedTheme = localStorage.getItem('placementPrep_theme') || 
-                           localStorage.getItem('placementprep-theme') || 
-                           localStorage.getItem('theme') || 
-                           localStorage.getItem('prep_theme') || 
-                           'light';
-        document.documentElement.setAttribute('data-theme', savedTheme);
+        const savedTheme = localStorage.getItem('placementPrep_theme');
+        const activeTheme = savedTheme === 'dark' ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', activeTheme);
         if (themeToggleBtn) {
             themeToggleBtn.addEventListener('click', () => {
                 const current = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
