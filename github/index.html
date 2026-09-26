@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <script>
+        (function () {
+            const theme = localStorage.getItem('placementPrep_theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8VNQVXVYBN"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-8VNQVXVYBN');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Git &amp; GitHub - Placement Practice &amp; Editorial Notes | PlacementPrep</title>
+    <meta name="description" content="Master Git and GitHub concepts, commands, workflows, scenarios, and troubleshooting for fresher MNC placement exams. Includes 60 placement MCQs and last-hour revision.">
+
+    <!-- Google Fonts: Inter & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Minimal Editorial Navigation -->
+    <nav class="navbar" id="top-nav">
+        <div class="container nav-container">
+            <a href="../index.html" class="brand-group" aria-label="PlacementPrep Dashboard">
+                <div class="brand-mark">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="6" y1="3" x2="6" y2="15"></line>
+                        <circle cx="18" cy="6" r="3"></circle>
+                        <circle cx="6" cy="18" r="3"></circle>
+                        <path d="M18 9a9 9 0 0 1-9 9"></path>
+                    </svg>
+                </div>
+                <div class="brand-meta">
+                    <span class="brand-title">PlacementPrep</span>
+                    <span class="brand-subtitle">GitHub Practice</span>
+                </div>
+            </a>
+
+            <ul class="nav-links" id="nav-links-menu">
+                <li><a href="#hero-section" class="nav-link active">Home</a></li>
+                <li><a href="#topics-section" class="nav-link">Topics</a></li>
+                <li><a href="#config-section" class="nav-link">Practice</a></li>
+                <li><a href="#revision-section" class="nav-link">Revision</a></li>
+                <li><a href="../index.html" class="nav-link" style="color: var(--accent-red);">&larr; Dashboard</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <div class="pill-status">
+                    <span class="pill-dot"></span>
+                    <span id="nav-progress-text">60 Questions</span>
+                </div>
+
+                <button id="theme-toggle" class="icon-btn" aria-label="Toggle dark/light theme" title="Toggle theme">
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="4.22" x2="19.78" y2="5.64"></line>
+                    </svg>
+                </button>
+
+                <button class="icon-btn mobile-menu-btn" id="mobile-menu-btn" aria-label="Open mobile navigation">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN LANDING SECTIONS -->
+
+    <!-- Large Editorial Hero Section -->
+    <header class="hero-editorial" id="hero-section">
+        <div class="container">
+            <div class="hero-eyebrow">
+                PLACEMENTPREP <span>/</span> MODULE <span>/</span> GIT &amp; GITHUB
+            </div>
+
+            <div class="hero-headline-group">
+                <h1 class="hero-main-title">GIT &amp; GITHUB</h1>
+                <h2 class="hero-secondary-title">PLACEMENT PRACTICE &amp; NOTES</h2>
+            </div>
+
+            <div class="hero-editorial-grid">
+                <div>
+                    <p class="hero-lead-text">
+                        Think. Commit. Push. Get Placed. Master the Git workflows, command syntax, branch mergers, and troubleshooting traps that appear in technical placement screening.
+                    </p>
+                    <p class="hero-sub-text">
+                        Engineered specifically for MCA, BCA, and B.Tech freshers preparing for TCS, Accenture, Cognizant, Infosys, Capgemini, Wipro, and Deloitte technical rounds.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a href="#config-section" class="btn btn-primary" id="hero-start-btn">Start Practice</a>
+                        <a href="#revision-section" class="btn btn-secondary">Last-Hour Revision</a>
+                    </div>
+                </div>
+
+                <!-- Minimal Line-Based Git Branch Visualization -->
+                <div class="hero-visual-box">
+                    <div class="visual-top-bar">
+                        <span><span class="visual-indicator-dot"></span>Repository Topology</span>
+                        <span>main &amp; feature</span>
+                    </div>
+
+                    <svg class="branch-svg" viewBox="0 0 420 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Main branch line -->
+                        <line x1="30" y1="120" x2="390" y2="120" stroke="var(--border-elevated)" stroke-width="2.5" />
+                        
+                        <!-- Feature branch curve -->
+                        <path d="M 110 120 C 140 120, 150 50, 180 50 L 290 50 C 320 50, 330 120, 360 120" 
+                              stroke="var(--accent-red)" stroke-width="2" stroke-dasharray="3 3" />
+                        
+                        <!-- Main branch commit nodes -->
+                        <circle cx="50" cy="120" r="5" fill="var(--bg-main)" stroke="var(--text-muted)" stroke-width="2" />
+                        <circle cx="110" cy="120" r="5" fill="var(--bg-main)" stroke="var(--accent-red)" stroke-width="2" />
+                        <circle cx="230" cy="120" r="5" fill="var(--bg-main)" stroke="var(--text-muted)" stroke-width="2" />
+                        <circle cx="360" cy="120" r="6" fill="var(--soft-success)" stroke="var(--bg-main)" stroke-width="2" />
+
+                        <!-- Feature branch commit nodes -->
+                        <circle cx="190" cy="50" r="5" fill="var(--bg-main)" stroke="var(--accent-pink)" stroke-width="2" />
+                        <circle cx="270" cy="50" r="5" fill="var(--bg-main)" stroke="var(--accent-pink)" stroke-width="2" />
+
+                        <!-- Merge & PR indicators -->
+                        <text x="50" y="145" fill="var(--text-muted)" font-family="JetBrains Mono" font-size="10" text-anchor="middle">init</text>
+                        <text x="110" y="145" fill="var(--text-muted)" font-family="JetBrains Mono" font-size="10" text-anchor="middle">branch</text>
+                        <text x="190" y="35" fill="var(--accent-pink)" font-family="JetBrains Mono" font-size="10" text-anchor="middle">feature</text>
+                        <text x="270" y="35" fill="var(--accent-pink)" font-family="JetBrains Mono" font-size="10" text-anchor="middle">PR #4</text>
+                        <text x="360" y="145" fill="var(--soft-success)" font-family="JetBrains Mono" font-size="10" text-anchor="middle">merge</text>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Editorial Quick Specs Strip -->
+    <section class="specs-strip" id="specs-section">
+        <div class="container">
+            <div class="specs-grid">
+                <div class="spec-item">
+                    <span class="spec-number">60</span>
+                    <span class="spec-label">Practice Questions</span>
+                    <span class="spec-desc">Structured MCQs with zero trivia</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-number">30%</span>
+                    <span class="spec-label">Scenario-Based</span>
+                    <span class="spec-desc">Realistic developer troubleshooting</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-number">MNC</span>
+                    <span class="spec-label">Exam Level</span>
+                    <span class="spec-desc">TCS, Accenture, Cognizant, Infosys</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-number">Dual</span>
+                    <span class="spec-label">Git + GitHub</span>
+                    <span class="spec-desc">CLI mechanics + remote collaboration</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 01: TOPIC EXPLORER -->
+    <section class="editorial-section" id="topics-section">
+        <div class="container">
+            <div class="section-anchor-header">
+                <div class="anchor-left">
+                    <span class="anchor-number">01 / WHAT YOU'LL PRACTICE</span>
+                    <h3 class="anchor-title">TOPIC EXPLORER</h3>
+                    <p class="anchor-desc">Build the Git competencies tested in technical screening rounds. Click any card to launch practice on that specific topic.</p>
+                </div>
+                <div class="anchor-right">
+                    <span class="priority-pill priority-must-know">🔥 Must Know</span>
+                    <span class="priority-pill priority-high">⭐ High Priority</span>
+                    <span class="priority-pill priority-medium">📌 Know This</span>
+                </div>
+            </div>
+
+            <!-- 14 Topic Cards populated by script.js -->
+            <div class="topics-editorial-grid" id="topics-grid-container">
+                <!-- JavaScript renders 14 topic cards here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 02: PRACTICE CONFIGURATION -->
+    <section class="editorial-section alt" id="config-section">
+        <div class="container">
+            <div class="section-anchor-header">
+                <div class="anchor-left">
+                    <span class="anchor-number">02 / SIMULATOR SETUP</span>
+                    <h3 class="anchor-title">CONFIGURE YOUR PRACTICE</h3>
+                    <p class="anchor-desc">Customize your exam parameters. Choose between untimed conceptual practice and full timed assessment.</p>
+                </div>
+            </div>
+
+            <div class="config-editorial-surface">
+                <div class="config-grid-row">
+                    <!-- Question Count -->
+                    <div class="config-field">
+                        <span class="field-label">Question Count</span>
+                        <div class="button-radio-group">
+                            <button type="button" class="radio-pill active" data-config="count" data-val="10">10 Questions</button>
+                            <button type="button" class="radio-pill" data-config="count" data-val="20">20 Questions</button>
+                            <button type="button" class="radio-pill" data-config="count" data-val="30">30 Questions</button>
+                            <button type="button" class="radio-pill" data-config="count" data-val="60">All 60 Questions</button>
+                        </div>
+                    </div>
+
+                    <!-- Difficulty -->
+                    <div class="config-field">
+                        <span class="field-label">Difficulty Level</span>
+                        <div class="button-radio-group">
+                            <button type="button" class="radio-pill active" data-config="diff" data-val="Mixed">Mixed (Standard)</button>
+                            <button type="button" class="radio-pill" data-config="diff" data-val="Easy">Easy (18 Qs)</button>
+                            <button type="button" class="radio-pill" data-config="diff" data-val="Medium">Medium (24 Qs)</button>
+                            <button type="button" class="radio-pill" data-config="diff" data-val="Hard">Hard (18 Qs)</button>
+                        </div>
+                    </div>
+
+                    <!-- Question Type -->
+                    <div class="config-field">
+                        <span class="field-label">Question Format</span>
+                        <div class="button-radio-group">
+                            <button type="button" class="radio-pill active" data-config="type" data-val="All">All Formats</button>
+                            <button type="button" class="radio-pill" data-config="type" data-val="Scenario Based">30% Scenarios</button>
+                            <button type="button" class="radio-pill" data-config="type" data-val="Command Based">Commands &amp; CLI</button>
+                            <button type="button" class="radio-pill" data-config="type" data-val="Conceptual">Conceptual</button>
+                            <button type="button" class="radio-pill" data-config="type" data-val="Troubleshooting">Troubleshooting</button>
+                        </div>
+                    </div>
+
+                    <!-- Mode -->
+                    <div class="config-field">
+                        <span class="field-label">Practice Mode</span>
+                        <div class="button-radio-group">
+                            <button type="button" class="radio-pill active" data-config="mode" data-val="Practice">Practice Mode (Immediate Explanations)</button>
+                            <button type="button" class="radio-pill" data-config="mode" data-val="Timed Test">Timed Test (Countdown Timer)</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="config-launch-footer">
+                    <div class="config-details" id="config-summary-text">
+                        Selected: <strong>10 Questions</strong> &bull; <strong>Mixed Difficulty</strong> &bull; <strong>Practice Mode</strong>
+                    </div>
+
+                    <button type="button" class="btn btn-accent" id="start-practice-btn">
+                        Launch Practice Session &rarr;
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTERACTIVE PRACTICE STAGE (Shown during active practice) -->
+    <section class="editorial-section" id="practice-stage" style="display: none;">
+        <div class="container practice-stage-view">
+            <!-- Stage Top Bar -->
+            <div class="practice-top-strip">
+                <div class="stage-question-counter" id="question-number-display">
+                    <strong>01</strong> / 10
+                </div>
+
+                <div class="stage-right-controls">
+                    <div class="timer-pill" id="timer-box-display" style="display: none;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        <span id="timer-time-display">08:00</span>
+                    </div>
+
+                    <button type="button" class="btn btn-secondary" id="end-session-btn" style="padding: 0.4rem 0.85rem; font-size: 0.75rem;">
+                        End Practice
+                    </button>
+                </div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="editorial-progress-track">
+                <div class="editorial-progress-bar" id="practice-progress-fill"></div>
+            </div>
+
+            <!-- Question Editorial Box -->
+            <div class="question-editorial-box">
+                <!-- Metadata Badges -->
+                <div class="question-meta-tags">
+                    <div class="meta-badges-cluster">
+                        <span class="priority-pill priority-medium" id="difficulty-badge">EASY</span>
+                        <span class="priority-pill" id="topic-badge" style="background: var(--bg-elevated); color: var(--text-secondary); border-color: var(--border-subtle);">GIT FUNDAMENTALS</span>
+                        <span class="priority-pill priority-must-know" id="type-badge" style="display: none;">SCENARIO</span>
+                    </div>
+
+                    <button type="button" class="bookmark-action-btn" id="bookmark-toggle-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                        <span>Bookmark</span>
+                    </button>
+                </div>
+
+                <!-- Question Text -->
+                <h3 class="question-statement-text" id="question-statement">
+                    Loading question content...
+                </h3>
+
+                <!-- Code / Terminal Block -->
+                <div class="editorial-command-block" id="command-visualizer-block" style="display: none;">
+                    <div class="command-block-header">
+                        <span>BASH / TERMINAL</span>
+                        <button type="button" class="copy-snippet-btn" id="copy-snippet-btn">Copy</button>
+                    </div>
+                    <pre class="command-snippet-content"><code id="command-snippet-code">$ git status</code></pre>
+                </div>
+
+                <!-- Minimal Technical Editorial Diagram (Workflow Strip) -->
+                <div class="editorial-workflow-diagram" id="workflow-visualizer-strip">
+                    <!-- Populated dynamically: Working Directory -> Staging Area -> Local Repo -> Remote -->
+                </div>
+
+                <!-- 4 Answer Options -->
+                <div class="answer-options-list" id="options-container">
+                    <!-- Option buttons rendered here -->
+                </div>
+
+                <!-- Structured Explanation & Placement Takeaway -->
+                <div class="editorial-explanation-pane" id="explanation-pane" style="display: none;">
+                    <div class="explanation-heading">PLACEMENT EXPLANATION &amp; TAKEAWAYS</div>
+                    <div class="explanation-answer-text">
+                        Correct Answer: <span id="correct-answer-text"></span>
+                    </div>
+                    <p class="explanation-body-text" id="explanation-why-text"></p>
+
+                    <div class="placement-takeaway-editorial">
+                        <strong>Placement Takeaway:</strong> <span id="placement-takeaway-text"></span>
+                    </div>
+
+                    <!-- Placement Trap Alert -->
+                    <div class="editorial-trap-card" id="placement-trap-box" style="display: none;">
+                        <span class="trap-card-eyebrow" id="placement-trap-title">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                                <line x1="12" y1="9" x2="12" y2="13"></line>
+                                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                            </svg>
+                            PLACEMENT TRAP &amp; COMMON MISTAKE
+                        </span>
+                        <span class="trap-card-desc" id="placement-trap-desc"></span>
+                    </div>
+                </div>
+
+                <!-- Action Bar -->
+                <div class="question-action-bar">
+                    <button type="button" class="btn btn-secondary" id="prev-question-btn" disabled>
+                        &larr; Previous
+                    </button>
+
+                    <span class="score-inline-track">Score: <strong id="inline-score-val">0 / 0</strong></span>
+
+                    <button type="button" class="btn btn-accent" id="next-question-btn">
+                        Next Question &rarr;
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RESULTS STAGE (Shown when test completes) -->
+    <section class="editorial-section" id="result-stage" style="display: none;">
+        <div class="container">
+            <div class="result-editorial-view">
+                <span class="result-eyebrow">PRACTICE COMPLETE</span>
+                <h2 class="result-big-title">YOUR PLACEMENT SCORE</h2>
+                <p class="result-headline-desc" id="result-headline-msg">
+                    Solid performance! You have demonstrated good grasp of Git core concepts.
+                </p>
+
+                <!-- Huge Score Number -->
+                <div class="result-score-block">
+                    <span class="score-huge-digits" id="result-score-val">8/10</span>
+                    <span class="score-huge-label">Final Evaluation</span>
+                </div>
+
+                <!-- Metrics Grid -->
+                <div class="result-stats-row">
+                    <div class="result-stat-cell">
+                        <span class="result-stat-val" id="result-accuracy-val">80%</span>
+                        <span class="result-stat-lbl">Accuracy</span>
+                    </div>
+                    <div class="result-stat-cell">
+                        <span class="result-stat-val" id="result-correct-val">8</span>
+                        <span class="result-stat-lbl">Correct</span>
+                    </div>
+                    <div class="result-stat-cell">
+                        <span class="result-stat-val" id="result-incorrect-val">2</span>
+                        <span class="result-stat-lbl">Incorrect / Missed</span>
+                    </div>
+                    <div class="result-stat-cell">
+                        <span class="result-stat-val" id="result-time-val">4m 12s</span>
+                        <span class="result-stat-lbl">Time Taken</span>
+                    </div>
+                </div>
+
+                <!-- Strong & Weak Topics Cluster -->
+                <div class="result-topics-cluster">
+                    <div class="cluster-card">
+                        <span class="cluster-title">
+                            <span style="color: var(--soft-success);">&check;</span> STRONG TOPICS (&ge; 70%)
+                        </span>
+                        <div class="pill-collection" id="strong-topics-container"></div>
+                    </div>
+                    <div class="cluster-card">
+                        <span class="cluster-title">
+                            <span style="color: var(--accent-red);">&times;</span> TOPICS TO REVISE (&lt; 70%)
+                        </span>
+                        <div class="pill-collection" id="weak-topics-container"></div>
+                    </div>
+                </div>
+
+                <!-- Result Actions -->
+                <div class="result-cta-group">
+                    <button type="button" class="btn btn-primary" id="review-all-btn">Review All Answers</button>
+                    <button type="button" class="btn btn-secondary" id="review-incorrect-btn">Review Mistakes Only</button>
+                    <button type="button" class="btn btn-accent" id="retry-practice-btn">Retry Practice</button>
+                    <button type="button" class="btn btn-secondary" id="back-home-btn">Back to Dashboard</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 03: LAST-HOUR REVISION SECTION -->
+    <section class="revision-editorial-section" id="revision-section">
+        <div class="container">
+            <div class="section-anchor-header">
+                <div class="anchor-left">
+                    <span class="anchor-number">03 / RAPID RECAP</span>
+                    <h3 class="anchor-title">LAST-HOUR REVISION</h3>
+                    <p class="anchor-desc">High-yield technical comparisons, formula strips, and critical exam traps to read before entering your interview or screening test.</p>
+                </div>
+            </div>
+
+            <!-- Comparison Table: Technical Distinctions -->
+            <div class="editorial-table-wrapper">
+                <table class="editorial-table">
+                    <thead>
+                        <tr>
+                            <th>Concept Comparison</th>
+                            <th>Tool / Command A</th>
+                            <th>Tool / Command B</th>
+                            <th>Exam Distinction &amp; Trap</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Git vs GitHub</strong></td>
+                            <td><code>Git</code>: Local distributed VCS engine installed on machine.</td>
+                            <td><code>GitHub</code>: Cloud-based hosting &amp; collaboration platform.</td>
+                            <td>Git works 100% offline. Commits, branch creation, and logs do not require GitHub.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>git fetch vs git pull</strong></td>
+                            <td><code>git fetch</code>: Downloads remote refs into tracking branches without merging.</td>
+                            <td><code>git pull</code>: Runs fetch AND immediately merges into local working branch.</td>
+                            <td><code>pull = fetch + merge</code>. Interviewers check if you know fetch never touches your working tree.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>git reset vs git revert</strong></td>
+                            <td><code>git reset</code>: Moves branch pointer backwards, rewriting commit history.</td>
+                            <td><code>git revert</code>: Creates a new commit inverting historical changes safely.</td>
+                            <td>Never <code>reset</code> shared public branches! Always use <code>revert</code> on team branches (main/staging).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Fork vs Clone</strong></td>
+                            <td><code>Fork</code>: Remote copy on GitHub servers under your user account.</td>
+                            <td><code>Clone</code>: Download full repository from remote server to local machine.</td>
+                            <td>Fork has no native Git CLI command; it is a GitHub platform feature used for open-source PRs.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>.gitignore Traps</strong></td>
+                            <td>Untracked files: Ignored completely by Git status and add.</td>
+                            <td>Already committed files: Git continues tracking even after added to .gitignore!</td>
+                            <td>To untrack already committed file: run <code>git rm --cached &lt;file&gt;</code> then commit.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 8 High-Impact Revision Mosaic Cards -->
+            <div class="revision-cards-mosaic">
+                <!-- 1. Essential Commands -->
+                <div class="revision-mosaic-card">
+                    <div class="mosaic-header">
+                        <span class="mosaic-number">01</span>
+                        <span class="priority-pill priority-must-know">MUST KNOW</span>
+                    </div>
+                    <h4 class="mosaic-title">High-Frequency Commands</h4>
+                    <p class="mosaic-body">The core commands expected in every MNC fresher screening.</p>
+                    <div class="mosaic-snippet">
+git status          # Check working & staged state
+git log --oneline   # Compact single-line history
+git diff --staged   # Diff index against HEAD
+git mv old.js new.js# Rename tracked file cleanly
+                    </div>
+                    <span class="mosaic-trap">&bull; git diff shows unstaged changes; git diff --staged shows staged changes.</span>
+                </div>
+
+                <!-- 2. The Three Trees -->
+                <div class="revision-mosaic-card">
+                    <div class="mosaic-header">
+                        <span class="mosaic-number">02</span>
+                        <span class="priority-pill priority-must-know">MUST KNOW</span>
+                    </div>
+                    <h4 class="mosaic-title">Git Three-Tree Lifecycle</h4>
+                    <p class="mosaic-body">File transition states from disk to commit.</p>
+                    <div class="mosaic-snippet">
+Working Tree &rarr; git add &rarr; Staging Area (Index)
+Staging Area &rarr; git commit &rarr; Local Repo (HEAD)
+Local Repo   &rarr; git push   &rarr; Remote Repo
+                    </div>
+                    <span class="mosaic-trap">&bull; A file can be partially staged and unstaged at the same time.</span>
+                </div>
+
+                <!-- 3. Branching Mechanics -->
+                <div class="revision-mosaic-card">
+                    <div class="mosaic-header">
+                        <span class="mosaic-number">03</span>
+                        <span class="priority-pill priority-must-know">MUST KNOW</span>
+                    </div>
+                    <h4 class="mosaic-title">Branch Creation &amp; Switch</h4>
+                    <p class="mosaic-body">Modern branch management commands.</p>
+                    <div class="mosaic-snippet">
+git checkout -b feature-auth # Create and switch
+git switch -c feature-auth   # Modern 2.23+ syntax
+git branch -d feature-auth   # Safe delete (checks merge)
+git branch -D feature-auth   # Force delete unmerged
+                    </div>
+                    <span class="mosaic-trap">&bull; HEAD is the pointer to your currently checked-out branch reference.</span>
+                </div>
+
+                <!-- 4. Merge Conflicts -->
+                <div class="revision-mosaic-card">
+                    <div class="mosaic-header">
+                        <span class="mosaic-number">04</span>
+                        <span class="priority-pill priority-must-know">MUST KNOW</span>
+                    </div>
+                    <h4 class="mosaic-title">Conflict Resolution Steps</h4>
+                    <p class="mosaic-body">Step-by-step resolution protocol.</p>
+                    <div class="mosaic-snippet">
+1. Open conflicting file; inspect &lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD vs =======
+2. Keep desired code; delete all conflict markers
+3. git add &lt;file&gt; (marks conflict resolved)
+4. git commit (finalizes merge commit)
+                    </div>
+                    <span class="mosaic-trap">&bull; To abort an in-progress merge conflict cleanly: git merge --abort.</span>
+                </div>
+
+                <!-- 5. Push Rejections -->
+                <div class="revision-mosaic-card">
+                    <div class="mosaic-header">
+                        <span class="mosaic-number">05</span>
+                        <span class="priority-pill priority-high">HIGH PRIORITY</span>
+                    </div>
+                    <h4 class="mosaic-title">Non-Fast-Forward Push</h4>
+                    <p class="mosaic-body">Handling rejected pushes when remote has newer commits.</p>
+                    <div class="mosaic-snippet">
+# Error: [rejected] (non-fast-forward)
+git pull origin main    # Integrate incoming changes
+# resolve any merge conflicts if they arise
+git push origin main    # Push successfully
+                    </div>
+                    <span class="mosaic-trap">&bull; Never force push (git push -f) to shared main! It destroys team commits.</span>
+                </div>
+
+                <!-- 6. Forking & PRs -->
+                <div class="revision-mosaic-card">
+                    <div class="mosaic-header">
+                        <span class="mosaic-number">06</span>
+                        <span class="priority-pill priority-high">HIGH PRIORITY</span>
+                    </div>
+                    <h4 class="mosaic-title">Open Source PR Workflow</h4>
+                    <p class="mosaic-body">Contributing when you have no direct write permissions.</p>
+                    <div class="mosaic-snippet">
+1. Fork repo on GitHub &rarr; clone personal fork locally
+2. git remote add upstream &lt;original-repo-url&gt;
+3. Create feature branch &rarr; commit &rarr; push to origin
+4. Open Pull Request on GitHub to upstream main
+                    </div>
+                    <span class="mosaic-trap">&bull; Upstream = original parent repo; Origin = your personal fork.</span>
+                </div>
+
+                <!-- 7. .gitignore & Secrets -->
+                <div class="revision-mosaic-card">
+                    <div class="mosaic-header">
+                        <span class="mosaic-number">07</span>
+                        <span class="priority-pill priority-high">HIGH PRIORITY</span>
+                    </div>
+                    <h4 class="mosaic-title">Untracking &amp; Leaked Keys</h4>
+                    <p class="mosaic-body">Fixing committed secrets and untracking files safely.</p>
+                    <div class="mosaic-snippet">
+git rm --cached .env    # Untrack without deleting disk file
+git commit -m "Untrack .env file"
+# If AWS key was pushed publicly:
+# REVOKE and ROTATE key immediately in cloud console!
+                    </div>
+                    <span class="mosaic-trap">&bull; Deleting a secret in a new commit does NOT erase it from Git history.</span>
+                </div>
+
+                <!-- 8. Reset, Revert & Reflog -->
+                <div class="revision-mosaic-card">
+                    <div class="mosaic-header">
+                        <span class="mosaic-number">08</span>
+                        <span class="priority-pill priority-must-know">MUST KNOW</span>
+                    </div>
+                    <h4 class="mosaic-title">Reset Modes &amp; git reflog</h4>
+                    <p class="mosaic-body">Safe recovery after accidental resets.</p>
+                    <div class="mosaic-snippet">
+git reset --soft HEAD~1 # Keeps changes staged
+git reset --mixed HEAD~1# Default: keeps changes in working tree
+git reset --hard HEAD~1 # Discards everything
+git reflog              # Shows safety audit log to recover lost SHAs
+                    </div>
+                    <span class="mosaic-trap">&bull; git reflog records every movement of HEAD, even after hard resets!</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Confirmation Modal -->
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal-box">
+            <span class="modal-header-tag">CONFIRMATION</span>
+            <h3 class="modal-heading" id="modal-heading">End Practice Session?</h3>
+            <p class="modal-body-text" id="modal-desc">
+                Are you sure you want to end your current practice session?
+            </p>
+            <div class="modal-btn-row">
+                <button type="button" class="btn btn-secondary" id="modal-cancel-btn">Cancel</button>
+                <button type="button" class="btn btn-accent" id="modal-confirm-btn">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Editorial Footer -->
+    <footer class="editorial-footer">
+        <div class="container footer-inner-grid">
+            <div class="footer-left">
+                <span class="footer-brand">PlacementPrep / Git &amp; GitHub</span>
+                <span class="footer-copy">&copy; 2026 PlacementPrep. Built for MNC fresher technical placement excellence.</span>
+            </div>
+
+            <div class="footer-nav">
+                <a href="#hero-section" class="footer-link">Top &uarr;</a>
+                <a href="#topics-section" class="footer-link">Topics</a>
+                <a href="#config-section" class="footer-link">Practice</a>
+                <a href="#revision-section" class="footer-link">Revision</a>
+                <a href="../index.html" class="footer-link">All Modules</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="questions.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
