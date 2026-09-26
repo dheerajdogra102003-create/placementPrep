@@ -17,7 +17,8 @@ __pycache__/
 *.pyc
 
 # Local generator / development scripts
-generate_100_hard.py
+tools/
+*.py
 
 # Editor & OS artifacts
 .vscode/
