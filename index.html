@@ -1,58 +1,77 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 
 <head>
     <script>
         (function () {
-            const theme = localStorage.getItem('placementPrep_theme');
-            if (theme === 'dark') {
-                document.documentElement.setAttribute('data-theme', 'dark');
-            } else {
-                document.documentElement.setAttribute('data-theme', 'light');
-            }
+            const theme = localStorage.getItem('placementPrep_theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', theme);
         })();
     </script>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-8VNQVXVYBN"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-8VNQVXVYBN');
-</script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8VNQVXVYBN"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-8VNQVXVYBN');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Placement Practice Dashboard</title>
-    <!-- Fonts -->
+    <title>PlacementPrep — Interactive Preparation World</title>
+    <meta name="description" content="Immersive interactive preparation platform for MNC fresher campus placement exams. Master DSA, Git, Cloud, Networking, Linux, and Programming.">
+
+    <!-- Fonts: Inter & JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <!-- Styles -->
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
+    <!-- Intro Experience (Unseen Studio Inspired, 2s session introduction) -->
+    <div id="intro-screen" class="intro-overlay" aria-hidden="true">
+        <div class="intro-inner">
+            <span class="intro-eyebrow">PLACEMENTPREP</span>
+            <h1 class="intro-headline">PREPARE TO<br>GET PLACED</h1>
+            <div class="intro-loader-track">
+                <div class="intro-loader-bar"></div>
+            </div>
+            <button type="button" id="intro-skip-btn" class="intro-skip-btn">Skip Intro [ESC]</button>
+        </div>
+    </div>
+
+    <!-- Real-time WebGL 3D Canvas -->
+    <canvas id="webgl-canvas" aria-hidden="true"></canvas>
+
+    <!-- Analog Film-Grain & Vignette Texture -->
+    <div class="film-grain-overlay" aria-hidden="true"></div>
+    <div class="cinematic-vignette" aria-hidden="true"></div>
+
+    <!-- Custom Cursor (Desktop only) -->
+    <div id="custom-cursor" class="custom-cursor" aria-hidden="true">
+        <div class="cursor-dot"></div>
+        <div class="cursor-ring"></div>
+    </div>
+
     <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="container">
             <a href="#" class="logo">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
-                    style="color: var(--accent-red)">
-                    <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
-                    <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
-                </svg>
+                <span class="logo-badge"></span>
                 PlacementPrep
             </a>
 
             <ul class="nav-links">
                 <li><a href="#" class="active">Home</a></li>
                 <li><a href="dsa_mentor/index.html" style="color: var(--accent-red); font-weight: 700; display: inline-flex; align-items: center; gap: 0.35rem;">🤖 AI DSA Mentor <span style="background: var(--accent-red); color: white; font-size: 0.62rem; padding: 0.1rem 0.35rem; border-radius: 9999px; text-transform: uppercase;">New</span></a></li>
-                <li><a href="#modules">Practice</a></li>
+                <li><a href="#modules">Modules</a></li>
+                <li><a href="github/index.html" style="color: var(--accent-pink);">Git &amp; GitHub</a></li>
                 <li><a href="notes/index.html">Notes &amp; Prep</a></li>
                 <li><a href="#progress">Progress</a></li>
-                <li><a href="#">About</a></li>
             </ul>
 
             <div class="nav-actions">
@@ -60,11 +79,12 @@
                     <span class="sync-dot"></span>
                     <span id="nav-sync-text">Sync Progress</span>
                 </button>
+
                 <button id="theme-toggle" class="icon-btn theme-toggle" aria-label="Toggle dark mode" title="Toggle dark/light mode">
-                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                     </svg>
-                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="12" cy="12" r="5"></circle>
                         <line x1="12" y1="1" x2="12" y2="3"></line>
                         <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -76,8 +96,9 @@
                         <line x1="18.36" y1="4.22" x2="19.78" y2="5.64"></line>
                     </svg>
                 </button>
-                <button class="mobile-menu-btn" aria-label="Toggle menu">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+
+                <button class="icon-btn mobile-menu-btn" aria-label="Toggle navigation menu">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="3" y1="12" x2="21" y2="12"></line>
                         <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -88,291 +109,310 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Cinematic Hero Section -->
     <header class="hero">
         <div class="container">
-            <h1>Practice Smarter. Prepare Better.</h1>
-            <p>Choose a practice module and sharpen the skills you need to succeed in placement exams.</p>
-            <div class="hero-ctas">
-                <a href="dsa_mentor/index.html" class="btn btn-primary" style="background: linear-gradient(135deg, #E60023, #D53A8E); border: none;">⚔️ Launch DSA Quest</a>
-                <a href="#modules" class="btn btn-secondary">Explore MCQs &amp; Modules</a>
+            <div class="hero-content">
+                <div class="hero-eyebrow-chip">
+                    PLACEMENTPREP <span>/</span> INTERACTIVE PREPARATION WORLD
+                </div>
+                <h1>
+                    PREPARE TO<br>
+                    <span class="hero-accent-text">GET PLACED.</span>
+                </h1>
+                <p>
+                    Practice. Understand. Repeat. Become interview ready. Enter a connected learning world engineered for fresher technical placements across TCS, Accenture, Cognizant, Infosys, Capgemini, and Deloitte.
+                </p>
+                <div class="hero-ctas">
+                    <a href="dsa_mentor/index.html" class="btn btn-accent">⚔️ Launch DSA Quest</a>
+                    <a href="#modules" class="btn btn-secondary">Explore Modules &darr;</a>
+                    <a href="notes/index.html" class="btn btn-secondary">📚 Notes &amp; Prep</a>
+                </div>
+                <div class="hero-live-status">
+                    <span class="status-beacon"></span>
+                    <span>11 Learning Modules Live &bull; 650+ Placement-Level MCQs &amp; Scenarios Active</span>
+                </div>
             </div>
         </div>
     </header>
 
+    <!-- Scroll Storytelling Strip (Unseen Studio Inspired) -->
+    <div class="story-ticker-strip">
+        <div class="container">
+            <div class="ticker-track">
+                <div class="ticker-item"><strong>01</strong> THINK</div>
+                <div class="ticker-arrow">&rarr;</div>
+                <div class="ticker-item"><strong>02</strong> CODE</div>
+                <div class="ticker-arrow">&rarr;</div>
+                <div class="ticker-item"><strong>03</strong> TRACE</div>
+                <div class="ticker-arrow">&rarr;</div>
+                <div class="ticker-item"><strong>04</strong> DEBUG</div>
+                <div class="ticker-arrow">&rarr;</div>
+                <div class="ticker-item" style="color: var(--accent-red);"><strong>05</strong> GET PLACED</div>
+            </div>
+        </div>
+    </div>
+
     <!-- Main Content -->
     <main>
 
-        <!-- Modules Section -->
+        <!-- Modules Section (Interactive Learning Matrix) -->
         <section id="modules" class="section">
             <div class="container">
                 <div class="section-header">
-                    <h2>Choose Your Practice Module</h2>
-                    <p>Select a topic and start practicing questions designed for placement preparation.</p>
+                    <div class="section-eyebrow">01 / INTERACTIVE LEARNING MATRIX</div>
+                    <h2>CHOOSE YOUR PREPARATION REALM</h2>
+                    <p>Every module is an interconnected system designed for technical screening and campus placements. Hover and explore.</p>
                 </div>
 
                 <div class="module-grid">
 
-                    <!-- DSA Quest Card -->
-                    <a href="dsa_mentor/index.html" class="module-card" data-accent="purple" style="--accent-purple: #E60023; --accent-purple-hover: #CC001F; border: 2px solid rgba(230, 0, 35, 0.4); background: linear-gradient(135deg, rgba(230, 0, 35, 0.05), rgba(213, 58, 142, 0.05));">
-                        <div class="module-icon" style="color: #E60023;">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path>
-                                <polyline points="14 2 14 8 20 8"></polyline>
-                                <line x1="12" y1="18" x2="12" y2="12"></line>
-                                <line x1="9" y1="15" x2="15" y2="15"></line>
-                            </svg>
+                    <!-- 01: DSA Quest -->
+                    <a href="dsa_mentor/index.html" class="module-card">
+                        <div class="module-card-top">
+                            <span class="module-index">01</span>
+                            <div class="module-icon" style="color: #E60023;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path>
+                                    <polyline points="14 2 14 8 20 8"></polyline>
+                                    <line x1="12" y1="18" x2="12" y2="12"></line>
+                                    <line x1="9" y1="15" x2="15" y2="15"></line>
+                                </svg>
+                            </div>
                         </div>
-                        <div style="display: flex; align-items: center; gap: 0.5rem;">
-                            <h3>⚔️ DSA Quest</h3>
-                            <span style="background: #E60023; color: white; font-size: 0.68rem; font-weight: 800; padding: 0.15rem 0.45rem; border-radius: 9999px;">22 PHASES</span>
+                        <div>
+                            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.35rem;">
+                                <h3>⚔️ DSA Quest</h3>
+                                <span style="background: #E60023; color: white; font-size: 0.65rem; font-weight: 800; padding: 0.15rem 0.45rem; border-radius: 9999px;">22 PHASES</span>
+                            </div>
+                            <p>Turn DSA learning into an adventure: 22 learning phases, pointer visualizers, Pattern Lab quiz, and 5-level hint ladders for campus placements.</p>
                         </div>
-                        <p>Turn DSA learning into a structured adventure: 22 learning phases, interactive pointer visualizers, Pattern Lab quiz, and 5-level hint ladders for campus placements.</p>
                         <div class="module-footer">
-                            <span class="open-text" style="color: #E60023;">Start Your Journey &rarr;</span>
+                            <span>Interactive Practice</span>
+                            <span class="open-text">Start Journey &rarr;</span>
                         </div>
                     </a>
 
-                    <!-- Browser Fundamentals -->
-                    <a href="browser_fundamental/index.html" class="module-card" data-accent="red">
-                        <div class="module-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <line x1="2" y1="12" x2="22" y2="12"></line>
-                                <path
-                                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
-                                </path>
-                            </svg>
+                    <!-- 02: Git & GitHub Practice -->
+                    <a href="github/index.html" class="module-card">
+                        <div class="module-card-top">
+                            <span class="module-index">02</span>
+                            <div class="module-icon" style="color: var(--accent-pink);">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="6" y1="3" x2="6" y2="15"></line>
+                                    <circle cx="18" cy="6" r="3"></circle>
+                                    <circle cx="6" cy="18" r="3"></circle>
+                                    <path d="M18 9a9 9 0 0 1-9 9"></path>
+                                </svg>
+                            </div>
                         </div>
-                        <h3>Browser Fundamentals</h3>
-                        <p>Learn about DOM, Web APIs, Event Loops, Rendering pipelines, and how browsers work under the
-                            hood.</p>
+                        <div>
+                            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.35rem;">
+                                <h3>Git &amp; GitHub</h3>
+                                <span style="background: var(--accent-pink); color: white; font-size: 0.65rem; font-weight: 800; padding: 0.15rem 0.45rem; border-radius: 9999px;">60 MCQS</span>
+                            </div>
+                            <p>Master Git commands, branch workflows, merge conflicts, pull requests, .gitignore, and 18 real MNC placement troubleshooting scenarios.</p>
+                        </div>
                         <div class="module-footer">
-                            <span class="open-text">Open Module <svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                    height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                                    <polyline points="12 5 19 12 12 19"></polyline>
-                                </svg></span>
+                            <span>Interactive Practice</span>
+                            <span class="open-text">Explore Module &rarr;</span>
                         </div>
                     </a>
 
-                    <!-- Programming Fundamentals (Variables, Conditionals & Loops) -->
-                    <a href="programming_fundamentals/index.html" class="module-card" data-accent="purple">
-                        <div class="module-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <polyline points="16 18 22 12 16 6"></polyline>
-                                <polyline points="8 6 2 12 8 18"></polyline>
-                            </svg>
+                    <!-- 03: Browser Fundamentals -->
+                    <a href="browser_fundamental/index.html" class="module-card">
+                        <div class="module-card-top">
+                            <span class="module-index">03</span>
+                            <div class="module-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                                </svg>
+                            </div>
                         </div>
-                        <h3>Programming Fundamentals</h3>
-                        <p>Master 150 placement MCQs covering Variables &amp; Data Types, Conditional Statements, and Loops with interactive code tracing.</p>
+                        <div>
+                            <h3>Browser Fundamentals</h3>
+                            <p>Learn about DOM, Web APIs, Event Loops, Rendering pipelines, and how browsers work under the hood.</p>
+                        </div>
                         <div class="module-footer">
-                            <span class="open-text">Open Module <svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                    height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                                    <polyline points="12 5 19 12 12 19"></polyline>
-                                </svg></span>
+                            <span>Web Architecture</span>
+                            <span class="open-text">Open Module &rarr;</span>
                         </div>
                     </a>
 
-                    <!-- Linux Commands -->
-                    <a href="linux_commands/index.html" class="module-card" data-accent="mint">
-                        <div class="module-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <polyline points="4 17 10 11 4 5"></polyline>
-                                <line x1="12" y1="19" x2="20" y2="19"></line>
-                            </svg>
+                    <!-- 04: Programming Fundamentals -->
+                    <a href="programming_fundamentals/index.html" class="module-card">
+                        <div class="module-card-top">
+                            <span class="module-index">04</span>
+                            <div class="module-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="16 18 22 12 16 6"></polyline>
+                                    <polyline points="8 6 2 12 8 18"></polyline>
+                                </svg>
+                            </div>
                         </div>
-                        <h3>Linux Commands</h3>
-                        <p>Practice common Unix/Linux commands, file permissions, shell scripting basics, and system
-                            navigation.</p>
+                        <div>
+                            <h3>Programming Fundamentals</h3>
+                            <p>Master 150 placement MCQs covering Variables &amp; Data Types, Conditional Statements, and Loops with interactive code tracing.</p>
+                        </div>
                         <div class="module-footer">
-                            <span class="open-text">Open Module <svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                    height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                                    <polyline points="12 5 19 12 12 19"></polyline>
-                                </svg></span>
+                            <span>Core Coding Logic</span>
+                            <span class="open-text">Open Module &rarr;</span>
                         </div>
                     </a>
 
-                    <!-- Git & GitHub Practice -->
-                    <a href="github/index.html" class="module-card" data-accent="red"
-                        style="--accent-red: #E60023; --accent-red-hover: #CC001F;">
-                        <div class="module-icon" style="color: var(--accent-red);">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <line x1="6" y1="3" x2="6" y2="15"></line>
-                                <circle cx="18" cy="6" r="3"></circle>
-                                <circle cx="6" cy="18" r="3"></circle>
-                                <path d="M18 9a9 9 0 0 1-9 9"></path>
-                            </svg>
+                    <!-- 05: Linux Commands -->
+                    <a href="linux_commands/index.html" class="module-card">
+                        <div class="module-card-top">
+                            <span class="module-index">05</span>
+                            <div class="module-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="4 17 10 11 4 5"></polyline>
+                                    <line x1="12" y1="19" x2="20" y2="19"></line>
+                                </svg>
+                            </div>
                         </div>
-                        <div style="display: flex; align-items: center; gap: 0.5rem;">
-                            <h3>Git &amp; GitHub</h3>
-                            <span style="background: var(--accent-red); color: white; font-size: 0.65rem; font-weight: 800; padding: 0.15rem 0.45rem; border-radius: 9999px;">60 MCQs</span>
+                        <div>
+                            <h3>Linux Commands</h3>
+                            <p>Practice common Unix/Linux commands, file permissions, shell scripting basics, and system navigation.</p>
                         </div>
-                        <p>Master Git commands, branch workflows, merge conflicts, pull requests, .gitignore, and 18 real MNC placement troubleshooting scenarios.</p>
                         <div class="module-footer">
-                            <span class="open-text">Open Module <svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                    height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                                    <polyline points="12 5 19 12 12 19"></polyline>
-                                </svg></span>
+                            <span>Shell &amp; OS</span>
+                            <span class="open-text">Open Module &rarr;</span>
                         </div>
                     </a>
 
-                    <!-- Microsoft Office Suite Mastery (Excel, Word, PowerPoint) -->
-                    <a href="Microsoft Office Suite Mastery/index.html" class="module-card" data-accent="blue"
-                        style="--accent-blue: #0078D4; --accent-blue-hover: #005A9E;">
-                        <div class="module-icon" style="color: #0078D4;">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <rect x="3" y="3" width="7" height="7"></rect>
-                                <rect x="14" y="3" width="7" height="7"></rect>
-                                <rect x="14" y="14" width="7" height="7"></rect>
-                                <rect x="3" y="14" width="7" height="7"></rect>
-                            </svg>
+                    <!-- 06: Microsoft Office Suite Mastery -->
+                    <a href="Microsoft Office Suite Mastery/index.html" class="module-card">
+                        <div class="module-card-top">
+                            <span class="module-index">06</span>
+                            <div class="module-icon" style="color: #0078D4;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="3" width="7" height="7"></rect>
+                                    <rect x="14" y="3" width="7" height="7"></rect>
+                                    <rect x="14" y="14" width="7" height="7"></rect>
+                                    <rect x="3" y="14" width="7" height="7"></rect>
+                                </svg>
+                            </div>
                         </div>
-                        <h3>Microsoft Office Suite Mastery</h3>
-                        <p>Master 90 MCQs covering MS Excel (Formulas, VLOOKUP, Shortcuts), MS Word (Formatting, Mail Merge), and MS PowerPoint (Slide Master, Transitions).</p>
+                        <div>
+                            <h3>Microsoft Office Suite Mastery</h3>
+                            <p>Master 90 MCQs covering MS Excel (Formulas, VLOOKUP, Shortcuts), MS Word (Formatting, Mail Merge), and MS PowerPoint (Slide Master, Transitions).</p>
+                        </div>
                         <div class="module-footer">
-                            <span class="open-text">Open Module <svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                    height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                                    <polyline points="12 5 19 12 12 19"></polyline>
-                                </svg></span>
+                            <span>Office Productivity</span>
+                            <span class="open-text">Open Module &rarr;</span>
                         </div>
                     </a>
 
-                    <!-- Cloud Computing -->
-                    <a href="cloud_Computing/index.html" class="module-card" data-accent="blue"
-                        style="--accent-blue: #0284C7; --accent-blue-hover: #0369A1;">
-                        <div class="module-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"></path>
-                            </svg>
+                    <!-- 07: Cloud Computing -->
+                    <a href="cloud_Computing/index.html" class="module-card">
+                        <div class="module-card-top">
+                            <span class="module-index">07</span>
+                            <div class="module-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"></path>
+                                </svg>
+                            </div>
                         </div>
-                        <h3>Cloud Computing</h3>
-                        <p>60 placement MCQs covering IaaS/PaaS/SaaS, Virtualization, Networking, IAM, and 18 real-world company scenarios.</p>
+                        <div>
+                            <h3>Cloud Computing</h3>
+                            <p>60 placement MCQs covering IaaS/PaaS/SaaS, Virtualization, Networking, IAM, and 18 real-world company scenarios.</p>
+                        </div>
                         <div class="module-footer">
-                            <span class="open-text">Open Module <svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                    height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                                    <polyline points="12 5 19 12 12 19"></polyline>
-                                </svg></span>
+                            <span>Cloud Architecture</span>
+                            <span class="open-text">Open Module &rarr;</span>
                         </div>
                     </a>
 
-                    <!-- Networking -->
-                    <a href="networking/index.html" class="module-card" data-accent="teal"
-                        style="--accent-teal: #0D9488; --accent-teal-hover: #0F766E;">
-                        <div class="module-icon" style="color: var(--accent-teal);">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <rect x="2" y="2" width="6" height="6" rx="1"></rect>
-                                <rect x="16" y="2" width="6" height="6" rx="1"></rect>
-                                <rect x="9" y="16" width="6" height="6" rx="1"></rect>
-                                <path d="M5 8v3a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8"></path>
-                                <path d="M12 12v4"></path>
-                            </svg>
+                    <!-- 08: Networking -->
+                    <a href="networking/index.html" class="module-card">
+                        <div class="module-card-top">
+                            <span class="module-index">08</span>
+                            <div class="module-icon" style="color: #0D9488;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="2" width="6" height="6" rx="1"></rect>
+                                    <rect x="16" y="2" width="6" height="6" rx="1"></rect>
+                                    <rect x="9" y="16" width="6" height="6" rx="1"></rect>
+                                    <path d="M5 8v3a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8"></path>
+                                    <path d="M12 12v4"></path>
+                                </svg>
+                            </div>
                         </div>
-                        <h3>Networking</h3>
-                        <p>60 high-yield placement MCQs: OSI Model, TCP/IP, Handshakes, Devices, Protocols &amp; 18 real company scenarios.</p>
+                        <div>
+                            <h3>Networking</h3>
+                            <p>60 high-yield placement MCQs: OSI Model, TCP/IP, Handshakes, Devices, Protocols &amp; 18 real company scenarios.</p>
+                        </div>
                         <div class="module-footer">
-                            <span class="open-text">Open Module <svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                    height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                                    <polyline points="12 5 19 12 12 19"></polyline>
-                                </svg></span>
+                            <span>Networks &amp; OSI</span>
+                            <span class="open-text">Open Module &rarr;</span>
                         </div>
                     </a>
 
-                    <!-- Cyber Security -->
-                    <a href="cyber_security/index.html" class="module-card" data-accent="emerald"
-                        style="--accent-emerald: #10B981; --accent-emerald-hover: #059669;">
-                        <div class="module-icon" style="color: #10B981;">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                                <path d="M9 12l2 2 4-4"></path>
-                            </svg>
+                    <!-- 09: Cyber Security -->
+                    <a href="cyber_security/index.html" class="module-card">
+                        <div class="module-card-top">
+                            <span class="module-index">09</span>
+                            <div class="module-icon" style="color: #10B981;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                    <path d="M9 12l2 2 4-4"></path>
+                                </svg>
+                            </div>
                         </div>
-                        <h3>Cyber Security</h3>
-                        <p>100 high-yield placement MCQs: Network Security, Cryptography, Cyber Attacks, Firewalls &amp; 35 enterprise placement scenarios.</p>
+                        <div>
+                            <h3>Cyber Security</h3>
+                            <p>100 high-yield placement MCQs: Network Security, Cryptography, Cyber Attacks, Firewalls &amp; 35 enterprise placement scenarios.</p>
+                        </div>
                         <div class="module-footer">
-                            <span class="open-text">Open Module <svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                    height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                                    <polyline points="12 5 19 12 12 19"></polyline>
-                                </svg></span>
+                            <span>Security &amp; Crypto</span>
+                            <span class="open-text">Open Module &rarr;</span>
                         </div>
                     </a>
 
-                    <!-- Pseudocode & Programming Logic -->
-                    <a href="Pseudocode/index.html" class="module-card" data-accent="cyan"
-                        style="--accent-cyan: #06B6D4; --accent-cyan-hover: #0891B2;">
-                        <div class="module-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <polyline points="16 18 22 12 16 6"></polyline>
-                                <polyline points="8 6 2 12 8 18"></polyline>
-                            </svg>
+                    <!-- 10: Pseudocode & Logic -->
+                    <a href="Pseudocode/index.html" class="module-card">
+                        <div class="module-card-top">
+                            <span class="module-index">10</span>
+                            <div class="module-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="16 18 22 12 16 6"></polyline>
+                                    <polyline points="8 6 2 12 8 18"></polyline>
+                                </svg>
+                            </div>
                         </div>
-                        <h3>Pseudocode &amp; Logic</h3>
-                        <p>130 placement MCQs: Output prediction, loop tracing, operator traps, recursion trees, bitwise &amp; 15 real scenarios.</p>
+                        <div>
+                            <h3>Pseudocode &amp; Logic</h3>
+                            <p>130 placement MCQs: Output prediction, loop tracing, operator traps, recursion trees, bitwise &amp; 15 real scenarios.</p>
+                        </div>
                         <div class="module-footer">
-                            <span class="open-text">Open Module <svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                    height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                                    <polyline points="12 5 19 12 12 19"></polyline>
-                                </svg></span>
+                            <span>MNC Logic Tracing</span>
+                            <span class="open-text">Open Module &rarr;</span>
                         </div>
                     </a>
 
-                    <!-- Notes and Last Minute Prep Material -->
-                    <a href="notes/index.html" class="module-card" data-accent="amber">
-                        <div class="module-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-                                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
-                                <line x1="9" y1="7" x2="15" y2="7"></line>
-                                <line x1="9" y1="11" x2="15" y2="11"></line>
-                                <line x1="9" y1="15" x2="13" y2="15"></line>
-                            </svg>
+                    <!-- 11: Notes and Last Minute Prep Material -->
+                    <a href="notes/index.html" class="module-card">
+                        <div class="module-card-top">
+                            <span class="module-index">11</span>
+                            <div class="module-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                                    <line x1="9" y1="7" x2="15" y2="7"></line>
+                                    <line x1="9" y1="11" x2="15" y2="11"></line>
+                                    <line x1="9" y1="15" x2="13" y2="15"></line>
+                                </svg>
+                            </div>
                         </div>
-                        <h3>Notes and Last Minute Prep Material</h3>
-                        <p>High-yield quick revision sheets, formula summaries, cheat sheets, and last-minute placement notes.</p>
+                        <div>
+                            <h3>Notes &amp; Prep Material</h3>
+                            <p>High-yield quick revision sheets, formula summaries, cheat sheets, and last-minute placement notes.</p>
+                        </div>
                         <div class="module-footer">
-                            <span class="open-text">Open Materials <svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                    height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                                    <polyline points="12 5 19 12 12 19"></polyline>
-                                </svg></span>
+                            <span>Rapid Reference</span>
+                            <span class="open-text">Open Materials &rarr;</span>
                         </div>
                     </a>
 
@@ -380,12 +420,13 @@
             </div>
         </section>
 
-        <!-- Quick Practice Section -->
-        <section id="quick-practice" class="section" style="background-color: var(--bg-primary);">
+        <!-- Quick Practice Section (Tactile Switches) -->
+        <section id="quick-practice" class="section alt-bg">
             <div class="container">
                 <div class="section-header">
-                    <h2>Quick Practice</h2>
-                    <p>Jump directly into a short practice session.</p>
+                    <div class="section-eyebrow">02 / RAPID DRILLS</div>
+                    <h2>QUICK PRACTICE</h2>
+                    <p>Jump directly into focused screening sessions tailored for speed and accuracy.</p>
                 </div>
                 <div class="quick-practice-grid">
                     <div class="qp-card">10 Questions</div>
@@ -396,30 +437,32 @@
             </div>
         </section>
 
-        <!-- Progress Section -->
+        <!-- Progress Section (Editorial Dashboard Stats) -->
         <section id="progress" class="section">
             <div class="container">
                 <div class="section-header">
-                    <h2>Your Progress</h2>
+                    <div class="section-eyebrow">03 / PERFORMANCE TELEMETRY</div>
+                    <h2>YOUR PROGRESS</h2>
+                    <p>Real-time analytics across your practice modules and device synchronization.</p>
                 </div>
                 <div class="progress-grid">
-                    <div class="stat-card red">
+                    <div class="stat-card">
                         <div class="stat-value" id="stat-attempted">0</div>
                         <div class="stat-label">Questions Attempted</div>
                     </div>
-                    <div class="stat-card mint">
-                        <div class="stat-value" id="stat-correct">0</div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="stat-correct" style="color: var(--success);">0</div>
                         <div class="stat-label">Questions Correct</div>
                     </div>
-                    <div class="stat-card magenta">
-                        <div class="stat-value" id="stat-accuracy">0%</div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="stat-accuracy" style="color: var(--accent-pink);">0%</div>
                         <div class="stat-label">Accuracy</div>
                     </div>
-                    <div class="stat-card dark">
+                    <div class="stat-card">
                         <div class="stat-value" id="stat-streak">1</div>
                         <div class="stat-label">Practice Streak (Days)</div>
                     </div>
-                    <div class="stat-card dark">
+                    <div class="stat-card">
                         <div class="stat-value" id="stat-completed">0</div>
                         <div class="stat-label">Modules Completed</div>
                     </div>
@@ -428,22 +471,23 @@
         </section>
 
         <!-- Recommended Section -->
-        <section class="section">
+        <section class="section alt-bg">
             <div class="container">
                 <div class="section-header">
-                    <h2>Recommended For You</h2>
+                    <div class="section-eyebrow">04 / ADAPTIVE RECOMMENDATION</div>
+                    <h2>RECOMMENDED FOR YOU</h2>
                 </div>
 
                 <div class="recommended-card">
                     <div class="rec-info">
-                        <h3>Programming Fundamentals - Hard Level</h3>
-                        <p>Practice hard level questions in Variables, Conditionals &amp; Loops to improve.</p>
+                        <h3>Programming Fundamentals &mdash; Hard Level</h3>
+                        <p>Practice hard level questions in Variables, Conditionals &amp; Loops to strengthen output tracing speed.</p>
                     </div>
                     <div class="rec-action">
                         <div class="progress-bar-container" title="60% Complete">
                             <div class="progress-bar" style="width: 60%;"></div>
                         </div>
-                        <a href="programming_fundamentals/index.html" class="btn btn-primary">Continue</a>
+                        <a href="programming_fundamentals/index.html" class="btn btn-primary">Continue &rarr;</a>
                     </div>
                 </div>
 
@@ -456,53 +500,53 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-                <div class="logo">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
-                        style="color: var(--accent-red)">
-                        <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
-                        <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
-                    </svg>
+                <a href="#" class="logo">
+                    <span class="logo-badge"></span>
                     PlacementPrep
-                </div>
+                </a>
                 <div class="footer-links">
                     <a href="#">Home</a>
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms of Service</a>
-                    <a href="#">Contact Us</a>
+                    <a href="#modules">Modules</a>
+                    <a href="github/index.html">Git &amp; GitHub</a>
+                    <a href="notes/index.html">Notes</a>
+                    <a href="#progress">Progress</a>
                 </div>
                 <div class="footer-copy">
-                    &copy; 2026 PlacementPrep. All rights reserved.
+                    &copy; 2026 PlacementPrep. Built for MNC fresher technical placement excellence.
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Simple Sync Modal -->
+    <!-- Sync Progress Modal (Intact IDs for SyncManager) -->
     <div id="sync-modal" class="sync-modal-overlay hidden" role="dialog" aria-modal="true">
-        <div class="sync-modal-card" style="max-width: 380px;">
-            <div class="sync-modal-header" style="margin-bottom: 1.25rem;">
+        <div class="sync-modal-card" style="max-width: 420px;">
+            <div class="sync-modal-header">
                 <div class="sync-modal-icon">☁️</div>
                 <h3>Sync Progress</h3>
-                <p>Enter your username to keep your progress synced across all your devices.</p>
             </div>
-
-            <form id="sync-form" class="sync-form">
+            <p class="sync-modal-desc">
+                Save your progress across devices. Enter a handle to sync your completed questions and analytics to the cloud.
+            </p>
+            <div id="sync-cloud-status-badge" class="sync-status-badge local">
+                ☁️ Cloud Ready
+            </div>
+            <form id="sync-form">
                 <div class="sync-input-group">
-                    <input type="text" id="sync-username-input" placeholder="Enter username" required autocomplete="off" minlength="2" maxlength="30" style="padding: 0.75rem 1rem; border-radius: 8px; font-size: 1rem;">
+                    <label for="sync-username-input" style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.05em;">Your Handle / Username</label>
+                    <input type="text" id="sync-username-input" class="sync-input" placeholder="e.g. rahul_mca" required>
                 </div>
-
-                <div id="sync-modal-error" class="sync-error hidden"></div>
-
+                <div id="sync-modal-error" class="sync-modal-error hidden"></div>
                 <div class="sync-modal-actions">
-                    <button type="submit" class="btn btn-primary" id="btn-save-sync">Save</button>
-                    <button type="button" class="btn btn-secondary" id="btn-close-sync">Cancel</button>
-                </div>
-
-                <div id="sync-logout-area" class="sync-logout-area hidden" style="margin-top: 0.5rem; padding-top: 0.5rem;">
-                    <button type="button" id="btn-logout-sync" class="btn-text-danger">Log out</button>
+                    <button type="button" id="btn-close-sync" class="sync-btn-ghost">Close</button>
+                    <button type="submit" id="btn-save-sync" class="sync-btn-primary">Save</button>
                 </div>
             </form>
+            <div id="sync-logout-area" class="hidden" style="margin-top: 1rem; border-top: 1px solid var(--border-color); padding-top: 0.75rem; text-align: center;">
+                <button type="button" id="btn-logout-sync" style="background: none; border: none; color: var(--danger); font-size: 0.82rem; cursor: pointer; text-decoration: underline;">
+                    Disconnect / Log out from this device
+                </button>
+            </div>
         </div>
     </div>
 

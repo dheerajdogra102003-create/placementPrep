@@ -1,958 +1,950 @@
-/**
- * PlacementPrep - Git & GitHub Practice Module Engine
- * Dark Editorial Interactive Practice, Timed Exam & Revision Engine
- */
-
+// Git & GitHub Module - Application Logic & State Management
 (function () {
     'use strict';
 
-    // State
-    const state = {
-        config: {
-            questionCount: 10,
-            difficulty: 'Mixed',
-            questionType: 'All',
-            mode: 'Practice',
-            topicFilter: null
-        },
-        session: {
-            active: false,
-            questions: [],
-            currentIndex: 0,
-            answers: {},        // questionId -> selectedIndex
-            evaluated: {},      // questionId -> boolean
-            bookmarks: new Set(),
-            startTime: null,
-            timeRemaining: 0,
-            timerInterval: null,
-            isTimed: false,
-            isReviewMode: false,
-            reviewFilter: 'all' // 'all', 'incorrect', 'bookmarked'
-        }
-    };
+    const MODULE_ID = 'github';
+
+    // Application State
+    let allQuestions = [];       // Master list of 60 questions
+    let activeQuestions = [];    // Filtered / shuffled active pool
+    let currentIndex = 0;        // Current question index in active pool
+    let currentMode = 'practice';// 'practice' | 'exam' | 'flashcards' | 'review'
+    
+    // User response state: keyed by question ID
+    let userAnswers = {};        // { [qId]: 'A' | 'B' | 'C' | 'D' }
+    let markedQuestions = new Set(); // Set of marked question IDs
+    let isAnswerSubmitted = {};  // { [qId]: boolean }
+
+    // Exam Timer State
+    const EXAM_DURATION_SECONDS = 45 * 60; // 45 minutes
+    let examTimeRemaining = EXAM_DURATION_SECONDS;
+    let timerInterval = null;
+    let examStartTime = null;
+    let examEndTime = null;
+
+    // Filters for Practice Mode
+    let currentTopicFilter = 'all';
+    let currentDiffFilter = 'all';
+    let currentTypeFilter = 'all';
 
     // DOM Elements
-    const elements = {
-        // Sections / Views
-        heroSection: document.getElementById('hero-section'),
-        specsSection: document.getElementById('specs-section'),
-        topicsSection: document.getElementById('topics-section'),
-        configSection: document.getElementById('config-section'),
-        revisionSection: document.getElementById('revision-section'),
-        practiceStage: document.getElementById('practice-stage'),
-        resultStage: document.getElementById('result-stage'),
-        modalOverlay: document.getElementById('modal-overlay'),
+    const screenModeSelect = document.getElementById('screen-mode-select');
+    const screenQuizWorkspace = document.getElementById('screen-quiz-workspace');
+    const screenResults = document.getElementById('screen-results');
 
-        // Config buttons
-        countBtns: document.querySelectorAll('[data-config="count"]'),
-        diffBtns: document.querySelectorAll('[data-config="diff"]'),
-        typeBtns: document.querySelectorAll('[data-config="type"]'),
-        modeBtns: document.querySelectorAll('[data-config="mode"]'),
-        configSummary: document.getElementById('config-summary-text'),
-        startPracticeBtn: document.getElementById('start-practice-btn'),
-        heroStartBtn: document.getElementById('hero-start-btn'),
+    const headerModeBadge = document.getElementById('header-mode-badge');
+    const timerBox = document.getElementById('timer-box');
+    const timerDisplay = document.getElementById('timer-display');
+    const scoreDisplay = document.getElementById('score-value');
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const btnOpenNotes = document.getElementById('btn-open-notes');
 
-        // Question Screen Elements
-        questionNumber: document.getElementById('question-number-display'),
-        timerBox: document.getElementById('timer-box-display'),
-        timerDisplay: document.getElementById('timer-time-display'),
-        progressBar: document.getElementById('practice-progress-fill'),
-        difficultyBadge: document.getElementById('difficulty-badge'),
-        topicBadge: document.getElementById('topic-badge'),
-        typeBadge: document.getElementById('type-badge'),
-        bookmarkBtn: document.getElementById('bookmark-toggle-btn'),
-        questionText: document.getElementById('question-statement'),
-        commandBlock: document.getElementById('command-visualizer-block'),
-        commandSnippet: document.getElementById('command-snippet-code'),
-        copySnippetBtn: document.getElementById('copy-snippet-btn'),
-        workflowStrip: document.getElementById('workflow-visualizer-strip'),
-        optionsContainer: document.getElementById('options-container'),
-        explanationPane: document.getElementById('explanation-pane'),
-        correctAnswerText: document.getElementById('correct-answer-text'),
-        explanationWhy: document.getElementById('explanation-why-text'),
-        placementTakeaway: document.getElementById('placement-takeaway-text'),
-        placementTrapBox: document.getElementById('placement-trap-box'),
-        placementTrapTitle: document.getElementById('placement-trap-title'),
-        placementTrapDesc: document.getElementById('placement-trap-desc'),
-        prevQuestionBtn: document.getElementById('prev-question-btn'),
-        nextQuestionBtn: document.getElementById('next-question-btn'),
-        endSessionBtn: document.getElementById('end-session-btn'),
-        inlineScoreDisplay: document.getElementById('inline-score-val'),
+    const quizFilterBar = document.getElementById('quiz-filter-bar');
+    const filterTopic = document.getElementById('filter-topic');
+    const filterDiff = document.getElementById('filter-diff');
+    const filterType = document.getElementById('filter-type');
+    const btnChangeMode = document.getElementById('btn-change-mode');
 
-        // Results Elements
-        resultScore: document.getElementById('result-score-val'),
-        resultHeadline: document.getElementById('result-headline-msg'),
-        resultAccuracy: document.getElementById('result-accuracy-val'),
-        resultCorrect: document.getElementById('result-correct-val'),
-        resultIncorrect: document.getElementById('result-incorrect-val'),
-        resultTime: document.getElementById('result-time-val'),
-        strongTopicsList: document.getElementById('strong-topics-container'),
-        weakTopicsList: document.getElementById('weak-topics-container'),
-        reviewAllBtn: document.getElementById('review-all-btn'),
-        reviewIncorrectBtn: document.getElementById('review-incorrect-btn'),
-        retryPracticeBtn: document.getElementById('retry-practice-btn'),
-        backHomeBtn: document.getElementById('back-home-btn'),
+    const progressBarFill = document.getElementById('progress-bar-fill');
+    const progressLabel = document.getElementById('question-progress-label');
+    const progressPercent = document.getElementById('question-progress-percent');
 
-        // Topic Grid
-        topicsGrid: document.getElementById('topics-grid-container'),
+    const badgeQNumber = document.getElementById('badge-q-number');
+    const badgeQTopic = document.getElementById('badge-q-topic');
+    const badgeQDiff = document.getElementById('badge-q-diff');
+    const badgeQType = document.getElementById('badge-q-type');
+    const badgeSourceStatus = document.getElementById('badge-source-status');
+    const btnMarkReview = document.getElementById('btn-mark-review');
+    const markText = document.getElementById('mark-text');
+    const companiesPillList = document.getElementById('companies-pill-list');
 
-        // Navigation
-        themeToggle: document.getElementById('theme-toggle'),
-        navProgressPill: document.getElementById('nav-progress-text'),
-        mobileMenuBtn: document.getElementById('mobile-menu-btn'),
-        navLinksMenu: document.getElementById('nav-links-menu'),
+    const questionText = document.getElementById('question-text');
+    const codeSnippetBox = document.getElementById('code-snippet-box');
+    const codeSnippetContent = document.getElementById('code-snippet-content');
+    const optionsContainer = document.getElementById('options-container');
 
-        // Modals
-        modalHeading: document.getElementById('modal-heading'),
-        modalDesc: document.getElementById('modal-desc'),
-        modalConfirmBtn: document.getElementById('modal-confirm-btn'),
-        modalCancelBtn: document.getElementById('modal-cancel-btn')
-    };
+    const flashcardRevealRow = document.getElementById('flashcard-reveal-row');
+    const btnFlipCard = document.getElementById('btn-flip-card');
 
-    // -------------------------------------------------------------
+    const explanationPanel = document.getElementById('explanation-panel');
+    const explanationStatusIcon = document.getElementById('explanation-status-icon');
+    const explanationStatusHeading = document.getElementById('explanation-status-heading');
+    const explanationStatusSub = document.getElementById('explanation-status-sub');
+    const explanationSummaryText = document.getElementById('explanation-summary-text');
+    const explanationWhyCorrect = document.getElementById('explanation-why-correct');
+    const explanationWhyOthers = document.getElementById('explanation-why-others');
+    const explanationRealWorld = document.getElementById('explanation-real-world');
+
+    const btnPrev = document.getElementById('btn-prev');
+    const btnNext = document.getElementById('btn-next');
+    const btnSubmitExam = document.getElementById('btn-submit-exam');
+
+    const navigatorGrid = document.getElementById('navigator-grid');
+    const navCountBadge = document.getElementById('nav-count-badge');
+    const sideStatAnswered = document.getElementById('side-stat-answered');
+    const sideStatMarked = document.getElementById('side-stat-marked');
+    const sideStatRemaining = document.getElementById('side-stat-remaining');
+
+    // Results screen elements
+    const resultsPercentage = document.getElementById('results-percentage');
+    const resultsScoreFraction = document.getElementById('results-score-fraction');
+    const resultsTimeTaken = document.getElementById('results-time-taken');
+    const resultsReadinessTag = document.getElementById('results-readiness-tag');
+    
+    const statCoreScore = document.getElementById('stat-core-score');
+    const statCorePercent = document.getElementById('stat-core-percent');
+    const statCliScore = document.getElementById('stat-cli-score');
+    const statCliPercent = document.getElementById('stat-cli-percent');
+    const statBranchScore = document.getElementById('stat-branch-score');
+    const statBranchPercent = document.getElementById('stat-branch-percent');
+    const statRemoteScore = document.getElementById('stat-remote-score');
+    const statRemotePercent = document.getElementById('stat-remote-percent');
+
+    const statEasyScore = document.getElementById('stat-easy-score');
+    const statMediumScore = document.getElementById('stat-medium-score');
+    const statHardScore = document.getElementById('stat-hard-score');
+    const statScenarioScore = document.getElementById('stat-scenario-score');
+
+    const btnReviewAnswers = document.getElementById('btn-review-answers');
+    const btnRetakeExam = document.getElementById('btn-retake-exam');
+    const btnBackHome = document.getElementById('btn-back-home');
+
+    // Notes modal elements
+    const notesModal = document.getElementById('notes-modal');
+    const btnCloseNotes = document.getElementById('btn-close-notes');
+    const btnModalCloseBottom = document.getElementById('btn-modal-close-bottom');
+
+    // Domain mapper helper
+    function getDomainForTopic(topic) {
+        if (['Git Fundamentals', 'Repository Basics', 'Working Directory & Staging'].includes(topic)) {
+            return 'Git Architecture & Core Fundamentals';
+        }
+        if (['Essential Commands', 'Commits & History'].includes(topic)) {
+            return 'Essential CLI Commands & Commits';
+        }
+        if (['Branching', 'Merge & Conflicts'].includes(topic)) {
+            return 'Branching, Merging & Conflict Resolution';
+        }
+        return 'Remote Collaboration & Advanced Workflows';
+    }
+
+    // Company pattern generator
+    const COMPANY_POOLS = [
+        ['TCS', 'Accenture'],
+        ['Capgemini', 'Cognizant'],
+        ['Infosys', 'Wipro'],
+        ['Deloitte', 'LTIMindtree'],
+        ['HCLTech', 'IBM'],
+        ['Tech Mahindra', 'Accenture']
+    ];
+
     // Initialization
-    // -------------------------------------------------------------
     function init() {
         initTheme();
-        renderTopicsGrid();
-        updateConfigSummary();
-        attachEventListeners();
-        loadSavedBookmarks();
+        loadQuestions();
+        bindEvents();
+        initSyncManager();
     }
 
-    // -------------------------------------------------------------
-    // Theme Management
-    // -------------------------------------------------------------
+    // Theme Setup
     function initTheme() {
-        const savedTheme = localStorage.getItem('placementPrep_theme') || 'dark';
+        const savedTheme = localStorage.getItem('placementprep-theme') || 
+                           localStorage.getItem('placementPrep_theme') || 
+                           localStorage.getItem('theme') || 
+                           'light';
         document.documentElement.setAttribute('data-theme', savedTheme);
+
+        if (themeToggleBtn) {
+            themeToggleBtn.addEventListener('click', () => {
+                const current = document.documentElement.getAttribute('data-theme') || 'light';
+                const next = current === 'dark' ? 'light' : 'dark';
+                document.documentElement.setAttribute('data-theme', next);
+                localStorage.setItem('placementprep-theme', next);
+                localStorage.setItem('placementPrep_theme', next);
+                localStorage.setItem('theme', next);
+            });
+        }
     }
 
-    function toggleTheme() {
-        const current = document.documentElement.getAttribute('data-theme') || 'dark';
-        const next = current === 'dark' ? 'light' : 'dark';
-        document.documentElement.setAttribute('data-theme', next);
-        localStorage.setItem('placementPrep_theme', next);
-        localStorage.setItem('placementprep-theme', next);
-    }
-
-    // -------------------------------------------------------------
-    // Topic Explorer Rendering
-    // -------------------------------------------------------------
-    function renderTopicsGrid() {
-        if (!elements.topicsGrid || typeof GITHUB_TOPICS === 'undefined') return;
-
-        elements.topicsGrid.innerHTML = GITHUB_TOPICS.map((topic, index) => {
-            const num = (index + 1).toString().padStart(2, '0');
-            let priorityBadgeClass = 'priority-medium';
-            let priorityText = '📌 KNOW THIS';
-
-            if (topic.priority === 'very_high') {
-                priorityBadgeClass = 'priority-must-know';
-                priorityText = '🔥 MUST KNOW';
-            } else if (topic.priority === 'high') {
-                priorityBadgeClass = 'priority-high';
-                priorityText = '⭐ HIGH PRIORITY';
+    // Initialize SyncManager
+    function initSyncManager() {
+        if (window.SyncManager) {
+            const modData = window.SyncManager.getModuleData(MODULE_ID);
+            if (modData && modData.answers) {
+                // Restore saved practice answers if present
+                for (const [qId, ans] of Object.entries(modData.answers)) {
+                    if (ans && ans.selected) {
+                        userAnswers[qId] = ans.selected;
+                        isAnswerSubmitted[qId] = true;
+                    }
+                }
+            }
+            if (modData && Array.isArray(modData.bookmarks)) {
+                modData.bookmarks.forEach(id => markedQuestions.add(id));
             }
 
-            return `
-                <div class="topic-item-card" data-topic-id="${topic.id}">
-                    <div>
-                        <div class="topic-card-header">
-                            <span class="topic-order-index">${num}</span>
-                            <span class="priority-pill ${priorityBadgeClass}">${priorityText}</span>
-                        </div>
-                        <h4 class="topic-title-text">${escapeHtml(topic.name)}</h4>
-                        <p class="topic-desc-text">${escapeHtml(topic.desc)}</p>
-                    </div>
-                    <div class="topic-card-footer">
-                        <span>${topic.count} Exam Questions</span>
-                        <span class="topic-cta-link">Practice &rarr;</span>
-                    </div>
-                </div>
-            `;
-        }).join('');
+            // Real-time sync updates
+            window.SyncManager.subscribe(() => {
+                const fresh = window.SyncManager.getModuleData(MODULE_ID);
+                if (fresh && fresh.answers) {
+                    for (const [qId, ans] of Object.entries(fresh.answers)) {
+                        if (ans && ans.selected) {
+                            userAnswers[qId] = ans.selected;
+                            isAnswerSubmitted[qId] = true;
+                        }
+                    }
+                }
+                if (fresh && Array.isArray(fresh.bookmarks)) {
+                    fresh.bookmarks.forEach(id => markedQuestions.add(id));
+                }
+                if (currentMode === 'practice' || currentMode === 'flashcards') {
+                    renderQuestion();
+                }
+            });
+        }
     }
 
-    // -------------------------------------------------------------
-    // Configuration Setup
-    // -------------------------------------------------------------
-    function updateConfigSummary() {
-        if (!elements.configSummary) return;
-        const topicText = state.config.topicFilter
-            ? `Topic: ${GITHUB_TOPICS.find(t => t.id === state.config.topicFilter)?.name || 'Custom'}`
-            : 'All 14 Topics';
+    // Load Questions from embedded questions.js
+    function loadQuestions() {
+        const raw = window.GITHUB_QUESTIONS || window.questionsData || [];
+        
+        if (Array.isArray(raw) && raw.length > 0) {
+            allQuestions = raw.map((q, idx) => {
+                const domain = getDomainForTopic(q.topic);
+                const letters = ['A', 'B', 'C', 'D'];
+                const correctLetter = typeof q.correct === 'number' ? letters[q.correct] : (q.correct_answer || 'A');
+                
+                // Build normalized options map
+                let optionsMap = {};
+                if (Array.isArray(q.options)) {
+                    letters.forEach((l, i) => {
+                        optionsMap[l] = q.options[i] || '';
+                    });
+                } else if (typeof q.options === 'object') {
+                    optionsMap = q.options;
+                }
 
-        elements.configSummary.innerHTML = `
-            Selected: <strong>${state.config.questionCount} Questions</strong> &bull; 
-            <strong>${state.config.difficulty} Difficulty</strong> &bull; 
-            <strong>${state.config.questionType}</strong> &bull; 
-            <strong>${state.config.mode} Mode</strong> &bull; 
-            <span>${topicText}</span>
-        `;
-    }
+                // Company pattern
+                const assignedCompanies = q.company_pattern || COMPANY_POOLS[idx % COMPANY_POOLS.length];
 
-    // -------------------------------------------------------------
-    // Practice Session Setup
-    // -------------------------------------------------------------
-    function startSession(customTopicId = null) {
-        if (typeof GITHUB_QUESTIONS === 'undefined' || GITHUB_QUESTIONS.length === 0) {
-            alert('Questions failed to load. Please refresh.');
-            return;
-        }
-
-        if (customTopicId) {
-            state.config.topicFilter = customTopicId;
-        }
-
-        // Filter questions
-        let pool = [...GITHUB_QUESTIONS];
-
-        if (state.config.topicFilter) {
-            pool = pool.filter(q => q.topicId === state.config.topicFilter);
-        }
-
-        if (state.config.difficulty !== 'Mixed') {
-            pool = pool.filter(q => q.difficulty === state.config.difficulty);
-        }
-
-        if (state.config.questionType !== 'All') {
-            if (state.config.questionType === 'Scenario Based') {
-                pool = pool.filter(q => q.isScenario);
-            } else if (state.config.questionType === 'Command Based') {
-                pool = pool.filter(q => q.type === 'Command Based');
-            } else if (state.config.questionType === 'Conceptual') {
-                pool = pool.filter(q => q.type === 'Conceptual' || q.type === 'Comparison');
-            } else if (state.config.questionType === 'Troubleshooting') {
-                pool = pool.filter(q => q.type === 'Troubleshooting');
-            }
-        }
-
-        // If filtered pool is smaller than questionCount, use entire available pool
-        if (pool.length === 0) {
-            alert('No questions match this specific combination of filters. Starting with Mixed pool.');
-            pool = [...GITHUB_QUESTIONS];
-        }
-
-        // Shuffle pool
-        shuffleArray(pool);
-
-        // Slice to requested count
-        const finalCount = Math.min(state.config.questionCount, pool.length);
-        const selectedQuestions = pool.slice(0, finalCount);
-
-        // Reset session state
-        state.session.active = true;
-        state.session.questions = selectedQuestions;
-        state.session.currentIndex = 0;
-        state.session.answers = {};
-        state.session.evaluated = {};
-        state.session.startTime = Date.now();
-        state.session.isReviewMode = false;
-        state.session.isTimed = (state.config.mode === 'Timed Test');
-
-        // Setup timer if timed
-        if (state.session.isTimed) {
-            let totalSeconds = 45 * 60; // default for 60 questions
-            if (finalCount <= 10) totalSeconds = 8 * 60;
-            else if (finalCount <= 20) totalSeconds = 15 * 60;
-            else if (finalCount <= 30) totalSeconds = 22 * 60;
-
-            state.session.timeRemaining = totalSeconds;
-            startTimer();
+                return {
+                    ...q,
+                    domain: domain,
+                    correct_answer: correctLetter,
+                    optionsMap: optionsMap,
+                    company_pattern: assignedCompanies,
+                    source_status: q.isScenario ? 'ENTERPRISE-SCENARIO' : 'HIGH-YIELD-MNC'
+                };
+            });
+            console.log(`Loaded ${allQuestions.length} Git & GitHub questions successfully.`);
         } else {
-            clearInterval(state.session.timerInterval);
-            if (elements.timerBox) elements.timerBox.style.display = 'none';
+            console.error('Failed to load GITHUB_QUESTIONS from questions.js');
         }
-
-        // Switch to practice view
-        showPracticeView();
-        renderCurrentQuestion();
     }
 
-    function startTimer() {
-        if (!elements.timerBox || !elements.timerDisplay) return;
-        elements.timerBox.style.display = 'inline-flex';
-        updateTimerDisplay();
+    // Event Bindings
+    function bindEvents() {
+        // Mode Selection Cards
+        document.querySelectorAll('.start-mode-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const mode = e.currentTarget.getAttribute('data-mode');
+                startMode(mode);
+            });
+        });
 
-        clearInterval(state.session.timerInterval);
-        state.session.timerInterval = setInterval(() => {
-            state.session.timeRemaining--;
-            updateTimerDisplay();
+        // Filter dropdowns
+        if (filterTopic) filterTopic.addEventListener('change', handleFiltersChange);
+        if (filterDiff) filterDiff.addEventListener('change', handleFiltersChange);
+        if (filterType) filterType.addEventListener('change', handleFiltersChange);
 
-            if (state.session.timeRemaining <= 60 * 2) {
-                elements.timerBox.classList.add('urgent');
+        // Navigation
+        if (btnPrev) btnPrev.addEventListener('click', goToPreviousQuestion);
+        if (btnNext) btnNext.addEventListener('click', goToNextQuestion);
+        if (btnSubmitExam) btnSubmitExam.addEventListener('click', promptSubmitExam);
+        if (btnChangeMode) btnChangeMode.addEventListener('click', returnToModeSelect);
+
+        // Mark for Review
+        if (btnMarkReview) btnMarkReview.addEventListener('click', toggleMarkCurrentQuestion);
+
+        // Flashcard Flip
+        if (btnFlipCard) btnFlipCard.addEventListener('click', flipFlashcard);
+
+        // Results Actions
+        if (btnReviewAnswers) btnReviewAnswers.addEventListener('click', startReviewMode);
+        if (btnRetakeExam) btnRetakeExam.addEventListener('click', () => startMode('exam'));
+        if (btnBackHome) btnBackHome.addEventListener('click', returnToModeSelect);
+
+        // Study Notes Modal
+        if (btnOpenNotes) btnOpenNotes.addEventListener('click', openNotesModal);
+        if (btnCloseNotes) btnCloseNotes.addEventListener('click', closeNotesModal);
+        if (btnModalCloseBottom) btnModalCloseBottom.addEventListener('click', closeNotesModal);
+        if (notesModal) {
+            notesModal.addEventListener('click', (e) => {
+                if (e.target === notesModal) closeNotesModal();
+            });
+        }
+
+        // Global Keyboard Shortcuts
+        document.addEventListener('keydown', handleKeyboardShortcuts);
+    }
+
+    // Notes Modal Controls
+    function openNotesModal() {
+        if (notesModal) notesModal.classList.remove('hidden');
+    }
+    function closeNotesModal() {
+        if (notesModal) notesModal.classList.add('hidden');
+    }
+
+    // Start Mode
+    function startMode(mode) {
+        currentMode = mode;
+        currentIndex = 0;
+
+        // Reset state for new exams
+        if (mode === 'exam') {
+            userAnswers = {};
+            isAnswerSubmitted = {};
+            markedQuestions.clear();
+            examStartTime = Date.now();
+            examTimeRemaining = EXAM_DURATION_SECONDS;
+            startExamTimer();
+            // Shuffle all 60 questions for realistic mock exam
+            activeQuestions = shuffleArray([...allQuestions]);
+        } else {
+            stopExamTimer();
+            activeQuestions = [...allQuestions];
+            applyFilters();
+        }
+
+        updateHeaderUI();
+        showScreen('quiz');
+        renderQuestion();
+        buildNavigator();
+        updateScoreDisplay();
+    }
+
+    // Header UI updates
+    function updateHeaderUI() {
+        if (!headerModeBadge) return;
+
+        if (currentMode === 'practice') {
+            headerModeBadge.textContent = 'Practice Mode';
+            headerModeBadge.className = 'badge mode-tag';
+            timerBox.classList.add('hidden');
+            quizFilterBar.classList.remove('hidden');
+            btnSubmitExam.classList.add('hidden');
+            flashcardRevealRow.classList.add('hidden');
+        } else if (currentMode === 'exam') {
+            headerModeBadge.textContent = 'MNC Exam Mode';
+            headerModeBadge.className = 'badge mode-tag';
+            timerBox.classList.remove('hidden');
+            quizFilterBar.classList.add('hidden');
+            btnSubmitExam.classList.remove('hidden');
+            flashcardRevealRow.classList.add('hidden');
+        } else if (currentMode === 'flashcards') {
+            headerModeBadge.textContent = 'Flashcard Mode';
+            headerModeBadge.className = 'badge mode-tag';
+            timerBox.classList.add('hidden');
+            quizFilterBar.classList.remove('hidden');
+            btnSubmitExam.classList.add('hidden');
+            flashcardRevealRow.classList.remove('hidden');
+        } else if (currentMode === 'review') {
+            headerModeBadge.textContent = 'Exam Review';
+            headerModeBadge.className = 'badge mode-tag';
+            timerBox.classList.add('hidden');
+            quizFilterBar.classList.add('hidden');
+            btnSubmitExam.classList.add('hidden');
+            flashcardRevealRow.classList.add('hidden');
+        }
+    }
+
+    // Filter Logic
+    function handleFiltersChange() {
+        currentTopicFilter = filterTopic.value;
+        currentDiffFilter = filterDiff.value;
+        currentTypeFilter = filterType.value;
+        applyFilters();
+        currentIndex = 0;
+        renderQuestion();
+        buildNavigator();
+    }
+
+    function applyFilters() {
+        if (currentMode === 'exam') return;
+
+        activeQuestions = allQuestions.filter(q => {
+            const matchesTopic = (currentTopicFilter === 'all') || (q.domain === currentTopicFilter);
+            const matchesDiff = (currentDiffFilter === 'all') || (q.difficulty === currentDiffFilter);
+            const matchesType = (currentTypeFilter === 'all') || (q.type === currentTypeFilter);
+            return matchesTopic && matchesDiff && matchesType;
+        });
+
+        if (activeQuestions.length === 0) {
+            activeQuestions = [...allQuestions];
+            alert('No questions matched the selected combination of filters. Resetting to all questions.');
+            if (filterTopic) filterTopic.value = 'all';
+            if (filterDiff) filterDiff.value = 'all';
+            if (filterType) filterType.value = 'all';
+            currentTopicFilter = 'all';
+            currentDiffFilter = 'all';
+            currentTypeFilter = 'all';
+        }
+    }
+
+    // Render Current Question
+    function renderQuestion() {
+        if (activeQuestions.length === 0) return;
+
+        const q = activeQuestions[currentIndex];
+        const total = activeQuestions.length;
+
+        // Progress Bar
+        const progressVal = Math.round(((currentIndex + 1) / total) * 100);
+        progressBarFill.style.width = `${progressVal}%`;
+        progressLabel.textContent = `Question ${currentIndex + 1} of ${total}`;
+        progressPercent.textContent = `${progressVal}% Completed`;
+
+        // Badges
+        badgeQNumber.textContent = `Q${q.id}`;
+        badgeQTopic.textContent = q.topic || q.domain;
+        badgeQDiff.textContent = q.difficulty;
+        badgeQDiff.className = `badge badge-diff ${(q.difficulty || '').toLowerCase()}`;
+        badgeQType.textContent = q.isScenario ? '⚡ Scenario-Based' : (q.type || 'Conceptual');
+        badgeSourceStatus.textContent = q.source_status || 'HIGH-YIELD-MNC';
+
+        // Target Companies Pills
+        companiesPillList.innerHTML = '';
+        const companies = q.company_pattern || ['Accenture', 'TCS'];
+        companies.forEach(comp => {
+            const span = document.createElement('span');
+            span.className = 'company-pill';
+            span.textContent = comp;
+            companiesPillList.appendChild(span);
+        });
+
+        // Mark Button
+        if (markedQuestions.has(q.id)) {
+            btnMarkReview.classList.add('marked');
+            markText.textContent = 'Marked';
+        } else {
+            btnMarkReview.classList.remove('marked');
+            markText.textContent = 'Mark';
+        }
+
+        // Question Text
+        questionText.textContent = q.question;
+
+        // Code Snippet Box
+        if (q.codeSnippet && q.codeSnippet.trim() !== '') {
+            codeSnippetBox.classList.remove('hidden');
+            codeSnippetContent.textContent = q.codeSnippet;
+        } else {
+            codeSnippetBox.classList.add('hidden');
+            codeSnippetContent.textContent = '';
+        }
+
+        // Render Options
+        optionsContainer.innerHTML = '';
+        const hasAnswered = isAnswerSubmitted[q.id] || false;
+        const selectedKey = userAnswers[q.id];
+
+        ['A', 'B', 'C', 'D'].forEach(letter => {
+            const optText = q.optionsMap ? q.optionsMap[letter] : '';
+            if (!optText) return;
+
+            const btn = document.createElement('button');
+            btn.className = 'option-btn';
+            btn.setAttribute('data-key', letter);
+
+            // Structure
+            const letterBox = document.createElement('span');
+            letterBox.className = 'option-letter';
+            letterBox.textContent = letter;
+
+            const textBox = document.createElement('span');
+            textBox.className = 'option-text';
+            textBox.textContent = optText;
+
+            btn.appendChild(letterBox);
+            btn.appendChild(textBox);
+
+            // States
+            if (currentMode === 'practice' || currentMode === 'review' || currentMode === 'flashcards') {
+                if (hasAnswered) {
+                    btn.disabled = true;
+                    if (letter === q.correct_answer) {
+                        btn.classList.add('correct');
+                    } else if (letter === selectedKey) {
+                        btn.classList.add('incorrect');
+                    }
+                } else if (selectedKey === letter) {
+                    btn.classList.add('selected');
+                }
+            } else if (currentMode === 'exam') {
+                if (selectedKey === letter) {
+                    btn.classList.add('selected');
+                }
             }
 
-            if (state.session.timeRemaining <= 0) {
-                clearInterval(state.session.timerInterval);
-                finishSession(true); // auto submit
+            btn.addEventListener('click', () => selectOption(letter));
+            optionsContainer.appendChild(btn);
+        });
+
+        // Flashcards mode
+        if (currentMode === 'flashcards') {
+            if (hasAnswered) {
+                btnFlipCard.textContent = 'Explanation Revealed (Press Space to Toggle)';
+            } else {
+                btnFlipCard.textContent = 'Reveal Answer & Explanation (Press Space)';
+            }
+        }
+
+        // Render Explanation Panel
+        if ((currentMode === 'practice' || currentMode === 'review' || currentMode === 'flashcards') && hasAnswered) {
+            renderExplanation(q, selectedKey || q.correct_answer);
+            explanationPanel.classList.remove('hidden');
+        } else {
+            explanationPanel.classList.add('hidden');
+        }
+
+        // Footer buttons state
+        btnPrev.disabled = (currentIndex === 0);
+        btnNext.disabled = (currentIndex === total - 1);
+
+        // Update active highlight in navigator
+        updateNavigatorActive();
+        updateScoreDisplay();
+    }
+
+    // Select Option
+    function selectOption(letter) {
+        const q = activeQuestions[currentIndex];
+        if (!q) return;
+
+        if (currentMode === 'practice' || currentMode === 'flashcards') {
+            if (isAnswerSubmitted[q.id]) return; // Already answered
+
+            userAnswers[q.id] = letter;
+            isAnswerSubmitted[q.id] = true;
+
+            const isCorrect = (letter === q.correct_answer);
+
+            // Record to SyncManager if present
+            if (window.SyncManager) {
+                window.SyncManager.recordAnswer(MODULE_ID, q.id, { selected: letter, isCorrect: isCorrect });
+            }
+
+            renderQuestion();
+            updateNavigatorState(q.id);
+        } else if (currentMode === 'exam') {
+            userAnswers[q.id] = letter;
+            isAnswerSubmitted[q.id] = true;
+            renderQuestion();
+            updateNavigatorState(q.id);
+        }
+    }
+
+    // Render Detailed Explanation
+    function renderExplanation(q, selectedKey) {
+        const isCorrect = (selectedKey === q.correct_answer);
+
+        if (isCorrect) {
+            explanationStatusIcon.textContent = '✓';
+            explanationStatusIcon.className = 'status-indicator-icon correct';
+            explanationStatusHeading.textContent = 'Correct Answer!';
+            explanationStatusSub.textContent = `Accurately identified core Git principle.`;
+        } else {
+            explanationStatusIcon.textContent = '✕';
+            explanationStatusIcon.className = 'status-indicator-icon incorrect';
+            explanationStatusHeading.textContent = `Incorrect (Correct was Option ${q.correct_answer})`;
+            explanationStatusSub.textContent = `Review the technical rationale and placement trap below:`;
+        }
+
+        const expObj = q.explanation || {};
+        const whyText = expObj.why || (typeof expObj === 'string' ? expObj : 'Core Git architecture logic.');
+        const correctOptText = q.optionsMap ? q.optionsMap[q.correct_answer] : '';
+        const trapText = expObj.placementTrap || 'Watch out for confusing local workspace states with remote branches.';
+        const takeawayText = expObj.placementTakeaway || 'Mastering this command syntax is essential for MNC technical rounds.';
+
+        explanationSummaryText.textContent = whyText;
+        explanationWhyCorrect.textContent = `${correctOptText} — ${expObj.correctAnswer || whyText}`;
+
+        // Distractor breakdown / Placement Trap
+        explanationWhyOthers.innerHTML = '';
+        
+        // Trap item
+        const trapItem = document.createElement('div');
+        trapItem.className = 'distractor-item';
+        trapItem.innerHTML = `<strong>⚠️ Placement Trap:</strong> ${trapText}`;
+        explanationWhyOthers.appendChild(trapItem);
+
+        // Incorrect options comparison
+        ['A', 'B', 'C', 'D'].forEach(letter => {
+            if (letter !== q.correct_answer && q.optionsMap[letter]) {
+                const item = document.createElement('div');
+                item.className = 'distractor-item';
+                item.innerHTML = `<strong>Option [${letter}]:</strong> Incorrect for this scenario. (${q.optionsMap[letter]})`;
+                explanationWhyOthers.appendChild(item);
+            }
+        });
+
+        // Real-world practical takeaway
+        explanationRealWorld.textContent = takeawayText;
+    }
+
+    // Flashcard Flip
+    function flipFlashcard() {
+        const q = activeQuestions[currentIndex];
+        if (!q) return;
+
+        if (!isAnswerSubmitted[q.id]) {
+            isAnswerSubmitted[q.id] = true;
+            renderQuestion();
+            updateNavigatorState(q.id);
+        } else {
+            // Already submitted: toggle explanation panel visibility
+            if (explanationPanel.classList.contains('hidden')) {
+                explanationPanel.classList.remove('hidden');
+                btnFlipCard.textContent = 'Explanation Revealed (Press Space to Hide)';
+            } else {
+                explanationPanel.classList.add('hidden');
+                btnFlipCard.textContent = 'Show Explanation (Press Space to Show)';
+            }
+        }
+    }
+
+    // Build Navigator Grid
+    function buildNavigator() {
+        navigatorGrid.innerHTML = '';
+        activeQuestions.forEach((q, idx) => {
+            const btn = document.createElement('button');
+            btn.className = 'nav-grid-item';
+            btn.textContent = idx + 1;
+            btn.setAttribute('data-idx', idx);
+            btn.setAttribute('data-qid', q.id);
+
+            btn.addEventListener('click', () => {
+                currentIndex = idx;
+                renderQuestion();
+            });
+
+            navigatorGrid.appendChild(btn);
+        });
+
+        updateNavigatorState();
+    }
+
+    // Update Navigator Styles
+    function updateNavigatorState() {
+        let answeredCount = 0;
+        let markedCount = 0;
+
+        activeQuestions.forEach((q, idx) => {
+            const btn = navigatorGrid.children[idx];
+            if (!btn) return;
+
+            btn.className = 'nav-grid-item';
+
+            if (idx === currentIndex) {
+                btn.classList.add('current');
+            }
+
+            if (isAnswerSubmitted[q.id]) {
+                btn.classList.add('answered');
+                answeredCount++;
+
+                if (currentMode === 'review') {
+                    if (userAnswers[q.id] === q.correct_answer) {
+                        btn.classList.add('correct');
+                    } else {
+                        btn.classList.add('incorrect');
+                    }
+                }
+            }
+
+            if (markedQuestions.has(q.id)) {
+                btn.classList.add('marked');
+                markedCount++;
+            }
+        });
+
+        navCountBadge.textContent = `${answeredCount} / ${activeQuestions.length}`;
+        sideStatAnswered.textContent = answeredCount;
+        sideStatMarked.textContent = markedCount;
+        sideStatRemaining.textContent = activeQuestions.length - answeredCount;
+    }
+
+    function updateNavigatorActive() {
+        Array.from(navigatorGrid.children).forEach((btn, idx) => {
+            if (idx === currentIndex) {
+                btn.classList.add('current');
+                btn.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+            } else {
+                btn.classList.remove('current');
+            }
+        });
+    }
+
+    // Toggle Bookmark
+    function toggleMarkCurrentQuestion() {
+        const q = activeQuestions[currentIndex];
+        if (!q) return;
+
+        if (markedQuestions.has(q.id)) {
+            markedQuestions.delete(q.id);
+        } else {
+            markedQuestions.add(q.id);
+        }
+
+        if (window.SyncManager) {
+            window.SyncManager.toggleBookmark(MODULE_ID, q.id);
+        }
+
+        renderQuestion();
+        updateNavigatorState();
+    }
+
+    // Previous / Next Navigation
+    function goToPreviousQuestion() {
+        if (currentIndex > 0) {
+            currentIndex--;
+            renderQuestion();
+        }
+    }
+
+    function goToNextQuestion() {
+        if (currentIndex < activeQuestions.length - 1) {
+            currentIndex++;
+            renderQuestion();
+        }
+    }
+
+    // Exam Timer
+    function startExamTimer() {
+        clearInterval(timerInterval);
+        timerInterval = setInterval(() => {
+            examTimeRemaining--;
+            if (examTimeRemaining <= 0) {
+                clearInterval(timerInterval);
+                alert('Time expired! Your exam will now be submitted automatically.');
+                submitExam();
+            } else {
+                updateTimerDisplay();
             }
         }, 1000);
+        updateTimerDisplay();
+    }
+
+    function stopExamTimer() {
+        clearInterval(timerInterval);
     }
 
     function updateTimerDisplay() {
-        if (!elements.timerDisplay) return;
-        const minutes = Math.floor(state.session.timeRemaining / 60);
-        const seconds = state.session.timeRemaining % 60;
-        elements.timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        const minutes = Math.floor(examTimeRemaining / 60);
+        const seconds = examTimeRemaining % 60;
+        timerDisplay.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
     }
 
-    // -------------------------------------------------------------
-    // Screen / View Switchers
-    // -------------------------------------------------------------
-    function showPracticeView() {
-        if (elements.heroSection) elements.heroSection.style.display = 'none';
-        if (elements.specsSection) elements.specsSection.style.display = 'none';
-        if (elements.topicsSection) elements.topicsSection.style.display = 'none';
-        if (elements.configSection) elements.configSection.style.display = 'none';
-        if (elements.revisionSection) elements.revisionSection.style.display = 'none';
-        if (elements.resultStage) elements.resultStage.style.display = 'none';
+    // Submit Exam
+    function promptSubmitExam() {
+        const total = activeQuestions.length;
+        const answered = Object.keys(userAnswers).length;
+        const unanswered = total - answered;
 
-        if (elements.practiceStage) {
-            elements.practiceStage.style.display = 'block';
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+        let msg = `You have answered ${answered} of ${total} questions.`;
+        if (unanswered > 0) {
+            msg += `\nWarning: ${unanswered} question(s) remain unanswered.`;
         }
-    }
+        msg += '\nAre you sure you want to finish and submit the exam?';
 
-    function showLandingView() {
-        clearInterval(state.session.timerInterval);
-        state.session.active = false;
-
-        if (elements.heroSection) elements.heroSection.style.display = 'block';
-        if (elements.specsSection) elements.specsSection.style.display = 'block';
-        if (elements.topicsSection) elements.topicsSection.style.display = 'block';
-        if (elements.configSection) elements.configSection.style.display = 'block';
-        if (elements.revisionSection) elements.revisionSection.style.display = 'block';
-        if (elements.practiceStage) elements.practiceStage.style.display = 'none';
-        if (elements.resultStage) elements.resultStage.style.display = 'none';
-
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function showResultView() {
-        clearInterval(state.session.timerInterval);
-        state.session.active = false;
-
-        if (elements.practiceStage) elements.practiceStage.style.display = 'none';
-        if (elements.resultStage) {
-            elements.resultStage.style.display = 'block';
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+        if (confirm(msg)) {
+            submitExam();
         }
     }
 
-    // -------------------------------------------------------------
-    // Question Renderer
-    // -------------------------------------------------------------
-    function renderCurrentQuestion() {
-        const qList = state.session.questions;
-        const index = state.session.currentIndex;
-        const q = qList[index];
+    function submitExam() {
+        stopExamTimer();
+        examEndTime = Date.now();
 
-        if (!q) return;
-
-        // Progress & Counter
-        const total = qList.length;
-        const currentNumber = index + 1;
-        if (elements.questionNumber) {
-            elements.questionNumber.innerHTML = `<strong>${currentNumber.toString().padStart(2, '0')}</strong> / ${total.toString().padStart(2, '0')}`;
-        }
-
-        const progressPercent = ((currentNumber) / total) * 100;
-        if (elements.progressBar) {
-            elements.progressBar.style.width = `${progressPercent}%`;
-        }
-
-        // Badges
-        if (elements.difficultyBadge) {
-            elements.difficultyBadge.textContent = q.difficulty.toUpperCase();
-            elements.difficultyBadge.className = 'priority-pill';
-            if (q.difficulty === 'Hard') elements.difficultyBadge.classList.add('priority-must-know');
-            else if (q.difficulty === 'Medium') elements.difficultyBadge.classList.add('priority-high');
-            else elements.difficultyBadge.classList.add('priority-medium');
-        }
-
-        if (elements.topicBadge) {
-            elements.topicBadge.textContent = q.topic.toUpperCase();
-        }
-
-        if (elements.typeBadge) {
-            if (q.isScenario) {
-                elements.typeBadge.style.display = 'inline-flex';
-                elements.typeBadge.textContent = 'SCENARIO';
-                elements.typeBadge.className = 'priority-pill priority-must-know';
-            } else if (q.type === 'Troubleshooting') {
-                elements.typeBadge.style.display = 'inline-flex';
-                elements.typeBadge.textContent = 'TROUBLESHOOTING';
-                elements.typeBadge.className = 'priority-pill priority-high';
-            } else if (q.type === 'Command Based') {
-                elements.typeBadge.style.display = 'inline-flex';
-                elements.typeBadge.textContent = 'COMMAND';
-                elements.typeBadge.className = 'priority-pill priority-medium';
-            } else {
-                elements.typeBadge.style.display = 'none';
-            }
-        }
-
-        // Bookmark state
-        const isBookmarked = state.session.bookmarks.has(q.id);
-        if (elements.bookmarkBtn) {
-            elements.bookmarkBtn.classList.toggle('active', isBookmarked);
-        }
-
-        // Question Statement
-        if (elements.questionText) {
-            elements.questionText.textContent = q.question;
-        }
-
-        // Code / Terminal Visualizer
-        if (elements.commandBlock && elements.commandSnippet) {
-            if (q.codeSnippet) {
-                elements.commandSnippet.textContent = q.codeSnippet;
-                elements.commandBlock.style.display = 'block';
-            } else {
-                elements.commandBlock.style.display = 'none';
-            }
-        }
-
-        // Git Workflow Visualizer Strip
-        renderWorkflowStrip(q.workflowStage);
-
-        // Options
-        renderOptions(q);
-
-        // Inline score
-        updateInlineScore();
-
-        // Nav Buttons state
-        if (elements.prevQuestionBtn) {
-            elements.prevQuestionBtn.disabled = (index === 0);
-        }
-
-        if (elements.nextQuestionBtn) {
-            if (index === total - 1) {
-                elements.nextQuestionBtn.textContent = 'Finish Practice &rarr;';
-            } else {
-                elements.nextQuestionBtn.textContent = 'Next Question &rarr;';
-            }
-        }
-
-        // Explanation handling
-        const alreadyAnswered = state.session.evaluated[q.id];
-        if (alreadyAnswered) {
-            showExplanation(q, state.session.answers[q.id]);
-        } else {
-            hideExplanation();
-        }
-    }
-
-    function renderWorkflowStrip(stage) {
-        if (!elements.workflowStrip) return;
-
-        const stages = ['Working Directory', 'Staging Area', 'Local Repository', 'Remote Repository'];
-        const activeStage = stage || 'Local Repository';
-
-        elements.workflowStrip.innerHTML = stages.map((s, i) => {
-            const isActive = (s.toLowerCase() === activeStage.toLowerCase());
-            const nodeHtml = `<span class="diagram-node ${isActive ? 'active' : ''}">${s}</span>`;
-            const connectorHtml = (i < stages.length - 1)
-                ? `<span class="diagram-connector ${isActive ? 'active' : ''}">&rarr;</span>`
-                : '';
-            return nodeHtml + connectorHtml;
-        }).join('');
-    }
-
-    function renderOptions(q) {
-        if (!elements.optionsContainer) return;
-
-        const keys = ['A', 'B', 'C', 'D'];
-        const isAnswered = state.session.evaluated[q.id];
-        const selectedIdx = state.session.answers[q.id];
-
-        elements.optionsContainer.innerHTML = q.options.map((optText, idx) => {
-            let extraClass = '';
-            if (isAnswered) {
-                if (idx === q.correct) {
-                    extraClass = 'correct';
-                } else if (idx === selectedIdx) {
-                    extraClass = 'incorrect';
-                }
-            }
-
-            return `
-                <button type="button" class="answer-option-row ${extraClass}" data-option-index="${idx}" ${isAnswered ? 'disabled' : ''}>
-                    <span class="option-index-badge">${keys[idx]}</span>
-                    <span class="option-text-body">${escapeHtml(optText)}</span>
-                </button>
-            `;
-        }).join('');
-    }
-
-    function handleOptionSelect(selectedIndex) {
-        const q = state.session.questions[state.session.currentIndex];
-        if (!q || state.session.evaluated[q.id]) return;
-
-        // Record
-        state.session.answers[q.id] = selectedIndex;
-        state.session.evaluated[q.id] = true;
-
-        // Highlight options
-        const optionBtns = elements.optionsContainer.querySelectorAll('.answer-option-row');
-        optionBtns.forEach((btn, idx) => {
-            btn.disabled = true;
-            if (idx === q.correct) {
-                btn.classList.add('correct');
-            } else if (idx === selectedIndex) {
-                btn.classList.add('incorrect');
-            }
-        });
-
-        // Show Explanation
-        showExplanation(q, selectedIndex);
-        updateInlineScore();
-    }
-
-    function showExplanation(q, selectedIndex) {
-        if (!elements.explanationPane) return;
-
-        const isCorrect = (selectedIndex === q.correct);
-        elements.correctAnswerText.textContent = q.explanation.correctAnswer;
-        elements.explanationWhy.textContent = q.explanation.why;
-        elements.placementTakeaway.textContent = q.explanation.placementTakeaway;
-
-        // Placement Trap indicator
-        if (q.explanation.placementTrap && elements.placementTrapBox) {
-            elements.placementTrapDesc.textContent = q.explanation.placementTrap;
-            elements.placementTrapBox.style.display = 'flex';
-        } else if (elements.placementTrapBox) {
-            elements.placementTrapBox.style.display = 'none';
-        }
-
-        elements.explanationPane.style.display = 'flex';
-    }
-
-    function hideExplanation() {
-        if (elements.explanationPane) {
-            elements.explanationPane.style.display = 'none';
-        }
-    }
-
-    function updateInlineScore() {
-        if (!elements.inlineScoreDisplay) return;
-
-        let correct = 0;
-        let answered = 0;
-        state.session.questions.forEach(q => {
-            if (state.session.evaluated[q.id]) {
-                answered++;
-                if (state.session.answers[q.id] === q.correct) {
-                    correct++;
-                }
-            }
-        });
-
-        elements.inlineScoreDisplay.textContent = `${correct} / ${answered}`;
-        if (elements.navProgressPill) {
-            elements.navProgressPill.textContent = `${correct} Correct`;
-        }
-    }
-
-    // -------------------------------------------------------------
-    // Session Completion & Results
-    // -------------------------------------------------------------
-    function finishSession(autoSubmitted = false) {
-        clearInterval(state.session.timerInterval);
-
-        const qList = state.session.questions;
+        // Calculate Scores
         let correctCount = 0;
-        let incorrectCount = 0;
-        let unansweredCount = 0;
+        let coreScore = 0, coreTotal = 0;
+        let cliScore = 0, cliTotal = 0;
+        let branchScore = 0, branchTotal = 0;
+        let remoteScore = 0, remoteTotal = 0;
 
-        const topicPerformance = {}; // topicId -> { total: 0, correct: 0, name: '' }
+        let easyScore = 0, easyTotal = 0;
+        let medScore = 0, medTotal = 0;
+        let hardScore = 0, hardTotal = 0;
+        let scenarioScore = 0, scenarioTotal = 0;
 
-        qList.forEach(q => {
-            if (!topicPerformance[q.topicId]) {
-                topicPerformance[q.topicId] = { total: 0, correct: 0, name: q.topic };
-            }
-            topicPerformance[q.topicId].total++;
+        activeQuestions.forEach(q => {
+            const isCorrect = (userAnswers[q.id] === q.correct_answer);
+            if (isCorrect) correctCount++;
 
-            if (state.session.evaluated[q.id]) {
-                if (state.session.answers[q.id] === q.correct) {
-                    correctCount++;
-                    topicPerformance[q.topicId].correct++;
-                } else {
-                    incorrectCount++;
-                }
-            } else {
-                unansweredCount++;
-            }
+            // Domain breakdown
+            if (q.domain === 'Git Architecture & Core Fundamentals') { coreTotal++; if (isCorrect) coreScore++; }
+            else if (q.domain === 'Essential CLI Commands & Commits') { cliTotal++; if (isCorrect) cliScore++; }
+            else if (q.domain === 'Branching, Merging & Conflict Resolution') { branchTotal++; if (isCorrect) branchScore++; }
+            else if (q.domain === 'Remote Collaboration & Advanced Workflows') { remoteTotal++; if (isCorrect) remoteScore++; }
+
+            // Difficulty breakdown
+            if (q.difficulty === 'Easy') { easyTotal++; if (isCorrect) easyScore++; }
+            else if (q.difficulty === 'Medium') { medTotal++; if (isCorrect) medScore++; }
+            else if (q.difficulty === 'Hard') { hardTotal++; if (isCorrect) hardScore++; }
+
+            // Type breakdown
+            if (q.isScenario || q.type === 'Scenario Based') { scenarioTotal++; if (isCorrect) scenarioScore++; }
         });
 
-        const totalQuestions = qList.length;
-        const accuracy = totalQuestions > 0 ? Math.round((correctCount / totalQuestions) * 100) : 0;
-        const timeTakenSeconds = Math.round((Date.now() - state.session.startTime) / 1000);
-        const mins = Math.floor(timeTakenSeconds / 60);
-        const secs = timeTakenSeconds % 60;
-        const formattedTime = `${mins}m ${secs}s`;
+        const totalQ = activeQuestions.length;
+        const pct = Math.round((correctCount / totalQ) * 100);
 
-        // Render Results Screen
-        if (elements.resultScore) elements.resultScore.textContent = `${correctCount}/${totalQuestions}`;
-        if (elements.resultAccuracy) elements.resultAccuracy.textContent = `${accuracy}%`;
-        if (elements.resultCorrect) elements.resultCorrect.textContent = correctCount;
-        if (elements.resultIncorrect) elements.resultIncorrect.textContent = incorrectCount + unansweredCount;
-        if (elements.resultTime) elements.resultTime.textContent = formattedTime;
+        // Populate Results Screen
+        resultsPercentage.textContent = `${pct}%`;
+        resultsScoreFraction.textContent = `${correctCount} / ${totalQ}`;
 
-        // Feedback Headline
-        if (elements.resultHeadline) {
-            if (accuracy >= 85) {
-                elements.resultHeadline.textContent = "Exceptional! You've mastered MNC fresher placement Git expectations with flying colors.";
-            } else if (accuracy >= 70) {
-                elements.resultHeadline.textContent = "Solid performance! You have a firm grasp of essential Git commands and workflow concepts.";
-            } else if (accuracy >= 50) {
-                elements.resultHeadline.textContent = "Decent foundation, but several high-frequency placement traps tripped you up. Review below.";
-            } else {
-                elements.resultHeadline.textContent = "Needs dedicated revision. Focus on basic commands, merge conflicts, and reset vs revert.";
-            }
-        }
+        const elapsedSeconds = Math.floor(((examEndTime || Date.now()) - (examStartTime || Date.now())) / 1000);
+        const elMin = Math.floor(elapsedSeconds / 60);
+        const elSec = elapsedSeconds % 60;
+        resultsTimeTaken.textContent = `${String(elMin).padStart(2, '0')}:${String(elSec).padStart(2, '0')}`;
 
-        // Strong vs Weak Topics
-        renderTopicBreakdown(topicPerformance);
-
-        // Switch to Results
-        showResultView();
-    }
-
-    function renderTopicBreakdown(topicPerformance) {
-        if (!elements.strongTopicsList || !elements.weakTopicsList) return;
-
-        const strong = [];
-        const weak = [];
-
-        Object.keys(topicPerformance).forEach(tid => {
-            const data = topicPerformance[tid];
-            const pct = Math.round((data.correct / data.total) * 100);
-            if (pct >= 70) {
-                strong.push(`${data.name} (${pct}%)`);
-            } else {
-                weak.push(`${data.name} (${pct}%)`);
-            }
-        });
-
-        elements.strongTopicsList.innerHTML = strong.length > 0
-            ? strong.map(t => `<span class="cluster-pill strong">${escapeHtml(t)}</span>`).join('')
-            : '<span style="color: var(--text-muted); font-size: 0.85rem;">None above 70% yet. Practice makes perfect!</span>';
-
-        elements.weakTopicsList.innerHTML = weak.length > 0
-            ? weak.map(t => `<span class="cluster-pill weak">${escapeHtml(t)}</span>`).join('')
-            : '<span style="color: var(--soft-success); font-size: 0.85rem;">No major weak spots found! Great work.</span>';
-    }
-
-    // -------------------------------------------------------------
-    // Review Mode
-    // -------------------------------------------------------------
-    function startReviewMode(filter = 'all') {
-        state.session.isReviewMode = true;
-        state.session.reviewFilter = filter;
-
-        let reviewQuestions = [...state.session.questions];
-
-        if (filter === 'incorrect') {
-            reviewQuestions = reviewQuestions.filter(q => {
-                const ans = state.session.answers[q.id];
-                return ans === undefined || ans !== q.correct;
-            });
-        }
-
-        if (reviewQuestions.length === 0) {
-            alert('No questions to review in this category!');
-            return;
-        }
-
-        state.session.questions = reviewQuestions;
-        state.session.currentIndex = 0;
-        showPracticeView();
-        renderCurrentQuestion();
-    }
-
-    // -------------------------------------------------------------
-    // Bookmarks Management
-    // -------------------------------------------------------------
-    function loadSavedBookmarks() {
-        try {
-            const saved = localStorage.getItem('placementPrep_git_bookmarks');
-            if (saved) {
-                const parsed = JSON.parse(saved);
-                if (Array.isArray(parsed)) {
-                    state.session.bookmarks = new Set(parsed);
-                }
-            }
-        } catch (e) {
-            console.error('Failed to load bookmarks', e);
-        }
-    }
-
-    function toggleBookmark() {
-        const q = state.session.questions[state.session.currentIndex];
-        if (!q) return;
-
-        if (state.session.bookmarks.has(q.id)) {
-            state.session.bookmarks.delete(q.id);
+        // Readiness Verdict
+        if (pct >= 85) {
+            resultsReadinessTag.textContent = 'Top MNC Tier-1 Ready (Distinction)';
+            resultsReadinessTag.style.background = 'var(--success-bg)';
+            resultsReadinessTag.style.color = 'var(--success-text)';
+        } else if (pct >= 70) {
+            resultsReadinessTag.textContent = 'Placement Competitive (Solid Pass)';
+            resultsReadinessTag.style.background = 'var(--accent-git-light)';
+            resultsReadinessTag.style.color = 'var(--accent-git)';
         } else {
-            state.session.bookmarks.add(q.id);
+            resultsReadinessTag.textContent = 'Needs Deep Revision (Below Cutoff)';
+            resultsReadinessTag.style.background = 'var(--error-bg)';
+            resultsReadinessTag.style.color = 'var(--error-text)';
         }
 
-        try {
-            localStorage.setItem('placementPrep_git_bookmarks', JSON.stringify([...state.session.bookmarks]));
-        } catch (e) {}
+        // Domain breakdown DOM
+        statCoreScore.textContent = `${coreScore} / ${coreTotal}`;
+        statCorePercent.textContent = coreTotal > 0 ? `${Math.round((coreScore/coreTotal)*100)}%` : '0%';
 
-        if (elements.bookmarkBtn) {
-            elements.bookmarkBtn.classList.toggle('active', state.session.bookmarks.has(q.id));
+        statCliScore.textContent = `${cliScore} / ${cliTotal}`;
+        statCliPercent.textContent = cliTotal > 0 ? `${Math.round((cliScore/cliTotal)*100)}%` : '0%';
+
+        statBranchScore.textContent = `${branchScore} / ${branchTotal}`;
+        statBranchPercent.textContent = branchTotal > 0 ? `${Math.round((branchScore/branchTotal)*100)}%` : '0%';
+
+        statRemoteScore.textContent = `${remoteScore} / ${remoteTotal}`;
+        statRemotePercent.textContent = remoteTotal > 0 ? `${Math.round((remoteScore/remoteTotal)*100)}%` : '0%';
+
+        // Difficulty breakdown DOM
+        statEasyScore.textContent = `${easyScore} / ${easyTotal}`;
+        statMediumScore.textContent = `${medScore} / ${medTotal}`;
+        statHardScore.textContent = `${hardScore} / ${hardTotal}`;
+        statScenarioScore.textContent = `${scenarioScore} / ${scenarioTotal}`;
+
+        // Record in SyncManager
+        if (window.SyncManager) {
+            window.SyncManager.recordExamResult(MODULE_ID, {
+                score: correctCount,
+                total: totalQ,
+                percentage: pct,
+                date: new Date().toISOString()
+            });
+        }
+
+        showScreen('results');
+    }
+
+    // Start Review Mode
+    function startReviewMode() {
+        currentMode = 'review';
+        currentIndex = 0;
+        updateHeaderUI();
+        showScreen('quiz');
+        renderQuestion();
+        buildNavigator();
+    }
+
+    // Return to Mode Selection
+    function returnToModeSelect() {
+        stopExamTimer();
+        showScreen('mode-select');
+    }
+
+    // Screen Switcher Helper
+    function showScreen(screen) {
+        screenModeSelect.classList.add('hidden');
+        screenQuizWorkspace.classList.add('hidden');
+        screenResults.classList.add('hidden');
+
+        if (screen === 'mode-select') {
+            screenModeSelect.classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else if (screen === 'quiz') {
+            screenQuizWorkspace.classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else if (screen === 'results') {
+            screenResults.classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     }
 
-    // -------------------------------------------------------------
-    // Modal Helpers
-    // -------------------------------------------------------------
-    function showModal(title, desc, onConfirm) {
-        if (!elements.modalOverlay) return;
-        elements.modalHeading.textContent = title;
-        elements.modalDesc.textContent = desc;
-
-        elements.modalConfirmBtn.onclick = () => {
-            elements.modalOverlay.classList.remove('active');
-            if (onConfirm) onConfirm();
-        };
-
-        elements.modalCancelBtn.onclick = () => {
-            elements.modalOverlay.classList.remove('active');
-        };
-
-        elements.modalOverlay.classList.add('active');
-    }
-
-    // -------------------------------------------------------------
-    // Event Listeners
-    // -------------------------------------------------------------
-    function attachEventListeners() {
-        // Theme toggle
-        if (elements.themeToggle) {
-            elements.themeToggle.addEventListener('click', toggleTheme);
-        }
-
-        // Mobile menu toggle
-        if (elements.mobileMenuBtn && elements.navLinksMenu) {
-            elements.mobileMenuBtn.addEventListener('click', () => {
-                const isShown = elements.navLinksMenu.style.display === 'flex';
-                elements.navLinksMenu.style.display = isShown ? 'none' : 'flex';
-                if (!isShown) {
-                    elements.navLinksMenu.style.flexDirection = 'column';
-                    elements.navLinksMenu.style.position = 'absolute';
-                    elements.navLinksMenu.style.top = '100%';
-                    elements.navLinksMenu.style.left = '0';
-                    elements.navLinksMenu.style.width = '100%';
-                    elements.navLinksMenu.style.background = 'var(--bg-card)';
-                    elements.navLinksMenu.style.padding = '1rem';
-                    elements.navLinksMenu.style.borderBottom = '1px solid var(--border-subtle)';
-                }
-            });
-        }
-
-        // Config buttons
-        elements.countBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                elements.countBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                state.config.questionCount = parseInt(btn.dataset.val, 10);
-                updateConfigSummary();
-            });
-        });
-
-        elements.diffBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                elements.diffBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                state.config.difficulty = btn.dataset.val;
-                updateConfigSummary();
-            });
-        });
-
-        elements.typeBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                elements.typeBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                state.config.questionType = btn.dataset.val;
-                updateConfigSummary();
-            });
-        });
-
-        elements.modeBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                elements.modeBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                state.config.mode = btn.dataset.val;
-                updateConfigSummary();
-            });
-        });
-
-        // Launch buttons
-        if (elements.startPracticeBtn) {
-            elements.startPracticeBtn.addEventListener('click', () => startSession());
-        }
-
-        if (elements.heroStartBtn) {
-            elements.heroStartBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                startSession();
-            });
-        }
-
-        // Topic click from grid
-        if (elements.topicsGrid) {
-            elements.topicsGrid.addEventListener('click', (e) => {
-                const card = e.target.closest('.topic-item-card');
-                if (card) {
-                    const topicId = card.dataset.topicId;
-                    startSession(topicId);
-                }
-            });
-        }
-
-        // Option click delegation
-        if (elements.optionsContainer) {
-            elements.optionsContainer.addEventListener('click', (e) => {
-                const btn = e.target.closest('.answer-option-row');
-                if (btn && !btn.disabled) {
-                    const idx = parseInt(btn.dataset.optionIndex, 10);
-                    handleOptionSelect(idx);
-                }
-            });
-        }
-
-        // Bookmark button
-        if (elements.bookmarkBtn) {
-            elements.bookmarkBtn.addEventListener('click', toggleBookmark);
-        }
-
-        // Navigation in practice
-        if (elements.prevQuestionBtn) {
-            elements.prevQuestionBtn.addEventListener('click', () => {
-                if (state.session.currentIndex > 0) {
-                    state.session.currentIndex--;
-                    renderCurrentQuestion();
-                }
-            });
-        }
-
-        if (elements.nextQuestionBtn) {
-            elements.nextQuestionBtn.addEventListener('click', () => {
-                if (state.session.currentIndex < state.session.questions.length - 1) {
-                    state.session.currentIndex++;
-                    renderCurrentQuestion();
-                } else {
-                    // Last question finish
-                    if (state.session.isTimed) {
-                        showModal('Finish & Submit Test?', 'You have reached the final question. Are you ready to submit your test?', () => {
-                            finishSession();
-                        });
-                    } else {
-                        finishSession();
-                    }
-                }
-            });
-        }
-
-        if (elements.endSessionBtn) {
-            elements.endSessionBtn.addEventListener('click', () => {
-                showModal('End Practice Session?', 'Are you sure you want to exit? Your current test results will be compiled.', () => {
-                    finishSession();
-                });
-            });
-        }
-
-        // Copy button
-        if (elements.copySnippetBtn && elements.commandSnippet) {
-            elements.copySnippetBtn.addEventListener('click', () => {
-                const text = elements.commandSnippet.textContent;
-                navigator.clipboard.writeText(text).then(() => {
-                    const originalText = elements.copySnippetBtn.textContent;
-                    elements.copySnippetBtn.textContent = 'Copied!';
-                    setTimeout(() => {
-                        elements.copySnippetBtn.textContent = originalText;
-                    }, 1800);
-                }).catch(() => {
-                    elements.copySnippetBtn.textContent = 'Copied';
-                });
-            });
-        }
-
-        // Results Buttons
-        if (elements.reviewAllBtn) {
-            elements.reviewAllBtn.addEventListener('click', () => startReviewMode('all'));
-        }
-
-        if (elements.reviewIncorrectBtn) {
-            elements.reviewIncorrectBtn.addEventListener('click', () => startReviewMode('incorrect'));
-        }
-
-        if (elements.retryPracticeBtn) {
-            elements.retryPracticeBtn.addEventListener('click', () => startSession());
-        }
-
-        if (elements.backHomeBtn) {
-            elements.backHomeBtn.addEventListener('click', showLandingView);
-        }
-
-        // Keyboard shortcuts
-        document.addEventListener('keydown', (e) => {
-            if (!state.session.active) return;
-
-            // 1, 2, 3, 4 or A, B, C, D
-            const key = e.key.toUpperCase();
-            if (['1', 'A'].includes(key)) selectOptionByIndex(0);
-            else if (['2', 'B'].includes(key)) selectOptionByIndex(1);
-            else if (['3', 'C'].includes(key)) selectOptionByIndex(2);
-            else if (['4', 'D'].includes(key)) selectOptionByIndex(3);
-            else if (e.key === 'ArrowRight' && state.session.evaluated[state.session.questions[state.session.currentIndex]?.id]) {
-                if (elements.nextQuestionBtn) elements.nextQuestionBtn.click();
-            } else if (e.key === 'ArrowLeft' && state.session.currentIndex > 0) {
-                if (elements.prevQuestionBtn) elements.prevQuestionBtn.click();
+    // Update Global Score Display
+    function updateScoreDisplay() {
+        let correct = 0;
+        Object.entries(userAnswers).forEach(([qId, ans]) => {
+            const q = allQuestions.find(item => String(item.id) === String(qId));
+            if (q && q.correct_answer === ans) {
+                correct++;
             }
         });
+        if (scoreDisplay) scoreDisplay.textContent = correct;
     }
 
-    function selectOptionByIndex(idx) {
-        if (!elements.optionsContainer) return;
-        const btn = elements.optionsContainer.querySelector(`[data-option-index="${idx}"]`);
-        if (btn && !btn.disabled) {
-            handleOptionSelect(idx);
+    // Keyboard Shortcuts
+    function handleKeyboardShortcuts(e) {
+        if (screenQuizWorkspace.classList.contains('hidden')) return;
+
+        const key = e.key.toUpperCase();
+
+        if (['A', 'B', 'C', 'D'].includes(key)) {
+            selectOption(key);
+        } else if (e.key === '1') {
+            selectOption('A');
+        } else if (e.key === '2') {
+            selectOption('B');
+        } else if (e.key === '3') {
+            selectOption('C');
+        } else if (e.key === '4') {
+            selectOption('D');
+        } else if (e.key === 'ArrowLeft') {
+            goToPreviousQuestion();
+        } else if (e.key === 'ArrowRight') {
+            goToNextQuestion();
+        } else if (e.key === 'm' || e.key === 'M') {
+            toggleMarkCurrentQuestion();
+        } else if (e.code === 'Space' && currentMode === 'flashcards') {
+            e.preventDefault();
+            flipFlashcard();
         }
     }
 
-    // -------------------------------------------------------------
-    // Utility Helpers
-    // -------------------------------------------------------------
+    // Shuffle Utility
     function shuffleArray(arr) {
-        for (let i = arr.length - 1; i > 0; i--) {
+        const shuffled = [...arr];
+        for (let i = shuffled.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
-            [arr[i], arr[j]] = [arr[j], arr[i]];
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
         }
+        return shuffled;
     }
 
-    function escapeHtml(str) {
-        if (!str) return '';
-        return str
-            .replace(/&/g, '&amp;')
-            .replace(/</g, '&lt;')
-            .replace(/>/g, '&gt;')
-            .replace(/"/g, '&quot;')
-            .replace(/'/g, '&#039;');
-    }
-
-    // DOM Ready
+    // Execute on DOM Ready
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);
     } else {
         init();
     }
-
 })();
