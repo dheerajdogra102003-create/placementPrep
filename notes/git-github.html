@@ -1,0 +1,3062 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <script>
+    (function () {
+      const theme = localStorage.getItem('placementPrep_theme');
+      if (theme === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Git & GitHub Placement Revision Notes | PlacementPrep</title>
+  <meta name="description" content="Comprehensive, interactive Git and GitHub revision notes for fresher technical placement exams and MNC interviews. 30 sections, 30+ scenarios, 35+ traps, 13 comparison tables.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+
+:root {
+  --bg: #0D0D0D;
+  --bg-secondary: #121212;
+  --card: #181818;
+  --card-elevated: #222222;
+  --card-subtle: #161616;
+  --border: #2A2A2A;
+  --border-hover: #3E3E3E;
+  --text-primary: #F5F5F0;
+  --text-secondary: #A6A6A0;
+  --text-muted: #70706C;
+  --git-orange: #F05032;
+  --git-orange-light: rgba(240, 80, 50, 0.14);
+  --git-orange-glow: rgba(240, 80, 50, 0.3);
+  --primary: #F05032;
+  --primary-light: rgba(240, 80, 50, 0.14);
+  --primary-glow: rgba(240, 80, 50, 0.3);
+  --cyan: #06B6D4;
+  --cyan-light: rgba(6, 182, 212, 0.14);
+  --accent-red: #E60023;
+  --accent-red-light: rgba(230, 0, 35, 0.12);
+  --success: #10B981;
+  --success-light: rgba(16, 185, 129, 0.12);
+  --warning: #F59E0B;
+  --warning-light: rgba(245, 158, 11, 0.12);
+  --terminal-bg: #0A0A0A;
+  --terminal-text: #E7E7E2;
+  --shadow: 0 14px 40px rgba(0, 0, 0, 0.5);
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --font: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+[data-theme="light"] {
+  --bg: #F8FAFC;
+  --bg-secondary: #F1F5F9;
+  --card: #FFFFFF;
+  --card-elevated: #F8FAFC;
+  --card-subtle: #F1F5F9;
+  --border: #E2E8F0;
+  --border-hover: #CBD5E1;
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --text-muted: #94A3B8;
+  --git-orange: #E03E1E;
+  --git-orange-light: rgba(224, 62, 30, 0.1);
+  --git-orange-glow: rgba(224, 62, 30, 0.2);
+  --primary: #E03E1E;
+  --primary-light: rgba(224, 62, 30, 0.1);
+  --primary-glow: rgba(224, 62, 30, 0.2);
+  --cyan: #0284C7;
+  --cyan-light: rgba(2, 132, 199, 0.08);
+  --accent-red: #DC2626;
+  --accent-red-light: rgba(220, 38, 38, 0.08);
+  --success: #059669;
+  --success-light: rgba(5, 150, 105, 0.08);
+  --warning: #D97706;
+  --warning-light: rgba(217, 119, 6, 0.08);
+  --terminal-bg: #0F172A;
+  --terminal-text: #F8FAFC;
+  --shadow: 0 14px 40px rgba(15, 23, 42, 0.06);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text-primary);
+  line-height: 1.65;
+  transition: background .25s ease, color .25s ease;
+  min-height: 100vh;
+}
+
+button, input, select { font: inherit; }
+button { cursor: pointer; }
+a { text-decoration: none; color: inherit; }
+
+/* Sticky Topbar */
+.topbar {
+  position: fixed; top: 0; left: 0; right: 0; height: 68px; z-index: 1000;
+  display: flex; align-items: center; justify-content: space-between; padding: 0 24px;
+  background: color-mix(in srgb, var(--card) 85%, transparent);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-left { display: flex; align-items: center; gap: 14px; }
+.brand { display: flex; align-items: center; gap: 12px; font-weight: 850; font-size: 16px; }
+.logo-icon {
+  width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center;
+  color: #fff; background: linear-gradient(135deg, var(--git-orange), #EA4335);
+  box-shadow: 0 8px 22px var(--git-orange-glow); font-size: 18px;
+}
+.brand small {
+  display: block; color: var(--text-muted); font-size: 10px; font-weight: 700;
+  letter-spacing: 1px; text-transform: uppercase;
+}
+
+.nav-actions { display: flex; align-items: center; gap: 10px; }
+.nav-btn {
+  display: inline-flex; align-items: center; gap: 6px; padding: 0 14px; height: 40px;
+  border: 1px solid var(--border); background: var(--card); color: var(--text-primary);
+  border-radius: var(--radius-sm); font-size: 12px; font-weight: 700; transition: .2s;
+}
+.nav-btn:hover { border-color: var(--git-orange); color: var(--git-orange); transform: translateY(-1px); }
+.nav-btn.primary {
+  background: linear-gradient(135deg, var(--git-orange), #EA4335);
+  color: #fff; border: 0; box-shadow: 0 4px 16px var(--git-orange-glow);
+}
+.nav-btn.primary:hover { opacity: .95; color: #fff; }
+
+.nav-btn.last-hour-btn {
+  background: var(--accent-red-light);
+  color: var(--accent-red);
+  border-color: var(--accent-red);
+}
+.nav-btn.last-hour-btn.active {
+  background: var(--accent-red);
+  color: #fff;
+}
+
+.icon-btn {
+  width: 40px; height: 40px; border: 1px solid var(--border); background: var(--card);
+  color: var(--text-primary); border-radius: var(--radius-sm); transition: .2s;
+  display: grid; place-items: center; font-size: 16px;
+}
+.icon-btn:hover { border-color: var(--git-orange); color: var(--git-orange); }
+
+/* Progress Bar */
+.progress-bar-container {
+  position: fixed; top: 68px; left: 0; right: 0; height: 3px; z-index: 999;
+}
+.progress-bar {
+  height: 100%; width: 0%;
+  background: linear-gradient(90deg, var(--git-orange), #EA4335, var(--cyan));
+  transition: width 0.1s ease;
+}
+
+/* Page Layout */
+.layout-container {
+  max-width: 1440px; margin: 0 auto; padding: 90px 24px 60px;
+  display: grid; grid-template-columns: 290px 1fr; gap: 36px;
+  align-items: start;
+}
+
+/* Sidebar TOC */
+.sidebar {
+  position: sticky; top: 88px; max-height: calc(100vh - 108px);
+  display: flex; flex-direction: column; gap: 12px;
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--radius-md); padding: 18px; box-shadow: var(--shadow);
+}
+
+.sidebar-search {
+  padding: 8px 12px; border-radius: var(--radius-sm); border: 1px solid var(--border);
+  background: var(--bg-secondary); color: var(--text-primary); font-size: 13px;
+  outline: none; width: 100%;
+}
+.sidebar-search:focus { border-color: var(--git-orange); }
+
+.toc-nav {
+  overflow-y: auto; padding-right: 6px; display: flex; flex-direction: column; gap: 4px;
+}
+.toc-group-title {
+  font-size: 10.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;
+  color: var(--text-muted); margin: 12px 0 4px; padding-left: 8px;
+}
+.toc-link {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 6px 10px; border-radius: 6px; font-size: 12.5px; color: var(--text-secondary);
+  transition: .15s; font-weight: 500;
+}
+.toc-link:hover {
+  background: var(--git-orange-light); color: var(--git-orange); transform: translateX(2px);
+}
+.toc-link.active {
+  background: var(--git-orange-light); color: var(--git-orange); font-weight: 700;
+  border-left: 3px solid var(--git-orange);
+}
+.toc-badge {
+  font-size: 9px; padding: 2px 5px; border-radius: 4px;
+  background: var(--bg-secondary); color: var(--text-muted); font-weight: 700;
+}
+
+/* Content Area */
+.content-area {
+  min-width: 0; display: flex; flex-direction: column; gap: 48px;
+}
+
+/* Hero */
+.notes-hero {
+  background: linear-gradient(135deg, var(--card) 0%, var(--bg-secondary) 100%);
+  border: 1px solid var(--border); border-radius: var(--radius-lg);
+  padding: clamp(28px, 4vw, 44px); box-shadow: var(--shadow);
+  position: relative; overflow: hidden;
+}
+.notes-hero::after {
+  content: ""; position: absolute; top: -50%; right: -20%; width: 400px; height: 400px;
+  background: radial-gradient(circle, var(--git-orange-glow) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-chip {
+  display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px;
+  border-radius: 9999px; background: var(--git-orange-light); color: var(--git-orange);
+  font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .8px;
+  margin-bottom: 16px;
+}
+
+.notes-hero h1 {
+  font-size: clamp(28px, 4vw, 42px); font-weight: 900; line-height: 1.15;
+  margin-bottom: 12px; letter-spacing: -1px;
+}
+.notes-hero h1 span {
+  background: linear-gradient(135deg, var(--git-orange) 0%, #F59E0B 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+
+.notes-hero p {
+  font-size: 15px; color: var(--text-secondary); max-width: 820px;
+  margin-bottom: 24px; line-height: 1.6;
+}
+
+.hero-metrics {
+  display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 24px;
+}
+.metric-pill {
+  display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px;
+  background: var(--card-elevated); border: 1px solid var(--border);
+  border-radius: 9999px; font-size: 12px; font-weight: 600; color: var(--text-secondary);
+}
+.metric-pill strong { color: var(--git-orange); font-weight: 800; }
+
+.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+/* Chapter / Note Section */
+.note-section {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: clamp(24px, 3.5vw, 40px);
+  box-shadow: var(--shadow); transition: border-color .2s;
+  scroll-margin-top: 88px;
+}
+.note-section:hover { border-color: var(--border-hover); }
+
+.section-eyebrow {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; margin-bottom: 12px;
+}
+.sec-num {
+  font-size: 12px; font-weight: 800; color: var(--git-orange);
+  font-family: var(--font-mono); letter-spacing: 1px;
+}
+.sec-priority {
+  font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 9999px;
+  text-transform: uppercase; letter-spacing: .5px;
+}
+.priority-p0 { background: var(--accent-red-light); color: var(--accent-red); }
+.priority-p1 { background: var(--git-orange-light); color: var(--git-orange); }
+.priority-p2 { background: var(--cyan-light); color: var(--cyan); }
+
+.section-title {
+  font-size: clamp(22px, 3vw, 28px); font-weight: 800; margin-bottom: 12px;
+  letter-spacing: -.5px; color: var(--text-primary);
+}
+
+.section-intro {
+  font-size: 15px; color: var(--text-secondary); line-height: 1.65;
+  margin-bottom: 24px;
+}
+
+/* Concept Cards */
+.concept-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px; margin: 20px 0;
+}
+.concept-card {
+  background: var(--bg-secondary); border: 1px solid var(--border);
+  border-radius: var(--radius-md); padding: 18px;
+}
+.concept-card h4 {
+  font-size: 14px; font-weight: 700; color: var(--text-primary);
+  margin-bottom: 6px; display: flex; align-items: center; gap: 6px;
+}
+.concept-card p {
+  font-size: 13px; color: var(--text-secondary); line-height: 1.55;
+}
+
+/* Visual ASCII / Architecture Diagram */
+.diagram-container {
+  background: var(--terminal-bg); border: 1px solid var(--border);
+  border-radius: var(--radius-md); padding: 20px; margin: 20px 0;
+  overflow-x: auto;
+}
+.diagram-title {
+  font-size: 11px; font-weight: 800; text-transform: uppercase;
+  letter-spacing: .8px; color: var(--git-orange); margin-bottom: 12px;
+  display: flex; align-items: center; gap: 6px;
+}
+.diagram-art {
+  font-family: var(--font-mono); font-size: 12px; line-height: 1.45;
+  color: #E2E8F0; white-space: pre; margin: 0;
+}
+
+/* Interactive Terminal Command Block */
+.terminal-block {
+  background: var(--terminal-bg); border: 1px solid var(--border);
+  border-radius: var(--radius-md); padding: 16px 20px; margin: 20px 0;
+  font-family: var(--font-mono); position: relative; overflow-x: auto;
+}
+.terminal-head {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid #222;
+}
+.terminal-dots { display: flex; gap: 6px; }
+.t-dot { width: 10px; height: 10px; border-radius: 50%; }
+.t-red { background: #FF5F56; }
+.t-yellow { background: #FFBD2E; }
+.t-green { background: #27C93F; }
+.terminal-tag { font-size: 10.5px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; }
+
+.copy-btn {
+  background: #1F2937; border: 1px solid #374151; color: #9CA3AF;
+  font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 4px;
+  transition: .15s;
+}
+.copy-btn:hover { background: var(--git-orange); color: #fff; border-color: var(--git-orange); }
+
+.term-cmd {
+  color: #F8FAFC; font-size: 13.5px; font-weight: 600; margin-bottom: 6px;
+  display: flex; align-items: center; gap: 8px;
+}
+.term-cmd .prompt { color: var(--git-orange); user-select: none; }
+.term-output {
+  color: #94A3B8; font-size: 12px; line-height: 1.5; white-space: pre-wrap; margin-top: 6px;
+}
+.term-desc {
+  font-family: var(--font); font-size: 12.5px; color: var(--text-secondary);
+  margin-top: 10px; padding-top: 8px; border-top: 1px dashed #222; line-height: 1.5;
+}
+
+/* Comparison Tables */
+.table-wrapper {
+  overflow-x: auto; margin: 24px 0; border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}
+.comp-table {
+  width: 100%; border-collapse: collapse; font-size: 13px; text-align: left;
+}
+.comp-table th {
+  background: var(--bg-secondary); padding: 12px 16px; font-weight: 700;
+  color: var(--text-primary); border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+.comp-table td {
+  padding: 12px 16px; border-bottom: 1px solid var(--border);
+  color: var(--text-secondary); vertical-align: top; line-height: 1.5;
+}
+.comp-table tr:last-child td { border-bottom: 0; }
+.comp-table tr:hover td { background: var(--git-orange-light); }
+
+/* Real-World Scenario Box */
+.scenario-box {
+  background: var(--card-elevated); border-left: 4px solid var(--cyan);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0; padding: 20px;
+  margin: 20px 0;
+}
+.scenario-tag {
+  font-size: 11px; font-weight: 800; text-transform: uppercase;
+  letter-spacing: .8px; color: var(--cyan); margin-bottom: 6px;
+  display: flex; align-items: center; gap: 6px;
+}
+.scenario-title {
+  font-size: 15px; font-weight: 700; color: var(--text-primary); margin-bottom: 8px;
+}
+.scenario-problem {
+  font-size: 13px; color: var(--text-secondary); margin-bottom: 10px; line-height: 1.55;
+}
+.scenario-solution {
+  font-size: 13px; color: var(--text-primary); background: var(--bg-secondary);
+  padding: 10px 14px; border-radius: var(--radius-sm); border: 1px solid var(--border);
+  line-height: 1.55;
+}
+.scenario-solution strong { color: var(--success); }
+
+/* Fatal Placement Trap Box */
+.trap-box {
+  background: var(--accent-red-light); border-left: 4px solid var(--accent-red);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0; padding: 18px 20px;
+  margin: 20px 0;
+}
+.trap-header {
+  font-size: 12px; font-weight: 900; text-transform: uppercase;
+  letter-spacing: .8px; color: var(--accent-red); margin-bottom: 6px;
+  display: flex; align-items: center; gap: 6px;
+}
+.trap-desc {
+  font-size: 13.5px; color: var(--text-primary); font-weight: 500; line-height: 1.55;
+}
+
+/* Quick Memory Trick Pill */
+.memory-trick {
+  background: var(--git-orange-light); border: 1px dashed var(--git-orange);
+  border-radius: var(--radius-md); padding: 14px 18px; margin: 18px 0;
+  display: flex; align-items: flex-start; gap: 12px;
+}
+.memory-icon { font-size: 18px; line-height: 1; flex-shrink: 0; }
+.memory-content { font-size: 13px; color: var(--text-primary); line-height: 1.5; }
+.memory-content strong { color: var(--git-orange); }
+
+/* Top Interview Q&A Box */
+.interview-box {
+  background: var(--bg-secondary); border: 1px solid var(--border);
+  border-radius: var(--radius-md); padding: 18px; margin: 20px 0;
+}
+.interview-title {
+  font-size: 11px; font-weight: 800; text-transform: uppercase;
+  letter-spacing: .8px; color: var(--warning); margin-bottom: 6px;
+  display: flex; align-items: center; gap: 6px;
+}
+.interview-q {
+  font-size: 14px; font-weight: 700; color: var(--text-primary); margin-bottom: 8px;
+}
+.interview-a {
+  font-size: 13px; color: var(--text-secondary); line-height: 1.55;
+}
+
+/* Last-Minute Checklist / Card */
+.checklist-card {
+  background: var(--bg-secondary); border-radius: var(--radius-md);
+  padding: 18px; margin-top: 20px; border: 1px solid var(--border);
+}
+.checklist-title {
+  font-size: 12px; font-weight: 800; text-transform: uppercase;
+  color: var(--text-primary); margin-bottom: 10px; letter-spacing: .5px;
+}
+.checklist-items { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.checklist-items li {
+  font-size: 13px; color: var(--text-secondary); display: flex;
+  align-items: flex-start; gap: 8px; line-height: 1.5;
+}
+.checklist-items li::before {
+  content: "⚡"; color: var(--git-orange); flex-shrink: 0; font-size: 12px;
+}
+
+/* Floating Back-to-Top Button */
+.back-top-btn {
+  position: fixed; bottom: 24px; right: 24px; width: 44px; height: 44px;
+  border-radius: 50%; background: var(--card); border: 1px solid var(--border);
+  color: var(--text-primary); display: grid; place-items: center; font-size: 18px;
+  box-shadow: var(--shadow); z-index: 99; transition: .2s; opacity: 0; pointer-events: none;
+}
+.back-top-btn.visible { opacity: 1; pointer-events: auto; }
+.back-top-btn:hover { background: var(--git-orange); color: #fff; transform: translateY(-3px); }
+
+/* Responsive Adjustments */
+@media (max-width: 1080px) {
+  .layout-container { grid-template-columns: 1fr; gap: 24px; }
+  .sidebar { display: none; }
+}
+
+@media (max-width: 640px) {
+  .topbar { padding: 0 16px; }
+  .layout-container { padding: 80px 14px 40px; }
+  .notes-hero { padding: 20px 16px; }
+  .note-section { padding: 20px 16px; }
+  .hide-mobile { display: none; }
+}
+
+  </style>
+</head>
+<body>
+  <!-- READING PROGRESS BAR -->
+  <div class="progress-bar-container">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+
+  <!-- STICKY TOPBAR -->
+  <header class="topbar">
+    <div class="nav-left">
+      <a href="index.html" class="logo-icon" title="Notes Hub">🐙</a>
+      <div class="brand">
+        Placement<span>Prep</span>
+        <small>Git &amp; GitHub Notes</small>
+      </div>
+    </div>
+
+    <div class="nav-actions">
+      <a href="index.html" class="nav-btn">
+        <span>←</span> <span class="hide-mobile">Notes Hub</span>
+      </a>
+      <a href="../github/index.html" class="nav-btn primary">
+        <span>💻</span> <span>Practice App</span>
+      </a>
+      <button class="nav-btn last-hour-btn" id="lastHourToggle" onclick="toggleLastHourMode()" title="Toggle Last-Hour High-Yield Mode">
+        <span>⚡</span> <span>Last-Hour Mode</span>
+      </button>
+      <a href="#master-interview" class="nav-btn">
+        <span>🎙️</span> <span class="hide-mobile">Interview Q&amp;A</span>
+      </a>
+      <button class="icon-btn" id="themeBtn" onclick="toggleTheme()" title="Toggle Light/Dark Theme">
+        🌓
+      </button>
+    </div>
+  </header>
+
+  <!-- MAIN LAYOUT CONTAINER (SIDEBAR + MAIN STREAM) -->
+  <div class="layout-container">
+
+    <!-- STICKY TOC SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+      <input type="text" id="tocFilter" class="sidebar-search" placeholder="Filter 30 topics, traps..." oninput="filterTOC()">
+
+      <nav class="toc-nav" id="tocList">
+        <div class="toc-group-title">Part 1: Core Architecture</div>
+        <a href="#sec-01" class="toc-link" data-title="git fundamentals dvcs"><span class="toc-num">01. Git Fundamentals</span> <span class="toc-badge">P0</span></a>
+        <a href="#sec-02" class="toc-link" data-title="git vs github"><span class="toc-num">02. Git vs GitHub</span> <span class="toc-badge">P0</span></a>
+        <a href="#sec-03" class="toc-link" data-title="version control systems cvcs dvcs"><span class="toc-num">03. VCS (CVCS vs DVCS)</span> <span class="toc-badge">P1</span></a>
+        <a href="#sec-04" class="toc-link" data-title="installation and configuration global local"><span class="toc-num">04. Installation &amp; Config</span> <span class="toc-badge">P1</span></a>
+        <a href="#sec-05" class="toc-link" data-title="git repository .git"><span class="toc-num">05. Git Repository (.git)</span> <span class="toc-badge">P0</span></a>
+        <a href="#sec-06" class="toc-link" data-title="three areas working directory staging repository"><span class="toc-num">06. Three-Area Architecture</span> <span class="toc-badge">P0</span></a>
+        <a href="#sec-07" class="toc-link" data-title="basic commands init add commit"><span class="toc-num">07. Basic Commands</span> <span class="toc-badge">P0</span></a>
+        <a href="#sec-08" class="toc-link" data-title="git status git log"><span class="toc-num">08. Status &amp; Log</span> <span class="toc-badge">P0</span></a>
+
+        <div class="toc-group-title">Part 2: Branching &amp; Merging</div>
+        <a href="#sec-09" class="toc-link" data-title="commit anatomy head sha"><span class="toc-num">09. Commit Anatomy &amp; HEAD</span> <span class="toc-badge">P0</span></a>
+        <a href="#sec-10" class="toc-link" data-title="branching pointers switch checkout"><span class="toc-num">10. Branching Mechanics</span> <span class="toc-badge">P0</span></a>
+        <a href="#sec-11" class="toc-link" data-title="merging fast-forward 3-way"><span class="toc-num">11. Merging Types</span> <span class="toc-badge">P0</span></a>
+        <a href="#sec-12" class="toc-link" data-title="merge conflicts markers resolution"><span class="toc-num">12. Merge Conflicts</span> <span class="toc-badge">P0</span></a>
+        <a href="#sec-13" class="toc-link" data-title="remote repository origin"><span class="toc-num">13. Remote Repositories</span> <span class="toc-badge">P0</span></a>
+        <a href="#sec-14" class="toc-link" data-title="git push git pull upstream"><span class="toc-num">14. Git Push &amp; Pull</span> <span class="toc-badge">P0</span></a>
+        <a href="#sec-15" class="toc-link" data-title="git fetch remote-tracking"><span class="toc-num">15. Git Fetch</span> <span class="toc-badge">P1</span></a>
+
+        <div class="toc-group-title">Part 3: Advanced Operations</div>
+        <a href="#sec-16" class="toc-link" data-title="git clone onboarding"><span class="toc-num">16. Git Clone</span> <span class="toc-badge">P0</span></a>
+        <a href="#sec-17" class="toc-link" data-title="pull vs fetch equation"><span class="toc-num">17. Pull vs Fetch</span> <span class="toc-badge">P0</span></a>
+        <a href="#sec-18" class="toc-link" data-title="checkout vs switch"><span class="toc-num">18. Checkout vs Switch</span> <span class="toc-badge">P1</span></a>
+        <a href="#sec-19" class="toc-link" data-title="git restore unstaging"><span class="toc-num">19. Git Restore</span> <span class="toc-badge">P1</span></a>
+        <a href="#sec-20" class="toc-link" data-title="git reset soft mixed hard"><span class="toc-num">20. Git Reset</span> <span class="toc-badge">P0</span></a>
+        <a href="#sec-21" class="toc-link" data-title="git revert safe undo"><span class="toc-num">21. Git Revert</span> <span class="toc-badge">P0</span></a>
+        <a href="#sec-22" class="toc-link" data-title="reset vs revert comparison"><span class="toc-num">22. Reset vs Revert</span> <span class="toc-badge">P0</span></a>
+        <a href="#sec-23" class="toc-link" data-title="git stash wip"><span class="toc-num">23. Git Stash</span> <span class="toc-badge">P1</span></a>
+        <a href="#sec-24" class="toc-link" data-title="git diff staged unstaged"><span class="toc-num">24. Git Diff</span> <span class="toc-badge">P1</span></a>
+        <a href="#sec-25" class="toc-link" data-title="git tags releases"><span class="toc-num">25. Git Tags</span> <span class="toc-badge">P2</span></a>
+
+        <div class="toc-group-title">Part 4: Enterprise Workflows</div>
+        <a href="#sec-26" class="toc-link" data-title="github pull requests code review"><span class="toc-num">26. GitHub Pull Requests</span> <span class="toc-badge">P0</span></a>
+        <a href="#sec-27" class="toc-link" data-title="github issues keywords"><span class="toc-num">27. GitHub Issues</span> <span class="toc-badge">P1</span></a>
+        <a href="#sec-28" class="toc-link" data-title="fork vs clone open source"><span class="toc-num">28. Fork vs Clone</span> <span class="toc-badge">P1</span></a>
+        <a href="#sec-29" class="toc-link" data-title="github actions ci cd"><span class="toc-num">29. GitHub Actions</span> <span class="toc-badge">P2</span></a>
+        <a href="#sec-30" class="toc-link" data-title="enterprise git workflow"><span class="toc-num">30. Enterprise Workflow</span> <span class="toc-badge">P0</span></a>
+
+        <div class="toc-group-title">Master Placement Toolkits</div>
+        <a href="#master-comparisons" class="toc-link" data-title="13 comparison tables matrix"><span class="toc-num">📊 13 Comparison Tables</span> <span class="toc-badge">P0</span></a>
+        <a href="#master-scenarios" class="toc-link" data-title="30 real world scenarios problem solving"><span class="toc-num">🛠️ 30+ Scenarios</span> <span class="toc-badge">P0</span></a>
+        <a href="#master-traps" class="toc-link" data-title="35 fatal placement traps exam pitfalls"><span class="toc-num">⚠️ 35+ Fatal Traps</span> <span class="toc-badge">P0</span></a>
+        <a href="#master-cheatsheet" class="toc-link" data-title="cli command cheat sheet reference"><span class="toc-num">📋 Command Reference</span> <span class="toc-badge">P0</span></a>
+        <a href="#master-interview" class="toc-link" data-title="16 interview questions spoken answers"><span class="toc-num">🎙️ 16 Interview Q&amp;As</span> <span class="toc-badge">P0</span></a>
+        <a href="#master-lasthour" class="toc-link" data-title="last hour revision 15 minutes"><span class="toc-num">⚡ Git in 15 Minutes</span> <span class="toc-badge">P0</span></a>
+      </nav>
+    </aside>
+
+    <!-- MAIN CONTENT STREAM -->
+    <main class="content-area">
+
+      <!-- HERO SECTION -->
+      <section class="notes-hero">
+        <div class="hero-chip">MNC TECHNICAL RECRUITMENT • PLACEMENT PREPARATION</div>
+        <h1><span>GIT &amp; GITHUB</span> REVISION NOTES</h1>
+        <p>
+          Understand the workflow. Master the commands. Crack technical interviews. From your first commit to collaborative enterprise pull requests. Structured with 30 comprehensive sections, 30+ real production scenarios, 35+ fatal exam traps, 13 side-by-side comparison tables, and a 15-minute last-hour revision cram mode for TCS, Accenture, Cognizant, Infosys, and Deloitte.
+        </p>
+
+        <!-- Metric Badges -->
+        <div class="hero-metrics">
+          <span class="metric-pill">Sections: <strong>30</strong></span>
+          <span class="metric-pill">Scenarios: <strong>30+</strong></span>
+          <span class="metric-pill">Placement Traps: <strong>35+</strong></span>
+          <span class="metric-pill">Comparison Tables: <strong>13+</strong></span>
+          <span class="metric-pill">Interview Q&amp;As: <strong>16</strong></span>
+        </div>
+
+        <!-- Action CTAs -->
+        <div class="hero-actions">
+          <a href="#sec-01" class="nav-btn primary">Start Learning</a>
+          <a href="#master-lasthour" class="nav-btn last-hour-btn">⚡ Git in 15 Minutes</a>
+          <a href="#master-scenarios" class="nav-btn">🛠️ 30+ Scenarios</a>
+          <a href="../github/index.html" class="nav-btn" style="border-color: var(--git-orange); color: var(--git-orange);">💻 Practice App</a>
+        </div>
+      </section>
+
+
+    <!-- SECTION 01: GIT FUNDAMENTALS -->
+    <article class="note-section" id="sec-01">
+      <div class="section-eyebrow">
+        <span class="sec-num">SECTION 01</span>
+        <span class="sec-priority priority-p0">VERY HIGH PRIORITY</span>
+      </div>
+      <h2 class="section-title">Git Fundamentals & The Snapshot Model</h2>
+      <p class="section-intro">
+        Created by Linus Torvalds in 2005, Git is a <strong>Distributed Version Control System (DVCS)</strong> designed for speed, data integrity, and non-linear workflows. In campus placement exams (TCS, Accenture, Infosys), interviewers test whether you understand how Git stores data compared to older version control systems.
+      </p>
+
+      <!-- Architecture Diagram: Delta vs Snapshot -->
+      <div class="diagram-container">
+        <div class="diagram-title">Fundamental Architecture: Deltas (SVN) vs Snapshots (Git)</div>
+        <pre class="diagram-art">
+Older VCS (SVN, CVS) - Delta / Difference-Based Storage:
+Version 1: [ File A ]      [ File B ]      [ File C ]
+              |               |               |
+Version 2: [ Δ A1  ]       (Unchanged)     [ Δ C1  ]  <-- Stores only diffs; slow to rebuild!
+              |                               |
+Version 3: (Unchanged)     [ Δ B1  ]       [ Δ C2  ]
+
+Git - Cryptographic Directed Acyclic Graph of Snapshots:
+Commit 1 (9a1f): [ File A v1 ]   [ File B v1 ]   [ File C v1 ]
+                        ^               ^               ^
+                        |               | (Link to v1)  |
+Commit 2 (4e8b): [ File A v2 ]   [     *     ]   [ File C v2 ]  <-- Unchanged files stored as pointers!
+                        ^               ^               ^
+                        | (Link to v2)  |               |
+Commit 3 (c3d2): [     *     ]   [ File B v2 ]   [ File C v3 ]
+        </pre>
+      </div>
+
+      <div class="concept-grid">
+        <div class="concept-card">
+          <h4>📸 The Snapshot Philosophy</h4>
+          <p>Every time you commit, Git takes a complete picture of what all your files look like at that exact moment. To keep disk space minimal, if a file hasn't changed, Git does not store a duplicate copy—it stores a lightweight pointer to the previously stored identical blob.</p>
+        </div>
+        <div class="concept-card">
+          <h4>🔒 Cryptographic Data Integrity (SHA-1 / SHA-256)</h4>
+          <p>Everything in Git is checksummed before it is stored using a 40-character hexadecimal cryptographic hash (e.g. <code>2a4b8c9d...</code>). It is physically impossible to alter file contents or commit history without Git instantly detecting corruption.</p>
+        </div>
+      </div>
+
+      <!-- Real World Scenario -->
+      <div class="scenario-box">
+        <div class="scenario-tag">💼 Real-World Scenario: Enterprise Offline Development</div>
+        <div class="scenario-title">Developing Without Internet Connectivity</div>
+        <div class="scenario-problem">
+          An engineer on a flight with zero internet access needs to review commit logs, create 3 feature branches, commit code changes, and perform local diffs. Can they do this with Git?
+        </div>
+        <div class="scenario-solution">
+          <strong>Answer: YES!</strong> Because Git is a <em>Distributed</em> VCS, the complete project history, branches, and commit graph live entirely on the engineer's local machine inside the <code>.git</code> folder. No network connection is needed until they decide to push to a remote server.
+        </div>
+      </div>
+
+      <div class="trap-box">
+        <div class="trap-header">⚠️ Fatal Placement Trap #1</div>
+        <div class="trap-desc">
+          Never say "Git stores file differences (deltas) like SVN." Git stores <strong>complete snapshots</strong> with pointers to unchanged files. This is precisely why branching and switching in Git is virtually instantaneous!
+        </div>
+      </div>
+    </article>
+
+
+    <!-- SECTION 02: GIT VS GITHUB -->
+    <article class="note-section" id="sec-02">
+      <div class="section-eyebrow">
+        <span class="sec-num">SECTION 02</span>
+        <span class="sec-priority priority-p0">VERY HIGH PRIORITY</span>
+      </div>
+      <h2 class="section-title">Git vs GitHub (The Universal Interview Question)</h2>
+      <p class="section-intro">
+        Confusing Git with GitHub in an HR or technical interview is an immediate red flag. Git is a command-line software tool; GitHub is a cloud hosting platform built on top of Git.
+      </p>
+
+      <!-- Comparison Table 1: Git vs GitHub -->
+      <div class="table-wrapper">
+        <table class="comp-table">
+          <thead>
+            <tr>
+              <th>Dimension</th>
+              <th>Git</th>
+              <th>GitHub</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>What is it?</strong></td>
+              <td>Open-source, command-line Version Control System software</td>
+              <td>Cloud-based hosting service and collaboration platform for Git repos</td>
+            </tr>
+            <tr>
+              <td><strong>Creator</strong></td>
+              <td>Linus Torvalds (2005)</td>
+              <td>Chris Wanstrath, PJ Hyett, Tom Preston-Werner (2008, acquired by Microsoft)</td>
+            </tr>
+            <tr>
+              <td><strong>Installation</strong></td>
+              <td>Installed locally on your personal computer / server</td>
+              <td>Web-based platform (SaaS); accessed via browser, CLI, or API</td>
+            </tr>
+            <tr>
+              <td><strong>Internet Requirement</strong></td>
+              <td>Works 100% offline for local commits, branches, and logs</td>
+              <td>Requires internet access to push, pull, fork, or view PRs</td>
+            </tr>
+            <tr>
+              <td><strong>Core Features</strong></td>
+              <td>Tracking changes, staging, committing, branching, merging</td>
+              <td>Pull Requests, Issue tracking, Code review, GitHub Actions CI/CD, Project boards</td>
+            </tr>
+            <tr>
+              <td><strong>Alternatives</strong></td>
+              <td>Mercurial, Subversion (SVN), Bazaar</td>
+              <td>GitLab, Bitbucket, AWS CodeCommit, Azure Repos</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="memory-trick">
+        <span class="memory-icon">💡</span>
+        <div class="memory-content">
+          <strong>Placement Memory Trick:</strong> <em>"Git is to GitHub as C++ is to Codeforces."</em> Git is the programming technology; GitHub is the cloud platform where you share and collaborate on it.
+        </div>
+      </div>
+    </article>
+
+
+    <!-- SECTION 03: VERSION CONTROL SYSTEMS -->
+    <article class="note-section" id="sec-03">
+      <div class="section-eyebrow">
+        <span class="sec-num">SECTION 03</span>
+        <span class="sec-priority priority-p1">HIGH PRIORITY</span>
+      </div>
+      <h2 class="section-title">Centralized (CVCS) vs Distributed (DVCS)</h2>
+      <p class="section-intro">
+        Understanding why the software industry transitioned from Centralized systems (SVN) to Distributed systems (Git) is tested in nearly every technical screening.
+      </p>
+
+      <!-- Comparison Table 2: CVCS vs DVCS -->
+      <div class="table-wrapper">
+        <table class="comp-table">
+          <thead>
+            <tr>
+              <th>Evaluation Factor</th>
+              <th>Centralized VCS (SVN, CVS, Perforce)</th>
+              <th>Distributed VCS (Git, Mercurial)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Repository Location</strong></td>
+              <td>Single central server; developers only hold shallow working copies</td>
+              <td>Every developer holds a <strong>full mirror of the repository and its entire history</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Single Point of Failure</strong></td>
+              <td><strong>High Risk:</strong> If the central server crashes and lacks backups, all history is permanently lost!</td>
+              <td><strong>Zero Risk:</strong> Every developer's local clone acts as a complete off-site backup.</td>
+            </tr>
+            <tr>
+              <td><strong>Offline Capabilities</strong></td>
+              <td>Severely limited (cannot commit, view logs, or branch offline)</td>
+              <td>Complete independence (commit, branch, merge, diff all work offline)</td>
+            </tr>
+            <tr>
+              <td><strong>Branching Speed</strong></td>
+              <td>Slow (branches are physical directories created on central server)</td>
+              <td>Instantaneous (a branch is just a 41-byte pointer to a commit hash)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+
+
+    <!-- SECTION 04: INSTALLATION & CONFIGURATION -->
+    <article class="note-section" id="sec-04">
+      <div class="section-eyebrow">
+        <span class="sec-num">SECTION 04</span>
+        <span class="sec-priority priority-p1">HIGH PRIORITY</span>
+      </div>
+      <h2 class="section-title">Git Installation, Config Levels & Identity Setup</h2>
+      <p class="section-intro">
+        Before making your first commit, Git requires your author name and email. Placement tests often ask about config priority levels: <strong>Local &gt; Global &gt; System</strong>.
+      </p>
+
+      <div class="concept-grid">
+        <div class="concept-card">
+          <h4>1. System Level (<code>--system</code>)</h4>
+          <p>Applies to every user and repository on the entire operating system. Located at <code>/etc/gitconfig</code> (Linux/Mac) or <code>C:\ProgramData\Git\config</code> (Windows). Lowest priority.</p>
+        </div>
+        <div class="concept-card">
+          <h4>2. Global Level (<code>--global</code>)</h4>
+          <p>Applies to the currently logged-in operating system user across all their projects. Located at <code>~/.gitconfig</code> or <code>C:\Users\&lt;User&gt;\.gitconfig</code>. Most commonly used.</p>
+        </div>
+        <div class="concept-card">
+          <h4>3. Local Level (<code>--local</code>)</h4>
+          <p>Applies strictly to the current repository. Located inside <code>.git/config</code>. <strong>Overrides global and system settings!</strong> Used when your work email differs from your personal email.</p>
+        </div>
+      </div>
+
+      <!-- Terminal Command Block -->
+      <div class="terminal-block">
+        <div class="terminal-head">
+          <div class="terminal-dots"><span class="t-dot t-red"></span><span class="t-dot t-yellow"></span><span class="t-dot t-green"></span></div>
+          <span class="terminal-tag">BASH / COMMAND PROMPT</span>
+          <button class="copy-btn" onclick="navigator.clipboard.writeText('git config --global user.name \"Rahul Sharma\"\ngit config --global user.email \"rahul@example.com\"\ngit config --list')">Copy</button>
+        </div>
+        <div class="term-cmd"><span class="prompt">$</span> git config --global user.name "Rahul Sharma"</div>
+        <div class="term-cmd"><span class="prompt">$</span> git config --global user.email "rahul@example.com"</div>
+        <div class="term-cmd"><span class="prompt">$</span> git config --list --show-origin</div>
+        <div class="term-output">file:/C:/Users/Rahul/.gitconfig  user.name=Rahul Sharma
+file:/C:/Users/Rahul/.gitconfig  user.email=rahul@example.com
+file:.git/config                 core.repositoryformatversion=0</div>
+        <div class="term-desc">Establishes the author identity embedded immutably into every subsequent commit checksum.</div>
+      </div>
+    </article>
+
+
+    <!-- SECTION 05: GIT REPOSITORY -->
+    <article class="note-section" id="sec-05">
+      <div class="section-eyebrow">
+        <span class="sec-num">SECTION 05</span>
+        <span class="sec-priority priority-p0">VERY HIGH PRIORITY</span>
+      </div>
+      <h2 class="section-title">Git Repository Anatomy & The Hidden .git Folder</h2>
+      <p class="section-intro">
+        Running <code>git init</code> initializes a hidden <code>.git</code> directory. Deleting this one folder permanently strips all version control capabilities and history from your project directory.
+      </p>
+
+      <div class="diagram-container">
+        <div class="diagram-title">Inside the Hidden .git Directory</div>
+        <pre class="diagram-art">
+my-project/
+├── .git/                      <-- THE HEART OF GIT (Database & Configuration)
+│   ├── HEAD                   <-- Reference pointing to the currently active branch
+│   ├── config                 <-- Local repo configuration file (overrides global)
+│   ├── index                  <-- Binary file storing the STAGING AREA (Index)
+│   ├── description            <-- Used by GitWeb software
+│   ├── hooks/                 <-- Client/server hook scripts (pre-commit, post-merge)
+│   ├── info/                  <-- Additional repo info (e.g. info/exclude)
+│   ├── objects/               <-- OBJECT DATABASE: blobs (files), trees (dirs), commits, tags
+│   └── refs/
+│       ├── heads/             <-- Local branch pointers (refs/heads/main)
+│       ├── remotes/           <-- Remote tracking branches (refs/remotes/origin/main)
+│       └── tags/              <-- Release tag references
+└── src/                       <-- YOUR WORKING DIRECTORY (Editable code files)
+    └── app.js
+        </pre>
+      </div>
+
+      <div class="concept-grid">
+        <div class="concept-card">
+          <h4>📦 Standard vs Bare Repository</h4>
+          <p>• <strong>Standard Repository:</strong> Contains both the working directory (visible files) and the <code>.git</code> folder. Developers edit code here.<br>• <strong>Bare Repository (<code>git init --bare</code>):</strong> Contains ONLY the version database without a working directory. Used strictly on central servers (like GitHub/GitLab) as a push/pull exchange target to prevent push conflicts.</p>
+        </div>
+      </div>
+    </article>
+
+
+    <!-- SECTION 06: THREE-AREA ARCHITECTURE -->
+    <article class="note-section" id="sec-06">
+      <div class="section-eyebrow">
+        <span class="sec-num">SECTION 06</span>
+        <span class="sec-priority priority-p0">EXTREMELY HIGH PRIORITY (P0)</span>
+      </div>
+      <h2 class="section-title">The Three Areas: Working Tree, Staging & Repository</h2>
+      <p class="section-intro">
+        Almost every Git MCQ involves data moving across the Three States: <strong>Working Directory</strong> (Modified), <strong>Staging Area</strong> (Staged), and <strong>Local Repository</strong> (Committed).
+      </p>
+
+      <!-- Architecture Diagram -->
+      <div class="diagram-container">
+        <div class="diagram-title">The Three-Area Transition Flowchart</div>
+        <pre class="diagram-art">
+   +----------------------+     git add <file>     +----------------------+    git commit -m "..."    +----------------------+
+   |  WORKING DIRECTORY   | ---------------------> |     STAGING AREA     | -----------------------> |   LOCAL REPOSITORY   |
+   | (Untracked/Modified) | <--------------------- | (Index / Cache Area) | <----------------------- | (Committed Snapshots)|
+   +----------------------+   git restore --staged +----------------------+     git reset --soft     +----------------------+
+              |                                                                                                 |
+              |                                            git clone / git pull                                 | git push
+              \=================================================================================================/
+                                                               |
+                                                               v
+                                                    +----------------------+
+                                                    |  REMOTE REPOSITORY   |
+                                                    |  (GitHub / GitLab)   |
+                                                    +----------------------+
+        </pre>
+      </div>
+
+      <!-- Comparison Table 3: Three Areas -->
+      <div class="table-wrapper">
+        <table class="comp-table">
+          <thead>
+            <tr>
+              <th>Area</th>
+              <th>Technical Identity</th>
+              <th>File State</th>
+              <th>How to Move Forward</th>
+              <th>How to Move Backward</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1. Working Directory</strong></td>
+              <td>Visible files on disk where you write code</td>
+              <td>Untracked or Modified</td>
+              <td><code>git add &lt;file&gt;</code> (stages file)</td>
+              <td><code>git restore &lt;file&gt;</code> (discards disk changes)</td>
+            </tr>
+            <tr>
+              <td><strong>2. Staging Area (Index)</strong></td>
+              <td>Binary <code>.git/index</code> file preparing the next commit</td>
+              <td>Staged</td>
+              <td><code>git commit -m "msg"</code> (commits to history)</td>
+              <td><code>git restore --staged &lt;file&gt;</code> (unstages file)</td>
+            </tr>
+            <tr>
+              <td><strong>3. Local Repository</strong></td>
+              <td>Immutable object database in <code>.git/objects/</code></td>
+              <td>Committed</td>
+              <td><code>git push origin main</code> (sends to remote)</td>
+              <td><code>git reset HEAD~1</code> (moves commit pointer back)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="trap-box">
+        <div class="trap-header">⚠️ Fatal Placement Trap #2</div>
+        <div class="trap-desc">
+          Interview question: "If you modify a file, stage it with <code>git add</code>, and then edit the file again, what happens when you run <code>git commit</code>?"<br>
+          <strong>Git commits the state of the file AT THE TIME YOU RAN <code>git add</code>!</strong> The subsequent edits in the working directory remain unstaged. To include them, you must run <code>git add</code> again before committing!
+        </div>
+      </div>
+    </article>
+
+
+    <!-- SECTION 07: BASIC GIT COMMANDS -->
+    <article class="note-section" id="sec-07">
+      <div class="section-eyebrow">
+        <span class="sec-num">SECTION 07</span>
+        <span class="sec-priority priority-p0">EXTREMELY HIGH PRIORITY</span>
+      </div>
+      <h2 class="section-title">Essential Workflow Commands: init, add & commit</h2>
+      <p class="section-intro">
+        These three commands constitute the basic lifecycle of version control.
+      </p>
+
+      <div class="terminal-block">
+        <div class="terminal-head">
+          <div class="terminal-dots"><span class="t-dot t-red"></span><span class="t-dot t-yellow"></span><span class="t-dot t-green"></span></div>
+          <span class="terminal-tag">STANDARD REPO CREATION</span>
+          <button class="copy-btn" onclick="navigator.clipboard.writeText('git init\ngit add index.html\ngit commit -m \"Initial commit: Add homepage structure\"')">Copy</button>
+        </div>
+        <div class="term-cmd"><span class="prompt">$</span> git init</div>
+        <div class="term-output">Initialized empty Git repository in /home/user/portfolio/.git/</div>
+        <div class="term-cmd"><span class="prompt">$</span> git add index.html style.css</div>
+        <div class="term-cmd"><span class="prompt">$</span> git commit -m "feat: Add initial homepage layout"</div>
+        <div class="term-output">[main (root-commit) 8f3a1d4] feat: Add initial homepage layout
+ 2 files changed, 142 insertions(+)
+ create mode 100644 index.html
+ create mode 100644 style.css</div>
+        <div class="term-desc">Creates a permanent commit snapshot referenced by hash <code>8f3a1d4</code> on branch <code>main</code>.</div>
+      </div>
+
+      <div class="concept-grid">
+        <div class="concept-card">
+          <h4><code>git add .</code> vs <code>git add -A</code></h4>
+          <p>• In Git 2.x+, both <code>git add .</code> and <code>git add -A</code> stage new, modified, and deleted files.<br>• Difference: <code>git add .</code> stages files within the <em>current directory and subdirectories</em>; <code>git add -A</code> stages all changes across the <em>entire repository root</em> regardless of where your terminal is currently navigated.</p>
+        </div>
+        <div class="concept-card">
+          <h4>The <code>git commit -am</code> Shortcut</h4>
+          <p>Combines staging and committing into one step: <code>git commit -am "Update navbar"</code>.<br><strong>CRITICAL TRAP:</strong> This shortcut works <strong>ONLY for tracked files</strong> (files that were committed previously). It will <strong>NOT</strong> stage brand-new untracked files!</p>
+        </div>
+      </div>
+    </article>
+
+
+    <!-- SECTION 08: STATUS & LOG -->
+    <article class="note-section" id="sec-08">
+      <div class="section-eyebrow">
+        <span class="sec-num">SECTION 08</span>
+        <span class="sec-priority priority-p0">VERY HIGH PRIORITY</span>
+      </div>
+      <h2 class="section-title">Inspection Commands: git status & git log</h2>
+      <p class="section-intro">
+        A developer should never commit blindly. <code>git status</code> reveals current workspace state; <code>git log</code> inspects repository history.
+      </p>
+
+      <div class="terminal-block">
+        <div class="terminal-head">
+          <div class="terminal-dots"><span class="t-dot t-red"></span><span class="t-dot t-yellow"></span><span class="t-dot t-green"></span></div>
+          <span class="terminal-tag">STATUS INTERPRETATION</span>
+        </div>
+        <div class="term-cmd"><span class="prompt">$</span> git status</div>
+        <div class="term-output">On branch main
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	modified:   app.js               <-- GREEN: In Staging Area!
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+	modified:   style.css            <-- RED: In Working Tree, not staged!
+
+Untracked files:
+	README.md                        <-- RED: Brand-new file, never tracked!</div>
+      </div>
+
+      <!-- High-Yield git log flags -->
+      <div class="concept-grid">
+        <div class="concept-card">
+          <h4><code>git log --oneline</code></h4>
+          <p>Condenses each commit to a single line showing the abbreviated 7-character hash and the commit message. Ideal for quick terminal scanning.</p>
+        </div>
+        <div class="concept-card">
+          <h4><code>git log --graph --oneline --all</code></h4>
+          <p>Renders an ASCII branch graph showing where branches diverge and merge back together across all refs in the repo.</p>
+        </div>
+        <div class="concept-card">
+          <h4><code>git log -p -2</code></h4>
+          <p>Displays the actual patch (diff) showing exact lines added (<code>+</code>) and deleted (<code>-</code>) for the last 2 commits.</p>
+        </div>
+      </div>
+    </article>
+    
+
+    <!-- SECTION 09: COMMIT & HEAD -->
+    <article class="note-section" id="sec-09">
+      <div class="section-eyebrow">
+        <span class="sec-num">SECTION 09</span>
+        <span class="sec-priority priority-p0">EXTREMELY HIGH PRIORITY (P0)</span>
+      </div>
+      <h2 class="section-title">The Commit Object & The HEAD Pointer</h2>
+      <p class="section-intro">
+        A commit in Git is an immutable snapshot object containing: (1) Tree hash representing file hierarchy, (2) Parent commit hash(es), (3) Author & Committer metadata with timestamp, (4) Commit message.
+      </p>
+
+      <div class="diagram-container">
+        <div class="diagram-title">Commit Node Chain with HEAD Reference</div>
+        <pre class="diagram-art">
+   [ Commit A (1a2b) ] <--- [ Commit B (3c4d) ] <--- [ Commit C (5e6f) ]
+        (Root)               parent: 1a2b               parent: 3c4d
+                                                              ^
+                                                              |
+                                                         [ main ]  <-- Branch Pointer
+                                                              ^
+                                                              |
+                                                           [ HEAD ] <-- "You Are Here"
+        </pre>
+      </div>
+
+      <div class="concept-grid">
+        <div class="concept-card">
+          <h4>📍 What is HEAD?</h4>
+          <p><strong>HEAD</strong> is a special pointer/reference that indicates your <em>currently active branch and commit</em>. Under normal conditions, HEAD points to a branch name (e.g. <code>HEAD -> main</code>), and the branch name points to the latest commit.</p>
+        </div>
+        <div class="concept-card">
+          <h4>👻 The "Detached HEAD" State</h4>
+          <p>Occurs when you checkout a specific commit hash directly (e.g. <code>git checkout 3c4d</code>) instead of a branch. HEAD points directly to a commit, not a branch. <strong>Warning:</strong> Any new commits made in a detached HEAD state will become orphaned and garbage collected if you switch branches without creating a new branch pointer!</p>
+        </div>
+      </div>
+    </article>
+
+
+    <!-- SECTION 10: BRANCHING -->
+    <article class="note-section" id="sec-10">
+      <div class="section-eyebrow">
+        <span class="sec-num">SECTION 10</span>
+        <span class="sec-priority priority-p0">EXTREMELY HIGH PRIORITY (P0)</span>
+      </div>
+      <h2 class="section-title">Git Branching: Lightweight Pointers</h2>
+      <p class="section-intro">
+        In Git, a branch is NOT a separate physical folder copy. A branch is simply an ultra-lightweight, 41-byte movable pointer referencing a specific commit SHA-1 hash.
+      </p>
+
+      <div class="terminal-block">
+        <div class="terminal-head">
+          <div class="terminal-dots"><span class="t-dot t-red"></span><span class="t-dot t-yellow"></span><span class="t-dot t-green"></span></div>
+          <span class="terminal-tag">BRANCH MANAGEMENT COMMANDS</span>
+        </div>
+        <div class="term-cmd"><span class="prompt">$</span> git branch feature-login              <span class="code-comment"># Creates branch, stays on main</span></div>
+        <div class="term-cmd"><span class="prompt">$</span> git switch feature-login              <span class="code-comment"># Switches HEAD to feature-login</span></div>
+        <div class="term-cmd"><span class="prompt">$</span> git switch -c feature-signup          <span class="code-comment"># Recommended: Create & switch in 1 step</span></div>
+        <div class="term-cmd"><span class="prompt">$</span> git branch -d feature-login           <span class="code-comment"># Safe delete (only if already merged)</span></div>
+        <div class="term-cmd"><span class="prompt">$</span> git branch -D feature-abandoned       <span class="code-comment"># Force delete (even with unmerged work!)</span></div>
+      </div>
+
+      <div class="trap-box">
+        <div class="trap-header">⚠️ Fatal Placement Trap #3: Deleting the Active Branch</div>
+        <div class="trap-desc">
+          You <strong>cannot delete the branch you are currently on</strong>! If you run <code>git branch -d feature-x</code> while on <code>feature-x</code>, Git will abort with: <code>error: Cannot delete branch 'feature-x' checked out at ...</code>. You must first switch to another branch (e.g. <code>git switch main</code>) before deleting it.
+        </div>
+      </div>
+    </article>
+
+
+    <!-- SECTION 11: MERGING -->
+    <article class="note-section" id="sec-11">
+      <div class="section-eyebrow">
+        <span class="sec-num">SECTION 11</span>
+        <span class="sec-priority priority-p0">EXTREMELY HIGH PRIORITY</span>
+      </div>
+      <h2 class="section-title">Merging: Fast-Forward vs Three-Way Merge</h2>
+      <p class="section-intro">
+        Merging integrates independent development histories. Placement exams test whether you understand the exact conditions triggering a <strong>Fast-Forward merge</strong> versus a <strong>Three-Way merge</strong>.
+      </p>
+
+      <!-- Architecture Diagram: FF vs 3-Way -->
+      <div class="diagram-container">
+        <div class="diagram-title">Fast-Forward Merge vs Three-Way Merge</div>
+        <pre class="diagram-art">
+Case 1: Fast-Forward Merge (No Divergence)
+Before:   main: C1 <--- C2
+                         \
+            feature:      C3 <--- C4 (HEAD)
+Command:  git switch main; git merge feature
+After:    main & feature: C1 <--- C2 <--- C3 <--- C4 (HEAD)
+Effect:   Git simply moves the 'main' pointer forward! NO merge commit created.
+
+Case 2: Three-Way Merge (Diverged History)
+Before:             C3 <--- C4 (feature)
+                   /
+          C1 <--- C2 (Common Ancestor)
+                   \
+                    C5 <--- C6 (main, HEAD)
+Command:  git merge feature
+After:    Creates a brand-new MERGE COMMIT (C7) with TWO PARENTS (C6 and C4)!
+        </pre>
+      </div>
+
+      <!-- Comparison Table 4: FF vs 3-Way -->
+      <div class="table-wrapper">
+        <table class="comp-table">
+          <thead>
+            <tr>
+              <th>Dimension</th>
+              <th>Fast-Forward Merge</th>
+              <th>Three-Way Merge</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Condition</strong></td>
+              <td>Target branch (main) has NO new commits since feature branch was created.</td>
+              <td>Both branches have progressed with new commits since their common ancestor.</td>
+            </tr>
+            <tr>
+              <td><strong>Merge Commit Created?</strong></td>
+              <td><strong>NO.</strong> Merely moves the branch pointer forward.</td>
+              <td><strong>YES.</strong> Automatically creates a special merge commit with 2 parents.</td>
+            </tr>
+            <tr>
+              <td><strong>Can Conflicts Occur?</strong></td>
+              <td><strong>NO.</strong> Impossible because history is strictly linear.</td>
+              <td><strong>YES.</strong> Conflicts occur if both branches modified overlapping lines.</td>
+            </tr>
+            <tr>
+              <td><strong>Override Flag</strong></td>
+              <td>Can force a merge commit using <code>git merge --no-ff</code></td>
+              <td>Default behavior when branches diverge.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+
+
+    <!-- SECTION 12: MERGE CONFLICTS -->
+    <article class="note-section" id="sec-12">
+      <div class="section-eyebrow">
+        <span class="sec-num">SECTION 12</span>
+        <span class="sec-priority priority-p0">EXTREMELY HIGH PRIORITY (P0)</span>
+      </div>
+      <h2 class="section-title">Merge Conflicts: Anatomy & Resolution Workflow</h2>
+      <p class="section-intro">
+        A merge conflict is NOT an error. It occurs when Git encounters competing modifications on the exact same lines of the same file across both branches, and refuses to guess which author's change to keep.
+      </p>
+
+      <div class="terminal-block">
+        <div class="terminal-head">
+          <div class="terminal-dots"><span class="t-dot t-red"></span><span class="t-dot t-yellow"></span><span class="t-dot t-green"></span></div>
+          <span class="terminal-tag">CONFLICT MARKERS IN CODE FILE</span>
+        </div>
+        <div class="term-output">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD (current branch, e.g. main)
+const API_URL = "https://api.production.company.com/v1";
+=======
+const API_URL = "https://api.staging.company.com/v2";
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; feature-payments (incoming branch)</div>
+        <div class="term-desc">
+          • <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</code>: Starts changes from the branch you are currently on.<br>
+          • <code>=======</code>: Separator line dividing the two competing versions.<br>
+          • <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt; branch-name</code>: Ends incoming changes from the branch being merged.
+        </div>
+      </div>
+
+      <div class="concept-card" style="margin: 20px 0;">
+        <h4>🛠️ The 5-Step Conflict Resolution Protocol</h4>
+        <p>1. <strong>Identify:</strong> Run <code>git status</code> to see conflicting files under <em>"both modified"</em>.<br>
+        2. <strong>Edit:</strong> Open the file, discuss with teammates, delete the conflict markers, and keep the desired code.<br>
+        3. <strong>Stage:</strong> Run <code>git add &lt;resolved-file&gt;</code> to mark the conflict as resolved.<br>
+        4. <strong>Commit:</strong> Run <code>git commit</code> (no message needed; Git generates a default merge message).<br>
+        5. <strong>Abort Option:</strong> If things go wrong, run <code>git merge --abort</code> to safely revert back to pre-merge state.</p>
+      </div>
+
+      <div class="trap-box">
+        <div class="trap-header">⚠️ Fatal Placement Trap #4</div>
+        <div class="trap-desc">
+          Interview question: "After manually resolving a merge conflict and removing conflict markers, what is the mandatory command you must run before committing?"<br>
+          <strong>You MUST run <code>git add &lt;file&gt;</code>!</strong> Running <code>git add</code> tells Git: "I have reviewed and resolved this conflict." If you try running <code>git commit</code> without staging, Git will reject it!
+        </div>
+      </div>
+    </article>
+
+
+    <!-- SECTION 13: REMOTE REPOSITORY -->
+    <article class="note-section" id="sec-13">
+      <div class="section-eyebrow">
+        <span class="sec-num">SECTION 13</span>
+        <span class="sec-priority priority-p0">VERY HIGH PRIORITY</span>
+      </div>
+      <h2 class="section-title">Remote Repositories & The 'origin' Convention</h2>
+      <p class="section-intro">
+        A remote repository is a version of your project hosted on the internet or local network (e.g. on GitHub). <code>origin</code> is not a keyword—it is simply the default alias Git assigns to the remote URL.
+      </p>
+
+      <div class="terminal-block">
+        <div class="terminal-head">
+          <div class="terminal-dots"><span class="t-dot t-red"></span><span class="t-dot t-yellow"></span><span class="t-dot t-green"></span></div>
+          <span class="terminal-tag">REMOTE CONFIGURATION COMMANDS</span>
+          <button class="copy-btn" onclick="navigator.clipboard.writeText('git remote add origin https://github.com/user/repo.git\ngit remote -v')">Copy</button>
+        </div>
+        <div class="term-cmd"><span class="prompt">$</span> git remote add origin https://github.com/rahul/placement-prep.git</div>
+        <div class="term-cmd"><span class="prompt">$</span> git remote -v</div>
+        <div class="term-output">origin  https://github.com/rahul/placement-prep.git (fetch)
+origin  https://github.com/rahul/placement-prep.git (push)</div>
+        <div class="term-desc">Maps the human-friendly shorthand alias <code>origin</code> to the full HTTPS / SSH repository URL.</div>
+      </div>
+    </article>
+
+
+    <!-- SECTION 14: PUSH & PULL -->
+    <article class="note-section" id="sec-14">
+      <div class="section-eyebrow">
+        <span class="sec-num">SECTION 14</span>
+        <span class="sec-priority priority-p0">EXTREMELY HIGH PRIORITY (P0)</span>
+      </div>
+      <h2 class="section-title">Git Push & Pull: Upstream Tracking (-u)</h2>
+      <p class="section-intro">
+        <code>git push</code> transfers local commits to the remote repository. <code>git pull</code> downloads remote commits and merges them immediately into your active branch.
+      </p>
+
+      <div class="concept-grid">
+        <div class="concept-card">
+          <h4>🚀 Upstream Tracking (<code>-u</code> / <code>--set-upstream</code>)</h4>
+          <p>The first time you push a new branch, you run: <code>git push -u origin feature-x</code>.<br>
+          The <code>-u</code> flag links your local branch to the remote branch <code>origin/feature-x</code>. For all future pushes and pulls on this branch, you can simply type <code>git push</code> or <code>git pull</code> without typing the remote name!</p>
+        </div>
+        <div class="concept-card">
+          <h4>🛑 Push Rejected (Non-Fast-Forward)</h4>
+          <p>If another teammate pushed commits to <code>origin/main</code> while you were working, running <code>git push</code> will fail with: <code>[rejected - non-fast-forward]</code>.<br>
+          <strong>Resolution:</strong> You must first run <code>git pull</code> to fetch and integrate their changes locally, resolve any merge conflicts, and then run <code>git push</code>.</p>
+        </div>
+      </div>
+    </article>
+
+
+    <!-- SECTION 15: GIT FETCH -->
+    <article class="note-section" id="sec-15">
+      <div class="section-eyebrow">
+        <span class="sec-num">SECTION 15</span>
+        <span class="sec-priority priority-p1">HIGH PRIORITY</span>
+      </div>
+      <h2 class="section-title">Git Fetch & Remote-Tracking Branches</h2>
+      <p class="section-intro">
+        <code>git fetch</code> downloads new commits, files, and refs from the remote repository, but <strong>does NOT integrate them into your working files</strong>. It updates your <em>remote-tracking branches</em> (e.g. <code>origin/main</code>).
+      </p>
+
+      <div class="diagram-container">
+        <div class="diagram-title">What Git Fetch Does Under the Hood</div>
+        <pre class="diagram-art">
+   Local 'main':              C1 <--- C2 (HEAD)  <-- Working files completely untouched!
+                                      \
+   Remote-Tracking 'origin/main':      C3 <--- C4  <-- Updated by 'git fetch' from GitHub!
+        </pre>
+      </div>
+
+      <div class="terminal-block">
+        <div class="terminal-head">
+          <div class="terminal-dots"><span class="t-dot t-red"></span><span class="t-dot t-yellow"></span><span class="t-dot t-green"></span></div>
+          <span class="terminal-tag">FETCH & INSPECT WORKFLOW</span>
+        </div>
+        <div class="term-cmd"><span class="prompt">$</span> git fetch origin</div>
+        <div class="term-cmd"><span class="prompt">$</span> git log main..origin/main --oneline  <span class="code-comment"># View incoming commits before merging!</span></div>
+        <div class="term-cmd"><span class="prompt">$</span> git diff main origin/main            <span class="code-comment"># Inspect exact code diffs!</span></div>
+        <div class="term-cmd"><span class="prompt">$</span> git merge origin/main                <span class="code-comment"># Merge only after you verify it's safe!</span></div>
+      </div>
+    </article>
+    
+
+    <!-- SECTION 16: CLONE -->
+    <article class="note-section" id="sec-16">
+      <div class="section-eyebrow">
+        <span class="sec-num">SECTION 16</span>
+        <span class="sec-priority priority-p0">VERY HIGH PRIORITY</span>
+      </div>
+      <h2 class="section-title">Git Clone: Mirroring Remote Repositories</h2>
+      <p class="section-intro">
+        <code>git clone &lt;url&gt;</code> is the standard onboarding command. It downloads the complete repository history, creates a local working directory, configures the remote alias <code>origin</code>, and sets up upstream tracking for the default branch automatically.
+      </p>
+
+      <div class="concept-grid">
+        <div class="concept-card">
+          <h4>📥 What Clone Does Automatically</h4>
+          <p>1. Creates a local folder matching project name.<br>
+          2. Runs <code>git init</code> and pulls full <code>.git</code> object database.<br>
+          3. Sets up <code>origin</code> pointing to the clone URL.<br>
+          4. Checks out a fresh working tree copy of the default branch (<code>main</code>).</p>
+        </div>
+      </div>
+    </article>
+
+
+    <!-- SECTION 17: PULL VS FETCH -->
+    <article class="note-section" id="sec-17">
+      <div class="section-eyebrow">
+        <span class="sec-num">SECTION 17</span>
+        <span class="sec-priority priority-p0">EXTREMELY HIGH PRIORITY (P0)</span>
+      </div>
+      <h2 class="section-title">Git Pull vs Git Fetch (Crucial Placement Concept)</h2>
+      <p class="section-intro">
+        "What is the exact mathematical difference between git pull and git fetch?" This question appears in almost every Accenture, TCS, and Cognizant technical test.
+      </p>
+
+      <!-- Formula Block: Pull = Fetch + Merge -->
+      <div class="formula-block">
+        <div class="formula-name">The Core Git Equation</div>
+        <div class="formula-math">git pull = git fetch + git merge</div>
+        <div class="formula-desc">
+          <code>git pull</code> is literally a convenience wrapper. It first executes <code>git fetch</code> to download new remote commits into remote-tracking branches (<code>origin/main</code>), and immediately executes <code>git merge origin/main</code> into your current active local branch.
+        </div>
+      </div>
+
+      <!-- Comparison Table 5: Pull vs Fetch -->
+      <div class="table-wrapper">
+        <table class="comp-table">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>Git Fetch</th>
+              <th>Git Pull</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Action</strong></td>
+              <td>Downloads new remote commits to local repository only</td>
+              <td>Downloads remote commits AND merges them into current working branch</td>
+            </tr>
+            <tr>
+              <td><strong>Working Tree Impact</strong></td>
+              <td><strong>Completely Safe:</strong> Working files remain untouched</td>
+              <td><strong>Direct Modification:</strong> Files update immediately; can trigger merge conflicts!</td>
+            </tr>
+            <tr>
+              <td><strong>Can Trigger Merge Conflicts?</strong></td>
+              <td><strong>NO.</strong> Never causes conflicts.</td>
+              <td><strong>YES.</strong> Conflicts occur if local commits clash with incoming remote commits.</td>
+            </tr>
+            <tr>
+              <td><strong>Best Practice Use</strong></td>
+              <td>Inspect remote work before deciding to integrate</td>
+              <td>Fast daily synchronization when you know branches won't conflict</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+
+
+    <!-- SECTION 18: CHECKOUT VS SWITCH -->
+    <article class="note-section" id="sec-18">
+      <div class="section-eyebrow">
+        <span class="sec-num">SECTION 18</span>
+        <span class="sec-priority priority-p1">HIGH PRIORITY</span>
+      </div>
+      <h2 class="section-title">Checkout vs Switch vs Restore (Git 2.23+ Split)</h2>
+      <p class="section-intro">
+        Historically, <code>git checkout</code> was notoriously overloaded: it was used to switch branches, create branches, and discard file changes. In Git 2.23 (2019), Git split these responsibilities into two dedicated, unambiguous commands: <strong>git switch</strong> and <strong>git restore</strong>.
+      </p>
+
+      <!-- Comparison Table 6: Checkout vs Switch vs Restore -->
+      <div class="table-wrapper">
+        <table class="comp-table">
+          <thead>
+            <tr>
+              <th>Intent / Action</th>
+              <th>Old Overloaded Command</th>
+              <th>Modern Best Practice (Git 2.23+)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Switch to existing branch</td>
+              <td><code>git checkout feature</code></td>
+              <td><code>git switch feature</code></td>
+            </tr>
+            <tr>
+              <td>Create & switch to new branch</td>
+              <td><code>git checkout -b feature</code></td>
+              <td><code>git switch -c feature</code></td>
+            </tr>
+            <tr>
+              <td>Discard working tree changes in file</td>
+              <td><code>git checkout -- app.js</code></td>
+              <td><code>git restore app.js</code></td>
+            </tr>
+            <tr>
+              <td>Unstage a file from Staging Area</td>
+              <td><code>git reset HEAD app.js</code></td>
+              <td><code>git restore --staged app.js</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+
+
+    <!-- SECTION 19: GIT RESTORE -->
+    <article class="note-section" id="sec-19">
+      <div class="section-eyebrow">
+        <span class="sec-num">SECTION 19</span>
+        <span class="sec-priority priority-p1">HIGH PRIORITY</span>
+      </div>
+      <h2 class="section-title">Git Restore: Safely Undoing Uncommitted Changes</h2>
+      <p class="section-intro">
+        <code>git restore</code> restores specified paths in the working tree or staging area with some contents from a restore source (default is HEAD).
+      </p>
+
+      <div class="concept-grid">
+        <div class="concept-card">
+          <h4>1. Discard Working Tree Changes</h4>
+          <p>Command: <code>git restore index.html</code><br>
+          Reverts <code>index.html</code> in your working directory back to the state of the last commit (or staging area). <strong>Warning:</strong> Any uncommitted edits are permanently lost!</p>
+        </div>
+        <div class="concept-card">
+          <h4>2. Unstage a Staged File</h4>
+          <p>Command: <code>git restore --staged index.html</code><br>
+          Removes <code>index.html</code> from the Staging Area, keeping your actual file edits in the working directory intact!</p>
+        </div>
+      </div>
+    </article>
+
+
+    <!-- SECTION 20: GIT RESET -->
+    <article class="note-section" id="sec-20">
+      <div class="section-eyebrow">
+        <span class="sec-num">SECTION 20</span>
+        <span class="sec-priority priority-p0">EXTREMELY HIGH PRIORITY (P0)</span>
+      </div>
+      <h2 class="section-title">Git Reset: Soft, Mixed & Hard Explained</h2>
+      <p class="section-intro">
+        <code>git reset</code> moves the current branch HEAD backward to an earlier commit. How it treats the Staging Area and Working Directory depends strictly on the mode flag.
+      </p>
+
+      <div class="diagram-container">
+        <div class="diagram-title">Git Reset Modes Impact Matrix</div>
+        <pre class="diagram-art">
+Command                     HEAD Moved?    Staging Area Updated?    Working Directory Modified?
+-------------------------------------------------------------------------------------------------
+git reset --soft HEAD~1         YES               NO                       NO (Files stay staged!)
+git reset --mixed HEAD~1 (def)  YES              YES (Files unstaged)      NO (Code remains on disk!)
+git reset --hard HEAD~1         YES              YES (Discarded)          YES (DANGEROUS: Code deleted!)
+        </pre>
+      </div>
+
+      <div class="concept-grid">
+        <div class="concept-card">
+          <h4>1. <code>git reset --soft HEAD~1</code></h4>
+          <p>Moves HEAD back 1 commit. Leaves Staging Area and Working Directory untouched. All changes from that undone commit remain staged, ready to be recommitted immediately (e.g. to fix a commit message or combine commits).</p>
+        </div>
+        <div class="concept-card">
+          <h4>2. <code>git reset --mixed HEAD~1</code> (Default)</h4>
+          <p>Moves HEAD back 1 commit AND resets the Staging Area. Your code edits remain safe in your Working Directory, but are now marked as "unstaged" (red in <code>git status</code>).</p>
+        </div>
+        <div class="concept-card">
+          <h4>3. <code>git reset --hard HEAD~1</code> (DANGER!)</h4>
+          <p>Moves HEAD, wipes the Staging Area, AND <strong>destroys all working directory changes</strong> to match that target commit! Any uncommitted work on disk is permanently wiped out.</p>
+        </div>
+      </div>
+    </article>
+
+
+    <!-- SECTION 21: GIT REVERT -->
+    <article class="note-section" id="sec-21">
+      <div class="section-eyebrow">
+        <span class="sec-num">SECTION 21</span>
+        <span class="sec-priority priority-p0">EXTREMELY HIGH PRIORITY (P0)</span>
+      </div>
+      <h2 class="section-title">Git Revert: The Safe Forward-Undo</h2>
+      <p class="section-intro">
+        Unlike <code>git reset</code> which rewrites history by deleting commits, <code>git revert</code> creates a <strong>brand-new commit</strong> that applies the exact inverse mathematical diff of an earlier commit.
+      </p>
+
+      <div class="diagram-container">
+        <div class="diagram-title">Git Revert Timeline Architecture</div>
+        <pre class="diagram-art">
+Before: C1 <--- C2 (introduced critical bug!) <--- C3 (HEAD)
+
+Command: git revert C2
+
+After:  C1 <--- C2 <--- C3 <--- C4 [Revert "C2"] (HEAD)
+                                  ^
+                                  |-- Brand-new commit that deletes whatever C2 added!
+        </pre>
+      </div>
+
+      <div class="concept-card" style="margin: 20px 0;">
+        <h4>🛡️ Why Revert is Mandatory on Shared Remote Branches</h4>
+        <p>If you push commit C2 to <code>origin/main</code> and teammates have already pulled it, running <code>git reset</code> locally will rewrite history. When you force push, you break everyone else's local repo! <strong>Running <code>git revert C2</code> safely adds a new commit C4 that everyone can pull cleanly without history conflicts.</strong></p>
+      </div>
+    </article>
+
+
+    <!-- SECTION 22: RESET VS REVERT -->
+    <article class="note-section" id="sec-22">
+      <div class="section-eyebrow">
+        <span class="sec-num">SECTION 22</span>
+        <span class="sec-priority priority-p0">EXTREMELY HIGH PRIORITY (P0)</span>
+      </div>
+      <h2 class="section-title">Git Reset vs Git Revert: Master Decision Guide</h2>
+      <p class="section-intro">
+        This is arguably the #1 most frequently asked Git question across all IT MNC recruitment interviews.
+      </p>
+
+      <!-- Comparison Table 7: Reset vs Revert -->
+      <div class="table-wrapper">
+        <table class="comp-table">
+          <thead>
+            <tr>
+              <th>Dimension</th>
+              <th>Git Reset</th>
+              <th>Git Revert</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Mechanism</strong></td>
+              <td>Moves the branch pointer backward, effectively erasing commits from active history</td>
+              <td>Creates a <strong>brand-new commit</strong> that inverses the changes of a target commit</td>
+            </tr>
+            <tr>
+              <td><strong>History Preserved?</strong></td>
+              <td><strong>NO.</strong> Rewrites commit history.</td>
+              <td><strong>YES.</strong> 100% preserves linear history; shows a complete audit trail.</td>
+            </tr>
+            <tr>
+              <td><strong>Safe for Shared Remote Branches?</strong></td>
+              <td><strong>NO (High Risk).</strong> Requires dangerous <code>git push --force</code>.</td>
+              <td><strong>YES (100% Safe).</strong> Standard forward commit; teammate pull works seamlessly.</td>
+            </tr>
+            <tr>
+              <td><strong>Where to Use</strong></td>
+              <td>Private local commits that have NEVER been pushed to remote</td>
+              <td>Public shared commits that have already been pushed to GitHub</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="memory-trick">
+        <span class="memory-icon">💡</span>
+        <div class="memory-content">
+          <strong>Placement Memory Rule:</strong> <em>"Private local mistakes? Use RESET. Public shared mistakes? Use REVERT."</em>
+        </div>
+      </div>
+    </article>
+
+
+    <!-- SECTION 23: GIT STASH -->
+    <article class="note-section" id="sec-23">
+      <div class="section-eyebrow">
+        <span class="sec-num">SECTION 23</span>
+        <span class="sec-priority priority-p1">HIGH PRIORITY</span>
+      </div>
+      <h2 class="section-title">Git Stash: Temporary Clipboard for Dirty Work</h2>
+      <p class="section-intro">
+        When you are halfway through a feature and your manager demands an urgent production hotfix, Git will refuse to let you switch branches with uncommitted conflicts. <code>git stash</code> takes your uncommitted modifications and shelves them on an internal stack.
+      </p>
+
+      <div class="terminal-block">
+        <div class="terminal-head">
+          <div class="terminal-dots"><span class="t-dot t-red"></span><span class="t-dot t-yellow"></span><span class="t-dot t-green"></span></div>
+          <span class="terminal-tag">STASH LIFECYCLE</span>
+        </div>
+        <div class="term-cmd"><span class="prompt">$</span> git stash save "wip: shopping cart"    <span class="code-comment"># Cleans working directory; stores state</span></div>
+        <div class="term-cmd"><span class="prompt">$</span> git switch hotfix-bug                 <span class="code-comment"># Now free to switch branches safely!</span></div>
+        <div class="term-cmd"><span class="prompt">$</span> git switch feature-cart               <span class="code-comment"># Return after hotfix is merged</span></div>
+        <div class="term-cmd"><span class="prompt">$</span> git stash pop                         <span class="code-comment"># Restores changes AND removes from stack</span></div>
+      </div>
+
+      <div class="concept-grid">
+        <div class="concept-card">
+          <h4><code>git stash pop</code> vs <code>git stash apply</code></h4>
+          <p>• <code>git stash pop</code>: Applies the stashed changes to your working tree AND <strong>deletes</strong> it from the stash list.<br>• <code>git stash apply</code>: Applies the stashed changes to your working tree but <strong>keeps</strong> the stash item saved in the list for reuse.</p>
+        </div>
+      </div>
+    </article>
+
+
+    <!-- SECTION 24: GIT DIFF -->
+    <article class="note-section" id="sec-24">
+      <div class="section-eyebrow">
+        <span class="sec-num">SECTION 24</span>
+        <span class="sec-priority priority-p1">HIGH PRIORITY</span>
+      </div>
+      <h2 class="section-title">Git Diff: Inspecting Exact Code Changes</h2>
+      <p class="section-intro">
+        <code>git diff</code> reveals granular line-by-line differences. In technical exams, candidates must know what each variation compares.
+      </p>
+
+      <div class="table-wrapper">
+        <table class="comp-table">
+          <thead>
+            <tr>
+              <th>Command</th>
+              <th>What it Compares</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>git diff</code></td>
+              <td><strong>Working Directory</strong> vs <strong>Staging Area</strong> (unstaged edits)</td>
+            </tr>
+            <tr>
+              <td><code>git diff --staged</code> (or <code>--cached</code>)</td>
+              <td><strong>Staging Area</strong> vs <strong>Last Commit (HEAD)</strong> (what will be committed)</td>
+            </tr>
+            <tr>
+              <td><code>git diff HEAD</code></td>
+              <td><strong>Working Directory</strong> vs <strong>Last Commit (HEAD)</strong> (all uncommitted edits)</td>
+            </tr>
+            <tr>
+              <td><code>git diff branch1..branch2</code></td>
+              <td>Compares tips of two branches</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+
+
+    <!-- SECTION 25: GIT TAGS -->
+    <article class="note-section" id="sec-25">
+      <div class="section-eyebrow">
+        <span class="sec-num">SECTION 25</span>
+        <span class="sec-priority priority-p2">MEDIUM PRIORITY</span>
+      </div>
+      <h2 class="section-title">Git Tags: Release Markers & Versioning</h2>
+      <p class="section-intro">
+        Tags are static reference markers permanently pointing to specific release milestones (e.g. <code>v1.0.0</code>). Unlike branches, tags never move forward when new commits are created.
+      </p>
+
+      <div class="concept-grid">
+        <div class="concept-card">
+          <h4>1. Lightweight Tag</h4>
+          <p>Simply a named pointer to a commit hash: <code>git tag v1.0.0</code>. Stores no extra metadata.</p>
+        </div>
+        <div class="concept-card">
+          <h4>2. Annotated Tag (Recommended)</h4>
+          <p>Stored as a full object in the Git database containing tagger name, email, date, GPG signature, and tagging message: <code>git tag -a v1.0.0 -m "Release version 1.0.0"</code>.</p>
+        </div>
+      </div>
+
+      <div class="trap-box">
+        <div class="trap-header">⚠️ Fatal Placement Trap #5: Pushing Tags</div>
+        <div class="trap-desc">
+          By default, <code>git push</code> does NOT transfer tags to remote servers! You must explicitly push tags using <code>git push origin v1.0.0</code> or push all local tags using <code>git push origin --tags</code>.
+        </div>
+      </div>
+    </article>
+    
+
+    <!-- SECTION 26: GITHUB PULL REQUESTS -->
+    <article class="note-section" id="sec-26">
+      <div class="section-eyebrow">
+        <span class="sec-num">SECTION 26</span>
+        <span class="sec-priority priority-p0">VERY HIGH PRIORITY</span>
+      </div>
+      <h2 class="section-title">GitHub Pull Requests (PRs) & Code Review</h2>
+      <p class="section-intro">
+        A <strong>Pull Request (PR)</strong> is a GitHub collaboration mechanism where a developer proposes that the project maintainers "pull" changes from a feature branch into the target base branch (e.g., <code>main</code> or <code>develop</code>). It serves as the primary gateway for peer code reviews, automated CI/CD validation, and team discussion.
+      </p>
+
+      <div class="interactive-diagram">
+        <div class="diagram-title">🔄 End-to-End Pull Request Lifecycle</div>
+        <div class="workflow-steps">
+          <div class="workflow-step">
+            <div class="step-num">1</div>
+            <div class="step-title">Feature Branch</div>
+            <p>Developer creates feature branch, writes code, tests locally, and commits.</p>
+          </div>
+          <div class="workflow-step">
+            <div class="step-num">2</div>
+            <div class="step-title">Push to Remote</div>
+            <p>Run <code>git push -u origin feature-auth</code> to upload branch to GitHub.</p>
+          </div>
+          <div class="workflow-step">
+            <div class="step-num">3</div>
+            <div class="step-title">Open PR</div>
+            <p>Create PR comparing <code>feature-auth</code> into <code>main</code> with description.</p>
+          </div>
+          <div class="workflow-step">
+            <div class="step-num">4</div>
+            <div class="step-title">Review & CI</div>
+            <p>Automated tests run; senior engineers comment, request changes, or approve.</p>
+          </div>
+          <div class="workflow-step">
+            <div class="step-num">5</div>
+            <div class="step-title">Merge & Delete</div>
+            <p>PR is merged into <code>main</code>; feature branch safely deleted.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="concept-grid">
+        <div class="concept-card">
+          <h4>🔀 3 GitHub Merge Methods</h4>
+          <p><strong>1. Create a Merge Commit:</strong> Retains all individual commits and creates a 2-parent merge commit. Preserves full history.<br>
+          <strong>2. Squash and Merge:</strong> Combines all branch commits into a single clean commit on <code>main</code>. Industry standard for feature branches.<br>
+          <strong>3. Rebase and Merge:</strong> Replays commits linearly onto <code>main</code> without a merge commit.</p>
+        </div>
+        <div class="concept-card">
+          <h4>🛡️ Branch Protection Rules</h4>
+          <p>Enterprise repositories enforce rules on <code>main</code> before PR merges can occur:<br>
+          • Require minimum 1 or 2 approving code reviews.<br>
+          • Require automated status checks / unit tests to pass.<br>
+          • Prohibit direct <code>git push</code> to protected branches.</p>
+        </div>
+      </div>
+
+      <div class="trap-box">
+        <div class="trap-header">⚠️ Fatal Placement Trap: 'git pull' vs 'Pull Request'</div>
+        <div class="trap-desc">
+          Freshers frequently confuse these two names because of the word "pull":<br>
+          • <code>git pull</code> is a local Git CLI command (fetch + merge).<br>
+          • <strong>Pull Request</strong> is a GitHub web platform feature for peer code review and collaborative merging. There is NO Git command named <code>git pull-request</code>.
+        </div>
+      </div>
+    </article>
+
+
+    <!-- SECTION 27: GITHUB ISSUES -->
+    <article class="note-section" id="sec-27">
+      <div class="section-eyebrow">
+        <span class="sec-num">SECTION 27</span>
+        <span class="sec-priority priority-p1">HIGH PRIORITY</span>
+      </div>
+      <h2 class="section-title">GitHub Issues & Project Tracking</h2>
+      <p class="section-intro">
+        GitHub Issues act as an integrated bug tracker, task manager, and feature request board. In professional Agile and DevOps environments, every line of production code is typically traceable back to a specific GitHub Issue ID.
+      </p>
+
+      <div class="concept-grid">
+        <div class="concept-card">
+          <h4>🏷️ Core Issue Metadata</h4>
+          <p>• <strong>Labels:</strong> Categorize issues (e.g., <code>bug</code>, <code>enhancement</code>, <code>good first issue</code>, <code>documentation</code>).<br>
+          • <strong>Assignees:</strong> Developers responsible for resolving the task.<br>
+          • <strong>Milestones:</strong> Group issues under product release deadlines (e.g., Sprint 14, v2.1.0).<br>
+          • <strong>Projects:</strong> Kanban boards (To Do, In Progress, Done) tied to issues.</p>
+        </div>
+        <div class="concept-card">
+          <h4>🔗 Auto-Closing Issues with Git Keywords</h4>
+          <p>When you reference an issue in a commit message or PR description with special keywords, GitHub automatically closes the issue upon merging into default branch:<br>
+          • <code>git commit -m "Fix login timeout issue. Closes #42"</code><br>
+          • Supported keywords: <code>close</code>, <code>closes</code>, <code>closed</code>, <code>fix</code>, <code>fixes</code>, <code>fixed</code>, <code>resolve</code>, <code>resolves</code>, <code>resolved</code>.</p>
+        </div>
+      </div>
+    </article>
+
+
+    <!-- SECTION 28: FORK -->
+    <article class="note-section" id="sec-28">
+      <div class="section-eyebrow">
+        <span class="sec-num">SECTION 28</span>
+        <span class="sec-priority priority-p1">HIGH PRIORITY</span>
+      </div>
+      <h2 class="section-title">Fork vs Clone: Open Source Contribution</h2>
+      <p class="section-intro">
+        A <strong>Fork</strong> is a server-side copy of someone else's GitHub repository created under your own GitHub account. It allows you to freely experiment and propose changes without affecting the original project when you do not possess write permissions.
+      </p>
+
+      <div class="table-wrapper">
+        <table class="comp-table">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>Fork</th>
+              <th>Clone</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Where it happens</strong></td>
+              <td>Remote server (GitHub to GitHub)</td>
+              <td>Remote server to Local developer machine</td>
+            </tr>
+            <tr>
+              <td><strong>Mechanism</strong></td>
+              <td>Web action on GitHub UI</td>
+              <td>CLI command (<code>git clone &lt;url&gt;</code>)</td>
+            </tr>
+            <tr>
+              <td><strong>Permissions Needed</strong></td>
+              <td>None (can fork any public repository)</td>
+              <td>Read permission to download code</td>
+            </tr>
+            <tr>
+              <td><strong>Primary Purpose</strong></td>
+              <td>Contribute to external projects via PR</td>
+              <td>Work on code locally in your editor</td>
+            </tr>
+            <tr>
+              <td><strong>Direct Push Ability</strong></td>
+              <td>You have full write access to your forked copy</td>
+              <td>Only if you have collaborator / write access</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="terminal-block">
+        <div class="terminal-header">
+          <div class="terminal-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
+          <span class="terminal-title">bash — Syncing a Fork with Upstream</span>
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        </div>
+        <pre class="terminal-body"><code><span class="cmd-prompt">$</span> <span class="cmd-exec">git remote add upstream https://github.com/original-owner/project.git</span>
+<span class="cmd-prompt">$</span> <span class="cmd-exec">git fetch upstream</span>
+<span class="cmd-prompt">$</span> <span class="cmd-exec">git checkout main</span>
+<span class="cmd-prompt">$</span> <span class="cmd-exec">git merge upstream/main</span>
+<span class="cmd-prompt">$</span> <span class="cmd-exec">git push origin main</span></code></pre>
+        <div class="terminal-expl">
+          <strong>Enterprise Scenario:</strong> Keep your fork up-to-date with the main project by pulling from <code>upstream</code> and pushing to your fork's <code>origin</code>.
+        </div>
+      </div>
+    </article>
+
+
+    <!-- SECTION 29: GITHUB ACTIONS BASICS -->
+    <article class="note-section" id="sec-29">
+      <div class="section-eyebrow">
+        <span class="sec-num">SECTION 29</span>
+        <span class="sec-priority priority-p2">MEDIUM PRIORITY</span>
+      </div>
+      <h2 class="section-title">GitHub Actions & CI/CD Fundamentals</h2>
+      <p class="section-intro">
+        <strong>GitHub Actions</strong> is GitHub's built-in Continuous Integration and Continuous Delivery (CI/CD) automation platform. It allows software teams to build, test, and deploy code directly from GitHub repositories upon git triggers.
+      </p>
+
+      <div class="concept-grid">
+        <div class="concept-card">
+          <h4>🧱 Architecture Components</h4>
+          <p>• <strong>Workflows:</strong> YAML files placed strictly in <code>.github/workflows/</code>.<br>
+          • <strong>Events / Triggers:</strong> Specific activities that trigger execution (e.g. <code>on: [push, pull_request]</code>).<br>
+          • <strong>Jobs:</strong> A series of steps executed on the same runner VM (e.g. <code>ubuntu-latest</code>).<br>
+          • <strong>Steps:</strong> Individual tasks that run shell commands or reusable actions (e.g. <code>actions/checkout@v3</code>).</p>
+        </div>
+        <div class="concept-card">
+          <h4>💼 Why Freshers Need This in Placement</h4>
+          <p>Companies like TCS, Accenture, and Deloitte ask about CI/CD pipelines in technical interviews:<br>
+          • "How do you ensure broken code is not merged into production?"<br>
+          • "Automated test suites run in GitHub Actions on every Pull Request, blocking merge if any unit test fails."</p>
+        </div>
+      </div>
+    </article>
+
+
+    <!-- SECTION 30: GIT WORKFLOW -->
+    <article class="note-section" id="sec-30">
+      <div class="section-eyebrow">
+        <span class="sec-num">SECTION 30</span>
+        <span class="sec-priority priority-p0">EXTREMELY HIGH PRIORITY (P0)</span>
+      </div>
+      <h2 class="section-title">Professional Industry Git Workflow (A Day in the Life)</h2>
+      <p class="section-intro">
+        In IT companies, developers NEVER work directly on <code>main</code> or <code>master</code>. Every feature, bug fix, or hotfix follows a strict, standardized collaborative lifecycle.
+      </p>
+
+      <div class="interactive-diagram">
+        <div class="diagram-title">🏢 Enterprise Feature-Branch Workflow</div>
+        <div class="workflow-steps">
+          <div class="workflow-step">
+            <div class="step-num">Step 1</div>
+            <div class="step-title">Sync Local Main</div>
+            <code>git checkout main</code><br>
+            <code>git pull origin main</code>
+          </div>
+          <div class="workflow-step">
+            <div class="step-num">Step 2</div>
+            <div class="step-title">Create Feature Branch</div>
+            <code>git switch -c feature/payment-gateway</code>
+          </div>
+          <div class="workflow-step">
+            <div class="step-num">Step 3</div>
+            <div class="step-title">Develop & Test</div>
+            <p>Write clean code, run test suite locally.</p>
+          </div>
+          <div class="workflow-step">
+            <div class="step-num">Step 4</div>
+            <div class="step-title">Stage & Commit</div>
+            <code>git add .</code><br>
+            <code>git commit -m "Add Razorpay integration"</code>
+          </div>
+          <div class="workflow-step">
+            <div class="step-num">Step 5</div>
+            <div class="step-title">Push Feature Branch</div>
+            <code>git push -u origin feature/payment-gateway</code>
+          </div>
+          <div class="workflow-step">
+            <div class="step-num">Step 6</div>
+            <div class="step-title">Open PR & Review</div>
+            <p>Peer review, resolve comments, CI checks green.</p>
+          </div>
+          <div class="workflow-step">
+            <div class="step-num">Step 7</div>
+            <div class="step-title">Squash & Merge</div>
+            <p>Merged to main branch, delete remote feature branch.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="trap-box">
+        <div class="trap-header">⚠️ Golden Rule of Git in Enterprise IT</div>
+        <div class="trap-desc">
+          <strong>"Never push directly to main, never commit secrets/credentials (.env), and always fetch/pull before starting new work."</strong> Mentioning this in HR and Technical interviews immediately sets you apart as industry-ready.
+        </div>
+      </div>
+    </article>
+    
+
+    <!-- MASTER COMPARISON TABLES SECTION -->
+    <article class="note-section" id="master-comparisons">
+      <div class="section-eyebrow">
+        <span class="sec-num">MASTER TOOLKIT</span>
+        <span class="sec-priority priority-p0">EXTREMELY HIGH PRIORITY</span>
+      </div>
+      <h2 class="section-title">12+ Master Git & GitHub Comparison Tables</h2>
+      <p class="section-intro">
+        Service-based and product-based IT recruitment exams rely heavily on difference-based MCQs. Master these 13 definitive comparison tables.
+      </p>
+
+      <!-- Table 1: Git vs GitHub -->
+      <h3 style="color: var(--accent-orange); margin: 2rem 0 1rem;">1. Git vs GitHub</h3>
+      <div class="table-wrapper">
+        <table class="comp-table">
+          <thead>
+            <tr><th>Dimension</th><th>Git</th><th>GitHub</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Definition</strong></td><td>Open-source Distributed Version Control CLI Tool</td><td>Cloud-based web hosting service for Git repositories</td></tr>
+            <tr><td><strong>Creator & Year</strong></td><td>Linus Torvalds (2005)</td><td>Tom Preston-Werner, Chris Wanstrath, PJ Hyett (2008)</td></tr>
+            <tr><td><strong>Installation</strong></td><td>Installed locally on personal computer</td><td>Hosted in cloud (accessed via web browser or CLI)</td></tr>
+            <tr><td><strong>Internet Requirement</strong></td><td>100% offline functionality for local commits/branches</td><td>Requires internet connection to push/pull/browse</td></tr>
+            <tr><td><strong>User Interface</strong></td><td>Primarily Command Line Interface (CLI)</td><td>Graphical Web UI, Desktop client, REST API</td></tr>
+            <tr><td><strong>Key Capabilities</strong></td><td>Branching, committing, staging, merging, history</td><td>Pull requests, issue tracking, forks, Actions CI/CD</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Table 2: Git vs GitHub vs GitLab vs Bitbucket -->
+      <h3 style="color: var(--accent-orange); margin: 2rem 0 1rem;">2. Git vs GitHub vs GitLab vs Bitbucket</h3>
+      <div class="table-wrapper">
+        <table class="comp-table">
+          <thead>
+            <tr><th>Feature</th><th>Git</th><th>GitHub (Microsoft)</th><th>GitLab</th><th>Bitbucket (Atlassian)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Nature</strong></td><td>Core VCS Engine</td><td>Cloud Hosting & Community</td><td>Complete DevOps Lifecycle Platform</td><td>Enterprise VCS Platform</td></tr>
+            <tr><td><strong>CI/CD</strong></td><td>None (VCS only)</td><td>GitHub Actions</td><td>GitLab CI/CD (native built-in)</td><td>Bitbucket Pipelines</td></tr>
+            <tr><td><strong>Ecosystem</strong></td><td>Runs anywhere</td><td>Largest open-source community</td><td>Strong self-hosted enterprise adoption</td><td>Seamless Jira & Confluence integration</td></tr>
+            <tr><td><strong>Private Repos</strong></td><td>Local filesystem</td><td>Unlimited free private repos</td><td>Unlimited free private repos</td><td>Free for up to 5 users</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Table 3: Working Directory vs Staging Area vs Repository -->
+      <h3 style="color: var(--accent-orange); margin: 2rem 0 1rem;">3. Working Directory vs Staging Area vs Local Repository</h3>
+      <div class="table-wrapper">
+        <table class="comp-table">
+          <thead>
+            <tr><th>Dimension</th><th>Working Directory</th><th>Staging Area (Index)</th><th>Local Repository (.git)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Location</strong></td><td>Actual project folder on disk</td><td>Binary file at <code>.git/index</code></td><td>Object database inside <code>.git/objects/</code></td></tr>
+            <tr><td><strong>State of Code</strong></td><td>Untracked or modified files (raw edits)</td><td>Curated snapshot prepared for commit</td><td>Permanently committed, immutable snapshots</td></tr>
+            <tr><td><strong>Command to Populate</strong></td><td>Manual typing in code editor</td><td><code>git add &lt;file&gt;</code></td><td><code>git commit -m "..."</code></td></tr>
+            <tr><td><strong>Safety Level</strong></td><td>Unsafe (unsaved changes can be lost)</td><td>Staged but not permanent</td><td>Completely safe (retrievable in history)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Table 4: git add vs git commit -->
+      <h3 style="color: var(--accent-orange); margin: 2rem 0 1rem;">4. git add vs git commit</h3>
+      <div class="table-wrapper">
+        <table class="comp-table">
+          <thead>
+            <tr><th>Aspect</th><th>git add</th><th>git commit</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Target</strong></td><td>Moves changes from Working Dir to Staging Area</td><td>Moves changes from Staging Area to Repository</td></tr>
+            <tr><td><strong>Permanent?</strong></td><td>No, staging state can be un-staged</td><td>Yes, creates immutable snapshot with SHA-1 hash</td></tr>
+            <tr><td><strong>Requires Message?</strong></td><td>No</td><td>Yes, meaningful commit message is mandatory</td></tr>
+            <tr><td><strong>Exam Question</strong></td><td>"Does git add save a version in history?" (NO)</td><td>"Which command creates a commit hash?" (git commit)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Table 5: git push vs git pull -->
+      <h3 style="color: var(--accent-orange); margin: 2rem 0 1rem;">5. git push vs git pull</h3>
+      <div class="table-wrapper">
+        <table class="comp-table">
+          <thead>
+            <tr><th>Parameter</th><th>git push</th><th>git pull</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Direction</strong></td><td>Local Repository ➔ Remote Repository</td><td>Remote Repository ➔ Local Working Tree</td></tr>
+            <tr><td><strong>Purpose</strong></td><td>Upload committed local changes to team server</td><td>Download and integrate team's changes locally</td></tr>
+            <tr><td><strong>Risk of Conflict</strong></td><td>Fails if remote has newer commits (rejected)</td><td>Can trigger merge conflicts during merge step</td></tr>
+            <tr><td><strong>Typical Flags</strong></td><td><code>-u</code> (set upstream), <code>--force</code> (dangerous)</td><td><code>--rebase</code>, <code>--ff-only</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Table 6: git pull vs git fetch -->
+      <h3 style="color: var(--accent-orange); margin: 2rem 0 1rem;">6. git pull vs git fetch</h3>
+      <div class="table-wrapper">
+        <table class="comp-table">
+          <thead>
+            <tr><th>Criterion</th><th>git fetch</th><th>git pull</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Operation</strong></td><td>Read-only network download</td><td>Download + local branch merge</td></tr>
+            <tr><td><strong>Modifies Working Tree?</strong></td><td>NO (100% safe to run anytime)</td><td>YES (updates working tree files immediately)</td></tr>
+            <tr><td><strong>Can Cause Conflict?</strong></td><td>NO</td><td>YES (if remote changes clash with local)</td></tr>
+            <tr><td><strong>Formula</strong></td><td><code>git fetch</code></td><td><code>git fetch + git merge</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Table 7: git clone vs git pull -->
+      <h3 style="color: var(--accent-orange); margin: 2rem 0 1rem;">7. git clone vs git pull</h3>
+      <div class="table-wrapper">
+        <table class="comp-table">
+          <thead>
+            <tr><th>Dimension</th><th>git clone</th><th>git pull</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Precondition</strong></td><td>Empty directory (no Git repo required)</td><td>Must be inside an initialized Git repo</td></tr>
+            <tr><td><strong>Frequency</strong></td><td>Executed once per project onboarding</td><td>Executed multiple times daily during development</td></tr>
+            <tr><td><strong>Creates Repository?</strong></td><td>Yes, initializes <code>.git</code> and sets <code>origin</code></td><td>No, operates within existing repository</td></tr>
+            <tr><td><strong>Downloads</strong></td><td>All branches, complete history, all tags</td><td>Only commits for current active tracking branch</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Table 8: git branch vs git switch -->
+      <h3 style="color: var(--accent-orange); margin: 2rem 0 1rem;">8. git branch vs git switch</h3>
+      <div class="table-wrapper">
+        <table class="comp-table">
+          <thead>
+            <tr><th>Aspect</th><th>git branch &lt;name&gt;</th><th>git switch &lt;name&gt;</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Action</strong></td><td>Creates branch but leaves HEAD on current branch</td><td>Moves HEAD to specified branch</td></tr>
+            <tr><td><strong>Combined Command</strong></td><td><code>git checkout -b &lt;name&gt;</code></td><td><code>git switch -c &lt;name&gt;</code></td></tr>
+            <tr><td><strong>Modern Practice</strong></td><td>Use for listing/deleting branches (<code>git branch -d</code>)</td><td>Use for navigating branches (clearer intent)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Table 9: git checkout vs git switch -->
+      <h3 style="color: var(--accent-orange); margin: 2rem 0 1rem;">9. git checkout vs git switch</h3>
+      <div class="table-wrapper">
+        <table class="comp-table">
+          <thead>
+            <tr><th>Dimension</th><th>git checkout</th><th>git switch</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Purpose</strong></td><td>Overloaded (switches branches OR restores files)</td><td>Dedicated strictly to switching branches</td></tr>
+            <tr><td><strong>Introduced In</strong></td><td>Git 1.0 (original legacy command)</td><td>Git 2.23 (modern split into switch & restore)</td></tr>
+            <tr><td><strong>Accidental File Loss Risk</strong></td><td>High (<code>git checkout -- file</code> discards edits)</td><td>Zero (switch cannot discard file modifications)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Table 10: git reset vs git revert -->
+      <h3 style="color: var(--accent-orange); margin: 2rem 0 1rem;">10. git reset vs git revert</h3>
+      <div class="table-wrapper">
+        <table class="comp-table">
+          <thead>
+            <tr><th>Attribute</th><th>git reset</th><th>git revert</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Mechanism</strong></td><td>Moves branch pointer backward in time</td><td>Appends brand-new inverted commit at tip</td></tr>
+            <tr><td><strong>History Alteration</strong></td><td>Rewrites history (orphans older commits)</td><td>Preserves history linearly (no history loss)</td></tr>
+            <tr><td><strong>Safe for Shared Branches?</strong></td><td>NO! Breaks teammate repos if pushed</td><td>YES! 100% safe for shared public branches</td></tr>
+            <tr><td><strong>Placement Rule</strong></td><td>"Use reset for private local unpushed commits"</td><td>"Use revert for public pushed production commits"</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Table 11: git stash vs git commit -->
+      <h3 style="color: var(--accent-orange); margin: 2rem 0 1rem;">11. git stash vs git commit</h3>
+      <div class="table-wrapper">
+        <table class="comp-table">
+          <thead>
+            <tr><th>Feature</th><th>git stash</th><th>git commit</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Purpose</strong></td><td>Temporary clipboard for incomplete WIP code</td><td>Permanent snapshot recorded in project history</td></tr>
+            <tr><td><strong>Visible in git log?</strong></td><td>No (stored in stash stack <code>git stash list</code>)</td><td>Yes (permanent commit hash in history)</td></tr>
+            <tr><td><strong>Requires Clean Logic?</strong></td><td>No, can save broken syntax half-written</td><td>Yes, should represent a complete logical change</td></tr>
+            <tr><td><strong>Restoration</strong></td><td><code>git stash pop</code> applies and deletes</td><td>Always remains part of branch history</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Table 12: Fork vs Clone -->
+      <h3 style="color: var(--accent-orange); margin: 2rem 0 1rem;">12. Fork vs Clone</h3>
+      <div class="table-wrapper">
+        <table class="comp-table">
+          <thead>
+            <tr><th>Dimension</th><th>Fork</th><th>Clone</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Where it occurs</strong></td><td>GitHub Cloud Server</td><td>Local Personal Computer</td></tr>
+            <tr><td><strong>Parent Relationship</strong></td><td>Retains link to upstream original repo</td><td>Points to origin URL</td></tr>
+            <tr><td><strong>Permissions</strong></td><td>No write access to original needed</td><td>Read access needed; write access needed to push</td></tr>
+            <tr><td><strong>Key Goal</strong></td><td>Propose Pull Request to open source project</td><td>Download code locally for daily editing</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Table 13: Merge vs Pull Request -->
+      <h3 style="color: var(--accent-orange); margin: 2rem 0 1rem;">13. git merge vs Pull Request</h3>
+      <div class="table-wrapper">
+        <table class="comp-table">
+          <thead>
+            <tr><th>Dimension</th><th>git merge</th><th>GitHub Pull Request (PR)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Tool</strong></td><td>Git Command Line Interface (CLI)</td><td>GitHub Web Platform Feature</td></tr>
+            <tr><td><strong>Peer Review</strong></td><td>No code review or approval workflow</td><td>Mandatory discussions, approvals, and checklists</td></tr>
+            <tr><td><strong>Automation</strong></td><td>Manual local operation</td><td>Automated CI/CD test suite execution</td></tr>
+            <tr><td><strong>Execution</strong></td><td>Combines branches directly on local machine</td><td>Merges on remote server upon reviewer approval</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+
+
+    <!-- 30+ REAL WORLD BUSINESS SCENARIOS -->
+    <article class="note-section" id="master-scenarios">
+      <div class="section-eyebrow">
+        <span class="sec-num">SCENARIO BANK</span>
+        <span class="sec-priority priority-p0">30+ PRODUCTION SCENARIOS</span>
+      </div>
+      <h2 class="section-title">30+ Real-World Production & Interview Scenarios</h2>
+      <p class="section-intro">
+        Service-based IT firms (TCS, Infosys, Cognizant, Wipro, Accenture) test scenario troubleshooting. Below are 30 realistic engineering situations with question, exact command, detailed reasoning, and placement exam takeaways.
+      </p>
+
+      <div class="scenario-grid">
+        <!-- Scenario 1 -->
+        <div class="scenario-card">
+          <div class="scenario-meta">SCENARIO 01 • UNSTAGING</div>
+          <div class="scenario-problem">A developer modified <code>app.py</code> and <code>database.py</code>, ran <code>git add .</code>, but realizes <code>database.py</code> has hardcoded passwords that must NOT be committed.</div>
+          <div class="scenario-question"><strong>Q:</strong> Which command unstages <code>database.py</code> while preserving the local edits?</div>
+          <div class="scenario-ans"><code>git restore --staged database.py</code> (or legacy <code>git reset HEAD database.py</code>)</div>
+          <div class="scenario-reason"><strong>Reasoning:</strong> <code>restore --staged</code> moves the file from the Staging Area back to the Working Directory without altering file contents on disk.</div>
+          <div class="scenario-tip">💡 <strong>Placement Tip:</strong> Never use <code>git checkout database.py</code> here—that would destroy your unsaved code!</div>
+        </div>
+
+        <!-- Scenario 2 -->
+        <div class="scenario-card">
+          <div class="scenario-meta">SCENARIO 02 • EMERGENCY BRANCH SWITCH</div>
+          <div class="scenario-problem">You are halfway through writing a new feature on <code>feature-cart</code> when a critical production bug arrives on <code>main</code>. Your feature code does not compile yet.</div>
+          <div class="scenario-question"><strong>Q:</strong> How do you switch to <code>main</code> immediately without losing half-written work or creating a broken commit?</div>
+          <div class="scenario-ans"><code>git stash</code> ➔ <code>git switch main</code></div>
+          <div class="scenario-reason"><strong>Reasoning:</strong> Stashing safely hides all staged and unstaged modifications on an internal stack, restoring a clean working tree so Git allows branch switching.</div>
+          <div class="scenario-tip">💡 <strong>Placement Tip:</strong> When bug fix is done, return via <code>git switch feature-cart</code> and run <code>git stash pop</code>.</div>
+        </div>
+
+        <!-- Scenario 3 -->
+        <div class="scenario-card">
+          <div class="scenario-meta">SCENARIO 03 • AMENDING LAST COMMIT</div>
+          <div class="scenario-problem">You committed your work with <code>git commit -m "Add user auth"</code>, but immediately realize you forgot to include <code>auth_helper.py</code> in the commit.</div>
+          <div class="scenario-question"><strong>Q:</strong> How do you add the missing file into the previous commit without creating an extra "oops" commit?</div>
+          <div class="scenario-ans"><code>git add auth_helper.py</code> ➔ <code>git commit --amend --no-edit</code></div>
+          <div class="scenario-reason"><strong>Reasoning:</strong> <code>--amend</code> rewrites the topmost commit snapshot, incorporating newly staged files and reusing the same commit message.</div>
+          <div class="scenario-tip">💡 <strong>Placement Tip:</strong> Only amend commits that have NOT yet been pushed to a remote repository.</div>
+        </div>
+
+        <!-- Scenario 4 -->
+        <div class="scenario-card">
+          <div class="scenario-meta">SCENARIO 04 • UNDOING A PUSHED COMMIT</div>
+          <div class="scenario-problem">A bad commit with hash <code>c4f1a23</code> was pushed to the shared team branch <code>develop</code>, causing the CI pipeline to fail for all 20 engineers.</div>
+          <div class="scenario-question"><strong>Q:</strong> What is the safest, standard way to undo this bad commit?</div>
+          <div class="scenario-ans"><code>git revert c4f1a23</code> ➔ <code>git push origin develop</code></div>
+          <div class="scenario-reason"><strong>Reasoning:</strong> <code>git revert</code> creates a new forward-moving commit that applies the exact inverse changes. It leaves the public history intact.</div>
+          <div class="scenario-tip">💡 <strong>Placement Tip:</strong> Never use <code>git reset</code> on public/shared branches—it causes divergent histories for teammates.</div>
+        </div>
+
+        <!-- Scenario 5 -->
+        <div class="scenario-card">
+          <div class="scenario-meta">SCENARIO 05 • DISCARDING LOCAL UNCOMMITTED EDITS</div>
+          <div class="scenario-problem">You experimented with a new CSS library in <code>styles.css</code>, broke the UI completely, and want to abandon all changes and return to the last committed state.</div>
+          <div class="scenario-question"><strong>Q:</strong> Which command discards all uncommitted modifications in <code>styles.css</code>?</div>
+          <div class="scenario-ans"><code>git restore styles.css</code> (or legacy <code>git checkout -- styles.css</code>)</div>
+          <div class="scenario-reason"><strong>Reasoning:</strong> <code>git restore</code> without <code>--staged</code> copies the clean version from the staging area / HEAD directly into your working directory.</div>
+          <div class="scenario-tip">💡 <strong>Placement Tip:</strong> This action is irreversible. Local uncommitted changes are permanently lost.</div>
+        </div>
+
+        <!-- Scenario 6 -->
+        <div class="scenario-card">
+          <div class="scenario-meta">SCENARIO 06 • INSPECTING REMOTE COMMITS SAFELY</div>
+          <div class="scenario-problem">A colleague pushed 5 commits to <code>main</code> on GitHub. You want to see their commit messages and diffs without modifying your local working files.</div>
+          <div class="scenario-question"><strong>Q:</strong> Which command fetches changes from the remote without auto-merging into your local branch?</div>
+          <div class="scenario-ans"><code>git fetch origin</code> followed by <code>git log HEAD..origin/main</code></div>
+          <div class="scenario-reason"><strong>Reasoning:</strong> <code>git fetch</code> downloads remote objects into <code>origin/main</code> without touching your active local working directory.</div>
+          <div class="scenario-tip">💡 <strong>Placement Tip:</strong> <code>git pull</code> would have triggered an immediate merge attempt. Fetch is read-only.</div>
+        </div>
+
+        <!-- Scenario 7 -->
+        <div class="scenario-card">
+          <div class="scenario-meta">SCENARIO 07 • MERGE CONFLICT RESOLUTION</div>
+          <div class="scenario-problem">During <code>git merge feature</code>, Git aborts with <code>CONFLICT (content): Merge conflict in server.js</code>.</div>
+          <div class="scenario-question"><strong>Q:</strong> What are the exact steps required to complete the merge?</div>
+          <div class="scenario-ans">1. Open <code>server.js</code> ➔ 2. Resolve conflict markers ➔ 3. <code>git add server.js</code> ➔ 4. <code>git commit</code></div>
+          <div class="scenario-reason"><strong>Reasoning:</strong> Staging resolved files with <code>git add</code> informs Git that conflicts have been rectified. A final commit records the merge.</div>
+          <div class="scenario-tip">💡 <strong>Placement Tip:</strong> Do not pass <code>-m "..."</code> to merge commits unless necessary; Git supplies a standard default message.</div>
+        </div>
+
+        <!-- Scenario 8 -->
+        <div class="scenario-card">
+          <div class="scenario-meta">SCENARIO 08 • SOFT RESET VS HARD RESET</div>
+          <div class="scenario-problem">You committed 3 commits locally. You want to un-commit them to combine them into one commit, but you must NOT lose your written code.</div>
+          <div class="scenario-question"><strong>Q:</strong> Which reset flag should you execute?</div>
+          <div class="scenario-ans"><code>git reset --soft HEAD~3</code></div>
+          <div class="scenario-reason"><strong>Reasoning:</strong> <code>--soft</code> rewinds HEAD by 3 commits while keeping all changed files staged in the index, ready for a fresh consolidated commit.</div>
+          <div class="scenario-tip">💡 <strong>Placement Tip:</strong> <code>--hard</code> would have destroyed all 3 commits' code permanently!</div>
+        </div>
+
+        <!-- Scenario 9 -->
+        <div class="scenario-card">
+          <div class="scenario-meta">SCENARIO 09 • CHECKING WHO WROTE A BUGGY LINE</div>
+          <div class="scenario-problem">A bug was identified on line 142 of <code>payment.py</code>. The team lead needs to know who authored that line, when, and in which commit.</div>
+          <div class="scenario-question"><strong>Q:</strong> Which command displays line-by-line commit authorship metadata?</div>
+          <div class="scenario-ans"><code>git blame payment.py -L 142,142</code></div>
+          <div class="scenario-reason"><strong>Reasoning:</strong> <code>git blame</code> annotates every line of a file with commit SHA, author name, timestamp, and line content.</div>
+          <div class="scenario-tip">💡 <strong>Placement Tip:</strong> High-frequency MNC interview question: "How to find who modified line X?" ➔ <code>git blame</code>.</div>
+        </div>
+
+        <!-- Scenario 10 -->
+        <div class="scenario-card">
+          <div class="scenario-meta">SCENARIO 10 • ABORTING A PROBLEMATIC MERGE</div>
+          <div class="scenario-problem">You executed <code>git merge bugfix</code> and were confronted by 15 complicated conflict files. You want to abort completely and return to pre-merge state.</div>
+          <div class="scenario-question"><strong>Q:</strong> Which command safely terminates the in-progress merge conflict?</div>
+          <div class="scenario-ans"><code>git merge --abort</code></div>
+          <div class="scenario-reason"><strong>Reasoning:</strong> Restores the working tree and index back to the exact commit state prior to running <code>git merge</code>.</div>
+          <div class="scenario-tip">💡 <strong>Placement Tip:</strong> Works similarly for rebases: <code>git rebase --abort</code>.</div>
+        </div>
+
+        <!-- Scenario 11 -->
+        <div class="scenario-card">
+          <div class="scenario-meta">SCENARIO 11 • RECOVERING A "DELETED" ACCIDENTAL RESET</div>
+          <div class="scenario-problem">A fresher ran <code>git reset --hard HEAD~1</code> by mistake and panicked because their commit disappeared from <code>git log</code>.</div>
+          <div class="scenario-question"><strong>Q:</strong> Can the "lost" commit be recovered, and if so, how?</div>
+          <div class="scenario-ans">Yes! Run <code>git reflog</code> to find the orphaned commit SHA, then <code>git reset --hard &lt;SHA&gt;</code>.</div>
+          <div class="scenario-reason"><strong>Reasoning:</strong> Git keeps an internal journal (<code>reflog</code>) of every HEAD movement for 30–90 days before garbage collection runs.</div>
+          <div class="scenario-tip">💡 <strong>Placement Tip:</strong> <code>git reflog</code> is Git's ultimate safety net for recovering lost commits.</div>
+        </div>
+
+        <!-- Scenario 12 -->
+        <div class="scenario-card">
+          <div class="scenario-meta">SCENARIO 12 • PUSH REJECTED (NON-FAST-FORWARD)</div>
+          <div class="scenario-problem">You run <code>git push origin main</code> and receive <code>[rejected - non-fast-forward] Updates were rejected because the remote contains work that you do not have locally</code>.</div>
+          <div class="scenario-question"><strong>Q:</strong> What is the professional industry resolution?</div>
+          <div class="scenario-ans"><code>git pull origin main</code> (resolve any conflicts, if any) ➔ <code>git push origin main</code></div>
+          <div class="scenario-reason"><strong>Reasoning:</strong> Git protects remote branches from being overwritten. You must integrate teammates' remote commits before pushing your own.</div>
+          <div class="scenario-tip">💡 <strong>Placement Tip:</strong> Never use <code>--force</code> to bypass this error on shared branches!</div>
+        </div>
+
+        <!-- Scenario 13 -->
+        <div class="scenario-card">
+          <div class="scenario-meta">SCENARIO 13 • CREATING AND SWITCHING BRANCH AT ONCE</div>
+          <div class="scenario-problem">You need to start work on <code>user-dashboard</code> and want to create the branch and switch to it in a single command.</div>
+          <div class="scenario-question"><strong>Q:</strong> Which modern command accomplishes this?</div>
+          <div class="scenario-ans"><code>git switch -c user-dashboard</code> (or legacy <code>git checkout -b user-dashboard</code>)</div>
+          <div class="scenario-reason"><strong>Reasoning:</strong> <code>switch -c</code> (create) creates the new pointer and moves HEAD to it instantaneously.</div>
+          <div class="scenario-tip">💡 <strong>Placement Tip:</strong> Modern interviews favor <code>switch -c</code> over <code>checkout -b</code>.</div>
+        </div>
+
+        <!-- Scenario 14 -->
+        <div class="scenario-card">
+          <div class="scenario-meta">SCENARIO 14 • DELETING A MERGED FEATURE BRANCH</div>
+          <div class="scenario-problem">Your feature branch <code>feature-login</code> has been approved and merged into <code>main</code>. You want to clean up your local branch list.</div>
+          <div class="scenario-question"><strong>Q:</strong> Which safe command deletes the merged local branch?</div>
+          <div class="scenario-ans"><code>git branch -d feature-login</code></div>
+          <div class="scenario-reason"><strong>Reasoning:</strong> Lowercase <code>-d</code> performs a safety check and deletes only if changes are fully merged. Uppercase <code>-D</code> forces deletion regardless.</div>
+          <div class="scenario-tip">💡 <strong>Placement Tip:</strong> You cannot delete the branch you are currently standing on. Switch to <code>main</code> first.</div>
+        </div>
+
+        <!-- Scenario 15 -->
+        <div class="scenario-card">
+          <div class="scenario-meta">SCENARIO 15 • IGNORING SENSITIVE FILES AFTER INITIAL COMMIT</div>
+          <div class="scenario-problem">A developer accidentally committed <code>config.env</code> containing API keys. They added <code>config.env</code> to <code>.gitignore</code>, but Git still tracks modifications.</div>
+          <div class="scenario-question"><strong>Q:</strong> Why does Git still track the file, and how to fix it?</div>
+          <div class="scenario-ans">Run <code>git rm --cached config.env</code> ➔ <code>git commit -m "Stop tracking config.env"</code></div>
+          <div class="scenario-reason"><strong>Reasoning:</strong> <code>.gitignore</code> only prevents untracked files from being staged. Files already in the index must be removed via <code>--cached</code>.</div>
+          <div class="scenario-tip">💡 <strong>Placement Tip:</strong> <code>--cached</code> removes from Git index while preserving file in working directory.</div>
+        </div>
+
+        <!-- Scenario 16 -->
+        <div class="scenario-card">
+          <div class="scenario-meta">SCENARIO 16 • VIEWING UNSTAGED VS STAGED CHANGES</div>
+          <div class="scenario-problem">You made changes to <code>index.html</code>. Some lines are staged with <code>git add</code>, and some lines are still unstaged. You want to view ONLY the staged differences.</div>
+          <div class="scenario-question"><strong>Q:</strong> Which git diff command shows only staged changes?</div>
+          <div class="scenario-ans"><code>git diff --staged</code> (or synonym <code>git diff --cached</code>)</div>
+          <div class="scenario-reason"><strong>Reasoning:</strong> Plain <code>git diff</code> compares Working Tree vs Staging Area. <code>--staged</code> compares Staging Area vs last commit (HEAD).</div>
+          <div class="scenario-tip">💡 <strong>Placement Tip:</strong> Frequently asked MCQ distinction in Cognizant & Wipro tests.</div>
+        </div>
+
+        <!-- Scenario 17 -->
+        <div class="scenario-card">
+          <div class="scenario-meta">SCENARIO 17 • CHERRY-PICKING A SINGLE COMMIT</div>
+          <div class="scenario-problem">A critical bugfix commit <code>e7a9b1c</code> was committed on an experimental branch. You need that single fix on <code>main</code> without merging the experimental branch.</div>
+          <div class="scenario-question"><strong>Q:</strong> Which command copies a specific commit from one branch onto another?</div>
+          <div class="scenario-ans">On <code>main</code>: <code>git cherry-pick e7a9b1c</code></div>
+          <div class="scenario-reason"><strong>Reasoning:</strong> <code>git cherry-pick</code> applies the changes introduced by a specific existing commit, generating a new commit on current branch.</div>
+          <div class="scenario-tip">💡 <strong>Placement Tip:</strong> The cherry-picked commit gets a brand-new SHA hash because its commit parent is different.</div>
+        </div>
+
+        <!-- Scenario 18 -->
+        <div class="scenario-card">
+          <div class="scenario-meta">SCENARIO 18 • CONTRIBUTING TO AN OPEN-SOURCE PROJECT</div>
+          <div class="scenario-problem">You want to contribute a bugfix to the public <code>kubernetes</code> repository, but you do not have collaborator write permissions.</div>
+          <div class="scenario-question"><strong>Q:</strong> What is the standard contribution workflow?</div>
+          <div class="scenario-ans">Fork repo on GitHub ➔ Clone your fork ➔ Branch & commit ➔ Push to your fork ➔ Open Pull Request to upstream.</div>
+          <div class="scenario-reason"><strong>Reasoning:</strong> Forking provides you with a server-side copy where you have full write access to publish your proposal.</div>
+          <div class="scenario-tip">💡 <strong>Placement Tip:</strong> Direct push to original repository is blocked by permission denial (HTTP 403).</div>
+        </div>
+
+        <!-- Scenario 19 -->
+        <div class="scenario-card">
+          <div class="scenario-meta">SCENARIO 19 • COMPACT SINGLE-LINE LOG VIEW</div>
+          <div class="scenario-problem">The default <code>git log</code> output takes up too much terminal space with author, date, and full hash. You want a clean, one-line summary of recent history.</div>
+          <div class="scenario-question"><strong>Q:</strong> Which command provides a condensed graph visualization?</div>
+          <div class="scenario-ans"><code>git log --oneline --graph --all</code></div>
+          <div class="scenario-reason"><strong>Reasoning:</strong> <code>--oneline</code> truncates hash to 7 characters and shows commit message. <code>--graph</code> draws ASCII branch diagrams.</div>
+          <div class="scenario-tip">💡 <strong>Placement Tip:</strong> Memorize this command for live coding / pair programming rounds.</div>
+        </div>
+
+        <!-- Scenario 20 -->
+        <div class="scenario-card">
+          <div class="scenario-meta">SCENARIO 20 • CLEANING UNTRACKED JUNK FILES</div>
+          <div class="scenario-problem">Your project directory has 20 untracked temporary log files and build artifacts not yet tracked by Git. You want to delete them in one shot.</div>
+          <div class="scenario-question"><strong>Q:</strong> Which command removes untracked files from the working directory?</div>
+          <div class="scenario-ans"><code>git clean -fd</code> (dry-run first: <code>git clean -nd</code>)</div>
+          <div class="scenario-reason"><strong>Reasoning:</strong> <code>-f</code> (force) deletes untracked files; <code>-d</code> removes untracked directories as well.</div>
+          <div class="scenario-tip">💡 <strong>Placement Tip:</strong> Always run with <code>-n</code> (dry run) first to preview what would be permanently deleted.</div>
+        </div>
+
+        <!-- Scenario 21 -->
+        <div class="scenario-card">
+          <div class="scenario-meta">SCENARIO 21 • SQUASHING 5 COMMITS INTO 1 BEFORE PR</div>
+          <div class="scenario-problem">You made 5 messy local commits ("wip", "fixed typo", "trying again"). Team lead requests a single clean commit before merging your PR.</div>
+          <div class="scenario-question"><strong>Q:</strong> How do you combine the last 5 commits interactively?</div>
+          <div class="scenario-ans"><code>git rebase -i HEAD~5</code> (mark commits 2–5 with <code>squash</code> or <code>s</code>)</div>
+          <div class="scenario-reason"><strong>Reasoning:</strong> Interactive rebase squashes multiple commits into their predecessor, prompting for a consolidated commit message.</div>
+          <div class="scenario-tip">💡 <strong>Placement Tip:</strong> Alternatively, GitHub PRs offer "Squash and Merge" button in web UI.</div>
+        </div>
+
+        <!-- Scenario 22 -->
+        <div class="scenario-card">
+          <div class="scenario-meta">SCENARIO 22 • SEARCHING HISTORY FOR A DELETED FUNCTION</div>
+          <div class="scenario-problem">A developer deleted a function <code>calculateTax()</code> 2 months ago. You need to locate which commit deleted it.</div>
+          <div class="scenario-question"><strong>Q:</strong> Which command searches commit diffs for occurrences of a specific string?</div>
+          <div class="scenario-ans"><code>git log -S "calculateTax"</code> (Git pickaxe search)</div>
+          <div class="scenario-reason"><strong>Reasoning:</strong> The <code>-S</code> option looks for commits that introduced or removed an instance of the specified string.</div>
+          <div class="scenario-tip">💡 <strong>Placement Tip:</strong> Extremely powerful interview answer for "How to find who deleted code?"</div>
+        </div>
+
+        <!-- Scenario 23 -->
+        <div class="scenario-card">
+          <div class="scenario-meta">SCENARIO 23 • RENAMING A BRANCH LOCALLY & REMOTELY</div>
+          <div class="scenario-problem">You named a branch <code>bug-fix</code>, but company convention requires <code>fix/issue-302</code>. You already pushed <code>bug-fix</code>.</div>
+          <div class="scenario-question"><strong>Q:</strong> How do you rename both locally and remotely?</div>
+          <div class="scenario-ans"><code>git branch -m fix/issue-302</code> ➔ <code>git push -u origin fix/issue-302</code> ➔ <code>git push origin --delete bug-fix</code></div>
+          <div class="scenario-reason"><strong>Reasoning:</strong> <code>-m</code> renames current local branch. Then push new name and delete stale remote branch.</div>
+          <div class="scenario-tip">💡 <strong>Placement Tip:</strong> Remotes do not automatically update branch names when local branches are renamed.</div>
+        </div>
+
+        <!-- Scenario 24 -->
+        <div class="scenario-card">
+          <div class="scenario-meta">SCENARIO 24 • SETTING UPSTREAM TRACKING FOR FIRST PUSH</div>
+          <div class="scenario-problem">You created a new local branch <code>feature-search</code>. When you type <code>git push</code>, Git warns <code>fatal: The current branch has no upstream branch</code>.</div>
+          <div class="scenario-question"><strong>Q:</strong> What flag sets the upstream remote-tracking reference?</div>
+          <div class="scenario-ans"><code>git push -u origin feature-search</code> (or <code>--set-upstream</code>)</div>
+          <div class="scenario-reason"><strong>Reasoning:</strong> The <code>-u</code> flag links local <code>feature-search</code> to <code>origin/feature-search</code> so future pushes require only <code>git push</code>.</div>
+          <div class="scenario-tip">💡 <strong>Placement Tip:</strong> Every placement exam checks understanding of upstream branch tracking.</div>
+        </div>
+
+        <!-- Scenario 25 -->
+        <div class="scenario-card">
+          <div class="scenario-meta">SCENARIO 25 • DETACHED HEAD STATE RECOVERY</div>
+          <div class="scenario-problem">A developer checked out a commit hash <code>git checkout a1b2c3d</code>, made 2 commits, and realized they are in "detached HEAD" state.</div>
+          <div class="scenario-question"><strong>Q:</strong> How do they preserve these 2 commits before switching back to <code>main</code>?</div>
+          <div class="scenario-ans"><code>git switch -c recovered-work</code> (creates and moves a named branch pointer to current HEAD)</div>
+          <div class="scenario-reason"><strong>Reasoning:</strong> In detached HEAD, commits are not pointed to by any branch. Giving them a named branch prevents garbage collection.</div>
+          <div class="scenario-tip">💡 <strong>Placement Tip:</strong> If you switch away without creating a branch, those commits become orphaned.</div>
+        </div>
+
+        <!-- Scenario 26 -->
+        <div class="scenario-card">
+          <div class="scenario-meta">SCENARIO 26 • APPLYING STASH TO A DIFFERENT BRANCH</div>
+          <div class="scenario-problem">You stashed work on <code>branch-A</code> with <code>git stash</code>, but realize those changes actually belong on <code>branch-B</code>.</div>
+          <div class="scenario-question"><strong>Q:</strong> Can you apply that stash to <code>branch-B</code>?</div>
+          <div class="scenario-ans">Yes! Run <code>git switch branch-B</code> followed by <code>git stash pop</code>.</div>
+          <div class="scenario-reason"><strong>Reasoning:</strong> Git stashes are global to the local repository, not tied exclusively to the branch where they were created.</div>
+          <div class="scenario-tip">💡 <strong>Placement Tip:</strong> Stash is repository-wide clipboard, allowing easy transfer of uncommitted work across branches.</div>
+        </div>
+
+        <!-- Scenario 27 -->
+        <div class="scenario-card">
+          <div class="scenario-meta">SCENARIO 27 • RESTORING A SINGLE DELETED FILE</div>
+          <div class="scenario-problem">You accidentally deleted <code>utils.js</code> from your file explorer, but you haven't committed the deletion yet.</div>
+          <div class="scenario-question"><strong>Q:</strong> Which command restores the deleted file back into your working directory?</div>
+          <div class="scenario-ans"><code>git restore utils.js</code> (or <code>git checkout HEAD -- utils.js</code>)</div>
+          <div class="scenario-reason"><strong>Reasoning:</strong> Copies the pristine version of <code>utils.js</code> recorded in the latest commit back onto the file system.</div>
+          <div class="scenario-tip">💡 <strong>Placement Tip:</strong> Much faster than re-cloning or copying from backup folders!</div>
+        </div>
+
+        <!-- Scenario 28 -->
+        <div class="scenario-card">
+          <div class="scenario-meta">SCENARIO 28 • AUTO-MERGING SUCCEEDS WITHOUT CONFLICT</div>
+          <div class="scenario-problem">Developer 1 modified lines 10-20 of <code>report.py</code>. Developer 2 modified lines 80-90 of the same file on another branch. Both merge into <code>main</code>.</div>
+          <div class="scenario-question"><strong>Q:</strong> Will this cause a merge conflict?</div>
+          <div class="scenario-ans">No! Git's 3-way merge algorithm automatically integrates edits in non-overlapping line ranges.</div>
+          <div class="scenario-reason"><strong>Reasoning:</strong> Merge conflicts occur ONLY when both branches modify the EXACT same lines or delete files edited by the other.</div>
+          <div class="scenario-tip">💡 <strong>Placement Tip:</strong> Modifying the same file does NOT automatically mean a conflict. Conflict requires overlapping lines.</div>
+        </div>
+
+        <!-- Scenario 29 -->
+        <div class="scenario-card">
+          <div class="scenario-meta">SCENARIO 29 • FAST-FORWARD MERGE CRITERIA</div>
+          <div class="scenario-problem">Branch <code>feature</code> was branched off commit C2 on <code>main</code>. Since then, NO new commits were added to <code>main</code>. <code>feature</code> has commits C3 and C4.</div>
+          <div class="scenario-question"><strong>Q:</strong> What type of merge will occur when merging <code>feature</code> into <code>main</code>?</div>
+          <div class="scenario-ans">A Fast-Forward Merge (no merge commit created; <code>main</code> pointer simply jumps to C4).</div>
+          <div class="scenario-reason"><strong>Reasoning:</strong> Because no divergent commits exist on <code>main</code>, Git simply slides the branch pointer forward linearly.</div>
+          <div class="scenario-tip">💡 <strong>Placement Tip:</strong> To force a merge commit even when fast-forward is possible, use <code>git merge --no-ff</code>.</div>
+        </div>
+
+        <!-- Scenario 30 -->
+        <div class="scenario-card">
+          <div class="scenario-meta">SCENARIO 30 • PRODUCTION HOTFIX DEPLOYMENT</div>
+          <div class="scenario-problem">A live payment bug is discovered in production. Developers are currently working on 10 half-done features in <code>develop</code>.</div>
+          <div class="scenario-question"><strong>Q:</strong> How do you ship a hotfix without deploying half-done features?</div>
+          <div class="scenario-ans">Branch <code>hotfix/payment</code> directly off production <code>main</code> ➔ fix & test ➔ merge into <code>main</code> and tag release ➔ merge back into <code>develop</code>.</div>
+          <div class="scenario-reason"><strong>Reasoning:</strong> Branching directly off production <code>main</code> guarantees that experimental code from <code>develop</code> is not bundled into the emergency release.</div>
+          <div class="scenario-tip">💡 <strong>Placement Tip:</strong> Classic Git-Flow branching model question asked in senior fresher interviews.</div>
+        </div>
+      </div>
+    </article>
+
+
+    <!-- 35+ FATAL PLACEMENT TRAPS -->
+    <article class="note-section" id="master-traps">
+      <div class="section-eyebrow">
+        <span class="sec-num">EXAM PITFALLS</span>
+        <span class="sec-priority priority-p0">35+ FATAL TRAPS</span>
+      </div>
+      <h2 class="section-title">35+ Fatal Placement Traps & Misconceptions</h2>
+      <p class="section-intro">
+        Placement exam papers intentionally craft multiple-choice options around common beginner misunderstandings. Memorize these 35 fatal traps to avoid negative markings.
+      </p>
+
+      <div class="concept-grid">
+        <div class="concept-card">
+          <h4>Trap 1: Git and GitHub are synonyms</h4>
+          <p><strong>Reality:</strong> Git is a local command-line version control system. GitHub is an external web cloud host owned by Microsoft. Git works 100% offline without GitHub.</p>
+        </div>
+        <div class="concept-card">
+          <h4>Trap 2: 'git add' creates a commit</h4>
+          <p><strong>Reality:</strong> <code>git add</code> only copies modified files to the Staging Area (index). It creates zero commits in repository history.</p>
+        </div>
+        <div class="concept-card">
+          <h4>Trap 3: 'git commit' uploads code to GitHub</h4>
+          <p><strong>Reality:</strong> Commits exist strictly on your local disk in <code>.git/objects</code>. Only running <code>git push</code> transfers commits to GitHub.</p>
+        </div>
+        <div class="concept-card">
+          <h4>Trap 4: 'git pull' is identical to 'git fetch'</h4>
+          <p><strong>Reality:</strong> <code>git pull</code> performs <code>git fetch + git merge</code>. Fetch downloads objects without modifying your local working tree.</p>
+        </div>
+        <div class="concept-card">
+          <h4>Trap 5: Pull Request is a Git CLI command</h4>
+          <p><strong>Reality:</strong> There is NO <code>git pull-request</code> command. Pull Request is a collaborative code-review feature on GitHub/GitLab web UI.</p>
+        </div>
+        <div class="concept-card">
+          <h4>Trap 6: A branch is a duplicate physical folder on disk</h4>
+          <p><strong>Reality:</strong> A Git branch is merely a 41-byte text file containing a 40-character SHA-1 hash pointer. It takes virtually zero disk space.</p>
+        </div>
+        <div class="concept-card">
+          <h4>Trap 7: 'git reset --hard' can be undone with 'git undo'</h4>
+          <p><strong>Reality:</strong> Uncommitted working tree edits destroyed by <code>--hard</code> are permanently gone forever. Only committed states might be found in <code>reflog</code>.</p>
+        </div>
+        <div class="concept-card">
+          <h4>Trap 8: 'git revert' modifies existing history</h4>
+          <p><strong>Reality:</strong> <code>git revert</code> NEVER modifies existing history. It appends a brand-new commit that undoes the targeted commit's changes.</p>
+        </div>
+        <div class="concept-card">
+          <h4>Trap 9: 'git clone' copies only the current branch</h4>
+          <p><strong>Reality:</strong> Clone downloads the ENTIRE repository history, all branches, all tags, and the full commit tree.</p>
+        </div>
+        <div class="concept-card">
+          <h4>Trap 10: Modifying the same file always causes a conflict</h4>
+          <p><strong>Reality:</strong> Conflicts occur ONLY when two branches alter the exact same lines. Edits in different lines merge automatically without issue.</p>
+        </div>
+        <div class="concept-card">
+          <h4>Trap 11: .gitignore ignores already-committed files</h4>
+          <p><strong>Reality:</strong> <code>.gitignore</code> only prevents untracked files from being staged. Tracked files must be removed with <code>git rm --cached</code> first.</p>
+        </div>
+        <div class="concept-card">
+          <h4>Trap 12: 'git stash' is tied to one branch only</h4>
+          <p><strong>Reality:</strong> Stashes are global to the local repository. You can stash on <code>branch-A</code> and pop on <code>branch-B</code>.</p>
+        </div>
+        <div class="concept-card">
+          <h4>Trap 13: Fast-forward merges create a merge commit</h4>
+          <p><strong>Reality:</strong> Fast-forward merges do NOT create a merge commit. They simply advance the branch pointer forward.</p>
+        </div>
+        <div class="concept-card">
+          <h4>Trap 14: You can delete the branch you are standing on</h4>
+          <p><strong>Reality:</strong> Git prevents <code>git branch -d &lt;curr&gt;</code>. You must checkout a different branch first before deleting.</p>
+        </div>
+        <div class="concept-card">
+          <h4>Trap 15: Commits store only file deltas/diffs</h4>
+          <p><strong>Reality:</strong> Git commits store snapshots of the complete project tree (via trees and blobs), not just line deltas like SVN.</p>
+        </div>
+        <div class="concept-card">
+          <h4>Trap 16: 'git push' automatically uploads tags</h4>
+          <p><strong>Reality:</strong> Tags are not transferred by default. You must run <code>git push origin &lt;tag&gt;</code> or <code>git push origin --tags</code>.</p>
+        </div>
+        <div class="concept-card">
+          <h4>Trap 17: Fork and clone are identical operations</h4>
+          <p><strong>Reality:</strong> Fork is server-side (GitHub to GitHub). Clone is server-to-client (GitHub to local machine).</p>
+        </div>
+        <div class="concept-card">
+          <h4>Trap 18: 'HEAD' is always a branch</h4>
+          <p><strong>Reality:</strong> HEAD is a pointer. It usually points to a branch reference, but in "detached HEAD" state it points directly to a commit SHA.</p>
+        </div>
+        <div class="concept-card">
+          <h4>Trap 19: 'git checkout' only switches branches</h4>
+          <p><strong>Reality:</strong> In legacy Git, <code>git checkout</code> was also used to discard file edits (<code>git checkout -- file</code>). Git 2.23 introduced <code>switch</code> and <code>restore</code> to split these roles.</p>
+        </div>
+        <div class="concept-card">
+          <h4>Trap 20: 'git reset --soft' discards your code</h4>
+          <p><strong>Reality:</strong> <code>--soft</code> keeps all code intact and stages it in the index. Only the commit pointer moves backward.</p>
+        </div>
+        <div class="concept-card">
+          <h4>Trap 21: 'git merge --abort' deletes all your commits</h4>
+          <p><strong>Reality:</strong> It only halts an active conflicted merge and restores the pre-merge status. Your preexisting commits are 100% safe.</p>
+        </div>
+        <div class="concept-card">
+          <h4>Trap 22: You can push to a remote without write access</h4>
+          <p><strong>Reality:</strong> Pushing without write permissions triggers HTTP 403 Forbidden. You must fork and submit a PR instead.</p>
+        </div>
+        <div class="concept-card">
+          <h4>Trap 23: 'git log' displays commits from all branches by default</h4>
+          <p><strong>Reality:</strong> <code>git log</code> displays history reachable only from the CURRENT branch. Use <code>git log --all</code> to inspect all branches.</p>
+        </div>
+        <div class="concept-card">
+          <h4>Trap 24: 'origin' is a hardcoded Git keyword</h4>
+          <p><strong>Reality:</strong> <code>origin</code> is simply a conventional default alias for the primary remote URL. It could be named anything (e.g. <code>myremote</code>).</p>
+        </div>
+        <div class="concept-card">
+          <h4>Trap 25: Git requires an active server connection to commit</h4>
+          <p><strong>Reality:</strong> Git is fully distributed. You can create branches, commit, tag, and inspect logs on an airplane with no internet.</p>
+        </div>
+        <div class="concept-card">
+          <h4>Trap 26: Staged files are automatically saved upon editor crash</h4>
+          <p><strong>Reality:</strong> <code>git add</code> records the file snapshot at the exact moment the command ran. Edits made after <code>git add</code> remain unstaged.</p>
+        </div>
+        <div class="concept-card">
+          <h4>Trap 27: 'git init' inside an existing Git repo is required for subfolders</h4>
+          <p><strong>Reality:</strong> NEVER run <code>git init</code> inside subdirectories of an existing repo unless you deliberately intend to create nested submodules.</p>
+        </div>
+        <div class="concept-card">
+          <h4>Trap 28: Merging deletes the source branch</h4>
+          <p><strong>Reality:</strong> Merging combines histories but leaves both branch pointers existing. You must explicitly delete branches with <code>git branch -d</code>.</p>
+        </div>
+        <div class="concept-card">
+          <h4>Trap 29: 'git diff' shows all modifications</h4>
+          <p><strong>Reality:</strong> <code>git diff</code> only shows unstaged changes. Use <code>git diff --staged</code> to inspect what has been added to index.</p>
+        </div>
+        <div class="concept-card">
+          <h4>Trap 30: 'git branch -D' and '-d' are the same</h4>
+          <p><strong>Reality:</strong> <code>-d</code> checks for merge status before deleting. <code>-D</code> is an alias for <code>--delete --force</code> and destroys unmerged work.</p>
+        </div>
+        <div class="concept-card">
+          <h4>Trap 31: Commits can be modified after push safely</h4>
+          <p><strong>Reality:</strong> Amending or rebasing pushed commits alters SHA hashes, causing divergence for any team member who pulled the original.</p>
+        </div>
+        <div class="concept-card">
+          <h4>Trap 32: 'git cherry-pick' merges an entire branch</h4>
+          <p><strong>Reality:</strong> Cherry-pick copies ONLY the single specific commit specified by hash, not the whole branch.</p>
+        </div>
+        <div class="concept-card">
+          <h4>Trap 33: A commit message can be empty</h4>
+          <p><strong>Reality:</strong> Git aborts commit creation if message is empty, unless explicitly overridden with <code>--allow-empty-message</code>.</p>
+        </div>
+        <div class="concept-card">
+          <h4>Trap 34: Deleting .git directory retains project history</h4>
+          <p><strong>Reality:</strong> Deleting <code>.git/</code> permanently vaporizes all commits, branches, stashes, and version history. Only working files remain as untracked files.</p>
+        </div>
+        <div class="concept-card">
+          <h4>Trap 35: Rebase and merge produce the same commit graph</h4>
+          <p><strong>Reality:</strong> Merge creates a non-linear graph with a 2-parent merge commit. Rebase creates a strictly linear 1-parent sequence by rewriting base commits.</p>
+        </div>
+      </div>
+    </article>
+
+
+    <!-- INTERACTIVE COMMAND CHEAT SHEET -->
+    <article class="note-section" id="master-cheatsheet">
+      <div class="section-eyebrow">
+        <span class="sec-num">COMMAND REFERENCE</span>
+        <span class="sec-priority priority-p0">CLI CHEAT SHEET</span>
+      </div>
+      <h2 class="section-title">Categorized Git Command Cheat Sheet</h2>
+      <p class="section-intro">
+        Every essential command organized into 15 logical developer categories for rapid exam recall and terminal reference.
+      </p>
+
+      <div class="concept-grid">
+        <div class="concept-card">
+          <h4>⚙️ 1. Setup & Configuration</h4>
+          <code>git config --global user.name "John Doe"</code><br>
+          <code>git config --global user.email "john@domain.com"</code><br>
+          <code>git config --list</code><br>
+          <code>git --version</code>
+        </div>
+        <div class="concept-card">
+          <h4>📁 2. Repository Initialization</h4>
+          <code>git init</code> (initialize local repo)<br>
+          <code>git clone &lt;url&gt;</code> (download remote repo)<br>
+          <code>git clone --depth 1 &lt;url&gt;</code> (shallow clone)
+        </div>
+        <div class="concept-card">
+          <h4>🔍 3. Status & Inspection</h4>
+          <code>git status</code> (show modified/staged files)<br>
+          <code>git status -s</code> (short, concise format)<br>
+          <code>git diff</code> (unstaged modifications)<br>
+          <code>git diff --staged</code> (staged modifications)
+        </div>
+        <div class="concept-card">
+          <h4>📥 4. Staging Area (Index)</h4>
+          <code>git add &lt;file&gt;</code> (stage single file)<br>
+          <code>git add .</code> (stage all current directory changes)<br>
+          <code>git add -A</code> (stage all workspace modifications)<br>
+          <code>git add -p</code> (stage changes interactively by hunk)
+        </div>
+        <div class="concept-card">
+          <h4>💾 5. Commit Operations</h4>
+          <code>git commit -m "Message"</code> (commit staged code)<br>
+          <code>git commit -am "Message"</code> (stage tracked & commit)<br>
+          <code>git commit --amend</code> (update latest commit)
+        </div>
+        <div class="concept-card">
+          <h4>📜 6. History & Logs</h4>
+          <code>git log</code> (full commit history)<br>
+          <code>git log --oneline</code> (compact 7-char hash list)<br>
+          <code>git log --graph --oneline --all</code> (visual ASCII branch tree)<br>
+          <code>git log -p -2</code> (show diffs for last 2 commits)
+        </div>
+        <div class="concept-card">
+          <h4>🌿 7. Branch Management</h4>
+          <code>git branch</code> (list local branches)<br>
+          <code>git branch -a</code> (list local and remote branches)<br>
+          <code>git branch &lt;name&gt;</code> (create new branch)<br>
+          <code>git branch -d &lt;name&gt;</code> (delete merged branch)<br>
+          <code>git branch -D &lt;name&gt;</code> (force delete branch)
+        </div>
+        <div class="concept-card">
+          <h4>🔀 8. Navigation & Switching</h4>
+          <code>git switch &lt;name&gt;</code> (switch branch - modern)<br>
+          <code>git switch -c &lt;name&gt;</code> (create and switch - modern)<br>
+          <code>git checkout &lt;name&gt;</code> (switch branch - legacy)<br>
+          <code>git checkout -b &lt;name&gt;</code> (create & switch - legacy)
+        </div>
+        <div class="concept-card">
+          <h4>🤝 9. Merging & Integration</h4>
+          <code>git merge &lt;branch&gt;</code> (merge branch into active)<br>
+          <code>git merge --no-ff &lt;branch&gt;</code> (force merge commit)<br>
+          <code>git merge --abort</code> (abort in-progress conflicted merge)<br>
+          <code>git cherry-pick &lt;commit&gt;</code> (apply specific commit)
+        </div>
+        <div class="concept-card">
+          <h4>🌐 10. Remote Repositories</h4>
+          <code>git remote -v</code> (list remote aliases and URLs)<br>
+          <code>git remote add origin &lt;url&gt;</code> (add remote target)<br>
+          <code>git remote rename &lt;old&gt; &lt;new&gt;</code> (rename remote)<br>
+          <code>git remote remove origin</code> (delete remote target)
+        </div>
+        <div class="concept-card">
+          <h4>⬆️ 11. Push & Publish</h4>
+          <code>git push origin &lt;branch&gt;</code> (upload commits)<br>
+          <code>git push -u origin &lt;branch&gt;</code> (push and track upstream)<br>
+          <code>git push origin --delete &lt;branch&gt;</code> (delete remote branch)<br>
+          <code>git push origin --tags</code> (push all local tags)
+        </div>
+        <div class="concept-card">
+          <h4>⬇️ 12. Fetch & Pull</h4>
+          <code>git fetch origin</code> (download remote objects safely)<br>
+          <code>git fetch --prune</code> (remove dead remote-tracking branches)<br>
+          <code>git pull origin &lt;branch&gt;</code> (fetch + merge into active)<br>
+          <code>git pull --rebase</code> (fetch + rebase onto remote)
+        </div>
+        <div class="concept-card">
+          <h4>⏪ 13. Undoing & Reverting</h4>
+          <code>git restore &lt;file&gt;</code> (discard local modifications)<br>
+          <code>git restore --staged &lt;file&gt;</code> (unstage file)<br>
+          <code>git reset --soft HEAD~1</code> (uncommit, keep staged)<br>
+          <code>git reset --hard HEAD~1</code> (destroy commit & edits)<br>
+          <code>git revert &lt;commit&gt;</code> (append safe undo commit)
+        </div>
+        <div class="concept-card">
+          <h4>📦 14. Stashing (WIP Clipboard)</h4>
+          <code>git stash</code> (save uncommitted work)<br>
+          <code>git stash pop</code> (apply top stash and remove)<br>
+          <code>git stash apply</code> (apply top stash and retain in list)<br>
+          <code>git stash list</code> (view all stashed items)<br>
+          <code>git stash drop</code> (delete specific stash)
+        </div>
+        <div class="concept-card">
+          <h4>🏷️ 15. Tags & Releases</h4>
+          <code>git tag</code> (list all tags)<br>
+          <code>git tag &lt;name&gt;</code> (create lightweight tag)<br>
+          <code>git tag -a &lt;name&gt; -m "msg"</code> (create annotated tag)<br>
+          <code>git show &lt;tag&gt;</code> (view tag metadata and commit)
+        </div>
+      </div>
+    </article>
+
+
+    <!-- 16 SPOKEN INTERVIEW Q&AS -->
+    <article class="note-section" id="master-interview">
+      <div class="section-eyebrow">
+        <span class="sec-num">INTERVIEW READY</span>
+        <span class="sec-priority priority-p0">SPOKEN Q&A BANK</span>
+      </div>
+      <h2 class="section-title">16 High-Yield Spoken Interview Questions & Answers</h2>
+      <p class="section-intro">
+        These are direct questions asked in MNC technical interviews (Accenture, TCS, Cognizant, Infosys, Deloitte). Use these polished, professional answers.
+      </p>
+
+      <div class="interview-accordion">
+        <div class="interview-item">
+          <div class="interview-q">1. What is Git and how does it differ from traditional SVN?</div>
+          <div class="interview-a">"Git is a Distributed Version Control System where every developer clones a full local copy of the repository, including entire project history. Unlike Centralized VCS like SVN which requires a constant connection to a central server, Git operations like committing, branching, and viewing logs are executed 100% locally and offline with lightning speed."</div>
+        </div>
+        <div class="interview-item">
+          <div class="interview-q">2. What is the fundamental difference between Git and GitHub?</div>
+          <div class="interview-a">"Git is the local command-line version control engine that records code revisions. GitHub is a cloud-based hosting service for Git repositories that provides collaborative features on top of Git, such as Pull Requests, Issue Tracking, Team Permissions, and GitHub Actions CI/CD pipelines."</div>
+        </div>
+        <div class="interview-item">
+          <div class="interview-q">3. What is a commit in Git?</div>
+          <div class="interview-a">"A commit is an immutable snapshot of the entire project repository at a specific point in time. Each commit is identified by a unique 40-character SHA-1 hash and records author information, timestamp, parent commit reference, and pointer to the project directory tree."</div>
+        </div>
+        <div class="interview-item">
+          <div class="interview-q">4. What is the Git Staging Area and why is it necessary?</div>
+          <div class="interview-a">"The Staging Area, also known as the Index, is an intermediate holding zone between the working directory and the permanent repository. It enables developers to curate precise, logical commits by choosing exactly which modified files—or even specific hunks of code—to bundle into the next commit, rather than committing all unvetted file edits at once."</div>
+        </div>
+        <div class="interview-item">
+          <div class="interview-q">5. What is a Git branch and what is its internal storage overhead?</div>
+          <div class="interview-a">"A Git branch is simply a lightweight, movable pointer to the latest commit in a sequence of history. Internally, a branch is stored as a 41-byte plain text file containing a 40-character SHA hash. Because it is just a pointer, creating, switching, and deleting branches in Git requires nearly zero disk space and takes instantaneous milliseconds."</div>
+        </div>
+        <div class="interview-item">
+          <div class="interview-q">6. What is the difference between git fetch and git pull?</div>
+          <div class="interview-a">"Git fetch downloads new commits, files, and branches from the remote repository into local remote-tracking branches (like origin/main) without altering your active working tree files. Git pull, on the other hand, performs git fetch and immediately executes git merge into your current branch, which can potentially cause unexpected merge conflicts."</div>
+        </div>
+        <div class="interview-item">
+          <div class="interview-q">7. What is the difference between git reset and git revert?</div>
+          <div class="interview-a">"Git reset rewinds the branch pointer backward, effectively erasing commits from the branch's forward history. It is ideal for cleaning up private, unpushed local work. Git revert creates a brand-new commit that applies the inverse changes of an older commit, keeping history linear and intact. Git revert is the only safe approach for undoing commits on public or shared team branches."</div>
+        </div>
+        <div class="interview-item">
+          <div class="interview-q">8. What causes a Merge Conflict and how do you resolve it?</div>
+          <div class="interview-a">"A merge conflict occurs when two branches make competing modifications to the same lines of code in the same file, or when one branch deletes a file that another branch modified. Git halts the merge and places conflict markers (&lt;&lt;&lt;&lt;&lt;&lt;&lt;, =======, &gt;&gt;&gt;&gt;&gt;&gt;&gt;) in the file. To resolve it, the engineer manually edits the file to keep desired code, removes the markers, stages the file with git add, and runs git commit."</div>
+        </div>
+        <div class="interview-item">
+          <div class="interview-q">9. What is Git Stash and when would you use it?</div>
+          <div class="interview-a">"Git stash is a temporary storage shelf that shelves uncommitted modified and staged code, restoring the working directory to a clean HEAD state. It is primarily used when you are in the middle of incomplete work on a feature branch and an urgent bug requires you to switch branches immediately without committing broken, half-written code."</div>
+        </div>
+        <div class="interview-item">
+          <div class="interview-q">10. What is the difference between git switch and git checkout?</div>
+          <div class="interview-a">"Historically, git checkout was overloaded to both switch branches and restore/discard file modifications. To prevent accidental code loss, Git 2.23 introduced git switch exclusively for navigating and creating branches, and git restore exclusively for discarding or unstaging file modifications."</div>
+        </div>
+        <div class="interview-item">
+          <div class="interview-q">11. What is a Pull Request (PR)?</div>
+          <div class="interview-a">"A Pull Request is a collaborative GitHub feature where a developer asks the project maintainers to review code committed on a feature branch and merge it into the target base branch. It serves as the hub for peer code reviews, continuous integration test checks, and architectural discussions before production deployment."</div>
+        </div>
+        <div class="interview-item">
+          <div class="interview-q">12. What is the difference between Fork and Clone?</div>
+          <div class="interview-a">"A fork is a remote, server-side copy of someone else's GitHub repository created under your personal GitHub profile, enabling you to modify the project without direct write access. A clone is a local copy of a remote repository downloaded directly onto your local physical computer via the git clone command."</div>
+        </div>
+        <div class="interview-item">
+          <div class="interview-q">13. What is 'origin' and 'HEAD' in Git?</div>
+          <div class="interview-a">"'origin' is the default alias name that Git automatically assigns to the primary remote repository URL from which a project was cloned. 'HEAD' is a special pointer symbol representing the current active snapshot or branch you are currently standing on in your working directory."</div>
+        </div>
+        <div class="interview-item">
+          <div class="interview-q">14. What is a Fast-Forward Merge?</div>
+          <div class="interview-a">"A fast-forward merge occurs when there are no divergent commits on the target branch since the feature branch was created. Because history is linear, Git does not need to create a dedicated merge commit; it simply advances the target branch pointer forward to point to the latest commit of the feature branch."</div>
+        </div>
+        <div class="interview-item">
+          <div class="interview-q">15. What is git reflog and how does it save lost commits?</div>
+          <div class="interview-a">"Git reflog (reference log) records an internal journal of every movement of the HEAD pointer in your local repository, including commits abandoned via git reset or branch deletions. If you accidentally run git reset --hard, you can check git reflog to identify the orphaned commit hash and reset back to it."</div>
+        </div>
+        <div class="interview-item">
+          <div class="interview-q">16. What is the difference between git reset --soft, --mixed, and --hard?</div>
+          <div class="interview-a">"git reset --soft moves HEAD back while keeping all changes staged in the index ready for commit. git reset --mixed (the default) moves HEAD and unstages changes, keeping modifications safely in the working directory. git reset --hard moves HEAD, clears the staging index, and permanently discards all working tree modifications."</div>
+        </div>
+      </div>
+    </article>
+
+
+    <!-- LAST-HOUR REVISION: GIT IN 15 MINUTES -->
+    <article class="note-section last-hour-section" id="master-lasthour">
+      <div class="section-eyebrow">
+        <span class="sec-num">LAST-HOUR REVISION</span>
+        <span class="sec-priority priority-p0">⚡ GIT IN 15 MINUTES</span>
+      </div>
+      <h2 class="section-title">Last-Hour Placement Revision: Git in 15 Minutes</h2>
+      <p class="section-intro">
+        Standing outside the exam hall or 15 minutes before your interview? This ultra-condensed review covers the 20 absolute essential commands, top 10 comparisons, and core workflow equations.
+      </p>
+
+      <div class="concept-grid">
+        <div class="concept-card">
+          <h4>🚀 Top 20 Must-Know Commands</h4>
+          <ol style="margin-left: 1.2rem; font-size: 0.9rem; line-height: 1.6;">
+            <li><code>git init</code> : Initialize repository in current folder</li>
+            <li><code>git clone &lt;url&gt;</code> : Download full remote repository</li>
+            <li><code>git status</code> : Inspect working tree and staging state</li>
+            <li><code>git add .</code> : Stage all modified/untracked files</li>
+            <li><code>git commit -m "msg"</code> : Save staged snapshot permanently</li>
+            <li><code>git log --oneline</code> : View compact commit history</li>
+            <li><code>git branch</code> : List all local branches</li>
+            <li><code>git switch -c &lt;name&gt;</code> : Create and switch to new branch</li>
+            <li><code>git merge &lt;branch&gt;</code> : Combine branch into active branch</li>
+            <li><code>git branch -d &lt;name&gt;</code> : Safely delete merged branch</li>
+            <li><code>git remote -v</code> : List remote target URLs</li>
+            <li><code>git push -u origin &lt;branch&gt;</code> : Push and track upstream</li>
+            <li><code>git fetch origin</code> : Download remote changes (safe)</li>
+            <li><code>git pull origin &lt;branch&gt;</code> : Fetch + auto-merge</li>
+            <li><code>git diff --staged</code> : View differences staged for commit</li>
+            <li><code>git restore &lt;file&gt;</code> : Discard local uncommitted edits</li>
+            <li><code>git restore --staged &lt;file&gt;</code> : Unstage file</li>
+            <li><code>git reset --soft HEAD~1</code> : Undo commit, keep staged</li>
+            <li><code>git revert &lt;commit&gt;</code> : Undo commit safely with new commit</li>
+            <li><code>git stash / pop</code> : Temporarily store & restore WIP edits</li>
+          </ol>
+        </div>
+
+        <div class="concept-card">
+          <h4>🧠 Top 10 Rapid Memory Tricks</h4>
+          <p>• <strong>add</strong> = Prepare snapshot for staging.<br>
+          • <strong>commit</strong> = Save permanent snapshot with hash.<br>
+          • <strong>push</strong> = Upload commits to remote server.<br>
+          • <strong>fetch</strong> = Download remote objects without merging.<br>
+          • <strong>pull</strong> = <code>git fetch + git merge</code>.<br>
+          • <strong>clone</strong> = Download entire repo and history once.<br>
+          • <strong>reset</strong> = Rewind history (safe for local private commits).<br>
+          • <strong>revert</strong> = Append undo commit (safe for public branches).<br>
+          • <strong>stash</strong> = Clipboard for unfinished work.<br>
+          • <strong>fork</strong> = Server-side copy on GitHub for open source.</p>
+        </div>
+      </div>
+
+      <div class="interactive-diagram" style="margin-top: 2rem;">
+        <div class="diagram-title">⚡ 5-Step Merge Conflict Checklist</div>
+        <div class="workflow-steps">
+          <div class="workflow-step">
+            <div class="step-num">1</div>
+            <div class="step-title">Conflict Alert</div>
+            <p>Git halts merge: <code>CONFLICT in file.txt</code>.</p>
+          </div>
+          <div class="workflow-step">
+            <div class="step-num">2</div>
+            <div class="step-title">Open File</div>
+            <p>Locate <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>, <code>=======</code>, <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code>.</p>
+          </div>
+          <div class="workflow-step">
+            <div class="step-num">3</div>
+            <div class="step-title">Edit Code</div>
+            <p>Keep correct logic; delete conflict markers.</p>
+          </div>
+          <div class="workflow-step">
+            <div class="step-num">4</div>
+            <div class="step-title">Stage</div>
+            <p>Mark resolved by running <code>git add file.txt</code>.</p>
+          </div>
+          <div class="workflow-step">
+            <div class="step-num">5</div>
+            <div class="step-title">Commit</div>
+            <p>Finish resolution with <code>git commit</code>.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+
+      <!-- FOOTER -->
+      <footer style="margin-top: 5rem; padding: 3rem 0; border-top: 1px solid var(--border); text-align: center;">
+        <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1rem;">
+          PlacementPrep — Designed for Fresher Technical Recruitment (Accenture, TCS, Cognizant, Infosys, Deloitte, Wipro).
+        </p>
+        <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
+          <a href="index.html" style="color: var(--git-orange); text-decoration: none; font-weight: 600;">← All Notes Modules</a>
+          <a href="../github/index.html" style="color: var(--git-orange); text-decoration: none; font-weight: 600;">💻 Practice Git MCQs</a>
+          <a href="#progressBar" style="color: var(--text-muted); text-decoration: none;">↑ Back to Top</a>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <!-- FLOATING BACK TO TOP BUTTON -->
+  <button class="back-top-btn" id="backTopBtn" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" title="Back to top">↑</button>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    // 1. Reading Progress Bar & Back to Top visibility
+    window.addEventListener('scroll', () => {
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = totalHeight > 0 ? (window.pageYOffset / totalHeight) * 100 : 0;
+      const bar = document.getElementById('progressBar');
+      if (bar) bar.style.width = progress + '%';
+
+      const backBtn = document.getElementById('backTopBtn');
+      if (backBtn) {
+        if (window.pageYOffset > 400) {
+          backBtn.classList.add('visible');
+        } else {
+          backBtn.classList.remove('visible');
+        }
+      }
+    });
+
+    // 2. Active Section Highlight in Sidebar
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          document.querySelectorAll('.toc-link').forEach(link => {
+            if (link.getAttribute('href') === '#' + id) {
+              link.classList.add('active');
+            } else {
+              link.classList.remove('active');
+            }
+          });
+        }
+      });
+    }, { rootMargin: '-100px 0px -70% 0px' });
+
+    document.querySelectorAll('.note-section').forEach(sec => observer.observe(sec));
+
+    // 3. Filter Table of Contents
+    function filterTOC() {
+      const query = (document.getElementById('tocFilter').value || '').toLowerCase();
+      const links = document.querySelectorAll('.toc-link');
+      links.forEach(link => {
+        const title = link.getAttribute('data-title') || '';
+        const text = link.textContent.toLowerCase();
+        if (title.includes(query) || text.includes(query)) {
+          link.style.display = 'flex';
+        } else {
+          link.style.display = 'none';
+        }
+      });
+    }
+
+    // 4. Copy Code Snippet
+    function copyCode(btn) {
+      const block = btn.closest('.terminal-block');
+      if (!block) return;
+      const code = block.querySelector('code') || block.querySelector('.term-cmd');
+      const textToCopy = (code ? code.innerText : '').replace(/\$/g, '').trim();
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        const orig = btn.innerText;
+        btn.innerText = 'Copied!';
+        btn.style.color = 'var(--git-orange)';
+        setTimeout(() => {
+          btn.innerText = orig;
+          btn.style.color = '';
+        }, 2000);
+      });
+    }
+
+    // 5. Toggle Last-Hour Mode
+    let lastHourActive = false;
+    function toggleLastHourMode() {
+      lastHourActive = !lastHourActive;
+      const btn = document.getElementById('lastHourToggle');
+      if (lastHourActive) {
+        if (btn) {
+          btn.classList.add('active');
+          btn.innerHTML = '<span>✓</span> <span>Last-Hour Active</span>';
+        }
+        const target = document.getElementById('master-lasthour');
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+          target.style.boxShadow = '0 0 35px rgba(240, 80, 50, 0.4)';
+          setTimeout(() => { target.style.boxShadow = ''; }, 2500);
+        }
+      } else {
+        if (btn) {
+          btn.classList.remove('active');
+          btn.innerHTML = '<span>⚡</span> <span>Last-Hour Mode</span>';
+        }
+      }
+    }
+
+    // 6. Theme Toggle (Sync with placementPrep_theme)
+    function toggleTheme() {
+      const html = document.documentElement;
+      const current = html.getAttribute('data-theme') || 'dark';
+      const next = current === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('placementPrep_theme', next);
+    }
+  </script>
+</body>
+</html>

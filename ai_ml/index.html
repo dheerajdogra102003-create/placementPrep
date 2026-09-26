@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <script>
+        (function () {
+            const theme = localStorage.getItem('placementPrep_theme') || 
+                          localStorage.getItem('placementprep-theme') || 
+                          localStorage.getItem('theme') || 
+                          'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI, Machine Learning &amp; Deep Learning Placement Practice | PlacementPrep</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="app-header">
+        <div class="header-container">
+            <div class="header-left">
+                <a href="../index.html" class="back-link" aria-label="Return to PlacementPrep Dashboard">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                    Dashboard
+                </a>
+                <div class="header-divider"></div>
+                <div class="module-title-area">
+                    <div class="topic-tag">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2a10 10 0 1 0 10 10H12V2z"></path>
+                            <path d="M12 2a10 10 0 0 1 10 10"></path>
+                            <circle cx="12" cy="12" r="4"></circle>
+                        </svg>
+                        <span>AI / ML / DL</span>
+                    </div>
+                    <span id="header-mode-badge" class="badge mode-tag">Practice Mode</span>
+                </div>
+            </div>
+
+            <div class="header-center">
+                <!-- 60:00 Timer for Exam Mode -->
+                <div id="timer-box" class="timer-box hidden" aria-live="polite">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    <span id="timer-display" class="timer-text">60:00</span>
+                </div>
+            </div>
+
+            <div class="header-right">
+                <a href="../notes/ai-ml-dl.html" class="back-link" style="font-weight: 700; color: var(--primary); border-color: var(--primary);" title="Open Comprehensive AI, ML &amp; DL Revision Notes">
+                    📖 Full Notes
+                </a>
+                <button id="btn-open-notes" class="notes-nav-btn" title="Open AI/ML/DL Placement Formulas &amp; Cheatsheet">
+                    ⚡ Formulas
+                </button>
+                <div id="score-counter" class="score-pill">
+                    Score: <strong id="score-value">0</strong>
+                </div>
+
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark/light mode">
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="4.22" x2="19.78" y2="5.64"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="app-main">
+
+        <!-- SCREEN 1: Welcome & Mode Selection -->
+        <section id="screen-welcome" class="screen-view">
+            <div class="welcome-hero">
+                <div class="hero-pill">🤖 MNC Technical Recruitment 2026 Edition</div>
+                <h1>Artificial Intelligence, Machine Learning &amp; Deep Learning</h1>
+                <p>Master 100 realistic placement assessment MCQs with deep distractor breakdowns, algorithmic reasoning, model selection scenarios, and numerical calculations.</p>
+
+                <div class="meta-stats-strip">
+                    <div class="meta-stat-item">Total: <strong>100 Questions</strong></div>
+                    <div class="meta-stat-item">AI: <strong>20</strong> | ML: <strong>50</strong> | DL: <strong>30</strong></div>
+                    <div class="meta-stat-item">Easy: <strong>15</strong> | Medium: <strong>50</strong> | Hard: <strong>35</strong></div>
+                    <div class="meta-stat-item">Code &amp; Math: <strong>30+ Qs</strong></div>
+                </div>
+
+                <div class="mode-cards-grid">
+                    <!-- Mode 1: Practice Mode -->
+                    <div class="mode-card featured">
+                        <span class="featured-pill">Recommended</span>
+                        <div class="mode-icon">🧠</div>
+                        <h2>Interactive Practice</h2>
+                        <p>Learn actively with instant answer validation, comprehensive distractor explanations, Python snippets, and placement takeaways.</p>
+                        <ul class="mode-bullets">
+                            <li>Instant correctness feedback</li>
+                            <li>Why other options are wrong</li>
+                            <li>Section &amp; difficulty filters</li>
+                            <li>Placement exam trap alerts</li>
+                        </ul>
+                        <button class="btn-start primary" onclick="startMode('practice')">Start Practice Mode</button>
+                    </div>
+
+                    <!-- Mode 2: MNC Exam Mode -->
+                    <div class="mode-card">
+                        <div class="mode-icon">⏱️</div>
+                        <h2>MNC Exam Simulation</h2>
+                        <p>Simulate realistic 60-minute technical assessments from TCS Digital, Accenture Advanced ASE, Infosys DSE, and Capgemini.</p>
+                        <ul class="mode-bullets">
+                            <li>60-minute countdown timer</li>
+                            <li>No immediate answer reveals</li>
+                            <li>Comprehensive score report</li>
+                            <li>Subject-wise accuracy breakdown</li>
+                        </ul>
+                        <button class="btn-start secondary" onclick="startMode('exam')">Launch 60m Exam</button>
+                    </div>
+
+                    <!-- Mode 3: Flashcards Mode -->
+                    <div class="mode-card">
+                        <div class="mode-icon">⚡</div>
+                        <h2>Rapid Flashcards</h2>
+                        <p>Quickly flip through high-frequency core concepts, formulas, and architecture principles for last-minute campus interview revision.</p>
+                        <ul class="mode-bullets">
+                            <li>One-click flip to reveal answer</li>
+                            <li>Focus on core formulas &amp; trade-offs</li>
+                            <li>Fast memory reinforcement</li>
+                            <li>Shuffle &amp; bookmark support</li>
+                        </ul>
+                        <button class="btn-start secondary" onclick="startMode('flashcards')">Start Flashcards</button>
+                    </div>
+                </div>
+
+                <!-- Company Target Bar -->
+                <div class="companies-bar">
+                    <h3>Frequently Tested In Technical Placement Rounds</h3>
+                    <div class="company-badges">
+                        <span class="company-badge">Accenture Advanced ASE</span>
+                        <span class="company-badge">TCS Digital &amp; Prime</span>
+                        <span class="company-badge">Infosys SP / DSE</span>
+                        <span class="company-badge">Capgemini Exceler</span>
+                        <span class="company-badge">Cognizant GenC Next</span>
+                        <span class="company-badge">Wipro Elite</span>
+                        <span class="company-badge">Deloitte USI</span>
+                        <span class="company-badge">LTIMindtree</span>
+                        <span class="company-badge">HCLTech</span>
+                        <span class="company-badge">Tech Mahindra</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCREEN 2: Practice & Exam Workspace -->
+        <section id="screen-workspace" class="screen-view hidden">
+            <div class="workspace-layout">
+
+                <!-- Left Column: Filter Bar + Question Area -->
+                <div class="quiz-main-column">
+
+                    <!-- Filter & Search Bar -->
+                    <div class="filter-bar">
+                        <div class="filter-group">
+                            <label for="filter-section">Section:</label>
+                            <select id="filter-section" class="filter-select" onchange="applyFilters()">
+                                <option value="all">All Sections (100)</option>
+                                <option value="Artificial Intelligence">AI (20)</option>
+                                <option value="Machine Learning">Machine Learning (50)</option>
+                                <option value="Deep Learning">Deep Learning (30)</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group">
+                            <label for="filter-difficulty">Difficulty:</label>
+                            <select id="filter-difficulty" class="filter-select" onchange="applyFilters()">
+                                <option value="all">All Difficulties</option>
+                                <option value="Easy">Easy (15)</option>
+                                <option value="Medium">Medium (50)</option>
+                                <option value="Hard">Hard (35)</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group">
+                            <label for="filter-type">Type:</label>
+                            <select id="filter-type" class="filter-select" onchange="applyFilters()">
+                                <option value="all">All Types</option>
+                                <option value="conceptual">Conceptual (30)</option>
+                                <option value="scenario_based">Scenario Based (25)</option>
+                                <option value="application_based">Application Based (15)</option>
+                                <option value="code_or_pseudocode">Code / Python (10)</option>
+                                <option value="calculation_based">Calculation (10)</option>
+                                <option value="output_or_prediction">Output / Shape (5)</option>
+                                <option value="debugging_or_troubleshooting">Troubleshooting (5)</option>
+                            </select>
+                        </div>
+
+                        <input type="text" id="search-input" class="search-input" placeholder="Search concept, formula, or code..." oninput="applyFilters()">
+                    </div>
+
+                    <!-- Question Card Container -->
+                    <div class="question-card" id="question-card">
+                        <!-- Dynamic metadata tags -->
+                        <div class="question-meta-header">
+                            <div class="meta-tags-left">
+                                <span id="q-id-tag" class="tag-badge tag-id">AI_ML_DL_001</span>
+                                <span id="q-section-tag" class="tag-badge tag-section">Machine Learning</span>
+                                <span id="q-topic-tag" class="tag-badge tag-topic">Model Evaluation</span>
+                                <span id="q-diff-tag" class="tag-badge tag-diff-Hard">Hard</span>
+                                <span id="q-type-tag" class="tag-badge tag-type">Scenario Based</span>
+                            </div>
+                            <div class="meta-actions-right">
+                                <button id="btn-bookmark" class="bookmark-btn" onclick="toggleBookmarkCurrent()">
+                                    ⭐ Bookmark
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Question Text -->
+                        <div id="q-text" class="question-text">
+                            Loading question...
+                        </div>
+
+                        <!-- Code snippet container (conditionally shown) -->
+                        <div id="code-snippet-box" class="code-container hidden">
+                            <button class="copy-code-btn" onclick="copySnippetCode()">Copy</button>
+                            <pre><code id="code-snippet-text"></code></pre>
+                        </div>
+
+                        <!-- Options Grid -->
+                        <div id="options-container" class="options-grid">
+                            <!-- Options A, B, C, D injected dynamically -->
+                        </div>
+
+                        <!-- Explanation Panel (Practice Mode after answer or Exam Review) -->
+                        <div id="explanation-box" class="explanation-panel hidden">
+                            <div class="exp-header">
+                                💡 Placement Explanation
+                            </div>
+                            <div id="exp-text" class="exp-text"></div>
+
+                            <!-- Why other options are wrong -->
+                            <div id="distractors-container" class="distractor-section">
+                                <div class="distractor-title">⚠️ Why Other Options Are Wrong:</div>
+                                <div id="distractors-list"></div>
+                            </div>
+
+                            <!-- Placement Tip -->
+                            <div id="placement-tip-box" class="tip-box">
+                                <strong>Exam Tip:</strong> <span id="placement-tip-text"></span>
+                            </div>
+                        </div>
+
+                        <!-- Navigation Controls -->
+                        <div class="quiz-controls">
+                            <button id="btn-prev" class="nav-btn" onclick="navigatePrev()">
+                                ← Previous
+                            </button>
+                            
+                            <div class="nav-center-actions">
+                                <button id="btn-clear" class="nav-btn" onclick="clearCurrentAnswer()">
+                                    Clear Selection
+                                </button>
+                            </div>
+
+                            <button id="btn-next" class="nav-btn primary" onclick="navigateNext()">
+                                Next →
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Question Palette & Progress -->
+                <aside class="quiz-sidebar">
+                    <div class="sidebar-card">
+                        <div class="sidebar-title">
+                            <span>Question Navigation</span>
+                            <span id="palette-counter">1 / 100</span>
+                        </div>
+
+                        <div class="palette-stats">
+                            <span>Answered: <strong id="answered-count">0</strong>/100</span>
+                            <span id="exam-timer-sidebar" class="hidden">Remaining: <strong>60:00</strong></span>
+                        </div>
+
+                        <!-- 100 Question Grid -->
+                        <div id="palette-grid" class="palette-grid">
+                            <!-- 100 items injected dynamically -->
+                        </div>
+
+                        <div class="palette-legend">
+                            <div class="legend-item"><span class="legend-dot correct"></span> Correct</div>
+                            <div class="legend-item"><span class="legend-dot wrong"></span> Wrong</div>
+                            <div class="legend-item"><span class="legend-dot unanswered"></span> Unvisited</div>
+                            <div class="legend-item"><span class="legend-dot bookmarked"></span> Bookmarked</div>
+                        </div>
+                    </div>
+
+                    <!-- Exam Submit Box (Exam Mode only) -->
+                    <div id="exam-submit-box" class="sidebar-card exam-submit-box hidden">
+                        <button class="btn-submit-exam" onclick="finishExam()">
+                            Finish &amp; Submit Assessment
+                        </button>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <!-- SCREEN 3: Flashcards View -->
+        <section id="screen-flashcards" class="screen-view hidden">
+            <div class="flashcard-container">
+                <div class="flashcard" onclick="flipFlashcard()">
+                    <div class="tag-badge tag-topic" id="fc-topic">AI Fundamentals</div>
+                    <div id="fc-prompt" class="flashcard-prompt">Click to reveal answer</div>
+                    <div id="fc-answer" class="flashcard-answer hidden"></div>
+                    <div class="flashcard-tip">Click card anywhere to flip</div>
+                </div>
+                <div class="quiz-controls" style="margin-top: 1.5rem;">
+                    <button class="nav-btn" onclick="prevFlashcard()">← Previous Card</button>
+                    <span id="fc-counter" style="font-weight: 700; color: var(--text-secondary);">1 / 100</span>
+                    <button class="nav-btn primary" onclick="nextFlashcard()">Next Card →</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCREEN 4: Exam Results Screen -->
+        <section id="screen-results" class="screen-view hidden">
+            <div class="results-card">
+                <div class="results-header">
+                    <h2>MNC Assessment Completed!</h2>
+                    <p id="results-verdict-msg">Review your detailed performance breakdown below.</p>
+                </div>
+
+                <div class="score-circle-container">
+                    <div id="results-score-big" class="score-big">0</div>
+                    <div class="score-max">/ 100 MARKS</div>
+                </div>
+
+                <div class="results-breakdown-grid">
+                    <div class="breakdown-item">
+                        <div class="breakdown-label">AI Score</div>
+                        <div id="res-ai-score" class="breakdown-val">0 / 20</div>
+                    </div>
+                    <div class="breakdown-item">
+                        <div class="breakdown-label">ML Score</div>
+                        <div id="res-ml-score" class="breakdown-val">0 / 50</div>
+                    </div>
+                    <div class="breakdown-item">
+                        <div class="breakdown-label">DL Score</div>
+                        <div id="res-dl-score" class="breakdown-val">0 / 30</div>
+                    </div>
+                    <div class="breakdown-item">
+                        <div class="breakdown-label">Accuracy</div>
+                        <div id="res-accuracy" class="breakdown-val">0%</div>
+                    </div>
+                    <div class="breakdown-item">
+                        <div class="breakdown-label">Time Taken</div>
+                        <div id="res-time-taken" class="breakdown-val">0m 0s</div>
+                    </div>
+                </div>
+
+                <div class="results-actions">
+                    <button class="nav-btn primary" onclick="reviewExamAnswers()">
+                        Review Full Solutions
+                    </button>
+                    <button class="nav-btn" onclick="startMode('exam')">
+                        Retake Assessment
+                    </button>
+                    <button class="nav-btn" onclick="startMode('practice')">
+                        Back to Practice Mode
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- REVISION FORMULAS & CHEATSHEET MODAL -->
+    <div id="notes-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>⚡ AI, Machine Learning &amp; Deep Learning Placement Cheatsheet</h3>
+                <button class="modal-close" onclick="closeNotesModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                
+                <div class="cheatsheet-section">
+                    <h4>1. Model Evaluation &amp; Confusion Matrix</h4>
+                    <div class="formula-card">
+                        <strong>Scikit-Learn Confusion Matrix:</strong><br>
+                        <code>[[True Negative (TN),  False Positive (FP)],<br>
+ [False Negative (FN), True Positive (TP)]]</code>
+                    </div>
+                    <div class="formula-card">
+                        <strong>Accuracy:</strong> <code>(TP + TN) / (TP + TN + FP + FN)</code>
+                    </div>
+                    <div class="formula-card">
+                        <strong>Precision:</strong> <code>TP / (TP + FP)</code> (Critical when False Positives are costly: Spam Filter)
+                    </div>
+                    <div class="formula-card">
+                        <strong>Recall (Sensitivity):</strong> <code>TP / (TP + FN)</code> (Critical when False Negatives are costly: Cancer/Fraud)
+                    </div>
+                    <div class="formula-card">
+                        <strong>F1-Score:</strong> <code>2 * (Precision * Recall) / (Precision + Recall)</code> (Harmonic mean)
+                    </div>
+                </div>
+
+                <div class="cheatsheet-section">
+                    <h4>2. Decision Trees &amp; Clustering</h4>
+                    <div class="formula-card">
+                        <strong>Gini Impurity:</strong> <code>Gini = 1 - Σ(p_i^2)</code> (Max binary Gini = 0.50 at 50/50 split; Pure node = 0.0)
+                    </div>
+                    <div class="formula-card">
+                        <strong>Entropy:</strong> <code>H(S) = - Σ (p_i * log2(p_i))</code>
+                    </div>
+                    <div class="formula-card">
+                        <strong>Information Gain:</strong> <code>Gain(S, A) = Entropy(S) - Σ (|S_v| / |S|) * Entropy(S_v)</code>
+                    </div>
+                    <div class="formula-card">
+                        <strong>IQR Outlier Formula:</strong> <code>IQR = Q3 - Q1</code>; Outliers lie outside <code>[Q1 - 1.5*IQR, Q3 + 1.5*IQR]</code>
+                    </div>
+                </div>
+
+                <div class="cheatsheet-section">
+                    <h4>3. Deep Learning &amp; Neural Networks</h4>
+                    <div class="formula-card">
+                        <strong>Dense Layer Parameter Count:</strong> <code>(Num_Inputs + 1) * Num_Neurons</code> (+1 for bias)
+                    </div>
+                    <div class="formula-card">
+                        <strong>CNN Output Feature Map Dimension:</strong> <code>Output = floor((Input_Size - Filter_Size + 2*Padding) / Stride) + 1</code>
+                    </div>
+                    <div class="formula-card">
+                        <strong>Gradient Descent Update:</strong> <code>w_new = w_old - η * (dL / dw)</code>
+                    </div>
+                    <div class="formula-card">
+                        <strong>L1 vs L2 Regularization:</strong><br>
+                        • L1 (Lasso): Adds <code>λ * Σ|w|</code> -> Drives non-important weights strictly to 0 (Sparse feature selection).<br>
+                        • L2 (Ridge): Adds <code>λ * Σ(w^2)</code> -> Shrinks weights asymptotically toward 0 (prevents exploding weights).
+                    </div>
+                </div>
+
+                <div class="cheatsheet-section">
+                    <h4>4. Common Placement Interview Traps</h4>
+                    <p>• <strong>Accuracy Paradox:</strong> On imbalanced data (99% class 0, 1% class 1), a dumb model predicting 0 gets 99% accuracy. Always use ROC-AUC, F1-Score, or Precision-Recall curves instead.</p>
+                    <p>• <strong>Data Leakage:</strong> Calling <code>scaler.fit()</code> on the whole dataset before splitting leaks test distribution information. Always split first, fit only on training data, and transform test data.</p>
+                    <p>• <strong>Dummy Variable Trap:</strong> When one-hot encoding a categorical feature with <code>k</code> categories, only include <code>k - 1</code> dummy columns in linear regression to avoid perfect multicollinearity.</p>
+                    <p>• <strong>Vanishing Gradients:</strong> Sigmoid derivative maxes out at 0.25. Deep stacking causes gradients to multiply to ~0. Remedy: Use ReLU activations and Batch Normalization.</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="questions.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
     <script>
         (function () {
             const theme = localStorage.getItem('placementPrep_theme');
-            if (theme === 'dark') {
+            if (theme === 'light') {
+                document.documentElement.setAttribute('data-theme', 'light');
+            } else {
                 document.documentElement.setAttribute('data-theme', 'dark');
                 document.addEventListener('DOMContentLoaded', () => document.body.classList.add('dark'));
-            } else {
-                document.documentElement.setAttribute('data-theme', 'light');
             }
         })();
     </script>
@@ -27,44 +27,73 @@
 
 <style>
 :root {
-  --bg: #f6f6f3;
-  --card: #ffffff;
-  --card2: #f0f0ed;
-  --card3: #e8e8e3;
-  --text: #111111;
-  --muted: #666666;
-  --border: #e4e4e0;
-  --blue: #0284c7;
-  --blue-hover: #0369a1;
-  --blue-light: rgba(2, 132, 199, 0.1);
+  /* Modern High-Contrast Midnight Slate Theme (Default) */
+  --bg: #0B0F19;
+  --bg-gradient: radial-gradient(ellipse 80% 50% at 50% -10%, #152238 0%, #0B0F19 65%, #050811 100%);
+  --card: #111827;
+  --card2: #162032;
+  --card3: #1E293B;
+  --text: #F8FAFC;
+  --muted: #94A3B8;
+  --border: #1F293D;
+  --border-hover: #334155;
+  --blue: #38bdf8;
+  --blue-hover: #0284c7;
+  --blue-light: rgba(56, 189, 248, 0.12);
+  --blue-glow: rgba(56, 189, 248, 0.35);
+  --shadow: 0 16px 40px rgba(0,0,0,.5);
+  --shadow-lg: 0 24px 60px rgba(0,0,0,.7);
+  --radius: 20px;
+  --font: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Light Mode (if toggled by user) */
+html[data-theme="light"]:not(.dark) body:not(.dark),
+body:not(.dark) {
+  --bg: #F8FAFC;
+  --bg-gradient: linear-gradient(180deg, #F1F5F9 0%, #FFFFFF 100%);
+  --card: #FFFFFF;
+  --card2: #F1F5F9;
+  --card3: #E2E8F0;
+  --text: #0F172A;
+  --muted: #64748B;
+  --border: #E2E8F0;
+  --border-hover: #CBD5E1;
+  --blue: #0284C7;
+  --blue-hover: #0369A1;
+  --blue-light: rgba(2, 132, 199, 0.08);
   --blue-glow: rgba(2, 132, 199, 0.2);
   --shadow: 0 14px 40px rgba(0,0,0,.06);
   --shadow-lg: 0 20px 50px rgba(0,0,0,.12);
-  --radius: 20px;
-  --font: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
+/* Explicit Dark Mode Overrides */
+html[data-theme="dark"] body,
 body.dark {
-  --bg: #111827;
-  --card: #1F2937;
-  --card2: #273449;
-  --card3: #334155;
-  --text: #F1F5F9;
+  --bg: #0B0F19;
+  --bg-gradient: radial-gradient(ellipse 80% 50% at 50% -10%, #152238 0%, #0B0F19 65%, #050811 100%);
+  --card: #111827;
+  --card2: #162032;
+  --card3: #1E293B;
+  --text: #F8FAFC;
   --muted: #94A3B8;
-  --border: #3B4A60;
+  --border: #1F293D;
+  --border-hover: #334155;
   --blue: #38bdf8;
   --blue-hover: #0284c7;
-  --blue-light: rgba(56, 189, 248, 0.16);
+  --blue-light: rgba(56, 189, 248, 0.14);
   --blue-glow: rgba(56, 189, 248, 0.35);
-  --shadow: 0 18px 50px rgba(0,0,0,.35);
-  --shadow-lg: 0 24px 60px rgba(0,0,0,.5);
+  --shadow: 0 16px 40px rgba(0,0,0,.5);
+  --shadow-lg: 0 24px 60px rgba(0,0,0,.7);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body {
   font-family: var(--font);
-  background: var(--bg);
+  background-color: var(--bg);
+  background-image: var(--bg-gradient);
+  background-attachment: fixed;
   color: var(--text);
   line-height: 1.55;
   transition: background .25s ease, color .25s ease;
@@ -79,16 +108,21 @@ a { text-decoration: none; color: inherit; }
 .topbar {
   position: fixed; top: 0; left: 0; right: 0; height: 68px; z-index: 1000;
   display: flex; align-items: center; justify-content: space-between; padding: 0 24px;
-  background: color-mix(in srgb, var(--card) 85%, transparent);
+  background: rgba(11, 15, 25, 0.85);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
 }
 .nav-left { display: flex; align-items: center; gap: 14px; }
 .brand { display: flex; align-items: center; gap: 12px; font-weight: 850; font-size: 17px; }
 .logo {
-  width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center;
-  color: #fff; background: linear-gradient(135deg, #0284c7, #2563eb);
-  box-shadow: 0 8px 22px rgba(2, 132, 199, .3); font-size: 20px;
+  width: 42px; height: 42px; border-radius: 12px; display: grid; place-items: center;
+  color: #fff; background: linear-gradient(135deg, #0ea5e9 0%, #2563eb 50%, #6366f1 100%);
+  box-shadow: 0 8px 24px rgba(14, 165, 233, 0.35);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.logo:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 12px 28px rgba(14, 165, 233, 0.5);
 }
 .brand small {
   display: block; color: var(--muted); font-size: 10px; font-weight: 700;
@@ -118,20 +152,21 @@ a { text-decoration: none; color: inherit; }
 /* Hero */
 .hero {
   position: relative; overflow: hidden; border-radius: 28px; padding: clamp(32px, 5vw, 56px);
-  background: linear-gradient(135deg, #0b1528 0%, #10243e 50%, #17243c 100%);
-  color: #fff; box-shadow: var(--shadow-lg); margin-bottom: 36px;
+  background: linear-gradient(135deg, #070d18 0%, #0d172a 50%, #131d36 100%);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  color: #fff; box-shadow: 0 24px 70px rgba(0, 0, 0, 0.6), 0 0 40px rgba(56, 189, 248, 0.1); margin-bottom: 36px;
 }
 .hero:before, .hero:after { content: ""; position: absolute; border-radius: 50%; pointer-events: none; }
-.hero:before { width: 380px; height: 380px; right: -120px; top: -140px; background: radial-gradient(circle, rgba(2, 132, 199, .45), transparent 70%); }
-.hero:after { width: 320px; height: 320px; left: 45%; bottom: -180px; background: radial-gradient(circle, rgba(37, 99, 235, .35), transparent 70%); }
+.hero:before { width: 380px; height: 380px; right: -120px; top: -140px; background: radial-gradient(circle, rgba(56, 189, 248, .35), transparent 70%); }
+.hero:after { width: 320px; height: 320px; left: 45%; bottom: -180px; background: radial-gradient(circle, rgba(99, 102, 241, .3), transparent 70%); }
 .hero-content { max-width: 600px; }
 .eyebrow {
-  display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border: 1px solid rgba(255,255,255,.18);
-  border-radius: 999px; background: rgba(255,255,255,.08); font-size: 11px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase;
+  display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border: 1px solid rgba(56, 189, 248, .3);
+  border-radius: 999px; background: rgba(56, 189, 248, .1); font-size: 11px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: #38bdf8;
 }
 .hero h1 { font-size: clamp(30px, 4.2vw, 46px); line-height: 1.08; letter-spacing: -1.8px; margin: 16px 0 12px; font-weight: 900; }
-.hero h1 span { background: linear-gradient(90deg, #38bdf8, #93c5fd); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-.hero p { color: #d1e0f3; font-size: 14px; line-height: 1.6; }
+.hero h1 span { background: linear-gradient(90deg, #38bdf8, #818cf8, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.hero p { color: #cbd5e1; font-size: 14.5px; line-height: 1.6; }
 
 /* Hero Split Layout */
 .hero-layout {
@@ -228,76 +263,127 @@ a { text-decoration: none; color: inherit; }
 /* Module Card */
 .mod-card {
   background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
-  padding: 28px; box-shadow: var(--shadow); transition: transform .22s, box-shadow .22s, border-color .22s;
+  padding: 28px; box-shadow: var(--shadow); transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
   display: flex; flex-direction: column; position: relative;
+  backdrop-filter: blur(10px);
 }
 .mod-card:hover {
-  transform: translateY(-4px); box-shadow: var(--shadow-lg);
+  transform: translateY(-5px);
+  box-shadow: 0 20px 45px -12px var(--card-glow, rgba(56, 189, 248, 0.3));
 }
 
-/* Cloud Computing Card - Blue */
+/* Cloud Computing Card - Electric Blue */
 .mod-card.cloud-card {
-  border-top: 5px solid var(--blue);
+  border-top: 4px solid #38bdf8;
+  --card-glow: rgba(56, 189, 248, 0.35);
 }
 .mod-card.cloud-card:hover {
-  border-color: var(--blue);
+  border-color: #38bdf8;
 }
 
-/* Networking Card */
+/* Networking Card - Neon Cyan */
 .mod-card.networking-card {
-  border-top: 5px solid #0284c7;
+  border-top: 4px solid #06b6d4;
+  --card-glow: rgba(6, 182, 212, 0.35);
 }
 .mod-card.networking-card:hover {
-  border-color: #0284c7;
+  border-color: #06b6d4;
 }
 .mod-card.networking-card .card-icon {
-  background: rgba(2, 132, 199, 0.12); color: #0284c7;
+  background: rgba(6, 182, 212, 0.12); color: #06b6d4;
+}
+.mod-card.networking-card .card-badge {
+  background: rgba(6, 182, 212, 0.12); color: #06b6d4;
 }
 .mod-card.networking-card .open-card-btn {
-  background: linear-gradient(135deg, #0284c7, #2563eb);
+  background: linear-gradient(135deg, #0284c7, #06b6d4);
 }
 .mod-card.networking-card .open-card-btn:hover {
-  background: linear-gradient(135deg, #0369a1, #1d4ed8);
+  background: linear-gradient(135deg, #0369a1, #0891b2);
 }
 
-/* Accenture Web Coding Card - Purple */
+/* Accenture Web Coding Card - Electric Purple */
 .mod-card.accenture-card {
-  border-top: 5px solid #7c3aed;
+  border-top: 4px solid #a855f7;
+  --card-glow: rgba(168, 85, 247, 0.35);
 }
 .mod-card.accenture-card:hover {
-  border-color: #7c3aed;
+  border-color: #a855f7;
 }
 .mod-card.accenture-card .card-icon {
-  background: rgba(124, 58, 237, 0.12); color: #7c3aed;
+  background: rgba(168, 85, 247, 0.12); color: #a855f7;
 }
 .mod-card.accenture-card .card-badge {
-  background: rgba(124, 58, 237, 0.12); color: #7c3aed;
+  background: rgba(168, 85, 247, 0.12); color: #a855f7;
 }
 .mod-card.accenture-card .open-card-btn {
-  background: linear-gradient(135deg, #7c3aed, #4f46e5);
+  background: linear-gradient(135deg, #7c3aed, #a855f7);
 }
 .mod-card.accenture-card .open-card-btn:hover {
-  background: linear-gradient(135deg, #6d28d9, #4338ca);
+  background: linear-gradient(135deg, #6d28d9, #9333ea);
 }
 
-/* Cybersecurity Card - Emerald */
+/* Cybersecurity Card - Neon Teal/Mint */
 .mod-card.cyber-card {
-  border-top: 5px solid #059669;
+  border-top: 4px solid #10b981;
+  --card-glow: rgba(16, 185, 129, 0.35);
 }
 .mod-card.cyber-card:hover {
-  border-color: #059669;
+  border-color: #10b981;
 }
 .mod-card.cyber-card .card-icon {
-  background: rgba(5, 150, 105, 0.12); color: #059669;
+  background: rgba(16, 185, 129, 0.12); color: #10b981;
 }
 .mod-card.cyber-card .card-badge {
-  background: rgba(5, 150, 105, 0.12); color: #059669;
+  background: rgba(16, 185, 129, 0.12); color: #10b981;
 }
 .mod-card.cyber-card .open-card-btn {
-  background: linear-gradient(135deg, #059669, #0d9488);
+  background: linear-gradient(135deg, #059669, #10b981);
 }
 .mod-card.cyber-card .open-card-btn:hover {
-  background: linear-gradient(135deg, #047857, #0f766e);
+  background: linear-gradient(135deg, #047857, #059669);
+}
+
+/* AI, Machine Learning & Deep Learning Card - Subtle Indigo */
+.mod-card.aiml-card {
+  border-top: 4px solid #6366f1;
+  --card-glow: rgba(99, 102, 241, 0.35);
+}
+.mod-card.aiml-card:hover {
+  border-color: #6366f1;
+}
+.mod-card.aiml-card .card-icon {
+  background: rgba(99, 102, 241, 0.12); color: #818cf8;
+}
+.mod-card.aiml-card .card-badge {
+  background: rgba(99, 102, 241, 0.12); color: #818cf8;
+}
+.mod-card.aiml-card .open-card-btn {
+  background: linear-gradient(135deg, #4f46e5, #818cf8);
+}
+.mod-card.aiml-card .open-card-btn:hover {
+  background: linear-gradient(135deg, #4338ca, #6366f1);
+}
+
+/* Git & GitHub Module Card - Git Orange */
+.mod-card.git-card {
+  border-top: 4px solid #f05032;
+  --card-glow: rgba(240, 80, 50, 0.35);
+}
+.mod-card.git-card:hover {
+  border-color: #f05032;
+}
+.mod-card.git-card .card-icon {
+  background: rgba(240, 80, 50, 0.12); color: #f05032;
+}
+.mod-card.git-card .card-badge {
+  background: rgba(240, 80, 50, 0.12); color: #f05032;
+}
+.mod-card.git-card .open-card-btn {
+  background: linear-gradient(135deg, #f05032, #d53a8e);
+}
+.mod-card.git-card .open-card-btn:hover {
+  background: linear-gradient(135deg, #d4381a, #b0246f);
 }
 
 .card-header {
@@ -445,7 +531,13 @@ textarea.form-control { min-height: 80px; resize: vertical; }
 <!-- Header -->
 <header class="topbar">
   <div class="nav-left">
-    <a href="../index.html" class="logo" title="Back to PlacementPrep">☁</a>
+    <a href="../index.html" class="logo" title="Back to PlacementPrep Dashboard">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+        <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+      </svg>
+    </a>
     <div class="brand">
       Placement<span>Prep</span>
       <small>Notes &amp; Revision Material</small>
@@ -655,6 +747,60 @@ textarea.form-control { min-height: 80px; resize: vertical; }
       </a>
     </article>
 
+    <!-- AI, Machine Learning & Deep Learning Notes Card -->
+    <article class="mod-card aiml-card">
+      <div class="card-header">
+        <div class="card-icon">🤖</div>
+        <span class="card-badge">25 Sections · 40 Traps · P0 Notes</span>
+      </div>
+      <h3>AI, Machine Learning &amp; Deep Learning 2026</h3>
+      <p>
+        The complete MNC technical placement revision system and exam-hall cheat sheet. 
+        Covers AI Search (A*), Supervised/Unsupervised ML, Data Preprocessing &amp; Leakage, Confusion Matrix math, 
+        Decision Trees, Random Forest, SVM, CNNs, LSTMs, 40 Fatal Placement Traps, 30 Real-World Business Scenarios, and 50 Hall Takeaways.
+      </p>
+      <div class="tag-list">
+        <span class="tag-item">AI &amp; Search</span>
+        <span class="tag-item">Regression &amp; SVM</span>
+        <span class="tag-item">Confusion Matrix</span>
+        <span class="tag-item">Decision Trees</span>
+        <span class="tag-item">CNN &amp; Vision</span>
+        <span class="tag-item">RNN &amp; LSTM</span>
+        <span class="tag-item">40 Placement Traps</span>
+        <span class="tag-item">50 Hall Takeaways</span>
+      </div>
+      <a href="ai-ml-dl.html" class="open-card-btn">
+        Open AI, ML &amp; DL Notes →
+      </a>
+    </article>
+
+    <!-- Git & GitHub Notes Module Card -->
+    <article class="mod-card git-card">
+      <div class="card-header">
+        <div class="card-icon">🐙</div>
+        <span class="card-badge">30 Sections · 30+ Scenarios · P0 Notes</span>
+      </div>
+      <h3>Git &amp; GitHub Placement Notes</h3>
+      <p>
+        The definitive Git revision module for fresher technical placement exams and MNC interviews (TCS, Accenture, Cognizant, Infosys, Deloitte). 
+        Covers Three-Area Architecture, Branching &amp; Fast-Forward merges, Merge Conflict resolution, Reset vs Revert, Pull vs Fetch, Stash, 
+        30 Real-World Business Scenarios, 35+ Fatal Traps, 13 Comparison Tables, 16 Spoken Interview Q&amp;As, and a 15-Minute Cram Sheet.
+      </p>
+      <div class="tag-list">
+        <span class="tag-item">Architecture</span>
+        <span class="tag-item">Branch &amp; Merge</span>
+        <span class="tag-item">Conflicts</span>
+        <span class="tag-item">Reset vs Revert</span>
+        <span class="tag-item">Pull vs Fetch</span>
+        <span class="tag-item">30 Scenarios</span>
+        <span class="tag-item">35+ Traps</span>
+        <span class="tag-item">15-Min Cram</span>
+      </div>
+      <a href="git-github.html" class="open-card-btn">
+        Open Git &amp; GitHub Notes →
+      </a>
+    </article>
+
     <!-- Custom Modules Added by User will render here -->
 
     <!-- Add New Module Notes Card -->
@@ -843,18 +989,21 @@ const body = document.body;
 const themeBtn = document.getElementById("themeBtn");
 const savedTheme = localStorage.getItem("placementPrep_theme");
 
-if (savedTheme === "dark") {
-  body.classList.add("dark");
-  if (themeBtn) themeBtn.textContent = "☀";
-} else {
+if (savedTheme === "light") {
   body.classList.remove("dark");
+  document.documentElement.setAttribute("data-theme", "light");
   if (themeBtn) themeBtn.textContent = "☾";
+} else {
+  body.classList.add("dark");
+  document.documentElement.setAttribute("data-theme", "dark");
+  if (themeBtn) themeBtn.textContent = "☀";
 }
 
 if (themeBtn) {
   themeBtn.addEventListener("click", () => {
     body.classList.toggle("dark");
     const dark = body.classList.contains("dark");
+    document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
     localStorage.setItem("placementPrep_theme", dark ? "dark" : "light");
     localStorage.setItem("placementprep-theme", dark ? "dark" : "light");
     localStorage.setItem("theme", dark ? "dark" : "light");

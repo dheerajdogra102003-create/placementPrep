@@ -1,0 +1,2807 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <script>
+    (function () {
+      const theme = localStorage.getItem('placementPrep_theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8VNQVXVYBN"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8VNQVXVYBN');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AI, Machine Learning & Deep Learning Placement Revision Notes 2026 - Comprehensive high-yield technical notes, algorithms, math formulas, scenarios, and traps for MNC recruitment.">
+  <title>AI, Machine Learning & Deep Learning Notes 2026 | PlacementPrep</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+
+:root {
+  --bg: #0D0D0D;
+  --bg-secondary: #121212;
+  --card: #181818;
+  --card-elevated: #222222;
+  --card-subtle: #161616;
+  --border: #2A2A2A;
+  --border-hover: #3E3E3E;
+  --text-primary: #F5F5F0;
+  --text-secondary: #A6A6A0;
+  --text-muted: #70706C;
+  --primary: #6366F1;
+  --primary-light: rgba(99, 102, 241, 0.15);
+  --primary-glow: rgba(99, 102, 241, 0.3);
+  --secondary: #8B5CF6;
+  --cyan: #06B6D4;
+  --cyan-light: rgba(6, 182, 212, 0.15);
+  --accent-red: #E60023;
+  --accent-red-light: rgba(230, 0, 35, 0.12);
+  --success: #10B981;
+  --success-light: rgba(16, 185, 129, 0.12);
+  --warning: #F59E0B;
+  --warning-light: rgba(245, 158, 11, 0.12);
+  --code-bg: #0A0A0A;
+  --shadow: 0 14px 40px rgba(0, 0, 0, 0.5);
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --font: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+[data-theme="light"] {
+  --bg: #F8FAFC;
+  --bg-secondary: #F1F5F9;
+  --card: #FFFFFF;
+  --card-elevated: #F8FAFC;
+  --card-subtle: #F1F5F9;
+  --border: #E2E8F0;
+  --border-hover: #CBD5E1;
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --text-muted: #94A3B8;
+  --primary: #4F46E5;
+  --primary-light: rgba(79, 70, 229, 0.08);
+  --primary-glow: rgba(79, 70, 229, 0.2);
+  --secondary: #7C3AED;
+  --cyan: #0284C7;
+  --cyan-light: rgba(2, 132, 199, 0.08);
+  --accent-red: #DC2626;
+  --accent-red-light: rgba(220, 38, 38, 0.08);
+  --success: #059669;
+  --success-light: rgba(5, 150, 105, 0.08);
+  --warning: #D97706;
+  --warning-light: rgba(217, 119, 6, 0.08);
+  --code-bg: #0F172A;
+  --shadow: 0 14px 40px rgba(15, 23, 42, 0.06);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text-primary);
+  line-height: 1.65;
+  transition: background .25s ease, color .25s ease;
+  min-height: 100vh;
+}
+
+button, input, select { font: inherit; }
+button { cursor: pointer; }
+a { text-decoration: none; color: inherit; }
+
+/* Sticky Top Navigation */
+.topbar {
+  position: fixed; top: 0; left: 0; right: 0; height: 68px; z-index: 1000;
+  display: flex; align-items: center; justify-content: space-between; padding: 0 24px;
+  background: color-mix(in srgb, var(--card) 85%, transparent);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-left { display: flex; align-items: center; gap: 14px; }
+.brand { display: flex; align-items: center; gap: 12px; font-weight: 850; font-size: 16px; }
+.logo-icon {
+  width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center;
+  color: #fff; background: linear-gradient(135deg, var(--primary), var(--secondary));
+  box-shadow: 0 8px 22px var(--primary-glow); font-size: 18px;
+}
+.brand small {
+  display: block; color: var(--text-muted); font-size: 10px; font-weight: 700;
+  letter-spacing: 1px; text-transform: uppercase;
+}
+
+.nav-actions { display: flex; align-items: center; gap: 10px; }
+.nav-btn {
+  display: inline-flex; align-items: center; gap: 6px; padding: 0 14px; height: 40px;
+  border: 1px solid var(--border); background: var(--card); color: var(--text-primary);
+  border-radius: var(--radius-sm); font-size: 12px; font-weight: 700; transition: .2s;
+}
+.nav-btn:hover { border-color: var(--primary); color: var(--primary); transform: translateY(-1px); }
+.nav-btn.primary {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: #fff; border: 0; box-shadow: 0 4px 16px var(--primary-glow);
+}
+.nav-btn.primary:hover { opacity: .95; color: #fff; }
+
+.nav-btn.last-hour-btn {
+  background: var(--accent-red-light);
+  color: var(--accent-red);
+  border-color: var(--accent-red);
+}
+.nav-btn.last-hour-btn.active {
+  background: var(--accent-red);
+  color: #fff;
+}
+
+.icon-btn {
+  width: 40px; height: 40px; border: 1px solid var(--border); background: var(--card);
+  color: var(--text-primary); border-radius: var(--radius-sm); transition: .2s;
+  display: grid; place-items: center; font-size: 16px;
+}
+.icon-btn:hover { border-color: var(--primary); color: var(--primary); }
+
+/* Reading Progress Bar */
+.progress-bar-container {
+  position: fixed; top: 68px; left: 0; right: 0; height: 3px; z-index: 999;
+  background: transparent;
+}
+.progress-bar {
+  height: 100%; width: 0%;
+  background: linear-gradient(90deg, var(--primary), var(--cyan));
+  transition: width 0.1s ease;
+}
+
+/* Page Layout */
+.layout-container {
+  max-width: 1440px; margin: 0 auto; padding: 90px 24px 60px;
+  display: grid; grid-template-columns: 290px 1fr; gap: 36px;
+  align-items: start;
+}
+
+/* Sidebar / Table of Contents */
+.sidebar {
+  position: sticky; top: 88px; max-height: calc(100vh - 108px);
+  display: flex; flex-direction: column; gap: 12px;
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--radius-md); padding: 18px; box-shadow: var(--shadow);
+}
+
+.sidebar-search {
+  padding: 8px 12px; border-radius: var(--radius-sm); border: 1px solid var(--border);
+  background: var(--bg-secondary); color: var(--text-primary); font-size: 13px;
+  outline: none; width: 100%;
+}
+.sidebar-search:focus { border-color: var(--primary); }
+
+.toc-nav {
+  overflow-y: auto; padding-right: 6px; display: flex; flex-direction: column; gap: 4px;
+}
+.toc-group-title {
+  font-size: 10.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;
+  color: var(--text-muted); margin: 12px 0 4px; padding-left: 8px;
+}
+.toc-link {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 6px 10px; border-radius: 6px; font-size: 12.5px; color: var(--text-secondary);
+  transition: .15s; font-weight: 500;
+}
+.toc-link:hover {
+  background: var(--primary-light); color: var(--primary); transform: translateX(2px);
+}
+.toc-link.active {
+  background: var(--primary-light); color: var(--primary); font-weight: 700;
+  border-left: 3px solid var(--primary);
+}
+.toc-badge {
+  font-size: 9px; padding: 2px 5px; border-radius: 4px;
+  background: var(--bg-secondary); color: var(--text-muted); font-weight: 700;
+}
+
+/* Main Content Area */
+.content-area {
+  min-width: 0;
+  display: flex; flex-direction: column; gap: 48px;
+}
+
+/* Hero Section */
+.notes-hero {
+  background: linear-gradient(135deg, var(--card) 0%, var(--bg-secondary) 100%);
+  border: 1px solid var(--border); border-radius: var(--radius-lg);
+  padding: clamp(28px, 4vw, 44px); box-shadow: var(--shadow);
+  position: relative; overflow: hidden;
+}
+.notes-hero::after {
+  content: ""; position: absolute; top: -50%; right: -20%; width: 400px; height: 400px;
+  background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-chip {
+  display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px;
+  border-radius: 9999px; background: var(--primary-light); color: var(--primary);
+  font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .8px;
+  margin-bottom: 16px;
+}
+
+.notes-hero h1 {
+  font-size: clamp(28px, 4vw, 42px); font-weight: 900; line-height: 1.15;
+  margin-bottom: 12px; letter-spacing: -1px;
+}
+.notes-hero h1 span {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--cyan) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+
+.notes-hero p {
+  font-size: 15px; color: var(--text-secondary); max-width: 820px;
+  margin-bottom: 24px; line-height: 1.6;
+}
+
+.hero-metrics {
+  display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 24px;
+}
+.metric-pill {
+  display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px;
+  background: var(--card-elevated); border: 1px solid var(--border);
+  border-radius: 9999px; font-size: 12px; font-weight: 600; color: var(--text-secondary);
+}
+.metric-pill strong { color: var(--primary); font-weight: 800; }
+
+.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+/* Chapter / Section Article */
+.note-section {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: clamp(24px, 3.5vw, 40px);
+  box-shadow: var(--shadow); transition: border-color .2s;
+  scroll-margin-top: 88px;
+}
+.note-section:hover { border-color: var(--border-hover); }
+
+.section-eyebrow {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; margin-bottom: 12px;
+}
+.sec-num {
+  font-size: 12px; font-weight: 800; color: var(--primary);
+  font-family: var(--font-mono); letter-spacing: 1px;
+}
+.sec-priority {
+  font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 9999px;
+  text-transform: uppercase; letter-spacing: .5px;
+}
+.priority-p0 { background: var(--accent-red-light); color: var(--accent-red); }
+.priority-p1 { background: var(--primary-light); color: var(--primary); }
+.priority-p2 { background: var(--cyan-light); color: var(--cyan); }
+
+.section-title {
+  font-size: clamp(22px, 3vw, 28px); font-weight: 800; margin-bottom: 12px;
+  letter-spacing: -.5px; color: var(--text-primary);
+}
+
+.section-intro {
+  font-size: 15px; color: var(--text-secondary); line-height: 1.65;
+  margin-bottom: 24px;
+}
+
+/* Content Blocks */
+.concept-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px; margin: 20px 0;
+}
+.concept-card {
+  background: var(--bg-secondary); border: 1px solid var(--border);
+  border-radius: var(--radius-md); padding: 18px;
+}
+.concept-card h4 {
+  font-size: 14px; font-weight: 700; color: var(--text-primary);
+  margin-bottom: 6px; display: flex; align-items: center; gap: 6px;
+}
+.concept-card p {
+  font-size: 13px; color: var(--text-secondary); line-height: 1.55;
+}
+
+/* Visual Architecture / ASCII Diagram Box */
+.diagram-container {
+  background: var(--code-bg); border: 1px solid var(--border);
+  border-radius: var(--radius-md); padding: 20px; margin: 20px 0;
+  overflow-x: auto;
+}
+.diagram-title {
+  font-size: 11px; font-weight: 800; text-transform: uppercase;
+  letter-spacing: .8px; color: var(--cyan); margin-bottom: 12px;
+  display: flex; align-items: center; gap: 6px;
+}
+.diagram-art {
+  font-family: var(--font-mono); font-size: 12px; line-height: 1.45;
+  color: #E2E8F0; white-space: pre; margin: 0;
+}
+
+/* Formula Block */
+.formula-block {
+  background: var(--card-elevated); border: 1.5px solid var(--primary);
+  border-radius: var(--radius-md); padding: 16px 20px; margin: 20px 0;
+  box-shadow: 0 4px 16px var(--primary-light);
+}
+.formula-name {
+  font-size: 12px; font-weight: 800; text-transform: uppercase;
+  color: var(--primary); margin-bottom: 6px; letter-spacing: .6px;
+}
+.formula-math {
+  font-family: var(--font-mono); font-size: 15px; font-weight: 700;
+  color: var(--text-primary); margin-bottom: 8px; letter-spacing: .2px;
+}
+.formula-desc {
+  font-size: 12.5px; color: var(--text-secondary); line-height: 1.5;
+}
+
+/* Comparison Tables */
+.table-wrapper {
+  overflow-x: auto; margin: 24px 0; border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}
+.comp-table {
+  width: 100%; border-collapse: collapse; font-size: 13px; text-align: left;
+}
+.comp-table th {
+  background: var(--bg-secondary); padding: 12px 16px; font-weight: 700;
+  color: var(--text-primary); border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+.comp-table td {
+  padding: 12px 16px; border-bottom: 1px solid var(--border);
+  color: var(--text-secondary); vertical-align: top; line-height: 1.5;
+}
+.comp-table tr:last-child td { border-bottom: 0; }
+.comp-table tr:hover td { background: var(--primary-light); }
+
+/* Real-World Scenario Box */
+.scenario-box {
+  background: var(--card-elevated); border-left: 4px solid var(--cyan);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0; padding: 20px;
+  margin: 20px 0;
+}
+.scenario-tag {
+  font-size: 11px; font-weight: 800; text-transform: uppercase;
+  letter-spacing: .8px; color: var(--cyan); margin-bottom: 6px;
+  display: flex; align-items: center; gap: 6px;
+}
+.scenario-title {
+  font-size: 15px; font-weight: 700; color: var(--text-primary); margin-bottom: 8px;
+}
+.scenario-problem {
+  font-size: 13px; color: var(--text-secondary); margin-bottom: 10px; line-height: 1.55;
+}
+.scenario-solution {
+  font-size: 13px; color: var(--text-primary); background: var(--bg-secondary);
+  padding: 10px 14px; border-radius: var(--radius-sm); border: 1px solid var(--border);
+  line-height: 1.55;
+}
+.scenario-solution strong { color: var(--success); }
+
+/* Fatal Placement Trap Box */
+.trap-box {
+  background: var(--accent-red-light); border-left: 4px solid var(--accent-red);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0; padding: 18px 20px;
+  margin: 20px 0;
+}
+.trap-header {
+  font-size: 12px; font-weight: 900; text-transform: uppercase;
+  letter-spacing: .8px; color: var(--accent-red); margin-bottom: 6px;
+  display: flex; align-items: center; gap: 6px;
+}
+.trap-desc {
+  font-size: 13.5px; color: var(--text-primary); font-weight: 500; line-height: 1.55;
+}
+
+/* Quick Memory Trick Pill */
+.memory-trick {
+  background: var(--primary-light); border: 1px dashed var(--primary);
+  border-radius: var(--radius-md); padding: 14px 18px; margin: 18px 0;
+  display: flex; align-items: flex-start; gap: 12px;
+}
+.memory-icon { font-size: 18px; line-height: 1; flex-shrink: 0; }
+.memory-content { font-size: 13px; color: var(--text-primary); line-height: 1.5; }
+.memory-content strong { color: var(--primary); }
+
+/* Top Interview Q&A Box */
+.interview-box {
+  background: var(--bg-secondary); border: 1px solid var(--border);
+  border-radius: var(--radius-md); padding: 18px; margin: 20px 0;
+}
+.interview-title {
+  font-size: 11px; font-weight: 800; text-transform: uppercase;
+  letter-spacing: .8px; color: var(--warning); margin-bottom: 6px;
+  display: flex; align-items: center; gap: 6px;
+}
+.interview-q {
+  font-size: 14px; font-weight: 700; color: var(--text-primary); margin-bottom: 8px;
+}
+.interview-a {
+  font-size: 13px; color: var(--text-secondary); line-height: 1.55;
+}
+
+/* Python Code Snippet Block */
+.code-block {
+  background: var(--code-bg); border: 1px solid var(--border);
+  border-radius: var(--radius-md); padding: 16px; margin: 18px 0;
+  font-family: var(--font-mono); font-size: 12.5px; line-height: 1.6;
+  color: #E2E8F0; overflow-x: auto;
+}
+.code-header {
+  font-size: 10.5px; font-weight: 700; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: .7px; margin-bottom: 8px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.code-comment { color: #64748B; font-style: italic; }
+.code-kw { color: #818CF8; font-weight: 600; }
+.code-fn { color: #38BDF8; }
+.code-str { color: #34D399; }
+
+/* Last Minute Revision Checklist / Highlights */
+.checklist-card {
+  background: var(--bg-secondary); border-radius: var(--radius-md);
+  padding: 16px; margin-top: 20px; border: 1px solid var(--border);
+}
+.checklist-title {
+  font-size: 12px; font-weight: 800; text-transform: uppercase;
+  color: var(--text-primary); margin-bottom: 8px; letter-spacing: .5px;
+}
+.checklist-items { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.checklist-items li {
+  font-size: 12.5px; color: var(--text-secondary); display: flex;
+  align-items: flex-start; gap: 8px; line-height: 1.45;
+}
+.checklist-items li::before {
+  content: "⚡"; color: var(--warning); flex-shrink: 0; font-size: 12px;
+}
+
+/* Floating Back-to-Top Button */
+.back-top-btn {
+  position: fixed; bottom: 24px; right: 24px; width: 44px; height: 44px;
+  border-radius: 50%; background: var(--card); border: 1px solid var(--border);
+  color: var(--text-primary); display: grid; place-items: center; font-size: 18px;
+  box-shadow: var(--shadow); z-index: 99; transition: .2s; opacity: 0; pointer-events: none;
+}
+.back-top-btn.visible { opacity: 1; pointer-events: auto; }
+.back-top-btn:hover { background: var(--primary); color: #fff; transform: translateY(-3px); }
+
+/* Responsive */
+@media (max-width: 1080px) {
+  .layout-container { grid-template-columns: 1fr; gap: 24px; }
+  .sidebar { display: none; }
+  .sidebar.mobile-open {
+    display: flex; position: fixed; inset: 68px 0 0 0; z-index: 1050;
+    max-height: none; border-radius: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .topbar { padding: 0 16px; }
+  .layout-container { padding: 80px 14px 40px; }
+  .notes-hero { padding: 20px 16px; }
+  .note-section { padding: 20px 16px; }
+  .hide-mobile { display: none; }
+}
+
+  </style>
+</head>
+<body>
+
+  <!-- Topbar -->
+  <header class="topbar">
+    <div class="nav-left">
+      <a href="index.html" class="logo-icon" title="Notes Hub">🤖</a>
+      <div class="brand">
+        Placement<span>Prep</span>
+        <small>AI / ML / DL Placement Notes</small>
+      </div>
+    </div>
+
+    <div class="nav-actions">
+      <a href="index.html" class="nav-btn">
+        <span>←</span> <span class="hide-mobile">Notes Hub</span>
+      </a>
+      <a href="../ai_ml/index.html" class="nav-btn primary">
+        <span>⚔️</span> <span>Practice 100 MCQs</span>
+      </a>
+      <button class="nav-btn last-hour-btn" id="lastHourBtn" title="Toggle Last-Hour High-Yield Mode">
+        <span>⚡</span> <span>Last-Hour Mode</span>
+      </button>
+      <button class="icon-btn" id="themeBtn" title="Toggle dark/light theme">☾</button>
+    </div>
+  </header>
+
+  <!-- Reading Progress Bar -->
+  <div class="progress-bar-container">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+
+  <div class="layout-container">
+    
+    <!-- Sidebar / TOC -->
+    <aside class="sidebar" id="sidebar">
+      <input type="text" id="tocSearch" class="sidebar-search" placeholder="Search 25+ topics, math, traps..." oninput="filterTOC()">
+      
+      <nav class="toc-nav" id="tocNav">
+        <div class="toc-group-title">Part 1: Artificial Intelligence</div>
+        <a href="#sec-01" class="toc-link"><span>01. AI Fundamentals</span> <span class="toc-badge">P0</span></a>
+        <a href="#sec-02" class="toc-link"><span>02. Intelligent Agents</span> <span class="toc-badge">P1</span></a>
+        <a href="#sec-03" class="toc-link"><span>03. AI Search & A*</span> <span class="toc-badge">P1</span></a>
+
+        <div class="toc-group-title">Part 2: Machine Learning Models</div>
+        <a href="#sec-04" class="toc-link"><span>04. ML Paradigms</span> <span class="toc-badge">P0</span></a>
+        <a href="#sec-05" class="toc-link"><span>05. Data Preprocessing</span> <span class="toc-badge">P0</span></a>
+        <a href="#sec-06" class="toc-link"><span>06. Regression Models</span> <span class="toc-badge">P0</span></a>
+        <a href="#sec-07" class="toc-link"><span>07. Classification</span> <span class="toc-badge">P0</span></a>
+        <a href="#sec-08" class="toc-link"><span>08. Decision Trees</span> <span class="toc-badge">P1</span></a>
+        <a href="#sec-09" class="toc-link"><span>09. Random Forest</span> <span class="toc-badge">P1</span></a>
+        <a href="#sec-10" class="toc-link"><span>10. KNN (Nearest Neighbors)</span> <span class="toc-badge">P1</span></a>
+        <a href="#sec-11" class="toc-link"><span>11. Support Vector Machines</span> <span class="toc-badge">P1</span></a>
+        <a href="#sec-12" class="toc-link"><span>12. Clustering (K-Means)</span> <span class="toc-badge">P1</span></a>
+        <a href="#sec-13" class="toc-link"><span>13. PCA (Dimensionality)</span> <span class="toc-badge">P2</span></a>
+        <a href="#sec-14" class="toc-link"><span>14. Ensemble & XGBoost</span> <span class="toc-badge">P1</span></a>
+
+        <div class="toc-group-title">Part 3: Evaluation & Validation</div>
+        <a href="#sec-15" class="toc-link"><span>15. Model Evaluation</span> <span class="toc-badge">P0</span></a>
+        <a href="#sec-16" class="toc-link"><span>16. Overfitting & L1/L2</span> <span class="toc-badge">P0</span></a>
+        <a href="#sec-17" class="toc-link"><span>17. Train / Val / Test</span> <span class="toc-badge">P0</span></a>
+        <a href="#sec-18" class="toc-link"><span>18. Feature Engineering</span> <span class="toc-badge">P1</span></a>
+
+        <div class="toc-group-title">Part 4: Deep Learning</div>
+        <a href="#sec-19" class="toc-link"><span>19. Neural Networks & Perceptron</span> <span class="toc-badge">P0</span></a>
+        <a href="#sec-20" class="toc-link"><span>20. Activation Functions</span> <span class="toc-badge">P0</span></a>
+        <a href="#sec-21" class="toc-link"><span>21. Loss Functions</span> <span class="toc-badge">P1</span></a>
+        <a href="#sec-22" class="toc-link"><span>22. Gradient Descent & Backprop</span> <span class="toc-badge">P0</span></a>
+        <a href="#sec-23" class="toc-link"><span>23. CNNs (Computer Vision)</span> <span class="toc-badge">P0</span></a>
+        <a href="#sec-24" class="toc-link"><span>24. RNN, LSTM & GRU</span> <span class="toc-badge">P1</span></a>
+        <a href="#sec-25" class="toc-link"><span>25. Deep Learning Training</span> <span class="toc-badge">P1</span></a>
+
+        <div class="toc-group-title">Master Placement Toolkits</div>
+        <a href="#sec-algo-guide" class="toc-link"><span>⭐ Algorithm Selection Guide</span> <span class="toc-badge">P0</span></a>
+        <a href="#sec-traps" class="toc-link"><span>⚠️ 40 Fatal Placement Traps</span> <span class="toc-badge">P0</span></a>
+        <a href="#sec-scenarios" class="toc-link"><span>💼 30 Real-World Scenarios</span> <span class="toc-badge">P0</span></a>
+        <a href="#sec-last-hour" class="toc-link"><span>⚡ 50 Exam Hall Takeaways</span> <span class="toc-badge">P0</span></a>
+      </nav>
+    </aside>
+
+    <!-- Main Content Stream -->
+    <main class="content-area">
+      
+      <!-- Notes Hero -->
+      <section class="notes-hero">
+        <div class="hero-chip">MNC Campus Recruitment 2026 Edition</div>
+        <h1>AI, Machine Learning &amp;<br><span>Deep Learning Placement Notes</span></h1>
+        <p>
+          A battle-tested revision system designed for fresher technical examinations across TCS, Accenture, Infosys, Capgemini, Cognizant, Wipro, and Deloitte. Master algorithm intuition, core formulas, confusion matrix calculations, trade-offs, and fatal interview traps.
+        </p>
+
+        <div class="hero-metrics">
+          <div class="metric-pill">Chapters: <strong>25 Major Sections</strong></div>
+          <div class="metric-pill">Traps: <strong>40 Fatal Exam Pitfalls</strong></div>
+          <div class="metric-pill">Scenarios: <strong>30 Enterprise Dilemmas</strong></div>
+          <div class="metric-pill">Tables: <strong>15 Detailed Comparisons</strong></div>
+        </div>
+
+        <div class="hero-actions">
+          <a href="#sec-01" class="nav-btn primary">Start Chapter 1 &darr;</a>
+          <a href="#sec-last-hour" class="nav-btn last-hour-btn">⚡ 15-Minute Exam Cheat Sheet</a>
+          <a href="../ai_ml/index.html" class="nav-btn">⚔️ Test Yourself: 100 MCQs</a>
+        </div>
+      </section>
+
+      <!-- Part 1 Content -->
+      
+    <!-- SECTION 01: AI FUNDAMENTALS -->
+    <article class="note-section" id="sec-01">
+      <div class="section-eyebrow">
+        <span class="sec-num">SECTION 01</span>
+        <span class="sec-priority priority-p0">VERY HIGH PRIORITY</span>
+      </div>
+      <h2 class="section-title">AI Fundamentals & The AI / ML / DL Taxonomy</h2>
+      <p class="section-intro">
+        In technical recruitment screenings (TCS Digital, Accenture Advanced ASE, Cognizant), examiners test whether you understand the precise boundaries between Artificial Intelligence, Machine Learning, and Deep Learning—and why traditional rule-based expert systems failed at real-world scale.
+      </p>
+
+      <!-- Visual Hierarchy Diagram -->
+      <div class="diagram-container">
+        <div class="diagram-title">Taxonomy & Relationship Architecture</div>
+        <pre class="diagram-art">
++-----------------------------------------------------------------------------------+
+| ARTIFICIAL INTELLIGENCE (1950s)                                                   |
+| Broadest field: Systems exhibiting human-like reasoning, logic, and planning.     |
+| • Includes: Symbolic AI, Rule-Based Expert Systems, Graph Search, A*               |
+|                                                                                   |
+|   +-----------------------------------------------------------------------------+ |
+|   | MACHINE LEARNING (1980s)                                                    | |
+|   | Subfield of AI: Algorithms that learn mathematical patterns from data       | |
+|   | without being explicitly programmed with deterministic if-else rules.       | |
+|   | • Includes: Linear/Logistic Regression, Decision Trees, Random Forest, SVM  | |
+|   |                                                                             | |
+|   |   +-----------------------------------------------------------------------+ | |
+|   |   | DEEP LEARNING (2010s)                                                 | | |
+|   |   | Subfield of ML: Multilayer Artificial Neural Networks that perform   | | |
+|   |   | automated hierarchical feature extraction directly from raw data.     | | |
+|   |   | • Includes: MLP, CNNs (Computer Vision), RNNs/LSTMs, Transformers    | | |
+|   |   +-----------------------------------------------------------------------+ | |
+|   +-----------------------------------------------------------------------------+ |
++-----------------------------------------------------------------------------------+
+        </pre>
+      </div>
+
+      <div class="concept-grid">
+        <div class="concept-card">
+          <h4>🤖 Narrow AI vs General AI</h4>
+          <p><strong>Narrow AI (Weak AI):</strong> Designed and trained for one specific task (AlphaGo, facial recognition, Siri, chess engines). All deployed AI today is Narrow AI.<br><strong>General AI (AGI / Strong AI):</strong> Theoretical machine possessing human-level cognitive flexibility across any intellectual task.</p>
+        </div>
+        <div class="concept-card">
+          <h4>📜 Symbolic / Rule-Based AI vs Statistical ML</h4>
+          <p><strong>Symbolic / Rule-Based:</strong> Hand-crafted <code>IF (Symptom == Fever AND Cough) THEN Flu</code> rules created by human domain experts. Extremely brittle; cannot generalize to unprogrammed edge cases.<br><strong>Machine Learning:</strong> Feeds inputs and outcomes into an optimizer to learn statistical weight mappings automatically.</p>
+        </div>
+      </div>
+
+      <!-- Comparison Table -->
+      <div class="table-wrapper">
+        <table class="comp-table">
+          <thead>
+            <tr>
+              <th>Dimension</th>
+              <th>Artificial Intelligence</th>
+              <th>Machine Learning</th>
+              <th>Deep Learning</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Scope</strong></td>
+              <td>Umbrella discipline mimicking human intelligence</td>
+              <td>Subset of AI learning from data patterns</td>
+              <td>Subset of ML utilizing multilayer neural networks</td>
+            </tr>
+            <tr>
+              <td><strong>Feature Extraction</strong></td>
+              <td>Hand-crafted rules / knowledge base</td>
+              <td>Manual Feature Engineering required</td>
+              <td>Automatic Hierarchical Feature Learning</td>
+            </tr>
+            <tr>
+              <td><strong>Data Requirement</strong></td>
+              <td>Works on zero data (pure deterministic logic)</td>
+              <td>Thousands of tabular data samples</td>
+              <td>Tens of thousands to millions of high-dim samples</td>
+            </tr>
+            <tr>
+              <td><strong>Hardware</strong></td>
+              <td>Standard CPU execution</td>
+              <td>Standard multi-core CPU / modest GPU</td>
+              <td>Massive GPU / TPU tensor acceleration</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Real World Scenario -->
+      <div class="scenario-box">
+        <div class="scenario-tag">💼 Real-World Scenario: Banking Fraud Architecture</div>
+        <div class="scenario-title">Rule-Based Filter vs Machine Learning Classifier</div>
+        <div class="scenario-problem">
+          A bank processes 20 million transactions daily. Initially, an expert system blocked cards if a transaction exceeded $5,000 outside the home city. Sophisticated attackers bypassed this by executing multiple rapid transactions of $4,990 across digital wallets.
+        </div>
+        <div class="scenario-solution">
+          <strong>Engineering Decision:</strong> Shift from deterministic IF-THEN rules to an ML anomaly detection model (Isolation Forest / XGBoost). The ML model evaluates high-dimensional velocity features, device fingerprints, and geolocation anomalies simultaneously, catching fraudulent micro-transactions without hand-written rules.
+        </div>
+      </div>
+
+      <!-- Placement Trap -->
+      <div class="trap-box">
+        <div class="trap-header">⚠️ Fatal Placement Trap #1</div>
+        <div class="trap-desc">
+          Never say "Deep Learning is always superior to Machine Learning." In corporate interviews, deploying a 50-layer deep neural network on a 2,000-row tabular customer churn CSV is a rookie failure. Deep Learning will heavily overfit and lacks interpretability. Tree ensembles (XGBoost, LightGBM) drastically outperform DL on small-to-medium tabular datasets!
+        </div>
+      </div>
+
+      <!-- Memory Trick -->
+      <div class="memory-trick">
+        <span class="memory-icon">💡</span>
+        <div class="memory-content">
+          <strong>Placement Memory Trick:</strong> AI is the <em>goal</em> (intelligent behavior), ML is the <em>method</em> (learning from data), and DL is the <em>engine</em> (deep neural representation).
+        </div>
+      </div>
+
+      <!-- Interview Q&A -->
+      <div class="interview-box">
+        <div class="interview-title">🎯 Top Interview Question</div>
+        <div class="interview-q">"Why can't traditional Machine Learning handle raw images as effectively as Deep Learning?"</div>
+        <div class="interview-a">
+          Traditional ML requires manual feature extraction (e.g. SIFT, HOG, edge filters) before training. A 1080p image has over 6 million raw pixel values; passing raw pixels directly into SVM or Random Forest triggers the <em>Curse of Dimensionality</em> and destroys spatial pixel relationships. Deep Learning (CNNs) preserves 2D spatial locality and automatically learns hierarchical representations—from edges to textures to full facial features.
+        </div>
+      </div>
+    </article>
+
+
+    <!-- SECTION 02: INTELLIGENT AGENTS -->
+    <article class="note-section" id="sec-02">
+      <div class="section-eyebrow">
+        <span class="sec-num">SECTION 02</span>
+        <span class="sec-priority priority-p1">HIGH PRIORITY</span>
+      </div>
+      <h2 class="section-title">Intelligent Agents & The PEAS Framework</h2>
+      <p class="section-intro">
+        Russell & Norvig's agent framework forms the core of classical AI interview questions. An agent is anything that perceives its environment through sensors and acts upon that environment through actuators.
+      </p>
+
+      <!-- Architecture Diagram -->
+      <div class="diagram-container">
+        <div class="diagram-title">Agent-Environment Feedback Loop</div>
+        <pre class="diagram-art">
+                  +----------------------------------------------+
+                  |                 ENVIRONMENT                  |
+                  +----------------------------------------------+
+                        |                                  ^
+                        | Percepts                         | Actions
+                        v                                  |
+                  +-------------+                  +--------------+
+                  |   SENSORS   |                  |  ACTUATORS   |
+                  +-------------+                  +--------------+
+                        |                                  ^
+                        v                                  |
+                  +-----------------------------------------------+
+                  |               AGENT PROGRAM                   |
+                  |  Percept History -> Decision Logic -> Action  |
+                  +-----------------------------------------------+
+        </pre>
+      </div>
+
+      <div class="concept-grid">
+        <div class="concept-card">
+          <h4>🎯 Rational Agent</h4>
+          <p>An agent that selects whichever action maximizes its <strong>expected performance measure</strong>, given its percept history and built-in knowledge. <em>Rationality is NOT omniscience</em>—a rational agent maximizes expected success, not guaranteed perfection with future foresight.</p>
+        </div>
+        <div class="concept-card">
+          <h4>📋 The PEAS Framework</h4>
+          <p>Every AI agent environment is formally specified using <strong>P.E.A.S.</strong>:<br>
+          • <strong>P</strong>erformance Measure: Objective metric of success.<br>
+          • <strong>E</strong>nvironment: External world agent operates in.<br>
+          • <strong>A</strong>ctuators: Mechanisms used to carry out actions.<br>
+          • <strong>S</strong>ensors: Hardware/interfaces used to observe.</p>
+        </div>
+      </div>
+
+      <!-- PEAS Table -->
+      <div class="table-wrapper">
+        <table class="comp-table">
+          <thead>
+            <tr>
+              <th>Agent Type</th>
+              <th>Performance Measure (P)</th>
+              <th>Environment (E)</th>
+              <th>Actuators (A)</th>
+              <th>Sensors (S)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Autonomous Taxi</strong></td>
+              <td>Safe, fast, legal, comfortable trip; max profit</td>
+              <td>Roads, pedestrians, weather, other vehicles</td>
+              <td>Steering, accelerator, brake, display, horn</td>
+              <td>Cameras, LiDAR, radar, GPS, speedometer</td>
+            </tr>
+            <tr>
+              <td><strong>Medical Diagnostic AI</strong></td>
+              <td>Healthy patient, minimized diagnostic cost</td>
+              <td>Patient, hospital staff, medical records</td>
+              <td>Display screen, prescription printer, test orders</td>
+              <td>Keyboard (symptoms, lab data entry), EHR API</td>
+            </tr>
+            <tr>
+              <td><strong>Spam Filter</strong></td>
+              <td>High precision (no false blocks), high recall</td>
+              <td>Email inbox, network stream</td>
+              <td>Move to spam folder, deliver to inbox, tag</td>
+              <td>Email parser, headers, text, IP source</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 5 Agent Types -->
+      <div class="concept-grid">
+        <div class="concept-card">
+          <h4>1. Simple Reflex Agent</h4>
+          <p>Acts solely on the <em>current percept</em> using condition-action rules: <code>IF car_in_front_brakes THEN brake()</code>. Fails completely in partially observable environments due to infinite loops.</p>
+        </div>
+        <div class="concept-card">
+          <h4>2. Model-Based Reflex Agent</h4>
+          <p>Maintains an internal <strong>state</strong> to track parts of the world it cannot see right now. Updates internal model based on how the world evolves independently and how its own actions affect the world.</p>
+        </div>
+        <div class="concept-card">
+          <h4>3. Goal-Based Agent</h4>
+          <p>Combines internal state with explicit <strong>goal information</strong>. Uses search and planning algorithms to evaluate which sequences of actions lead to the destination (e.g. GPS pathfinding).</p>
+        </div>
+        <div class="concept-card">
+          <h4>4. Utility-Based Agent</h4>
+          <p>When multiple paths achieve a goal, it computes a mathematical <strong>Utility Function</strong> to measure <em>how desirable</em> each state is (e.g. trading off travel speed vs fuel efficiency vs toll costs).</p>
+        </div>
+        <div class="concept-card">
+          <h4>5. Learning Agent</h4>
+          <p>Separated into four components: <strong>Critic</strong> (evaluates behavior against performance standard), <strong>Learning Element</strong> (makes improvements), <strong>Learning Goals</strong>, and <strong>Problem Generator</strong> (experiments with new actions).</p>
+        </div>
+      </div>
+
+      <div class="trap-box">
+        <div class="trap-header">⚠️ Fatal Placement Trap #2</div>
+        <div class="trap-desc">
+          Do not confuse an agent's <em>sensors</em> with its <em>percepts</em>. Sensors are the physical or software devices (e.g. Camera, Microphone, Keyboard). Percepts are the actual data readings received by the agent at any given instant (e.g. <code>[Red Light, Speed: 42 km/h]</code>).
+        </div>
+      </div>
+    </article>
+
+
+    <!-- SECTION 03: AI SEARCH ALGORITHMS -->
+    <article class="note-section" id="sec-03">
+      <div class="section-eyebrow">
+        <span class="sec-num">SECTION 03</span>
+        <span class="sec-priority priority-p1">HIGH PRIORITY</span>
+      </div>
+      <h2 class="section-title">Classical Search Algorithms & A* Pathfinding</h2>
+      <p class="section-intro">
+        Search algorithms find optimal sequence paths from an initial state to a goal state. Placement questions routinely test algorithm properties: <strong>Completeness</strong> (guaranteed to find a solution if one exists) and <strong>Optimality</strong> (guaranteed to find the lowest-cost path).
+      </p>
+
+      <div class="table-wrapper">
+        <table class="comp-table">
+          <thead>
+            <tr>
+              <th>Algorithm</th>
+              <th>Data Structure</th>
+              <th>Time Complexity</th>
+              <th>Space Complexity</th>
+              <th>Complete?</th>
+              <th>Optimal?</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Breadth-First (BFS)</strong></td>
+              <td>FIFO Queue</td>
+              <td>O(b^d)</td>
+              <td>O(b^d) (Memory bottleneck!)</td>
+              <td>Yes (if b is finite)</td>
+              <td>Yes (if all step costs are equal)</td>
+            </tr>
+            <tr>
+              <td><strong>Depth-First (DFS)</strong></td>
+              <td>LIFO Stack</td>
+              <td>O(b^m)</td>
+              <td>O(b * m) (Linear space!)</td>
+              <td>No (can loop in infinite graphs)</td>
+              <td>No (finds first path, not shortest)</td>
+            </tr>
+            <tr>
+              <td><strong>Uniform Cost (UCS)</strong></td>
+              <td>Priority Queue (by g(n))</td>
+              <td>O(b^(1 + floor(C*/epsilon)))</td>
+              <td>O(b^(1 + floor(C*/epsilon)))</td>
+              <td>Yes</td>
+              <td>Yes (for any positive step costs)</td>
+            </tr>
+            <tr>
+              <td><strong>Greedy Best-First</strong></td>
+              <td>Priority Queue (by h(n))</td>
+              <td>O(b^m)</td>
+              <td>O(b^m)</td>
+              <td>No (can get stuck)</td>
+              <td>No (ignores path cost already spent)</td>
+            </tr>
+            <tr>
+              <td><strong>A* Search</strong></td>
+              <td>Priority Queue (by f(n))</td>
+              <td>O(b^d)</td>
+              <td>O(b^d)</td>
+              <td>Yes</td>
+              <td>Yes (if h(n) is admissible & consistent)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- A* Search Formula -->
+      <div class="formula-block">
+        <div class="formula-name">A* Total Evaluation Function</div>
+        <div class="formula-math">f(n) = g(n) + h(n)</div>
+        <div class="formula-desc">
+          • <strong>g(n):</strong> Exact cumulative path cost incurred from the start node to current node <code>n</code>.<br>
+          • <strong>h(n):</strong> Heuristic estimated cost from node <code>n</code> to the goal state.<br>
+          • <strong>f(n):</strong> Estimated total cost of the cheapest solution passing through node <code>n</code>.
+        </div>
+      </div>
+
+      <div class="concept-grid">
+        <div class="concept-card">
+          <h4>📐 Admissible Heuristic (Crucial Placement Rule)</h4>
+          <p>A heuristic <code>h(n)</code> is <strong>admissible</strong> if it <em>never overestimates</em> the true cost to reach the goal. Formally: <code>0 &le; h(n) &le; h*(n)</code> where <code>h*(n)</code> is the true minimal cost. Example: Straight-line Euclidean distance on a roadmap is always admissible because roads can never be shorter than a straight line.</p>
+        </div>
+        <div class="concept-card">
+          <h4>🔄 Consistent / Monotonic Heuristic</h4>
+          <p>For every node <code>n</code> and every successor <code>n'</code> generated by action <code>a</code>: <code>h(n) &le; c(n, a, n') + h(n')</code>. This satisfies the triangle inequality and guarantees that A* never needs to re-open an already visited node when graph search is used.</p>
+        </div>
+      </div>
+
+      <div class="trap-box">
+        <div class="trap-header">⚠️ Fatal Placement Trap #3</div>
+        <div class="trap-desc">
+          What happens if <code>h(n) = 0</code> in A*? The formula collapses to <code>f(n) = g(n)</code>, which turns A* exactly into <strong>Uniform Cost Search (Dijkstra's Algorithm)</strong>! Conversely, if <code>g(n) = 0</code>, A* becomes <strong>Greedy Best-First Search</strong>, losing its optimality guarantee.
+        </div>
+      </div>
+    </article>
+
+
+    <!-- SECTION 04: MACHINE LEARNING FUNDAMENTALS -->
+    <article class="note-section" id="sec-04">
+      <div class="section-eyebrow">
+        <span class="sec-num">SECTION 04</span>
+        <span class="sec-priority priority-p0">VERY HIGH PRIORITY</span>
+      </div>
+      <h2 class="section-title">Machine Learning Paradigms & Problem Framing</h2>
+      <p class="section-intro">
+        Before choosing an algorithm, an engineer must frame the business problem into the correct paradigm: Supervised, Unsupervised, Semi-Supervised, or Reinforcement Learning.
+      </p>
+
+      <!-- Learning Type Decision Flowchart -->
+      <div class="diagram-container">
+        <div class="diagram-title">ML Learning Paradigm Decision Tree</div>
+        <pre class="diagram-art">
+                       DO YOU HAVE GROUND-TRUTH TARGET LABELS (y)?
+                                     /                                                YES              NO
+                                   /                                       SUPERVISED LEARNING      UNSUPERVISED LEARNING
+                            /       \                    |
+          Is target continuous?     Is target discrete?   Do you need inherent groupings?
+                  /                         \                    |
+             REGRESSION               CLASSIFICATION         CLUSTERING
+       (Predict Stock Price,      (Spam vs Not Spam,      (Customer Segmentation,
+        House Cost, Temperature)   Medical Tumor Stage)    Gene Expression Clusters)
+        </pre>
+      </div>
+
+      <div class="concept-grid">
+        <div class="concept-card">
+          <h4>1. Supervised Learning</h4>
+          <p>Training data contains input features (matrix <strong>X</strong>) paired with verified target labels (vector <strong>y</strong>). The model learns mapping function <code>y = f(X)</code>. Evaluated on unseen test data using ground-truth error metrics.</p>
+        </div>
+        <div class="concept-card">
+          <h4>2. Unsupervised Learning</h4>
+          <p>Training data contains only features (<strong>X</strong>) without labels (<strong>y</strong>). The algorithm discovers latent structures, densities, and clusters on its own (K-Means, PCA, Hierarchical Clustering).</p>
+        </div>
+        <div class="concept-card">
+          <h4>3. Semi-Supervised Learning</h4>
+          <p>Employed when labeling data is prohibitively expensive (e.g. professional radiologists annotating 500,000 CT scans). Uses a tiny labeled dataset (~2%) combined with a vast unlabeled dataset (~98%) via pseudo-labeling.</p>
+        </div>
+        <div class="concept-card">
+          <h4>4. Reinforcement Learning (RL)</h4>
+          <p>No static training dataset. An <strong>Agent</strong> takes <strong>Actions</strong> inside an <strong>Environment</strong>, receives state observations, and maximizes cumulative <strong>Rewards</strong> through trial and error (Markov Decision Process).</p>
+        </div>
+      </div>
+
+      <div class="scenario-box">
+        <div class="scenario-tag">💼 Real-World Scenario: E-Commerce Platform</div>
+        <div class="scenario-title">Identifying Machine Learning Paradigms</div>
+        <div class="scenario-problem">
+          Amazon wants to deploy 3 systems: (1) Predict if a user will churn next month based on 5 years of recorded cancelations, (2) Group 10 million anonymous browsing visitors into 5 shopping personas, (3) Optimize a robotic warehouse packing arm.
+        </div>
+        <div class="scenario-solution">
+          (1) <strong>Supervised Classification:</strong> Historical labeled churn outcomes exist.<br>
+          (2) <strong>Unsupervised Clustering:</strong> No pre-assigned persona labels exist in visitor clickstream data.<br>
+          (3) <strong>Reinforcement Learning:</strong> Physical agent interacting with packages, rewarded for packing density and penalized for dropping items.
+        </div>
+      </div>
+    </article>
+
+
+    <!-- SECTION 05: DATA PREPROCESSING -->
+    <article class="note-section" id="sec-05">
+      <div class="section-eyebrow">
+        <span class="sec-num">SECTION 05</span>
+        <span class="sec-priority priority-p0">VERY HIGH PRIORITY</span>
+      </div>
+      <h2 class="section-title">Data Preprocessing & The Data Leakage Trap</h2>
+      <p class="section-intro">
+        "Garbage in, garbage out." Over 70% of enterprise ML engineering time is spent cleaning raw data. Placement test questions heavily target encoding strategies, feature scaling rules, and subtle data leakage bugs in scikit-learn pipelines.
+      </p>
+
+      <div class="concept-grid">
+        <div class="concept-card">
+          <h4>🧹 Handling Missing Data</h4>
+          <p>• <strong>Numerical Features:</strong> Impute with Median (robust to outliers) rather than Mean if data is skewed.<br>• <strong>Categorical Features:</strong> Impute with Mode (most frequent) or create a distinct 'Missing' category.<br>• <strong>Drop Rows:</strong> Only acceptable if missingness is completely random and &lt; 2% of the dataset.</p>
+        </div>
+        <div class="concept-card">
+          <h4>🔢 Label vs One-Hot Encoding</h4>
+          <p>• <strong>Label / Ordinal Encoding:</strong> Assigns integers (0, 1, 2). Use <em>only</em> when natural order exists (e.g. <code>Small: 0, Medium: 1, Large: 2</code>).<br>• <strong>One-Hot Encoding:</strong> Creates binary dummy columns. Use for nominal unordered data (e.g. <code>City: [Tokyo, London, NYC]</code>). Prevents the model from hallucinating that <code>NYC (2) > Tokyo (0)</code>.</p>
+        </div>
+      </div>
+
+      <!-- Feature Scaling Comparison -->
+      <div class="table-wrapper">
+        <table class="comp-table">
+          <thead>
+            <tr>
+              <th>Technique</th>
+              <th>Mathematical Formula</th>
+              <th>Resulting Distribution</th>
+              <th>Sensitivity to Outliers</th>
+              <th>When to Use</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Standardization (StandardScaler)</strong></td>
+              <td><code>z = (x - μ) / σ</code></td>
+              <td>Mean = 0, Variance / Std Dev = 1</td>
+              <td><strong>Robust</strong> (does not squash outliers into a narrow bound)</td>
+              <td>Algorithms assuming normal distribution: PCA, Logistic Regression, Linear Regression, SVM, Neural Nets</td>
+            </tr>
+            <tr>
+              <td><strong>Normalization (MinMaxScaler)</strong></td>
+              <td><code>x_norm = (x - x_min) / (x_max - x_min)</code></td>
+              <td>Strict bounded range [0, 1]</td>
+              <td><strong>Highly Sensitive</strong> (outliers compress non-outlier data into tiny fractions)</td>
+              <td>Image pixel processing [0, 255] &rarr; [0, 1], K-Nearest Neighbors, algorithms requiring bounded inputs</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Outlier IQR Formula -->
+      <div class="formula-block">
+        <div class="formula-name">Outlier Detection: Tukey's IQR Method</div>
+        <div class="formula-math">IQR = Q3 - Q1 &nbsp;|&nbsp; Lower Bound = Q1 - 1.5*IQR &nbsp;|&nbsp; Upper Bound = Q3 + 1.5*IQR</div>
+        <div class="formula-desc">
+          Any data point strictly below the Lower Bound or strictly above the Upper Bound is classified as an outlier. Unlike standard deviation thresholding, IQR uses percentiles and is completely unaffected by extreme outlier distortion.
+        </div>
+      </div>
+
+      <!-- Python Pipeline Code & Data Leakage -->
+      <div class="code-block">
+        <div class="code-header">
+          <span>Python Scikit-Learn: Correct Preprocessing Pipeline</span>
+          <span>Correct vs Leaking Code</span>
+        </div>
+        <span class="code-comment"># ❌ CRITICAL BUG: Data Leakage (Fitting scaler on full dataset before splitting)</span><br>
+        <span class="code-comment"># scaler.fit_transform(X)  <-- Test set information leaks into mean and variance!</span><br><br>
+        <span class="code-comment"># ✅ CORRECT ENTERPRISE PRACTICE:</span><br>
+        <span class="code-kw">from</span> sklearn.model_selection <span class="code-kw">import</span> train_test_split<br>
+        <span class="code-kw">from</span> sklearn.preprocessing <span class="code-kw">import</span> StandardScaler<br><br>
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=<span class="code-str">0.2</span>, random_state=<span class="code-str">42</span>)<br>
+        scaler = StandardScaler()<br>
+        X_train_scaled = scaler.<span class="code-fn">fit_transform</span>(X_train)  <span class="code-comment"># Learns mu and sigma from train only</span><br>
+        X_test_scaled = scaler.<span class="code-fn">transform</span>(X_test)         <span class="code-comment"># Uses train mu and sigma on test</span>
+      </div>
+
+      <div class="trap-box">
+        <div class="trap-header">⚠️ Fatal Placement Trap #4: The Dummy Variable Trap</div>
+        <div class="trap-desc">
+          When one-hot encoding a categorical feature with <code>k</code> distinct categories, you must drop one dummy column (<code>drop_first=True</code> in pandas or <code>OneHotEncoder(drop='first')</code> in scikit-learn). If you keep all <code>k</code> columns, they sum up to 1 for every row, introducing <strong>perfect multicollinearity</strong> with the intercept column and breaking Linear Regression!
+        </div>
+      </div>
+    </article>
+    
+
+      <!-- Part 2 Content -->
+      
+    <!-- SECTION 06: REGRESSION -->
+    <article class="note-section" id="sec-06">
+      <div class="section-eyebrow">
+        <span class="sec-num">SECTION 06</span>
+        <span class="sec-priority priority-p0">VERY HIGH PRIORITY</span>
+      </div>
+      <h2 class="section-title">Regression: Linear, Multiple & Logistic</h2>
+      <p class="section-intro">
+        Regression models continuous target variables. Placement exams frequently test cost function derivatives, multicollinearity, R-squared interpretation, and the classification nature of Logistic Regression.
+      </p>
+
+      <!-- Formula Block: Linear Regression -->
+      <div class="formula-block">
+        <div class="formula-name">Simple Linear Regression Model</div>
+        <div class="formula-math">y_hat = w1 * x + w0 &nbsp;|&nbsp; Cost Function (MSE) = (1/n) * Σ(y_i - y_hat_i)^2</div>
+        <div class="formula-desc">
+          • <strong>w1 (Slope / Weight):</strong> Indicates the rate of change in target <code>y</code> for every 1-unit increase in feature <code>x</code>.<br>
+          • <strong>w0 (Intercept / Bias):</strong> The predicted value of <code>y</code> when all input features are zero.<br>
+          • <strong>Ordinary Least Squares (OLS):</strong> Closed-form analytical solution finding weights that minimize the sum of squared residuals: <code>w = (X^T * X)^(-1) * X^T * y</code>.
+        </div>
+      </div>
+
+      <div class="concept-grid">
+        <div class="concept-card">
+          <h4>📈 R-Squared (Coefficient of Determination)</h4>
+          <p>Measures the proportion of variance in the dependent variable explained by independent features: <code>R^2 = 1 - (SS_res / SS_tot)</code>.<br>• <strong>R^2 = 1.0:</strong> Perfect model predictions.<br>• <strong>R^2 = 0.0:</strong> Performs no better than predicting the simple mean <code>y_bar</code>.<br>• <strong>R^2 &lt; 0.0:</strong> Model is worse than a horizontal line predicting the average!</p>
+        </div>
+        <div class="concept-card">
+          <h4>⚠️ Adjusted R-Squared</h4>
+          <p>Standard R-squared <em>always increases or stays constant</em> when adding new features, even completely useless random noise. <strong>Adjusted R-squared</strong> penalizes the addition of non-informative variables: <code>Adj_R^2 = 1 - [(1 - R^2)*(n - 1) / (n - k - 1)]</code> where <code>k</code> is the number of features.</p>
+        </div>
+      </div>
+
+      <!-- Logistic Regression Sigmoid -->
+      <div class="formula-block">
+        <div class="formula-name">Logistic Regression Sigmoid Function</div>
+        <div class="formula-math">p(y = 1 | x) = σ(z) = 1 / (1 + e^(-z)) &nbsp; where &nbsp; z = w^T * x + b</div>
+        <div class="formula-desc">
+          Squashes any continuous real number from <code>(-∞, +∞)</code> into a valid probability bounded strictly between <code>(0, 1)</code>. The log-odds (logit) is linear: <code>ln(p / (1 - p)) = w^T * x + b</code>.
+        </div>
+      </div>
+
+      <div class="trap-box">
+        <div class="trap-header">⚠️ Fatal Placement Trap #5: "Regression" in Logistic Regression</div>
+        <div class="trap-desc">
+          Despite containing "Regression" in its name, <strong>Logistic Regression is a CLASSIFICATION algorithm</strong>. It uses a sigmoid function to output class probabilities and applies a decision threshold (default 0.50) to classify instances into discrete categories (0 or 1).
+        </div>
+      </div>
+
+      <!-- Linear vs Logistic Comparison Table -->
+      <div class="table-wrapper">
+        <table class="comp-table">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>Linear Regression</th>
+              <th>Logistic Regression</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Target Variable (y)</strong></td>
+              <td>Continuous real numbers (e.g. Salary: $65,000)</td>
+              <td>Discrete categorical classes (e.g. Default: 0 or 1)</td>
+            </tr>
+            <tr>
+              <td><strong>Output Range</strong></td>
+              <td>(-∞, +∞) unbounded</td>
+              <td>Bounded between [0, 1] (Probability)</td>
+            </tr>
+            <tr>
+              <td><strong>Cost Function</strong></td>
+              <td>Mean Squared Error (Convex surface)</td>
+              <td>Binary Cross-Entropy / Log Loss (Convex surface)</td>
+            </tr>
+            <tr>
+              <td><strong>Decision Boundary</strong></td>
+              <td>Continuous fitting hyperplane</td>
+              <td>Linear hyperplane separating positive & negative classes</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+
+
+    <!-- SECTION 07: CLASSIFICATION -->
+    <article class="note-section" id="sec-07">
+      <div class="section-eyebrow">
+        <span class="sec-num">SECTION 07</span>
+        <span class="sec-priority priority-p0">VERY HIGH PRIORITY</span>
+      </div>
+      <h2 class="section-title">Classification Paradigms & Decision Boundaries</h2>
+      <p class="section-intro">
+        Classification maps input features to categorical outcomes. Freshers must distinguish between binary, multiclass, and multilabel classification, and understand how decision thresholds affect real-world outcomes.
+      </p>
+
+      <div class="concept-grid">
+        <div class="concept-card">
+          <h4>1. Binary Classification</h4>
+          <p>Two mutually exclusive classes (e.g. Spam vs Not Spam, Fraud vs Legitimate). Model outputs <code>P(y=1)</code>. If <code>P &ge; threshold</code> &rarr; Class 1, else Class 0.</p>
+        </div>
+        <div class="concept-card">
+          <h4>2. Multiclass Classification</h4>
+          <p>More than two classes, but each sample belongs to <em>exactly one</em> class (e.g. MNIST digit 0-9, Animal [Cat, Dog, Bird]). Handled via <strong>One-vs-Rest (OvR)</strong> or <strong>Softmax</strong>.</p>
+        </div>
+        <div class="concept-card">
+          <h4>3. Multilabel Classification</h4>
+          <p>Each sample can belong to <em>multiple classes simultaneously</em> (e.g. Movie tags: <code>[Action, Sci-Fi, Adventure]</code>). Requires independent binary sigmoid activations for each label rather than Softmax.</p>
+        </div>
+      </div>
+
+      <!-- One-vs-Rest vs One-vs-One -->
+      <div class="table-wrapper">
+        <table class="comp-table">
+          <thead>
+            <tr>
+              <th>Strategy</th>
+              <th>Number of Models for K Classes</th>
+              <th>How it Operates</th>
+              <th>Best Used For</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>One-vs-Rest (OvR / OvA)</strong></td>
+              <td><strong>K</strong> binary models</td>
+              <td>Model 1 trains Class 1 vs (All others combined). Picks class with highest probability.</td>
+              <td>Default in scikit-learn for Logistic Regression; fast & highly scalable</td>
+            </tr>
+            <tr>
+              <td><strong>One-vs-One (OvO)</strong></td>
+              <td><strong>K * (K - 1) / 2</strong> binary models</td>
+              <td>Trains a classifier for every pairwise combination (Cat vs Dog, Dog vs Bird). Majority vote wins.</td>
+              <td>Default for Support Vector Machines (SVC); good when algorithm scales poorly with sample size</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Real World Scenario: Threshold Tuning -->
+      <div class="scenario-box">
+        <div class="scenario-tag">💼 Real-World Scenario: Cancer Biopsy Diagnostic Threshold</div>
+        <div class="scenario-title">Why the 0.50 Probability Threshold is Wrong for High-Stakes ML</div>
+        <div class="scenario-problem">
+          A machine learning model outputs probability of malignancy for tumor scans. A patient has a predicted probability of 0.35. Under default 0.50 thresholding, the model outputs "Benign", missing a fatal cancer.
+        </div>
+        <div class="scenario-solution">
+          <strong>Clinical Engineering Action:</strong> Lower the decision threshold from 0.50 to <strong>0.15 or 0.20</strong>. This prioritizes <strong>Recall (Sensitivity)</strong> to catch every potential malignant tumor, even if it generates more false alarms (biopsy follow-ups) that can easily be cleared later.
+        </div>
+      </div>
+    </article>
+
+
+    <!-- SECTION 08: DECISION TREES -->
+    <article class="note-section" id="sec-08">
+      <div class="section-eyebrow">
+        <span class="sec-num">SECTION 08</span>
+        <span class="sec-priority priority-p1">HIGH PRIORITY</span>
+      </div>
+      <h2 class="section-title">Decision Trees: Splitting, Gini & Entropy</h2>
+      <p class="section-intro">
+        Decision Trees split datasets into subsets using feature thresholds. Placement interviews focus heavily on mathematical splitting criteria: Gini Impurity (CART algorithm) vs Entropy / Information Gain (ID3 algorithm).
+      </p>
+
+      <!-- Formula Block: Gini & Entropy -->
+      <div class="formula-block">
+        <div class="formula-name">Mathematical Impurity Criteria</div>
+        <div class="formula-math">
+          Gini Impurity = 1 - Σ(p_i^2) &nbsp;|&nbsp; Entropy H(S) = - Σ [p_i * log2(p_i)]<br>
+          Information Gain(S, A) = H(S) - Σ (|S_v| / |S|) * H(S_v)
+        </div>
+        <div class="formula-desc">
+          • <strong>Pure Node:</strong> All samples belong to a single class &rarr; <code>Gini = 0.0</code> and <code>Entropy = 0.0</code>.<br>
+          • <strong>Maximum Impurity (Binary):</strong> Equal 50/50 class split &rarr; <code>Gini = 0.50</code> and <code>Entropy = 1.0</code>.
+        </div>
+      </div>
+
+      <!-- Calculation Example -->
+      <div class="concept-card" style="margin: 20px 0;">
+        <h4>🧮 Placement Numerical Problem: Calculate Gini Impurity</h4>
+        <p>A parent node contains 10 samples: <strong>6 Class A</strong> and <strong>4 Class B</strong>.<br>
+        1. Class probabilities: <code>p(A) = 6/10 = 0.6</code>, <code>p(B) = 4/10 = 0.4</code>.<br>
+        2. Apply Gini formula: <code>Gini = 1 - (0.6^2 + 0.4^2) = 1 - (0.36 + 0.16) = 1 - 0.52 = 0.48</code>.<br>
+        <em>Result: The Gini Impurity is exactly 0.48.</em></p>
+      </div>
+
+      <div class="concept-grid">
+        <div class="concept-card">
+          <h4>🌲 Advantages of Decision Trees</h4>
+          <p>• Highly interpretable ("white box" models).<br>• <strong>Completely scale-invariant:</strong> Feature scaling (StandardScaler / MinMaxScaler) is NOT required.<br>• Handles mixed categorical and numerical features effortlessly.</p>
+        </div>
+        <div class="concept-card">
+          <h4>⚠️ The Overfitting Hazard & Pruning</h4>
+          <p>Unconstrained trees grow until every training point is in a pure leaf node, achieving 100% training accuracy but disastrous test generalization.<br>• <strong>Pre-pruning:</strong> Set <code>max_depth</code>, <code>min_samples_split</code>, <code>min_samples_leaf</code>.<br>• <strong>Post-pruning:</strong> Cost-complexity pruning (ccp_alpha).</p>
+        </div>
+      </div>
+    </article>
+
+
+    <!-- SECTION 09: RANDOM FOREST -->
+    <article class="note-section" id="sec-09">
+      <div class="section-eyebrow">
+        <span class="sec-num">SECTION 09</span>
+        <span class="sec-priority priority-p1">HIGH PRIORITY</span>
+      </div>
+      <h2 class="section-title">Random Forest & Bootstrap Aggregation</h2>
+      <p class="section-intro">
+        A single decision tree has high variance (overfits). Random Forest eliminates this weakness by combining hundreds of decorrelated decision trees via <strong>Bagging</strong> and <strong>Feature Randomness</strong>.
+      </p>
+
+      <div class="diagram-container">
+        <div class="diagram-title">Random Forest Architecture</div>
+        <pre class="diagram-art">
+                                     ORIGINAL TRAINING DATASET
+                                                |
+               +--------------------------------+-------------------------------+
+               |                                |                               |
+      Bootstrap Sample 1               Bootstrap Sample 2              Bootstrap Sample B
+    (Random sample with replacement) (Random sample with replacement)(Random sample with replacement)
+               |                                |                               |
+       Random Subspace                  Random Subspace                  Random Subspace
+    (Subset of sqrt(p) features)     (Subset of sqrt(p) features)     (Subset of sqrt(p) features)
+               |                                |                               |
+        Decision Tree 1                  Decision Tree 2                  Decision Tree B
+               |                                |                               |
+          Prediction 1                     Prediction 2                     Prediction B
+               +--------------------------------+-------------------------------+
+                                                |
+                                        MAJORITY VOTING (Classification)
+                                              or AVERAGE (Regression)
+                                                |
+                                         FINAL PREDICTION
+        </pre>
+      </div>
+
+      <div class="concept-grid">
+        <div class="concept-card">
+          <h4>1. Bootstrap Sampling</h4>
+          <p>If dataset has <code>N</code> samples, each tree is trained on a sample of size <code>N</code> drawn <strong>with replacement</strong>. Mathematically, approximately <strong>63.2%</strong> of unique samples are included, leaving ~<strong>36.8%</strong> unselected (Out-of-Bag samples).</p>
+        </div>
+        <div class="concept-card">
+          <h4>2. Feature Subsampling (Decorrelation)</h4>
+          <p>At every split, each tree only chooses from a random subset of features (typically <code>sqrt(total_features)</code> for classification). This prevents dominant strong features from creating identical correlated trees.</p>
+        </div>
+      </div>
+
+      <!-- Out of Bag Score -->
+      <div class="formula-block">
+        <div class="formula-name">Out-of-Bag (OOB) Evaluation Score</div>
+        <div class="formula-math">OOB Score ≈ Cross-Validation Score (Without extra validation sets!)</div>
+        <div class="formula-desc">
+          Because each sample is omitted from ~36.8% of the trees, its prediction can be evaluated using only the trees that never saw it during training! This provides an unbiased out-of-sample performance estimate for free.
+        </div>
+      </div>
+    </article>
+
+
+    <!-- SECTION 10: KNN -->
+    <article class="note-section" id="sec-10">
+      <div class="section-eyebrow">
+        <span class="sec-num">SECTION 10</span>
+        <span class="sec-priority priority-p1">HIGH PRIORITY</span>
+      </div>
+      <h2 class="section-title">K-Nearest Neighbors (KNN)</h2>
+      <p class="section-intro">
+        KNN is a non-parametric, instance-based <strong>lazy learner</strong>. It stores the entire training dataset in memory and performs zero mathematical computations until prediction time.
+      </p>
+
+      <div class="formula-block">
+        <div class="formula-name">Distance Metrics</div>
+        <div class="formula-math">
+          Euclidean Distance = sqrt( Σ (x_i - y_i)^2 ) &nbsp;|&nbsp; Manhattan Distance = Σ |x_i - y_i|
+        </div>
+        <div class="formula-desc">
+          Calculates geometric distance between query sample and all training points in feature space.
+        </div>
+      </div>
+
+      <div class="concept-grid">
+        <div class="concept-card">
+          <h4>🎯 Choice of K & Bias-Variance Tradeoff</h4>
+          <p>• <strong>K = 1:</strong> Low bias, <em>extremely high variance</em> (overfits to every outlier noise point; decision boundary is jagged).<br>• <strong>K = Large (e.g. 50):</strong> High bias, <em>low variance</em> (underfits; smooth boundary; majority class dominates).<br>• <strong>Tie-breaker:</strong> For binary classification, always choose an <strong>odd K</strong> (3, 5, 7) to prevent 50/50 ties.</p>
+        </div>
+        <div class="concept-card">
+          <h4>📏 Why Feature Scaling is Mandatory for KNN</h4>
+          <p>Consider two features: <code>Age (20-60)</code> and <code>Annual Income ($20,000 - $200,000)</code>. In Euclidean distance, the income difference squared (billions) will completely dominate the age difference (hundreds), rendering Age statistically invisible! You <strong>must</strong> scale features before KNN.</p>
+        </div>
+      </div>
+
+      <div class="trap-box">
+        <div class="trap-header">⚠️ Fatal Placement Trap #6: KNN Computational Complexity</div>
+        <div class="trap-desc">
+          Interview question: "What is the training time of KNN vs test time?" Training time is <strong>O(1)</strong> (simply stores data). Test time is <strong>O(N * d)</strong> per query sample, where N is dataset size and d is feature dimension! This makes KNN completely impractical for real-time inference on large production datasets.
+        </div>
+      </div>
+    </article>
+
+
+    <!-- SECTION 11: SVM -->
+    <article class="note-section" id="sec-11">
+      <div class="section-eyebrow">
+        <span class="sec-num">SECTION 11</span>
+        <span class="sec-priority priority-p1">HIGH PRIORITY</span>
+      </div>
+      <h2 class="section-title">Support Vector Machines (SVM) & The Kernel Trick</h2>
+      <p class="section-intro">
+        SVM finds the optimal hyperplane that separates classes with the <strong>Maximum Geometric Margin</strong>. Points lying directly on the margin boundaries are the <em>Support Vectors</em>.
+      </p>
+
+      <div class="concept-grid">
+        <div class="concept-card">
+          <h4>🛡️ Support Vectors</h4>
+          <p>The critical training samples closest to the decision hyperplane. <em>Only support vectors determine the position of the hyperplane</em>; all other training points can be removed from the dataset without altering the boundary!</p>
+        </div>
+        <div class="concept-card">
+          <h4>🎛️ The Regularization Parameter C</h4>
+          <p>• <strong>Large C:</strong> High penalty for misclassification. Strict narrow margin &rarr; Low bias, High variance (overfits).<br>• <strong>Small C:</strong> Tolerates more margin violations. Wider margin &rarr; High bias, Low variance (resilient to noise).</p>
+        </div>
+      </div>
+
+      <div class="formula-block">
+        <div class="formula-name">The Kernel Trick</div>
+        <div class="formula-math">K(x, z) = Φ(x) · Φ(z) &nbsp;|&nbsp; RBF Kernel = exp(-γ * ||x - z||^2)</div>
+        <div class="formula-desc">
+          When data is non-linearly separable in current dimension, the Kernel Trick maps features into an infinite-dimensional Hilbert space where a linear hyperplane exists, <em>without ever explicitly calculating coordinates in that high-dimensional space</em>!
+        </div>
+      </div>
+    </article>
+
+
+    <!-- SECTION 12: CLUSTERING -->
+    <article class="note-section" id="sec-12">
+      <div class="section-eyebrow">
+        <span class="sec-num">SECTION 12</span>
+        <span class="sec-priority priority-p1">HIGH PRIORITY</span>
+      </div>
+      <h2 class="section-title">Clustering: K-Means & Hierarchical</h2>
+      <p class="section-intro">
+        Unsupervised grouping of unlabeled data based on feature similarity. Placement questions test the 4 iterative steps of K-Means, the Elbow Method using inertia, and K-Means assumptions.
+      </p>
+
+      <div class="concept-grid">
+        <div class="concept-card">
+          <h4>🔄 4 Steps of K-Means</h4>
+          <p>1. <strong>Initialization:</strong> Pick <code>K</code> random initial centroids (use <em>K-Means++</em> for smart distant initialization).<br>
+          2. <strong>Assignment:</strong> Assign every sample to its nearest centroid (Euclidean distance).<br>
+          3. <strong>Update:</strong> Recompute each centroid as the arithmetic mean of all samples assigned to it.<br>
+          4. <strong>Convergence:</strong> Repeat steps 2-3 until centroid positions stop shifting.</p>
+        </div>
+        <div class="concept-card">
+          <h4>📉 The Elbow Method (Inertia)</h4>
+          <p><strong>Inertia (WCSS):</strong> Within-Cluster Sum of Squares. As <code>K</code> increases, inertia strictly decreases. Plot Inertia vs <code>K</code>; the point where the rate of decrease abruptly bends into an arm elbow indicates the optimal balance between cluster compactness and model complexity.</p>
+        </div>
+      </div>
+
+      <div class="trap-box">
+        <div class="trap-header">⚠️ Fatal Placement Trap #7: K-Means Cluster Shape Assumption</div>
+        <div class="trap-desc">
+          K-Means assumes clusters are <strong>spherical (isotropic)</strong> and of roughly equal size/density. It fails drastically on non-convex geometric shapes (like concentric circles, moons, or elongated strips). For arbitrary shapes, use <strong>DBSCAN</strong> (Density-Based Spatial Clustering).
+        </div>
+      </div>
+    </article>
+
+
+    <!-- SECTION 13: PCA -->
+    <article class="note-section" id="sec-13">
+      <div class="section-eyebrow">
+        <span class="sec-num">SECTION 13</span>
+        <span class="sec-priority priority-p2">MEDIUM-HIGH PRIORITY</span>
+      </div>
+      <h2 class="section-title">Principal Component Analysis (PCA)</h2>
+      <p class="section-intro">
+        PCA is an unsupervised linear dimensionality reduction technique that projects high-dimensional data onto orthogonal axes (Principal Components) that maximize explained variance.
+      </p>
+
+      <div class="concept-grid">
+        <div class="concept-card">
+          <h4>📐 Principal Components</h4>
+          <p>• <strong>PC1:</strong> Linear combination of features that captures the <em>maximum possible variance</em> in the dataset.<br>
+          • <strong>PC2:</strong> Captures the second highest variance, strictly <strong>orthogonal (90 degrees, zero covariance)</strong> to PC1.<br>
+          • Derived from the eigenvectors of the dataset's covariance matrix; eigenvalues quantify variance.</p>
+        </div>
+        <div class="concept-card">
+          <h4>📊 Explained Variance Ratio</h4>
+          <p>In scikit-learn, <code>pca.explained_variance_ratio_</code> outputs the percentage of total variance captured by each component. Engineers retain components until cumulative explained variance exceeds 90-95%.</p>
+        </div>
+      </div>
+
+      <div class="trap-box">
+        <div class="trap-header">⚠️ Fatal Placement Trap #8: Feature Selection vs Feature Extraction</div>
+        <div class="trap-desc">
+          PCA is <strong>Feature Extraction</strong>, NOT Feature Selection! Feature selection simply keeps a subset of existing columns (e.g. keeping 5 out of 20 columns). PCA creates brand new synthesized mathematical axes. Once transformed into Principal Components, the original feature identities (like "Age" or "Income") lose direct interpretability!
+        </div>
+      </div>
+    </article>
+
+
+    <!-- SECTION 14: ENSEMBLE LEARNING -->
+    <article class="note-section" id="sec-14">
+      <div class="section-eyebrow">
+        <span class="sec-num">SECTION 14</span>
+        <span class="sec-priority priority-p1">HIGH PRIORITY</span>
+      </div>
+      <h2 class="section-title">Ensemble Learning: Bagging vs Boosting & XGBoost</h2>
+      <p class="section-intro">
+        Ensemble methods combine multiple base models to produce a single superior predictive system. Understanding the difference between parallel reduction of variance (Bagging) and sequential reduction of bias (Boosting) is tested in nearly every MNC interview.
+      </p>
+
+      <!-- Bagging vs Boosting Table -->
+      <div class="table-wrapper">
+        <table class="comp-table">
+          <thead>
+            <tr>
+              <th>Dimension</th>
+              <th>Bagging (Bootstrap Aggregation)</th>
+              <th>Boosting</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Base Model Training</strong></td>
+              <td><strong>Parallel</strong> & independent models</td>
+              <td><strong>Sequential</strong> (each model learns from previous errors)</td>
+            </tr>
+            <tr>
+              <td><strong>Sample Weights</strong></td>
+              <td>Uniform random sampling with replacement</td>
+              <td>Increases weight of misclassified samples (AdaBoost)</td>
+            </tr>
+            <tr>
+              <td><strong>Primary Objective</strong></td>
+              <td>Reduces <strong>Variance</strong> (prevents overfitting)</td>
+              <td>Reduces <strong>Bias</strong> (converts weak learners to strong learner)</td>
+            </tr>
+            <tr>
+              <td><strong>Base Learners</strong></td>
+              <td>Deep, fully grown trees (high variance, low bias)</td>
+              <td>Shallow trees / stumps (high bias, low variance)</td>
+            </tr>
+            <tr>
+              <td><strong>Exemplar Algorithms</strong></td>
+              <td>Random Forest, Extra Trees</td>
+              <td>AdaBoost, Gradient Boosting, XGBoost, LightGBM</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="concept-card" style="margin: 20px 0;">
+        <h4>⚡ Why XGBoost Dominates Tabular Machine Learning</h4>
+        <p>Extreme Gradient Boosting (XGBoost) improves on traditional Gradient Boosting through:<br>
+        1. <strong>Built-in Regularization:</strong> Penalizes tree complexity with L1 (alpha) and L2 (lambda) terms on leaf weights.<br>
+        2. <strong>Second-Order Taylor Expansion:</strong> Uses both first derivatives (gradients) and second derivatives (Hessians) of the loss function.<br>
+        3. <strong>Hardware Optimization:</strong> Parallel tree construction across CPU cores, block compression, and smart handling of sparse missing values.</p>
+      </div>
+    </article>
+    
+
+      <!-- Part 3 Content -->
+      
+    <!-- SECTION 15: MODEL EVALUATION -->
+    <article class="note-section" id="sec-15">
+      <div class="section-eyebrow">
+        <span class="sec-num">SECTION 15</span>
+        <span class="sec-priority priority-p0">EXTREMELY HIGH PRIORITY (P0)</span>
+      </div>
+      <h2 class="section-title">Model Evaluation: Confusion Matrix & Metrics</h2>
+      <p class="section-intro">
+        More students fail technical placement rounds on Metric Selection than any other ML topic. Interviewers love presenting scenarios with severe class imbalance (fraud, medical diagnosis, click-through rate) to see if you instinctively reach for Accuracy or properly select Precision, Recall, or F1-Score.
+      </p>
+
+      <!-- Confusion Matrix Diagram -->
+      <div class="diagram-container">
+        <div class="diagram-title">Scikit-Learn Standard 2x2 Confusion Matrix Layout</div>
+        <pre class="diagram-art">
+                                      PREDICTED CLASS
+                               Negative (0)         Positive (1)
+                        +--------------------+--------------------+
+           Negative (0) | True Negative (TN) | False Positive(FP) |  <-- Actual Negatives
+ACTUAL CLASS            |  (Correct Rejection)|    (Type I Error)  |
+                        +--------------------+--------------------+
+           Positive (1) | False Negative(FN) | True Positive (TP) |  <-- Actual Positives
+                        |   (Type II Error)  |     (Hit/Catch)    |
+                        +--------------------+--------------------+
+        </pre>
+      </div>
+
+      <!-- Formula Grid -->
+      <div class="concept-grid">
+        <div class="formula-block">
+          <div class="formula-name">Accuracy</div>
+          <div class="formula-math">(TP + TN) / (TP + TN + FP + FN)</div>
+          <div class="formula-desc">Ratio of all correct predictions to total samples. <em>Only valid on balanced datasets!</em></div>
+        </div>
+        <div class="formula-block">
+          <div class="formula-name">Precision (Positive Predictive Value)</div>
+          <div class="formula-math">TP / (TP + FP)</div>
+          <div class="formula-desc"><em>"Of all samples we predicted as positive, how many were truly positive?"</em> Priority when False Positives are expensive.</div>
+        </div>
+        <div class="formula-block">
+          <div class="formula-name">Recall (Sensitivity / True Positive Rate)</div>
+          <div class="formula-math">TP / (TP + FN)</div>
+          <div class="formula-desc"><em>"Of all actual positives that exist in reality, how many did we successfully catch?"</em> Priority when False Negatives are fatal.</div>
+        </div>
+        <div class="formula-block">
+          <div class="formula-name">F1-Score (Harmonic Mean)</div>
+          <div class="formula-math">2 * (Precision * Recall) / (Precision + Recall)</div>
+          <div class="formula-desc">Harmonic mean balances Precision and Recall. Unlike arithmetic mean, it severely penalizes extreme imbalances (e.g. Precision=0.99, Recall=0.01 &rarr; F1 ≈ 0.02).</div>
+        </div>
+      </div>
+
+      <!-- Real World Metric Selection Table -->
+      <div class="table-wrapper">
+        <table class="comp-table">
+          <thead>
+            <tr>
+              <th>Business Scenario</th>
+              <th>Dangerous Error</th>
+              <th>Critical Target Metric</th>
+              <th>Reasoning</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Spam Filter</strong></td>
+              <td><strong>False Positive (FP):</strong> Legitimate job offer sent to Spam</td>
+              <td><strong>PRECISION</strong></td>
+              <td>Users tolerate seeing a few spam emails in the inbox, but missing an important client email in Spam is unacceptable.</td>
+            </tr>
+            <tr>
+              <td><strong>Cancer Detection</strong></td>
+              <td><strong>False Negative (FN):</strong> Patient with cancer told they are healthy</td>
+              <td><strong>RECALL</strong></td>
+              <td>A false alarm can be cleared by further tests. A missed cancer diagnosis leads to patient death.</td>
+            </tr>
+            <tr>
+              <td><strong>Credit Card Fraud</strong></td>
+              <td><strong>False Negative (FN):</strong> $10,000 fraudulent charge approved</td>
+              <td><strong>RECALL / PR-AUC</strong></td>
+              <td>Missing fraud directly costs the bank money. False alarms trigger a simple 5-second SMS check.</td>
+            </tr>
+            <tr>
+              <td><strong>Loan Approval (Conservative Bank)</strong></td>
+              <td><strong>False Positive (FP):</strong> Approving loan to someone who defaults</td>
+              <td><strong>PRECISION</strong></td>
+              <td>Bank prefers denying risky applicants rather than losing principal capital.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ROC-AUC vs PR-AUC -->
+      <div class="concept-grid">
+        <div class="concept-card">
+          <h4>📈 ROC-AUC (Receiver Operating Characteristic)</h4>
+          <p>Plots <strong>True Positive Rate (Recall)</strong> vs <strong>False Positive Rate (1 - Specificity)</strong> across all classification thresholds from 0.0 to 1.0.<br>• <strong>AUC = 1.0:</strong> Perfect separation.<br>• <strong>AUC = 0.50:</strong> Random coin toss.<br>• Represents probability that model ranks a random positive higher than a random negative.</p>
+        </div>
+        <div class="concept-card">
+          <h4>📊 Precision-Recall Curve (PR-AUC)</h4>
+          <p>On heavily imbalanced datasets (e.g. 99.9% negative, 0.1% positive), the massive number of True Negatives artificially inflates the denominator of FPR, making ROC-AUC look deceptively optimistic (~0.98). <strong>Always evaluate PR-AUC (Precision vs Recall) on severe class imbalances!</strong></p>
+        </div>
+      </div>
+
+      <div class="trap-box">
+        <div class="trap-header">⚠️ Fatal Placement Trap #9: The Accuracy Paradox</div>
+        <div class="trap-desc">
+          In a credit card transaction dataset with 99,900 legitimate transactions and 100 fraudulent transactions, a "dumb" model that always outputs "Legitimate" (Class 0) achieves an astonishing <strong>99.9% Accuracy</strong>! Yet it has caught exactly <strong>0 frauds (Recall = 0.0%)</strong>, rendering it 100% useless in production. Never judge imbalanced models by accuracy!
+        </div>
+      </div>
+    </article>
+
+
+    <!-- SECTION 16: OVERFITTING, UNDERFITTING & REGULARIZATION -->
+    <article class="note-section" id="sec-16">
+      <div class="section-eyebrow">
+        <span class="sec-num">SECTION 16</span>
+        <span class="sec-priority priority-p0">VERY HIGH PRIORITY</span>
+      </div>
+      <h2 class="section-title">Bias-Variance Tradeoff & Regularization (L1 / L2)</h2>
+      <p class="section-intro">
+        Every machine learning model aims to minimize generalization error. Generalization error is decomposed mathematically into: <code>Total Error = Bias^2 + Variance + Irreducible Error</code>.
+      </p>
+
+      <div class="table-wrapper">
+        <table class="comp-table">
+          <thead>
+            <tr>
+              <th>Condition</th>
+              <th>Bias Level</th>
+              <th>Variance Level</th>
+              <th>Training Error</th>
+              <th>Validation Error</th>
+              <th>How to Fix</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Underfitting</strong></td>
+              <td><strong>High Bias</strong> (Over-simplified model assumptions)</td>
+              <td>Low Variance</td>
+              <td><strong>High</strong></td>
+              <td><strong>High</strong> (closely matches train error)</td>
+              <td>Increase model complexity, add polynomial/interaction features, decrease regularization</td>
+            </tr>
+            <tr>
+              <td><strong>Good Fit</strong></td>
+              <td>Low Bias</td>
+              <td>Low Variance</td>
+              <td>Low</td>
+              <td>Low (slight healthy gap)</td>
+              <td>Optimal production state</td>
+            </tr>
+            <tr>
+              <td><strong>Overfitting</strong></td>
+              <td>Low Bias</td>
+              <td><strong>High Variance</strong> (Memorized training noise)</td>
+              <td><strong>Near Zero</strong></td>
+              <td><strong>High & Diverging</strong></td>
+              <td>Add L1/L2 regularization, get more data, apply dropout, prune trees, reduce features</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- L1 vs L2 Regularization Comparison -->
+      <div class="table-wrapper">
+        <table class="comp-table">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>L1 Regularization (Lasso)</th>
+              <th>L2 Regularization (Ridge)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Penalty Term Added</strong></td>
+              <td><code>λ * Σ |w_i|</code> (Sum of absolute weights)</td>
+              <td><code>λ * Σ (w_i^2)</code> (Sum of squared weights)</td>
+            </tr>
+            <tr>
+              <td><strong>Weight Shrinkage</strong></td>
+              <td>Drives non-essential weights <strong>strictly to zero</strong></td>
+              <td>Shrinks weights <strong>asymptotically toward zero</strong> (never exactly zero)</td>
+            </tr>
+            <tr>
+              <td><strong>Feature Selection?</strong></td>
+              <td><strong>YES (Sparse models)</strong> - eliminates useless features</td>
+              <td>NO - retains all features with small weights</td>
+            </tr>
+            <tr>
+              <td><strong>Geometry of Constraint</strong></td>
+              <td>Diamond / Polyhedron with sharp corners on axes</td>
+              <td>Circular / Spherical hyperspace</td>
+            </tr>
+            <tr>
+              <td><strong>Handling Collinear Features</strong></td>
+              <td>Arbitrarily picks one feature and zeroes the other</td>
+              <td>Distributes weights equally among collinear features</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="concept-card" style="margin: 20px 0;">
+        <h4>⏳ Early Stopping</h4>
+        <p>A simple, universal regularization technique. During iterative gradient descent, monitor the validation loss at every epoch. When validation loss stops decreasing and begins to diverge upward for <code>patience</code> epochs, halt training immediately and save the checkpoint with the lowest validation loss.</p>
+      </div>
+    </article>
+
+
+    <!-- SECTION 17: TRAIN, VALIDATION & TEST -->
+    <article class="note-section" id="sec-17">
+      <div class="section-eyebrow">
+        <span class="sec-num">SECTION 17</span>
+        <span class="sec-priority priority-p0">VERY HIGH PRIORITY</span>
+      </div>
+      <h2 class="section-title">Train, Validation & Test Protocol</h2>
+      <p class="section-intro">
+        Why do enterprise workflows require three separate dataset splits instead of just two? If you tune hyperparameters using the test set, you introduce optimization bias and invalidate final benchmark credibility.
+      </p>
+
+      <div class="diagram-container">
+        <div class="diagram-title">The Three-Way Split Workflow</div>
+        <pre class="diagram-art">
++-----------------------------------------------------------------------------------+
+| FULL ENTERPRISE DATASET (100%)                                                    |
++-----------------------------------------------------------------------------------+
+|                          |                                   |                    |
+|   TRAINING SET (~70%)    |      VALIDATION SET (~15%)        |   TEST SET (~15%)  |
+|                          |                                   |                    |
+| Used to compute loss and | Used to evaluate hyperparameters  | Locked in a vault! |
+| optimize internal model  | (tree depth, C, learning rate) and| Evaluated ONCE at  |
+| weights (w, b).          | select the best model candidate.  | final deployment.  |
++--------------------------+-----------------------------------+--------------------+
+        </pre>
+      </div>
+
+      <div class="concept-grid">
+        <div class="concept-card">
+          <h4>🔄 K-Fold Cross-Validation</h4>
+          <p>Splits training data into <code>K</code> equal folds (typically K=5 or 10). Trains on <code>K-1</code> folds, evaluates on the 1 holdout fold, and repeats <code>K</code> times so every sample is evaluated once. The final score is the average across all folds, reducing evaluation variance on smaller datasets.</p>
+        </div>
+        <div class="concept-card">
+          <h4>⚖️ Stratified K-Fold (Mandatory for Imbalanced Data)</h4>
+          <p>Standard random K-Fold can accidentally create a fold with zero positive samples in rare classes (e.g. 1% fraud). <strong>StratifiedKFold</strong> guarantees that each fold contains the <em>exact same percentage proportion</em> of target classes as the complete dataset.</p>
+        </div>
+      </div>
+
+      <div class="trap-box">
+        <div class="trap-header">⚠️ Fatal Placement Trap #10: Time-Series Leakage</div>
+        <div class="trap-desc">
+          Never use standard random <code>train_test_split</code> on time-series or financial data! If you randomly shuffle stock prices or user transactions, the model learns from future data points to predict the past. Always use <strong>TimeSeriesSplit</strong> (walk-forward validation) where training data strictly precedes validation data chronologically.
+        </div>
+      </div>
+    </article>
+
+
+    <!-- SECTION 18: FEATURE ENGINEERING -->
+    <article class="note-section" id="sec-18">
+      <div class="section-eyebrow">
+        <span class="sec-num">SECTION 18</span>
+        <span class="sec-priority priority-p1">HIGH PRIORITY</span>
+      </div>
+      <h2 class="section-title">Feature Engineering: Creation, Selection & Transformation</h2>
+      <p class="section-intro">
+        "Applied machine learning is basically feature engineering." Feature engineering transforms raw attributes into high-signal representations that make learning trivial for downstream algorithms.
+      </p>
+
+      <div class="concept-grid">
+        <div class="concept-card">
+          <h4>1. Temporal Feature Extraction</h4>
+          <p>Never pass raw timestamps like <code>"2026-09-26 20:30:15"</code> directly into a model. Extract cyclical and categorical components: <code>HourOfDay (0-23)</code>, <code>DayOfWeek (Mon-Sun)</code>, <code>IsWeekend (0/1)</code>, <code>IsHoliday (0/1)</code>.</p>
+        </div>
+        <div class="concept-card">
+          <h4>2. Interaction Terms & Ratios</h4>
+          <p>Create domain-specific ratios that linear models cannot compute on their own: <code>DebtToIncomeRatio = TotalDebt / AnnualIncome</code>, <code>PricePerSquareFoot = HousePrice / SqFt</code>.</p>
+        </div>
+        <div class="concept-card">
+          <h4>3. Feature Selection Strategies</h4>
+          <p>• <strong>Filter Methods:</strong> Fast, model-agnostic correlation (Pearson, Spearman) or Mutual Information.<br>• <strong>Wrapper Methods:</strong> Recursive Feature Elimination (RFE) using a base estimator.<br>• <strong>Embedded Methods:</strong> Feature importances from Random Forest or L1 Lasso shrinkage.</p>
+        </div>
+      </div>
+    </article>
+    
+
+      <!-- Part 4 Content -->
+      
+    <!-- SECTION 19: NEURAL NETWORKS -->
+    <article class="note-section" id="sec-19">
+      <div class="section-eyebrow">
+        <span class="sec-num">SECTION 19</span>
+        <span class="sec-priority priority-p0">VERY HIGH PRIORITY</span>
+      </div>
+      <h2 class="section-title">Neural Networks: The Perceptron & Forward Propagation</h2>
+      <p class="section-intro">
+        An Artificial Neural Network (ANN / Multilayer Perceptron) is a stack of interconnected layers. Each neuron performs a weighted linear sum followed by a non-linear activation function.
+      </p>
+
+      <!-- Neuron Computational Diagram -->
+      <div class="diagram-container">
+        <div class="diagram-title">Single Artificial Neuron Computational Architecture</div>
+        <pre class="diagram-art">
+Inputs (x_i)        Weights (w_i)
+   x1 ------------> w1 -----   x2 ------------> w2 -----> [ SUMMATION ] ----> [ ACTIVATION ] ----> Output (a)
+   ...                       /   z = Σ(w_i * x_i) + b    a = σ(z)
+   xn ------------> wn -----/
+   Bias (1) ------> b -----/
+        </pre>
+      </div>
+
+      <!-- Formula Block: Parameter Counting -->
+      <div class="formula-block">
+        <div class="formula-name">Placement Math: Trainable Parameter Counting in Dense Layer</div>
+        <div class="formula-math">Total Parameters = (Num_Inputs + 1) * Num_Neurons</div>
+        <div class="formula-desc">
+          Every neuron in a fully connected (Dense) layer has one incoming weight for each input feature, PLUS exactly <strong>one bias term</strong>: <code>Parameters = (Inputs * Neurons) + Neurons = (Inputs + 1) * Neurons</code>.
+        </div>
+      </div>
+
+      <div class="concept-card" style="margin: 20px 0;">
+        <h4>🧮 Placement Numerical Example</h4>
+        <p>A hidden layer takes <strong>10 input features</strong> and contains <strong>5 neurons</strong>.<br>
+        • Weights matrix shape: <code>(10, 5) &rarr; 50 weights</code>.<br>
+        • Bias vector shape: <code>(5,) &rarr; 5 biases</code>.<br>
+        • <strong>Total Trainable Parameters:</strong> <code>(10 + 1) * 5 = 55 parameters</code>.</p>
+      </div>
+
+      <div class="trap-box">
+        <div class="trap-header">⚠️ Fatal Placement Trap #11: Why Non-Linear Activation is Mandatory</div>
+        <div class="trap-desc">
+          "What happens if you build a 50-layer deep neural network with NO activation functions (pure linear layers)?" A linear combination of linear functions is mathematically just a single linear function: <code>W2 * (W1 * x) = (W2 * W1) * x = W_effective * x</code>. Without non-linear activations, a 50-layer deep network collapses completely into a basic single-layer Linear Regression!
+        </div>
+      </div>
+    </article>
+
+
+    <!-- SECTION 20: ACTIVATION FUNCTIONS -->
+    <article class="note-section" id="sec-20">
+      <div class="section-eyebrow">
+        <span class="sec-num">SECTION 20</span>
+        <span class="sec-priority priority-p0">VERY HIGH PRIORITY</span>
+      </div>
+      <h2 class="section-title">Activation Functions: ReLU, Sigmoid, Tanh & Softmax</h2>
+      <p class="section-intro">
+        Activation functions introduce non-linearity, enabling networks to learn complex non-linear decision surfaces. Placement questions focus on the Vanishing Gradient problem and output layer activation selection.
+      </p>
+
+      <div class="table-wrapper">
+        <table class="comp-table">
+          <thead>
+            <tr>
+              <th>Activation Function</th>
+              <th>Mathematical Formula</th>
+              <th>Output Range</th>
+              <th>Derivative Range</th>
+              <th>Strengths & Placement Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>ReLU (Rectified Linear Unit)</strong></td>
+              <td><code>f(z) = max(0, z)</code></td>
+              <td>[0, +∞)</td>
+              <td>1 if z > 0, else 0</td>
+              <td><strong>Default hidden layer activation!</strong> Computationally cheap (no exp), solves vanishing gradients for positive activations. Weakness: <em>Dying ReLU</em> if weights become strongly negative.</td>
+            </tr>
+            <tr>
+              <td><strong>Sigmoid</strong></td>
+              <td><code>σ(z) = 1 / (1 + e^-z)</code></td>
+              <td>(0, 1)</td>
+              <td>Max derivative = <strong>0.25</strong></td>
+              <td>Used for <strong>Binary Classification output layers</strong>. Never use in deep hidden layers because maximum derivative is 0.25, causing severe vanishing gradients!</td>
+            </tr>
+            <tr>
+              <td><strong>Tanh (Hyperbolic Tangent)</strong></td>
+              <td><code>tanh(z) = (e^z - e^-z) / (e^z + e^-z)</code></td>
+              <td>(-1, +1)</td>
+              <td>Max derivative = <strong>1.0</strong></td>
+              <td><strong>Zero-centered</strong> (unlike Sigmoid). Gradients do not systematically bias updates in one direction. Still suffers from vanishing gradients at large |z|.</td>
+            </tr>
+            <tr>
+              <td><strong>Softmax</strong></td>
+              <td><code>p_i = e^(z_i) / Σ(e^(z_j))</code></td>
+              <td>(0, 1), sum = 1.0</td>
+              <td>Multi-dimensional Jacobian</td>
+              <td>Standard for <strong>Multiclass Classification output layers</strong>. Normalizes raw output logits into a valid categorical probability distribution.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Output Layer Activation Selection Guide -->
+      <div class="concept-grid">
+        <div class="concept-card">
+          <h4>🎯 Output Layer Selection Rule 1: Binary Classification</h4>
+          <p>• Output Neurons: <strong>1</strong><br>• Output Activation: <strong>Sigmoid</strong><br>• Loss Function: <strong>Binary Cross-Entropy</strong></p>
+        </div>
+        <div class="concept-card">
+          <h4>🎯 Output Layer Selection Rule 2: Multiclass Classification</h4>
+          <p>• Output Neurons: <strong>K (number of classes)</strong><br>• Output Activation: <strong>Softmax</strong><br>• Loss Function: <strong>Categorical Cross-Entropy</strong></p>
+        </div>
+        <div class="concept-card">
+          <h4>🎯 Output Layer Selection Rule 3: Multilabel Classification</h4>
+          <p>• Output Neurons: <strong>K (independent tags)</strong><br>• Output Activation: <strong>Sigmoid (independent per neuron)</strong><br>• Loss Function: <strong>Binary Cross-Entropy</strong></p>
+        </div>
+        <div class="concept-card">
+          <h4>🎯 Output Layer Selection Rule 4: Continuous Regression</h4>
+          <p>• Output Neurons: <strong>1</strong><br>• Output Activation: <strong>Linear / None (identity)</strong><br>• Loss Function: <strong>Mean Squared Error (MSE)</strong></p>
+        </div>
+      </div>
+    </article>
+
+
+    <!-- SECTION 21: LOSS FUNCTIONS -->
+    <article class="note-section" id="sec-21">
+      <div class="section-eyebrow">
+        <span class="sec-num">SECTION 21</span>
+        <span class="sec-priority priority-p1">HIGH PRIORITY</span>
+      </div>
+      <h2 class="section-title">Loss Functions: MSE vs Cross-Entropy</h2>
+      <p class="section-intro">
+        The loss function quantifies how far predicted outputs deviate from actual targets. An optimizer minimizes this loss by updating network weights.
+      </p>
+
+      <div class="formula-block">
+        <div class="formula-name">Binary Cross-Entropy Loss (Log Loss)</div>
+        <div class="formula-math">Loss = - (1/N) * Σ [ y_i * log(p_i) + (1 - y_i) * log(1 - p_i) ]</div>
+        <div class="formula-desc">
+          When actual label <code>y = 1</code>, the loss is <code>-log(p)</code>. If the model confidently predicts <code>p = 0.001</code>, <code>-log(0.001)</code> approaches infinity, punishing confidently wrong predictions with massive gradient signals!
+        </div>
+      </div>
+
+      <div class="trap-box">
+        <div class="trap-header">⚠️ Fatal Placement Trap #12: Why MSE Fails on Classification</div>
+        <div class="trap-desc">
+          Why shouldn't you pair Mean Squared Error (MSE) with a Sigmoid output layer for classification? The derivative of Sigmoid is <code>σ'(z) = σ(z) * (1 - σ(z))</code>. When the model is confidently wrong (e.g. <code>y = 1</code> but predicted <code>p = 0.001</code>), the derivative <code>σ'(z) ≈ 0</code>! This creates a flat local minimum where gradients vanish right when the model needs to learn most. In contrast, Cross-Entropy derivative cancels the sigmoid term: <code>dL/dz = (p - y)</code>, maintaining strong, linear gradients!
+        </div>
+      </div>
+
+      <div class="concept-card" style="margin: 20px 0;">
+        <h4>💻 Categorical vs Sparse Categorical Cross-Entropy (Keras/PyTorch)</h4>
+        <p>• <strong>Categorical Cross-Entropy:</strong> Expects target labels to be <em>One-Hot Encoded</em> (e.g. <code>[0, 1, 0]</code> for Class 1).<br>• <strong>Sparse Categorical Cross-Entropy:</strong> Expects target labels to be <em>Integers</em> (e.g. <code>1</code> for Class 1). Saves massive GPU memory by avoiding large sparse matrices.</p>
+      </div>
+    </article>
+
+
+    <!-- SECTION 22: GRADIENT DESCENT & BACKPROPAGATION -->
+    <article class="note-section" id="sec-22">
+      <div class="section-eyebrow">
+        <span class="sec-num">SECTION 22</span>
+        <span class="sec-priority priority-p0">VERY HIGH PRIORITY</span>
+      </div>
+      <h2 class="section-title">Gradient Descent & The Backpropagation Chain Rule</h2>
+      <p class="section-intro">
+        Backpropagation is the workhorse of deep learning. It applies the <strong>Chain Rule of Calculus</strong> to propagate errors backward through network layers to compute partial derivatives <code>∂Loss / ∂w</code>.
+      </p>
+
+      <div class="formula-block">
+        <div class="formula-name">Single Gradient Descent Weight Update Formula</div>
+        <div class="formula-math">w_new = w_old - η * (∂Loss / ∂w)</div>
+        <div class="formula-desc">
+          • <strong>w_old:</strong> Current weight value.<br>
+          • <strong>η (Learning Rate / Alpha):</strong> Step size controlling how far weights shift along the negative gradient.<br>
+          • <strong>∂Loss / ∂w:</strong> Direction and magnitude of steepest ascent. Subtracting moves toward the minimum.
+        </div>
+      </div>
+
+      <div class="concept-card" style="margin: 20px 0;">
+        <h4>🧮 Numerical Walkthrough</h4>
+        <p>Current weight <code>w = 0.50</code>. Learning rate <code>η = 0.10</code>. Current gradient <code>∂Loss / ∂w = 0.40</code>.<br>
+        <code>w_new = 0.50 - (0.10 * 0.40) = 0.50 - 0.04 = 0.46</code>.<br>
+        <em>Result: The updated weight is exactly 0.46.</em></p>
+      </div>
+
+      <!-- Gradient Descent Variants -->
+      <div class="table-wrapper">
+        <table class="comp-table">
+          <thead>
+            <tr>
+              <th>Variant</th>
+              <th>Samples Used per Weight Update</th>
+              <th>Convergence Speed</th>
+              <th>Gradient Trajectory</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Batch Gradient Descent</strong></td>
+              <td><strong>Entire dataset (N)</strong></td>
+              <td>Very slow per step; fails on large datasets that don't fit in memory</td>
+              <td>Smooth, deterministic, straight toward minimum</td>
+            </tr>
+            <tr>
+              <td><strong>Stochastic GD (SGD)</strong></td>
+              <td><strong>Single sample (1)</strong></td>
+              <td>Very fast per step, but extremely noisy</td>
+              <td>Erratic, oscillates wildly, but can escape shallow local minima</td>
+            </tr>
+            <tr>
+              <td><strong>Mini-Batch GD</strong></td>
+              <td><strong>Batch size (e.g. 32, 64, 128)</strong></td>
+              <td><strong>Optimal balance!</strong> Leverages GPU matrix parallelism</td>
+              <td>Slightly noisy but stable trajectory; industry standard</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="trap-box">
+        <div class="trap-header">⚠️ Fatal Placement Trap #13: Learning Rate Pitfalls</div>
+        <div class="trap-desc">
+          • <strong>Learning rate too small:</strong> Training crawls at an agonizing pace; risks getting trapped in suboptimal local minima or plateaus.<br>
+          • <strong>Learning rate too large:</strong> The optimizer overshoots the minimum, oscillations widen, and the training loss <strong>explodes to NaN / Infinity</strong>!
+        </div>
+      </div>
+    </article>
+
+
+    <!-- SECTION 23: CNN -->
+    <article class="note-section" id="sec-23">
+      <div class="section-eyebrow">
+        <span class="sec-num">SECTION 23</span>
+        <span class="sec-priority priority-p0">VERY HIGH PRIORITY</span>
+      </div>
+      <h2 class="section-title">Convolutional Neural Networks (CNNs)</h2>
+      <p class="section-intro">
+        CNNs process grid-structured data like images. By utilizing <strong>Local Receptive Fields</strong> and <strong>Weight Sharing</strong>, CNNs drastically reduce parameter counts while preserving translation invariance.
+      </p>
+
+      <!-- Formula Block: CNN Output Dimension -->
+      <div class="formula-block">
+        <div class="formula-name">CRITICAL PLACEMENT FORMULA: CNN Output Feature Map Dimension</div>
+        <div class="formula-math">Output_Size = floor( (Input_Size - Filter_Size + 2 * Padding) / Stride ) + 1</div>
+        <div class="formula-desc">
+          Where <code>W</code> = Input dimension, <code>F</code> = Filter/Kernel size, <code>P</code> = Padding pixels added to each border, <code>S</code> = Stride.
+        </div>
+      </div>
+
+      <div class="concept-card" style="margin: 20px 0;">
+        <h4>🧮 Numerical Calculation Example (Asked in TCS Digital & Infosys DSE)</h4>
+        <p>An input image is <code>32 x 32</code>. A convolutional layer applies a <code>5 x 5</code> kernel with <strong>stride = 1</strong> and <strong>padding = 0 (valid padding)</strong>.<br>
+        <code>Output = ((32 - 5 + 2*0) / 1) + 1 = (27 / 1) + 1 = 28</code>.<br>
+        <em>Result: The output feature map is exactly 28 x 28.</em></p>
+      </div>
+
+      <div class="concept-grid">
+        <div class="concept-card">
+          <h4>🔲 Padding: Valid vs Same</h4>
+          <p>• <strong>Valid Padding (P = 0):</strong> No padding added. Feature map shrinks after every convolution.<br>• <strong>Same Padding:</strong> Adds zero-padding along borders such that output spatial dimensions exactly match input dimensions: <code>P = (F - 1) / 2</code> (when stride = 1).</p>
+        </div>
+        <div class="concept-card">
+          <h4>🏊 Max Pooling vs Average Pooling</h4>
+          <p>• <strong>Max Pooling:</strong> Extracts maximum activation in each window (e.g. 2x2 with stride 2 halves height and width). Captures dominant edges and provides spatial translation invariance.<br>• <strong>Average Pooling:</strong> Averages window values; used in final global pooling layers before classification.</p>
+        </div>
+      </div>
+    </article>
+
+
+    <!-- SECTION 24: RNN, LSTM & GRU -->
+    <article class="note-section" id="sec-24">
+      <div class="section-eyebrow">
+        <span class="sec-num">SECTION 24</span>
+        <span class="sec-priority priority-p1">HIGH PRIORITY</span>
+      </div>
+      <h2 class="section-title">Sequence Modeling: RNN, LSTM & GRU</h2>
+      <p class="section-intro">
+        Standard neural networks assume independent samples. Recurrent Neural Networks process sequential data (time-series, natural language, audio) by maintaining a cyclical <strong>hidden state</strong> that acts as memory.
+      </p>
+
+      <div class="concept-grid">
+        <div class="concept-card">
+          <h4>🔄 Vanilla RNN & The Vanishing Gradient</h4>
+          <p>At each time step <code>t</code>: <code>h_t = tanh(W_hh * h_(t-1) + W_xh * x_t + b)</code>. When backpropagating through time (BPTT) over 50+ time steps, repeated multiplication of weight matrices and tanh derivatives causes gradients to vanish to 0, making RNNs forget early sequence words!</p>
+        </div>
+        <div class="concept-card">
+          <h4>⚡ LSTM (Long Short-Term Memory)</h4>
+          <p>Introduces a separate <strong>Cell State (C_t)</strong> that acts as an unobstructed information highway, regulated by 3 non-linear gates:<br>
+          1. <strong>Forget Gate:</strong> Decides what information to discard from cell state: <code>f_t = σ(W_f · [h_(t-1), x_t] + b_f)</code>.<br>
+          2. <strong>Input Gate:</strong> Decides which new candidate values to store in cell state.<br>
+          3. <strong>Output Gate:</strong> Controls what part of the cell state is output as hidden state <code>h_t</code>.</p>
+        </div>
+      </div>
+
+      <!-- RNN vs LSTM vs GRU Table -->
+      <div class="table-wrapper">
+        <table class="comp-table">
+          <thead>
+            <tr>
+              <th>Architecture</th>
+              <th>Internal Gating Mechanisms</th>
+              <th>Memory Capability</th>
+              <th>Computational Efficiency</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Vanilla RNN</strong></td>
+              <td>No gates (simple recurring hidden state)</td>
+              <td>Short-term memory only (&lt; 10 steps)</td>
+              <td>Fastest training, few parameters</td>
+            </tr>
+            <tr>
+              <td><strong>LSTM</strong></td>
+              <td>3 gates (Forget, Input, Output) + Cell State</td>
+              <td>Long-term memory (100+ steps)</td>
+              <td>Most expressive; highest parameter count</td>
+            </tr>
+            <tr>
+              <td><strong>GRU (Gated Recurrent Unit)</strong></td>
+              <td>2 gates (Reset, Update); merges Cell & Hidden state</td>
+              <td>Comparable to LSTM on most NLP tasks</td>
+              <td>~25% fewer parameters than LSTM; trains faster</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+
+
+    <!-- SECTION 25: DEEP LEARNING TRAINING -->
+    <article class="note-section" id="sec-25">
+      <div class="section-eyebrow">
+        <span class="sec-num">SECTION 25</span>
+        <span class="sec-priority priority-p1">HIGH PRIORITY</span>
+      </div>
+      <h2 class="section-title">Deep Learning Training: Optimizers & Regularization</h2>
+      <p class="section-intro">
+        Training stability in deep networks depends on proper optimizer selection (Adam vs SGD) and stabilization layers (Dropout, Batch Normalization).
+      </p>
+
+      <div class="concept-grid">
+        <div class="concept-card">
+          <h4>⚡ The Adam Optimizer (Adaptive Moment Estimation)</h4>
+          <p>The undisputed default optimizer for deep learning. Combines two ideas:<br>
+          1. <strong>Momentum:</strong> Exponential moving average of past gradients (first moment) smooths oscillations.<br>
+          2. <strong>RMSprop:</strong> Exponential moving average of squared gradients (second moment) scales learning rates adaptively per parameter.</p>
+        </div>
+        <div class="concept-card">
+          <h4>🎲 Dropout Regularization</h4>
+          <p>During training, randomly zeroes out a fraction (e.g. <code>p = 0.50</code>) of neurons at each iteration. This prevents neurons from co-adapting and forces the network to learn redundant, robust internal representations.<br>
+          <strong>Critical Placement Rule:</strong> <em>Dropout is active ONLY during training! During test/inference, all neurons are enabled and outputs are scaled by (1 - p).</em></p>
+        </div>
+      </div>
+
+      <div class="concept-card" style="margin: 20px 0;">
+        <h4>📊 Batch Normalization</h4>
+        <p>Normalizes the activations of each mini-batch to have zero mean and unit variance before passing to the next layer. Solves <em>Internal Covariate Shift</em>, allows significantly higher learning rates, acts as a slight regularizer, and drastically reduces sensitivity to weight initialization.</p>
+      </div>
+    </article>
+    
+
+      <!-- Part 5 Content -->
+      
+    <!-- SECTION 26: ALGORITHM SELECTION GUIDE -->
+    <article class="note-section" id="sec-algo-guide">
+      <div class="section-eyebrow">
+        <span class="sec-num">MASTER TOOLKIT A</span>
+        <span class="sec-priority priority-p0">P0 CHEATSHEET</span>
+      </div>
+      <h2 class="section-title">The Master Algorithm Selection Flowchart</h2>
+      <p class="section-intro">
+        In MNC scenario rounds, examiners ask: "Given dataset X with characteristics Y, which algorithm would you select and why?" Use this decision framework.
+      </p>
+
+      <div class="table-wrapper">
+        <table class="comp-table">
+          <thead>
+            <tr>
+              <th>Problem Profile & Dataset Characteristics</th>
+              <th>Optimal Algorithm Selection</th>
+              <th>Placement Justification</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Tabular data, medium size (&lt; 500k rows), non-linear, high accuracy needed</td>
+              <td><strong>XGBoost / LightGBM / Random Forest</strong></td>
+              <td>State of the art for tabular data; handles mixed features, missing values, and non-linear interactions automatically.</td>
+            </tr>
+            <tr>
+              <td>Tabular data where strict interpretability / regulatory compliance is legally required (e.g. credit score)</td>
+              <td><strong>Logistic Regression / Constrained Decision Tree</strong></td>
+              <td>Coefficients directly explain decision reasoning to auditors; white-box model.</td>
+            </tr>
+            <tr>
+              <td>High-dimensional text classification (Bag of Words / TF-IDF sparse matrices)</td>
+              <td><strong>Linear SVM / Multinomial Naive Bayes</strong></td>
+              <td>Linear SVM excels when feature dimension d &gt; sample size N; extremely fast on sparse data.</td>
+            </tr>
+            <tr>
+              <td>Small dataset (&lt; 2,000 rows), clean numerical features, non-linear boundary</td>
+              <td><strong>Kernel SVM (RBF)</strong></td>
+              <td>Finds maximum margin boundaries with zero risk of tree splitting noise.</td>
+            </tr>
+            <tr>
+              <td>Unlabeled customer transactions for behavioral grouping</td>
+              <td><strong>K-Means (or DBSCAN if density varies)</strong></td>
+              <td>Standard unsupervised clustering; use Elbow method with inertia to pick K.</td>
+            </tr>
+            <tr>
+              <td>Computer vision, 2D images, object detection</td>
+              <td><strong>Convolutional Neural Network (CNN)</strong></td>
+              <td>Local receptive fields, weight sharing, and translation invariance.</td>
+            </tr>
+            <tr>
+              <td>Sequential data, stock ticker time-series, audio, machine translation</td>
+              <td><strong>LSTM / GRU / Transformer</strong></td>
+              <td>Preserves long-term temporal context and resolves vanishing gradients of vanilla RNNs.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Comparison Table 15: Master Algorithm Comparison Matrix -->
+      <div class="table-wrapper" style="margin-top: 24px;">
+        <div class="diagram-title">Master ML Algorithm Comparison Matrix (Table 15)</div>
+        <table class="comp-table">
+          <thead>
+            <tr>
+              <th>Algorithm</th>
+              <th>Type</th>
+              <th>Interpretability</th>
+              <th>Scale Invariant?</th>
+              <th>Outlier Robustness</th>
+              <th>Main Hyperparameters</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Linear Regression</strong></td>
+              <td>Supervised Regressor</td>
+              <td>High (Coefficients)</td>
+              <td>No (Needs Scaling)</td>
+              <td>Low (Squared residuals)</td>
+              <td>fit_intercept, normalize</td>
+            </tr>
+            <tr>
+              <td><strong>Logistic Regression</strong></td>
+              <td>Supervised Classifier</td>
+              <td>High (Odds ratios)</td>
+              <td>No (Needs Scaling)</td>
+              <td>Medium</td>
+              <td>C (regularization), penalty (l1/l2)</td>
+            </tr>
+            <tr>
+              <td><strong>Decision Tree</strong></td>
+              <td>Classifier / Regressor</td>
+              <td>High (if depth &lt; 5)</td>
+              <td><strong>YES (Scale Invariant)</strong></td>
+              <td>High</td>
+              <td>max_depth, min_samples_split</td>
+            </tr>
+            <tr>
+              <td><strong>Random Forest</strong></td>
+              <td>Ensemble (Bagging)</td>
+              <td>Medium (Feature importances)</td>
+              <td><strong>YES (Scale Invariant)</strong></td>
+              <td>High</td>
+              <td>n_estimators, max_features</td>
+            </tr>
+            <tr>
+              <td><strong>XGBoost</strong></td>
+              <td>Ensemble (Boosting)</td>
+              <td>Medium (Gain scores)</td>
+              <td><strong>YES (Scale Invariant)</strong></td>
+              <td>High</td>
+              <td>learning_rate, max_depth, n_estimators</td>
+            </tr>
+            <tr>
+              <td><strong>KNN</strong></td>
+              <td>Lazy Learner</td>
+              <td>Low</td>
+              <td><strong>NO (Strict Scaling Required)</strong></td>
+              <td>Low (Outliers distort neighbor votes)</td>
+              <td>n_neighbors (K), metric (euclidean)</td>
+            </tr>
+            <tr>
+              <td><strong>SVM</strong></td>
+              <td>Margin Classifier</td>
+              <td>Low to Medium</td>
+              <td><strong>NO (Strict Scaling Required)</strong></td>
+              <td>High (Controlled by margin)</td>
+              <td>C, kernel (linear/rbf), gamma</td>
+            </tr>
+            <tr>
+              <td><strong>K-Means</strong></td>
+              <td>Unsupervised Clustering</td>
+              <td>Medium</td>
+              <td><strong>NO (Strict Scaling Required)</strong></td>
+              <td>Low (Outliers drag centroids)</td>
+              <td>n_clusters (K), init (k-means++)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+
+
+    <!-- SECTION 27: 40 FATAL PLACEMENT TRAPS -->
+    <article class="note-section" id="sec-traps">
+      <div class="section-eyebrow">
+        <span class="sec-num">MASTER TOOLKIT B</span>
+        <span class="sec-priority priority-p0">40 CRITICAL TRAPS</span>
+      </div>
+      <h2 class="section-title">40 Fatal Placement Traps & Misconceptions</h2>
+      <p class="section-intro">
+        These are the exact traps designed into MCQ distractors across TCS, Accenture, Infosys, and Capgemini exams. Read every single one.
+      </p>
+
+      <div class="concept-grid">
+        <div class="trap-box"><div class="trap-header">Trap 01: Accuracy on Imbalanced Data</div><div class="trap-desc">99% accuracy on a dataset with 1% positive class is meaningless. Always check Recall or PR-AUC.</div></div>
+        <div class="trap-box"><div class="trap-header">Trap 02: Logistic Regression Identity</div><div class="trap-desc">Logistic Regression is a CLASSIFIER, not a continuous regressor.</div></div>
+        <div class="trap-box"><div class="trap-header">Trap 03: Feature Scaling on Decision Trees</div><div class="trap-desc">Decision Trees and Random Forests are scale-invariant. StandardScaler has ZERO effect on tree split decisions.</div></div>
+        <div class="trap-box"><div class="trap-header">Trap 04: KNN Feature Scaling</div><div class="trap-desc">KNN is entirely distance-based. Forgetting to scale features causes large-magnitude columns to dictate 100% of decisions.</div></div>
+        <div class="trap-box"><div class="trap-header">Trap 05: Data Leakage via Scaler</div><div class="trap-desc">Fitting <code>StandardScaler()</code> before <code>train_test_split()</code> leaks test distribution statistics into training.</div></div>
+        <div class="trap-box"><div class="trap-header">Trap 06: Dummy Variable Trap</div><div class="trap-desc">One-hot encoding k categories requires dropping 1 dummy column in linear models to prevent perfect multicollinearity.</div></div>
+        <div class="trap-box"><div class="trap-header">Trap 07: K-Means Non-Convex Shapes</div><div class="trap-desc">K-Means assumes spherical clusters. It fails completely on concentric circles or crescent moon data.</div></div>
+        <div class="trap-box"><div class="trap-header">Trap 08: PCA Column Deletion</div><div class="trap-desc">PCA does NOT select or delete original columns; it projects data onto brand-new synthesized orthogonal axes.</div></div>
+        <div class="trap-box"><div class="trap-header">Trap 09: Dropout at Test Time</div><div class="trap-desc">Dropout is active ONLY during training. It must be turned OFF during test/production inference.</div></div>
+        <div class="trap-box"><div class="trap-header">Trap 10: MSE for Classification</div><div class="trap-desc">MSE with Sigmoid produces a non-convex loss surface with vanishing gradients for confidently wrong samples.</div></div>
+        <div class="trap-box"><div class="trap-header">Trap 11: R-Squared Always Increases</div><div class="trap-desc">Adding random noise columns will never decrease standard R-squared. Always evaluate Adjusted R-squared.</div></div>
+        <div class="trap-box"><div class="trap-header">Trap 12: Deep Networks Without Activations</div><div class="trap-desc">A deep network without non-linear activations collapses into a single basic linear regression model.</div></div>
+        <div class="trap-box"><div class="trap-header">Trap 13: Correlation Does Not Imply Causation</div><div class="trap-desc">High Pearson correlation between two variables does not prove that one causes the other. Confounding variables frequently exist.</div></div>
+        <div class="trap-box"><div class="trap-header">Trap 14: Time-Series Shuffling</div><div class="trap-desc">Random shuffling on temporal financial data leaks future values to the past. Always use TimeSeriesSplit.</div></div>
+        <div class="trap-box"><div class="trap-header">Trap 15: Overfitting Means Zero Train Error</div><div class="trap-desc">Overfitting is NOT defined by train error alone; it is defined by the DIVERGENCE between train and validation error.</div></div>
+        <div class="trap-box"><div class="trap-header">Trap 16: L1 Lasso vs L2 Ridge Math</div><div class="trap-desc">L1 sets weights strictly to 0 (sparse feature selection). L2 asymptotically shrinks weights near 0 (retains all features).</div></div>
+        <div class="trap-box"><div class="trap-header">Trap 17: Support Vectors Count</div><div class="trap-desc">In SVM, only support vectors determine the decision boundary. Removing non-support vector samples changes nothing.</div></div>
+        <div class="trap-box"><div class="trap-header">Trap 18: Random Forest vs Single Tree</div><div class="trap-desc">A Random Forest cannot be simplified to a single tree; its variance reduction depends entirely on averaging decorrelated trees.</div></div>
+        <div class="trap-box"><div class="trap-header">Trap 19: Dying ReLU</div><div class="trap-desc">If a large gradient updates neuron weights so it never activates positive again, its gradient stays 0 forever (Dying ReLU).</div></div>
+        <div class="trap-box"><div class="trap-header">Trap 20: Softmax Output Sum</div><div class="trap-desc">Softmax outputs must sum to exactly 1.0. For independent multi-label tags, use independent Sigmoids instead.</div></div>
+        <div class="trap-box"><div class="trap-header">Trap 21: Batch Normalization in Eval Mode</div><div class="trap-desc">Batch Normalization must freeze its running mean and variance during test evaluation; it does not compute batch statistics on test data.</div></div>
+        <div class="trap-box"><div class="trap-header">Trap 22: One-vs-Rest vs One-vs-One Count</div><div class="trap-desc">For K classes: One-vs-Rest trains exactly K models. One-vs-One trains K*(K-1)/2 pairwise models.</div></div>
+        <div class="trap-box"><div class="trap-header">Trap 23: Imbalanced Stratified Split</div><div class="trap-desc">Standard K-Fold can create folds with zero rare positive samples. Always use StratifiedKFold for classification.</div></div>
+        <div class="trap-box"><div class="trap-header">Trap 24: Gini Impurity Maximum Value</div><div class="trap-desc">For binary classification, the maximum Gini Impurity is 0.50 (at an equal 50/50 split), NOT 1.0.</div></div>
+        <div class="trap-box"><div class="trap-header">Trap 25: Entropy Maximum Value</div><div class="trap-desc">For binary classification, maximum Entropy is 1.0 (using base-2 logarithm) at an equal 50/50 split.</div></div>
+        <div class="trap-box"><div class="trap-header">Trap 26: Tree Extrapolation Failure</div><div class="trap-desc">Decision trees and tree ensembles CANNOT extrapolate trends outside the min and max values seen in training data.</div></div>
+        <div class="trap-box"><div class="trap-header">Trap 27: Bagging vs Boosting Parallelism</div><div class="trap-desc">Bagging trains trees in parallel. Boosting is strictly sequential because each tree learns from previous residual errors.</div></div>
+        <div class="trap-box"><div class="trap-header">Trap 28: High Bias vs High Variance</div><div class="trap-desc">High training error = High Bias (Underfitting). Low training error but high test error = High Variance (Overfitting).</div></div>
+        <div class="trap-box"><div class="trap-header">Trap 29: Learning Rate Decay</div><div class="trap-desc">Even adaptive optimizers like Adam perform significantly better when paired with a decaying learning rate schedule.</div></div>
+        <div class="trap-box"><div class="trap-header">Trap 30: CNN Stride vs Pooling</div><div class="trap-desc">A stride of 2 reduces spatial dimensions through learnable convolutions. Max pooling reduces dimensions without learnable parameters.</div></div>
+        <div class="trap-box"><div class="trap-header">Trap 31: RNN Exploding Gradients</div><div class="trap-desc">Vanishing gradients are resolved by LSTM gating. Exploding gradients are resolved by Gradient Clipping (thresholding norm).</div></div>
+        <div class="trap-box"><div class="trap-header">Trap 32: Outlier Impact on MSE</div><div class="trap-desc">MSE squares residuals, so a single extreme outlier exerts massive leverage on the regression line. Use Huber or MAE loss if outliers exist.</div></div>
+        <div class="trap-box"><div class="trap-header">Trap 33: Multicollinearity vs Correlation</div><div class="trap-desc">Two features can have moderate individual correlation, yet together cause severe multicollinearity if one is a linear combination of others.</div></div>
+        <div class="trap-box"><div class="trap-header">Trap 34: K-Means Random Initialization</div><div class="trap-desc">Random initialization can trap K-Means in terrible local minima. Always use K-Means++ initialization to space out starting centroids.</div></div>
+        <div class="trap-box"><div class="trap-header">Trap 35: MinMaxScaler Outlier Vulnerability</div><div class="trap-desc">A single massive outlier compresses all other normal data points into a narrow cluster between [0, 0.05] in MinMaxScaler.</div></div>
+        <div class="trap-box"><div class="trap-header">Trap 36: Scikit-Learn Confusion Matrix Layout</div><div class="trap-desc">In scikit-learn, Row 0 is Actual Negatives and Row 1 is Actual Positives: [[TN, FP], [FN, TP]].</div></div>
+        <div class="trap-box"><div class="trap-header">Trap 37: Precision-Recall Tradeoff</div><div class="trap-desc">Increasing the classification decision threshold increases Precision but decreases Recall. They move in opposite directions.</div></div>
+        <div class="trap-box"><div class="trap-header">Trap 38: Meaning of ROC-AUC 0.50</div><div class="trap-desc">ROC-AUC of 0.50 means the model has zero discriminatory capability (coin toss). An AUC of 0.0 means the model is perfectly inverted.</div></div>
+        <div class="trap-box"><div class="trap-header">Trap 39: Semi-Supervised Confirmation Bias</div><div class="trap-desc">Adding low-confidence pseudo-labeled data into training introduces self-reinforcing errors that ruin model accuracy.</div></div>
+        <div class="trap-box"><div class="trap-header">Trap 40: Validation Set Overfitting</div><div class="trap-desc">Tuning hyperparameters on the validation set hundreds of times eventually overfits the validation set itself. Always hold out a final Test set!</div></div>
+      </div>
+    </article>
+
+
+    <!-- SECTION 28: 30 REAL-WORLD SCENARIOS -->
+    <article class="note-section" id="sec-scenarios">
+      <div class="section-eyebrow">
+        <span class="sec-num">MASTER TOOLKIT C</span>
+        <span class="sec-priority priority-p0">30 SCENARIOS</span>
+      </div>
+      <h2 class="section-title">30 High-Frequency Placement Scenarios</h2>
+      <p class="section-intro">
+        Technical interviewers frame theoretical concepts as workplace dilemmas. Master these scenarios.
+      </p>
+
+      <div class="concept-grid">
+        <div class="scenario-box">
+          <div class="scenario-tag">Scenario 01 • Fraud Detection</div>
+          <div class="scenario-title">99.2% Accuracy, but Missing 80% of Fraud</div>
+          <div class="scenario-problem">A bank's fraud detection model boasts 99.2% accuracy, yet millions of dollars in fraudulent charges slip through unnoticed. What is occurring?</div>
+          <div class="scenario-solution"><strong>Diagnosis:</strong> Severe class imbalance. The model predicts the majority class (legitimate) 99.2% of the time. <strong>Fix:</strong> Optimize for Recall, tune the decision threshold down to 0.20, and evaluate with PR-AUC.</div>
+        </div>
+
+        <div class="scenario-box">
+          <div class="scenario-tag">Scenario 02 • Customer Churn</div>
+          <div class="scenario-title">Model Performs Great on Train, Crashes on New Month</div>
+          <div class="scenario-problem">Telecom churn model has 98% accuracy on training data, but drops to 61% when evaluated on new subscriber records next month.</div>
+          <div class="scenario-solution"><strong>Diagnosis:</strong> High Variance / Overfitting. The model memorized training noise. <strong>Fix:</strong> Constrain tree depth, apply L2 regularization, use Stratified 5-Fold Cross-Validation.</div>
+        </div>
+
+        <div class="scenario-box">
+          <div class="scenario-tag">Scenario 03 • Autonomous Vehicles</div>
+          <div class="scenario-title">Pedestrian Detection False Negatives vs False Positives</div>
+          <div class="scenario-problem">A vision model detects pedestrians crossing the street. An engineer argues that maximizing Precision is the top goal.</div>
+          <div class="scenario-solution"><strong>Diagnosis:</strong> Completely wrong! A False Negative (missing a pedestrian) is fatal. A False Positive (tapping brakes for a shadow) is a mild inconvenience. <strong>Target metric: Near-100% RECALL.</strong></div>
+        </div>
+
+        <div class="scenario-box">
+          <div class="scenario-tag">Scenario 04 • High-Dimensional Genomics</div>
+          <div class="scenario-title">200 Patients, 50,000 Gene Features</div>
+          <div class="scenario-problem">A medical lab wants to predict cancer occurrence with 200 patients (N=200) and 50,000 genetic expression markers (d=50,000).</div>
+          <div class="scenario-solution"><strong>Diagnosis:</strong> Extreme Curse of Dimensionality (d &gt;&gt; N). <strong>Solution:</strong> Apply L1 Lasso regularization to force 99% of useless gene weights to 0, or use PCA for dimensionality reduction.</div>
+        </div>
+
+        <div class="scenario-box">
+          <div class="scenario-tag">Scenario 05 • Recommendation Systems</div>
+          <div class="scenario-title">Cold Start Problem on a Newly Launched Streaming App</div>
+          <div class="scenario-problem">A new user signs up for a video streaming app. Collaborative filtering fails to suggest any movies. Why?</div>
+          <div class="scenario-solution"><strong>Diagnosis:</strong> The Cold Start problem. Collaborative filtering requires historical user interaction matrices. <strong>Fix:</strong> Switch to Content-Based Filtering or prompt the user for preferred genres during onboarding.</div>
+        </div>
+
+        <div class="scenario-box">
+          <div class="scenario-tag">Scenario 06 • Housing Price Prediction</div>
+          <div class="scenario-title">Feature Collinearity: SqFt and SqMeters in Same Model</div>
+          <div class="scenario-problem">A dataset contains both `HouseArea_SqFt` and `HouseArea_SqMeters`. The linear regression coefficients behave erratically.</div>
+          <div class="scenario-solution"><strong>Diagnosis:</strong> Perfect Multicollinearity (correlation = 1.0). The matrix <code>(X^T * X)</code> is singular and non-invertible. <strong>Fix:</strong> Drop one of the redundant columns.</div>
+        </div>
+
+        <div class="scenario-box">
+          <div class="scenario-tag">Scenario 07 • Healthcare Diagnostics</div>
+          <div class="scenario-title">Diabetes Progression Prediction</div>
+          <div class="scenario-problem">A clinic wants to predict continuous blood glucose levels from age, BMI, and blood pressure. Predictions on high-BMI patients are non-linear.</div>
+          <div class="scenario-solution"><strong>Diagnosis:</strong> Simple linear model cannot fit non-linear physiological interactions. <strong>Fix:</strong> Add polynomial interaction features <code>BMI * BloodPressure</code> or switch to Gradient Boosted Trees.</div>
+        </div>
+
+        <div class="scenario-box">
+          <div class="scenario-tag">Scenario 08 • E-Commerce Segmentation</div>
+          <div class="scenario-title">Grouping Customers Without Prior Labels</div>
+          <div class="scenario-problem">An online retailer has 2 million customer purchase logs without demographic labels and wants to run targeted marketing campaigns.</div>
+          <div class="scenario-solution"><strong>Diagnosis:</strong> Unsupervised learning task. <strong>Fix:</strong> Engineer RFM features (Recency, Frequency, Monetary value), scale features with StandardScaler, and apply K-Means clustering.</div>
+        </div>
+
+        <div class="scenario-box">
+          <div class="scenario-tag">Scenario 09 • Industrial IoT</div>
+          <div class="scenario-title">Predictive Maintenance on Factory Turbines</div>
+          <div class="scenario-problem">Factory turbines operate normally 99.99% of the time. Machine failure occurs once every 6 months. Standard classification fails.</div>
+          <div class="scenario-solution"><strong>Diagnosis:</strong> Severe anomaly detection problem. <strong>Fix:</strong> Train an unsupervised One-Class SVM or Autoencoder on normal operating vibrations. Deviations trigger maintenance alerts.</div>
+        </div>
+
+        <div class="scenario-box">
+          <div class="scenario-tag">Scenario 10 • FinTech Lending</div>
+          <div class="scenario-title">Regulatory Requirement to Explain Credit Denials</div>
+          <div class="scenario-problem">A bank builds a deep neural net to approve mortgages. Government regulators fine the bank because the model cannot explain why an applicant was rejected.</div>
+          <div class="scenario-solution"><strong>Diagnosis:</strong> Black-box failure in regulated domain. <strong>Fix:</strong> Replace the neural net with Logistic Regression or shallow Decision Trees where feature weights directly explain the credit decision.</div>
+        </div>
+
+        <div class="scenario-box">
+          <div class="scenario-tag">Scenario 11 • Social Media Moderation</div>
+          <div class="scenario-title">Classifying Toxic Comments With Multiple Labels</div>
+          <div class="scenario-problem">A comment can be simultaneously Toxic, Insulting, and Threatening. Softmax activation only picks one label.</div>
+          <div class="scenario-solution"><strong>Diagnosis:</strong> Multi-label classification problem. <strong>Fix:</strong> Replace Softmax with independent <strong>Sigmoid activations</strong> on each output neuron and train with Binary Cross-Entropy.</div>
+        </div>
+
+        <div class="scenario-box">
+          <div class="scenario-tag">Scenario 12 • HR Technology</div>
+          <div class="scenario-title">Resume Filtering Model Learning Demographic Bias</div>
+          <div class="scenario-problem">An automated resume parsing model discriminates against female applicants even though gender is not a column in the database.</div>
+          <div class="scenario-solution"><strong>Diagnosis:</strong> Proxy feature leakage. Features like "Women's college" or sports clubs act as proxy indicators. <strong>Fix:</strong> Audit feature correlations, apply fairness constraints, and anonymize candidate text.</div>
+        </div>
+
+        <div class="scenario-box">
+          <div class="scenario-tag">Scenario 13 • Search Ranking</div>
+          <div class="scenario-title">E-Commerce Product Search Results</div>
+          <div class="scenario-problem">Users type "running shoes" and the model outputs items sorted purely by price, resulting in low conversion rates.</div>
+          <div class="scenario-solution"><strong>Diagnosis:</strong> Standard classification ignores ranking order. <strong>Fix:</strong> Formulate as a Learning to Rank (LTR) problem using LambdaMART or RankNet optimizing for NDCG.</div>
+        </div>
+
+        <div class="scenario-box">
+          <div class="scenario-tag">Scenario 14 • Cybersecurity</div>
+          <div class="scenario-title">Zero-Day Network Intrusion Detection</div>
+          <div class="scenario-problem">Signature-based firewalls fail to block a novel cyber attack because the malware signature was never seen before.</div>
+          <div class="scenario-solution"><strong>Diagnosis:</strong> Supervised models only detect known attack patterns. <strong>Fix:</strong> Deploy unsupervised anomaly detection (Isolation Forest) to flag packets deviating from baseline traffic volume.</div>
+        </div>
+
+        <div class="scenario-box">
+          <div class="scenario-tag">Scenario 15 • Smart Agriculture</div>
+          <div class="scenario-title">Leaf Disease Identification from Smartphone Photos</div>
+          <div class="scenario-problem">A startup wants to classify 30 plant diseases from smartphone photos taken under direct sunlight, shadows, and varying angles.</div>
+          <div class="scenario-solution"><strong>Diagnosis:</strong> Computer vision spatial variance. <strong>Fix:</strong> Use a pre-trained CNN (ResNet / MobileNet) with aggressive data augmentation (random rotations, brightness, contrast adjustments).</div>
+        </div>
+
+        <div class="scenario-box">
+          <div class="scenario-tag">Scenario 16 • Airline Operations</div>
+          <div class="scenario-title">Flight Delay Forecasting With Future Data Leakage</div>
+          <div class="scenario-problem">A model predicts flight delays with 99% accuracy in training, but fails in live operations. An engineer included `ActualArrivalTime` as an input feature.</div>
+          <div class="scenario-solution"><strong>Diagnosis:</strong> Direct target leakage! <code>ActualArrivalTime</code> is not available at takeoff time. <strong>Fix:</strong> Restrict features strictly to pre-departure variables (scheduled departure, weather, inbound plane status).</div>
+        </div>
+
+        <div class="scenario-box">
+          <div class="scenario-tag">Scenario 17 • Banking Operations</div>
+          <div class="scenario-title">ATM Cash Demand Forecasting</div>
+          <div class="scenario-problem">Bank branches frequently run out of cash on holidays and overstock cash on weekdays, incurring holding penalties.</div>
+          <div class="scenario-solution"><strong>Diagnosis:</strong> Seasonal time-series regression. <strong>Fix:</strong> Use SARIMAX or Prophet incorporating calendar features (paydays, national holidays, local festivals).</div>
+        </div>
+
+        <div class="scenario-box">
+          <div class="scenario-tag">Scenario 18 • Hospital Management</div>
+          <div class="scenario-title">30-Day Hospital Readmission Reduction</div>
+          <div class="scenario-problem">Hospitals face hefty government fines if heart failure patients are readmitted within 30 days. Model accuracy is 85% but readmissions continue.</div>
+          <div class="scenario-solution"><strong>Diagnosis:</strong> Asymmetric misclassification costs. Missing a high-risk patient is 10x more costly than a check-in call. <strong>Fix:</strong> Cost-sensitive learning assigning a 10x penalty weight to False Negatives.</div>
+        </div>
+
+        <div class="scenario-box">
+          <div class="scenario-tag">Scenario 19 • Urban Logistics</div>
+          <div class="scenario-title">Optimal Delivery Routing During Rush Hour</div>
+          <div class="scenario-problem">A food delivery app needs to find the fastest motorcycle route between 50 city intersections with live traffic delays.</div>
+          <div class="scenario-solution"><strong>Diagnosis:</strong> Graph search pathfinding. <strong>Fix:</strong> Use A* search algorithm where <code>g(n)</code> is live elapsed travel time and <code>h(n)</code> is admissible straight-line time at maximum speed.</div>
+        </div>
+
+        <div class="scenario-box">
+          <div class="scenario-tag">Scenario 20 • Customer Support</div>
+          <div class="scenario-title">Automated Support Ticket Categorization</div>
+          <div class="scenario-problem">Thousands of customer emails arrive daily with complaints about billing, hardware, network, and account setup. Manual routing causes 48h delays.</div>
+          <div class="scenario-solution"><strong>Diagnosis:</strong> Multiclass text classification. <strong>Fix:</strong> Fine-tune a lightweight BERT / DistilBERT model or TF-IDF + Logistic Regression to classify ticket intent in 50 milliseconds.</div>
+        </div>
+
+        <div class="scenario-box">
+          <div class="scenario-tag">Scenario 21 • Smart Building Automation</div>
+          <div class="scenario-title">HVAC Energy Consumption Minimization</div>
+          <div class="scenario-problem">A commercial tower wastes electricity cooling empty conference rooms while over-heating server rooms. Static schedules cannot adapt.</div>
+          <div class="scenario-solution"><strong>Diagnosis:</strong> Sequential control problem. <strong>Fix:</strong> Deploy Reinforcement Learning (Q-learning / PPO) where state includes occupancy and outside temperature, rewarded for comfort and low kWh.</div>
+        </div>
+
+        <div class="scenario-box">
+          <div class="scenario-tag">Scenario 22 • Autonomous Driving</div>
+          <div class="scenario-title">Stop Sign Recognition Under Heavy Snow</div>
+          <div class="scenario-problem">A self-driving car vision model detects stop signs in clear sunny weather, but misses them when signs are partially occluded by snow.</div>
+          <div class="scenario-solution"><strong>Diagnosis:</strong> Distribution shift & lack of occlusion robustness. <strong>Fix:</strong> Retrain with CutOut data augmentation and synthetic weather rendering; fuse camera vision with LiDAR geometry.</div>
+        </div>
+
+        <div class="scenario-box">
+          <div class="scenario-tag">Scenario 23 • Auto Insurance</div>
+          <div class="scenario-title">Vehicle Damage Claim Cost Estimation</div>
+          <div class="scenario-problem">Claim amounts have a massive long tail (most claims are $500, a few reach $80,000). Standard linear regression with MSE predicts negative values for small dents.</div>
+          <div class="scenario-solution"><strong>Diagnosis:</strong> Positive skewed target distribution. <strong>Fix:</strong> Apply a logarithmic transformation <code>log(y + 1)</code> to the target variable or fit a Tweedie / Gamma Generalized Linear Model.</div>
+        </div>
+
+        <div class="scenario-box">
+          <div class="scenario-tag">Scenario 24 • Quantitative Finance</div>
+          <div class="scenario-title">High-Frequency Stock Volatility Prediction</div>
+          <div class="scenario-problem">A quantitative hedge fund evaluates a momentum trading model. Random 80/20 train/test split shows 95% profit, but paper trading loses capital.</div>
+          <div class="scenario-solution"><strong>Diagnosis:</strong> Severe lookahead bias caused by random splitting of financial time-series. <strong>Fix:</strong> Re-validate using strictly chronological Purged Walk-Forward Cross-Validation.</div>
+        </div>
+
+        <div class="scenario-box">
+          <div class="scenario-tag">Scenario 25 • Retail Operations</div>
+          <div class="scenario-title">Dynamic Price Optimization for Perishable Food</div>
+          <div class="scenario-problem">Supermarket dairy products expire in 3 days. Setting prices too high causes food waste; setting prices too low ruins profit margins.</div>
+          <div class="scenario-solution"><strong>Diagnosis:</strong> Price elasticity of demand modeling. <strong>Fix:</strong> Fit a regression model predicting demand quantity as a function of <code>Price</code> and <code>DaysToExpiry</code> to find revenue-maximizing price point.</div>
+        </div>
+
+        <div class="scenario-box">
+          <div class="scenario-tag">Scenario 26 • Rare Disease Screening</div>
+          <div class="scenario-title">1 Case in 100,000 Patients: SMOTE Oversampling Failure</div>
+          <div class="scenario-problem">An engineer uses SMOTE to synthesize positive samples for a disease occurring in 1 out of 100,000 patients. The deployed model produces 10,000 false alarms.</div>
+          <div class="scenario-solution"><strong>Diagnosis:</strong> SMOTE interpolates between minority samples, creating unrealistic artifacts in high-dimensional noise. <strong>Fix:</strong> Use Cost-Sensitive Ensembles or semi-supervised anomaly detection instead of naive oversampling.</div>
+        </div>
+
+        <div class="scenario-box">
+          <div class="scenario-tag">Scenario 27 • Supermarket Merchandising</div>
+          <div class="scenario-title">Market Basket Analysis for Store Layout</div>
+          <div class="scenario-problem">A grocery store wants to identify which products customers frequently purchase together to optimize shelf proximity.</div>
+          <div class="scenario-solution"><strong>Diagnosis:</strong> Association rule learning. <strong>Fix:</strong> Apply the Apriori or FP-Growth algorithm computing <strong>Support</strong>, <strong>Confidence</strong>, and <strong>Lift</strong> (e.g. Bread &rarr; Butter, Lift &gt; 2.5).</div>
+        </div>
+
+        <div class="scenario-box">
+          <div class="scenario-tag">Scenario 28 • Web Search</div>
+          <div class="scenario-title">Real-Time Search Query Autocorrect</div>
+          <div class="scenario-problem">A user types "iphoen chagre" into a search bar. The search engine returns zero product matches.</div>
+          <div class="scenario-solution"><strong>Diagnosis:</strong> Typo sensitivity. <strong>Fix:</strong> Compute Levenshtein Minimum Edit Distance against a dictionary of catalog terms and rerank suggestions by bigram language model probability ("iphone charger").</div>
+        </div>
+
+        <div class="scenario-box">
+          <div class="scenario-tag">Scenario 29 • Electrical Grid Management</div>
+          <div class="scenario-title">Power Grid Transformer Failure Prediction</div>
+          <div class="scenario-problem">Substation transformers fail unpredictably during summer heatwaves, causing rolling blackouts. Sensors stream oil temperature and load data.</div>
+          <div class="scenario-solution"><strong>Diagnosis:</strong> Temporal sequence anomaly detection. <strong>Fix:</strong> Use an LSTM Autoencoder trained on normal sensor readings. When reconstruction error exceeds dynamic threshold, dispatch maintenance teams.</div>
+        </div>
+
+        <div class="scenario-box">
+          <div class="scenario-tag">Scenario 30 • Music Streaming</div>
+          <div class="scenario-title">Automated Playlist Continuation</div>
+          <div class="scenario-problem">A listener finishes a 5-song indie rock playlist. The next autoplayed song is 90s hip-hop, causing the user to close the app.</div>
+          <div class="scenario-solution"><strong>Diagnosis:</strong> Ignoring session sequence context. <strong>Fix:</strong> Deploy a Recurrent Neural Network / Transformer-based sequence recommender (Word2Vec style item embeddings) to predict the most probable next song.</div>
+        </div>
+      </div>
+    </article>
+
+
+    <!-- SECTION 29: LAST-HOUR REVISION -->
+    <article class="note-section" id="sec-last-hour">
+      <div class="section-eyebrow">
+        <span class="sec-num">MASTER TOOLKIT D</span>
+        <span class="sec-priority priority-p0">LAST-HOUR REVISION</span>
+      </div>
+      <h2 class="section-title">⚡ 50 High-Yield Exam Hall Takeaways</h2>
+      <p class="section-intro">
+        Read these 50 quick takeaways in the final 15 minutes before walking into your technical placement exam or interview.
+      </p>
+
+      <div class="checklist-card">
+        <div class="checklist-title">Top 25 Core Concepts</div>
+        <ul class="checklist-items">
+          <li><strong>AI vs ML vs DL:</strong> AI is the broad concept, ML learns from data, DL uses multilayer neural networks.</li>
+          <li><strong>Supervised vs Unsupervised:</strong> Supervised has target labels (y); Unsupervised discovers latent patterns without labels.</li>
+          <li><strong>Classification vs Regression:</strong> Classification predicts discrete classes; Regression predicts continuous numbers.</li>
+          <li><strong>Cost Function of Linear Regression:</strong> Mean Squared Error (MSE), optimized via Ordinary Least Squares or Gradient Descent.</li>
+          <li><strong>Logistic Regression:</strong> A classification model using a Sigmoid function bounded between (0, 1).</li>
+          <li><strong>Gini Impurity Formula:</strong> <code>1 - Σ(p_i^2)</code>. Pure node = 0.0; equal binary split = 0.50.</li>
+          <li><strong>Entropy Formula:</strong> <code>- Σ [p_i * log2(p_i)]</code>. Pure node = 0.0; equal binary split = 1.0.</li>
+          <li><strong>Decision Tree Pruning:</strong> Controls tree depth (max_depth) to prevent severe overfitting.</li>
+          <li><strong>Random Forest:</strong> Bagging ensemble of decorrelated decision trees using bootstrap sampling and random feature subsets.</li>
+          <li><strong>Out-of-Bag (OOB) Score:</strong> Evaluates Random Forest performance using the ~36.8% samples omitted during bootstrap sampling.</li>
+          <li><strong>KNN Distance:</strong> K-Nearest Neighbors is a lazy learner requiring feature scaling; sensitive to the Curse of Dimensionality.</li>
+          <li><strong>K in KNN:</strong> Small K = Low bias, High variance (overfits); Large K = High bias, Low variance (underfits).</li>
+          <li><strong>SVM Support Vectors:</strong> Only the training points lying on the margin determine the hyperplane.</li>
+          <li><strong>SVM Kernel Trick:</strong> Projects non-linear data into high dimensions without explicit coordinate calculation.</li>
+          <li><strong>K-Means Steps:</strong> Initialize centroids &rarr; Assign nearest points &rarr; Update centroid means &rarr; Repeat until convergence.</li>
+          <li><strong>Elbow Method:</strong> Finds optimal K in K-Means by plotting within-cluster sum of squares (Inertia).</li>
+          <li><strong>PCA:</strong> Unsupervised orthogonal dimensionality reduction maximizing explained variance.</li>
+          <li><strong>Bagging vs Boosting:</strong> Bagging trains models in parallel to reduce variance; Boosting trains sequentially to reduce bias.</li>
+          <li><strong>Confusion Matrix:</strong> Top row = Actual Negatives [TN, FP]; Bottom row = Actual Positives [FN, TP].</li>
+          <li><strong>Precision Formula:</strong> <code>TP / (TP + FP)</code>. Critical when False Positives are expensive (Spam).</li>
+          <li><strong>Recall Formula:</strong> <code>TP / (TP + FN)</code>. Critical when False Negatives are fatal (Cancer, Fraud).</li>
+          <li><strong>F1-Score:</strong> Harmonic mean of Precision and Recall: <code>2 * (P * R) / (P + R)</code>.</li>
+          <li><strong>ROC-AUC:</strong> Area under TPR vs FPR curve across all thresholds. 1.0 = perfect, 0.50 = random guess.</li>
+          <li><strong>L1 Regularization (Lasso):</strong> Adds <code>λ * Σ|w|</code>; drives unimportant weights to zero (feature selection).</li>
+          <li><strong>L2 Regularization (Ridge):</strong> Adds <code>λ * Σ(w^2)</code>; shrinks weights asymptotically toward zero.</li>
+        </ul>
+      </div>
+
+      <div class="checklist-card" style="margin-top: 16px;">
+        <div class="checklist-title">Top 25 Deep Learning & Workflow Takeaways</div>
+        <ul class="checklist-items">
+          <li><strong>Dense Layer Parameters:</strong> <code>(Num_Inputs + 1) * Num_Neurons</code> (+1 accounts for bias).</li>
+          <li><strong>Why Non-Linearity Matters:</strong> Stacking linear layers without activation collapses into a single linear regression.</li>
+          <li><strong>ReLU Activation:</strong> <code>max(0, z)</code>. Default for hidden layers; resolves vanishing gradients for positive inputs.</li>
+          <li><strong>Dying ReLU:</strong> Occurs when negative gradients push weights so low that the neuron outputs 0 forever.</li>
+          <li><strong>Sigmoid in Deep Networks:</strong> Max derivative is 0.25; causes vanishing gradients when stacked across deep layers.</li>
+          <li><strong>Softmax Activation:</strong> Normalizes raw logits into a probability distribution summing to 1.0 for multiclass tasks.</li>
+          <li><strong>Binary Cross-Entropy:</strong> Convex loss function designed specifically for binary classification with sigmoid output.</li>
+          <li><strong>Gradient Descent Update:</strong> <code>w_new = w_old - η * (∂Loss / ∂w)</code>.</li>
+          <li><strong>Learning Rate Too High:</strong> Causes loss to oscillate and explode to NaN / Infinity.</li>
+          <li><strong>Learning Rate Too Low:</strong> Agonizingly slow convergence; risks getting stuck in local plateaus.</li>
+          <li><strong>Mini-Batch Gradient Descent:</strong> Industry standard; balances GPU matrix parallelism with stable gradient convergence.</li>
+          <li><strong>CNN Parameter Sharing:</strong> Convolutional filters share weights across spatial dimensions, drastically cutting parameters.</li>
+          <li><strong>CNN Output Dimension:</strong> <code>floor((W - F + 2P) / S) + 1</code>.</li>
+          <li><strong>Valid vs Same Padding:</strong> Valid padding has P=0 (shrinks image); Same padding preserves input spatial dimensions.</li>
+          <li><strong>Max Pooling:</strong> Downsamples feature maps by taking the maximum value in each window (translation invariance).</li>
+          <li><strong>Vanilla RNN Flaw:</strong> Backpropagation through time over long sequences causes gradients to vanish or explode.</li>
+          <li><strong>LSTM Architecture:</strong> Solves vanishing gradients using a Cell State regulated by Forget, Input, and Output gates.</li>
+          <li><strong>GRU Efficiency:</strong> Merges Cell and Hidden states into 2 gates (Reset, Update); ~25% faster than LSTM.</li>
+          <li><strong>Adam Optimizer:</strong> Combines Momentum (moving average of gradients) and RMSprop (moving average of squared gradients).</li>
+          <li><strong>Dropout Behavior:</strong> Active during training (randomly zeroes neurons); turned OFF during test/inference.</li>
+          <li><strong>Batch Normalization:</strong> Normalizes mini-batch activations to zero mean and unit variance; stabilizes training.</li>
+          <li><strong>Early Stopping:</strong> Halts training when validation loss stops improving for a specified patience window.</li>
+          <li><strong>Data Leakage Prevention:</strong> Always fit scalers and encoders ONLY on the training split, then transform the test split.</li>
+          <li><strong>Stratified Split:</strong> Preserves target class percentages across train and test sets for imbalanced datasets.</li>
+          <li><strong>Adjusted R-Squared:</strong> Penalizes the addition of useless noise features in multiple regression.</li>
+        </ul>
+      </div>
+    </article>
+    
+
+    </main>
+  </div>
+
+  <!-- Floating Back to Top Button -->
+  <button class="back-top-btn" id="backTopBtn" title="Back to top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">↑</button>
+
+  <!-- Interactive Client-side Script -->
+  <script>
+    // Theme Toggle
+    const themeBtn = document.getElementById('themeBtn');
+    themeBtn.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+      const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', nextTheme);
+      themeBtn.textContent = nextTheme === 'dark' ? '☾' : '☼';
+      localStorage.setItem('placementPrep_theme', nextTheme);
+      localStorage.setItem('placementprep-theme', nextTheme);
+      localStorage.setItem('theme', nextTheme);
+    });
+    
+    // Set initial theme icon
+    const initTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+    themeBtn.textContent = initTheme === 'dark' ? '☾' : '☼';
+
+    // Reading Progress & Back to Top
+    const progressBar = document.getElementById('progressBar');
+    const backTopBtn = document.getElementById('backTopBtn');
+    
+    window.addEventListener('scroll', () => {
+      const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = (window.scrollY / totalScroll) * 100;
+      progressBar.style.width = `${progress}%`;
+      
+      if (window.scrollY > 400) {
+        backTopBtn.classList.add('visible');
+      } else {
+        backTopBtn.classList.remove('visible');
+      }
+    });
+
+    // TOC Active Scroll Spying
+    const sections = document.querySelectorAll('.note-section');
+    const tocLinks = document.querySelectorAll('.toc-link');
+
+    window.addEventListener('scroll', () => {
+      let currentSecId = '';
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 120;
+        if (window.scrollY >= top) {
+          currentSecId = sec.getAttribute('id');
+        }
+      });
+
+      tocLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${currentSecId}`) {
+          link.classList.add('active');
+        }
+      });
+    });
+
+    // TOC Search Filter
+    function filterTOC() {
+      const query = document.getElementById('tocSearch').value.toLowerCase().trim();
+      tocLinks.forEach(link => {
+        const text = link.textContent.toLowerCase();
+        if (text.includes(query) || query === '') {
+          link.style.display = 'flex';
+        } else {
+          link.style.display = 'none';
+        }
+      });
+    }
+
+    // Last-Hour Mode Toggle
+    const lastHourBtn = document.getElementById('lastHourBtn');
+    let lastHourActive = false;
+    lastHourBtn.addEventListener('click', () => {
+      lastHourActive = !lastHourActive;
+      lastHourBtn.classList.toggle('active', lastHourActive);
+      
+      if (lastHourActive) {
+        // Scroll directly to the Last-Hour section
+        document.getElementById('sec-last-hour').scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  </script>
+</body>
+</html>
