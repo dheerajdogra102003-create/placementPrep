@@ -15,8 +15,8 @@
     let markedQuestions = new Set(); // Set of marked question IDs
     let isAnswerSubmitted = {};  // { [qId]: boolean }
 
-    // Exam Timer State
-    const EXAM_DURATION_SECONDS = 45 * 60; // 45 minutes
+    // Exam Timer State (60 minutes for 100 questions)
+    const EXAM_DURATION_SECONDS = 60 * 60; // 60 minutes
     let examTimeRemaining = EXAM_DURATION_SECONDS;
     let timerInterval = null;
     let examStartTime = null;
@@ -116,13 +116,14 @@
 
     // Domain mapper helper
     function getDomainForTopic(topic) {
-        if (['Git Fundamentals', 'Repository Basics', 'Working Directory & Staging'].includes(topic)) {
+        const t = (topic || '').toLowerCase();
+        if (t.includes('fundamentals') || t.includes('vs github') || t.includes('initialization') || t.includes('staging') || t.includes('working_directory') || t.includes('repository_basics')) {
             return 'Git Architecture & Core Fundamentals';
         }
-        if (['Essential Commands', 'Commits & History'].includes(topic)) {
+        if (t.includes('add') || t.includes('commit') || t.includes('status') || t.includes('diff') || t.includes('log') || t.includes('history') || t.includes('inspection')) {
             return 'Essential CLI Commands & Commits';
         }
-        if (['Branching', 'Merge & Conflicts'].includes(topic)) {
+        if (t.includes('branch') || t.includes('merge') || t.includes('conflict')) {
             return 'Branching, Merging & Conflict Resolution';
         }
         return 'Remote Collaboration & Advanced Workflows';
@@ -406,7 +407,7 @@
         progressPercent.textContent = `${progressVal}% Completed`;
 
         // Badges
-        badgeQNumber.textContent = `Q${q.id}`;
+        badgeQNumber.textContent = String(q.id).startsWith('Q') ? q.id : `Q${q.id}`;
         badgeQTopic.textContent = q.topic || q.domain;
         badgeQDiff.textContent = q.difficulty;
         badgeQDiff.className = `badge badge-diff ${(q.difficulty || '').toLowerCase()}`;
@@ -562,13 +563,13 @@
         }
 
         const expObj = q.explanation || {};
-        const whyText = expObj.why || (typeof expObj === 'string' ? expObj : 'Core Git architecture logic.');
+        const whyText = typeof q.explanation === 'string' ? q.explanation : (expObj.why || expObj.correctAnswer || 'Core Git architecture logic.');
         const correctOptText = q.optionsMap ? q.optionsMap[q.correct_answer] : '';
-        const trapText = expObj.placementTrap || 'Watch out for confusing local workspace states with remote branches.';
-        const takeawayText = expObj.placementTakeaway || 'Mastering this command syntax is essential for MNC technical rounds.';
+        const trapText = q.placement_trap || expObj.placementTrap || 'Watch out for confusing local workspace states with remote branches.';
+        const takeawayText = q.real_world_use || expObj.placementTakeaway || 'Mastering this command syntax is essential for MNC technical rounds.';
 
         explanationSummaryText.textContent = whyText;
-        explanationWhyCorrect.textContent = `${correctOptText} — ${expObj.correctAnswer || whyText}`;
+        explanationWhyCorrect.textContent = `${correctOptText} — ${whyText}`;
 
         // Distractor breakdown / Placement Trap
         explanationWhyOthers.innerHTML = '';
@@ -584,7 +585,10 @@
             if (letter !== q.correct_answer && q.optionsMap[letter]) {
                 const item = document.createElement('div');
                 item.className = 'distractor-item';
-                item.innerHTML = `<strong>Option [${letter}]:</strong> Incorrect for this scenario. (${q.optionsMap[letter]})`;
+                const distractorReason = (q.why_other_options_are_wrong && q.why_other_options_are_wrong[letter]) 
+                    ? q.why_other_options_are_wrong[letter] 
+                    : `Incorrect for this scenario. (${q.optionsMap[letter]})`;
+                item.innerHTML = `<strong>Option [${letter}]:</strong> ${distractorReason}`;
                 explanationWhyOthers.appendChild(item);
             }
         });
@@ -791,11 +795,13 @@
 
             // Difficulty breakdown
             if (q.difficulty === 'Easy') { easyTotal++; if (isCorrect) easyScore++; }
-            else if (q.difficulty === 'Medium') { medTotal++; if (isCorrect) medScore++; }
+            else if (q.difficulty === 'Medium' || q.difficulty === 'Medium-Hard') { medTotal++; if (isCorrect) medScore++; }
             else if (q.difficulty === 'Hard') { hardTotal++; if (isCorrect) hardScore++; }
 
             // Type breakdown
-            if (q.isScenario || q.type === 'Scenario Based') { scenarioTotal++; if (isCorrect) scenarioScore++; }
+            if (q.isScenario || q.type === 'scenario_based' || q.type === 'troubleshooting' || q.type === 'workflow_based') {
+                scenarioTotal++; if (isCorrect) scenarioScore++;
+            }
         });
 
         const totalQ = activeQuestions.length;

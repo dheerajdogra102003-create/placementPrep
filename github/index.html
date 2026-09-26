@@ -114,10 +114,10 @@
                 </p>
 
                 <div class="exam-spec-banner">
-                    <div class="spec-pill"><span class="pill-dot red"></span> 60 Target Questions</div>
-                    <div class="spec-pill"><span class="pill-dot amber"></span> 18 Scenarios (30%)</div>
-                    <div class="spec-pill"><span class="pill-dot purple"></span> 18 Conceptual Traps</div>
-                    <div class="spec-pill"><span class="pill-dot emerald"></span> 45 Min Placement Timer</div>
+                    <div class="spec-pill"><span class="pill-dot red"></span> 100 Target Questions</div>
+                    <div class="spec-pill"><span class="pill-dot amber"></span> 25 Scenarios</div>
+                    <div class="spec-pill"><span class="pill-dot purple"></span> 35 State/Command Tracing</div>
+                    <div class="spec-pill"><span class="pill-dot emerald"></span> 60 Min Placement Timer</div>
                 </div>
             </div>
 
@@ -150,13 +150,13 @@
                         </svg>
                     </div>
                     <h3>Placement Timed Exam</h3>
-                    <p>Strict 45-minute exam simulation with 60 randomized questions, real-time question palette, auto-submit on timeout, and diagnostic score breakdown by Git domain.</p>
+                    <p>Strict 60-minute exam simulation with 100 randomized questions, real-time question palette, auto-submit on timeout, and diagnostic score breakdown by Git domain.</p>
                     <ul class="mode-perks">
-                        <li>45:00 countdown timer with auto-submit</li>
+                        <li>60:00 countdown timer with auto-submit</li>
                         <li>Randomized order &amp; palette tracking</li>
                         <li>Detailed domain diagnostics &amp; readiness scorecard</li>
                     </ul>
-                    <button class="btn btn-accent start-mode-btn" data-mode="exam">Start Timed Exam (45m)</button>
+                    <button class="btn btn-accent start-mode-btn" data-mode="exam">Start Timed Exam (60m)</button>
                 </div>
 
                 <!-- Mode 3: Flashcard Study Mode -->
@@ -225,11 +225,11 @@
                 <div class="filter-group">
                     <label for="filter-topic">Domain:</label>
                     <select id="filter-topic" class="filter-select">
-                        <option value="all">All Domains (60)</option>
-                        <option value="Git Architecture & Core Fundamentals">Git Architecture &amp; Core (13)</option>
-                        <option value="Essential CLI Commands & Commits">Essential CLI &amp; Commits (12)</option>
-                        <option value="Branching, Merging & Conflict Resolution">Branching &amp; Conflicts (13)</option>
-                        <option value="Remote Collaboration & Advanced Workflows">Remote &amp; Advanced (22)</option>
+                        <option value="all">All Domains (100)</option>
+                        <option value="Git Architecture & Core Fundamentals">Git Architecture &amp; Core (29)</option>
+                        <option value="Essential CLI Commands & Commits">Essential CLI &amp; Commits (14)</option>
+                        <option value="Branching, Merging & Conflict Resolution">Branching &amp; Conflicts (20)</option>
+                        <option value="Remote Collaboration & Advanced Workflows">Remote &amp; Advanced (37)</option>
                     </select>
                 </div>
 
@@ -237,9 +237,9 @@
                     <label for="filter-diff">Difficulty:</label>
                     <select id="filter-diff" class="filter-select">
                         <option value="all">All Difficulties</option>
-                        <option value="Easy">Easy (18)</option>
-                        <option value="Medium">Medium (24)</option>
-                        <option value="Hard">Hard (18)</option>
+                        <option value="Medium">Medium (35)</option>
+                        <option value="Medium-Hard">Medium-Hard (40)</option>
+                        <option value="Hard">Hard (25)</option>
                     </select>
                 </div>
 
@@ -247,10 +247,12 @@
                     <label for="filter-type">Type:</label>
                     <select id="filter-type" class="filter-select">
                         <option value="all">All Question Types</option>
-                        <option value="Scenario Based">Scenario-Based (18)</option>
-                        <option value="Command Based">Command-Based (16)</option>
-                        <option value="Conceptual">Conceptual (18)</option>
-                        <option value="Troubleshooting">Troubleshooting (8)</option>
+                        <option value="conceptual">Conceptual (25)</option>
+                        <option value="scenario_based">Scenario-Based (25)</option>
+                        <option value="command_based">Command-Based (20)</option>
+                        <option value="output_or_state_prediction">State Prediction (15)</option>
+                        <option value="troubleshooting">Troubleshooting (10)</option>
+                        <option value="workflow_based">Workflow-Based (5)</option>
                     </select>
                 </div>
 
@@ -270,7 +272,7 @@
                     <!-- Progress Bar -->
                     <div class="progress-track-wrapper">
                         <div class="progress-info-row">
-                            <span id="question-progress-label">Question 1 of 60</span>
+                            <span id="question-progress-label">Question 1 of 100</span>
                             <span id="question-progress-percent">0% Completed</span>
                         </div>
                         <div class="progress-track">
@@ -410,7 +412,7 @@
                     <div class="navigator-card">
                         <div class="navigator-header">
                             <h3>Question Navigator</h3>
-                            <span id="nav-count-badge" class="nav-counter">0 / 60</span>
+                            <span id="nav-count-badge" class="nav-counter">0 / 100</span>
                         </div>
 
                         <!-- Legend -->
@@ -421,9 +423,9 @@
                             <div class="legend-pill"><span class="legend-dot current"></span>Current</div>
                         </div>
 
-                        <!-- Grid: 60 numbered buttons -->
+                        <!-- Grid: 100 numbered buttons -->
                         <div id="navigator-grid" class="navigator-grid">
-                            <!-- 60 buttons injected via JS -->
+                            <!-- 100 buttons injected via JS -->
                         </div>
 
                         <!-- Quick stats in sidebar -->
@@ -438,7 +440,7 @@
                             </div>
                             <div class="stat-mini">
                                 <span class="stat-mini-label">Remaining</span>
-                                <span id="side-stat-remaining" class="stat-mini-val">60</span>
+                                <span id="side-stat-remaining" class="stat-mini-val">100</span>
                             </div>
                         </div>
                     </div>

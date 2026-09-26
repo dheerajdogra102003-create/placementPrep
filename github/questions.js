@@ -2906,7 +2906,6 @@ const GITHUB_QUESTIONS = [
     }
 ];
 
-// Export for module systems or global window access
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = { GITHUB_QUESTIONS };
 }
