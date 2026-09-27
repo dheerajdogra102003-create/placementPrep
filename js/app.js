@@ -143,6 +143,9 @@
               <a href="#modules" class="btn btn-primary btn-lg">
                 <span>⚡ Explore All 12 Modules</span>
               </a>
+              <a href="notes.html" class="btn-glow-rgb btn-lg">
+                <span>📚 Master Notes Hub (All Subjects)</span>
+              </a>
               <button type="button" class="btn btn-glass btn-lg" id="btn-quick-cbt">
                 <span>⏱️ Launch Timed Mock Test</span>
               </button>
@@ -230,6 +233,136 @@
                 <span class="recruiter-badge-dot" style="background: #ED6D00;"></span>
                 <span>LTIMindtree</span>
               </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Master Placement Notes Hub Showcase -->
+        <section class="master-notes-showcase-section notes-showcase-bg">
+          <div class="container">
+            <div style="text-align: center; max-width: 800px; margin: 0 auto 2.5rem;">
+              <span class="badge-rgb" style="font-size: 0.85rem; padding: 0.35rem 1rem; border-radius: 999px; display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                <span>✨ MNC INTERVIEW & PLACEMENT MASTER NOTES</span>
+              </span>
+              <h2 style="font-size: 2.25rem; font-weight: 800; margin-bottom: 0.75rem; letter-spacing: -0.02em; color: var(--text-primary);">
+                Deep-Dive Subject Notes &amp; Visual Cheat Sheets
+              </h2>
+              <p style="color: var(--text-secondary); font-size: 1.05rem; line-height: 1.6;">
+                Engineered with real-world analogies, ASCII/visual architecture diagrams, curated MNC interview questions, and placement traps for Accenture, TCS, Infosys, Capgemini, Cognizant &amp; Deloitte.
+              </p>
+            </div>
+
+            <!-- Notes Quick Jump Grid with RGB Glow Cards -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+              
+              <!-- DBMS & SQL Master Notes Card -->
+              <div class="rgb-card-wrapper">
+                <div class="rgb-card-inner" style="padding: 1.75rem;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem;">
+                    <span style="font-size: 2.5rem; line-height: 1;">🗄️</span>
+                    <span style="background: rgba(59,130,246,0.15); color: #60a5fa; border: 1px solid rgba(59,130,246,0.3); padding: 0.2rem 0.6rem; border-radius: 6px; font-size: 0.75rem; font-weight: 700;">117 Secs • 50 MCQs</span>
+                  </div>
+                  <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; color: #f8fafc;">DBMS &amp; SQL Masterclass</h3>
+                  <p style="font-size: 0.88rem; color: #94a3b8; line-height: 1.5; margin-bottom: 1.25rem;">
+                    Relational Model, Keys, Normalization (1NF–BCNF), Execution Order, Interactive Joins Lab, ACID, 2PL, Indexing &amp; 30 SQL Challenges.
+                  </p>
+                  <a href="notes/dbms.html" class="btn btn-primary btn-sm" style="width: 100%; justify-content: center; background: linear-gradient(135deg, #2563eb, #0284c7);">
+                    <span>Open DBMS Notes →</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Cloud Computing Card -->
+              <div class="rgb-card-wrapper">
+                <div class="rgb-card-inner" style="padding: 1.75rem;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem;">
+                    <span style="font-size: 2.5rem; line-height: 1;">☁️</span>
+                    <span style="background: rgba(56,189,248,0.15); color: #38bdf8; border: 1px solid rgba(56,189,248,0.3); padding: 0.2rem 0.6rem; border-radius: 6px; font-size: 0.75rem; font-weight: 700;">80 Points • 60 MCQs</span>
+                  </div>
+                  <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; color: #f8fafc;">Cloud Computing</h3>
+                  <p style="font-size: 0.88rem; color: #94a3b8; line-height: 1.5; margin-bottom: 1.25rem;">
+                    IaaS/PaaS/SaaS, Virtualization, Containers, Scalability vs Elasticity, Load Balancing, Serverless, IAM &amp; 30 Interview Q&amp;As.
+                  </p>
+                  <a href="notes/cloud-computing.html" class="btn btn-primary btn-sm" style="width: 100%; justify-content: center;">
+                    <span>Open Cloud Notes →</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Linux & Shell Card -->
+              <div class="rgb-card-wrapper">
+                <div class="rgb-card-inner" style="padding: 1.75rem;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem;">
+                    <span style="font-size: 2.5rem; line-height: 1;">🐧</span>
+                    <span style="background: rgba(245,158,11,0.15); color: #f59e0b; border: 1px solid rgba(245,158,11,0.3); padding: 0.2rem 0.6rem; border-radius: 6px; font-size: 0.75rem; font-weight: 700;">Shell • Permissions</span>
+                  </div>
+                  <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; color: #f8fafc;">Linux &amp; Command Prompt</h3>
+                  <p style="font-size: 0.88rem; color: #94a3b8; line-height: 1.5; margin-bottom: 1.25rem;">
+                    Directory navigation, chmod/chown, pipes, grep, sed, awk, process management, Windows CMD comparison &amp; 50 MCQs.
+                  </p>
+                  <a href="notes/linux-command-prompt.html" class="btn btn-outline btn-sm" style="width: 100%; justify-content: center;">
+                    <span>Open Linux Notes →</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Git & GitHub Card -->
+              <div class="rgb-card-wrapper">
+                <div class="rgb-card-inner" style="padding: 1.75rem;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem;">
+                    <span style="font-size: 2.5rem; line-height: 1;">🐙</span>
+                    <span style="background: rgba(239,68,68,0.15); color: #ef4444; border: 1px solid rgba(239,68,68,0.3); padding: 0.2rem 0.6rem; border-radius: 6px; font-size: 0.75rem; font-weight: 700;">VCS • Branching</span>
+                  </div>
+                  <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; color: #f8fafc;">Git &amp; GitHub</h3>
+                  <p style="font-size: 0.88rem; color: #94a3b8; line-height: 1.5; margin-bottom: 1.25rem;">
+                    Three-stage architecture, merge vs rebase, resolving conflicts, cherry-pick, PR lifecycle, recovery &amp; 50 MCQs.
+                  </p>
+                  <a href="notes/git-github.html" class="btn btn-outline btn-sm" style="width: 100%; justify-content: center;">
+                    <span>Open Git Notes →</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- AI/ML/DL Card -->
+              <div class="rgb-card-wrapper">
+                <div class="rgb-card-inner" style="padding: 1.75rem;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem;">
+                    <span style="font-size: 2.5rem; line-height: 1;">🤖</span>
+                    <span style="background: rgba(168,85,247,0.15); color: #c084fc; border: 1px solid rgba(168,85,247,0.3); padding: 0.2rem 0.6rem; border-radius: 6px; font-size: 0.75rem; font-weight: 700;">GenAI • LLMs • ML</span>
+                  </div>
+                  <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; color: #f8fafc;">AI + ML + Deep Learning</h3>
+                  <p style="font-size: 0.88rem; color: #94a3b8; line-height: 1.5; margin-bottom: 1.25rem;">
+                    Supervised/Unsupervised, Neural Networks, Transformers, GenAI, Overfitting vs Underfitting &amp; 50 Placement MCQs.
+                  </p>
+                  <a href="notes/ai-ml-dl.html" class="btn btn-outline btn-sm" style="width: 100%; justify-content: center;">
+                    <span>Open AI/ML Notes →</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Networking & Network Security Card -->
+              <div class="rgb-card-wrapper">
+                <div class="rgb-card-inner" style="padding: 1.75rem;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem;">
+                    <span style="font-size: 2.5rem; line-height: 1;">🌐</span>
+                    <span style="background: rgba(16,185,129,0.15); color: #34d399; border: 1px solid rgba(16,185,129,0.3); padding: 0.2rem 0.6rem; border-radius: 6px; font-size: 0.75rem; font-weight: 700;">97 Secs • 90 MCQs</span>
+                  </div>
+                  <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; color: #f8fafc;">Networking &amp; Security</h3>
+                  <p style="font-size: 0.88rem; color: #94a3b8; line-height: 1.5; margin-bottom: 1.25rem;">
+                    OSI 7 Layers, TCP/IP, CIDR Subnetting, CIA Triad, Firewalls, Cryptography, SQLi/XSS, Zero Trust &amp; 30 Viva Qs.
+                  </p>
+                  <a href="notes/networking-security.html" class="btn btn-primary btn-sm" style="width: 100%; justify-content: center;">
+                    <span>Open Networking Notes →</span>
+                  </a>
+                </div>
+              </div>
+
+            </div>
+
+            <div style="text-align: center; margin-top: 1.5rem;">
+              <a href="notes.html" class="btn-glow-rgb" style="padding: 0.75rem 2rem; font-size: 1rem;">
+                <span>📚 Browse All Subject Notes in Master Hub →</span>
+              </a>
             </div>
           </div>
         </section>
@@ -426,6 +559,11 @@
               </div>
 
               <div class="module-card-actions">
+                ${mod.notesUrl ? `
+                  <a href="${mod.notesUrl}" class="btn btn-outline btn-sm" title="Comprehensive Placement Notes" style="border-color: var(--brand-cyan); color: var(--brand-cyan);">
+                    <span>📝 Notes</span>
+                  </a>
+                ` : ''}
                 <a href="#practice/${mod.id}" class="btn btn-secondary btn-sm" title="Practice with instant solutions">
                   <span>📖 Practice</span>
                 </a>

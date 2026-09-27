@@ -1,0 +1,3224 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Browser Fundamentals Master Notes | PlacementPrep</title>
+  <meta name="description" content="Complete, visual, placement-focused guide to Browser Internals, DNS, HTTP/HTTPS, Rendering Pipeline, DOM/CSSOM, Event Loop, Cookies, CORS, and Interview Scenarios for IT fresher placements.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/notes.css">
+</head>
+<body>
+
+  <!-- Top Reading Progress Indicator -->
+  <div class="reading-progress-container" aria-hidden="true">
+    <div class="reading-progress-bar" id="reading-progress-bar"></div>
+  </div>
+
+  <!-- Main Site Wrapper -->
+  <div class="site-wrapper">
+
+    <!-- Global Navigation Bar -->
+    <header class="site-navbar" id="site-navbar">
+      <div class="container navbar-inner">
+        <a href="../index.html#home" class="brand-link" aria-label="PlacementPrep Home">
+          <div class="brand-icon">P</div>
+          <span>Placement<span class="brand-text-accent">Prep</span></span>
+        </a>
+
+        <nav role="navigation" aria-label="Main Navigation">
+                    <ul class="nav-menu" id="nav-menu">
+            <li><a href="../index.html#home" class="nav-item-link" data-view="home"><span>🏠 Home</span></a></li>
+            <li><a href="../index.html#modules" class="nav-item-link" data-view="modules"><span>📦 Modules</span></a></li>
+            <li class="nav-dropdown">
+              <button class="nav-dropdown-trigger active" aria-haspopup="true" aria-expanded="false">
+                📚 Notes <span class="nav-dropdown-arrow">▾</span>
+              </button>
+              <div class="nav-dropdown-panel" role="menu">
+                <p class="nav-dropdown-section-label">Systems &amp; Cloud</p>
+                <a href="cloud-computing.html" class="nav-dropdown-item" role="menuitem"><span class="nav-dropdown-item-icon">☁️</span><span class="nav-dropdown-item-text">Cloud Computing &amp; AWS</span><span class="nav-dropdown-item-badge">60 MCQs</span></a>
+                <a href="linux-command-prompt.html" class="nav-dropdown-item" role="menuitem"><span class="nav-dropdown-item-icon">🐧</span><span class="nav-dropdown-item-text">Linux &amp; Command Prompt</span></a>
+                <a href="networking-security.html" class="nav-dropdown-item" role="menuitem"><span class="nav-dropdown-item-icon">🌐</span><span class="nav-dropdown-item-text">Networking &amp; Security</span><span class="nav-dropdown-item-badge">90 MCQs</span></a>
+                <div class="nav-dropdown-divider"></div>
+                <p class="nav-dropdown-section-label">Software &amp; Code</p>
+                <a href="git-github.html" class="nav-dropdown-item" role="menuitem"><span class="nav-dropdown-item-icon">🐙</span><span class="nav-dropdown-item-text">Git &amp; GitHub</span></a>
+                <a href="browser-fundamentals.html" class="nav-dropdown-item active" role="menuitem"><span class="nav-dropdown-item-icon">🌍</span><span class="nav-dropdown-item-text">Browser Fundamentals</span></a>
+                <a href="dbms.html" class="nav-dropdown-item" role="menuitem"><span class="nav-dropdown-item-icon">🗄️</span><span class="nav-dropdown-item-text">DBMS &amp; SQL</span></a>
+                <div class="nav-dropdown-divider"></div>
+                <p class="nav-dropdown-section-label">AI &amp; Data</p>
+                <a href="ai-ml-dl.html" class="nav-dropdown-item" role="menuitem"><span class="nav-dropdown-item-icon">🤖</span><span class="nav-dropdown-item-text">AI / ML &amp; Deep Learning</span></a>
+                <div class="nav-dropdown-divider"></div>
+                <a href="../notes.html" class="nav-dropdown-hub-link" role="menuitem">📖 View All Notes Hub →</a>
+              </div>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="nav-actions">
+          <button type="button" class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Toggle Dark/Light Mode" title="Toggle Theme">
+            <span class="theme-toggle-icon">☀️</span>
+          </button>
+          <a href="../index.html#practice/browser" class="btn btn-secondary btn-sm">
+            <span>📖 Practice MCQs</span>
+          </a>
+          <a href="../index.html#cbt/browser" class="btn btn-primary btn-sm">
+            <span>⏱️ Timed CBT</span>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Master Notes Container -->
+    <main class="notes-container">
+      <div class="notes-layout">
+
+        <!-- Sticky Table of Contents Sidebar -->
+        <aside class="notes-toc-sidebar" id="notes-toc-sidebar">
+          <div class="notes-toc-header">
+            <span class="notes-toc-title">Table of Contents</span>
+            <span class="notes-badge" style="font-size: 0.72rem; padding: 0.2rem 0.5rem;">42 Sections</span>
+          </div>
+
+          <div class="notes-search-box">
+            <span class="notes-search-icon">🔍</span>
+            <input type="text" id="notes-search-input" class="notes-search-input" placeholder="Search notes (e.g. DNS, CORS, 304, Reflow)..." aria-label="Search within notes">
+          </div>
+
+          <ul class="notes-toc-list" id="notes-toc-list">
+            <li class="notes-toc-section-title">1. Foundations & Architecture</li>
+            <li class="notes-toc-item"><a href="#sec-1" class="active"><span>01.</span> What is a Browser?</a></li>
+            <li class="notes-toc-item"><a href="#sec-2"><span>02.</span> Real-World Analogy</a></li>
+            <li class="notes-toc-item"><a href="#sec-3"><span>03.</span> Browser Architecture</a></li>
+            <li class="notes-toc-item"><a href="#sec-4"><span>04.</span> URL Anatomy</a></li>
+            <li class="notes-toc-item"><a href="#sec-5"><span>05.</span> URI vs URL vs URN</a></li>
+            <li class="notes-toc-item"><a href="#sec-6"><span>06.</span> Domain Name Hierarchy</a></li>
+
+            <li class="notes-toc-section-title">2. DNS & Networking</li>
+            <li class="notes-toc-item"><a href="#sec-7"><span>07.</span> DNS Deep-Dive</a></li>
+            <li class="notes-toc-item"><a href="#sec-8"><span>08.</span> DNS Resolution Flowchart</a></li>
+            <li class="notes-toc-item"><a href="#sec-9"><span>09.</span> Real-Life DNS Scenario</a></li>
+            <li class="notes-toc-item"><a href="#sec-10"><span>10.</span> HTTP Fundamentals</a></li>
+
+            <li class="notes-toc-section-title">3. HTTP, Methods & Status</li>
+            <li class="notes-toc-item"><a href="#sec-11"><span>11.</span> HTTP Request Anatomy</a></li>
+            <li class="notes-toc-item"><a href="#sec-12"><span>12.</span> HTTP Methods Comparison</a></li>
+            <li class="notes-toc-item"><a href="#sec-13"><span>13.</span> HTTP Response Anatomy</a></li>
+            <li class="notes-toc-item"><a href="#sec-14"><span>14.</span> HTTP Status Codes Guide</a></li>
+
+            <li class="notes-toc-section-title">4. HTTPS, TLS & Security</li>
+            <li class="notes-toc-item"><a href="#sec-15"><span>15.</span> HTTP vs HTTPS</a></li>
+            <li class="notes-toc-item"><a href="#sec-16"><span>16.</span> TLS Handshake & Keys</a></li>
+            <li class="notes-toc-item"><a href="#sec-17"><span>17.</span> Cookies & Lifecycle</a></li>
+            <li class="notes-toc-item"><a href="#sec-18"><span>18.</span> Cookie Security Attributes</a></li>
+
+            <li class="notes-toc-section-title">5. Storage, Cache & Privacy</li>
+            <li class="notes-toc-item"><a href="#sec-19"><span>19.</span> Browser Cache & 304</a></li>
+            <li class="notes-toc-item"><a href="#sec-20"><span>20.</span> Cache vs Cookie</a></li>
+            <li class="notes-toc-item"><a href="#sec-21"><span>21.</span> LocalStorage Deep-Dive</a></li>
+            <li class="notes-toc-item"><a href="#sec-22"><span>22.</span> SessionStorage & Matrix</a></li>
+            <li class="notes-toc-item"><a href="#sec-23"><span>23.</span> Browser History & State</a></li>
+            <li class="notes-toc-item"><a href="#sec-24"><span>24.</span> Incognito / Private Mode</a></li>
+
+            <li class="notes-toc-section-title">6. DOM, CSSOM & Rendering</li>
+            <li class="notes-toc-item"><a href="#sec-25"><span>25.</span> Document Object Model (DOM)</a></li>
+            <li class="notes-toc-item"><a href="#sec-26"><span>26.</span> DOM Manipulation</a></li>
+            <li class="notes-toc-item"><a href="#sec-27"><span>27.</span> CSSOM Construction</a></li>
+            <li class="notes-toc-item"><a href="#sec-28"><span>28.</span> Critical Rendering Pipeline</a></li>
+
+            <li class="notes-toc-section-title">7. JavaScript Engine & APIs</li>
+            <li class="notes-toc-item"><a href="#sec-29"><span>29.</span> JS Engine vs Browser APIs</a></li>
+            <li class="notes-toc-item"><a href="#sec-30"><span>30.</span> Event Loop & Call Stack</a></li>
+            <li class="notes-toc-item"><a href="#sec-31"><span>31.</span> Chrome DevTools Mastery</a></li>
+
+            <li class="notes-toc-section-title">8. Web Security & APIs</li>
+            <li class="notes-toc-item"><a href="#sec-32"><span>32.</span> Same-Origin Policy (SOP)</a></li>
+            <li class="notes-toc-item"><a href="#sec-33"><span>33.</span> CORS Explained</a></li>
+            <li class="notes-toc-item"><a href="#sec-34"><span>34.</span> Frontend vs Backend</a></li>
+            <li class="notes-toc-item"><a href="#sec-35"><span>35.</span> REST API Basics</a></li>
+
+            <li class="notes-toc-section-title">9. Master Reference & Exam Prep</li>
+            <li class="notes-toc-item"><a href="#sec-36" style="color: var(--brand-emerald); font-weight: 700;"><span>36.</span> The Complete URL Journey</a></li>
+            <li class="notes-toc-item"><a href="#sec-37"><span>37.</span> 10 Troubleshooting Scenarios</a></li>
+            <li class="notes-toc-item"><a href="#sec-38"><span>38.</span> 14 High-Yield Comparison Tables</a></li>
+            <li class="notes-toc-item"><a href="#sec-39" style="color: #F87171; font-weight: 700;"><span>39.</span> Top 20 Placement Traps</a></li>
+            <li class="notes-toc-item"><a href="#sec-40"><span>40.</span> 25 Interview Questions & Answers</a></li>
+            <li class="notes-toc-item"><a href="#sec-41" style="color: var(--brand-cyan); font-weight: 700;"><span>41.</span> 5-Minute Last-Minute Revision</a></li>
+            <li class="notes-toc-item"><a href="#sec-42"><span>42.</span> Rapid-Fire Mini Quiz (10 MCQs)</a></li>
+          </ul>
+        </aside>
+
+        <!-- Main Notes Content Column -->
+        <article class="notes-content" id="notes-content">
+
+          <!-- Hero Header -->
+          <div class="notes-hero">
+            <div class="notes-meta-bar">
+              <span class="notes-badge">🧭 Module 01 · Technical Placement Notes</span>
+              <span class="notes-badge notes-badge-outline">⏱️ 35 Min Read</span>
+              <span class="notes-badge notes-badge-outline">🎯 High Yield for TCS, Accenture, Capgemini, Cognizant</span>
+              <span class="notes-badge notes-badge-outline">📊 100% Comprehensive</span>
+            </div>
+
+            <h1 class="notes-title">
+              Browser Fundamentals <br>
+              <span style="background: linear-gradient(135deg, #60A5FA, #06B6D4, #34D399); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                Internals, Networking & Rendering
+              </span>
+            </h1>
+
+            <p class="notes-subtitle">
+              A comprehensive, progressive technical guide taking you from the moment you hit Enter on a URL, through DNS resolution, TCP/TLS handshakes, HTTP request/response lifecycles, DOM/CSSOM construction, the critical rendering path, event loops, cookies, CORS, and real-world placement interview troubleshooting.
+            </p>
+
+            <div class="notes-actions">
+              <a href="../index.html#practice/browser" class="btn btn-primary">
+                <span>📖 Practice 50 Browser MCQs</span>
+              </a>
+              <a href="../index.html#cbt/browser" class="btn btn-glass">
+                <span>⏱️ Launch Timed Mock Test</span>
+              </a>
+              <button type="button" class="btn btn-outline" onclick="window.print()">
+                <span>🖨️ Print / Save PDF</span>
+              </button>
+            </div>
+          </div>
+
+<!-- ==========================================
+     SECTION 1 & 2: WHAT IS A BROWSER & ANALOGY
+     ========================================== -->
+<section id="sec-1" class="notes-section">
+  <div class="notes-section-header">
+    <span class="notes-section-number">01</span>
+    <h2 class="notes-section-title">What is a Web Browser?</h2>
+  </div>
+
+  <p class="notes-paragraph">
+    A <strong>web browser</strong> is a client-side software application engineered to retrieve, interpret, compile, and visually render hypermedia resources from the World Wide Web or local storage. At its core, the browser acts as a universal runtime environment that translates raw code—HTML documents, Cascading Style Sheets (CSS), JavaScript source files, and binary media assets—into interactive, human-readable graphical interfaces.
+  </p>
+
+  <p class="notes-paragraph">
+    In modern web computing, the browser serves as the primary execution surface for <strong>Single-Page Applications (SPAs)</strong>, handling local state management, cryptographic security negotiations (TLS), background network asynchronous caching, client-side routing, and real-time hardware-accelerated 2D/3D graphics compositing via WebGL and WebGPU.
+  </p>
+
+  <div class="table-responsive-wrapper">
+    <table class="notes-table">
+      <thead>
+        <tr>
+          <th>Entity</th>
+          <th>Definition</th>
+          <th>Primary Role</th>
+          <th>Key Examples</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong style="color: var(--text-primary);">Web Browser</strong></td>
+          <td>Client software running on user device</td>
+          <td>Requests, parses HTML/CSS/JS, compiles and paints UI</td>
+          <td>Google Chrome, Microsoft Edge, Mozilla Firefox, Apple Safari</td>
+        </tr>
+        <tr>
+          <td><strong style="color: var(--text-primary);">Search Engine</strong></td>
+          <td>Web service accessible via a browser</td>
+          <td>Crawls, indexes, and queries web pages across the internet</td>
+          <td>Google Search, Microsoft Bing, DuckDuckGo</td>
+        </tr>
+        <tr>
+          <td><strong style="color: var(--text-primary);">Website</strong></td>
+          <td>Collection of web pages and hosted assets</td>
+          <td>Provides domain-specific content, media, and business logic</td>
+          <td>Wikipedia, PlacementPrep, GitHub, Amazon</td>
+        </tr>
+        <tr>
+          <td><strong style="color: var(--text-primary);">Web Server</strong></td>
+          <td>Server program / hardware hosting websites</td>
+          <td>Listens on network ports, processes requests, serves responses</td>
+          <td>Nginx, Apache HTTP Server, Node.js / Express, Caddy</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="sec-2" class="notes-section">
+  <div class="notes-section-header">
+    <span class="notes-section-number">02</span>
+    <h2 class="notes-section-title">The Real-World Restaurant Analogy</h2>
+  </div>
+
+  <p class="notes-paragraph">
+    To visualize client-server interactions during placement interviews, understand the universal <strong>Restaurant Analogy</strong>:
+  </p>
+
+  <div class="analogy-card">
+    <div class="analogy-title">🍽️ The Dining Architecture Analogy</div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-top: 0.75rem;">
+      <div style="background: var(--bg-primary); padding: 0.85rem; border-radius: var(--radius-md);">
+        <strong style="color: var(--brand-cyan);">Customer = Browser</strong>
+        <p style="font-size: 0.88rem; color: var(--text-secondary); margin-top: 0.25rem;">The client who sits at the table, requests dishes from the menu, and consumes the meal.</p>
+      </div>
+      <div style="background: var(--bg-primary); padding: 0.85rem; border-radius: var(--radius-md);">
+        <strong style="color: var(--brand-emerald);">GPS / Phonebook = DNS</strong>
+        <p style="font-size: 0.88rem; color: var(--text-secondary); margin-top: 0.25rem;">Translates the restaurant's name ("Joe's Pizza") into a physical street address coordinate.</p>
+      </div>
+      <div style="background: var(--bg-primary); padding: 0.85rem; border-radius: var(--radius-md);">
+        <strong style="color: var(--brand-amber);">Waiter = HTTP Protocol</strong>
+        <p style="font-size: 0.88rem; color: var(--text-secondary); margin-top: 0.25rem;">The formalized communication channel carrying specific food orders to the kitchen and bringing plates back.</p>
+      </div>
+      <div style="background: var(--bg-primary); padding: 0.85rem; border-radius: var(--radius-md);">
+        <strong style="color: #A78BFA);">Kitchen = Web Server</strong>
+        <p style="font-size: 0.88rem; color: var(--text-secondary); margin-top: 0.25rem;">The backend engine where ingredients (databases) are cooked into finished dishes (HTML/JSON responses).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================
+     SECTION 3: BROWSER ARCHITECTURE
+     ========================================== -->
+<section id="sec-3" class="notes-section">
+  <div class="notes-section-header">
+    <span class="notes-section-number">03</span>
+    <h2 class="notes-section-title">Modern Multi-Process Browser Architecture</h2>
+  </div>
+
+  <p class="notes-paragraph">
+    Legacy browsers ran everything in a single process. If a single tab experienced an infinite loop or crashed, the entire browser window crashed. Modern browsers (like Chromium-based Chrome/Edge and Safari) utilize a <strong>multi-process architecture</strong> that isolates functions across distinct OS processes for fault tolerance, security sandboxing, and responsiveness.
+  </p>
+
+  <div class="diagram-card">
+    <div class="diagram-title">⚡ High-Level Multi-Process Architecture</div>
+    <div style="background: #06090E; border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 1.5rem; font-family: var(--font-mono); font-size: 0.85rem; color: #94A3B8; line-height: 1.6; overflow-x: auto;">
+      <pre style="margin: 0; color: #E2E8F0;">
+                        ┌──────────────────────────────────────────────┐
+                        │                BROWSER PROCESS               │
+                        │ (UI, Address Bar, Bookmarks, File I/O, Tabs) │
+                        └──────────────────────┬───────────────────────┘
+                                               │
+       ┌────────────────────────┬──────────────┴───────────────┬────────────────────────┐
+       ▼                        ▼                              ▼                        ▼
+┌──────────────┐       ┌─────────────────┐           ┌─────────────────┐       ┌─────────────────┐
+│ GPU PROCESS  │       │ NETWORK PROCESS │           │ STORAGE PROCESS │       │RENDERER PROCESS │
+│(3D, Shaders, │       │ (HTTP/S, TLS,   │           │ (Cookies, DB,   │       │(Tab Sandbox:    │
+│ Compositing) │       │ DNS, Sockets)   │           │ LocalStorage)   │       │ V8, DOM, CSSOM) │
+└──────┬───────┘       └────────┬────────┘           └─────────────────┘       └────────┬────────┘
+       │                        │                                                       │
+       │                        ▼                                                       ▼
+       │                  INTERNET (TCP/IP)                                      COMPOSITED TILES
+       ▼                                                                                │
+  SCREEN (Pixels) ◄─────────────────────────────────────────────────────────────────────┘</pre>
+    </div>
+  </div>
+
+  <div class="scenario-detail-grid">
+    <div class="scenario-box">
+      <div class="scenario-box-label">Browser Process</div>
+      <div class="scenario-box-content">Controls the application window "chrome" (address bar, back/forward buttons, bookmarking). Manages child process lifecycles and coordinates IPC (Inter-Process Communication).</div>
+    </div>
+    <div class="scenario-box">
+      <div class="scenario-box-label">Renderer Process (Sandboxed)</div>
+      <div class="scenario-box-content">One spawned per tab/site. Executes HTML parsing, CSSOM calculation, JavaScript via V8 engine, and paints layout. Runs in a restricted OS sandbox with zero direct filesystem access.</div>
+    </div>
+    <div class="scenario-box">
+      <div class="scenario-box-label">Network Process</div>
+      <div class="scenario-box-content">Handles all low-level networking: DNS queries, socket connection pools, TLS negotiation, HTTP cache management, and cookie storage.</div>
+    </div>
+    <div class="scenario-box">
+      <div class="scenario-box-label">GPU Process</div>
+      <div class="scenario-box-content">Isolated process dedicated to communicating with graphics hardware. Handles CSS 3D transforms, WebGL shaders, video acceleration, and layer compositing.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================
+     SECTION 4, 5 & 6: URL, URI, URN & DOMAINS
+     ========================================== -->
+<section id="sec-4" class="notes-section">
+  <div class="notes-section-header">
+    <span class="notes-section-number">04</span>
+    <h2 class="notes-section-title">Anatomy of a URL (Uniform Resource Locator)</h2>
+  </div>
+
+  <p class="notes-paragraph">
+    A <strong>URL</strong> is a structured string that specifies both the identity of a web resource and the precise network mechanism used to retrieve it. Consider the complete corporate URL:
+  </p>
+
+  <div class="code-block-wrapper">
+    <div class="code-header"><span>URL ANATOMY SPECIFICATION</span></div>
+    <pre class="notes-code"><code style="color: #60A5FA;">https</code>://<code style="color: #34D399;">example.com</code>:<code style="color: #FBBF24;">443</code>/<code style="color: #A78BFA;">products</code>?<code style="color: #F87171;">id=25&category=tech</code>#<code style="color: #EC4899;">reviews</code></pre>
+  </div>
+
+  <div class="table-responsive-wrapper">
+    <table class="notes-table">
+      <thead>
+        <tr>
+          <th>Segment</th>
+          <th>Sample Value</th>
+          <th>Technical Purpose</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong style="color: #60A5FA;">Scheme / Protocol</strong></td>
+          <td><code>https</code></td>
+          <td>Identifies protocol (HTTP, HTTPS, FTP, WebSocket <code>wss</code>). Determines default port (HTTP=80, HTTPS=443).</td>
+        </tr>
+        <tr>
+          <td><strong style="color: #34D399;">Host / Domain</strong></td>
+          <td><code>example.com</code></td>
+          <td>The human-readable domain name resolving to server IP address via DNS.</td>
+        </tr>
+        <tr>
+          <td><strong style="color: #FBBF24;">Port</strong></td>
+          <td><code>:443</code></td>
+          <td>Transport layer TCP socket identifier. Optional if standard protocol default (80 or 443).</td>
+        </tr>
+        <tr>
+          <td><strong style="color: #A78BFA;">Path</strong></td>
+          <td><code>/products</code></td>
+          <td>Hierarchical path to specific resource or API route on the web server.</td>
+        </tr>
+        <tr>
+          <td><strong style="color: #F87171;">Query Parameters</strong></td>
+          <td><code>?id=25&category=tech</code></td>
+          <td>Key-value pairs preceded by <code>?</code> and delimited by <code>&</code> for filtering, pagination, or state.</td>
+        </tr>
+        <tr>
+          <td><strong style="color: #EC4899;">Fragment / Hash</strong></td>
+          <td><code>#reviews</code></td>
+          <td>Client-side anchor identifying section ID. <strong>CRITICAL: Never transmitted to the server in HTTP requests!</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="sec-5" class="notes-section">
+  <div class="notes-section-header">
+    <span class="notes-section-number">05</span>
+    <h2 class="notes-section-title">URI vs URL vs URN Explained</h2>
+  </div>
+
+  <p class="notes-paragraph">
+    Interviewers frequently probe whether a fresher understands the Venn diagram relationship between URI, URL, and URN:
+  </p>
+
+  <div class="table-responsive-wrapper">
+    <table class="notes-table">
+      <thead>
+        <tr>
+          <th>Concept</th>
+          <th>Formal Meaning</th>
+          <th>What It Tells You</th>
+          <th>Real-World Example</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong style="color: var(--brand-primary);">URI</strong> (Superset)</td>
+          <td>Uniform Resource Identifier</td>
+          <td>Identifies a resource by location, name, or both</td>
+          <td><code>urn:isbn:0451450523</code> or <code>https://example.com</code></td>
+        </tr>
+        <tr>
+          <td><strong style="color: var(--brand-cyan);">URL</strong> (Subset)</td>
+          <td>Uniform Resource Locator</td>
+          <td>Identifies a resource <strong>AND</strong> how to reach it</td>
+          <td><code>https://placementprep.in/notes/browser</code></td>
+        </tr>
+        <tr>
+          <td><strong style="color: var(--brand-emerald);">URN</strong> (Subset)</td>
+          <td>Uniform Resource Name</td>
+          <td>Identifies a resource persistently by name, no location</td>
+          <td><code>urn:isbn:978-3-16-148410-0</code> (Book ISBN number)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="trap-card">
+    <div class="trap-card-header">
+      <span class="trap-title">⚠️ Placement Exam Trap: URI vs URL</span>
+      <span class="trap-badge">TCS & Cognizant Favorite</span>
+    </div>
+    <div class="trap-text">
+      Students mistakenly say that URL and URI are two competing protocols.
+    </div>
+    <div class="trap-truth">
+      ✅ Placement Truth: Every URL is a URI, but not every URI is a URL! Think of URI as "Official ID", URL as "Street Address", and URN as "Passport / SSN Number".
+    </div>
+  </div>
+</section>
+
+<section id="sec-6" class="notes-section">
+  <div class="notes-section-header">
+    <span class="notes-section-number">06</span>
+    <h2 class="notes-section-title">Domain Name Hierarchy & FQDN</h2>
+  </div>
+
+  <p class="notes-paragraph">
+    Domain names follow a strict tree hierarchy read from right to left (most general to most specific):
+  </p>
+
+  <div class="code-block-wrapper">
+    <div class="code-header"><span>DOMAIN HIERARCHY TREE</span></div>
+    <pre class="notes-code"><code style="color: #60A5FA;">subdomain</code> . <code style="color: #34D399;">second-level-domain</code> . <code style="color: #FBBF24;">top-level-domain (TLD)</code> . <code style="color: #94A3B8;">(root)</code>
+   portal   .       placementprep      .          in            . (implicit dot)</pre>
+  </div>
+
+  <div class="scenario-detail-grid">
+    <div class="scenario-box">
+      <div class="scenario-box-label">Top-Level Domain (TLD)</div>
+      <div class="scenario-box-content">Managed by registry operators overseen by ICANN. Generic TLDs (gTLDs: <code>.com</code>, <code>.org</code>, <code>.net</code>) and Country-Code TLDs (ccTLDs: <code>.in</code>, <code>.uk</code>, <code>.ca</code>).</div>
+    </div>
+    <div class="scenario-box">
+      <div class="scenario-box-label">Second-Level Domain (SLD)</div>
+      <div class="scenario-box-content">The unique registered brand or project name purchased through an accredited registrar (e.g., <code>placementprep</code>).</div>
+    </div>
+    <div class="scenario-box">
+      <div class="scenario-box-label">Subdomain / Hostname</div>
+      <div class="scenario-box-content">Specific functional host partitioned by the owner without registration fees (e.g. <code>api.example.com</code>, <code>blog.example.com</code>).</div>
+    </div>
+    <div class="scenario-box">
+      <div class="scenario-box-label">FQDN</div>
+      <div class="scenario-box-content">Fully Qualified Domain Name: Complete, unambiguous domain path ending at the DNS root: <code>www.example.com.</code></div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================
+     SECTION 7, 8 & 9: DNS DEEP-DIVE & SCENARIO
+     ========================================== -->
+<section id="sec-7" class="notes-section">
+  <div class="notes-section-header">
+    <span class="notes-section-number">07</span>
+    <h2 class="notes-section-title">DNS (Domain Name System) Deep-Dive</h2>
+  </div>
+
+  <p class="notes-paragraph">
+    Computers route internet traffic using binary IP addresses (IPv4: <code>93.184.216.34</code>, IPv6: <code>2606:2800:220:1...</code>). Humans navigate using memorizable string names (<code>example.com</code>). DNS is the distributed, hierarchical database system that translates alphanumeric domain names into machine-routable IP addresses.
+  </p>
+
+  <p class="notes-paragraph">
+    DNS queries utilize <strong>UDP port 53</strong> for standard resolution (fast, low-overhead single packet exchange) and fallback to <strong>TCP port 53</strong> for large responses (>512 bytes) or zone transfers.
+  </p>
+
+  <div class="table-responsive-wrapper">
+    <table class="notes-table">
+      <thead>
+        <tr>
+          <th>DNS Record</th>
+          <th>Full Name</th>
+          <th>What It Maps</th>
+          <th>Example Use Case</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="table-tag table-tag-blue">A</span></td>
+          <td>Address Record</td>
+          <td>Domain name to 32-bit IPv4 address</td>
+          <td><code>placementprep.in -> 104.21.45.12</code></td>
+        </tr>
+        <tr>
+          <td><span class="table-tag table-tag-green">AAAA</span></td>
+          <td>IPv6 Address Record</td>
+          <td>Domain name to 128-bit IPv6 address</td>
+          <td><code>placementprep.in -> 2606:4700::6815:2d0c</code></td>
+        </tr>
+        <tr>
+          <td><span class="table-tag table-tag-purple">CNAME</span></td>
+          <td>Canonical Name</td>
+          <td>Alias domain to another true canonical domain</td>
+          <td><code>www.example.com -> example.com</code></td>
+        </tr>
+        <tr>
+          <td><span class="table-tag table-tag-amber">MX</span></td>
+          <td>Mail Exchange</td>
+          <td>Domain to incoming mail servers with priority</td>
+          <td><code>mail.google.com (Priority 10)</code></td>
+        </tr>
+        <tr>
+          <td><span class="table-tag table-tag-red">NS</span></td>
+          <td>Name Server</td>
+          <td>Delegates DNS zone to authoritative servers</td>
+          <td><code>ns1.cloudflare.com</code></td>
+        </tr>
+        <tr>
+          <td><span class="table-tag table-tag-blue">TXT</span></td>
+          <td>Text Record</td>
+          <td>Arbitrary human/machine-readable metadata</td>
+          <td>SPF records (prevent email spoofing), DKIM, site verification</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="sec-8" class="notes-section">
+  <div class="notes-section-header">
+    <span class="notes-section-number">08</span>
+    <h2 class="notes-section-title">DNS Resolution Flowchart (Step-by-Step)</h2>
+  </div>
+
+  <p class="notes-paragraph">
+    When a user requests a domain that has not been recently visited, the DNS lookup traverses a hierarchical chain. If any caching tier contains a valid unexpired record (based on <strong>TTL — Time To Live</strong>), it short-circuits and immediately returns the IP!
+  </p>
+
+  <div class="diagram-card">
+    <div class="diagram-title">🔍 Recursive vs Iterative DNS Lookup Traversal</div>
+    <div class="diagram-hero-journey">
+      <div class="journey-step">
+        <span class="journey-step-num">01</span>
+        <span class="journey-step-title">Browser Cache</span>
+        <span class="journey-step-desc">Browser checks internal memory table (caches DNS lookups for 1–10 minutes). If found, returns IP immediately.</span>
+      </div>
+      <div class="journey-step">
+        <span class="journey-step-num">02</span>
+        <span class="journey-step-title">OS Cache & Hosts File</span>
+        <span class="journey-step-desc">Operating System checks local DNS cache (viewable via <code>ipconfig /displaydns</code>) and static <code>/etc/hosts</code>.</span>
+      </div>
+      <div class="journey-step">
+        <span class="journey-step-num">03</span>
+        <span class="journey-step-title">Recursive Resolver</span>
+        <span class="journey-step-desc">Query leaves device to ISP or Public Resolver (e.g. <code>8.8.8.8</code> or <code>1.1.1.1</code>). Resolver checks its cached database.</span>
+      </div>
+      <div class="journey-step">
+        <span class="journey-step-num">04</span>
+        <span class="journey-step-title">Root DNS Servers</span>
+        <span class="journey-step-desc">If resolver lacks cache, queries 1 of 13 global Root Servers (A through M). Root responds: "Ask the <code>.com</code> TLD server".</span>
+      </div>
+      <div class="journey-step">
+        <span class="journey-step-num">05</span>
+        <span class="journey-step-title">TLD Nameservers</span>
+        <span class="journey-step-desc">Resolver queries <code>.com</code> TLD server. TLD responds: "Ask authoritative nameservers <code>ns1.cloudflare.com</code>".</span>
+      </div>
+      <div class="journey-step">
+        <span class="journey-step-num">06</span>
+        <span class="journey-step-title">Authoritative Server</span>
+        <span class="journey-step-desc">Holds the official DNS zone records for the domain. Returns the exact IP address (e.g. <code>93.184.216.34</code>) to resolver.</span>
+      </div>
+      <div class="journey-step">
+        <span class="journey-step-num">07</span>
+        <span class="journey-step-title">Client Connects</span>
+        <span class="journey-step-desc">Resolver caches IP for duration of TTL and delivers IP to browser. Browser initiates TCP three-way handshake.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="sec-9" class="notes-section">
+  <div class="notes-section-header">
+    <span class="notes-section-number">09</span>
+    <h2 class="notes-section-title">Real-Life DNS Interview Scenario</h2>
+  </div>
+
+  <div class="scenario-card">
+    <div class="scenario-header" onclick="this.parentElement.querySelector('.scenario-details').classList.toggle('open')">
+      <div class="scenario-icon">🚨</div>
+      <div class="scenario-title-wrap">
+        <span class="scenario-badge">Accenture / Capgemini Interview Classic</span>
+        <h3 class="scenario-title">"The website opens when entering its raw IP, but fails when using its domain name. What is wrong?"</h3>
+        <p class="scenario-symptom">User can ping <code>93.184.216.34</code> successfully, but typing <code>example.com</code> results in <code>ERR_NAME_NOT_RESOLVED</code>.</p>
+      </div>
+      <button type="button" class="scenario-toggle-btn">View Diagnosis ▼</button>
+    </div>
+    <div class="scenario-details open">
+      <div class="scenario-detail-grid">
+        <div class="scenario-box">
+          <div class="scenario-box-label">1. Root Cause Analysis</div>
+          <div class="scenario-box-content">Since direct IP connection works, network routing, physical cables, firewalls, and the web server are 100% operational. The failure is strictly within the <strong>DNS Resolution Layer</strong>.</div>
+        </div>
+        <div class="scenario-box">
+          <div class="scenario-box-label">2. Diagnostic Steps</div>
+          <div class="scenario-box-content">Run <code>nslookup example.com</code> or <code>dig example.com</code> in terminal to see if DNS returns an IP. Run <code>ipconfig /flushdns</code> to clear stale local cache.</div>
+        </div>
+        <div class="scenario-box">
+          <div class="scenario-box-label">3. Likely Causes</div>
+          <div class="scenario-box-content">Expired domain registration; missing 'A' record on authoritative DNS; corrupted ISP resolver cache; or malicious hijacking in local <code>hosts</code> file.</div>
+        </div>
+        <div class="scenario-box">
+          <div class="scenario-box-label">4. Interview Takeaway</div>
+          <div class="scenario-box-content">"DNS translates names to IPs. If IP works but domain fails, the issue is DNS, never server hardware or network connectivity!"</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================
+     SECTION 10, 11, 12, 13 & 14: HTTP DEEP-DIVE
+     ========================================== -->
+<section id="sec-10" class="notes-section">
+  <div class="notes-section-header">
+    <span class="notes-section-number">10</span>
+    <h2 class="notes-section-title">HTTP (Hypertext Transfer Protocol) Fundamentals</h2>
+  </div>
+
+  <p class="notes-paragraph">
+    HTTP is an application-layer request-response communication protocol operating over TCP/IP (port 80 for HTTP, port 443 for HTTPS). It is fundamentally <strong>stateless</strong>: each request-response transaction is completely independent; the server does not natively remember previous interactions from the same client without auxiliary state mechanisms (cookies, tokens, sessions).
+  </p>
+
+  <div class="diagram-card">
+    <div class="diagram-title">🔄 The Stateless Request-Response Exchange</div>
+    <div style="background: #06090E; border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 1.25rem; font-family: var(--font-mono); font-size: 0.85rem; color: #94A3B8;">
+      <pre style="margin: 0; color: #E2E8F0;">
+    CLIENT (Browser)                                    SERVER (Backend/Nginx)
+           │                                                       │
+           │  1. HTTP Request (GET /products HTTP/1.1)            │
+           ├──────────────────────────────────────────────────────►│
+           │                                                       │ (Server queries DB,
+           │                                                       │  constructs HTML/JSON)
+           │  2. HTTP Response (HTTP/1.1 200 OK + Payload)         │
+           │◄──────────────────────────────────────────────────────┤
+           │                                                       │
+           ▼ (Browser parses & paints)                             ▼ (Connection closed or kept-alive)</pre>
+    </div>
+  </div>
+</section>
+
+<section id="sec-11" class="notes-section">
+  <div class="notes-section-header">
+    <span class="notes-section-number">11</span>
+    <h2 class="notes-section-title">HTTP Request Anatomy</h2>
+  </div>
+
+  <p class="notes-paragraph">
+    Every HTTP request sent by a browser follows a strict plain-text specification consisting of 3 parts:
+  </p>
+
+  <div class="code-block-wrapper">
+    <div class="code-header"><span>RAW HTTP/1.1 REQUEST</span><button class="code-copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-block-wrapper').querySelector('code').innerText)">Copy</button></div>
+    <pre class="notes-code"><code>POST /api/v1/auth/login HTTP/1.1
+Host: api.placementprep.in
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/122.0
+Content-Type: application/json
+Content-Length: 48
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1Ni...
+
+{"username": "candidate_101", "password": "****"}</code></pre>
+  </div>
+
+  <div class="scenario-detail-grid">
+    <div class="scenario-box">
+      <div class="scenario-box-label">1. Request Line</div>
+      <div class="scenario-box-content"><code>METHOD /path HTTP/VERSION</code> (e.g. <code>POST /api/v1/auth/login HTTP/1.1</code>). Sets intent, resource endpoint, and protocol dialect.</div>
+    </div>
+    <div class="scenario-box">
+      <div class="scenario-box-label">2. Request Headers</div>
+      <div class="scenario-box-content">Key-value metadata pairs. <code>Host</code> (mandatory in HTTP/1.1), <code>User-Agent</code>, <code>Content-Type</code>, <code>Authorization</code>, and <code>Cookie</code>.</div>
+    </div>
+    <div class="scenario-box">
+      <div class="scenario-box-label">3. Empty Line CRLF</div>
+      <div class="scenario-box-content">Mandatory carriage return line feed (<code>\r\n</code>) signaling to the server that header parsing is complete.</div>
+    </div>
+    <div class="scenario-box">
+      <div class="scenario-box-label">4. Request Body</div>
+      <div class="scenario-box-content">Optional data payload carrying JSON, XML, or multi-part binary file uploads (primarily used in POST, PUT, PATCH).</div>
+    </div>
+  </div>
+</section>
+
+<section id="sec-12" class="notes-section">
+  <div class="notes-section-header">
+    <span class="notes-section-number">12</span>
+    <h2 class="notes-section-title">HTTP Methods: Safe vs Idempotent</h2>
+  </div>
+
+  <p class="notes-paragraph">
+    In fresher recruitment exams, interviewers frequently test the mathematical properties of HTTP methods: <strong>Safe</strong> (read-only, does not alter server state) and <strong>Idempotent</strong> ($f(f(x)) = f(x)$, making 1 request produces the same server state as 1,000 identical requests).
+  </p>
+
+  <div class="table-responsive-wrapper">
+    <table class="notes-table">
+      <thead>
+        <tr>
+          <th>Method</th>
+          <th>Typical Purpose</th>
+          <th>Safe?</th>
+          <th>Idempotent?</th>
+          <th>Has Body?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong style="color: #60A5FA;">GET</strong></td>
+          <td>Retrieve resource representation without side effects</td>
+          <td>✅ Yes</td>
+          <td>✅ Yes</td>
+          <td>❌ No (URL params only)</td>
+        </tr>
+        <tr>
+          <td><strong style="color: #34D399;">POST</strong></td>
+          <td>Create a new subordinate resource or submit form data</td>
+          <td>❌ No</td>
+          <td>❌ No</td>
+          <td>✅ Yes</td>
+        </tr>
+        <tr>
+          <td><strong style="color: #FBBF24;">PUT</strong></td>
+          <td>Replace an entire target resource completely</td>
+          <td>❌ No</td>
+          <td>✅ Yes</td>
+          <td>✅ Yes</td>
+        </tr>
+        <tr>
+          <td><strong style="color: #A78BFA;">PATCH</strong></td>
+          <td>Apply partial modifications to an existing resource</td>
+          <td>❌ No</td>
+          <td>❌ No (typically)</td>
+          <td>✅ Yes</td>
+        </tr>
+        <tr>
+          <td><strong style="color: #F87171;">DELETE</strong></td>
+          <td>Remove the specified target resource</td>
+          <td>❌ No</td>
+          <td>✅ Yes</td>
+          <td>Optional</td>
+        </tr>
+        <tr>
+          <td><strong style="color: var(--text-muted);">HEAD</strong></td>
+          <td>Identical to GET, but returns headers ONLY (no body)</td>
+          <td>✅ Yes</td>
+          <td>✅ Yes</td>
+          <td>❌ No</td>
+        </tr>
+        <tr>
+          <td><strong style="color: var(--text-muted);">OPTIONS</strong></td>
+          <td>Queries supported HTTP methods / CORS preflight</td>
+          <td>✅ Yes</td>
+          <td>✅ Yes</td>
+          <td>❌ No</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="sec-13" class="notes-section">
+  <div class="notes-section-header">
+    <span class="notes-section-number">13</span>
+    <h2 class="notes-section-title">HTTP Response Anatomy</h2>
+  </div>
+
+  <p class="notes-paragraph">
+    When a server replies to a client's HTTP request, it sends back a structured response:
+  </p>
+
+  <div class="code-block-wrapper">
+    <div class="code-header"><span>RAW HTTP/1.1 RESPONSE</span></div>
+    <pre class="notes-code"><code>HTTP/1.1 200 OK
+Date: Sun, 27 Sep 2026 12:00:00 GMT
+Server: Nginx/1.24.0
+Content-Type: application/json; charset=utf-8
+Content-Length: 52
+Cache-Control: public, max-age=3600
+Set-Cookie: session_id=xyz987; Secure; HttpOnly; SameSite=Strict
+
+{"status": "success", "message": "Authenticated"}</code></pre>
+  </div>
+</section>
+
+<section id="sec-14" class="notes-section">
+  <div class="notes-section-header">
+    <span class="notes-section-number">14</span>
+    <h2 class="notes-section-title">HTTP Status Codes Guide & Exam Traps</h2>
+  </div>
+
+  <p class="notes-paragraph">
+    Status codes are 3-digit integers categorized by their first digit:
+  </p>
+
+  <div class="table-responsive-wrapper">
+    <table class="notes-table">
+      <thead>
+        <tr>
+          <th>Code</th>
+          <th>Status Name</th>
+          <th>Category</th>
+          <th>Real-World Technical Context</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="table-tag table-tag-green">200</span></td>
+          <td>OK</td>
+          <td>2xx Success</td>
+          <td>Standard response for successful GET, PUT, or POST requests.</td>
+        </tr>
+        <tr>
+          <td><span class="table-tag table-tag-green">201</span></td>
+          <td>Created</td>
+          <td>2xx Success</td>
+          <td>Resource successfully created via POST. Returns <code>Location</code> header.</td>
+        </tr>
+        <tr>
+          <td><span class="table-tag table-tag-green">204</span></td>
+          <td>No Content</td>
+          <td>2xx Success</td>
+          <td>Action succeeded, but response intentionally has no body (common in DELETE).</td>
+        </tr>
+        <tr>
+          <td><span class="table-tag table-tag-blue">301</span></td>
+          <td>Moved Permanently</td>
+          <td>3xx Redirection</td>
+          <td>Resource has a permanent new URL. Browsers cache redirect; search engines transfer SEO.</td>
+        </tr>
+        <tr>
+          <td><span class="table-tag table-tag-blue">302</span></td>
+          <td>Found (Temp Redirect)</td>
+          <td>3xx Redirection</td>
+          <td>Temporary redirect. Client should continue using original URL in future requests.</td>
+        </tr>
+        <tr>
+          <td><span class="table-tag table-tag-blue">304</span></td>
+          <td>Not Modified</td>
+          <td>3xx Redirection</td>
+          <td>Cached copy is still fresh! Server sends headers only; browser reuses local cache.</td>
+        </tr>
+        <tr>
+          <td><span class="table-tag table-tag-amber">400</span></td>
+          <td>Bad Request</td>
+          <td>4xx Client Error</td>
+          <td>Malformed syntax, invalid JSON body, or missing required payload parameters.</td>
+        </tr>
+        <tr>
+          <td><span class="table-tag table-tag-amber">401</span></td>
+          <td>Unauthorized</td>
+          <td>4xx Client Error</td>
+          <td><strong>Unauthenticated!</strong> Missing, expired, or invalid login credentials / JWT token.</td>
+        </tr>
+        <tr>
+          <td><span class="table-tag table-tag-amber">403</span></td>
+          <td>Forbidden</td>
+          <td>4xx Client Error</td>
+          <td><strong>Unauthorized!</strong> Identity is known, but user lacks permission/role to access resource.</td>
+        </tr>
+        <tr>
+          <td><span class="table-tag table-tag-amber">404</span></td>
+          <td>Not Found</td>
+          <td>4xx Client Error</td>
+          <td>The requested URI path does not exist on the server.</td>
+        </tr>
+        <tr>
+          <td><span class="table-tag table-tag-amber">405</span></td>
+          <td>Method Not Allowed</td>
+          <td>4xx Client Error</td>
+          <td>Endpoint exists, but HTTP method is rejected (e.g. POST on a read-only endpoint).</td>
+        </tr>
+        <tr>
+          <td><span class="table-tag table-tag-amber">429</span></td>
+          <td>Too Many Requests</td>
+          <td>4xx Client Error</td>
+          <td>User exceeded rate limits (throttled by API gateway).</td>
+        </tr>
+        <tr>
+          <td><span class="table-tag table-tag-red">500</span></td>
+          <td>Internal Server Error</td>
+          <td>5xx Server Error</td>
+          <td>Unhandled exception or crash in backend server code.</td>
+        </tr>
+        <tr>
+          <td><span class="table-tag table-tag-red">502</span></td>
+          <td>Bad Gateway</td>
+          <td>5xx Server Error</td>
+          <td>Proxy/Reverse Proxy (Nginx) received an invalid response from upstream backend.</td>
+        </tr>
+        <tr>
+          <td><span class="table-tag table-tag-red">503</span></td>
+          <td>Service Unavailable</td>
+          <td>5xx Server Error</td>
+          <td>Server is temporarily overloaded or undergoing scheduled maintenance.</td>
+        </tr>
+        <tr>
+          <td><span class="table-tag table-tag-red">504</span></td>
+          <td>Gateway Timeout</td>
+          <td>5xx Server Error</td>
+          <td>Proxy/Load Balancer timed out waiting for upstream server to finish computing.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="trap-card">
+    <div class="trap-card-header">
+      <span class="trap-title">⚠️ Placement Exam Trap: 401 vs 403</span>
+      <span class="trap-badge">Extremely Common</span>
+    </div>
+    <div class="trap-text">
+      Students frequently confuse 401 Unauthorized with 403 Forbidden.
+    </div>
+    <div class="trap-truth">
+      ✅ Placement Truth: 401 means "Who are you? Log in first!" (Authentication failure). 403 means "I know who you are, but you don't have permission to be here!" (Authorization failure). Logging in again will NEVER fix a 403!
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================
+     SECTION 15 & 16: HTTPS & TLS HANDSHAKE
+     ========================================== -->
+<section id="sec-15" class="notes-section">
+  <div class="notes-section-header">
+    <span class="notes-section-number">15</span>
+    <h2 class="notes-section-title">HTTP vs HTTPS</h2>
+  </div>
+
+  <p class="notes-paragraph">
+    <strong>HTTPS (Hypertext Transfer Protocol Secure)</strong> is HTTP executed over an encrypted cryptographic transport layer: <strong>TLS (Transport Layer Security)</strong>, previously known as SSL. HTTPS operates on default TCP port 443 (compared to HTTP's port 80).
+  </p>
+
+  <div class="diagram-card">
+    <div class="diagram-title">🛡️ Transport Encryption Comparison</div>
+    <div style="background: #06090E; border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 1.25rem; font-family: var(--font-mono); font-size: 0.85rem; color: #94A3B8;">
+      <pre style="margin: 0; color: #E2E8F0;">
+HTTP (Plain Text):
+Client ──────────────────────────────────────────► Server
+  "GET /account?pwd=secret123"  (Any ISP, Wi-Fi router, or attacker in middle can read & modify)
+
+HTTPS (TLS Encrypted Tunnel):
+Client ══════════════════════════════════════════► Server
+  "a8f93b01c7d2e4..." (Ciphertext: Attackers see only gibberish scrambled bytes)</pre>
+    </div>
+  </div>
+
+  <div class="scenario-detail-grid">
+    <div class="scenario-box">
+      <div class="scenario-box-label">1. Confidentiality (Encryption)</div>
+      <div class="scenario-box-content">Data in transit is encrypted using symmetric session ciphers (AES-GCM / ChaCha20). Eavesdroppers cannot read credentials, credit cards, or URLs.</div>
+    </div>
+    <div class="scenario-box">
+      <div class="scenario-box-label">2. Integrity (Tamper-Proof)</div>
+      <div class="scenario-box-content">Message Authentication Codes (MAC / HMAC) guarantee that packets cannot be altered or injected with malicious ads/scripts during transmission without detection.</div>
+    </div>
+    <div class="scenario-box">
+      <div class="scenario-box-label">3. Authentication (Identity)</div>
+      <div class="scenario-box-content">Digital certificates issued by trusted Certificate Authorities (CAs) prove the client is actually talking to <code>google.com</code>, not a DNS-spoofed imposter.</div>
+    </div>
+  </div>
+
+  <div class="trap-card">
+    <div class="trap-card-header">
+      <span class="trap-title">⚠️ Placement Exam Trap: Does HTTPS Mean the Site is Safe?</span>
+      <span class="trap-badge">Very Common Misconception</span>
+    </div>
+    <div class="trap-text">
+      Students often answer: "Yes, HTTPS means the website is safe, trustworthy, and free from malware."
+    </div>
+    <div class="trap-truth">
+      ✅ Placement Truth: ABSOLUTELY FALSE! HTTPS only guarantees that your connection to the server is encrypted and that the domain matches the certificate. A phishing website or criminal scammer can easily obtain a free SSL certificate (e.g. from Let's Encrypt). HTTPS encrypts traffic; it does NOT validate the moral intent or safety of the website!
+    </div>
+  </div>
+</section>
+
+<section id="sec-16" class="notes-section">
+  <div class="notes-section-header">
+    <span class="notes-section-number">16</span>
+    <h2 class="notes-section-title">TLS Handshake (High-Level Overview)</h2>
+  </div>
+
+  <p class="notes-paragraph">
+    In interview discussions, you should explain why HTTPS uses <strong>both Asymmetric and Symmetric encryption</strong>:
+  </p>
+
+  <div class="analogy-card">
+    <div class="analogy-title">🔑 Why Two Types of Encryption?</div>
+    <p style="font-size: 0.92rem; color: var(--text-primary); line-height: 1.6; margin: 0;">
+      <strong>Asymmetric Encryption</strong> (Public/Private Key) is mathematically secure but computationally slow. <strong>Symmetric Encryption</strong> (single shared secret key) is blazing fast. Therefore, the browser uses Asymmetric Encryption for 1 second during the initial TLS Handshake to securely exchange a secret symmetric key. Once exchanged, all actual webpage data is transmitted using fast Symmetric Encryption!
+    </p>
+  </div>
+
+  <div class="diagram-hero-journey" style="margin-top: 1.5rem;">
+    <div class="journey-step">
+      <span class="journey-step-num">01</span>
+      <span class="journey-step-title">Client Hello</span>
+      <span class="journey-step-desc">Browser sends supported TLS versions (TLS 1.2 / 1.3), cipher suites, and a client random string.</span>
+    </div>
+    <div class="journey-step">
+      <span class="journey-step-num">02</span>
+      <span class="journey-step-title">Server Hello + Certificate</span>
+      <span class="journey-step-desc">Server chooses cipher suite, sends server random, and presents its SSL/TLS Certificate (containing its Public Key).</span>
+    </div>
+    <div class="journey-step">
+      <span class="journey-step-num">03</span>
+      <span class="journey-step-title">Certificate Validation</span>
+      <span class="journey-step-desc">Browser verifies certificate against pre-installed OS Root Certificate Authorities (checks signature, domain match, expiration).</span>
+    </div>
+    <div class="journey-step">
+      <span class="journey-step-num">04</span>
+      <span class="journey-step-title">Session Key Derivation</span>
+      <span class="journey-step-desc">Client & server compute a shared symmetric session key (via Diffie-Hellman Key Exchange in TLS 1.3).</span>
+    </div>
+    <div class="journey-step">
+      <span class="journey-step-num">05</span>
+      <span class="journey-step-title">Encrypted Transmission</span>
+      <span class="journey-step-desc">All subsequent HTTP requests & responses are encrypted end-to-end with the shared symmetric session key.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================
+     SECTION 17 & 18: COOKIES & SECURITY ATTRIBUTES
+     ========================================== -->
+<section id="sec-17" class="notes-section">
+  <div class="notes-section-header">
+    <span class="notes-section-number">17</span>
+    <h2 class="notes-section-title">Cookies & Lifecycle Management</h2>
+  </div>
+
+  <p class="notes-paragraph">
+    A <strong>Cookie</strong> is a small snippet of data (maximum ~4KB per cookie) that a web server asks the client browser to store locally and automatically transmit back with future HTTP requests directed to that same origin/domain. Cookies are the original mechanism used to introduce <strong>statefulness</strong> to the stateless HTTP protocol.
+  </p>
+
+  <div class="diagram-card">
+    <div class="diagram-title">🍪 Cookie Set & Echo Lifecycle</div>
+    <div style="background: #06090E; border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 1.25rem; font-family: var(--font-mono); font-size: 0.85rem; color: #94A3B8;">
+      <pre style="margin: 0; color: #E2E8F0;">
+1. Client logs in:        POST /login  ──────►  Server verifies credentials
+2. Server sets cookie:    HTTP 200 OK  ◄──────  Set-Cookie: session_id=xyz89; Secure; HttpOnly
+3. Browser stores cookie: (Saves to client disk / RAM storage table)
+4. Future requests:       GET /profile ──────►  Cookie: session_id=xyz89 (Auto-attached!)</pre>
+    </div>
+  </div>
+
+  <div class="scenario-detail-grid">
+    <div class="scenario-box">
+      <div class="scenario-box-label">Session Cookies</div>
+      <div class="scenario-box-content">Lacks an <code>Expires</code> or <code>Max-Age</code> attribute. Retained in RAM memory and deleted as soon as the browser instance or tab is closed.</div>
+    </div>
+    <div class="scenario-box">
+      <div class="scenario-box-label">Persistent Cookies</div>
+      <div class="scenario-box-content">Explicitly defines <code>Expires=Wed, 21 Oct 2026 07:28:00 GMT</code> or <code>Max-Age=31536000</code>. Written to disk and persists across browser reboots.</div>
+    </div>
+  </div>
+</section>
+
+<section id="sec-18" class="notes-section">
+  <div class="notes-section-header">
+    <span class="notes-section-number">18</span>
+    <h2 class="notes-section-title">Critical Cookie Security Flags (HttpOnly, Secure, SameSite)</h2>
+  </div>
+
+  <p class="notes-paragraph">
+    In modern web development and placement interviews, properly configuring cookie security flags is mandatory to protect against <strong>XSS (Cross-Site Scripting)</strong> and <strong>CSRF (Cross-Site Request Forgery)</strong>:
+  </p>
+
+  <div class="code-block-wrapper">
+    <div class="code-header"><span>PRODUCTION-SECURED SET-COOKIE HEADER</span></div>
+    <pre class="notes-code"><code>Set-Cookie: auth_token=jwt_998877; Path=/; Secure; HttpOnly; SameSite=Strict</code></pre>
+  </div>
+
+  <div class="table-responsive-wrapper">
+    <table class="notes-table">
+      <thead>
+        <tr>
+          <th>Attribute</th>
+          <th>What It Enforces</th>
+          <th>Attack It Mitigates</th>
+          <th>Placement Key Takeaway</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="table-tag table-tag-green">Secure</span></td>
+          <td>Browser will ONLY transmit this cookie over encrypted HTTPS connections; never over plaintext HTTP.</td>
+          <td>Man-in-the-Middle (MitM) packet sniffing over open public Wi-Fi.</td>
+          <td>Always required in production for authenticated sessions.</td>
+        </tr>
+        <tr>
+          <td><span class="table-tag table-tag-blue">HttpOnly</span></td>
+          <td>Blocks client-side JavaScript APIs (e.g. <code>document.cookie</code>) from reading or accessing the cookie value.</td>
+          <td>XSS (Cross-Site Scripting) session token theft.</td>
+          <td>If an attacker injects a script tag, <code>document.cookie</code> will NOT reveal HttpOnly session cookies!</td>
+        </tr>
+        <tr>
+          <td><span class="table-tag table-tag-purple">SameSite=Strict</span></td>
+          <td>Cookie is NEVER sent with cross-site requests, even when following a link from an external site.</td>
+          <td>CSRF (Cross-Site Request Forgery) attacks.</td>
+          <td>Highest security level; ideal for sensitive banking/e-commerce endpoints.</td>
+        </tr>
+        <tr>
+          <td><span class="table-tag table-tag-amber">SameSite=Lax</span></td>
+          <td>Default in modern Chrome. Cookie is withheld on cross-site subrequests (images, iframes), but sent on top-level safe GET navigations.</td>
+          <td>CSRF while preserving user convenience when clicking incoming external links.</td>
+          <td>Standard default policy across modern web browsers.</td>
+        </tr>
+        <tr>
+          <td><span class="table-tag table-tag-red">SameSite=None</span></td>
+          <td>Cookie sent on all cross-site requests. <strong>Requires <code>Secure</code> flag to be accepted!</strong></td>
+          <td>Used for third-party embeds (widgets, tracking).</td>
+          <td>Modern browsers reject <code>SameSite=None</code> if not paired with <code>Secure</code>.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ==========================================
+     SECTION 19 & 20: CACHING & 304 NOT MODIFIED
+     ========================================== -->
+<section id="sec-19" class="notes-section">
+  <div class="notes-section-header">
+    <span class="notes-section-number">19</span>
+    <h2 class="notes-section-title">Browser Caching & The 304 Not Modified Protocol</h2>
+  </div>
+
+  <p class="notes-paragraph">
+    Network round trips over mobile networks introduce latency (50ms–300ms). The <strong>browser cache</strong> stores static assets (CSS, JS bundles, company logos, fonts) locally on disk or memory so subsequent page loads can skip network downloads.
+  </p>
+
+  <div class="scenario-detail-grid">
+    <div class="scenario-box">
+      <div class="scenario-box-label">Cache-Control: max-age=31536000, immutable</div>
+      <div class="scenario-box-content">Tells the browser: "Store this asset for 1 year. Do NOT even make a network request to check; serve directly from disk!" Used for version-hashed assets (<code>bundle.a8f9.js</code>).</div>
+    </div>
+    <div class="scenario-box">
+      <div class="scenario-box-label">Cache-Control: no-cache</div>
+      <div class="scenario-box-content">Does NOT mean "do not cache"! It means: "Cache the file, but you MUST validate with the server (via ETag) before using it!"</div>
+    </div>
+    <div class="scenario-box">
+      <div class="scenario-box-label">Cache-Control: no-store</div>
+      <div class="scenario-box-content">The TRUE "do not cache" directive. The browser must never write any copy of this response to disk/RAM (used for sensitive financial ledgers).</div>
+    </div>
+  </div>
+
+  <div class="diagram-card" style="margin-top: 1.5rem;">
+    <div class="diagram-title">⚡ How 304 Not Modified Works (Conditional GET)</div>
+    <div style="background: #06090E; border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 1.25rem; font-family: var(--font-mono); font-size: 0.85rem; color: #94A3B8;">
+      <pre style="margin: 0; color: #E2E8F0;">
+Initial Request:
+Client ────────► GET /style.css
+Client ◄──────── HTTP 200 OK + ETag: "v1.2" + [500KB CSS Payload] (Browser saves to disk cache)
+
+Subsequent Request:
+Client ────────► GET /style.css + Header: [If-None-Match: "v1.2"]
+Server checks:   (Calculates file hash. Has style.css changed? NO!)
+Server ◄──────── HTTP 304 Not Modified (EMPTY BODY, zero CSS bytes transferred!)
+Browser action:  Instantly loads the 500KB stylesheet from local SSD in 1 millisecond!</pre>
+    </div>
+  </div>
+</section>
+
+<section id="sec-20" class="notes-section">
+  <div class="notes-section-header">
+    <span class="notes-section-number">20</span>
+    <h2 class="notes-section-title">Cache vs Cookie Comparison</h2>
+  </div>
+
+  <div class="table-responsive-wrapper">
+    <table class="notes-table">
+      <thead>
+        <tr>
+          <th>Dimension</th>
+          <th>Browser Cache</th>
+          <th>Cookies</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong style="color: var(--text-primary);">Primary Purpose</strong></td>
+          <td>Performance optimization (speed up loading)</td>
+          <td>State management, sessions, user preferences</td>
+        </tr>
+        <tr>
+          <td><strong style="color: var(--text-primary);">What It Stores</strong></td>
+          <td>Heavy static files (HTML, CSS, JS, images, fonts)</td>
+          <td>Small key-value string pairs (IDs, auth tokens)</td>
+        </tr>
+        <tr>
+          <td><strong style="color: var(--text-primary);">Storage Size</strong></td>
+          <td>Gigabytes (managed dynamically by OS/browser)</td>
+          <td>Strict limit of <strong>~4 KB</strong> per cookie</td>
+        </tr>
+        <tr>
+          <td><strong style="color: var(--text-primary);">Sent to Server?</strong></td>
+          <td>❌ No (client reads locally from disk)</td>
+          <td>✅ Yes (automatically sent with matching HTTP headers)</td>
+        </tr>
+        <tr>
+          <td><strong style="color: var(--text-primary);">Governed By</strong></td>
+          <td><code>Cache-Control</code>, <code>ETag</code>, <code>Last-Modified</code></td>
+          <td><code>Set-Cookie</code>, <code>Domain</code>, <code>Path</code>, <code>SameSite</code></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ==========================================
+     SECTION 21, 22, 23 & 24: WEB STORAGE & PRIVACY
+     ========================================== -->
+<section id="sec-21" class="notes-section">
+  <div class="notes-section-header">
+    <span class="notes-section-number">21</span>
+    <h2 class="notes-section-title">Web Storage: LocalStorage Deep-Dive</h2>
+  </div>
+
+  <p class="notes-paragraph">
+    Introduced in HTML5, <strong>LocalStorage</strong> provides a synchronous, origin-bound key-value storage engine in the browser with an industry-standard capacity of <strong>~5MB to 10MB per origin</strong> (compared to cookies' tiny 4KB limit). Data stored in LocalStorage has <strong>no expiration date</strong>; it persists indefinitely across browser restarts, OS reboots, and tabs until explicitly cleared by JavaScript or manual user cache clearing.
+  </p>
+
+  <div class="code-block-wrapper">
+    <div class="code-header"><span>LOCALSTORAGE SYNTAX CHEAT SHEET</span><button class="code-copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-block-wrapper').querySelector('code').innerText)">Copy</button></div>
+    <pre class="notes-code"><code>// Store string data
+localStorage.setItem('theme', 'dark');
+
+// Store objects (MUST serialize to JSON string!)
+const user = { id: 101, name: 'Nitin' };
+localStorage.setItem('user_profile', JSON.stringify(user));
+
+// Retrieve data
+const theme = localStorage.getItem('theme'); // 'dark'
+const profile = JSON.parse(localStorage.getItem('user_profile'));
+
+// Remove single key or clear all origin data
+localStorage.removeItem('theme');
+localStorage.clear();</code></pre>
+  </div>
+</section>
+
+<section id="sec-22" class="notes-section">
+  <div class="notes-section-header">
+    <span class="notes-section-number">22</span>
+    <h2 class="notes-section-title">Client-Side Storage Comparison Matrix</h2>
+  </div>
+
+  <div class="table-responsive-wrapper">
+    <table class="notes-table">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>Cookie</th>
+          <th>LocalStorage</th>
+          <th>SessionStorage</th>
+          <th>IndexedDB</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong style="color: var(--text-primary);">Capacity</strong></td>
+          <td>~4 KB</td>
+          <td>~5 MB – 10 MB</td>
+          <td>~5 MB</td>
+          <td>Hundreds of MB / GB</td>
+        </tr>
+        <tr>
+          <td><strong style="color: var(--text-primary);">Lifetime</strong></td>
+          <td>Set via Max-Age / Expires (or session)</td>
+          <td>Permanent until cleared</td>
+          <td>Expires when tab/window closes</td>
+          <td>Permanent until cleared</td>
+        </tr>
+        <tr>
+          <td><strong style="color: var(--text-primary);">Accessibility</strong></td>
+          <td>Server + Client (unless HttpOnly)</td>
+          <td>Client JavaScript only</td>
+          <td>Client JavaScript only</td>
+          <td>Client JavaScript only</td>
+        </tr>
+        <tr>
+          <td><strong style="color: var(--text-primary);">Sent with HTTP?</strong></td>
+          <td>✅ Yes (Every matching request)</td>
+          <td>❌ Never</td>
+          <td>❌ Never</td>
+          <td>❌ Never</td>
+        </tr>
+        <tr>
+          <td><strong style="color: var(--text-primary);">API Style</strong></td>
+          <td>Header strings / <code>document.cookie</code></td>
+          <td>Synchronous Key-Value</td>
+          <td>Synchronous Key-Value</td>
+          <td>Asynchronous NoSQL Object Store</td>
+        </tr>
+        <tr>
+          <td><strong style="color: var(--text-primary);">Tab Sharing</strong></td>
+          <td>Shared across all tabs (same origin)</td>
+          <td>Shared across all tabs (same origin)</td>
+          <td><strong>Strictly tab-isolated!</strong></td>
+          <td>Shared across all tabs (same origin)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="sec-23" class="notes-section">
+  <div class="notes-section-header">
+    <span class="notes-section-number">23</span>
+    <h2 class="notes-section-title">Browser History & History API</h2>
+  </div>
+
+  <p class="notes-paragraph">
+    The browser maintains a session history stack representing URLs visited in the current tab. Single-Page Application (SPA) routers (React Router, Vue Router, Angular) manipulate this stack via the HTML5 <strong>History API</strong> without triggering full page reloads:
+  </p>
+
+  <div class="code-block-wrapper">
+    <div class="code-header"><span>HTML5 HISTORY API METHODS</span></div>
+    <pre class="notes-code"><code>// Push a new entry onto the history stack (changes URL without page reload!)
+history.pushState({ page: 2 }, 'Products', '/products?page=2');
+
+// Replace the current history entry (useful for login redirects)
+history.replaceState({ page: 1 }, 'Home', '/home');
+
+// Navigation controls
+history.back();    // Equivalent to clicking browser Back button
+history.forward(); // Equivalent to browser Forward button
+history.go(-2);    // Go back two steps in session history</code></pre>
+  </div>
+</section>
+
+<section id="sec-24" class="notes-section">
+  <div class="notes-section-header">
+    <span class="notes-section-number">24</span>
+    <h2 class="notes-section-title">Incognito / Private Browsing Mode</h2>
+  </div>
+
+  <p class="notes-paragraph">
+    Private browsing creates a temporary, isolated session sandbox designed to protect user privacy from <strong>other people who physically share the same local computer</strong>.
+  </p>
+
+  <div class="scenario-detail-grid">
+    <div class="scenario-box" style="border-left: 3px solid var(--brand-emerald);">
+      <div class="scenario-box-label" style="color: var(--brand-emerald);">What Incognito DOES Do</div>
+      <div class="scenario-box-content">
+        • Deletes browsing history, search entries, form inputs, and download lists upon window close.<br>
+        • Destroys all cookies, localStorage, and sessionStorage created during the session.<br>
+        • Isolates cookies from existing logged-in sessions (great for testing multiple user roles).
+      </div>
+    </div>
+    <div class="scenario-box" style="border-left: 3px solid var(--danger);">
+      <div class="scenario-box-label" style="color: var(--danger);">What Incognito DOES NOT Do</div>
+      <div class="scenario-box-content">
+        • <strong>Does NOT make you anonymous!</strong><br>
+        • Your ISP (Internet Service Provider) still sees every domain you visit.<br>
+        • College/Corporate Wi-Fi network admins log all traffic & DNS queries.<br>
+        • Web servers log your true public IP address, browser fingerprint, and timestamps.
+      </div>
+    </div>
+  </div>
+
+  <div class="trap-card">
+    <div class="trap-card-header">
+      <span class="trap-title">⚠️ Placement Exam Trap: Private Browsing ≠ Anonymity</span>
+      <span class="trap-badge">Infosys & Deloitte Favorite</span>
+    </div>
+    <div class="trap-text">
+      Students frequently answer that Incognito mode hides their IP address, hides activity from Wi-Fi routers, or prevents website tracking.
+    </div>
+    <div class="trap-truth">
+      ✅ Placement Truth: Incognito protects ONLY local device privacy. It leaves zero traces on your laptop SSD, but 100% of your network traffic is visible to your ISP, employer/college network routers, and government authorities! Use Tor or VPNs for network-level obfuscation.
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================
+     SECTION 25, 26, 27 & 28: DOM & RENDERING
+     ========================================== -->
+<section id="sec-25" class="notes-section">
+  <div class="notes-section-header">
+    <span class="notes-section-number">25</span>
+    <h2 class="notes-section-title">The Document Object Model (DOM)</h2>
+  </div>
+
+  <p class="notes-paragraph">
+    The <strong>DOM</strong> is a platform- and language-neutral tree-structured object representation of an HTML document constructed in RAM by the browser's parser. Every HTML tag becomes an element node, attributes become attribute nodes, and enclosed text becomes text nodes.
+  </p>
+
+  <div class="diagram-card">
+    <div class="diagram-title">🌳 HTML to DOM Tree Parsing</div>
+    <div style="background: #06090E; border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 1.25rem; font-family: var(--font-mono); font-size: 0.85rem; color: #94A3B8;">
+      <pre style="margin: 0; color: #E2E8F0;">
+Raw HTML Bytes ──► Characters ──► Tokens (&lt;html&gt;, &lt;body&gt;) ──► Nodes ──► DOM Tree:
+
+                                Document
+                                   │
+                                &lt;html&gt;
+                            ┌──────┴──────┐
+                            ▼             ▼
+                         &lt;head&gt;         &lt;body&gt;
+                            │        ┌─────┴─────┐
+                         &lt;title&gt;     ▼           ▼
+                                   &lt;h1&gt;       &lt;button&gt;
+                                    │            │
+                                  "Hello"     "Click Me"</pre>
+    </div>
+  </div>
+</section>
+
+<section id="sec-26" class="notes-section">
+  <div class="notes-section-header">
+    <span class="notes-section-number">26</span>
+    <h2 class="notes-section-title">DOM Manipulation & Security: textContent vs innerHTML</h2>
+  </div>
+
+  <div class="code-block-wrapper">
+    <div class="code-header"><span>DOM QUERY & MUTATION EXAMPLES</span></div>
+    <pre class="notes-code"><code>// Targeted DOM Node Lookups
+const title = document.getElementById('main-title');
+const cards = document.querySelectorAll('.card-item'); // Returns static NodeList
+
+// Updating Content: Safe vs Danger
+element.textContent = 'Hello World'; // ✅ SAFE: Treats input strictly as raw text!
+element.innerHTML = '&lt;span&gt;Hello&lt;/span&gt;'; // ⚠️ DANGEROUS: Parses HTML markup!
+
+// Updating Styles (Triggers Reflow/Repaint)
+element.style.color = 'red';
+element.classList.add('active'); // Best practice: toggle CSS classes!</code></pre>
+  </div>
+
+  <div class="trap-card">
+    <div class="trap-card-header">
+      <span class="trap-title">⚠️ Placement Exam Trap: textContent vs innerHTML Security</span>
+      <span class="trap-badge">High Yield Security Question</span>
+    </div>
+    <div class="trap-text">
+      Why should you avoid <code>innerHTML</code> when displaying user comments or profiles?
+    </div>
+    <div class="trap-truth">
+      ✅ Placement Truth: <code>innerHTML</code> parses text as executable HTML tags. If an attacker inputs <code>&lt;img src=x onerror="stealCookies()"&gt;</code>, the browser will execute arbitrary JavaScript, creating a <strong>Stored XSS vulnerability</strong>! <code>textContent</code> automatically escapes all tags into inert string characters.
+    </div>
+  </div>
+</section>
+
+<section id="sec-27" class="notes-section">
+  <div class="notes-section-header">
+    <span class="notes-section-number">27</span>
+    <h2 class="notes-section-title">CSSOM (CSS Object Model) Construction</h2>
+  </div>
+
+  <p class="notes-paragraph">
+    While constructing the DOM, the browser encounters CSS <code>&lt;link&gt;</code> stylesheets and <code>&lt;style&gt;</code> blocks. The CSS parser transforms these rules into a hierarchical tree called the <strong>CSSOM</strong> (CSS Object Model).
+  </p>
+
+  <p class="notes-paragraph">
+    <strong>CSS is render-blocking:</strong> The browser will NOT begin painting pixels on screen until the complete CSSOM has been constructed, because rendering an unstyled page (Flash of Unstyled Content - FOUC) would disorient users and cause costly layout reflows!
+  </p>
+</section>
+
+<section id="sec-28" class="notes-section">
+  <div class="notes-section-header">
+    <span class="notes-section-number">28</span>
+    <h2 class="notes-section-title">The Critical Rendering Pipeline (From Code to Pixels)</h2>
+  </div>
+
+  <p class="notes-paragraph">
+    Understanding the exact stages of the browser's <strong>Critical Rendering Path (CRP)</strong> is one of the most respected answers a candidate can give in technical placement interviews:
+  </p>
+
+  <div class="diagram-hero-journey">
+    <div class="journey-step">
+      <span class="journey-step-num">01</span>
+      <span class="journey-step-title">DOM Construction</span>
+      <span class="journey-step-desc">HTML parser converts HTML tags into the Document Object Model (DOM) tree.</span>
+    </div>
+    <div class="journey-step">
+      <span class="journey-step-num">02</span>
+      <span class="journey-step-title">CSSOM Construction</span>
+      <span class="journey-step-desc">CSS parser processes stylesheets and cascades inheritance into the CSS Object Model (CSSOM) tree.</span>
+    </div>
+    <div class="journey-step">
+      <span class="journey-step-num">03</span>
+      <span class="journey-step-title">Render Tree Creation</span>
+      <span class="journey-step-desc">Combines visible DOM nodes with their matching CSSOM styles. <strong>Excludes <code>display: none</code> and <code>&lt;head&gt;</code></strong> (includes <code>visibility: hidden</code>).</span>
+    </div>
+    <div class="journey-step">
+      <span class="journey-step-num">04</span>
+      <span class="journey-step-title">Layout (Reflow)</span>
+      <span class="journey-step-desc">Calculates the exact geometric coordinates, width, height, and device viewport positioning of every box.</span>
+    </div>
+    <div class="journey-step">
+      <span class="journey-step-num">05</span>
+      <span class="journey-step-title">Paint (Rasterization)</span>
+      <span class="journey-step-desc">Converts geometric boxes into actual screen pixels (rasterizing colors, text fonts, borders, box shadows).</span>
+    </div>
+    <div class="journey-step">
+      <span class="journey-step-num">06</span>
+      <span class="journey-step-title">Compositing</span>
+      <span class="journey-step-desc">GPU draws multiple independent layers in correct z-index order and composites them to physical monitor pixels.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================
+     SECTION 29, 30 & 31: JS ENGINE & DEVTOOLS
+     ========================================== -->
+<section id="sec-29" class="notes-section">
+  <div class="notes-section-header">
+    <span class="notes-section-number">29</span>
+    <h2 class="notes-section-title">JavaScript Engine vs Browser Web APIs</h2>
+  </div>
+
+  <p class="notes-paragraph">
+    A common interview question asks candidates to distinguish between the <strong>JavaScript Engine</strong> and the <strong>Browser Environment</strong>:
+  </p>
+
+  <div class="table-responsive-wrapper">
+    <table class="notes-table">
+      <thead>
+        <tr>
+          <th>Component</th>
+          <th>What It Is</th>
+          <th>What It Provides</th>
+          <th>Examples</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong style="color: var(--brand-primary);">JavaScript Engine</strong></td>
+          <td>Virtual machine executing ECMAScript specs</td>
+          <td>Single-threaded Call Stack, Memory Heap, Garbage Collector, JIT compiler</td>
+          <td>Google V8 (Chrome/Node.js), SpiderMonkey (Firefox), JavaScriptCore (Safari)</td>
+        </tr>
+        <tr>
+          <td><strong style="color: var(--brand-cyan);">Browser Web APIs</strong></td>
+          <td>C++ background features exposed by host browser</td>
+          <td>DOM manipulation, Network calls, Timers, Local Storage, Geolocation</td>
+          <td><code>document</code>, <code>fetch()</code>, <code>setTimeout()</code>, <code>localStorage</code></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="sec-30" class="notes-section">
+  <div class="notes-section-header">
+    <span class="notes-section-number">30</span>
+    <h2 class="notes-section-title">The Browser Event Loop (Placement Level)</h2>
+  </div>
+
+  <p class="notes-paragraph">
+    JavaScript is <strong>single-threaded</strong>: it possesses only ONE call stack and executes one statement at a time. Yet, the browser can perform non-blocking AJAX network requests, user click tracking, and audio playback concurrently. How? Through the <strong>Event Loop</strong>!
+  </p>
+
+  <div class="diagram-card">
+    <div class="diagram-title">🔄 The Event Loop Execution Priority Queue</div>
+    <div style="background: #06090E; border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 1.25rem; font-family: var(--font-mono); font-size: 0.85rem; color: #94A3B8;">
+      <pre style="margin: 0; color: #E2E8F0;">
+    ┌──────────────────────┐
+    │      CALL STACK      │ ◄─── Single execution thread (Run-to-completion)
+    └──────────┬───────────┘
+               │ (Async API called: setTimeout, fetch)
+               ▼
+    ┌──────────────────────┐
+    │   BROWSER WEB APIs   │ ◄─── Multi-threaded background threads (C++)
+    └──────────┬───────────┘
+               │ (Timer expires, network data returns)
+               ▼
+ ┌────────────────────────────────────────────────────────┐
+ │ MICROTASK QUEUE: [ Promise.then(), queueMicrotask() ]  │ ◄── Priority 1: DRAINED COMPLETELY!
+ ├────────────────────────────────────────────────────────┤
+ │ MACROTASK QUEUE: [ setTimeout, setInterval, UI events ]│ ◄── Priority 2: ONE TASK PER TICK!
+ └─────────────────────────┬──────────────────────────────┘
+                           │
+                           ▼
+                  [ EVENT LOOP MONITOR ]
+ (Pushes next queue callback to Call Stack ONLY when Call Stack is COMPLETELY EMPTY!)</pre>
+    </div>
+  </div>
+
+  <div class="code-block-wrapper">
+    <div class="code-header"><span>CLASSIC PLACEMENT TRACING QUESTION</span><button class="code-copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-block-wrapper').querySelector('code').innerText)">Copy</button></div>
+    <pre class="notes-code"><code>console.log('1');
+
+setTimeout(() => {
+  console.log('2');
+}, 0);
+
+Promise.resolve().then(() => {
+  console.log('3');
+});
+
+console.log('4');</code></pre>
+  </div>
+
+  <div class="analogy-card" style="border-left-color: var(--brand-primary);">
+    <div class="analogy-title" style="color: var(--brand-primary);">🎯 Trace Execution Output: 1, 4, 3, 2</div>
+    <p style="font-size: 0.92rem; color: var(--text-primary); line-height: 1.6; margin: 0;">
+      1. Synchronous statements execute immediately on the Call Stack: <code>'1'</code> then <code>'4'</code>.<br>
+      2. <code>setTimeout</code> callback is pushed to the <strong>Macrotask Queue</strong>.<br>
+      3. <code>Promise.then</code> callback is pushed to the <strong>Microtask Queue</strong>.<br>
+      4. Call stack empties. The Event Loop prioritizes and drains the <strong>Microtask Queue first</strong>, logging <code>'3'</code>.<br>
+      5. Finally, the Event Loop takes the first item from the Macrotask Queue, logging <code>'2'</code>.
+    </p>
+  </div>
+</section>
+
+<section id="sec-31" class="notes-section">
+  <div class="notes-section-header">
+    <span class="notes-section-number">31</span>
+    <h2 class="notes-section-title">Chrome Developer Tools (DevTools) Mastery</h2>
+  </div>
+
+  <p class="notes-paragraph">
+    In assessment screening and interview rounds, interviewers often ask: <em>"How would you troubleshoot this using DevTools?"</em>
+  </p>
+
+  <div class="scenario-detail-grid">
+    <div class="scenario-box">
+      <div class="scenario-box-label">Elements Tab</div>
+      <div class="scenario-box-content">Inspect and live-edit the live DOM tree, check computed CSS box-model styles (margin, padding, border), and toggle pseudo-classes (<code>:hover</code>).</div>
+    </div>
+    <div class="scenario-box">
+      <div class="scenario-box-label">Console Tab</div>
+      <div class="scenario-box-content">View JavaScript runtime error exceptions, interactive REPL console, log telemetry (<code>console.table()</code>, <code>console.warn()</code>).</div>
+    </div>
+    <div class="scenario-box">
+      <div class="scenario-box-label">Network Tab (High Yield!)</div>
+      <div class="scenario-box-content">Inspect every HTTP/HTTPS asset request: Status codes (200, 304, 404), Request/Response Headers, Payloads, Waterfall timing latency, and disable cache.</div>
+    </div>
+    <div class="scenario-box">
+      <div class="scenario-box-label">Sources Tab</div>
+      <div class="scenario-box-content">Client-side JavaScript debugging with conditional breakpoints, watch expressions, call stack inspection, and step-through debugging.</div>
+    </div>
+    <div class="scenario-box">
+      <div class="scenario-box-label">Application / Storage Tab</div>
+      <div class="scenario-box-content">Inspect and clear client-side storage: LocalStorage, SessionStorage, Cookies (inspect HttpOnly/Secure flags), IndexedDB, and Cache Storage.</div>
+    </div>
+    <div class="scenario-box">
+      <div class="scenario-box-label">Performance Tab</div>
+      <div class="scenario-box-content">Profile FPS, CPU runtime bottlenecks, JavaScript execution flame charts, and layout reflow / paint performance.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================
+     SECTION 32, 33, 34 & 35: SECURITY & APIS
+     ========================================== -->
+<section id="sec-32" class="notes-section">
+  <div class="notes-section-header">
+    <span class="notes-section-number">32</span>
+    <h2 class="notes-section-title">The Same-Origin Policy (SOP)</h2>
+  </div>
+
+  <p class="notes-paragraph">
+    The <strong>Same-Origin Policy</strong> is the fundamental cornerstone of modern web browser security. It dictates that a script executing on one webpage origin cannot read or interact with sensitive resources (DOM, cookies, AJAX responses) originating from a different origin.
+  </p>
+
+  <p class="notes-paragraph">
+    An <strong>Origin</strong> is strictly defined by the three-tuple: <code>Protocol + Host + Port</code>. If ANY of these three values differ, it is classified as Cross-Origin!
+  </p>
+
+  <div class="table-responsive-wrapper">
+    <table class="notes-table">
+      <thead>
+        <tr>
+          <th>Compared URL to <code>https://example.com:443/app</code></th>
+          <th>Same Origin?</th>
+          <th>Reason</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>https://example.com/products</code></td>
+          <td><span class="table-tag table-tag-green">✅ YES</span></td>
+          <td>Protocol (https), Host (example.com), and Port (443 implicit) match exactly. Path can differ freely.</td>
+        </tr>
+        <tr>
+          <td><code>http://example.com/app</code></td>
+          <td><span class="table-tag table-tag-red">❌ NO</span></td>
+          <td>Different Protocol (<code>http</code> vs <code>https</code>).</td>
+        </tr>
+        <tr>
+          <td><code>https://api.example.com/app</code></td>
+          <td><span class="table-tag table-tag-red">❌ NO</span></td>
+          <td>Different Host (subdomain <code>api.example.com</code> vs <code>example.com</code>).</td>
+        </tr>
+        <tr>
+          <td><code>https://example.com:8080/app</code></td>
+          <td><span class="table-tag table-tag-red">❌ NO</span></td>
+          <td>Different Port (<code>:8080</code> vs <code>:443</code>).</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="sec-33" class="notes-section">
+  <div class="notes-section-header">
+    <span class="notes-section-number">33</span>
+    <h2 class="notes-section-title">CORS (Cross-Origin Resource Sharing)</h2>
+  </div>
+
+  <p class="notes-paragraph">
+    Modern architectures decouple frontend React apps (<code>http://localhost:3000</code>) from backend REST APIs (<code>https://api.company.com</code>). Because they have different origins, the browser blocks the frontend from reading the API response due to the Same-Origin Policy!
+  </p>
+
+  <p class="notes-paragraph">
+    <strong>CORS</strong> is an HTTP header-based mechanism that allows a server to explicitly declare to the client browser: <em>"I authorize scripts from origin X to read my data!"</em>
+  </p>
+
+  <div class="code-block-wrapper">
+    <div class="code-header"><span>SERVER-SIDE CORS RESPONSE HEADERS</span></div>
+    <pre class="notes-code"><code>// Authorize specific origin (never use * with credentials!)
+Access-Control-Allow-Origin: http://localhost:3000
+Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+Access-Control-Allow-Headers: Content-Type, Authorization
+Access-Control-Allow-Credentials: true</code></pre>
+  </div>
+
+  <div class="trap-card">
+    <div class="trap-card-header">
+      <span class="trap-title">⚠️ Placement Exam Trap: Who Enforces CORS?</span>
+      <span class="trap-badge">Top Interview Question</span>
+    </div>
+    <div class="trap-text">
+      Students often answer: "The backend server blocks the request when CORS fails."
+    </div>
+    <div class="trap-truth">
+      ✅ Placement Truth: FALSE! The <strong>client browser enforces CORS</strong>, not the backend server! If you test the exact same API in Postman or curl, it succeeds 100% because Postman is not a browser and does not enforce the Same-Origin Policy! The server actually processes the request and sends the response, but the browser inspects headers and suppresses the data from client JS!
+    </div>
+  </div>
+</section>
+
+<section id="sec-34" class="notes-section">
+  <div class="notes-section-header">
+    <span class="notes-section-number">34</span>
+    <h2 class="notes-section-title">Frontend vs Backend Architecture</h2>
+  </div>
+
+  <div class="table-responsive-wrapper">
+    <table class="notes-table">
+      <thead>
+        <tr>
+          <th>Dimension</th>
+          <th>Frontend (Client-Side)</th>
+          <th>Backend (Server-Side)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong style="color: var(--text-primary);">Execution Environment</strong></td>
+          <td>User's web browser on phone, laptop, tablet</td>
+          <td>Cloud servers (AWS EC2, Lambda), Docker containers</td>
+        </tr>
+        <tr>
+          <td><strong style="color: var(--text-primary);">Core Technologies</strong></td>
+          <td>HTML5, CSS3, JavaScript/TypeScript, React, Vue</td>
+          <td>Node.js, Java Spring Boot, Python Django/FastAPI, Go</td>
+        </tr>
+        <tr>
+          <td><strong style="color: var(--text-primary);">Primary Responsibility</strong></td>
+          <td>UI presentation, user events, animation, client validation</td>
+          <td>Business logic, authentication, database persistence, security</td>
+        </tr>
+        <tr>
+          <td><strong style="color: var(--text-primary);">Security Principle</strong></td>
+          <td><strong>Never trust the frontend!</strong> Code can be inspected & modified</td>
+          <td>Authoritative validation, protected secret keys & DB credentials</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="sec-35" class="notes-section">
+  <div class="notes-section-header">
+    <span class="notes-section-number">35</span>
+    <h2 class="notes-section-title">REST API Communication Basics</h2>
+  </div>
+
+  <p class="notes-paragraph">
+    An <strong>Application Programming Interface (API)</strong> provides a contract for client-server communication using standard HTTP verbs, URL resource paths (endpoints), and JSON payloads:
+  </p>
+
+  <div class="code-block-wrapper">
+    <div class="code-header"><span>JAVASCRIPT FETCH API CONSUMPTION</span></div>
+    <pre class="notes-code"><code>// Clean asynchronous API consumption
+async function fetchUserProfile(userId) {
+  try {
+    const response = await fetch(`https://api.placementprep.in/users/${userId}`, {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`); // Handles 404, 500
+    }
+
+    const userData = await response.json();
+    console.log('User Profile:', userData);
+  } catch (error) {
+    console.error('Network or CORS error:', error);
+  }
+}</code></pre>
+  </div>
+</section>
+
+<!-- ==========================================
+     SECTION 36: THE HERO COMPLETE JOURNEY
+     ========================================== -->
+<section id="sec-36" class="notes-section">
+  <div class="notes-section-header">
+    <span class="notes-section-number">36</span>
+    <h2 class="notes-section-title">Web Page Loading — The Complete Journey (Hero Diagram)</h2>
+  </div>
+
+  <p class="notes-paragraph">
+    Here is the definitive answer to the ultimate placement interview question: <strong>"Explain everything that happens from the moment a user types a URL and presses Enter until the webpage is completely displayed on screen."</strong>
+  </p>
+
+  <div class="diagram-hero-journey">
+    <div class="journey-step">
+      <span class="journey-step-num">01</span>
+      <span class="journey-step-title">URL Parsing & Protocol Check</span>
+      <span class="journey-step-desc">Browser parses the string into protocol, domain, port, and path. If protocol is missing, defaults to HTTPS.</span>
+    </div>
+    <div class="journey-step">
+      <span class="journey-step-num">02</span>
+      <span class="journey-step-title">HSTS & Local Cache Inspection</span>
+      <span class="journey-step-desc">Checks HSTS preload list to force HTTPS. Checks browser HTTP cache for valid, unexpired responses (<code>Cache-Control</code>).</span>
+    </div>
+    <div class="journey-step">
+      <span class="journey-step-num">03</span>
+      <span class="journey-step-title">DNS Resolution Hierarchy</span>
+      <span class="journey-step-desc">Checks Browser Cache -> OS Cache -> Local DNS Resolver -> Root -> TLD -> Authoritative server to obtain target IP.</span>
+    </div>
+    <div class="journey-step">
+      <span class="journey-step-num">04</span>
+      <span class="journey-step-title">TCP Three-Way Handshake</span>
+      <span class="journey-step-desc">Browser establishes reliable TCP connection on port 443 via <strong>SYN -> SYN-ACK -> ACK</strong> packet sequence.</span>
+    </div>
+    <div class="journey-step">
+      <span class="journey-step-num">05</span>
+      <span class="journey-step-title">TLS Cryptographic Handshake</span>
+      <span class="journey-step-desc">Client & server validate digital certificates, exchange public keys via Diffie-Hellman, and derive shared symmetric session keys.</span>
+    </div>
+    <div class="journey-step">
+      <span class="journey-step-num">06</span>
+      <span class="journey-step-title">HTTP Request Transmission</span>
+      <span class="journey-step-desc">Browser encrypts and transmits <code>GET / HTTP/1.1</code> with request headers (<code>Host</code>, <code>User-Agent</code>, <code>Cookie</code>).</span>
+    </div>
+    <div class="journey-step">
+      <span class="journey-step-num">07</span>
+      <span class="journey-step-title">Server Processing & Response</span>
+      <span class="journey-step-desc">Web server (Nginx/Node) processes request, queries database, generates HTML stream, and returns <code>HTTP/1.1 200 OK</code>.</span>
+    </div>
+    <div class="journey-step">
+      <span class="journey-step-num">08</span>
+      <span class="journey-step-title">DOM Construction & Tokenization</span>
+      <span class="journey-step-desc">Renderer process parses raw HTML byte stream into tokens and constructs the <strong>DOM Tree</strong>.</span>
+    </div>
+    <div class="journey-step">
+      <span class="journey-step-num">09</span>
+      <span class="journey-step-title">CSSOM Construction</span>
+      <span class="journey-step-desc">Browser fetches external stylesheets and parses CSS rules into the render-blocking <strong>CSSOM Tree</strong>.</span>
+    </div>
+    <div class="journey-step">
+      <span class="journey-step-num">10</span>
+      <span class="journey-step-title">Render Tree Assembly</span>
+      <span class="journey-step-desc">DOM and CSSOM are merged into the <strong>Render Tree</strong> containing only visible nodes (excludes <code>display: none</code>).</span>
+    </div>
+    <div class="journey-step">
+      <span class="journey-step-num">11</span>
+      <span class="journey-step-title">Layout (Reflow)</span>
+      <span class="journey-step-desc">Browser calculates exact viewport pixel coordinates, geometry, width, and height for each render node.</span>
+    </div>
+    <div class="journey-step">
+      <span class="journey-step-num">12</span>
+      <span class="journey-step-title">Painting & GPU Compositing</span>
+      <span class="journey-step-desc">Rasterizer paints visual pixels into bitmap memory. GPU composites layers and presents the interactive page on screen!</span>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================
+     SECTION 37: 10 TROUBLESHOOTING SCENARIOS
+     ========================================== -->
+<section id="sec-37" class="notes-section">
+  <div class="notes-section-header">
+    <span class="notes-section-number">37</span>
+    <h2 class="notes-section-title">10 Real-World Interview Troubleshooting Scenarios</h2>
+  </div>
+
+  <p class="notes-paragraph">
+    Service-based IT placement interviews (Capgemini, Accenture, TCS, Wipro) love scenario-based questions. Study these 10 real-world diagnoses:
+  </p>
+
+  <div class="interview-grid">
+
+    <!-- Scenario 1 -->
+    <div class="scenario-card">
+      <div class="scenario-header" onclick="this.parentElement.querySelector('.scenario-details').classList.toggle('open')">
+        <div class="scenario-icon">🌐</div>
+        <div class="scenario-title-wrap">
+          <span class="scenario-badge">Scenario 1</span>
+          <h3 class="scenario-title">Website opens via IP address, but fails via domain name</h3>
+          <p class="scenario-symptom">Direct IP ping succeeds; typing URL shows ERR_NAME_NOT_RESOLVED.</p>
+        </div>
+        <button type="button" class="scenario-toggle-btn">View Solution ▼</button>
+      </div>
+      <div class="scenario-details">
+        <div class="scenario-detail-grid">
+          <div class="scenario-box">
+            <div class="scenario-box-label">Diagnosis</div>
+            <div class="scenario-box-content">DNS resolution failure. Server and network routing are healthy.</div>
+          </div>
+          <div class="scenario-box">
+            <div class="scenario-box-label">Resolution Direction</div>
+            <div class="scenario-box-content">Flush local DNS cache (<code>ipconfig /flushdns</code>); test with public resolver (<code>8.8.8.8</code>); check authoritative 'A' record status in domain registrar.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scenario 2 -->
+    <div class="scenario-card">
+      <div class="scenario-header" onclick="this.parentElement.querySelector('.scenario-details').classList.toggle('open')">
+        <div class="scenario-icon">🔍</div>
+        <div class="scenario-title-wrap">
+          <span class="scenario-badge">Scenario 2</span>
+          <h3 class="scenario-title">Website returns HTTP 404 Not Found</h3>
+          <p class="scenario-symptom">User navigates to /dashboard/reports and sees a 404 error page.</p>
+        </div>
+        <button type="button" class="scenario-toggle-btn">View Solution ▼</button>
+      </div>
+      <div class="scenario-details">
+        <div class="scenario-detail-grid">
+          <div class="scenario-box">
+            <div class="scenario-box-label">Diagnosis</div>
+            <div class="scenario-box-content">The web server is online and reached, but the requested endpoint path does not exist in routing tables.</div>
+          </div>
+          <div class="scenario-box">
+            <div class="scenario-box-label">Resolution Direction</div>
+            <div class="scenario-box-content">Check URL for typos; verify SPA fallback routing in Nginx (ensure fallback to <code>index.html</code> for client-side routing).</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scenario 3 -->
+    <div class="scenario-card">
+      <div class="scenario-header" onclick="this.parentElement.querySelector('.scenario-details').classList.toggle('open')">
+        <div class="scenario-icon">🚫</div>
+        <div class="scenario-title-wrap">
+          <span class="scenario-badge">Scenario 3</span>
+          <h3 class="scenario-title">Website returns HTTP 403 Forbidden</h3>
+          <p class="scenario-symptom">Logged-in employee attempts to view /admin/payroll and receives 403.</p>
+        </div>
+        <button type="button" class="scenario-toggle-btn">View Solution ▼</button>
+      </div>
+      <div class="scenario-details">
+        <div class="scenario-detail-grid">
+          <div class="scenario-box">
+            <div class="scenario-box-label">Diagnosis</div>
+            <div class="scenario-box-content">Authorization issue. The user is logged in (authenticated), but lacks required administrative role/permissions.</div>
+          </div>
+          <div class="scenario-box">
+            <div class="scenario-box-label">Resolution Direction</div>
+            <div class="scenario-box-content">Verify Role-Based Access Control (RBAC) claims in the JWT token or assign Admin role in backend database.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scenario 4 -->
+    <div class="scenario-card">
+      <div class="scenario-header" onclick="this.parentElement.querySelector('.scenario-details').classList.toggle('open')">
+        <div class="scenario-icon">🔑</div>
+        <div class="scenario-title-wrap">
+          <span class="scenario-badge">Scenario 4</span>
+          <h3 class="scenario-title">API calls fail with HTTP 401 Unauthorized</h3>
+          <p class="scenario-symptom">Single-page app suddenly starts failing all API fetch requests.</p>
+        </div>
+        <button type="button" class="scenario-toggle-btn">View Solution ▼</button>
+      </div>
+      <div class="scenario-details">
+        <div class="scenario-detail-grid">
+          <div class="scenario-box">
+            <div class="scenario-box-label">Diagnosis</div>
+            <div class="scenario-box-content">Authentication failure. JWT access token is expired, missing, or signature validation failed.</div>
+          </div>
+          <div class="scenario-box">
+            <div class="scenario-box-label">Resolution Direction</div>
+            <div class="scenario-box-content">Implement token refresh interceptor using refresh tokens or redirect user to <code>/login</code> to authenticate again.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scenario 5 -->
+    <div class="scenario-card">
+      <div class="scenario-header" onclick="this.parentElement.querySelector('.scenario-details').classList.toggle('open')">
+        <div class="scenario-icon">🎨</div>
+        <div class="scenario-title-wrap">
+          <span class="scenario-badge">Scenario 5</span>
+          <h3 class="scenario-title">Website deployed new design, but users keep seeing old CSS</h3>
+          <p class="scenario-symptom">Changes made to styles.css do not show up unless users perform hard refresh (Ctrl+F5).</p>
+        </div>
+        <button type="button" class="scenario-toggle-btn">View Solution ▼</button>
+      </div>
+      <div class="scenario-details">
+        <div class="scenario-detail-grid">
+          <div class="scenario-box">
+            <div class="scenario-box-label">Diagnosis</div>
+            <div class="scenario-box-content">Aggressive HTTP cache headers (<code>Cache-Control: max-age=...</code>) are forcing browsers to read old stylesheet from disk cache.</div>
+          </div>
+          <div class="scenario-box">
+            <div class="scenario-box-label">Resolution Direction</div>
+            <div class="scenario-box-content">Implement <strong>Cache Busting</strong> via content-hashing in build tools (e.g. <code>styles.8a7d.css</code>). When CSS changes, URL changes!</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scenario 6 -->
+    <div class="scenario-card">
+      <div class="scenario-header" onclick="this.parentElement.querySelector('.scenario-details').classList.toggle('open')">
+        <div class="scenario-icon">⚠️</div>
+        <div class="scenario-title-wrap">
+          <span class="scenario-badge">Scenario 6</span>
+          <h3 class="scenario-title">Browser displays "Your connection is not private" (SSL Warning)</h3>
+          <p class="scenario-symptom">Red security warning banner blocks access with NET::ERR_CERT_COMMON_NAME_INVALID.</p>
+        </div>
+        <button type="button" class="scenario-toggle-btn">View Solution ▼</button>
+      </div>
+      <div class="scenario-details">
+        <div class="scenario-detail-grid">
+          <div class="scenario-box">
+            <div class="scenario-box-label">Diagnosis</div>
+            <div class="scenario-box-content">TLS Certificate mismatch or expiration. Certificate domain does not cover the URL domain.</div>
+          </div>
+          <div class="scenario-box">
+            <div class="scenario-box-label">Resolution Direction</div>
+            <div class="scenario-box-content">Renew expired certificate; ensure Subject Alternative Name (SAN) includes both <code>example.com</code> and <code>*.example.com</code>.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scenario 7 -->
+    <div class="scenario-card">
+      <div class="scenario-header" onclick="this.parentElement.querySelector('.scenario-details').classList.toggle('open')">
+        <div class="scenario-icon">🛡️</div>
+        <div class="scenario-title-wrap">
+          <span class="scenario-badge">Scenario 7</span>
+          <h3 class="scenario-title">API request blocked by CORS policy in browser console</h3>
+          <p class="scenario-symptom">Console shows: "Access to fetch at ... has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header".</p>
+        </div>
+        <button type="button" class="scenario-toggle-btn">View Solution ▼</button>
+      </div>
+      <div class="scenario-details">
+        <div class="scenario-detail-grid">
+          <div class="scenario-box">
+            <div class="scenario-box-label">Diagnosis</div>
+            <div class="scenario-box-content">Frontend and backend are on different origins; backend forgot to attach CORS permission headers.</div>
+          </div>
+          <div class="scenario-box">
+            <div class="scenario-box-label">Resolution Direction</div>
+            <div class="scenario-box-content">Configure backend server to send <code>Access-Control-Allow-Origin: http://localhost:3000</code> and handle preflight <code>OPTIONS</code> requests.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scenario 8 -->
+    <div class="scenario-card">
+      <div class="scenario-header" onclick="this.parentElement.querySelector('.scenario-details').classList.toggle('open')">
+        <div class="scenario-icon">⚙️</div>
+        <div class="scenario-title-wrap">
+          <span class="scenario-badge">Scenario 8</span>
+          <h3 class="scenario-title">Webpage renders visually, but interactive buttons do nothing</h3>
+          <p class="scenario-symptom">Clicking menu buttons fails; DevTools Console shows "TypeError: Cannot read properties of null".</p>
+        </div>
+        <button type="button" class="scenario-toggle-btn">View Solution ▼</button>
+      </div>
+      <div class="scenario-details">
+        <div class="scenario-detail-grid">
+          <div class="scenario-box">
+            <div class="scenario-box-label">Diagnosis</div>
+            <div class="scenario-box-content">Script executed before DOM parsed! <code>document.getElementById()</code> returned <code>null</code> because elements did not exist yet.</div>
+          </div>
+          <div class="scenario-box">
+            <div class="scenario-box-label">Resolution Direction</div>
+            <div class="scenario-box-content">Add the <code>defer</code> attribute to script tags (<code>&lt;script src="app.js" defer&gt;</code>) or move script tags to the bottom of <code>&lt;body&gt;</code>.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scenario 9 -->
+    <div class="scenario-card">
+      <div class="scenario-header" onclick="this.parentElement.querySelector('.scenario-details').classList.toggle('open')">
+        <div class="scenario-icon">⏱️</div>
+        <div class="scenario-title-wrap">
+          <span class="scenario-badge">Scenario 9</span>
+          <h3 class="scenario-title">An API request takes 12 seconds to load (High TTFB)</h3>
+          <p class="scenario-symptom">Network tab waterfall shows Time To First Byte (TTFB) is 11.8 seconds.</p>
+        </div>
+        <button type="button" class="scenario-toggle-btn">View Solution ▼</button>
+      </div>
+      <div class="scenario-details">
+        <div class="scenario-detail-grid">
+          <div class="scenario-box">
+            <div class="scenario-box-label">Diagnosis</div>
+            <div class="scenario-box-content">Network transmission is fast, but server backend execution is slow (unindexed database queries, synchronous CPU blocking).</div>
+          </div>
+          <div class="scenario-box">
+            <div class="scenario-box-label">Resolution Direction</div>
+            <div class="scenario-box-content">Add database B-tree indexes, implement Redis in-memory caching, optimize SQL joins, or offload work to background task queues.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scenario 10 -->
+    <div class="scenario-card">
+      <div class="scenario-header" onclick="this.parentElement.querySelector('.scenario-details').classList.toggle('open')">
+        <div class="scenario-icon">🕵️</div>
+        <div class="scenario-title-wrap">
+          <span class="scenario-badge">Scenario 10</span>
+          <h3 class="scenario-title">User accesses sensitive site in Incognito and is surprised college IT flagged it</h3>
+          <p class="scenario-symptom">Student assumes private browsing prevents network monitoring.</p>
+        </div>
+        <button type="button" class="scenario-toggle-btn">View Solution ▼</button>
+      </div>
+      <div class="scenario-details">
+        <div class="scenario-detail-grid">
+          <div class="scenario-box">
+            <div class="scenario-box-label">Diagnosis</div>
+            <div class="scenario-box-content">Fundamental misunderstanding of Incognito mode. It cleans local storage on the laptop, but does not encrypt or hide network traffic.</div>
+          </div>
+          <div class="scenario-box">
+            <div class="scenario-box-label">Resolution Direction</div>
+            <div class="scenario-box-content">Educate user that network firewalls and DNS resolvers log all outbound network domain queries regardless of incognito tabs.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ==========================================
+     SECTION 38: 14 HIGH-YIELD COMPARISON TABLES
+     ========================================== -->
+<section id="sec-38" class="notes-section">
+  <div class="notes-section-header">
+    <span class="notes-section-number">38</span>
+    <h2 class="notes-section-title">14 High-Yield Comparison Cards</h2>
+  </div>
+
+  <p class="notes-paragraph">
+    Quick reference comparison cards curated specifically for last-minute technical placement assessment revision:
+  </p>
+
+  <!-- 1. HTTP vs HTTPS -->
+  <div class="table-responsive-wrapper">
+    <h4 style="padding: 1rem 1.25rem 0.5rem; color: var(--brand-cyan);">1. HTTP vs HTTPS</h4>
+    <table class="notes-table">
+      <thead><tr><th>Dimension</th><th>HTTP</th><th>HTTPS</th></tr></thead>
+      <tbody>
+        <tr><td>Port</td><td>Port 80</td><td>Port 443</td></tr>
+        <tr><td>Security</td><td>Plaintext (Unencrypted)</td><td>Encrypted over TLS/SSL</td></tr>
+        <tr><td>Certificates</td><td>None required</td><td>Requires SSL/TLS Certificate signed by CA</td></tr>
+        <tr><td>Performance</td><td>Slightly faster handshake</td><td>Handshake requires 1 extra RTT (negligible in TLS 1.3)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 2. HTTP vs HTTPS vs FTP -->
+  <div class="table-responsive-wrapper">
+    <h4 style="padding: 1rem 1.25rem 0.5rem; color: var(--brand-cyan);">2. HTTP vs HTTPS vs FTP</h4>
+    <table class="notes-table">
+      <thead><tr><th>Protocol</th><th>Default Port</th><th>Transport</th><th>Primary Purpose</th></tr></thead>
+      <tbody>
+        <tr><td>HTTP</td><td>80</td><td>TCP (Stateless)</td><td>Web hypermedia transfer (HTML, CSS, JSON)</td></tr>
+        <tr><td>HTTPS</td><td>443</td><td>TCP + TLS (Encrypted)</td><td>Secure web hypermedia transfer</td></tr>
+        <tr><td>FTP</td><td>20 (Data), 21 (Control)</td><td>TCP (Dual connection)</td><td>Bulk file upload and directory management</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 3. Cookie vs LocalStorage vs SessionStorage -->
+  <div class="table-responsive-wrapper">
+    <h4 style="padding: 1rem 1.25rem 0.5rem; color: var(--brand-cyan);">3. Cookie vs LocalStorage vs SessionStorage</h4>
+    <table class="notes-table">
+      <thead><tr><th>Storage</th><th>Capacity</th><th>Lifetime</th><th>Sent with HTTP Requests?</th></tr></thead>
+      <tbody>
+        <tr><td>Cookie</td><td>~4 KB</td><td>Expires / Max-Age attribute</td><td>✅ Yes (Every matching HTTP request)</td></tr>
+        <tr><td>LocalStorage</td><td>~5 MB – 10 MB</td><td>Persistent until cleared</td><td>❌ No (Client JS only)</td></tr>
+        <tr><td>SessionStorage</td><td>~5 MB</td><td>Until current tab is closed</td><td>❌ No (Client JS only)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 4. Cache vs Cookie -->
+  <div class="table-responsive-wrapper">
+    <h4 style="padding: 1rem 1.25rem 0.5rem; color: var(--brand-cyan);">4. Cache vs Cookie</h4>
+    <table class="notes-table">
+      <thead><tr><th>Dimension</th><th>Browser Cache</th><th>Cookies</th></tr></thead>
+      <tbody>
+        <tr><td>Goal</td><td>Accelerate asset load speed (performance)</td><td>Maintain client state and session identity</td></tr>
+        <tr><td>Contents</td><td>Heavy files (CSS, JS, images, fonts)</td><td>Small key-value string tokens</td></tr>
+        <tr><td>Network role</td><td>Prevents network requests</td><td>Appended as request headers</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 5. Browser vs Search Engine -->
+  <div class="table-responsive-wrapper">
+    <h4 style="padding: 1rem 1.25rem 0.5rem; color: var(--brand-cyan);">5. Browser vs Search Engine</h4>
+    <table class="notes-table">
+      <thead><tr><th>Dimension</th><th>Browser</th><th>Search Engine</th></tr></thead>
+      <tbody>
+        <tr><td>Nature</td><td>Locally installed client software application</td><td>Web service accessible via internet</td></tr>
+        <tr><td>Function</td><td>Renders HTML/CSS/JS code into visual web pages</td><td>Crawls, indexes, and searches web pages</td></tr>
+        <tr><td>Examples</td><td>Chrome, Edge, Firefox, Safari</td><td>Google Search, Bing, DuckDuckGo</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 6. URL vs URI -->
+  <div class="table-responsive-wrapper">
+    <h4 style="padding: 1rem 1.25rem 0.5rem; color: var(--brand-cyan);">6. URL vs URI</h4>
+    <table class="notes-table">
+      <thead><tr><th>Concept</th><th>Hierarchy</th><th>Key Trait</th></tr></thead>
+      <tbody>
+        <tr><td>URI</td><td>Superset</td><td>Identifies a resource by name, location, or both</td></tr>
+        <tr><td>URL</td><td>Subset of URI</td><td>Specifies the exact protocol & network location to fetch the resource</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 7. DNS vs DHCP -->
+  <div class="table-responsive-wrapper">
+    <h4 style="padding: 1rem 1.25rem 0.5rem; color: var(--brand-cyan);">7. DNS vs DHCP</h4>
+    <table class="notes-table">
+      <thead><tr><th>Protocol</th><th>Port</th><th>Primary Purpose</th></tr></thead>
+      <tbody>
+        <tr><td>DNS</td><td>Port 53 (UDP/TCP)</td><td>Translates domain names to IP addresses (e.g. <code>google.com -> 142.250.x.x</code>)</td></tr>
+        <tr><td>DHCP</td><td>Port 67/68 (UDP)</td><td>Dynamically assigns local private IP addresses to devices joining a network</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 8. Authentication vs Authorization -->
+  <div class="table-responsive-wrapper">
+    <h4 style="padding: 1rem 1.25rem 0.5rem; color: var(--brand-cyan);">8. Authentication vs Authorization</h4>
+    <table class="notes-table">
+      <thead><tr><th>Concept</th><th>Question Answered</th><th>Status Code on Failure</th></tr></thead>
+      <tbody>
+        <tr><td>Authentication (AuthN)</td><td>"Who are you?" (Verifies identity via passwords, MFA, JWT)</td><td><code>401 Unauthorized</code></td></tr>
+        <tr><td>Authorization (AuthZ)</td><td>"What permissions do you have?" (Verifies roles like Admin vs User)</td><td><code>403 Forbidden</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 9. 401 vs 403 -->
+  <div class="table-responsive-wrapper">
+    <h4 style="padding: 1rem 1.25rem 0.5rem; color: var(--brand-cyan);">9. HTTP 401 vs HTTP 403</h4>
+    <table class="notes-table">
+      <thead><tr><th>Code</th><th>Name</th><th>Client Action to Fix</th></tr></thead>
+      <tbody>
+        <tr><td>401</td><td>Unauthorized</td><td>Provide valid login credentials or refresh expired token</td></tr>
+        <tr><td>403</td><td>Forbidden</td><td>Logging in won't help; user lacks required administrative permission</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 10. 404 vs 500 -->
+  <div class="table-responsive-wrapper">
+    <h4 style="padding: 1rem 1.25rem 0.5rem; color: var(--brand-cyan);">10. HTTP 404 vs HTTP 500</h4>
+    <table class="notes-table">
+      <thead><tr><th>Code</th><th>Fault Source</th><th>Meaning</th></tr></thead>
+      <tbody>
+        <tr><td>404 Not Found</td><td>Client Error</td><td>The requested URL resource does not exist on the server</td></tr>
+        <tr><td>500 Internal Error</td><td>Server Error</td><td>The server encountered an unhandled exception/crash in backend code</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 11. DOM vs CSSOM -->
+  <div class="table-responsive-wrapper">
+    <h4 style="padding: 1rem 1.25rem 0.5rem; color: var(--brand-cyan);">11. DOM vs CSSOM</h4>
+    <table class="notes-table">
+      <thead><tr><th>Tree</th><th>Input</th><th>Represents</th></tr></thead>
+      <tbody>
+        <tr><td>DOM</td><td>HTML document markup</td><td>Node hierarchy of elements, tags, attributes, and text</td></tr>
+        <tr><td>CSSOM</td><td>CSS rules & stylesheets</td><td>Computed styles, selector cascade, and visual rules</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 12. Frontend vs Backend -->
+  <div class="table-responsive-wrapper">
+    <h4 style="padding: 1rem 1.25rem 0.5rem; color: var(--brand-cyan);">12. Frontend vs Backend</h4>
+    <table class="notes-table">
+      <thead><tr><th>Tier</th><th>Where it Runs</th><th>Primary Objective</th></tr></thead>
+      <tbody>
+        <tr><td>Frontend</td><td>Client browser</td><td>User interface, interactivity, client state, presentation</td></tr>
+        <tr><td>Backend</td><td>Server / Cloud</td><td>Business logic, security validation, database transactions, APIs</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 13. Client vs Server -->
+  <div class="table-responsive-wrapper">
+    <h4 style="padding: 1rem 1.25rem 0.5rem; color: var(--brand-cyan);">13. Client vs Server</h4>
+    <table class="notes-table">
+      <thead><tr><th>Role</th><th>Initiative</th><th>Scalability Model</th></tr></thead>
+      <tbody>
+        <tr><td>Client</td><td>Initiates request</td><td>Consumes services on behalf of one user</td></tr>
+        <tr><td>Server</td><td>Passively listens on port and responds</td><td>Serves thousands of concurrent clients via load balancing</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 14. LocalStorage vs SessionStorage -->
+  <div class="table-responsive-wrapper">
+    <h4 style="padding: 1rem 1.25rem 0.5rem; color: var(--brand-cyan);">14. LocalStorage vs SessionStorage</h4>
+    <table class="notes-table">
+      <thead><tr><th>Feature</th><th>LocalStorage</th><th>SessionStorage</th></tr></thead>
+      <tbody>
+        <tr><td>Persistence</td><td>Indefinite (survives restarts)</td><td>Strictly tied to tab lifetime</td></tr>
+        <tr><td>Scope</td><td>Shared across all windows/tabs of same origin</td><td>Isolated to single tab window</td></tr>
+        <tr><td>Ideal Use</td><td>Dark mode preferences, cached user profile</td><td>Multi-step wizard form states, one-time payment flows</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ==========================================
+     SECTION 39: TOP 20 PLACEMENT TRAPS
+     ========================================== -->
+<section id="sec-39" class="notes-section">
+  <div class="notes-section-header">
+    <span class="notes-section-number">39</span>
+    <h2 class="notes-section-title">Top 20 Common Placement Exam Traps</h2>
+  </div>
+
+  <p class="notes-paragraph">
+    Master these 20 high-frequency traps to avoid falling into standard recruiter trick questions:
+  </p>
+
+  <div class="scenario-detail-grid">
+    <div class="trap-card" style="margin: 0;">
+      <div class="trap-title">1. DNS ≠ Content Transfer</div>
+      <div class="trap-text">DNS only resolves domain names to IP addresses. It transfers zero HTML, CSS, or webpage content!</div>
+    </div>
+    <div class="trap-card" style="margin: 0;">
+      <div class="trap-title">2. HTTPS ≠ Moral Trustworthiness</div>
+      <div class="trap-text">HTTPS guarantees encrypted transport and domain identity. Scammers and malware sites routinely have valid SSL certificates!</div>
+    </div>
+    <div class="trap-card" style="margin: 0;">
+      <div class="trap-title">3. 401 vs 403 Are Not Synonyms</div>
+      <div class="trap-text">401 means unauthenticated (must log in). 403 means unauthorized (logged in, but forbidden from resource).</div>
+    </div>
+    <div class="trap-card" style="margin: 0;">
+      <div class="trap-title">4. 404 ≠ Server is Down</div>
+      <div class="trap-text">404 proves the web server is healthy and responding! It only means the specific file/route requested is absent.</div>
+    </div>
+    <div class="trap-card" style="margin: 0;">
+      <div class="trap-title">5. Fragment (#hash) Never Sent to Server</div>
+      <div class="trap-text">In <code>https://site.com/page#top</code>, the <code>#top</code> is parsed client-side by browser. The server never receives <code>#top</code>!</div>
+    </div>
+    <div class="trap-card" style="margin: 0;">
+      <div class="trap-title">6. Incognito ≠ Anonymity</div>
+      <div class="trap-text">Incognito wipes local SSD history upon window close. Your ISP, university Wi-Fi, and server logs still record all requests!</div>
+    </div>
+    <div class="trap-card" style="margin: 0;">
+      <div class="trap-title">7. DOM ≠ HTML Source Text</div>
+      <div class="trap-text">HTML source is static raw text. The DOM is the live dynamic memory tree modified by JavaScript and error-corrected by the parser.</div>
+    </div>
+    <div class="trap-card" style="margin: 0;">
+      <div class="trap-title">8. JS Engine ≠ Browser Web APIs</div>
+      <div class="trap-text">V8 only provides the ECMAScript spec. <code>fetch()</code>, <code>document</code>, and <code>setTimeout()</code> are C++ APIs provided by the browser!</div>
+    </div>
+    <div class="trap-card" style="margin: 0;">
+      <div class="trap-title">9. Browser Enforces CORS, Not Server</div>
+      <div class="trap-text">The server processes the request and responds. The client browser inspects response headers and blocks client JS from reading it.</div>
+    </div>
+    <div class="trap-card" style="margin: 0;">
+      <div class="trap-title">10. display: none vs visibility: hidden</div>
+      <div class="trap-text"><code>display: none</code> is completely excluded from the Render Tree. <code>visibility: hidden</code> IS in the Render Tree and consumes layout space!</div>
+    </div>
+    <div class="trap-card" style="margin: 0;">
+      <div class="trap-title">11. LocalStorage is Synchronous</div>
+      <div class="trap-text">LocalStorage operations block the main UI thread. Reading or writing megabytes of data will cause visible UI stutter!</div>
+    </div>
+    <div class="trap-card" style="margin: 0;">
+      <div class="trap-title">12. Cookies Are Limited to ~4KB</div>
+      <div class="trap-text">Do not attempt to store large datasets in cookies. Exceeding 4KB causes servers to reject headers with HTTP 431.</div>
+    </div>
+    <div class="trap-card" style="margin: 0;">
+      <div class="trap-title">13. Microtasks Beat Macrotasks</div>
+      <div class="trap-text">Promise <code>.then()</code> callbacks run immediately when call stack empties, BEFORE any <code>setTimeout()</code> callbacks!</div>
+    </div>
+    <div class="trap-card" style="margin: 0;">
+      <div class="trap-title">14. Cache-Control: no-cache Permits Caching</div>
+      <div class="trap-text"><code>no-cache</code> stores the file locally, but forces server revalidation via ETag before reuse. <code>no-store</code> forbids caching!</div>
+    </div>
+    <div class="trap-card" style="margin: 0;">
+      <div class="trap-title">15. HttpOnly Protects Cookies from XSS</div>
+      <div class="trap-text">Marking a cookie <code>HttpOnly</code> prevents <code>document.cookie</code> access, neutralizing cookie theft via script injection.</div>
+    </div>
+    <div class="trap-card" style="margin: 0;">
+      <div class="trap-title">16. CSS is Render-Blocking</div>
+      <div class="trap-text">Browsers will not paint any pixels until the full CSSOM is built to prevent Flash of Unstyled Content (FOUC).</div>
+    </div>
+    <div class="trap-card" style="margin: 0;">
+      <div class="trap-title">17. Port Numbers Define Origin</div>
+      <div class="trap-text"><code>http://localhost:3000</code> and <code>http://localhost:8080</code> are strictly DIFFERENT origins governed by CORS!</div>
+    </div>
+    <div class="trap-card" style="margin: 0;">
+      <div class="trap-title">18. SessionStorage Does Not Share Across Tabs</div>
+      <div class="trap-text">Opening a new tab to the same URL creates a fresh, isolated SessionStorage context!</div>
+    </div>
+    <div class="trap-card" style="margin: 0;">
+      <div class="trap-title">19. 304 Responses Have Zero Body</div>
+      <div class="trap-text">HTTP 304 Not Modified contains headers only. The browser loads the body from local disk cache, saving bandwidth.</div>
+    </div>
+    <div class="trap-card" style="margin: 0;">
+      <div class="trap-title">20. GET Requests Must Be Idempotent</div>
+      <div class="trap-text">Never execute database deletions or fund transfers via GET requests. Browsers, crawlers, and proxies prefetch GET links!</div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================
+     SECTION 40: 25 INTERVIEW QUESTIONS
+     ========================================== -->
+<section id="sec-40" class="notes-section">
+  <div class="notes-section-header">
+    <span class="notes-section-number">40</span>
+    <h2 class="notes-section-title">25 Browser Interview Questions & Model Answers</h2>
+  </div>
+
+  <p class="notes-paragraph">
+    Master these categorized technical interview questions commonly posed by recruiters at TCS, Infosys, Accenture, Cognizant, and Capgemini:
+  </p>
+
+  <h3 style="color: var(--brand-cyan); margin: 1.5rem 0 1rem;">Level 1: Beginner Technical Questions (10)</h3>
+  <div class="interview-grid">
+
+    <div class="interview-card">
+      <div class="interview-q-header" onclick="this.parentElement.querySelector('.interview-a-body').classList.toggle('open')">
+        <div class="interview-q-left">
+          <span class="interview-q-num">Q1</span>
+          <span class="interview-q-title">What happens when you enter a URL into a browser address bar?</span>
+        </div>
+        <span>▼</span>
+      </div>
+      <div class="interview-a-body">
+        The browser parses the URL, checks cache, resolves domain to IP via DNS, establishes a TCP 3-way handshake on port 443, completes TLS cryptographic handshake, sends an HTTP GET request, receives the HTML stream, builds DOM and CSSOM, merges them into the Render Tree, performs layout (reflow), and paints pixels to screen.
+        <div class="interview-a-keypoint">Key Interview Point: Mention DNS -> TCP -> TLS -> DOM/CSSOM -> Render Tree -> Layout -> Paint.</div>
+      </div>
+    </div>
+
+    <div class="interview-card">
+      <div class="interview-q-header" onclick="this.parentElement.querySelector('.interview-a-body').classList.toggle('open')">
+        <div class="interview-q-left">
+          <span class="interview-q-num">Q2</span>
+          <span class="interview-q-title">What is the difference between HTTP and HTTPS?</span>
+        </div>
+        <span>▼</span>
+      </div>
+      <div class="interview-a-body">
+        HTTP sends data in unencrypted plaintext on port 80, vulnerable to packet sniffing. HTTPS executes HTTP over a TLS/SSL encrypted cryptographic tunnel on port 443, ensuring confidentiality, data integrity, and server authentication via digital certificates.
+        <div class="interview-a-keypoint">Key Interview Point: Port 80 vs 443; plaintext vs encrypted TLS tunnel; Certificate Authority validation.</div>
+      </div>
+    </div>
+
+    <div class="interview-card">
+      <div class="interview-q-header" onclick="this.parentElement.querySelector('.interview-a-body').classList.toggle('open')">
+        <div class="interview-q-left">
+          <span class="interview-q-num">Q3</span>
+          <span class="interview-q-title">What is DNS and why is it called the phonebook of the internet?</span>
+        </div>
+        <span>▼</span>
+      </div>
+      <div class="interview-a-body">
+        DNS (Domain Name System) translates human-readable domain names (like <code>google.com</code>) into 32-bit/128-bit machine-routable IP addresses (like <code>142.250.190.46</code>). Just as a phonebook maps names to phone numbers, DNS maps hostnames to IP addresses over UDP port 53.
+        <div class="interview-a-keypoint">Key Interview Point: Translates string names to binary routing IP addresses; operates primarily over UDP port 53.</div>
+      </div>
+    </div>
+
+    <div class="interview-card">
+      <div class="interview-q-header" onclick="this.parentElement.querySelector('.interview-a-body').classList.toggle('open')">
+        <div class="interview-q-left">
+          <span class="interview-q-num">Q4</span>
+          <span class="interview-q-title">What is the difference between a Cookie, LocalStorage, and SessionStorage?</span>
+        </div>
+        <span>▼</span>
+      </div>
+      <div class="interview-a-body">
+        Cookies are ~4KB string tokens sent automatically with matching HTTP requests to manage sessions. LocalStorage is ~5-10MB client-side persistent storage that never expires. SessionStorage is ~5MB client-side storage isolated to a single tab that deletes when the tab closes.
+        <div class="interview-a-keypoint">Key Interview Point: Cookies sent with HTTP requests; LocalStorage persists; SessionStorage tab-isolated.</div>
+      </div>
+    </div>
+
+    <div class="interview-card">
+      <div class="interview-q-header" onclick="this.parentElement.querySelector('.interview-a-body').classList.toggle('open')">
+        <div class="interview-q-left">
+          <span class="interview-q-num">Q5</span>
+          <span class="interview-q-title">What is the DOM in web browsers?</span>
+        </div>
+        <span>▼</span>
+      </div>
+      <div class="interview-a-body">
+        The Document Object Model (DOM) is an in-memory, language-independent tree representation of an HTML document created by the browser parser. It allows JavaScript to dynamically query, traverse, and mutate elements, attributes, and styles.
+        <div class="interview-a-keypoint">Key Interview Point: Tree structure representing HTML nodes in memory; accessible via JavaScript.</div>
+      </div>
+    </div>
+
+    <div class="interview-card">
+      <div class="interview-q-header" onclick="this.parentElement.querySelector('.interview-a-body').classList.toggle('open')">
+        <div class="interview-q-left">
+          <span class="interview-q-num">Q6</span>
+          <span class="interview-q-title">What is the difference between GET and POST requests?</span>
+        </div>
+        <span>▼</span>
+      </div>
+      <div class="interview-a-body">
+        GET is safe and idempotent, passing parameters in the URL query string to retrieve resources without modifying server state. POST is neither safe nor idempotent, passing data payloads inside the request body to create resources or submit forms.
+        <div class="interview-a-keypoint">Key Interview Point: Safe/idempotent vs modifying state; URL query string vs Request Body.</div>
+      </div>
+    </div>
+
+    <div class="interview-card">
+      <div class="interview-q-header" onclick="this.parentElement.querySelector('.interview-a-body').classList.toggle('open')">
+        <div class="interview-q-left">
+          <span class="interview-q-num">Q7</span>
+          <span class="interview-q-title">What does HTTP status code 404 mean?</span>
+        </div>
+        <span>▼</span>
+      </div>
+      <div class="interview-a-body">
+        HTTP 404 Not Found is a client-side error indicating that the client successfully reached the web server, but the server could not locate any active resource or routing handler corresponding to the requested URI path.
+        <div class="interview-a-keypoint">Key Interview Point: Proves server is healthy and responding, but requested path does not exist.</div>
+      </div>
+    </div>
+
+    <div class="interview-card">
+      <div class="interview-q-header" onclick="this.parentElement.querySelector('.interview-a-body').classList.toggle('open')">
+        <div class="interview-q-left">
+          <span class="interview-q-num">Q8</span>
+          <span class="interview-q-title">What is the difference between textContent and innerHTML?</span>
+        </div>
+        <span>▼</span>
+      </div>
+      <div class="interview-a-body">
+        <code>textContent</code> sets raw text without parsing HTML tags, making it safe from Cross-Site Scripting (XSS). <code>innerHTML</code> parses strings as HTML elements, executing any embedded tags or scripts and creating security vulnerabilities if untrusted input is displayed.
+        <div class="interview-a-keypoint">Key Interview Point: textContent prevents XSS; innerHTML parses tags and risks script injection.</div>
+      </div>
+    </div>
+
+    <div class="interview-card">
+      <div class="interview-q-header" onclick="this.parentElement.querySelector('.interview-a-body').classList.toggle('open')">
+        <div class="interview-q-left">
+          <span class="interview-q-num">Q9</span>
+          <span class="interview-q-title">What does the Same-Origin Policy (SOP) enforce?</span>
+        </div>
+        <span>▼</span>
+      </div>
+      <div class="interview-a-body">
+        The Same-Origin Policy prevents client-side scripts loaded from one origin from accessing or reading cookies, DOM nodes, or AJAX response data from a different origin. An origin is strictly defined by the tuple: Protocol, Host, and Port.
+        <div class="interview-a-keypoint">Key Interview Point: Origin = Protocol + Host + Port. Prevents malicious sites from stealing session data.</div>
+      </div>
+    </div>
+
+    <div class="interview-card">
+      <div class="interview-q-header" onclick="this.parentElement.querySelector('.interview-a-body').classList.toggle('open')">
+        <div class="interview-q-left">
+          <span class="interview-q-num">Q10</span>
+          <span class="interview-q-title">What is browser caching and why is it important?</span>
+        </div>
+        <span>▼</span>
+      </div>
+      <div class="interview-a-body">
+        Browser caching stores static assets (CSS, JS, images) locally on user disk or RAM. On subsequent visits, the browser loads resources instantly without network overhead, dramatically reducing server bandwidth and page loading latency.
+        <div class="interview-a-keypoint">Key Interview Point: Saves local copies of assets; governed by Cache-Control and ETag headers.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <h3 style="color: var(--brand-emerald); margin: 2rem 0 1rem;">Level 2: Intermediate Technical Questions (10)</h3>
+  <div class="interview-grid">
+
+    <div class="interview-card">
+      <div class="interview-q-header" onclick="this.parentElement.querySelector('.interview-a-body').classList.toggle('open')">
+        <div class="interview-q-left">
+          <span class="interview-q-num">Q11</span>
+          <span class="interview-q-title">Explain the difference between HTTP 401 Unauthorized and HTTP 403 Forbidden.</span>
+        </div>
+        <span>▼</span>
+      </div>
+      <div class="interview-a-body">
+        401 Unauthorized indicates an **Authentication** failure: credentials are missing or invalid, and logging in can grant access. 403 Forbidden indicates an **Authorization** failure: the user identity is known and authenticated, but the user lacks sufficient permission/role to access the resource.
+        <div class="interview-a-keypoint">Key Interview Point: 401 = Who are you? (AuthN); 403 = You lack permission (AuthZ).</div>
+      </div>
+    </div>
+
+    <div class="interview-card">
+      <div class="interview-q-header" onclick="this.parentElement.querySelector('.interview-a-body').classList.toggle('open')">
+        <div class="interview-q-left">
+          <span class="interview-q-num">Q12</span>
+          <span class="interview-q-title">How does HTTP 304 Not Modified optimize web performance?</span>
+        </div>
+        <span>▼</span>
+      </div>
+      <div class="interview-a-body">
+        When an asset's cache expires, the client sends a conditional request with <code>If-None-Match: "ETag"</code>. If the file has not changed on the server, the server replies with <code>304 Not Modified</code> with an empty body, allowing the browser to reuse the local cached copy with zero payload download.
+        <div class="interview-a-keypoint">Key Interview Point: Conditional GET request with ETag; 304 has empty body; saves bandwidth.</div>
+      </div>
+    </div>
+
+    <div class="interview-card">
+      <div class="interview-q-header" onclick="this.parentElement.querySelector('.interview-a-body').classList.toggle('open')">
+        <div class="interview-q-left">
+          <span class="interview-q-num">Q13</span>
+          <span class="interview-q-title">What are HttpOnly and Secure cookie flags and why are they critical?</span>
+        </div>
+        <span>▼</span>
+      </div>
+      <div class="interview-a-body">
+        <code>Secure</code> ensures the cookie is only transmitted over encrypted HTTPS connections, preventing plaintext sniffing. <code>HttpOnly</code> blocks client-side JavaScript (<code>document.cookie</code>) from reading the cookie, mitigating session token theft via Cross-Site Scripting (XSS).
+        <div class="interview-a-keypoint">Key Interview Point: Secure = HTTPS only; HttpOnly = JavaScript cannot read (prevents XSS session hijacking).</div>
+      </div>
+    </div>
+
+    <div class="interview-card">
+      <div class="interview-q-header" onclick="this.parentElement.querySelector('.interview-a-body').classList.toggle('open')">
+        <div class="interview-q-left">
+          <span class="interview-q-num">Q14</span>
+          <span class="interview-q-title">What is the difference between display: none and visibility: hidden in rendering?</span>
+        </div>
+        <span>▼</span>
+      </div>
+      <div class="interview-a-body">
+        <code>display: none</code> removes the element completely from the **Render Tree**, meaning it takes zero layout space and triggers a reflow when toggled. <code>visibility: hidden</code> keeps the element in the Render Tree, preserving its layout width and height on screen while painting it transparent.
+        <div class="interview-a-keypoint">Key Interview Point: display: none is excluded from Render Tree; visibility: hidden consumes layout space.</div>
+      </div>
+    </div>
+
+    <div class="interview-card">
+      <div class="interview-q-header" onclick="this.parentElement.querySelector('.interview-a-body').classList.toggle('open')">
+        <div class="interview-q-left">
+          <span class="interview-q-num">Q15</span>
+          <span class="interview-q-title">How does the JavaScript Event Loop handle microtasks vs macrotasks?</span>
+        </div>
+        <span>▼</span>
+      </div>
+      <div class="interview-a-body">
+        When the call stack empties, the Event Loop drains the **Microtask Queue** (Promise handlers, <code>queueMicrotask</code>) completely until empty before processing a single task from the **Macrotask Queue** (<code>setTimeout</code>, <code>setInterval</code>, I/O events). Microtasks always take priority!
+        <div class="interview-a-keypoint">Key Interview Point: Microtasks (Promises) are drained completely before each Macrotask (setTimeout).</div>
+      </div>
+    </div>
+
+    <div class="interview-card">
+      <div class="interview-q-header" onclick="this.parentElement.querySelector('.interview-a-body').classList.toggle('open')">
+        <div class="interview-q-left">
+          <span class="interview-q-num">Q16</span>
+          <span class="interview-q-title">What is CORS and why does a browser send a Preflight OPTIONS request?</span>
+        </div>
+        <span>▼</span>
+      </div>
+      <div class="interview-a-body">
+        CORS is a browser mechanism that relaxes SOP using response headers. For "non-simple" requests (custom headers like <code>Authorization</code>, or methods like PUT/DELETE), the browser automatically sends an HTTP <code>OPTIONS</code> preflight request to confirm whether the server permits the operation before sending the actual request.
+        <div class="interview-a-keypoint">Key Interview Point: Preflight OPTIONS checks server permissions before executing non-simple cross-origin requests.</div>
+      </div>
+    </div>
+
+    <div class="interview-card">
+      <div class="interview-q-header" onclick="this.parentElement.querySelector('.interview-a-body').classList.toggle('open')">
+        <div class="interview-q-left">
+          <span class="interview-q-num">Q17</span>
+          <span class="interview-q-title">What is the difference between Reflow (Layout) and Repaint?</span>
+        </div>
+        <span>▼</span>
+      </div>
+      <div class="interview-a-body">
+        **Reflow (Layout)** recalculates the geometry, dimensions, and positioning of nodes in the document, which is computationally expensive. **Repaint** occurs when visual properties that don't affect geometry (like <code>color</code> or <code>background-color</code>) change, rasterizing new pixels without recalculating dimensions.
+        <div class="interview-a-keypoint">Key Interview Point: Reflow recalculates geometry/positions (expensive); Repaint redraws colors/pixels (cheaper).</div>
+      </div>
+    </div>
+
+    <div class="interview-card">
+      <div class="interview-q-header" onclick="this.parentElement.querySelector('.interview-a-body').classList.toggle('open')">
+        <div class="interview-q-left">
+          <span class="interview-q-num">Q18</span>
+          <span class="interview-q-title">What are the SameSite cookie attributes (Strict, Lax, None)?</span>
+        </div>
+        <span>▼</span>
+      </div>
+      <div class="interview-a-body">
+        <code>Strict</code> forbids sending cookies on any cross-site request (highest CSRF protection). <code>Lax</code> (default) withholds cookies on cross-site subrequests (images/iframes) but sends them on safe top-level GET navigations. <code>None</code> sends cookies on all cross-site requests (requires <code>Secure</code>).
+        <div class="interview-a-keypoint">Key Interview Point: Prevents CSRF. Strict = never cross-site; Lax = top-level GET only; None = requires Secure.</div>
+      </div>
+    </div>
+
+    <div class="interview-card">
+      <div class="interview-q-header" onclick="this.parentElement.querySelector('.interview-a-body').classList.toggle('open')">
+        <div class="interview-q-left">
+          <span class="interview-q-num">Q19</span>
+          <span class="interview-q-title">Why is CSS considered render-blocking while asynchronous JS is not?</span>
+        </div>
+        <span>▼</span>
+      </div>
+      <div class="interview-a-body">
+        CSS is render-blocking because browsers cannot build the Render Tree or calculate layout until the full CSSOM is constructed, preventing Flash of Unstyled Content (FOUC). JavaScript loaded with <code>defer</code> or <code>async</code> downloads in the background without blocking HTML parsing.
+        <div class="interview-a-keypoint">Key Interview Point: Prevents FOUC; DOM + CSSOM required for Render Tree before Layout/Paint.</div>
+      </div>
+    </div>
+
+    <div class="interview-card">
+      <div class="interview-q-header" onclick="this.parentElement.querySelector('.interview-a-body').classList.toggle('open')">
+        <div class="interview-q-left">
+          <span class="interview-q-num">Q20</span>
+          <span class="interview-q-title">What is the difference between HTTP 301 and HTTP 302 redirects?</span>
+        </div>
+        <span>▼</span>
+      </div>
+      <div class="interview-a-body">
+        <code>301 Moved Permanently</code> indicates the URL has permanently changed; browsers cache the redirect and search engines transfer SEO ranking to the new target. <code>302 Found</code> indicates a temporary redirect; browsers do not cache permanently, retaining the original URL for future visits.
+        <div class="interview-a-keypoint">Key Interview Point: 301 is permanent & cached (transfers SEO); 302 is temporary and not cached permanently.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <h3 style="color: #A78BFA; margin: 2rem 0 1rem;">Level 3: Senior & Scenario-Based Questions (5)</h3>
+  <div class="interview-grid">
+
+    <div class="interview-card">
+      <div class="interview-q-header" onclick="this.parentElement.querySelector('.interview-a-body').classList.toggle('open')">
+        <div class="interview-q-left">
+          <span class="interview-q-num">Q21</span>
+          <span class="interview-q-title">Why would an API call succeed in Postman but fail in a React frontend browser app?</span>
+        </div>
+        <span>▼</span>
+      </div>
+      <div class="interview-a-body">
+        Postman is a standalone desktop testing client that does not implement or enforce the browser **Same-Origin Policy (SOP)**. When executed inside a web browser, the browser detects a cross-origin request and blocks client JavaScript from reading the response if the backend lacks CORS headers (<code>Access-Control-Allow-Origin</code>).
+        <div class="interview-a-keypoint">Key Interview Point: Postman is not a browser and ignores CORS/SOP. Browsers enforce CORS strictly.</div>
+      </div>
+    </div>
+
+    <div class="interview-card">
+      <div class="interview-q-header" onclick="this.parentElement.querySelector('.interview-a-body').classList.toggle('open')">
+        <div class="interview-q-left">
+          <span class="interview-q-num">Q22</span>
+          <span class="interview-q-title">How does Cache Busting solve the problem of users seeing stale CSS/JS files?</span>
+        </div>
+        <span>▼</span>
+      </div>
+      <div class="interview-a-body">
+        Cache busting appends a unique cryptographic content hash to static asset filenames (e.g. <code>bundle.8f9b2.js</code>). When source code changes, the build tool generates a new filename with a new hash, forcing the browser to fetch the new asset while allowing older assets to use aggressive caching (<code>max-age=31536000</code>).
+        <div class="interview-a-keypoint">Key Interview Point: Content hashing changes the URL filename on every deployment, bypassing stale caches.</div>
+      </div>
+    </div>
+
+    <div class="interview-card">
+      <div class="interview-q-header" onclick="this.parentElement.querySelector('.interview-a-body').classList.toggle('open')">
+        <div class="interview-q-left">
+          <span class="interview-q-num">Q23</span>
+          <span class="interview-q-title">What happens if an image is loaded from an HTTP origin on an HTTPS webpage?</span>
+        </div>
+        <span>▼</span>
+      </div>
+      <div class="interview-a-body">
+        This triggers a **Mixed Content** security warning. Modern browsers will either automatically upgrade the image request to HTTPS, or block it entirely (especially for active mixed content like scripts or iframes) to prevent Man-in-the-Middle network tampering.
+        <div class="interview-a-keypoint">Key Interview Point: Mixed content vulnerability; browsers block insecure scripts and warn on insecure images.</div>
+      </div>
+    </div>
+
+    <div class="interview-card">
+      <div class="interview-q-header" onclick="this.parentElement.querySelector('.interview-a-body').classList.toggle('open')">
+        <div class="interview-q-left">
+          <span class="interview-q-num">Q24</span>
+          <span class="interview-q-title">Why does script tag placement at the bottom of the body or with 'defer' improve loading speed?</span>
+        </div>
+        <span>▼</span>
+      </div>
+      <div class="interview-a-body">
+        Standard <code>&lt;script&gt;</code> tags block the HTML parser: the browser pauses DOM building while downloading and executing the script. Adding <code>defer</code> downloads the script in parallel without blocking HTML parsing, executing it in order only after DOM construction completes.
+        <div class="interview-a-keypoint">Key Interview Point: Prevents HTML parser blocking; defer downloads in parallel and executes after DOM is ready.</div>
+      </div>
+    </div>
+
+    <div class="interview-card">
+      <div class="interview-q-header" onclick="this.parentElement.querySelector('.interview-a-body').classList.toggle('open')">
+        <div class="interview-q-left">
+          <span class="interview-q-num">Q25</span>
+          <span class="interview-q-title">What is the difference between an Authoritative DNS server and a Recursive Resolver?</span>
+        </div>
+        <span>▼</span>
+      </div>
+      <div class="interview-a-body">
+        A **Recursive Resolver** (ISP, Google 8.8.8.8) is the client's agent that hunts down the IP address across root, TLD, and authoritative servers. An **Authoritative Server** (Cloudflare, Route 53) holds the official DNS records configured by the domain owner and provides the definitive IP answer.
+        <div class="interview-a-keypoint">Key Interview Point: Recursive resolver hunts and caches; Authoritative server holds official zone records.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ==========================================
+     SECTION 41: 5-MINUTE LAST-MINUTE REVISION
+     ========================================== -->
+<section id="sec-41" class="notes-section">
+  <div class="notes-section-header">
+    <span class="notes-section-number">41</span>
+    <h2 class="notes-section-title">5-Minute Last-Minute Revision Cheat Sheet</h2>
+  </div>
+
+  <p class="notes-paragraph">
+    Review these high-density key terms immediately before entering your assessment or interview:
+  </p>
+
+  <div class="revision-grid">
+    <div class="revision-card">
+      <span class="revision-keyword">URL vs URI</span>
+      <span class="revision-summary">URI identifies a resource. URL identifies AND locates it with a protocol scheme.</span>
+    </div>
+    <div class="revision-card">
+      <span class="revision-keyword">DNS Port 53</span>
+      <span class="revision-summary">Resolves domain -> IP. Uses UDP 53 for standard queries; TCP 53 for large responses.</span>
+    </div>
+    <div class="revision-card">
+      <span class="revision-keyword">TCP Handshake</span>
+      <span class="revision-summary">SYN -> SYN-ACK -> ACK establishes reliable ordered transmission.</span>
+    </div>
+    <div class="revision-card">
+      <span class="revision-keyword">TLS Encryption</span>
+      <span class="revision-summary">Asymmetric encryption for handshake key exchange; Symmetric for fast session data.</span>
+    </div>
+    <div class="revision-card">
+      <span class="revision-keyword">HTTP 304</span>
+      <span class="revision-summary">Not Modified. ETag matched; browser reuses local cache with zero payload download.</span>
+    </div>
+    <div class="revision-card">
+      <span class="revision-keyword">HTTP 401 vs 403</span>
+      <span class="revision-summary">401 = Missing/Invalid login (AuthN). 403 = Authenticated, but no permission (AuthZ).</span>
+    </div>
+    <div class="revision-card">
+      <span class="revision-keyword">HTTP 502 vs 504</span>
+      <span class="revision-summary">502 = Proxy got invalid upstream response. 504 = Proxy timed out waiting for backend.</span>
+    </div>
+    <div class="revision-card">
+      <span class="revision-keyword">HttpOnly Flag</span>
+      <span class="revision-summary">Blocks JavaScript <code>document.cookie</code> access to protect against XSS token theft.</span>
+    </div>
+    <div class="revision-card">
+      <span class="revision-keyword">SameSite=Strict</span>
+      <span class="revision-summary">Withholds cookies on all cross-site requests to neutralize CSRF attacks.</span>
+    </div>
+    <div class="revision-card">
+      <span class="revision-keyword">LocalStorage</span>
+      <span class="revision-summary">~5-10MB per origin, synchronous, persistent indefinitely across reboots.</span>
+    </div>
+    <div class="revision-card">
+      <span class="revision-keyword">Render Tree</span>
+      <span class="revision-summary">DOM + CSSOM. Excludes <code>&lt;head&gt;</code> and <code>display: none</code>. Includes <code>visibility: hidden</code>.</span>
+    </div>
+    <div class="revision-card">
+      <span class="revision-keyword">Reflow vs Repaint</span>
+      <span class="revision-summary">Reflow = Layout geometry calculation (heavy). Repaint = Pixel rasterization (lighter).</span>
+    </div>
+    <div class="revision-card">
+      <span class="revision-keyword">Event Loop Priority</span>
+      <span class="revision-summary">Synchronous Call Stack -> Microtasks (Promises) -> Macrotasks (setTimeout).</span>
+    </div>
+    <div class="revision-card">
+      <span class="revision-keyword">Same-Origin Policy</span>
+      <span class="revision-summary">Origin = Protocol + Host + Port. Browser restricts cross-origin resource reads.</span>
+    </div>
+    <div class="revision-card">
+      <span class="revision-keyword">CORS Preflight</span>
+      <span class="revision-summary">Browser sends automated <code>OPTIONS</code> request before executing non-simple cross-origin calls.</span>
+    </div>
+    <div class="revision-card">
+      <span class="revision-keyword">Fragment #hash</span>
+      <span class="revision-summary">Handled client-side by browser; never transmitted to the backend server!</span>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================
+     SECTION 42: RAPID-FIRE MINI QUIZ
+     ========================================== -->
+<section id="sec-42" class="notes-section">
+  <div class="notes-section-header">
+    <span class="notes-section-number">42</span>
+    <h2 class="notes-section-title">Rapid-Fire Placement Mini Quiz (10 MCQs)</h2>
+  </div>
+
+  <p class="notes-paragraph">
+    Test your mastery immediately! Click any question to reveal the correct answer and technical reasoning:
+  </p>
+
+  <div class="quiz-container">
+
+    <!-- Q1 -->
+    <div class="quiz-card">
+      <div class="quiz-card-q">1. Which component of the URL <code>https://example.com:443/shop?item=shoe#reviews</code> is NEVER transmitted to the server in an HTTP request?</div>
+      <div class="quiz-options-list">
+        <div class="quiz-opt-item" onclick="handleQuizClick(this, false)">A. Port <code>:443</code></div>
+        <div class="quiz-opt-item" onclick="handleQuizClick(this, false)">B. Query parameter <code>?item=shoe</code></div>
+        <div class="quiz-opt-item" onclick="handleQuizClick(this, true)">C. Fragment identifier <code>#reviews</code></div>
+        <div class="quiz-opt-item" onclick="handleQuizClick(this, false)">D. Path <code>/shop</code></div>
+      </div>
+      <button type="button" class="btn btn-outline btn-sm" onclick="this.nextElementSibling.classList.toggle('open')">Show Answer & Explanation</button>
+      <div class="quiz-answer-drawer">
+        <strong>Correct Answer: C (#reviews)</strong><br>
+        The fragment identifier (hash) is processed purely client-side by the browser engine to scroll the viewport to the element with <code>id="reviews"</code>. RFC 3986 specifies that fragments are never included in the HTTP request line sent over the wire.
+      </div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="quiz-card">
+      <div class="quiz-card-q">2. What DNS record maps a domain name directly to a 128-bit IPv6 address?</div>
+      <div class="quiz-options-list">
+        <div class="quiz-opt-item" onclick="handleQuizClick(this, false)">A. A Record</div>
+        <div class="quiz-opt-item" onclick="handleQuizClick(this, true)">B. AAAA Record</div>
+        <div class="quiz-opt-item" onclick="handleQuizClick(this, false)">C. CNAME Record</div>
+        <div class="quiz-opt-item" onclick="handleQuizClick(this, false)">D. NS Record</div>
+      </div>
+      <button type="button" class="btn btn-outline btn-sm" onclick="this.nextElementSibling.classList.toggle('open')">Show Answer & Explanation</button>
+      <div class="quiz-answer-drawer">
+        <strong>Correct Answer: B (AAAA Record)</strong><br>
+        'A' records map to 32-bit IPv4 addresses. 'AAAA' (Quad-A) records map to 128-bit IPv6 addresses (named Quad-A because 128 bits is four times the 32 bits of IPv4).
+      </div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="quiz-card">
+      <div class="quiz-card-q">3. A web user receives HTTP 403 Forbidden. What is the fundamental issue?</div>
+      <div class="quiz-options-list">
+        <div class="quiz-opt-item" onclick="handleQuizClick(this, false)">A. The user is unauthenticated and must provide login credentials.</div>
+        <div class="quiz-opt-item" onclick="handleQuizClick(this, true)">B. The user is authenticated, but lacks permission/role to access the resource.</div>
+        <div class="quiz-opt-item" onclick="handleQuizClick(this, false)">C. The web server process has crashed.</div>
+        <div class="quiz-opt-item" onclick="handleQuizClick(this, false)">D. The requested URL path does not exist on the server.</div>
+      </div>
+      <button type="button" class="btn btn-outline btn-sm" onclick="this.nextElementSibling.classList.toggle('open')">Show Answer & Explanation</button>
+      <div class="quiz-answer-drawer">
+        <strong>Correct Answer: B (Authenticated, but lacks permission)</strong><br>
+        403 indicates an Authorization failure. The server understands who the user is, but explicitly refuses access due to insufficient privilege. Re-authenticating will not fix 403.
+      </div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="quiz-card">
+      <div class="quiz-card-q">4. Which cookie security attribute blocks client-side JavaScript (document.cookie) from reading its value?</div>
+      <div class="quiz-options-list">
+        <div class="quiz-opt-item" onclick="handleQuizClick(this, false)">A. Secure</div>
+        <div class="quiz-opt-item" onclick="handleQuizClick(this, true)">B. HttpOnly</div>
+        <div class="quiz-opt-item" onclick="handleQuizClick(this, false)">C. SameSite=Strict</div>
+        <div class="quiz-opt-item" onclick="handleQuizClick(this, false)">D. Max-Age</div>
+      </div>
+      <button type="button" class="btn btn-outline btn-sm" onclick="this.nextElementSibling.classList.toggle('open')">Show Answer & Explanation</button>
+      <div class="quiz-answer-drawer">
+        <strong>Correct Answer: B (HttpOnly)</strong><br>
+        <code>HttpOnly</code> prevents client-side scripts from reading the cookie, neutralizing session token theft via Cross-Site Scripting (XSS).
+      </div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="quiz-card">
+      <div class="quiz-card-q">5. Which of the following elements is EXCLUDED from the browser's Render Tree?</div>
+      <div class="quiz-options-list">
+        <div class="quiz-opt-item" onclick="handleQuizClick(this, false)">A. An element styled with <code>visibility: hidden</code></div>
+        <div class="quiz-opt-item" onclick="handleQuizClick(this, true)">B. An element styled with <code>display: none</code></div>
+        <div class="quiz-opt-item" onclick="handleQuizClick(this, false)">C. An element styled with <code>opacity: 0</code></div>
+        <div class="quiz-opt-item" onclick="handleQuizClick(this, false)">D. An element positioned off-screen with <code>left: -9999px</code></div>
+      </div>
+      <button type="button" class="btn btn-outline btn-sm" onclick="this.nextElementSibling.classList.toggle('open')">Show Answer & Explanation</button>
+      <div class="quiz-answer-drawer">
+        <strong>Correct Answer: B (display: none)</strong><br>
+        <code>display: none</code> is completely excluded from the Render Tree. <code>visibility: hidden</code>, <code>opacity: 0</code>, and off-screen elements are included because they affect layout geometry or inherit rendering properties.
+      </div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="quiz-card">
+      <div class="quiz-card-q">6. Under the Same-Origin Policy, which of the following shares the same origin with <code>https://api.test.com:443</code>?</div>
+      <div class="quiz-options-list">
+        <div class="quiz-opt-item" onclick="handleQuizClick(this, false)">A. <code>http://api.test.com:443</code></div>
+        <div class="quiz-opt-item" onclick="handleQuizClick(this, false)">B. <code>https://test.com:443</code></div>
+        <div class="quiz-opt-item" onclick="handleQuizClick(this, false)">C. <code>https://api.test.com:8080</code></div>
+        <div class="quiz-opt-item" onclick="handleQuizClick(this, true)">D. <code>https://api.test.com/v2/users</code></div>
+      </div>
+      <button type="button" class="btn btn-outline btn-sm" onclick="this.nextElementSibling.classList.toggle('open')">Show Answer & Explanation</button>
+      <div class="quiz-answer-drawer">
+        <strong>Correct Answer: D (https://api.test.com/v2/users)</strong><br>
+        Origin is defined solely by Protocol (https), Host (api.test.com), and Port (443 implicit). Path does not affect origin!
+      </div>
+    </div>
+
+    <!-- Q7 -->
+    <div class="quiz-card">
+      <div class="quiz-card-q">7. What does the server return when an asset's ETag matches the client's If-None-Match header?</div>
+      <div class="quiz-options-list">
+        <div class="quiz-opt-item" onclick="handleQuizClick(this, false)">A. HTTP 200 OK with full file body</div>
+        <div class="quiz-opt-item" onclick="handleQuizClick(this, false)">B. HTTP 204 No Content</div>
+        <div class="quiz-opt-item" onclick="handleQuizClick(this, true)">C. HTTP 304 Not Modified with empty body</div>
+        <div class="quiz-opt-item" onclick="handleQuizClick(this, false)">D. HTTP 301 Moved Permanently</div>
+      </div>
+      <button type="button" class="btn btn-outline btn-sm" onclick="this.nextElementSibling.classList.toggle('open')">Show Answer & Explanation</button>
+      <div class="quiz-answer-drawer">
+        <strong>Correct Answer: C (HTTP 304 Not Modified)</strong><br>
+        The server signals that the cached version is still fresh. The browser reuses the local cached asset without transferring payload bytes.
+      </div>
+    </div>
+
+    <!-- Q8 -->
+    <div class="quiz-card">
+      <div class="quiz-card-q">8. What happens to SessionStorage data when a user closes their browser tab?</div>
+      <div class="quiz-options-list">
+        <div class="quiz-opt-item" onclick="handleQuizClick(this, false)">A. It persists indefinitely until cleared manually.</div>
+        <div class="quiz-opt-item" onclick="handleQuizClick(this, true)">B. It is immediately deleted and cleared from memory.</div>
+        <div class="quiz-opt-item" onclick="handleQuizClick(this, false)">C. It is synced to the backend server.</div>
+        <div class="quiz-opt-item" onclick="handleQuizClick(this, false)">D. It is converted into a cookie.</div>
+      </div>
+      <button type="button" class="btn btn-outline btn-sm" onclick="this.nextElementSibling.classList.toggle('open')">Show Answer & Explanation</button>
+      <div class="quiz-answer-drawer">
+        <strong>Correct Answer: B (Immediately deleted)</strong><br>
+        SessionStorage is strictly bound to the lifetime of the browser tab. Closing the tab wipes all associated data.
+      </div>
+    </div>
+
+    <!-- Q9 -->
+    <div class="quiz-card">
+      <div class="quiz-card-q">9. Which queue does the browser Event Loop prioritize first when the call stack becomes empty?</div>
+      <div class="quiz-options-list">
+        <div class="quiz-opt-item" onclick="handleQuizClick(this, true)">A. Microtask Queue (Promise handlers, queueMicrotask)</div>
+        <div class="quiz-opt-item" onclick="handleQuizClick(this, false)">B. Macrotask Queue (setTimeout, setInterval)</div>
+        <div class="quiz-opt-item" onclick="handleQuizClick(this, false)">C. I/O Queue</div>
+        <div class="quiz-opt-item" onclick="handleQuizClick(this, false)">D. Garbage Collection Queue</div>
+      </div>
+      <button type="button" class="btn btn-outline btn-sm" onclick="this.nextElementSibling.classList.toggle('open')">Show Answer & Explanation</button>
+      <div class="quiz-answer-drawer">
+        <strong>Correct Answer: A (Microtask Queue)</strong><br>
+        Microtasks (Promise callbacks) are drained completely before the Event Loop fetches a single macrotask from the timer queue.
+      </div>
+    </div>
+
+    <!-- Q10 -->
+    <div class="quiz-card">
+      <div class="quiz-card-q">10. What HTTP method is used by browsers for automated CORS preflight verification?</div>
+      <div class="quiz-options-list">
+        <div class="quiz-opt-item" onclick="handleQuizClick(this, false)">A. HEAD</div>
+        <div class="quiz-opt-item" onclick="handleQuizClick(this, true)">B. OPTIONS</div>
+        <div class="quiz-opt-item" onclick="handleQuizClick(this, false)">C. TRACE</div>
+        <div class="quiz-opt-item" onclick="handleQuizClick(this, false)">D. CONNECT</div>
+      </div>
+      <button type="button" class="btn btn-outline btn-sm" onclick="this.nextElementSibling.classList.toggle('open')">Show Answer & Explanation</button>
+      <div class="quiz-answer-drawer">
+        <strong>Correct Answer: B (OPTIONS)</strong><br>
+        The browser dispatches an <code>OPTIONS</code> request with <code>Origin</code> and <code>Access-Control-Request-Method</code> headers to query the server's cross-origin permissions before sending non-simple requests.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+        </article>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div class="footer-copy">
+          <div style="font-weight: 700; color: var(--text-primary); font-size: 1.05rem;">
+            Placement<span class="brand-text-accent">Prep</span>
+          </div>
+          <div>High-Yield Technical Placement Preparation & CBT Examination Suite</div>
+        </div>
+        <ul class="footer-links">
+          <li><a href="../index.html#home" class="footer-link">Home</a></li>
+          <li><a href="../index.html#modules" class="footer-link">All Modules</a></li>
+          <li><a href="../index.html#practice/browser" class="footer-link">Browser MCQs</a></li>
+          <li><a href="../index.html#cbt/browser" class="footer-link">CBT Mock Test</a></li>
+        </ul>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Interactive Notes Logic -->
+  <script>
+    // 1. Reading Progress Bar
+    window.addEventListener('scroll', () => {
+      const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      const bar = document.getElementById('reading-progress-bar');
+      if (bar) bar.style.width = scrolled + '%';
+    });
+
+    // 2. Sticky Scroll Spy for Table of Contents
+    const sections = document.querySelectorAll('.notes-section');
+    const navLinks = document.querySelectorAll('.notes-toc-item a');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 140;
+        if (window.pageYOffset >= top) {
+          current = sec.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + current) {
+          link.classList.add('active');
+        }
+      });
+    });
+
+    // 3. Search Within Notes
+    const searchInput = document.getElementById('notes-search-input');
+    searchInput?.addEventListener('input', (e) => {
+      const term = e.target.value.toLowerCase().trim();
+      navLinks.forEach(link => {
+        const text = link.textContent.toLowerCase();
+        link.parentElement.style.display = text.includes(term) ? 'block' : 'none';
+      });
+    });
+
+    // 4. Interactive Quiz Option Click
+    function handleQuizClick(optElement, isCorrect) {
+      const parent = optElement.parentElement;
+      const siblings = parent.querySelectorAll('.quiz-opt-item');
+      siblings.forEach(s => s.classList.remove('selected-correct', 'selected-incorrect'));
+      if (isCorrect) {
+        optElement.classList.add('selected-correct');
+      } else {
+        optElement.classList.add('selected-incorrect');
+      }
+    }
+
+    // 5. Theme Toggle Synchronization
+    const themeToggleBtn = document.getElementById('theme-toggle-btn');
+    themeToggleBtn?.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('placementPrep_theme', newTheme);
+      const icon = themeToggleBtn.querySelector('.theme-toggle-icon');
+      if (icon) icon.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+    });
+
+    // Set initial theme from storage
+    (function () {
+      const savedTheme = localStorage.getItem('placementPrep_theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      const icon = document.querySelector('.theme-toggle-icon');
+      if (icon) icon.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+    })();
+  </script>
+
+</body>
+</html>

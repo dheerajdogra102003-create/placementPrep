@@ -98,6 +98,30 @@
     font-size: 1rem;
   }
 
+  /* Mobile dropdown: show panel inline, always visible inside mobile menu */
+  .nav-dropdown-panel {
+    position: static;
+    transform: none !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    box-shadow: none;
+    border: 1px solid var(--border-subtle);
+    backdrop-filter: none;
+    margin-top: 0.25rem;
+  }
+
+  .nav-dropdown-panel::before {
+    display: none;
+  }
+
+  .nav-dropdown-trigger {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+  }
+
+
+
   /* Hero & Layout */
   .hero-section {
     padding: 1.5rem 0 2.5rem;

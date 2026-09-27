@@ -26,6 +26,9 @@
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/cbt.css">
   <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/notes.css">
+  <link rel="stylesheet" href="css/glow-effects.css">
+  <link rel="stylesheet" href="css/footer.css">
 </head>
 <body>
 
@@ -60,22 +63,31 @@
         </a>
 
         <nav role="navigation" aria-label="Main Navigation">
-          <ul class="nav-menu" id="nav-menu">
-            <li>
-              <a href="#home" class="nav-item-link active" data-view="home">
-                <span>🏠 Home</span>
-              </a>
+                              <ul class="nav-menu" id="nav-menu">
+            <li><a href="#home" class="nav-item-link active" data-view="home"><span>🏠 Home</span></a></li>
+            <li><a href="#modules" class="nav-item-link" data-view="modules"><span>📦 Modules</span></a></li>
+            <li class="nav-dropdown">
+              <button class="nav-dropdown-trigger" aria-haspopup="true" aria-expanded="false">
+                📚 Notes <span class="nav-dropdown-arrow">▾</span>
+              </button>
+              <div class="nav-dropdown-panel" role="menu">
+                <p class="nav-dropdown-section-label">Systems &amp; Cloud</p>
+                <a href="notes/cloud-computing.html" class="nav-dropdown-item" role="menuitem"><span class="nav-dropdown-item-icon">☁️</span><span class="nav-dropdown-item-text">Cloud Computing &amp; AWS</span><span class="nav-dropdown-item-badge">60 MCQs</span></a>
+                <a href="notes/linux-command-prompt.html" class="nav-dropdown-item" role="menuitem"><span class="nav-dropdown-item-icon">🐧</span><span class="nav-dropdown-item-text">Linux &amp; Command Prompt</span></a>
+                <a href="notes/networking-security.html" class="nav-dropdown-item" role="menuitem"><span class="nav-dropdown-item-icon">🌐</span><span class="nav-dropdown-item-text">Networking &amp; Security</span><span class="nav-dropdown-item-badge">90 MCQs</span></a>
+                <div class="nav-dropdown-divider"></div>
+                <p class="nav-dropdown-section-label">Software &amp; Code</p>
+                <a href="notes/git-github.html" class="nav-dropdown-item" role="menuitem"><span class="nav-dropdown-item-icon">🐙</span><span class="nav-dropdown-item-text">Git &amp; GitHub</span></a>
+                <a href="notes/browser-fundamentals.html" class="nav-dropdown-item" role="menuitem"><span class="nav-dropdown-item-icon">🌍</span><span class="nav-dropdown-item-text">Browser Fundamentals</span></a>
+                <a href="notes/dbms.html" class="nav-dropdown-item" role="menuitem"><span class="nav-dropdown-item-icon">🗄️</span><span class="nav-dropdown-item-text">DBMS &amp; SQL</span></a>
+                <div class="nav-dropdown-divider"></div>
+                <p class="nav-dropdown-section-label">AI &amp; Data</p>
+                <a href="notes/ai-ml-dl.html" class="nav-dropdown-item" role="menuitem"><span class="nav-dropdown-item-icon">🤖</span><span class="nav-dropdown-item-text">AI / ML &amp; Deep Learning</span></a>
+                <div class="nav-dropdown-divider"></div>
+                <a href="notes.html" class="nav-dropdown-hub-link" role="menuitem">📖 View All Notes Hub →</a>
+              </div>
             </li>
-            <li>
-              <a href="#modules" class="nav-item-link" data-view="modules">
-                <span>📚 Modules</span>
-              </a>
-            </li>
-            <li>
-              <a href="#about" class="nav-item-link" data-view="about">
-                <span>ℹ️ About</span>
-              </a>
-            </li>
+            <li><a href="#about" class="nav-item-link" data-view="about"><span>ℹ️ About</span></a></li>
           </ul>
         </nav>
 
@@ -96,26 +108,171 @@
     <!-- Main View Mount Target -->
     <main class="main-content" id="app-view-container" role="main"></main>
 
-    <!-- Site Footer -->
-    <footer class="site-footer" id="site-footer">
-      <div class="container footer-inner">
-        <div class="footer-copy">
-          <div style="font-weight: 700; color: var(--text-primary); font-size: 1.05rem;">
-            Placement<span class="brand-text-accent">Prep</span>
-          </div>
-          <div>MNC Technical Placement & CBT Examination Simulation Suite</div>
-          <div class="footer-note">
-            Practice questions are company-pattern inspired for IT fresher preparation. Not affiliated with proprietary testing vendors.
-          </div>
-        </div>
+    <!-- Site Footer — Premium Futuristic Edition -->
+    <footer class="site-footer" id="site-footer" aria-label="Site Footer">
 
-        <ul class="footer-links">
-          <li><a href="#home" class="footer-link">Home</a></li>
-          <li><a href="#modules" class="footer-link">Modules</a></li>
-          <li><a href="#about" class="footer-link">About / Pattern</a></li>
-          <li><a href="#cbt/programming-logic" class="footer-link">Mock Exam</a></li>
-        </ul>
+      <!-- Layer 1: Aurora background blobs -->
+      <div class="footer-aurora" aria-hidden="true">
+        <div class="footer-aurora-blob"></div>
+        <div class="footer-aurora-blob"></div>
+        <div class="footer-aurora-blob"></div>
       </div>
+
+      <!-- Layer 2: Holographic gradient overlay -->
+      <div class="footer-holo-layer" aria-hidden="true"></div>
+
+      <!-- Layer 3: Diagonal light beam -->
+      <div class="footer-light-beam" aria-hidden="true"></div>
+
+      <!-- Layer 4: Glitter particles (18) -->
+      <div class="footer-glitter" aria-hidden="true">
+        <div class="footer-glitter-dot"></div>
+        <div class="footer-glitter-dot"></div>
+        <div class="footer-glitter-dot"></div>
+        <div class="footer-glitter-dot"></div>
+        <div class="footer-glitter-dot"></div>
+        <div class="footer-glitter-dot"></div>
+        <div class="footer-glitter-dot"></div>
+        <div class="footer-glitter-dot"></div>
+        <div class="footer-glitter-dot"></div>
+        <div class="footer-glitter-dot"></div>
+        <div class="footer-glitter-dot"></div>
+        <div class="footer-glitter-dot"></div>
+        <div class="footer-glitter-dot"></div>
+        <div class="footer-glitter-dot"></div>
+        <div class="footer-glitter-dot"></div>
+        <div class="footer-glitter-dot"></div>
+        <div class="footer-glitter-dot"></div>
+        <div class="footer-glitter-dot"></div>
+      </div>
+
+      <!-- Layer 5: Floating light particles (8) -->
+      <div class="footer-particles" aria-hidden="true">
+        <div class="footer-particle"></div>
+        <div class="footer-particle"></div>
+        <div class="footer-particle"></div>
+        <div class="footer-particle"></div>
+        <div class="footer-particle"></div>
+        <div class="footer-particle"></div>
+        <div class="footer-particle"></div>
+        <div class="footer-particle"></div>
+      </div>
+
+      <!-- Main content -->
+      <div class="footer-main">
+        <div class="container">
+
+          <!-- Grid: Brand | Prepare | Resources | CTA -->
+          <div class="footer-grid">
+
+            <!-- Brand Column -->
+            <div class="footer-brand">
+              <a href="#home" class="footer-logo" aria-label="PlacementPrep Home">
+                <div class="footer-logo-icon" aria-hidden="true">P</div>
+                <span class="footer-logo-text">Placement<span class="accent">Prep</span></span>
+              </a>
+
+              <p class="footer-tagline">
+                <strong>Next-Gen placement prep</strong> for IT freshers.
+                Master CBT patterns, simulate real exams, and crack MNC technical rounds.
+              </p>
+
+              <div class="footer-holo-divider" aria-hidden="true"></div>
+
+              <!-- Stats pills -->
+              <div class="footer-stats-row" role="list" aria-label="Platform statistics">
+                <div class="footer-stat-pill" role="listitem">
+                  <span class="stat-num">1000+</span> Questions
+                </div>
+                <div class="footer-stat-pill" role="listitem">
+                  <span class="stat-num">12</span> Modules
+                </div>
+                <div class="footer-stat-pill" role="listitem">
+                  <span class="stat-num">8</span> Note Guides
+                </div>
+              </div>
+
+              <!-- Social icons -->
+              <div class="footer-social-row" aria-label="Connect with us">
+                <a href="https://github.com" class="footer-social-btn github" aria-label="GitHub" title="GitHub" rel="noopener noreferrer" target="_blank">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                </a>
+                <a href="https://linkedin.com" class="footer-social-btn linkedin" aria-label="LinkedIn" title="LinkedIn" rel="noopener noreferrer" target="_blank">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                </a>
+                <a href="https://twitter.com" class="footer-social-btn twitter" aria-label="Twitter / X" title="Twitter" rel="noopener noreferrer" target="_blank">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.742l7.736-8.861L1.525 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                </a>
+                <a href="mailto:contact@placementprep.dev" class="footer-social-btn email" aria-label="Email Us" title="Email">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- Prepare Column -->
+            <div>
+              <h3 class="footer-col-title">Prepare</h3>
+              <ul class="footer-links-list" role="list">
+                <li class="footer-link-item"><a href="#home"><span class="link-icon">🏠</span> Home</a></li>
+                <li class="footer-link-item"><a href="#modules"><span class="link-icon">📦</span> All Modules</a></li>
+                <li class="footer-link-item"><a href="#cbt/programming-logic"><span class="link-icon">🖥️</span> Mock CBT Exam</a></li>
+                <li class="footer-link-item"><a href="#cbt/browser-internet"><span class="link-icon">🌐</span> Browser Quiz</a></li>
+                <li class="footer-link-item"><a href="#cbt/dbms-sql"><span class="link-icon">🗄️</span> DBMS Quiz</a></li>
+                <li class="footer-link-item"><a href="#cbt/cloud-computing"><span class="link-icon">☁️</span> Cloud Quiz</a></li>
+                <li class="footer-link-item"><a href="#about"><span class="link-icon">ℹ️</span> About / Pattern</a></li>
+              </ul>
+            </div>
+
+            <!-- Resources Column -->
+            <div>
+              <h3 class="footer-col-title">Resources</h3>
+              <ul class="footer-links-list" role="list">
+                <li class="footer-link-item"><a href="notes.html"><span class="link-icon">📖</span> Notes Hub</a></li>
+                <li class="footer-link-item"><a href="notes/cloud-computing.html"><span class="link-icon">☁️</span> Cloud &amp; AWS</a></li>
+                <li class="footer-link-item"><a href="notes/networking-security.html"><span class="link-icon">🌐</span> Networking</a></li>
+                <li class="footer-link-item"><a href="notes/dbms.html"><span class="link-icon">🗄️</span> DBMS &amp; SQL</a></li>
+                <li class="footer-link-item"><a href="notes/linux-command-prompt.html"><span class="link-icon">🐧</span> Linux &amp; CMD</a></li>
+                <li class="footer-link-item"><a href="notes/git-github.html"><span class="link-icon">🐙</span> Git &amp; GitHub</a></li>
+                <li class="footer-link-item"><a href="notes/ai-ml-dl.html"><span class="link-icon">🤖</span> AI / ML</a></li>
+                <li class="footer-link-item"><a href="notes/browser-fundamentals.html"><span class="link-icon">🌍</span> Browser</a></li>
+              </ul>
+            </div>
+
+            <!-- CTA Card (Glassmorphism) -->
+            <div class="footer-cta-card">
+              <div class="footer-cta-label">Start Your Journey</div>
+              <h3 class="footer-cta-title">Ready to Crack Your Placement?</h3>
+              <p class="footer-cta-desc">
+                1000+ curated questions across 12 modules.
+                Real CBT simulation. Company-pattern inspired.
+              </p>
+              <a href="#modules" class="footer-cta-btn" id="footer-cta-explore">
+                Explore Modules <span aria-hidden="true">&#8594;</span>
+              </a>
+              <div class="footer-cta-secondary">
+                Free forever &middot; <a href="notes.html">View study notes</a>
+              </div>
+            </div>
+
+          </div><!-- /footer-grid -->
+
+          <!-- Bottom bar -->
+          <div class="footer-bottom">
+            <div class="footer-bottom-left">
+              &copy; 2024 <strong>PlacementPrep</strong>. Built for IT freshers cracking MNC campus drives.<br>
+              Practice questions are company-pattern inspired. Not affiliated with any proprietary testing vendor.
+            </div>
+            <div class="footer-bottom-right" aria-label="Tech stack">
+              <span class="footer-tech-badge">&#9889; Vanilla JS</span>
+              <span class="footer-tech-badge">&#127752; CSS3</span>
+              <span class="footer-tech-badge">&#128295; HTML5</span>
+              <span class="footer-tech-badge">Made with <span class="footer-heart" aria-label="love">&#10084;</span></span>
+            </div>
+          </div>
+
+        </div><!-- /container -->
+      </div><!-- /footer-main -->
+
     </footer>
 
   </div>

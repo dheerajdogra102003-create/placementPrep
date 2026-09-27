@@ -30,7 +30,8 @@
     "questionCount": 50,
     "jsonFile": "data/browser.json",
     "dataFile": "data/browser.js",
-    "dataVar": "BROWSER_QUESTIONS"
+    "dataVar": "BROWSER_QUESTIONS",
+    "notesUrl": "notes/browser-fundamentals.html"
   },
   {
     "id": "programming-logic",
@@ -84,7 +85,8 @@
     "questionCount": 30,
     "jsonFile": "data/command-prompt.json",
     "dataFile": "data/windows.js",
-    "dataVar": "COMMAND_PROMPT_QUESTIONS"
+    "dataVar": "COMMAND_PROMPT_QUESTIONS",
+    "notesUrl": "notes/linux-command-prompt.html"
   },
   {
     "id": "office",
@@ -138,7 +140,8 @@
     "questionCount": 60,
     "jsonFile": "data/cloud.json",
     "dataFile": "data/cloud.js",
-    "dataVar": "CLOUD_QUESTIONS"
+    "dataVar": "CLOUD_QUESTIONS",
+    "notesUrl": "notes/cloud-computing.html"
   },
   {
     "id": "networking-security",
@@ -165,7 +168,8 @@
     "questionCount": 90,
     "jsonFile": "data/networking-security.json",
     "dataFile": "data/networking.js",
-    "dataVar": "NETWORKING_SECURITY_QUESTIONS"
+    "dataVar": "NETWORKING_SECURITY_QUESTIONS",
+    "notesUrl": "notes/networking-security.html"
   },
   {
     "id": "pseudocode",
@@ -219,7 +223,8 @@
     "questionCount": 50,
     "jsonFile": "data/dbms.json",
     "dataFile": "data/dbms.js",
-    "dataVar": "DBMS_QUESTIONS"
+    "dataVar": "DBMS_QUESTIONS",
+    "notesUrl": "notes/dbms.html"
   },
   {
     "id": "javascript",
@@ -273,7 +278,8 @@
     "questionCount": 100,
     "jsonFile": "data/git.json",
     "dataFile": "data/git.js",
-    "dataVar": "GIT_QUESTIONS"
+    "dataVar": "GIT_QUESTIONS",
+    "notesUrl": "notes/git-github.html"
   },
   {
     "id": "python",
@@ -327,7 +333,8 @@
     "questionCount": 100,
     "jsonFile": "data/ai-ml-dl.json",
     "dataFile": "data/aiml.js",
-    "dataVar": "AIML_QUESTIONS"
+    "dataVar": "AIML_QUESTIONS",
+    "notesUrl": "notes/ai-ml-dl.html"
   }
 ];
 })();

@@ -8,10 +8,12 @@
   /* Surface & Background Hierarchy */
   --bg-base: #0B0D12;
   --bg-primary: #0F1218;
+  --bg-main: #0F1218;          /* alias → --bg-primary */
   --bg-secondary: #151A22;
   --bg-surface: #171E28;
   --bg-surface-hover: #1E2735;
   --bg-card: rgba(23, 30, 40, 0.78);
+  --bg-card-solid: #171E28;   /* fully opaque version for cards */
   --bg-card-hover: rgba(30, 39, 53, 0.9);
   --bg-glass: rgba(17, 22, 31, 0.82);
   --bg-glass-card: rgba(21, 26, 36, 0.65);
@@ -20,6 +22,7 @@
 
   /* Typography Colors */
   --text-primary: #F8FAFC;
+  --text-main: #F8FAFC;        /* alias → --text-primary */
   --text-secondary: #94A3B8;
   --text-muted: #64748B;
   --text-dim: #475569;
@@ -118,10 +121,12 @@
 [data-theme="light"] {
   --bg-base: #F8FAFC;
   --bg-primary: #FFFFFF;
+  --bg-main: #FFFFFF;          /* alias → --bg-primary */
   --bg-secondary: #F1F5F9;
   --bg-surface: #FFFFFF;
   --bg-surface-hover: #F8FAFC;
   --bg-card: rgba(255, 255, 255, 0.95);
+  --bg-card-solid: #FFFFFF;   /* fully opaque version for cards */
   --bg-card-hover: #FFFFFF;
   --bg-glass: rgba(255, 255, 255, 0.92);
   --bg-glass-card: rgba(255, 255, 255, 0.85);
@@ -129,6 +134,7 @@
   --bg-palette: #F8FAFC;
 
   --text-primary: #0F172A;
+  --text-main: #0F172A;        /* alias → --text-primary */
   --text-secondary: #475569;
   --text-muted: #64748B;
   --text-dim: #94A3B8;
