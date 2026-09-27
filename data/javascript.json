@@ -1,5 +1,4 @@
-/* PlacementPrep Question Bank: JavaScript & Web Dev (50 questions) */
-window.JAVASCRIPT_QUESTIONS = [
+[
   {
     "id": "js-001",
     "module": "JavaScript / Web Development",
@@ -1250,6 +1249,4 @@ window.JAVASCRIPT_QUESTIONS = [
     "realWorldApplication": "Enables web security by preventing malicious scripts on `evil.com` from reading authenticated cookie-backed responses from `bank.com`.",
     "placementTrap": "`http://localhost:3000` and `http://localhost:8080` are DIFFERENT origins because the port numbers differ!"
   }
-];
-if (!window.QUESTION_BANKS) window.QUESTION_BANKS = {};
-window.QUESTION_BANKS['javascript'] = window.JAVASCRIPT_QUESTIONS;
+]

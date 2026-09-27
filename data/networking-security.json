@@ -1,5 +1,4 @@
-/* PlacementPrep Question Bank: Networking & Security (90 questions) */
-window.NETWORKING_SECURITY_QUESTIONS = [
+[
   {
     "id": "netsec-001",
     "module": "Networking + Network Security",
@@ -2030,6 +2029,4 @@ window.NETWORKING_SECURITY_QUESTIONS = [
     "realWorldApplication": "Defending cloud endpoints and relational databases against OWASP Top 10 vulnerabilities (SQLi, XSS, CSRF).",
     "placementTrap": "In asymmetric encryption, encrypt with recipient's public key; sign with sender's private key."
   }
-];
-if (!window.QUESTION_BANKS) window.QUESTION_BANKS = {};
-window.QUESTION_BANKS['networking-security'] = window.NETWORKING_SECURITY_QUESTIONS;
+]

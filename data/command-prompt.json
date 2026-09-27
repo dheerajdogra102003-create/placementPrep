@@ -1,5 +1,4 @@
-/* PlacementPrep Question Bank: Linux & Command Prompt (30 questions) */
-window.COMMAND_PROMPT_QUESTIONS = [
+[
   {
     "id": "cli-001",
     "module": "Linux / Command Prompt",
@@ -630,6 +629,4 @@ window.COMMAND_PROMPT_QUESTIONS = [
     "realWorldApplication": "Use cls between troubleshooting steps to keep the console output readable without changing system data.",
     "placementTrap": "Pay attention to path delimiters (\\ for Windows vs / for Linux) and case-sensitivity."
   }
-];
-if (!window.QUESTION_BANKS) window.QUESTION_BANKS = {};
-window.QUESTION_BANKS['command-prompt'] = window.COMMAND_PROMPT_QUESTIONS;
+]

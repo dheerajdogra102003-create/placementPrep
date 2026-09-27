@@ -1,153 +1,333 @@
 /* ==========================================================================
    PLACEMENTPREP - CENTRAL MODULES REGISTRY & METADATA
-   Metadata for all 12 Technical Placement Preparation Modules
+   Metadata for all 12 Technical Placement Preparation Modules (1,000 Questions)
    ========================================================================== */
 
 (function () {
   window.MODULES_REGISTRY = [
-    {
-      id: 'programming',
-      name: 'Programming Fundamentals',
-      category: 'Core Coding',
-      icon: '💻',
-      accentColor: '#3B82F6',
-      accentLight: 'rgba(59, 130, 246, 0.15)',
-      description: 'Variables, operator precedence, control flow, recursion, code-tracing, memory layout, and output prediction for fresher technical assessments.',
-      topics: ['Operator Precedence', 'Nested Loops', 'Recursion & Stack', 'Arrays & Pointers', 'Output Prediction', 'Complexity Basics'],
-      dataVar: 'PROGRAMMING_QUESTIONS',
-      dataFile: 'data/programming.js'
-    },
-    {
-      id: 'git',
-      name: 'Git & GitHub',
-      category: 'Software Engineering',
-      icon: '🐙',
-      accentColor: '#F05032',
-      accentLight: 'rgba(240, 80, 50, 0.15)',
-      description: 'Repository management, branching workflows, cherry-pick, merge vs rebase, conflict resolution, and enterprise scenario-based problem solving.',
-      topics: ['Staging & Commits', 'Branching & Merging', 'Rebase vs Merge', 'Reset & Revert', 'Stash & .gitignore', 'Workflows'],
-      dataVar: 'GIT_QUESTIONS',
-      dataFile: 'data/git.js'
-    },
-    {
-      id: 'dbms',
-      name: 'DBMS & SQL',
-      category: 'Data & Systems',
-      icon: '🗄️',
-      accentColor: '#0284C7',
-      accentLight: 'rgba(2, 132, 199, 0.15)',
-      description: 'Relational algebra, candidate keys, 1NF to BCNF normalization, SQL queries, aggregate joins, subqueries, ACID properties, and concurrency control.',
-      topics: ['Normalization (1NF-BCNF)', 'Candidate Keys', 'Complex SQL Joins', 'GROUP BY & HAVING', 'ACID & Transactions', 'Locks & Concurrency'],
-      dataVar: 'DBMS_QUESTIONS',
-      dataFile: 'data/dbms.js'
-    },
-    {
-      id: 'networking',
-      name: 'Computer Networks',
-      category: 'Infrastructure',
-      icon: '🌐',
-      accentColor: '#0D9488',
-      accentLight: 'rgba(13, 148, 136, 0.15)',
-      description: 'OSI and TCP/IP protocol stacks, TCP three-way handshake, DNS resolution, Subnetting, IPv4/IPv6, and real-world packet flow troubleshooting.',
-      topics: ['OSI 7-Layer Model', 'TCP vs UDP Flow', 'DNS Lookup Hierarchy', 'Subnetting & CIDR', 'HTTP/HTTPS Handshake', 'Network Troubleshooting'],
-      dataVar: 'NETWORKING_QUESTIONS',
-      dataFile: 'data/networking.js'
-    },
-    {
-      id: 'cloud',
-      name: 'Cloud Computing',
-      category: 'Infrastructure',
-      icon: '☁️',
-      accentColor: '#0284C7',
-      accentLight: 'rgba(2, 132, 199, 0.15)',
-      description: 'IaaS/PaaS/SaaS architectures, high availability, auto-scaling, fault tolerance, multi-region deployments, serverless, and disaster recovery strategies.',
-      topics: ['Cloud Service Models', 'Scalability vs Elasticity', 'Regions & Availability Zones', 'Containers & Serverless', 'Cloud Security & IAM', 'Disaster Recovery'],
-      dataVar: 'CLOUD_QUESTIONS',
-      dataFile: 'data/cloud.js'
-    },
-    {
-      id: 'security',
-      name: 'Network & Cyber Security',
-      category: 'Infrastructure',
-      icon: '🛡️',
-      accentColor: '#10B981',
-      accentLight: 'rgba(16, 185, 129, 0.15)',
-      description: 'CIA triad, symmetric/asymmetric cryptography, TLS certificates, SQL injection, XSS vulnerabilities, firewalls, and attack vector diagnosis.',
-      topics: ['CIA Triad & Auth', 'Symmetric vs Asymmetric', 'SQLi & XSS Prevention', 'Firewalls & IDS/IPS', 'Phishing & MitM', 'Digital Certificates'],
-      dataVar: 'SECURITY_QUESTIONS',
-      dataFile: 'data/security.js'
-    },
-    {
-      id: 'browser',
-      name: 'Browser Fundamentals',
-      category: 'Web & Systems',
-      icon: '🧭',
-      accentColor: '#2563EB',
-      accentLight: 'rgba(37, 99, 235, 0.15)',
-      description: 'Browser internal architecture, DOM tree parsing, Critical Rendering Path, HTTP status codes, cookies, session storage, and DevTools debugging.',
-      topics: ['Critical Rendering Path', 'DOM & CSSOM Construction', 'Cookies vs Web Storage', 'HTTP Response Codes', 'CORS & Same-Origin', 'Browser Caching'],
-      dataVar: 'BROWSER_QUESTIONS',
-      dataFile: 'data/browser.js'
-    },
-    {
-      id: 'windows',
-      name: 'Windows & CLI Mastery',
-      category: 'Practical Skills',
-      icon: '⌨️',
-      accentColor: '#F59E0B',
-      accentLight: 'rgba(245, 158, 11, 0.15)',
-      description: 'Command Prompt & PowerShell practical utilities, path variables, process diagnostics, ping, ipconfig, network verification, and file manipulation.',
-      topics: ['Directory & File Commands', 'ipconfig & Network Diag', 'Relative vs Absolute Paths', 'Environment Variables', 'Batch Scripting Basics', 'Process Management'],
-      dataVar: 'WINDOWS_QUESTIONS',
-      dataFile: 'data/windows.js'
-    },
-    {
-      id: 'javascript',
-      name: 'JavaScript & Web Dev',
-      category: 'Core Coding',
-      icon: '⚡',
-      accentColor: '#EAB308',
-      accentLight: 'rgba(234, 179, 8, 0.15)',
-      description: 'Scope, closures, hoisting, asynchronous event loop, DOM manipulation, promises, array methods, and tricky JavaScript code-output evaluation.',
-      topics: ['Hoisting & Scope', 'Closures & Callbacks', 'Event Loop & Async', 'DOM Manipulation', 'Array Map/Filter/Reduce', 'Output Prediction'],
-      dataVar: 'JAVASCRIPT_QUESTIONS',
-      dataFile: 'data/javascript.js'
-    },
-    {
-      id: 'powerpoint',
-      name: 'Microsoft PowerPoint',
-      category: 'Productivity',
-      icon: '📊',
-      accentColor: '#D97706',
-      accentLight: 'rgba(217, 119, 6, 0.15)',
-      description: 'Slide master customization, transitions, custom animation timings, presentation views, chart integrations, and corporate delivery shortcuts.',
-      topics: ['Slide Master & Layouts', 'Custom Animation Timings', 'Presenter View & Controls', 'Object Hierarchy & Grouping', 'Keyboard Shortcuts', 'Export & Media'],
-      dataVar: 'POWERPOINT_QUESTIONS',
-      dataFile: 'data/powerpoint.js'
-    },
-    {
-      id: 'word',
-      name: 'Microsoft Word',
-      category: 'Productivity',
-      icon: '📝',
-      accentColor: '#2563EB',
-      accentLight: 'rgba(37, 99, 235, 0.15)',
-      description: 'Document styling hierarchies, paragraph flow, page breaks vs section breaks, mail merge automation, track changes, and reference management.',
-      topics: ['Styles & Formatting', 'Section vs Page Breaks', 'Mail Merge Workflows', 'Track Changes & Review', 'Table Layout & Formats', 'Shortcuts & Navigation'],
-      dataVar: 'WORD_QUESTIONS',
-      dataFile: 'data/word.js'
-    },
-    {
-      id: 'excel',
-      name: 'Microsoft Excel',
-      category: 'Productivity',
-      icon: '📈',
-      accentColor: '#059669',
-      accentLight: 'rgba(5, 150, 105, 0.15)',
-      description: 'Cell referencing ($A$1 vs A1), VLOOKUP, XLOOKUP, INDEX-MATCH, nested IF conditions, Pivot Tables, conditional formatting, and formula debugging.',
-      topics: ['Absolute vs Relative Refs', 'VLOOKUP & XLOOKUP', 'Nested IF & SUMIF/COUNTIF', 'Pivot Tables & Summaries', 'Error Codes (#N/A, #REF!)', 'Data Validation'],
-      dataVar: 'EXCEL_QUESTIONS',
-      dataFile: 'data/excel.js'
-    }
-  ];
+  {
+    "id": "browser",
+    "name": "Browser Fundamentals",
+    "category": "Web & Systems",
+    "icon": "\ud83e\udded",
+    "accentColor": "#2563EB",
+    "accentLight": "rgba(37, 99, 235, 0.15)",
+    "description": "Browser rendering architecture, DOM parsing, HTTP/HTTPS lifecycle, DNS resolution, cookies, session/local storage, headers, and security fundamentals.",
+    "topics": [
+      "Rendering Engine & DOM",
+      "DNS & HTTP/HTTPS Handshake",
+      "Cookies vs Web Storage",
+      "Status Codes & Headers",
+      "CORS & Same-Origin Policy",
+      "Browser Caching"
+    ],
+    "targetCompanies": [
+      "Accenture",
+      "TCS",
+      "Cognizant",
+      "Capgemini"
+    ],
+    "questionCount": 50,
+    "jsonFile": "data/browser.json",
+    "dataFile": "data/browser.js",
+    "dataVar": "BROWSER_QUESTIONS"
+  },
+  {
+    "id": "programming-logic",
+    "name": "Programming Logic & Variables",
+    "category": "Core Coding",
+    "icon": "\ud83d\udcbb",
+    "accentColor": "#3B82F6",
+    "accentLight": "rgba(59, 130, 246, 0.15)",
+    "description": "Variables, primitive data types, operator precedence, type conversions, conditional logic, nested loops, break/continue, and execution tracing.",
+    "topics": [
+      "Variables & Data Types",
+      "Operator Precedence",
+      "Conditionals & Nested If",
+      "Loops & Iteration Control",
+      "Infinite Loop Traps",
+      "Execution Tracing"
+    ],
+    "targetCompanies": [
+      "TCS",
+      "Infosys",
+      "Wipro",
+      "Tech Mahindra"
+    ],
+    "questionCount": 150,
+    "jsonFile": "data/programming-logic.json",
+    "dataFile": "data/programming.js",
+    "dataVar": "PROGRAMMING_LOGIC_QUESTIONS"
+  },
+  {
+    "id": "command-prompt",
+    "name": "Linux & Command Prompt",
+    "category": "Practical Skills",
+    "icon": "\u2328\ufe0f",
+    "accentColor": "#F59E0B",
+    "accentLight": "rgba(245, 158, 11, 0.15)",
+    "description": "Essential CLI navigation, paths, file/folder operations, system administration, networking diagnostics (ping, ipconfig/ifconfig), and troubleshooting.",
+    "topics": [
+      "Directory Navigation & cd",
+      "File Operations (copy, move, del)",
+      "Relative vs Absolute Paths",
+      "Network Utilities (ping, ipconfig)",
+      "Permissions & CLI Output",
+      "Troubleshooting"
+    ],
+    "targetCompanies": [
+      "Cognizant",
+      "HCLTech",
+      "Accenture",
+      "Wipro"
+    ],
+    "questionCount": 30,
+    "jsonFile": "data/command-prompt.json",
+    "dataFile": "data/windows.js",
+    "dataVar": "COMMAND_PROMPT_QUESTIONS"
+  },
+  {
+    "id": "office",
+    "name": "Microsoft Office Suite",
+    "category": "Productivity",
+    "icon": "\ud83d\udcca",
+    "accentColor": "#059669",
+    "accentLight": "rgba(5, 150, 105, 0.15)",
+    "description": "Corporate workplace productivity across Microsoft Word (styles, mail merge), Excel (VLOOKUP, IF formulas, cell referencing), and PowerPoint.",
+    "topics": [
+      "Excel Formulas & Functions",
+      "Absolute vs Relative ($A$1)",
+      "Word Styles & Mail Merge",
+      "PowerPoint Master Slides",
+      "Pivot Tables & Charts",
+      "Error Tracing (#N/A, #REF!)"
+    ],
+    "targetCompanies": [
+      "Deloitte",
+      "Accenture",
+      "Capgemini",
+      "Tech Mahindra"
+    ],
+    "questionCount": 90,
+    "jsonFile": "data/office.json",
+    "dataFile": "data/office.js",
+    "dataVar": "OFFICE_QUESTIONS"
+  },
+  {
+    "id": "cloud",
+    "name": "Cloud Computing",
+    "category": "Infrastructure",
+    "icon": "\u2601\ufe0f",
+    "accentColor": "#0284C7",
+    "accentLight": "rgba(2, 132, 199, 0.15)",
+    "description": "IaaS, PaaS, SaaS, virtualization, Docker containers, multi-region architectures, elasticity vs scalability, serverless, and disaster recovery.",
+    "topics": [
+      "IaaS, PaaS, and SaaS",
+      "Scalability vs Elasticity",
+      "Regions & Availability Zones",
+      "Containers & Kubernetes",
+      "Serverless Architecture",
+      "Disaster Recovery & Cost"
+    ],
+    "targetCompanies": [
+      "Accenture",
+      "LTIMindtree",
+      "Cognizant",
+      "Infosys"
+    ],
+    "questionCount": 60,
+    "jsonFile": "data/cloud.json",
+    "dataFile": "data/cloud.js",
+    "dataVar": "CLOUD_QUESTIONS"
+  },
+  {
+    "id": "networking-security",
+    "name": "Networking & Security",
+    "category": "Infrastructure",
+    "icon": "\ud83d\udee1\ufe0f",
+    "accentColor": "#10B981",
+    "accentLight": "rgba(16, 185, 129, 0.15)",
+    "description": "OSI 7 layers, TCP/IP, three-way handshake, DNS, routing, CIDR subnetting, CIA triad, cryptography, TLS, firewalls, and attack vector diagnosis.",
+    "topics": [
+      "OSI vs TCP/IP Stack",
+      "TCP Handshake & Ports",
+      "Subnetting & IP Addressing",
+      "CIA Triad & Encryption",
+      "Firewalls, IDS & IPS",
+      "SQLi, XSS & MitM Attacks"
+    ],
+    "targetCompanies": [
+      "TCS",
+      "Wipro",
+      "LTIMindtree",
+      "Capgemini"
+    ],
+    "questionCount": 90,
+    "jsonFile": "data/networking-security.json",
+    "dataFile": "data/networking.js",
+    "dataVar": "NETWORKING_SECURITY_QUESTIONS"
+  },
+  {
+    "id": "pseudocode",
+    "name": "Pseudocode & Logic",
+    "category": "Core Coding",
+    "icon": "\u26a1",
+    "accentColor": "#8B5CF6",
+    "accentLight": "rgba(139, 92, 246, 0.15)",
+    "description": "High-yield pseudocode tracing, loop iteration counting, condition branching, recursion analysis, arrays, strings, bitwise logic, and complexity.",
+    "topics": [
+      "Code Output Prediction",
+      "Loop Iteration Counting",
+      "Recursion Depth & Returns",
+      "Bitwise Operator Logic",
+      "Array/Matrix Tracing",
+      "Algorithm Complexity"
+    ],
+    "targetCompanies": [
+      "Capgemini",
+      "Accenture",
+      "Cognizant",
+      "TCS"
+    ],
+    "questionCount": 130,
+    "jsonFile": "data/pseudocode.json",
+    "dataFile": "data/pseudocode.js",
+    "dataVar": "PSEUDOCODE_QUESTIONS"
+  },
+  {
+    "id": "dbms",
+    "name": "DBMS & SQL",
+    "category": "Data & Systems",
+    "icon": "\ud83d\uddc4\ufe0f",
+    "accentColor": "#0284C7",
+    "accentLight": "rgba(2, 132, 199, 0.15)",
+    "description": "Relational data model, candidate keys, 1NF to BCNF normalization, advanced SQL queries, joins, ACID transactions, two-phase locking, and B+ trees.",
+    "topics": [
+      "Keys & Referential Integrity",
+      "1NF, 2NF, 3NF & BCNF",
+      "Complex SQL Joins & GROUP BY",
+      "ACID & Recovery Logging",
+      "Concurrency, Locks & Deadlocks",
+      "Indexing & Query Plans"
+    ],
+    "targetCompanies": [
+      "TCS",
+      "Infosys",
+      "Deloitte",
+      "Tech Mahindra"
+    ],
+    "questionCount": 50,
+    "jsonFile": "data/dbms.json",
+    "dataFile": "data/dbms.js",
+    "dataVar": "DBMS_QUESTIONS"
+  },
+  {
+    "id": "javascript",
+    "name": "JavaScript & Web Dev",
+    "category": "Core Coding",
+    "icon": "\u2728",
+    "accentColor": "#EAB308",
+    "accentLight": "rgba(234, 179, 8, 0.15)",
+    "description": "ES6+ fundamentals, hoisting, closures, event loop microtasks/macrotasks, promises, async/await, DOM events, and tricky output evaluation.",
+    "topics": [
+      "var vs let vs const & TDZ",
+      "Closures & 'this' Binding",
+      "Event Loop & Promises",
+      "Async / Await Flow",
+      "DOM & Event Delegation",
+      "Type Coercion Gotchas"
+    ],
+    "targetCompanies": [
+      "Accenture",
+      "Cognizant",
+      "LTIMindtree",
+      "Infosys"
+    ],
+    "questionCount": 50,
+    "jsonFile": "data/javascript.json",
+    "dataFile": "data/javascript.js",
+    "dataVar": "JAVASCRIPT_QUESTIONS"
+  },
+  {
+    "id": "git",
+    "name": "Git & GitHub",
+    "category": "Software Engineering",
+    "icon": "\ud83d\udc19",
+    "accentColor": "#F05032",
+    "accentLight": "rgba(240, 80, 50, 0.15)",
+    "description": "Version control fundamentals, staging, commits, branch management, merge vs rebase, conflict resolution, reset vs revert, stash, and PR workflows.",
+    "topics": [
+      "Staging Area & Commits",
+      "Branching & Merge Conflicts",
+      "Rebase vs Merge Strategies",
+      "Reset, Revert & Restore",
+      "Stash & .gitignore Rules",
+      "Pull Requests & Remotes"
+    ],
+    "targetCompanies": [
+      "Deloitte",
+      "TCS",
+      "Accenture",
+      "Capgemini"
+    ],
+    "questionCount": 100,
+    "jsonFile": "data/git.json",
+    "dataFile": "data/git.js",
+    "dataVar": "GIT_QUESTIONS"
+  },
+  {
+    "id": "python",
+    "name": "Python & Algorithms",
+    "category": "Core Coding",
+    "icon": "\ud83d\udc0d",
+    "accentColor": "#306998",
+    "accentLight": "rgba(48, 105, 152, 0.15)",
+    "description": "Data structures, slicing, mutable default arguments, list/dict comprehensions, decorators, generators, OOP, sorting algorithms, and complexity.",
+    "topics": [
+      "Lists, Tuples, Sets, Dictionaries",
+      "Slicing & Immutability",
+      "Mutable Default Trap",
+      "OOP, MRO & Magic Methods",
+      "Sorting Algorithms & Timsort",
+      "Two Pointers & Sliding Window"
+    ],
+    "targetCompanies": [
+      "Infosys",
+      "TCS",
+      "Cognizant",
+      "Wipro"
+    ],
+    "questionCount": 100,
+    "jsonFile": "data/python.json",
+    "dataFile": "data/python.js",
+    "dataVar": "PYTHON_QUESTIONS"
+  },
+  {
+    "id": "ai-ml-dl",
+    "name": "AI, ML & Deep Learning",
+    "category": "Advanced CS",
+    "icon": "\ud83e\udd16",
+    "accentColor": "#9333EA",
+    "accentLight": "rgba(147, 51, 234, 0.15)",
+    "description": "Supervised/unsupervised learning, bias-variance tradeoff, evaluation metrics (F1, AUC), neural networks, backpropagation, CNNs, Transformers, and LLMs.",
+    "topics": [
+      "Supervised vs Unsupervised",
+      "Overfitting, Bias & Variance",
+      "Precision, Recall & ROC-AUC",
+      "Backprop & Activation Funcs",
+      "CNNs, RNNs & Attention",
+      "Transformers, LLMs & RAG"
+    ],
+    "targetCompanies": [
+      "Accenture",
+      "TCS",
+      "Deloitte",
+      "LTIMindtree"
+    ],
+    "questionCount": 100,
+    "jsonFile": "data/ai-ml-dl.json",
+    "dataFile": "data/aiml.js",
+    "dataVar": "AIML_QUESTIONS"
+  }
+];
 })();

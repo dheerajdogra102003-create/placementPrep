@@ -1,5 +1,4 @@
-/* PlacementPrep Question Bank: DBMS & SQL (50 questions) */
-window.DBMS_QUESTIONS = [
+[
   {
     "id": "dbms-001",
     "module": "DBMS",
@@ -1250,6 +1249,4 @@ window.DBMS_QUESTIONS = [
     "realWorldApplication": "Generating multi-level sales summary reports with quarterly subtotals and yearly grand totals for CFO executive meetings.",
     "placementTrap": "ROLLUP creates hierarchical subtotals (n+1 grouping sets). CUBE creates all 2^n possible cross-tab combinations!"
   }
-];
-if (!window.QUESTION_BANKS) window.QUESTION_BANKS = {};
-window.QUESTION_BANKS['dbms'] = window.DBMS_QUESTIONS;
+]

@@ -1,5 +1,4 @@
-/* PlacementPrep Question Bank: Programming Logic & Variables (150 questions) */
-window.PROGRAMMING_LOGIC_QUESTIONS = [
+[
   {
     "id": "prog-001",
     "module": "Conditional Statements + Loops + Variables & Data Types",
@@ -3550,6 +3549,4 @@ window.PROGRAMMING_LOGIC_QUESTIONS = [
     "realWorldApplication": "Binary search iteration bound for N=32.",
     "placementTrap": "Calculating log2(32)=5 and forgetting i=1 initial step."
   }
-];
-if (!window.QUESTION_BANKS) window.QUESTION_BANKS = {};
-window.QUESTION_BANKS['programming-logic'] = window.PROGRAMMING_LOGIC_QUESTIONS;
+]

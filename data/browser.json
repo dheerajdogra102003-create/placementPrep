@@ -1,5 +1,4 @@
-/* PlacementPrep Question Bank: Browser Fundamentals (50 questions) */
-window.BROWSER_QUESTIONS = [
+[
   {
     "id": "browser-001",
     "module": "Browser Fundamentals",
@@ -1050,6 +1049,4 @@ window.BROWSER_QUESTIONS = [
     "realWorldApplication": "Web application security, performance tuning, and cross-browser resilience.",
     "placementTrap": "Modern browsers automatically apply `rel='noopener'` to `target='_blank'` links by default."
   }
-];
-if (!window.QUESTION_BANKS) window.QUESTION_BANKS = {};
-window.QUESTION_BANKS['browser'] = window.BROWSER_QUESTIONS;
+]

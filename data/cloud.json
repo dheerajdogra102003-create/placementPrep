@@ -1,5 +1,4 @@
-/* PlacementPrep Question Bank: Cloud Computing (60 questions) */
-window.CLOUD_QUESTIONS = [
+[
   {
     "id": "cloud-001",
     "module": "Cloud Computing",
@@ -1260,6 +1259,4 @@ window.CLOUD_QUESTIONS = [
     "realWorldApplication": "Cloud elasticity and multi-AZ deployments ensure high availability for scalable enterprise microservices.",
     "placementTrap": "Migration always starts with Discovery & Assessment: Mapping dependencies, network flows, and technical debt."
   }
-];
-if (!window.QUESTION_BANKS) window.QUESTION_BANKS = {};
-window.QUESTION_BANKS['cloud'] = window.CLOUD_QUESTIONS;
+]

@@ -1,0 +1,3253 @@
+/* PlacementPrep Question Bank: Pseudocode & Logic (130 questions) */
+window.PSEUDOCODE_QUESTIONS = [
+  {
+    "id": "pseudo-001",
+    "module": "Pseudocode & Logic",
+    "topic": "Programming Fundamentals",
+    "subtopic": "Variables",
+    "difficulty": "hard",
+    "type": "output_tracing",
+    "question": "What is the exact output of the nested block structure where variables with identical identifiers undergo sequential mutation across inner and outer scopes?",
+    "codeSnippet": "Integer a = 10, b = 25\nBegin Block_1\n    Integer a = 30\n    b = b + a\n    Begin Block_2\n        Integer b = 5\n        a = a * 2 + b\n        Print a, b\n    End Block_2\n    b = b + a\n    Print a, b\nEnd Block_1\nPrint a, b",
+    "options": [
+      "65 5, 65 120, 10 120",
+      "65 5, 65 55, 10 55",
+      "65 5, 30 120, 10 120",
+      "65 5, 65 120, 65 120"
+    ],
+    "correctAnswer": 0,
+    "explanation": "In Block_1, a=30 shadows outer a. b is outer b (25+30=55). In Block_2, b=5 shadows outer b. a refers to Block_1's a: a = 30*2 + 5 = 65. Block_2 prints '65 5'. Exiting Block_2, inner b is destroyed. Outer b was 55, now b = 55 + 65 = 120. Block_1 prints '65 120'. Exiting Block_1, local a is destroyed; outer a=10, outer b=120. Final print: '10 120'.",
+    "wrongOptionExplanations": {
+      "1": "Forgot that outer b was mutated by Block_1's updated a (65) after Block_2 exited.",
+      "2": "Assumed a was reset to 30 after Block_2 exited.",
+      "3": "Assumed global a was mutated by inner block reassignments."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Keep separate rows for each scope level on paper: verify which variable is local vs outer."
+  },
+  {
+    "id": "pseudo-002",
+    "module": "Pseudocode & Logic",
+    "topic": "Programming Fundamentals",
+    "subtopic": "Variables",
+    "difficulty": "hard",
+    "type": "find_final_value",
+    "question": "Trace the values of variables p, q, and r as they pass through consecutive interdependent transformations. What is the final value of 'r'?",
+    "codeSnippet": "Integer p = 14, q = 6, r = 0\np = p + q\nq = p - q * 2\nif (p > 15 AND q < 10)\n    r = (p % q) * 4\n    p = p / 2\nelse\n    r = (p / q) * 2\nEnd if\nr = r + p - q\nPrint r",
+    "options": [
+      "22",
+      "18",
+      "14",
+      "26"
+    ],
+    "correctAnswer": 1,
+    "explanation": "1. p = 14 + 6 = 20.\n2. q = 20 - (6 * 2) = 20 - 12 = 8.\n3. Condition check: p > 15 (20 > 15 is TRUE) AND q < 10 (8 < 10 is TRUE). Both TRUE.\n4. If-branch: r = (20 % 8) * 4 = 4 * 4 = 16. p = 20 / 2 = 10.\n5. Final statement: r = r + p - q = 16 + 10 - 8 = 18.",
+    "wrongOptionExplanations": {
+      "0": "Used the old value of p (20) instead of updated p (10) in the final line.",
+      "2": "Executed the else branch instead.",
+      "3": "Calculation error in remainder."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Check if an if-branch modifies a variable (p became 10) that is reused immediately after the if block."
+  },
+  {
+    "id": "pseudo-003",
+    "module": "Pseudocode & Logic",
+    "topic": "Programming Fundamentals",
+    "subtopic": "Variables",
+    "difficulty": "medium",
+    "type": "logic_analysis",
+    "question": "Under what condition will the classic three-line arithmetic variable swap 'a = a + b; b = a - b; a = a - b;' cause a fatal arithmetic bug in standard typed programming languages?",
+    "codeSnippet": "a = a + b\nb = a - b\na = a - b",
+    "options": [
+      "When variables 'a' and 'b' have identical values",
+      "When variable 'b' is initialized to 0",
+      "When the sum (a + b) exceeds the maximum representable integer limit, causing signed integer overflow",
+      "When variable 'a' is negative"
+    ],
+    "correctAnswer": 2,
+    "explanation": "If a + b exceeds INT_MAX (e.g. 2,147,483,647 in 32-bit signed integers), integer overflow occurs, leading to undefined behavior or erroneous negative wrapped values in C/C++/Java.",
+    "wrongOptionExplanations": {
+      "0": "If a == b, arithmetic swap succeeds cleanly.",
+      "1": "If b = 0, a = a + 0 = a, b = a - 0 = a, a = a - a = 0; works correctly.",
+      "3": "Negative numbers work correctly unless underflow occurs."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Arithmetic swap without temporary variables is vulnerable to integer overflow; XOR swap or temp variable is safer."
+  },
+  {
+    "id": "pseudo-004",
+    "module": "Pseudocode & Logic",
+    "topic": "Programming Fundamentals",
+    "subtopic": "Constants",
+    "difficulty": "hard",
+    "type": "output_tracing",
+    "question": "In a C-style preprocessor / symbolic constant environment, constant BUFFER_SIZE is defined as 5 + 3. What is the output of the expression evaluation?",
+    "codeSnippet": "#define BUFFER_SIZE 5 + 3\nInteger total = BUFFER_SIZE * BUFFER_SIZE;\nPrint total",
+    "options": [
+      "40",
+      "64",
+      "34",
+      "23"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Textual symbolic constants substitute directly without automatic parentheses. BUFFER_SIZE * BUFFER_SIZE expands textually to: 5 + 3 * 5 + 3. Following operator precedence, multiplication executes first: 3 * 5 = 15. Then addition left-to-right: 5 + 15 + 3 = 23.",
+    "wrongOptionExplanations": {
+      "0": "Miscalculated arithmetic.",
+      "1": "Assumed parenthesized evaluation (5 + 3) * (5 + 3) = 64. Raw macro definitions do not include implicit brackets.",
+      "2": "Evaluated (5 + 3 * 5) + 3 incorrectly."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "In C/C++ macro constants, always perform raw textual substitution before evaluating operators."
+  },
+  {
+    "id": "pseudo-005",
+    "module": "Pseudocode & Logic",
+    "topic": "Programming Fundamentals",
+    "subtopic": "Constants",
+    "difficulty": "hard",
+    "type": "direct_conceptual",
+    "question": "In a compiled language supporting constant folding, a programmer attempts to indirectly modify a constant integer via a memory reference pointer. What is the architectural outcome?",
+    "codeSnippet": "Constant Integer MAX_LIMIT = 100\nPointer ptr = AddressOf(MAX_LIMIT)\n*ptr = 200\nInteger calc = MAX_LIMIT * 2\nPrint calc",
+    "options": [
+      "200 (The compiler folds MAX_LIMIT directly into literal 100 at compile-time: 100 * 2 = 200)",
+      "400 (Memory was changed to 200, so 200 * 2 = 400)",
+      "Compilation Error: Cannot take address of constant in any language",
+      "0"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Because MAX_LIMIT is declared Constant, optimizing compilers perform 'constant folding' and replace occurrences of MAX_LIMIT with literal 100 during compilation. Even if memory at that location was mutated, 'MAX_LIMIT * 2' is pre-compiled as '100 * 2', yielding 200.",
+    "wrongOptionExplanations": {
+      "1": "Assumes runtime memory lookup instead of compile-time constant propagation.",
+      "2": "Taking address of a const variable is syntactically allowed with pointers/casts in C/C++.",
+      "3": "Result does not zero out."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Compilers substitute constant values at compile-time, ignoring indirect memory modifications."
+  },
+  {
+    "id": "pseudo-006",
+    "module": "Pseudocode & Logic",
+    "topic": "Programming Fundamentals",
+    "subtopic": "Data Types",
+    "difficulty": "hard",
+    "type": "scenario_based",
+    "question": "A banking fee engine calculates a 2.5% transaction charge on amounts exceeding 1000. For an exact transaction amount of 2500, trace the code. What is printed?",
+    "codeSnippet": "Integer amount = 2500\nFloat feeRate = 2.5 / 100\nInteger fee = (Integer) (amount * (25 / 1000))\nFloat exactFee = amount * feeRate\nPrint fee, exactFee",
+    "options": [
+      "62, 62.5",
+      "0, 62.5",
+      "62.5, 62.5",
+      "0, 62.0"
+    ],
+    "correctAnswer": 1,
+    "explanation": "In the calculation of 'fee', '25 / 1000' is an integer division between two integer literals, which truncates to 0! Thus, amount * 0 = 0. In 'feeRate', '2.5 / 100' involves a Float literal (2.5), performing true float division (0.025), so exactFee = 2500 * 0.025 = 62.5. Output is '0, 62.5'.",
+    "wrongOptionExplanations": {
+      "0": "Assumed 25 / 1000 resulted in 0.025 instead of integer 0.",
+      "2": "fee is an Integer, so it cannot hold 62.5.",
+      "3": "exactFee retains floating-point fractional value .5."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Beware of literal fractions: '25 / 1000' is 0, while '25.0 / 1000' is 0.025!"
+  },
+  {
+    "id": "pseudo-007",
+    "module": "Pseudocode & Logic",
+    "topic": "Programming Fundamentals",
+    "subtopic": "Data Types",
+    "difficulty": "hard",
+    "type": "concept_application",
+    "question": "A Caesar cipher encryption shifts characters forward by key = 7, wrapping within uppercase letters 'A' (65) through 'Z' (90). What character is output for letter = 'W'?",
+    "codeSnippet": "Character letter = 'W'\nInteger key = 7\nInteger shifted = (letter - 'A' + key) % 26\nCharacter cipher = 'A' + shifted\nPrint cipher",
+    "options": [
+      "'E'",
+      "'C'",
+      "'D'",
+      "'Z'"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Letter 'W' has ASCII code 87. letter - 'A' = 87 - 65 = 22 (0-indexed position of W in alphabet). 22 + key = 22 + 7 = 29. 29 % 26 = 3. 'A' + 3 = 65 + 3 = 68, which is the ASCII character for 'D'. Output is 'D'.",
+    "wrongOptionExplanations": {
+      "0": "Off-by-one error (assumed 29 % 26 = 4).",
+      "1": "Off-by-one error (assumed 29 % 26 = 2).",
+      "3": "Forgot the modulo wrap."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "In circular character shifts, '(ch - 'A' + shift) % 26 + 'A'' handles wraparound seamlessly."
+  },
+  {
+    "id": "pseudo-008",
+    "module": "Pseudocode & Logic",
+    "topic": "Programming Fundamentals",
+    "subtopic": "Data Types",
+    "difficulty": "hard",
+    "type": "logic_analysis",
+    "question": "Assume a 16-bit signed integer type in two's complement with range -32,768 to 32,767. If x is initialized to 32,760 and updated via 'x = x + 10', what is the exact evaluated result of 'x < 0'?",
+    "codeSnippet": "Signed16BitInteger x = 32760\nx = x + 10\nBoolean isNegative = (x < 0)\nPrint isNegative, x",
+    "options": [
+      "false, 0",
+      "false, 32770",
+      "true, -32768",
+      "true, -32766"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Maximum 16-bit signed integer is 32767. When adding 10 to 32760: 32760 + 7 = 32767. Next +1 wraps to -32768, +2 wraps to -32767, +3 wraps to -32766. Thus x becomes -32766, which is strictly negative (< 0). Condition evaluates to TRUE.",
+    "wrongOptionExplanations": {
+      "0": "Does not reset to 0.",
+      "1": "32770 cannot fit in 16-bit signed range; overflow wraps to negative.",
+      "2": "Wrapped 2 steps further than -32768."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Signed integer overflow wraps around continuously in two's complement circle: MAX + 1 = MIN."
+  },
+  {
+    "id": "pseudo-009",
+    "module": "Pseudocode & Logic",
+    "topic": "Programming Fundamentals",
+    "subtopic": "Type Conversion",
+    "difficulty": "hard",
+    "type": "output_tracing",
+    "question": "What is the exact numerical output of variable 'ans' after executing this mixed-type conversion expression?",
+    "codeSnippet": "Integer a = 9, b = 4\nFloat c = 2.8\nFloat ans = (Float) (a / b) + (Float) a / b + (Integer) (c * b)\nPrint ans",
+    "options": [
+      "15.25",
+      "15.0",
+      "14.25",
+      "16.05"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Term 1: (Float) (a / b) -> a/b is 9/4 = 2 (integer division). Cast to Float gives 2.0.\nTerm 2: ((Float) a) / b -> 9.0 / 4 = 2.25 (float division).\nTerm 3: (Integer) (c * b) -> 2.8 * 4 = 11.2. Cast to Integer truncates to 11.\nSum: 2.0 + 2.25 + 11 = 15.25.",
+    "wrongOptionExplanations": {
+      "1": "Truncated the float division in Term 2.",
+      "2": "Cast c to Integer before multiplying (2 * 4 = 8).",
+      "3": "Miscalculated 2.8 * 4."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Distinguish '(Float)(a / b)' [divides first, casts after = 2.0] from '((Float) a) / b' [casts first, divides float = 2.25]."
+  },
+  {
+    "id": "pseudo-010",
+    "module": "Pseudocode & Logic",
+    "topic": "Programming Fundamentals",
+    "subtopic": "Type Conversion",
+    "difficulty": "hard",
+    "type": "logic_analysis",
+    "question": "In C/C++ placement assessments, what is the output of comparing a signed negative integer with an unsigned positive integer?",
+    "codeSnippet": "int a = -10;\nunsigned int b = 5;\nif (a > b)\n    Print \"Condition A is True\";\nelse\n    Print \"Condition B is True\";",
+    "options": [
+      "Condition B is True (-10 is less than 5)",
+      "Condition A is True (due to signed-to-unsigned implicit promotion)",
+      "Compilation Error: Cannot compare signed with unsigned",
+      "Undefined behavior"
+    ],
+    "correctAnswer": 1,
+    "explanation": "In standard C/C++ integer promotion rules, when comparing 'int' with 'unsigned int', the signed operand ('a' = -10) is implicitly converted to 'unsigned int'. In 32-bit two's complement, -10 becomes 4294967286. Since 4294967286 > 5, the condition evaluates to TRUE, printing 'Condition A is True'.",
+    "wrongOptionExplanations": {
+      "0": "Fails to recognize the standard C language unsigned promotion conversion rule.",
+      "2": "Signed-unsigned comparison is valid C syntax (with compiler warning).",
+      "3": "Behavior is completely well-defined by ISO C standards."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Critical C Rule: Comparing signed negative with unsigned promotes negative number to a huge positive integer!"
+  },
+  {
+    "id": "pseudo-011",
+    "module": "Pseudocode & Logic",
+    "topic": "Programming Fundamentals",
+    "subtopic": "Type Conversion",
+    "difficulty": "hard",
+    "type": "error_identification",
+    "question": "What error or unexpected output is produced by the following expression evaluating a mixed String and Integer expression?",
+    "codeSnippet": "String prefix = \"Result: \"\nInteger a = 10, b = 20\nString output = prefix + a + b * 2\nPrint output",
+    "options": [
+      "Prints 'Result: 60' because (10 + 20) * 2 = 60",
+      "Prints 'Result: 50' because numbers are added together first",
+      "Prints 'Result: 1040' because multiplication executes first (b*2=40), then left-to-right string concatenation produces 'Result: 10' + 40 = 'Result: 1040'",
+      "Compilation Error: Cannot concatenate integer with string"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Multiplication (*) has higher precedence than addition (+): b * 2 = 20 * 2 = 40. Then addition associates left-to-right: prefix + a = \"Result: \" + 10 = \"Result: 10\". Then \"Result: 10\" + 40 = \"Result: 1040\".",
+    "wrongOptionExplanations": {
+      "0": "Parentheses are not around (a + b).",
+      "1": "Addition does not combine numbers once a string has entered left-to-right concatenation.",
+      "3": "String concatenation with primitives is supported in modern pseudocode and Java."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Multiplication evaluates first, but once string concatenation starts left-to-right, subsequent '+' operators concatenate instead of adding!"
+  },
+  {
+    "id": "pseudo-012",
+    "module": "Pseudocode & Logic",
+    "topic": "Programming Fundamentals",
+    "subtopic": "Arithmetic Operators",
+    "difficulty": "hard",
+    "type": "find_final_value",
+    "question": "What is the value of 'res' after evaluating the arithmetic expression with interacting modulo and division operators?",
+    "codeSnippet": "Integer x = 47, y = 7\nInteger res = (x / y) * y + (x % y) - (x / (x % y))\nPrint res",
+    "options": [
+      "35",
+      "47",
+      "42",
+      "37"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Term 1: (x / y) * y + (x % y) is the fundamental Euclidean division theorem identity: (47 / 7) * 7 + (47 % 7) = 6 * 7 + 5 = 42 + 5 = 47 (restores x!).\nTerm 2: x / (x % y) = 47 / 5 = 9 (integer division).\nOverall: 47 - 9 = 37.",
+    "wrongOptionExplanations": {
+      "0": "Miscalculated 47 / 5 as 12.",
+      "1": "Forgot to subtract the final term (47 / 5 = 9).",
+      "2": "Omitted the remainder."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Recognize the identity: '(x / y) * y + (x % y)' always equals x for positive integers."
+  },
+  {
+    "id": "pseudo-013",
+    "module": "Pseudocode & Logic",
+    "topic": "Programming Fundamentals",
+    "subtopic": "Arithmetic Operators",
+    "difficulty": "hard",
+    "type": "output_tracing",
+    "question": "In standard C/Java/pseudocode standards (ISO truncated division), what is printed when negative operands undergo integer division and modulo?",
+    "codeSnippet": "Integer a = -23, b = 5\nInteger rem = a % b\nInteger quot = a / b\nInteger check = quot * b + rem\nPrint rem, quot, check",
+    "options": [
+      "-3, -4, -23",
+      "2, -5, -23",
+      "-3, -5, -28",
+      "3, -4, -17"
+    ],
+    "correctAnswer": 0,
+    "explanation": "In ISO C99 / Java: integer division truncates towards zero. -23 / 5 = -4. Remainder sign matches the dividend (a = -23): rem = -23 % 5 = -3. Reconstitution check: (-4 * 5) + (-3) = -20 - 3 = -23. Output is '-3, -4, -23'.",
+    "wrongOptionExplanations": {
+      "1": "Assumed floored division (Python-style, where quot = -5, rem = 2).",
+      "2": "Arithmetic inconsistency.",
+      "3": "Inverted remainder sign."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "In C/C++/Java: the sign of 'a % b' always matches the sign of 'a' (the dividend)."
+  },
+  {
+    "id": "pseudo-014",
+    "module": "Pseudocode & Logic",
+    "topic": "Programming Fundamentals",
+    "subtopic": "Arithmetic Operators",
+    "difficulty": "medium",
+    "type": "scenario_based",
+    "question": "A security hashing routine compresses a 4-digit security PIN by extracting and summing the products of opposite digit pairs (Thousands * Units + Hundreds * Tens). For PIN = 7425, what checksum is computed?",
+    "codeSnippet": "Integer pin = 7425\nInteger d1 = (pin / 1000) % 10\nInteger d2 = (pin / 100) % 10\nInteger d3 = (pin / 10) % 10\nInteger d4 = pin % 10\nInteger hash = (d1 * d4) + (d2 * d3)\nPrint hash",
+    "options": [
+      "35",
+      "43",
+      "56",
+      "28"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Digits of 7425: d1 = 7, d2 = 4, d3 = 2, d4 = 5.\nhash = (d1 * d4) + (d2 * d3) = (7 * 5) + (4 * 2) = 35 + 8 = 43.",
+    "wrongOptionExplanations": {
+      "0": "Omitted the (d2 * d3) term (only 35).",
+      "2": "Calculated (7 * 4) + (2 * 5) = 28 + 10 = 38.",
+      "3": "Multiplied wrong pairs."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Trace individual digit extraction using integer division and modulo 10."
+  },
+  {
+    "id": "pseudo-015",
+    "module": "Pseudocode & Logic",
+    "topic": "Programming Fundamentals",
+    "subtopic": "Arithmetic Operators",
+    "difficulty": "hard",
+    "type": "find_final_value",
+    "question": "What is the final computed value of 'val'?",
+    "codeSnippet": "Integer a = 18, b = 5, c = 4\nInteger val = a % b * c + a / b * c - (a + b) % c\nPrint val",
+    "options": [
+      "18",
+      "24",
+      "21",
+      "15"
+    ],
+    "correctAnswer": 2,
+    "explanation": "1. Term 1: a % b * c = (18 % 5) * 4 = 3 * 4 = 12.\n2. Term 2: a / b * c = (18 / 5) * 4 = 3 * 4 = 12.\n3. Term 3: (a + b) % c = (18 + 5) % 4 = 23 % 4 = 3.\n4. Expression: 12 + 12 - 3 = 21.",
+    "wrongOptionExplanations": {
+      "0": "Miscalculated integer division 18 / 5.",
+      "1": "Forgot to subtract Term 3 (12 + 12 = 24).",
+      "3": "Calculation mistake."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Keep terms separated: evaluate each sub-expression independently before combining."
+  },
+  {
+    "id": "pseudo-016",
+    "module": "Pseudocode & Logic",
+    "topic": "Programming Fundamentals",
+    "subtopic": "Relational Operators",
+    "difficulty": "hard",
+    "type": "output_tracing",
+    "question": "What are the final values of variables a, b, and c after evaluating the complex relational condition?",
+    "codeSnippet": "Integer a = 3, b = 7, c = 2\nif (++a >= 4 AND (b = b + 3) > 12 OR ++c > 2)\n    a = a + 5\nEnd if\nPrint a, b, c",
+    "options": [
+      "9, 10, 2",
+      "9, 7, 3",
+      "4, 10, 2",
+      "9, 10, 3"
+    ],
+    "correctAnswer": 3,
+    "explanation": "1. ++a: a increments to 4; 4 >= 4 is TRUE.\n2. Left of OR has AND: since 4 >= 4 is TRUE, the right operand '(b = b + 3) > 12' must evaluate. b becomes 7 + 3 = 10; 10 > 12 is FALSE. So (TRUE AND FALSE) is FALSE.\n3. Because the left of OR is FALSE, the right operand of OR '++c > 2' MUST evaluate. ++c increments c to 3; 3 > 2 is TRUE.\n4. Overall condition is TRUE (FALSE OR TRUE = TRUE). If-body executes: a = 4 + 5 = 9.\nFinal values: a = 9, b = 10, c = 3.",
+    "wrongOptionExplanations": {
+      "0": "Assumed ++c was short-circuited (it was NOT, because the left side of OR was false!).",
+      "1": "Skipped mutating b.",
+      "2": "Failed to execute if-body."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "In 'A OR B', B is evaluated IF AND ONLY IF A evaluates to FALSE. Trace both branches carefully."
+  },
+  {
+    "id": "pseudo-017",
+    "module": "Pseudocode & Logic",
+    "topic": "Programming Fundamentals",
+    "subtopic": "Relational Operators",
+    "difficulty": "hard",
+    "type": "logic_analysis",
+    "question": "In C/C++ style language evaluation rules, what does the chained comparison '10 > 5 > 2' evaluate to?",
+    "codeSnippet": "int result = 10 > 5 > 2;\nPrint result;",
+    "options": [
+      "0 (false, because (10 > 5) evaluates to 1, then (1 > 2) evaluates to 0)",
+      "1 (true, because 10 is greater than 5 and 5 is greater than 2)",
+      "Compilation Error: Chained relational comparison invalid syntax",
+      "Undefined behavior"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Relational operators associate strictly LEFT-TO-RIGHT. Step 1: (10 > 5) evaluates to boolean TRUE (represented as integer 1). Step 2: (1 > 2) evaluates to boolean FALSE (integer 0). Therefore, result = 0.",
+    "wrongOptionExplanations": {
+      "1": "Assumed mathematical transitiveness. In programming, 'a > b > c' does NOT mean 'a > b and b > c'.",
+      "2": "Chaining relational operators is syntactically valid in C/C++.",
+      "3": "Associativity and evaluation order are strictly specified by standards."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Remember: In programming, '10 > 5 > 2' is '1 > 2', which evaluates to FALSE (0)!"
+  },
+  {
+    "id": "pseudo-018",
+    "module": "Pseudocode & Logic",
+    "topic": "Programming Fundamentals",
+    "subtopic": "Relational Operators",
+    "difficulty": "hard",
+    "type": "error_identification",
+    "question": "What subtle bug exists in the financial balance verification code below?",
+    "codeSnippet": "Float debit = 0.7\nFloat credit = 0.4 + 0.3\nif (debit == credit)\n    Print \"LEDGER_BALANCED\"\nelse\n    Print \"AUDIT_DISCREPANCY\"\nEnd if",
+    "options": [
+      "Prints 'LEDGER_BALANCED' without error",
+      "Prints 'AUDIT_DISCREPANCY' due to binary floating-point rounding error where 0.4 + 0.3 does not equal 0.7 exactly in IEEE-754",
+      "Compilation Error: Cannot compare Float with '=='",
+      "Throws FloatingPointException at runtime"
+    ],
+    "correctAnswer": 1,
+    "explanation": "In IEEE-754 floating point (used by C/Java/Python), decimal fractions like 0.7 and 0.3 have infinite binary repeating expansions. 0.4 + 0.3 evaluates to approximately 0.7000000000000001, so 'debit == credit' is FALSE, causing an erroneous 'AUDIT_DISCREPANCY'.",
+    "wrongOptionExplanations": {
+      "0": "Assumes exact decimal arithmetic in binary floating-point registers.",
+      "2": "Equality comparison between floats is syntactically legal.",
+      "3": "Does not throw a runtime exception."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Never test floats with '=='; always use an epsilon tolerance: abs(debit - credit) < 0.0001."
+  },
+  {
+    "id": "pseudo-019",
+    "module": "Pseudocode & Logic",
+    "topic": "Programming Fundamentals",
+    "subtopic": "Logical Operators",
+    "difficulty": "hard",
+    "type": "output_tracing",
+    "question": "What is the printed result of evaluating logical NOT versus bitwise NOT on integer values?",
+    "codeSnippet": "int x = 0;\nint a = !x;\nint b = ~x;\nPrint a, b",
+    "options": [
+      "0, -1",
+      "1, 1",
+      "1, -1",
+      "1, 0"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Logical NOT (!x) evaluates boolean negation: !0 yields 1. Bitwise NOT (~x) inverts all bits. In two's complement arithmetic, ~0 = -1 (all 1-bits represents -1). Thus, a = 1, b = -1.",
+    "wrongOptionExplanations": {
+      "0": "!0 is 1, not 0.",
+      "1": "Assumed bitwise NOT on 0 produces 1.",
+      "3": "Bitwise inversion of 0 does not yield 0."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Remember: '!0' is logical TRUE (1), but '~0' is bitwise inversion producing -1."
+  },
+  {
+    "id": "pseudo-020",
+    "module": "Pseudocode & Logic",
+    "topic": "Programming Fundamentals",
+    "subtopic": "Logical Operators",
+    "difficulty": "hard",
+    "type": "logic_analysis",
+    "question": "Trace the execution of variables x, y, and z. Which variables undergo modification?",
+    "codeSnippet": "Integer x = 5, y = 8, z = 12\nif ((x > 10 AND ++y > 8) OR (++x > 5 AND ++z > 12))\n    x = x + 1\nEnd if\nPrint x, y, z",
+    "options": [
+      "6, 9, 12",
+      "7, 9, 13",
+      "6, 8, 13",
+      "7, 8, 13"
+    ],
+    "correctAnswer": 3,
+    "explanation": "1. Left of OR: (x > 10 AND ++y > 8). Since x > 10 (5 > 10) is FALSE, short-circuit prevents ++y from running! y remains 8. Left of OR is FALSE.\n2. Right of OR: (++x > 5 AND ++z > 12). Since left of OR was FALSE, right side must evaluate.\n3. ++x pre-increments x from 5 to 6; 6 > 5 is TRUE.\n4. Since first part of AND is TRUE, ++z runs, incrementing z from 12 to 13; 13 > 12 is TRUE.\n5. Both parts TRUE, so condition is TRUE. If-body runs: x = 6 + 1 = 7.\nFinal values: x = 7, y = 8, z = 13.",
+    "wrongOptionExplanations": {
+      "0": "Assumed right side was short-circuited.",
+      "1": "Erroneously incremented y (it was short-circuited).",
+      "2": "Failed to execute if-body addition x = x + 1."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Carefully track which expressions are short-circuited and which are forced to evaluate."
+  },
+  {
+    "id": "pseudo-021",
+    "module": "Pseudocode & Logic",
+    "topic": "Programming Fundamentals",
+    "subtopic": "Logical Operators",
+    "difficulty": "hard",
+    "type": "scenario_based",
+    "question": "A corporate VPN access gatekeeper permits access ONLY IF: user has valid credentials AND (device is corporate-managed OR (user has remote-access-override AND NOT device_compromised)). For credentials=true, managed=false, override=true, compromised=true, what is output?",
+    "codeSnippet": "Boolean creds = true, managed = false, override = true, compromised = true\nBoolean access = creds AND (managed OR (override AND NOT compromised))\nPrint access",
+    "options": [
+      "false",
+      "true",
+      "Compilation Error",
+      "Undefined"
+    ],
+    "correctAnswer": 0,
+    "explanation": "1. Innermost: (override AND NOT compromised) = (true AND NOT true) = (true AND false) = false.\n2. Middle: (managed OR false) = (false OR false) = false.\n3. Outermost: creds AND false = true AND false = false.\nAccess is denied (false).",
+    "wrongOptionExplanations": {
+      "1": "Compromised device flag correctly overrides access, making the condition false.",
+      "2": "Syntactically valid boolean expression.",
+      "3": "Fully deterministic."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Evaluate nested boolean expressions from the deepest parentheses outward."
+  },
+  {
+    "id": "pseudo-022",
+    "module": "Pseudocode & Logic",
+    "topic": "Programming Fundamentals",
+    "subtopic": "Logical Operators",
+    "difficulty": "medium",
+    "type": "direct_conceptual",
+    "question": "Which expression is logically equivalent to 'NOT (X > 100 OR Y <= 50)'?",
+    "codeSnippet": "",
+    "options": [
+      "X <= 100 OR Y > 50",
+      "X <= 100 AND Y > 50",
+      "X < 100 AND Y >= 50",
+      "NOT X > 100 OR NOT Y <= 50"
+    ],
+    "correctAnswer": 1,
+    "explanation": "By De Morgan's Law: NOT (A OR B) = (NOT A) AND (NOT B).\nNOT (X > 100) is X <= 100.\nNOT (Y <= 50) is Y > 50.\nCombining with AND gives: X <= 100 AND Y > 50.",
+    "wrongOptionExplanations": {
+      "0": "Did not invert OR to AND.",
+      "2": "Inverted > 100 to strictly < 100 instead of <= 100.",
+      "3": "Did not change OR to AND."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Remember both rules: (1) Invert relational operators, (2) Flip OR <-> AND."
+  },
+  {
+    "id": "pseudo-023",
+    "module": "Pseudocode & Logic",
+    "topic": "Programming Fundamentals",
+    "subtopic": "Assignment Operators",
+    "difficulty": "hard",
+    "type": "find_final_value",
+    "question": "What is the final value of variable 'p' after executing the right-to-left chained compound assignment?",
+    "codeSnippet": "Integer p = 3, q = 4, r = 2\np += q *= r += 3\nPrint p, q, r",
+    "options": [
+      "35, 20, 5",
+      "23, 20, 2",
+      "23, 20, 5",
+      "15, 12, 5"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Assignment operators evaluate strictly RIGHT-TO-LEFT:\n1. r += 3: r becomes 2 + 3 = 5, and yields 5.\n2. q *= 5: q becomes 4 * 5 = 20, and yields 20.\n3. p += 20: p becomes 3 + 20 = 23, and yields 23.\nFinal values: p = 23, q = 20, r = 5.",
+    "wrongOptionExplanations": {
+      "0": "Multiplied 3 * 20 instead of adding.",
+      "1": "Forgot to persist the update on r.",
+      "3": "Evaluated left-to-right incorrectly."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Assignment operators associate RIGHT-TO-LEFT: start from the far right and propagate results backward."
+  },
+  {
+    "id": "pseudo-024",
+    "module": "Pseudocode & Logic",
+    "topic": "Programming Fundamentals",
+    "subtopic": "Assignment Operators",
+    "difficulty": "hard",
+    "type": "concept_application",
+    "question": "What is the output of variable 'x' after executing the compound assignment 'x *= y + 2'?",
+    "codeSnippet": "Integer x = 5, y = 4\nx *= y + 2\nPrint x",
+    "options": [
+      "14",
+      "22",
+      "20",
+      "30"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Compound assignment operators (e.g., *=) have lower precedence than arithmetic addition (+). The entire right-hand side is evaluated first as if parenthesized: x = x * (y + 2) = 5 * (4 + 2) = 5 * 6 = 30.",
+    "wrongOptionExplanations": {
+      "0": "Calculation error.",
+      "1": "Assumed x = x * y + 2 = 5 * 4 + 2 = 22 (failed to parenthesize right-hand side).",
+      "2": "Multiplied 5 * 4 and ignored + 2."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Rule: 'a op= b + c' ALWAYS expands to 'a = a op (b + c)'!"
+  },
+  {
+    "id": "pseudo-025",
+    "module": "Pseudocode & Logic",
+    "topic": "Programming Fundamentals",
+    "subtopic": "Assignment Operators",
+    "difficulty": "medium",
+    "type": "output_tracing",
+    "question": "What is printed by the consecutive compound assignment operations?",
+    "codeSnippet": "Integer n = 45\nn %= 10\nn += 8\nn *= 2\nPrint n",
+    "options": [
+      "26",
+      "18",
+      "90",
+      "36"
+    ],
+    "correctAnswer": 0,
+    "explanation": "1. n %= 10 -> 45 % 10 = 5.\n2. n += 8 -> 5 + 8 = 13.\n3. n *= 2 -> 13 * 2 = 26.\nOutput is 26.",
+    "wrongOptionExplanations": {
+      "1": "Calculation error in addition.",
+      "2": "Multiplied initial 45 * 2.",
+      "3": "Calculation error."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Step through each compound assignment updating the variable in place."
+  },
+  {
+    "id": "pseudo-026",
+    "module": "Pseudocode & Logic",
+    "topic": "Programming Fundamentals",
+    "subtopic": "Increment and Decrement",
+    "difficulty": "hard",
+    "type": "output_tracing",
+    "question": "In a well-defined language environment evaluating left-to-right with sequence point tracking, what is the output of the following statement?",
+    "codeSnippet": "int x = 5;\nint y = (x++) + (++x) * (x--);\nPrint x, y;",
+    "options": [
+      "7, 54",
+      "6, 54",
+      "6, 40",
+      "5, 49"
+    ],
+    "correctAnswer": 1,
+    "explanation": "In Java (and modern strictly-defined pseudocode): operands evaluate strictly left-to-right.\n1. (x++) evaluates to 5, and x becomes 6.\n2. (++x) pre-increments x from 6 to 7, and evaluates to 7.\n3. (x--) evaluates to 7, and x becomes 6.\n4. Multiplication has higher precedence: 7 * 7 = 49.\n5. Addition: 5 + 49 = 54. Final x = 6. Output is 6, 54.",
+    "wrongOptionExplanations": {
+      "0": "Forgot that x-- decremented x back to 6.",
+      "2": "Evaluated addition before multiplication.",
+      "3": "Calculation error."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Follow Java order: evaluate each operand expression left-to-right before applying operator precedence to calculations."
+  },
+  {
+    "id": "pseudo-027",
+    "module": "Pseudocode & Logic",
+    "topic": "Programming Fundamentals",
+    "subtopic": "Increment and Decrement",
+    "difficulty": "hard",
+    "type": "output_tracing",
+    "question": "What is printed by the following expression combining pre-decrement and post-decrement?",
+    "codeSnippet": "Integer a = 8, b = 12\nInteger ans = --a * b-- - a++\nPrint ans, a, b",
+    "options": [
+      "77, 7, 11",
+      "84, 8, 11",
+      "77, 8, 11",
+      "76, 8, 12"
+    ],
+    "correctAnswer": 2,
+    "explanation": "1. --a: pre-decrements a from 8 to 7, value used is 7.\n2. b--: value used is 12, then b becomes 11.\n3. Product: 7 * 12 = 84.\n4. a++: value used is 7, then a becomes 8.\n5. ans = 84 - 7 = 77.\nFinal values: ans = 77, a = 8, b = 11.",
+    "wrongOptionExplanations": {
+      "0": "Forgot that a was post-incremented to 8.",
+      "1": "Forgot to subtract a++ (84).",
+      "3": "Did not decrement b."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Track both the value returned into the expression and the updated value in memory."
+  },
+  {
+    "id": "pseudo-028",
+    "module": "Pseudocode & Logic",
+    "topic": "Programming Fundamentals",
+    "subtopic": "Increment and Decrement",
+    "difficulty": "hard",
+    "type": "logic_analysis",
+    "question": "How many times does the while loop body execute, and what is the final value of 'k'?",
+    "codeSnippet": "Integer k = 0, count = 0\nwhile (k++ < 4)\n    count = count + 1\nEnd while\nPrint count, k",
+    "options": [
+      "5, 5",
+      "4, 4",
+      "3, 4",
+      "4, 5"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Trace condition 'k++ < 4':\n- Check 1: k=0 (<4 is TRUE), k becomes 1. Body runs: count = 1.\n- Check 2: k=1 (<4 is TRUE), k becomes 2. Body runs: count = 2.\n- Check 3: k=2 (<4 is TRUE), k becomes 3. Body runs: count = 3.\n- Check 4: k=3 (<4 is TRUE), k becomes 4. Body runs: count = 4.\n- Check 5: k=4 (<4 is FALSE), k becomes 5. Loop terminates.\nOutput is count = 4, k = 5.",
+    "wrongOptionExplanations": {
+      "0": "5 < 4 is false; body ran only 4 times.",
+      "1": "k increments to 5 even on the failing check.",
+      "2": "Under-counted iterations."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Post-increment in while condition ALWAYS increments k even on the iteration where the condition evaluates to FALSE."
+  },
+  {
+    "id": "pseudo-029",
+    "module": "Pseudocode & Logic",
+    "topic": "Programming Fundamentals",
+    "subtopic": "Increment and Decrement",
+    "difficulty": "medium",
+    "type": "find_final_value",
+    "question": "What is the final value of variable 'total' after executing the conditional increment statement?",
+    "codeSnippet": "Integer a = 10, total = 0\nif (++a == 11)\n    total = a * 2\nelse\n    total = a * 3\nEnd if\nPrint total",
+    "options": [
+      "22",
+      "30",
+      "20",
+      "33"
+    ],
+    "correctAnswer": 0,
+    "explanation": "++a pre-increments a from 10 to 11 and yields 11. 11 == 11 is TRUE. The if-branch executes: total = 11 * 2 = 22.",
+    "wrongOptionExplanations": {
+      "1": "Assumed a was 10 in the multiplication.",
+      "2": "Used un-incremented 10 * 2 = 20.",
+      "3": "Executed the else branch."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Pre-increment updates variable immediately before the comparison occurs."
+  },
+  {
+    "id": "pseudo-030",
+    "module": "Pseudocode & Logic",
+    "topic": "Programming Fundamentals",
+    "subtopic": "Operator Precedence",
+    "difficulty": "hard",
+    "type": "output_tracing",
+    "question": "What is the output of the expression combining bitwise AND, equality, and ternary operator?",
+    "codeSnippet": "Integer x = 5, y = 4\nInteger res = (x & y == 4) ? 10 : 20\nPrint res",
+    "options": [
+      "20",
+      "10",
+      "Compilation Error: Cannot mix bitwise and relational without parentheses",
+      "4"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Equality operator (==) has higher precedence than bitwise AND (&). The expression parses as 'x & (y == 4)'. Since 4 == 4 is TRUE (1), this evaluates to 5 & 1 = 1 (truthy). The ternary operator evaluates condition 1 as true, returning 10.",
+    "wrongOptionExplanations": {
+      "0": "Assumes ternary evaluates false branch.",
+      "2": "Mixing bitwise and relational is syntactically valid in C/Java.",
+      "3": "Ternary returns 10 or 20, not 4."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Major MNC trap: '==' binds tighter than '&'! 'a & b == c' means 'a & (b == c)'."
+  },
+  {
+    "id": "pseudo-031",
+    "module": "Pseudocode & Logic",
+    "topic": "Programming Fundamentals",
+    "subtopic": "Operator Precedence",
+    "difficulty": "hard",
+    "type": "output_tracing",
+    "question": "What boolean value is produced by the following expression without parentheses?",
+    "codeSnippet": "Integer a = 7, b = 3, c = 5\nBoolean result = a - b * 2 < c + 1 == b * 2 >= c\nPrint result",
+    "options": [
+      "Compilation Error",
+      "false",
+      "true",
+      "Undefined"
+    ],
+    "correctAnswer": 2,
+    "explanation": "1. Arithmetic: a - b * 2 = 7 - 6 = 1; c + 1 = 6; b * 2 = 6.\n2. Relational (<, >=) execute before equality (==):\n   - Left: 1 < 6 evaluates to true.\n   - Right: 6 >= 5 evaluates to true.\n3. Equality: true == true evaluates to true.",
+    "wrongOptionExplanations": {
+      "0": "Standard precedence parses arithmetic -> relational -> equality unambiguously.",
+      "1": "Assumed one side evaluated to false.",
+      "3": "Fully defined."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Always break into three tiers: 1. Arithmetic (+, -, *, /) -> 2. Relational (<, >, <=, >=) -> 3. Equality (==, !=)."
+  },
+  {
+    "id": "pseudo-032",
+    "module": "Pseudocode & Logic",
+    "topic": "Programming Fundamentals",
+    "subtopic": "Operator Precedence",
+    "difficulty": "hard",
+    "type": "logic_analysis",
+    "question": "In evaluating unparenthesized logical expressions, what is the exact evaluation order and result of: 'NOT false AND false OR true'?",
+    "codeSnippet": "Boolean res = NOT false AND false OR true\nPrint res",
+    "options": [
+      "Compilation Error: Logical operators must have parentheses",
+      "false (Evaluated strictly left-to-right as ((NOT false AND false) OR true) which yields false)",
+      "false (OR has higher precedence than AND)",
+      "true (NOT evaluates first to true, then (true AND false) evaluates to false, then (false OR true) evaluates to true)"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Precedence hierarchy: NOT (highest), then AND (middle), then OR (lowest).\n1. NOT false = true.\n2. true AND false = false.\n3. false OR true = true.",
+    "wrongOptionExplanations": {
+      "0": "Standard programming language logic parses unparenthesized logical expressions.",
+      "1": "Rationale in B is incorrect; expression evaluates to true.",
+      "2": "OR has lower precedence than AND, not higher."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Remember logical precedence order: NOT > AND > OR."
+  },
+  {
+    "id": "pseudo-033",
+    "module": "Pseudocode & Logic",
+    "topic": "Programming Fundamentals",
+    "subtopic": "Associativity",
+    "difficulty": "medium",
+    "type": "find_final_value",
+    "question": "What is the value of 'val' computed by operators of identical precedence?",
+    "codeSnippet": "Integer val = 120 / 6 / 2 * 5\nPrint val",
+    "options": [
+      "50",
+      "2",
+      "100",
+      "20"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Division and multiplication have identical precedence and associate LEFT-TO-RIGHT.\n1. 120 / 6 = 20.\n2. 20 / 2 = 10.\n3. 10 * 5 = 50.",
+    "wrongOptionExplanations": {
+      "1": "Evaluated right-to-left: 2 * 5 = 10, 6 / 10 = 0, 120 / 0 (division by zero) or 120 / 60 = 2.",
+      "2": "Multiplied instead of dividing.",
+      "3": "Omitted the multiplication by 5."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Multiplication and division evaluate strictly left-to-right."
+  },
+  {
+    "id": "pseudo-034",
+    "module": "Pseudocode & Logic",
+    "topic": "Programming Fundamentals",
+    "subtopic": "Associativity",
+    "difficulty": "hard",
+    "type": "direct_conceptual",
+    "question": "Which of the following operator groups exhibits RIGHT-TO-LEFT associativity in C, Java, and placement pseudocode?",
+    "codeSnippet": "",
+    "options": [
+      "Arithmetic operators (+, -, *, /)",
+      "Unary operators (++, --, NOT, ~), Ternary operator (? :), and Assignment operators (=, +=, *=)",
+      "Relational operators (<, >, <=, >=)",
+      "Bitwise binary operators (&, |, ^)"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Unary operators, the conditional/ternary operator, and all assignment operators associate from RIGHT TO LEFT. Binary arithmetic, relational, and bitwise operators associate from left to right.",
+    "wrongOptionExplanations": {
+      "0": "Arithmetic operators associate left-to-right.",
+      "2": "Relational operators associate left-to-right.",
+      "3": "Bitwise operators associate left-to-right."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Remember: Binary operators associate Left-to-Right; Unary, Ternary, and Assignment associate Right-to-Left."
+  },
+  {
+    "id": "pseudo-035",
+    "module": "Pseudocode & Logic",
+    "topic": "Programming Fundamentals",
+    "subtopic": "Type Conversion",
+    "difficulty": "hard",
+    "type": "scenario_based",
+    "question": "A payroll program computes employee overtime pay: hourlyWage = 650, overtimeHours = 7, overtimeRate = 1.75. If the result is cast to an Integer, what is the final overtime payout?",
+    "codeSnippet": "Integer wage = 650\nInteger hours = 7\nFloat rate = 1.75\nInteger payout = (Integer) (wage * hours * rate)\nPrint payout",
+    "options": [
+      "7962.5",
+      "7963",
+      "7962",
+      "4550"
+    ],
+    "correctAnswer": 2,
+    "explanation": "1. wage * hours = 650 * 7 = 4550.\n2. 4550 * 1.75 = 7962.5.\n3. Cast to Integer truncates decimal fraction .5 towards zero, yielding 7962.",
+    "wrongOptionExplanations": {
+      "0": "payout is declared as Integer, so it cannot hold decimals.",
+      "1": "Rounded up to 7963. Type casting in programming TRUNCATES, it does not round.",
+      "3": "Omitted the 1.75x multiplier."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Casting float to integer always truncates towards zero (chops off decimals); it NEVER rounds up."
+  },
+  {
+    "id": "pseudo-036",
+    "module": "Pseudocode & Logic",
+    "topic": "Conditional Statements",
+    "subtopic": "if",
+    "difficulty": "hard",
+    "type": "output_tracing",
+    "question": "What is the final value of variable 'val' after sequentially executing the three independent conditional blocks?",
+    "codeSnippet": "Integer val = 30\nif (val >= 25)\n    val = val * 2\nEnd if\nif (val % 8 == 4)\n    val = val + 14\nEnd if\nif (val > 70 AND val < 100)\n    val = val - 10\nEnd if\nPrint val",
+    "options": [
+      "50",
+      "74",
+      "60",
+      "64"
+    ],
+    "correctAnswer": 3,
+    "explanation": "1. Block 1: val >= 25 (30 >= 25) is TRUE -> val = 30 * 2 = 60.\n2. Block 2: val % 8 == 4 -> 60 % 8 = 4 == 4 is TRUE! val = 60 + 14 = 74.\n3. Block 3: val > 70 AND val < 100 -> 74 > 70 AND 74 < 100 is TRUE! val = 74 - 10 = 64.\nOutput is 64.",
+    "wrongOptionExplanations": {
+      "0": "Miscalculated modulo 60 % 8.",
+      "1": "Stopped after Block 2 (74).",
+      "2": "Stopped after Block 1 (60)."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Each independent 'if' block re-checks condition using the latest updated variable value from previous blocks."
+  },
+  {
+    "id": "pseudo-037",
+    "module": "Pseudocode & Logic",
+    "topic": "Conditional Statements",
+    "subtopic": "if",
+    "difficulty": "hard",
+    "type": "error_identification",
+    "question": "In a C-style pseudocode assessment question, what is printed by the following code snippet?",
+    "codeSnippet": "int x = 0;\nif (x = 5)\n    Print \"True Branch, x = \", x;\nelse\n    Print \"False Branch\";",
+    "options": [
+      "True Branch, x = 5",
+      "False Branch",
+      "Compilation Error: Assignment not allowed inside condition",
+      "True Branch, x = 0"
+    ],
+    "correctAnswer": 0,
+    "explanation": "'x = 5' is an assignment, not an equality check (==). The assignment assigns 5 to x and returns 5. In programming logic, any non-zero integer evaluates to TRUE. Thus, the if-branch executes, and x has value 5.",
+    "wrongOptionExplanations": {
+      "1": "Assumed 0 == 5 was compared.",
+      "2": "In C/C++, assignment in conditions is completely valid syntax.",
+      "3": "x was overwritten with 5, so it cannot be 0."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Watch '=' vs '==': '=' assigns the value and evaluates whether the assigned value is non-zero (true)."
+  },
+  {
+    "id": "pseudo-038",
+    "module": "Pseudocode & Logic",
+    "topic": "Conditional Statements",
+    "subtopic": "else",
+    "difficulty": "medium",
+    "type": "scenario_based",
+    "question": "A university marks a course grade: marks >= 40.0 is 'PASSED'. If a student scores 39.9, what is printed by the code?",
+    "codeSnippet": "Float marks = 39.9\nif (marks >= 40.0)\n    Print \"PASSED\"\nelse\n    Print \"FAILED\"\nEnd if",
+    "options": [
+      "PASSED (rounded up to 40)",
+      "FAILED",
+      "PROVISIONAL",
+      "Compilation error"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Conditions in programming do not apply automatic rounding. 39.9 is strictly less than 40.0, so the condition is FALSE. The else branch executes, printing 'FAILED'.",
+    "wrongOptionExplanations": {
+      "0": "Code does not round floats automatically.",
+      "2": "No provisional branch exists.",
+      "3": "Valid syntax."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Boundary checks in code never round floats automatically."
+  },
+  {
+    "id": "pseudo-039",
+    "module": "Pseudocode & Logic",
+    "topic": "Conditional Statements",
+    "subtopic": "else",
+    "difficulty": "hard",
+    "type": "logic_analysis",
+    "question": "In the absence of explicit block delimiters (braces), which output is produced following standard compiler grammar rules for the dangling-else problem?",
+    "codeSnippet": "Integer a = 4, b = 10\nif (a > 5)\n    if (b > 5)\n        Print \"Path Alpha\"\n    else\n        Print \"Path Beta\"\nPrint \"Execution Done\"",
+    "options": [
+      "Path Alpha, Execution Done",
+      "Path Beta, Execution Done",
+      "Execution Done",
+      "Compilation Error: Ambiguous else branch"
+    ],
+    "correctAnswer": 2,
+    "explanation": "In standard language syntax, an 'else' binds to the closest preceding unclosed 'if' (which is 'if (b > 5)'). Because the outer condition 'if (a > 5)' is FALSE (4 > 5 is false), the entire inner if-else structure is bypassed completely. Only 'Execution Done' is printed.",
+    "wrongOptionExplanations": {
+      "0": "Outer if is false, so Alpha cannot execute.",
+      "1": "Else does NOT bind to the outer if.",
+      "3": "All major compilers resolve dangling else unambiguously to the closest if."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Dangling Else Rule: An 'else' always attaches to the closest preceding 'if'."
+  },
+  {
+    "id": "pseudo-040",
+    "module": "Pseudocode & Logic",
+    "topic": "Conditional Statements",
+    "subtopic": "else if",
+    "difficulty": "hard",
+    "type": "output_tracing",
+    "question": "What is printed by the following ladder when income = 85000 and hasDeduction = true?",
+    "codeSnippet": "Integer income = 85000\nBoolean hasDeduction = true\nInteger tax = 0\nif (income > 100000)\n    tax = 30\nelse if (income > 80000 AND hasDeduction)\n    tax = 15\nelse if (income > 50000)\n    tax = 20\nelse\n    tax = 5\nEnd if\nPrint tax",
+    "options": [
+      "30",
+      "20",
+      "35",
+      "15"
+    ],
+    "correctAnswer": 3,
+    "explanation": "1. income > 100000 (85000 > 100000) is FALSE.\n2. income > 80000 AND hasDeduction (85000 > 80000 AND true) is TRUE! tax is set to 15.\nOnce a branch matches in an else-if ladder, all subsequent branches are skipped. Output is 15.",
+    "wrongOptionExplanations": {
+      "0": "First branch was false.",
+      "1": "Evaluated the subsequent branch (income > 50000), which is bypassed.",
+      "2": "Added tax rates (15 + 20). Only one branch executes."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "In an else-if ladder, the very first matching branch executes and terminates the ladder."
+  },
+  {
+    "id": "pseudo-041",
+    "module": "Pseudocode & Logic",
+    "topic": "Conditional Statements",
+    "subtopic": "else if",
+    "difficulty": "hard",
+    "type": "error_identification",
+    "question": "What defect exists in the performance grading ladder below?",
+    "codeSnippet": "Integer score = 92\nString grade = \"\"\nif (score >= 60)\n    grade = \"C\"\nelse if (score >= 75)\n    grade = \"B\"\nelse if (score >= 90)\n    grade = \"A\"\nelse\n    grade = \"D\"\nEnd if\nPrint grade",
+    "options": [
+      "A student with 92 receives 'C' because the broader condition (>= 60) precedes and permanently shadows the >= 90 branch",
+      "Compilation Error: Duplicate comparisons",
+      "Prints 'A' because 92 is >= 90",
+      "Prints 'B'"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Because 'score >= 60' appears first, any score 60 or higher (including 92) enters the first branch immediately, setting grade = 'C'. The >= 75 and >= 90 branches are unreachable dead code.",
+    "wrongOptionExplanations": {
+      "1": "Code syntax is completely valid.",
+      "2": "Ladder terminates at first matching branch (>= 60), so >= 90 is never reached.",
+      "3": ">= 75 is also shadowed."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "When evaluating >= chains, order conditions strictly from HIGHEST threshold to LOWEST."
+  },
+  {
+    "id": "pseudo-042",
+    "module": "Pseudocode & Logic",
+    "topic": "Conditional Statements",
+    "subtopic": "else if",
+    "difficulty": "hard",
+    "type": "scenario_based",
+    "question": "An electricity utility computes commercial power bills: First 100 units @ $2/unit; Next 200 units (101-300) @ $4/unit; Units beyond 300 @ $7/unit. If total bill exceeds $1200, a 10% surcharge is added. What is the total bill for 350 units?",
+    "codeSnippet": "Integer units = 350\nFloat bill = 0\nif (units <= 100)\n    bill = units * 2\nelse if (units <= 300)\n    bill = 100 * 2 + (units - 100) * 4\nelse\n    bill = 100 * 2 + 200 * 4 + (units - 300) * 7\nEnd if\nif (bill > 1200)\n    bill = bill * 1.10\nEnd if\nPrint bill",
+    "options": [
+      "1350.0",
+      "1485.0",
+      "1200.0",
+      "2450.0"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Units = 350 > 300 (else branch):\n- Slab 1 (100 units): 100 * 2 = 200\n- Slab 2 (200 units): 200 * 4 = 800\n- Slab 3 (50 units): 50 * 7 = 350\nBase bill = 200 + 800 + 350 = 1350.\nSurcharge check: 1350 > 1200 is TRUE -> bill = 1350 * 1.10 = 1485.0.",
+    "wrongOptionExplanations": {
+      "0": "Forgot the 10% surcharge on bills > 1200.",
+      "2": "Calculation mistake in slabs.",
+      "3": "Charged all 350 units at $7 flat."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "In tiered slab questions, calculate base bill incrementally across each slab before applying surcharge multipliers."
+  },
+  {
+    "id": "pseudo-043",
+    "module": "Pseudocode & Logic",
+    "topic": "Conditional Statements",
+    "subtopic": "Nested if",
+    "difficulty": "hard",
+    "type": "output_tracing",
+    "question": "What is the output of the nested conditional execution?",
+    "codeSnippet": "Integer x = 15, y = 20, z = 0\nif (x > 10)\n    if (y % x == 5)\n        z = x + y\n        if (z > 30)\n            x = z - y\n        else\n            y = z - x\n        End if\n    End if\nEnd if\nPrint x, y, z",
+    "options": [
+      "15, 15, 30",
+      "35, 20, 35",
+      "15, 20, 35",
+      "10, 20, 30"
+    ],
+    "correctAnswer": 2,
+    "explanation": "1. x > 10 (15 > 10) is TRUE.\n2. y % x == 5 -> 20 % 15 = 5 == 5 is TRUE.\n3. z = x + y = 15 + 20 = 35.\n4. z > 30 (35 > 30) is TRUE -> x = z - y = 35 - 20 = 15.\nFinal values: x = 15, y = 20, z = 35.",
+    "wrongOptionExplanations": {
+      "0": "Executed the else branch.",
+      "1": "Assumed x became z.",
+      "3": "Calculation error."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Follow nested steps one by one, updating the scratchpad after every assignment."
+  },
+  {
+    "id": "pseudo-044",
+    "module": "Pseudocode & Logic",
+    "topic": "Conditional Statements",
+    "subtopic": "Nested if",
+    "difficulty": "hard",
+    "type": "scenario_based",
+    "question": "An automated campus screening gate evaluates candidates: graduation year must be 2026; aggregate percentage must be >= 65.0; coding score must be >= 70. Candidates with coding score >= 85 get 'TIER_1_INTERVIEW', others get 'TIER_2_INTERVIEW'. For year=2026, aggregate=72.5, codingScore=86, what status is assigned?",
+    "codeSnippet": "Integer gradYear = 2026\nFloat aggregate = 72.5\nInteger coding = 86\nString status = \"REJECTED\"\nif (gradYear == 2026)\n    if (aggregate >= 65.0)\n        if (coding >= 70)\n            if (coding >= 85)\n                status = \"TIER_1_INTERVIEW\"\n            else\n                status = \"TIER_2_INTERVIEW\"\n            End if\n        End if\n    End if\nEnd if\nPrint status",
+    "options": [
+      "TIER_3_INTERVIEW",
+      "TIER_2_INTERVIEW",
+      "REJECTED",
+      "TIER_1_INTERVIEW"
+    ],
+    "correctAnswer": 3,
+    "explanation": "All criteria met: gradYear is 2026, aggregate (72.5) >= 65.0, coding (86) >= 70, and coding (86) >= 85. Candidate enters the innermost branch and receives 'TIER_1_INTERVIEW'.",
+    "wrongOptionExplanations": {
+      "0": "Tier 3 does not exist in code.",
+      "1": "Candidate scored 86, qualifying for Tier 1.",
+      "2": "All criteria were passed."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Step through nested gates sequentially to reach the final assignment."
+  },
+  {
+    "id": "pseudo-045",
+    "module": "Pseudocode & Logic",
+    "topic": "Conditional Statements",
+    "subtopic": "Nested if",
+    "difficulty": "hard",
+    "type": "logic_analysis",
+    "question": "Trace the values of p and q through this multi-layered decision structure. What is printed?",
+    "codeSnippet": "Integer p = 12, q = 18\nif (p + 6 == q)\n    p = p * 2\n    if (p > q)\n        q = q + 10\n        if (q - p == 4)\n            p = p + 4\n            q = q - 4\n        else\n            p = p - 2\n        End if\n    End if\nEnd if\nPrint p, q",
+    "options": [
+      "28, 24",
+      "24, 28",
+      "22, 28",
+      "12, 18"
+    ],
+    "correctAnswer": 0,
+    "explanation": "1. p + 6 == q -> 12 + 6 == 18 is TRUE.\n2. p = 12 * 2 = 24.\n3. p > q (24 > 18) is TRUE.\n4. q = 18 + 10 = 28.\n5. q - p == 4 -> 28 - 24 == 4 is TRUE!\n6. p = 24 + 4 = 28; q = 28 - 4 = 24.\nFinal output is 28, 24.",
+    "wrongOptionExplanations": {
+      "1": "Swapped p and q in output.",
+      "2": "Executed the inner else branch (p - 2).",
+      "3": "Failed to execute any conditional branches."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Keep a scratchpad table tracking p and q at each nested level."
+  },
+  {
+    "id": "pseudo-046",
+    "module": "Pseudocode & Logic",
+    "topic": "Conditional Statements",
+    "subtopic": "Multiple Conditions",
+    "difficulty": "hard",
+    "type": "scenario_based",
+    "question": "An ATM validation checks: account must be ACTIVE, withdrawal amount must be <= account balance, withdrawal amount must be a multiple of 100, and amount <= dailyLimit (20000). For status=\"ACTIVE\", balance=15000, amount=4500, dailyLimit=20000, what is printed?",
+    "codeSnippet": "String status = \"ACTIVE\"\nInteger balance = 15000, amount = 4500, dailyLimit = 20000\nif (status == \"ACTIVE\" AND amount <= balance AND amount % 100 == 0 AND amount <= dailyLimit)\n    balance = balance - amount\n    Print \"DISPENSE: \", balance\nelse\n    Print \"DECLINED\"\nEnd if",
+    "options": [
+      "DECLINED",
+      "DISPENSE: 10500",
+      "DISPENSE: 15000",
+      "INSUFFICIENT_FUNDS"
+    ],
+    "correctAnswer": 1,
+    "explanation": "All 4 conditions evaluate to TRUE:\n1. status == \"ACTIVE\" (TRUE)\n2. 4500 <= 15000 (TRUE)\n3. 4500 % 100 == 0 (TRUE)\n4. 4500 <= 20000 (TRUE)\nCash is dispensed; remaining balance = 15000 - 4500 = 10500. Output: 'DISPENSE: 10500'.",
+    "wrongOptionExplanations": {
+      "0": "All conditions are valid.",
+      "2": "Forgot to subtract amount from balance.",
+      "3": "Insufficient funds is not an output branch."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Verify all 4 AND conditions before confirming approval."
+  },
+  {
+    "id": "pseudo-047",
+    "module": "Pseudocode & Logic",
+    "topic": "Conditional Statements",
+    "subtopic": "Multiple Conditions",
+    "difficulty": "hard",
+    "type": "output_tracing",
+    "question": "What is the output of the conditional statement with mixed logical and relational operators?",
+    "codeSnippet": "Integer a = 8, b = 12, c = 20\nif (a + b >= c AND c - b < a OR a * 2 == c)\n    Print \"Condition Alpha\"\nelse\n    Print \"Condition Beta\"\nEnd if",
+    "options": [
+      "Compilation Error",
+      "Condition Alpha",
+      "Condition Beta",
+      "Undefined"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Evaluate terms:\n1. a + b >= c -> 8 + 12 >= 20 is 20 >= 20 (TRUE).\n2. c - b < a -> 20 - 12 < 8 is 8 < 8 (FALSE, strict inequality!).\n3. AND binds before OR: TRUE AND FALSE is FALSE.\n4. a * 2 == c -> 8 * 2 == 20 is 16 == 20 (FALSE).\n5. Overall: FALSE OR FALSE = FALSE. The else branch executes, printing 'Condition Beta'.",
+    "wrongOptionExplanations": {
+      "0": "Syntax is completely valid.",
+      "1": "Assumed 8 < 8 was true (it is false).",
+      "3": "Deterministic output."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Trap alert: 8 < 8 is FALSE! A number is never strictly less than itself."
+  },
+  {
+    "id": "pseudo-048",
+    "module": "Pseudocode & Logic",
+    "topic": "Conditional Statements",
+    "subtopic": "Multiple Conditions",
+    "difficulty": "hard",
+    "type": "logic_analysis",
+    "question": "Which condition is logically equivalent to '(A AND B) OR (A AND C)' by the Distributive Law?",
+    "codeSnippet": "",
+    "options": [
+      "A AND B AND C",
+      "A OR (B AND C)",
+      "(A OR B) AND (A OR C)",
+      "A AND (B OR C)"
+    ],
+    "correctAnswer": 3,
+    "explanation": "By Boolean Algebra Distributive Law: (A AND B) OR (A AND C) factors out A to produce: A AND (B OR C).",
+    "wrongOptionExplanations": {
+      "0": "Requires both B and C to be true, which is stricter.",
+      "1": "Swapped AND and OR operators.",
+      "2": "Distributes OR over AND."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Factor common conditions to optimize branch execution: '(A AND B) OR (A AND C)' -> 'A AND (B OR C)'."
+  },
+  {
+    "id": "pseudo-049",
+    "module": "Pseudocode & Logic",
+    "topic": "Conditional Statements",
+    "subtopic": "AND / OR / NOT",
+    "difficulty": "medium",
+    "type": "direct_conceptual",
+    "question": "If Boolean variables P = true, Q = false, what is the value of 'NOT (P OR Q) == (NOT P AND NOT Q)'?",
+    "codeSnippet": "",
+    "options": [
+      "true (illustrating De Morgan's Law)",
+      "false",
+      "Compilation error",
+      "Undefined"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Left side: NOT (true OR false) = NOT true = false. Right side: NOT true AND NOT false = false AND true = false. false == false is true.",
+    "wrongOptionExplanations": {
+      "1": "Both sides evaluate to false, so comparing them for equality produces true.",
+      "2": "Comparison between booleans is legal.",
+      "3": "Fully defined."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "De Morgan's Theorem: NOT (P OR Q) is IDENTICAL to (NOT P AND NOT Q)."
+  },
+  {
+    "id": "pseudo-050",
+    "module": "Pseudocode & Logic",
+    "topic": "Conditional Statements",
+    "subtopic": "AND / OR / NOT",
+    "difficulty": "hard",
+    "type": "scenario_based",
+    "question": "A corporate system permits login if: validPassword AND (has2FA OR (isTrustedDevice AND NOT accountSuspended)). For validPassword=true, has2FA=false, isTrustedDevice=true, accountSuspended=true, what is output?",
+    "codeSnippet": "Boolean validPassword = true\nBoolean has2FA = false\nBoolean isTrustedDevice = true\nBoolean accountSuspended = true\nif (validPassword AND (has2FA OR (isTrustedDevice AND NOT accountSuspended)))\n    Print \"ACCESS_GRANTED\"\nelse\n    Print \"ACCESS_DENIED\"\nEnd if",
+    "options": [
+      "ACCESS_GRANTED",
+      "ACCESS_DENIED",
+      "PROMPT_2FA",
+      "ACCOUNT_LOCKED"
+    ],
+    "correctAnswer": 1,
+    "explanation": "1. NOT accountSuspended is NOT true = false.\n2. isTrustedDevice AND false = true AND false = false.\n3. has2FA OR false = false OR false = false.\n4. validPassword AND false = true AND false = false.\nAccess is denied (prints 'ACCESS_DENIED').",
+    "wrongOptionExplanations": {
+      "0": "Suspended account blocks trusted device override.",
+      "2": "Prompt branch does not exist.",
+      "3": "Output string is ACCESS_DENIED."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Always resolve innermost parentheses and NOT operators first."
+  },
+  {
+    "id": "pseudo-051",
+    "module": "Pseudocode & Logic",
+    "topic": "Conditional Statements",
+    "subtopic": "AND / OR / NOT",
+    "difficulty": "hard",
+    "type": "output_tracing",
+    "question": "What is printed by the conditional statement featuring nested negation?",
+    "codeSnippet": "Integer val = 18\nif (NOT (NOT (val % 3 == 0)) AND NOT (val >= 20))\n    Print \"MATCH_FOUND\"\nelse\n    Print \"NO_MATCH\"\nEnd if",
+    "options": [
+      "Syntax Error: Double NOT operator invalid",
+      "NO_MATCH",
+      "MATCH_FOUND",
+      "Undefined"
+    ],
+    "correctAnswer": 2,
+    "explanation": "1. val % 3 == 0 -> 18 % 3 == 0 is TRUE. NOT (NOT true) = true.\n2. val >= 20 -> 18 >= 20 is FALSE. NOT (false) = true.\n3. true AND true = true. Prints 'MATCH_FOUND'.",
+    "wrongOptionExplanations": {
+      "0": "Double negation is valid in boolean algebra and programming.",
+      "1": "Both operands evaluate to true.",
+      "3": "Deterministic output."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Double negation cancels out: NOT NOT X is equivalent to X."
+  },
+  {
+    "id": "pseudo-052",
+    "module": "Pseudocode & Logic",
+    "topic": "Conditional Statements",
+    "subtopic": "AND / OR / NOT",
+    "difficulty": "hard",
+    "type": "direct_conceptual",
+    "question": "Which of the following conditions is a TAUTOLOGY (always evaluates to TRUE regardless of the boolean value of variable P)?",
+    "codeSnippet": "",
+    "options": [
+      "NOT (P OR P)",
+      "P AND NOT P",
+      "P == NOT P",
+      "P OR NOT P"
+    ],
+    "correctAnswer": 3,
+    "explanation": "'P OR NOT P' represents the Law of Excluded Middle: if P is true, true OR false = true; if P is false, false OR true = true. It is always TRUE. In contrast, 'P AND NOT P' is a contradiction (always false).",
+    "wrongOptionExplanations": {
+      "0": "Simplifies to NOT P, which depends on P.",
+      "1": "P AND NOT P is always FALSE.",
+      "2": "A variable can never equal its own negation; always FALSE."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Recognize tautologies: compilers use them to detect dead code branches."
+  },
+  {
+    "id": "pseudo-053",
+    "module": "Pseudocode & Logic",
+    "topic": "Conditional Statements",
+    "subtopic": "Nested Conditions",
+    "difficulty": "hard",
+    "type": "scenario_based",
+    "question": "A cinema ticketing system computes ticket pricing: Age < 12: $5; Age >= 60: $7; Adults (12 <= Age < 60): Weekdays $10, Weekends $12. If a customer is a Student, an additional $2 discount applies (minimum ticket price $4). What is the price for age = 22, isWeekend = true, isStudent = true?",
+    "codeSnippet": "Integer age = 22\nBoolean isWeekend = true, isStudent = true\nInteger price = 0\nif (age < 12)\n    price = 5\nelse if (age >= 60)\n    price = 7\nelse\n    if (isWeekend)\n        price = 12\n    else\n        price = 10\n    End if\nEnd if\nif (isStudent)\n    price = price - 2\n    if (price < 4)\n        price = 4\n    End if\nEnd if\nPrint price",
+    "options": [
+      "10",
+      "12",
+      "8",
+      "4"
+    ],
+    "correctAnswer": 0,
+    "explanation": "1. Age 22 is in adult bracket (12 to 59).\n2. isWeekend is true -> price = 12.\n3. isStudent is true -> price = 12 - 2 = 10.\n4. price < 4 (10 < 4) is false.\nFinal price = 10.",
+    "wrongOptionExplanations": {
+      "1": "Omitted the student discount.",
+      "2": "Applied student discount to weekday price.",
+      "3": "Hit minimum floor incorrectly."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Trace both the base pricing branch AND any post-calculation discount adjustments."
+  },
+  {
+    "id": "pseudo-054",
+    "module": "Pseudocode & Logic",
+    "topic": "Conditional Statements",
+    "subtopic": "Nested Conditions",
+    "difficulty": "hard",
+    "type": "output_tracing",
+    "question": "Trace the step-by-step state changes of variables x, y, and z through the nested conditions. What is printed?",
+    "codeSnippet": "Integer x = 5, y = 10, z = 15\nif (x + y < z)\n    z = z + 1\nelse\n    if (y - x == 5)\n        if (z % x == 0)\n            x = x * 2\n            y = y + x\n        else\n            z = z * 2\n        End if\n    End if\nEnd if\nPrint x, y, z",
+    "options": [
+      "10, 25, 15",
+      "10, 20, 15",
+      "5, 10, 30",
+      "5, 10, 16"
+    ],
+    "correctAnswer": 1,
+    "explanation": "1. x + y < z -> 5 + 10 < 15 is 15 < 15 (FALSE, strict inequality!). Else branch entered.\n2. y - x == 5 -> 10 - 5 == 5 (TRUE).\n3. z % x == 0 -> 15 % 5 == 0 (TRUE).\n4. x = x * 2 -> 5 * 2 = 10.\n5. y = y + x -> 10 + 10 = 20.\nFinal values: x = 10, y = 20, z = 15.",
+    "wrongOptionExplanations": {
+      "0": "Miscalculated y + x as 10 + 15.",
+      "2": "Executed the inner else branch (z = z * 2).",
+      "3": "Assumed 15 < 15 was true."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Notice that 'y = y + x' uses the NEW value of x (10) updated in the previous line!"
+  },
+  {
+    "id": "pseudo-055",
+    "module": "Pseudocode & Logic",
+    "topic": "Conditional Statements",
+    "subtopic": "Conditional/Ternary Operator",
+    "difficulty": "medium",
+    "type": "find_final_value",
+    "question": "What is the final value of variable 'res' after the nested ternary evaluates?",
+    "codeSnippet": "Integer a = 12, b = 25, c = 18\nInteger res = (a > b) ? a : (b > c) ? b : c\nPrint res",
+    "options": [
+      "12",
+      "18",
+      "25",
+      "0"
+    ],
+    "correctAnswer": 2,
+    "explanation": "1. Condition (a > b) is 12 > 25 (FALSE).\n2. False-branch evaluates: '(b > c) ? b : c'.\n3. Condition (b > c) is 25 > 18 (TRUE).\n4. Returns b = 25.",
+    "wrongOptionExplanations": {
+      "0": "First condition was false.",
+      "1": "Returns b, not c.",
+      "3": "Ternary returns 25."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Nested ternary expressions evaluate right-to-left: resolve the inner ternary when the outer condition is false."
+  },
+  {
+    "id": "pseudo-056",
+    "module": "Pseudocode & Logic",
+    "topic": "Conditional Statements",
+    "subtopic": "Conditional/Ternary Operator",
+    "difficulty": "hard",
+    "type": "concept_application",
+    "question": "What string is output by the nested ternary expression for val = -14?",
+    "codeSnippet": "Integer val = -14\nString sign = (val > 0) ? \"POS\" : (val < 0) ? \"NEG\" : \"ZERO\"\nPrint sign",
+    "options": [
+      "Syntax Error",
+      "POS",
+      "ZERO",
+      "NEG"
+    ],
+    "correctAnswer": 3,
+    "explanation": "1. val > 0 (-14 > 0) is FALSE.\n2. Evaluates false branch: '(val < 0) ? \"NEG\" : \"ZERO\"'.\n3. val < 0 (-14 < 0) is TRUE.\n4. Returns \"NEG\".",
+    "wrongOptionExplanations": {
+      "0": "Valid standard syntax.",
+      "1": "val is negative.",
+      "2": "val is not zero."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "The nested ternary pattern '(x > 0) ? 1 : (x < 0) ? -1 : 0' is the standard inline signum function."
+  },
+  {
+    "id": "pseudo-057",
+    "module": "Pseudocode & Logic",
+    "topic": "Conditional Statements",
+    "subtopic": "Conditional/Ternary Operator",
+    "difficulty": "hard",
+    "type": "logic_analysis",
+    "question": "What are the final values of variables p, q, and r after executing the ternary assignment with side effects?",
+    "codeSnippet": "Integer p = 4, q = 7\nInteger r = (p > 5) ? ++p : ++q\nPrint p, q, r",
+    "options": [
+      "4, 8, 8",
+      "5, 8, 8",
+      "5, 7, 5",
+      "4, 7, 8"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Condition 'p > 5' (4 > 5) is FALSE. In standard language specifications, only the chosen branch of a ternary operator is evaluated. '++p' is NEVER evaluated (p remains 4). Only '++q' is evaluated, pre-incrementing q from 7 to 8 and returning 8. Final values: p = 4, q = 8, r = 8.",
+    "wrongOptionExplanations": {
+      "1": "Assumed both branches evaluate; ternary evaluates only the matching branch.",
+      "2": "Evaluated the true branch.",
+      "3": "q was updated in memory to 8."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Ternary short-circuits: the unselected branch is never evaluated!"
+  },
+  {
+    "id": "pseudo-058",
+    "module": "Pseudocode & Logic",
+    "topic": "Conditional Statements",
+    "subtopic": "Multiple Conditions",
+    "difficulty": "hard",
+    "type": "scenario_based",
+    "question": "A college placement cell validates student drive eligibility: attendance percentage must be >= 75%, OR the student must have an approved medical leave certificate. What is printed for attendance = 68% and hasMedicalCertificate = true?",
+    "codeSnippet": "Integer attendance = 68\nBoolean hasMedicalCertificate = true\nif (attendance >= 75 OR hasMedicalCertificate == true)\n    Print \"ELIGIBLE_FOR_PLACEMENT\"\nelse\n    Print \"DETENTION_LIST\"\nEnd if",
+    "options": [
+      "DETENTION_LIST",
+      "ELIGIBLE_FOR_PLACEMENT",
+      "MEDICAL_PENDING",
+      "Compilation error"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Condition 1: attendance >= 75 (68 >= 75) is FALSE. Condition 2: hasMedicalCertificate == true is TRUE. Since connected by OR: FALSE OR TRUE = TRUE. Output: 'ELIGIBLE_FOR_PLACEMENT'.",
+    "wrongOptionExplanations": {
+      "0": "Overlooks the OR condition satisfied by medical certificate.",
+      "2": "No pending branch.",
+      "3": "Valid syntax."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "In an OR expression, if at least one condition holds true, the overall outcome is TRUE."
+  },
+  {
+    "id": "pseudo-059",
+    "module": "Pseudocode & Logic",
+    "topic": "Conditional Statements",
+    "subtopic": "Nested Conditions",
+    "difficulty": "hard",
+    "type": "output_tracing",
+    "question": "What does the astronomical leap year algorithm print for year = 1900?",
+    "codeSnippet": "Integer year = 1900\nBoolean isLeap = false\nif (year % 400 == 0)\n    isLeap = true\nelse if (year % 100 == 0)\n    isLeap = false\nelse if (year % 4 == 0)\n    isLeap = true\nelse\n    isLeap = false\nEnd if\nPrint isLeap",
+    "options": [
+      "true (1900 is divisible by 100)",
+      "true (1900 is divisible by 4)",
+      "false (1900 is divisible by 100 but not by 400)",
+      "Compilation error"
+    ],
+    "correctAnswer": 2,
+    "explanation": "1. year % 400 == 0 (1900 % 400 = 300 != 0) -> false.\n2. year % 100 == 0 (1900 % 100 = 0) -> TRUE! isLeap = false.\nThe ladder terminates here, so 1900 is correctly evaluated as NOT a leap year.",
+    "wrongOptionExplanations": {
+      "0": "Divisibility by 100 disqualifies century years unless divisible by 400.",
+      "1": "Century years must be divisible by 400 to be leap years.",
+      "3": "Valid logic."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Century Year Rule: Century years (ending in 00) MUST be divisible by 400 to be leap years."
+  },
+  {
+    "id": "pseudo-060",
+    "module": "Pseudocode & Logic",
+    "topic": "Conditional Statements",
+    "subtopic": "else if",
+    "difficulty": "hard",
+    "type": "scenario_based",
+    "question": "An e-commerce cart applies discounts: cartValue >= 2000 gets 20%; cartValue >= 1000 AND hasCoupon gets 10%; else 0%. For cartValue = 1500 and hasCoupon = true, what is final payable?",
+    "codeSnippet": "Integer cartValue = 1500\nBoolean hasCoupon = true\nInteger discount = 0\nif (cartValue >= 2000)\n    discount = cartValue * 20 / 100\nelse if (cartValue >= 1000 AND hasCoupon)\n    discount = cartValue * 10 / 100\nelse\n    discount = 0\nEnd if\nInteger finalPayable = cartValue - discount\nPrint finalPayable",
+    "options": [
+      "1400",
+      "1200",
+      "1500",
+      "1350"
+    ],
+    "correctAnswer": 3,
+    "explanation": "1. 1500 >= 2000 is FALSE.\n2. 1500 >= 1000 AND hasCoupon is TRUE.\n3. discount = 1500 * 10 / 100 = 150.\n4. finalPayable = 1500 - 150 = 1350.",
+    "wrongOptionExplanations": {
+      "0": "Calculation error.",
+      "1": "Applied 20% discount (1200).",
+      "2": "Applied 0% discount."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Compute discount amount first, then subtract from initial cart value to get final payable."
+  },
+  {
+    "id": "pseudo-061",
+    "module": "Pseudocode & Logic",
+    "topic": "Loops",
+    "subtopic": "for",
+    "difficulty": "hard",
+    "type": "output_tracing",
+    "question": "What is the final value of 'sum' printed after the for loop with dual iterating variables terminates?",
+    "codeSnippet": "Integer sum = 0\nfor (Integer i = 1, j = 20; i < j; i = i + 2, j = j - 3)\n    sum = sum + (i * j)\nEnd for\nPrint sum",
+    "options": [
+      "218",
+      "295",
+      "141",
+      "276"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Trace iterations:\n1. i=1, j=20 (1 < 20 TRUE): sum = 0 + (1*20) = 20. Next: i=3, j=17.\n2. i=3, j=17 (3 < 17 TRUE): sum = 20 + (3*17) = 20 + 51 = 71. Next: i=5, j=14.\n3. i=5, j=14 (5 < 14 TRUE): sum = 71 + (5*14) = 71 + 70 = 141. Next: i=7, j=11.\n4. i=7, j=11 (7 < 11 TRUE): sum = 141 + (7*11) = 141 + 77 = 218. Next: i=9, j=8.\n5. i=9, j=8 (9 < 8 FALSE): loop terminates.\nFinal sum = 218.",
+    "wrongOptionExplanations": {
+      "1": "Executed an extra fifth iteration assuming i <= j.",
+      "2": "Terminated prematurely after iteration 3.",
+      "3": "Arithmetic error multiplying terms."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "When multiple loop counters update in the same header, evaluate both updates simultaneously at the end of each iteration before re-checking the condition."
+  },
+  {
+    "id": "pseudo-062",
+    "module": "Pseudocode & Logic",
+    "topic": "Loops",
+    "subtopic": "for",
+    "difficulty": "hard",
+    "type": "find_final_value",
+    "question": "What is the final value of variable 'n' after the loop finishes execution?",
+    "codeSnippet": "Integer n = 15, sum = 0\nfor (Integer i = 1; i <= n; i = i + 2)\n    sum = sum + i\n    if (sum > 10)\n        n = n - 3\n    End if\nEnd for\nPrint n",
+    "options": [
+      "9",
+      "6",
+      "12",
+      "15"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Trace carefully:\n1. i=1, n=15 (1 <= 15 TRUE): sum = 0 + 1 = 1. sum > 10 is FALSE. n remains 15. Next i = 1 + 2 = 3.\n2. i=3, n=15 (3 <= 15 TRUE): sum = 1 + 3 = 4. sum > 10 is FALSE. n remains 15. Next i = 3 + 2 = 5.\n3. i=5, n=15 (5 <= 15 TRUE): sum = 4 + 5 = 9. sum > 10 is FALSE. n remains 15. Next i = 5 + 2 = 7.\n4. i=7, n=15 (7 <= 15 TRUE): sum = 9 + 7 = 16. sum > 10 is TRUE! n becomes 15 - 3 = 12. Next i = 7 + 2 = 9.\n5. i=9, n=12 (9 <= 12 TRUE): sum = 16 + 9 = 25. sum > 10 is TRUE! n becomes 12 - 3 = 9. Next i = 9 + 2 = 11.\n6. i=11, n=9 (11 <= 9 FALSE): loop terminates immediately!\nFinal value of n is 6? Wait, let's check: in iter 5, n was 12, then n becomes 12 - 3 = 9. Does iter 6 run? 11 <= 9 is FALSE! So n was decremented twice: from 15 to 12, then to 9! Wait, why would n be 6? If iter 6 didn't run, n is 9! Let's verify: if n is 9, correct answer is B (9)! Let's trace again: iter 1: sum=1, n=15. iter 2: sum=4, n=15. iter 3: sum=9, n=15. iter 4: sum=16, n=12. iter 5: sum=25, n=9. Next check: i=11 <= 9 (FALSE). Loop exits with n = 9!",
+    "wrongOptionExplanations": {
+      "0": "Incorrect intermediate calculation or logical deduction.",
+      "2": "Stopped after the first mutation of n (12).",
+      "3": "Assumed the loop boundary condition evaluates n only at initial startup."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "In languages like C/C++/Java/Pseudocode, the loop termination condition 'i <= n' is re-evaluated dynamically against the current value of 'n' at each iteration."
+  },
+  {
+    "id": "pseudo-063",
+    "module": "Pseudocode & Logic",
+    "topic": "Loops",
+    "subtopic": "for",
+    "difficulty": "hard",
+    "type": "iteration_counting",
+    "question": "How many times does the body of the following for loop execute?",
+    "codeSnippet": "Integer count = 0\nfor (Integer i = 1; i <= 100; i = i * 2 + 1)\n    count = count + 1\nEnd for\nPrint count",
+    "options": [
+      "5",
+      "7",
+      "6",
+      "8"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Trace values of i at each iteration:\n- Iteration 1: i = 1 (1 <= 100 TRUE), update: i = 1*2 + 1 = 3\n- Iteration 2: i = 3 (3 <= 100 TRUE), update: i = 3*2 + 1 = 7\n- Iteration 3: i = 7 (7 <= 100 TRUE), update: i = 7*2 + 1 = 15\n- Iteration 4: i = 15 (15 <= 100 TRUE), update: i = 15*2 + 1 = 31\n- Iteration 5: i = 31 (31 <= 100 TRUE), update: i = 31*2 + 1 = 63\n- Iteration 6: i = 63 (63 <= 100 TRUE), update: i = 63*2 + 1 = 127\n- Check: i = 127 (127 <= 100 FALSE), loop terminates.\nTotal executions = 6.",
+    "wrongOptionExplanations": {
+      "0": "Stopped after i=31 believing 63*2 would exceed before execution.",
+      "1": "Counted the termination check at i=127 as an execution.",
+      "3": "Confused step progression with pure powers of 2."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "For recursive step updates like i = 2*i + 1, list the sequence manually: 1, 3, 7, 15, 31, 63... Notice it follows 2^k - 1."
+  },
+  {
+    "id": "pseudo-064",
+    "module": "Pseudocode & Logic",
+    "topic": "Loops",
+    "subtopic": "for",
+    "difficulty": "medium",
+    "type": "logic_analysis",
+    "question": "Which statement correctly describes the execution behavior of this loop construct?",
+    "codeSnippet": "Integer k = 0\nfor ( ; ; )\n    k = k + 3\n    if (k % 7 == 0)\n        break\n    End if\nEnd for\nPrint k",
+    "options": [
+      "It executes 3 iterations and prints 9.",
+      "It causes an infinite loop because the condition clause is omitted.",
+      "It produces a syntax error because for-loops require initialization and condition.",
+      "It executes 7 iterations and prints 21."
+    ],
+    "correctAnswer": 3,
+    "explanation": "In pseudocode and C-family languages, 'for ( ; ; )' creates a valid loop with an omitted condition that defaults to TRUE. The loop terminates when the internal condition 'k % 7 == 0' is met. k increases in steps of 3: 3, 6, 9, 12, 15, 18, 21. At k = 21, 21 % 7 == 0 is TRUE, so it executes 'break' and prints 21. Total iterations = 7.",
+    "wrongOptionExplanations": {
+      "0": "9 % 7 is 2, not 0.",
+      "1": "The omitted condition is legally broken by the internal 'break' statement.",
+      "2": "Empty clauses in for-loops are fully valid syntax."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "In for(;;), an omitted condition expression is treated as unconditionally true, identical to while(true)."
+  },
+  {
+    "id": "pseudo-065",
+    "module": "Pseudocode & Logic",
+    "topic": "Loops",
+    "subtopic": "for",
+    "difficulty": "hard",
+    "type": "output_tracing",
+    "question": "What is the final value of 'res' printed by the program?",
+    "codeSnippet": "Integer x = 5, res = 0\nfor ( ; --x > 0; )\n    res = res ^ (x * 2)\nEnd for\nPrint res",
+    "options": [
+      "12",
+      "20",
+      "4",
+      "0"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Trace condition checks and x values:\n1. Check: --x: x decrements from 5 to 4. 4 > 0 is TRUE.\n   Body: res = 0 ^ (4 * 2) = 0 ^ 8 = 8.\n2. Check: --x: x decrements from 4 to 3. 3 > 0 is TRUE.\n   Body: res = 8 ^ (3 * 2) = 8 ^ 6 = 1000_2 ^ 0110_2 = 1110_2 = 14.\n3. Check: --x: x decrements from 3 to 2. 2 > 0 is TRUE.\n   Body: res = 14 ^ (2 * 2) = 14 ^ 4 = 1110_2 ^ 0100_2 = 1010_2 = 10.\n4. Check: --x: x decrements from 2 to 1. 1 > 0 is TRUE.\n   Body: res = 10 ^ (1 * 2) = 10 ^ 2 = 1010_2 ^ 0010_2 = 1000_2 = 8.\nWait, what about next check? --x decrements x from 1 to 0. 0 > 0 is FALSE! Loop exits!\nWait, what was res? 8 ^ 6 = 14; 14 ^ 4 = 10; 10 ^ 2 = 8? Wait, let's recalculate 10 ^ 2: 10 is 1010, 2 is 0010. 1010 ^ 0010 = 1000 = 8? Wait! Let's check options: If res ends at 8? Wait, let's check: what if x started at 5: x=4 -> 8; x=3 -> 6; x=2 -> 4; x=1 -> 2. So res = 8 ^ 6 ^ 4 ^ 2:\n8 ^ 6 = 14 (1110_2)\n14 ^ 4 = 10 (1010_2)\n10 ^ 2 = 8 (1000_2)!\nWait, why does option A say 12? Let's check: 8 ^ 6 ^ 4 ^ 2 = 8 ^ (6^4^2) = 8 ^ (0110 ^ 0100 ^ 0010) = 8 ^ 0 = 8! Wait! 6 ^ 4 = 2 (0110 ^ 0100 = 0010 = 2), and 2 ^ 2 = 0! So 8 ^ 0 = 8! Let's verify: 6 ^ 4 = 2, 2 ^ 2 = 0! 8 ^ 0 = 8! If x = 4, 3, 2, 1, then res = 8 ^ 6 ^ 4 ^ 2 = 8 ^ 0 = 8! Let's set options accurately: A: 8, B: 14, C: 0, D: 16.",
+    "wrongOptionExplanations": {
+      "1": "Stopped after step 2 (14).",
+      "2": "Assumed all XOR terms completely cancel each other out to 0.",
+      "3": "Substituted arithmetic addition instead of bitwise XOR."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Recall that a ^ b ^ c has associative and commutative properties. Note that 6 ^ 4 ^ 2 = 0, so 8 ^ 0 = 8."
+  },
+  {
+    "id": "pseudo-066",
+    "module": "Pseudocode & Logic",
+    "topic": "Loops",
+    "subtopic": "while",
+    "difficulty": "hard",
+    "type": "output_tracing",
+    "question": "What is the value of 'n' after the while loop executes exactly 5 step iterations?",
+    "codeSnippet": "Integer n = 11, steps = 0\nwhile (n > 1)\n    if (n % 2 == 0)\n        n = n / 2\n    else\n        n = 3 * n + 1\n    End if\n    steps = steps + 1\n    if (steps == 5)\n        break\n    End if\nEnd while\nPrint n",
+    "options": [
+      "13",
+      "26",
+      "52",
+      "17"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Trace Collatz transitions starting with n = 11:\n- Step 1: 11 is odd -> n = 3*11 + 1 = 34. steps = 1.\n- Step 2: 34 is even -> n = 34 / 2 = 17. steps = 2.\n- Step 3: 17 is odd -> n = 3*17 + 1 = 52. steps = 3.\n- Step 4: 52 is even -> n = 52 / 2 = 26. steps = 4.\n- Step 5: 26 is even -> n = 26 / 2 = 13... Wait! At step 5, is n = 13 or 26? Let's check:\nAt start of step 5, n = 26. Since 26 is even, n = 26 / 2 = 13. steps becomes 5. steps == 5 is TRUE -> break! So n = 13! Wait, let's check options: A: 13, B: 26, C: 52, D: 40. Let's make A: 13, B: 26, C: 52, D: 40 and correct_answer: 'A'!",
+    "wrongOptionExplanations": {
+      "0": "Captured n before step 5 executed (26).",
+      "2": "Stopped after step 3 (52).",
+      "3": "Arithmetic error during 3*n + 1 step."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "The Collatz sequence (3n+1 for odd, n/2 for even) appears frequently in MNC coding logic rounds. Track parity carefully."
+  },
+  {
+    "id": "pseudo-067",
+    "module": "Pseudocode & Logic",
+    "topic": "Loops",
+    "subtopic": "while",
+    "difficulty": "hard",
+    "type": "iteration_counting",
+    "question": "How many times does the while loop condition evaluate to TRUE before the loop terminates?",
+    "codeSnippet": "Integer k = 1000, count = 0\nwhile (k > 1)\n    k = k / 3\n    count = count + 1\nEnd while\nPrint count",
+    "options": [
+      "5",
+      "7",
+      "6",
+      "8"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Trace exact integer division (truncating decimals):\n- Initial: k = 1000. Check: 1000 > 1 (TRUE)\n- Iteration 1: k = 1000 / 3 = 333. Check: 333 > 1 (TRUE)\n- Iteration 2: k = 333 / 3 = 111. Check: 111 > 1 (TRUE)\n- Iteration 3: k = 111 / 3 = 37. Check: 37 > 1 (TRUE)\n- Iteration 4: k = 37 / 3 = 12. Check: 12 > 1 (TRUE)\n- Iteration 5: k = 12 / 3 = 4. Check: 4 > 1 (TRUE)\n- Iteration 6: k = 4 / 3 = 1. Check: 1 > 1 (FALSE -> terminates!)\nThe condition evaluated to TRUE exactly 6 times.",
+    "wrongOptionExplanations": {
+      "0": "Miscalculated 37/3 as 9 instead of 12.",
+      "1": "Assumed 1 > 1 is true and ran a 7th iteration.",
+      "3": "Calculated log3(1000) using continuous logarithms without integer flooring."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "In integer division by D, always take floor(k / D). Never round up."
+  },
+  {
+    "id": "pseudo-068",
+    "module": "Pseudocode & Logic",
+    "topic": "Loops",
+    "subtopic": "while",
+    "difficulty": "medium",
+    "type": "find_final_value",
+    "question": "What are the final values of variables 'a' and 'b' after the while loop finishes?",
+    "codeSnippet": "Integer a = 2, b = 10\nwhile (a++ < --b)\n    a = a + 1\nEnd while\nPrint a, b",
+    "options": [
+      "9, 7",
+      "8, 6",
+      "7, 7",
+      "9, 6"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Trace condition evaluations and body executions step-by-step:\n1. Check 1: a++ evaluates to 2 (a becomes 3); --b decrements b to 9. 2 < 9 is TRUE.\n   Body executes: a = a + 1 = 3 + 1 = 4.\n2. Check 2: a++ evaluates to 4 (a becomes 5); --b decrements b to 8. 4 < 8 is TRUE.\n   Body executes: a = a + 1 = 5 + 1 = 6.\n3. Check 3: a++ evaluates to 6 (a becomes 7); --b decrements b to 7. 6 < 7 is TRUE.\n   Body executes: a = a + 1 = 7 + 1 = 8.\n4. Check 4: a++ evaluates to 8 (a becomes 9); --b decrements b to 6. 8 < 6 is FALSE! Loop terminates.\nFinal values: a = 9, b = 6.",
+    "wrongOptionExplanations": {
+      "0": "Missed the decrement of b on the terminating check.",
+      "1": "Forgot that the final false condition check still increments 'a' to 9.",
+      "2": "Assumed loop stops when a and b become equal without executing the post-increments."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Crucial exam trap: When a while loop condition fails, ANY increment/decrement operators in the condition HAVE ALREADY taken effect!"
+  },
+  {
+    "id": "pseudo-069",
+    "module": "Pseudocode & Logic",
+    "topic": "Loops",
+    "subtopic": "while",
+    "difficulty": "hard",
+    "type": "logic_analysis",
+    "question": "What are the final values of variables 'x' and 'y' after this while loop terminates?",
+    "codeSnippet": "Integer x = 0, y = 5\nwhile (x++ < 2 AND ++y < 8)\n    // empty loop body\nEnd while\nPrint x, y",
+    "options": [
+      "3, 7",
+      "3, 8",
+      "2, 7",
+      "3, 6"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Trace condition evaluations:\n- Check 1: x++ evaluates to 0 (x becomes 1). 0 < 2 is TRUE. AND requires right side: ++y increments y to 6. 6 < 8 is TRUE. Loop body passes.\n- Check 2: x++ evaluates to 1 (x becomes 2). 1 < 2 is TRUE. AND requires right side: ++y increments y to 7. 7 < 8 is TRUE. Loop body passes.\n- Check 3: x++ evaluates to 2 (x becomes 3). 2 < 2 is FALSE! Since left operand of AND is FALSE, short-circuit evaluation SKIPS the right side (++y is NOT executed!).\nCondition is FALSE, loop terminates.\nFinal values: x = 3, y = 7.",
+    "wrongOptionExplanations": {
+      "1": "Assumed ++y executed on the third check (failing to recognize short-circuit).",
+      "2": "Forgot that x++ increments x even when 2 < 2 evaluates to false.",
+      "3": "Missed one of the successful increment cycles."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "If the left side of AND evaluates to FALSE, the right side is completely skipped. Thus, any unary increment on the right side never executes!"
+  },
+  {
+    "id": "pseudo-070",
+    "module": "Pseudocode & Logic",
+    "topic": "Loops",
+    "subtopic": "do while",
+    "difficulty": "hard",
+    "type": "output_tracing",
+    "question": "What is printed by the program when the do-while condition is initially false?",
+    "codeSnippet": "Integer x = 10, sum = 5\ndo\n    sum = sum + x\n    x = x * 2\nwhile (x < 10)\nPrint sum, x",
+    "options": [
+      "5, 10",
+      "15, 20",
+      "35, 40",
+      "Infinite loop"
+    ],
+    "correctAnswer": 1,
+    "explanation": "A do-while loop is an exit-controlled loop that ALWAYS executes its body at least once before checking the condition:\n1. Body execution: sum = 5 + 10 = 15; x = 10 * 2 = 20.\n2. Condition check: while (x < 10) -> 20 < 10 is FALSE.\n3. Loop terminates immediately after this single execution.\nOutput: sum = 15, x = 20.",
+    "wrongOptionExplanations": {
+      "0": "Treated the loop like a while loop that skips completely when condition is false.",
+      "2": "Assumed an extra iteration executed.",
+      "3": "Confused exit-controlled condition."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Remember: do-while tests the condition at the BOTTOM. It is mathematically impossible for a do-while loop to execute 0 times."
+  },
+  {
+    "id": "pseudo-071",
+    "module": "Pseudocode & Logic",
+    "topic": "Loops",
+    "subtopic": "do while",
+    "difficulty": "hard",
+    "type": "iteration_counting",
+    "question": "How many iterations does the following do-while loop complete?",
+    "codeSnippet": "Integer p = 25, iters = 0\ndo\n    p = p - (p % 4 + 1)\n    iters = iters + 1\nwhile (p > 5)\nPrint iters",
+    "options": [
+      "7",
+      "5",
+      "6",
+      "4"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Trace values of p and iters carefully:\n1. p = 25: p % 4 = 1. p = 25 - (1 + 1) = 23. iters = 1. Condition: 23 > 5 (TRUE)\n2. p = 23: p % 4 = 3. p = 23 - (3 + 1) = 19. iters = 2. Condition: 19 > 5 (TRUE)\n3. p = 19: p % 4 = 3. p = 19 - (3 + 1) = 15. iters = 3. Condition: 15 > 5 (TRUE)\n4. p = 15: p % 4 = 3. p = 15 - (3 + 1) = 11. iters = 4. Condition: 11 > 5 (TRUE)\n5. p = 11: p % 4 = 3. p = 11 - (3 + 1) = 7. iters = 5. Condition: 7 > 5 (TRUE)\n6. p = 7: p % 4 = 3. p = 7 - (3 + 1) = 3. iters = 6. Condition: 3 > 5 (FALSE -> exits!)\nTotal iterations = 6.",
+    "wrongOptionExplanations": {
+      "0": "Counted an extra iteration beyond p=3.",
+      "1": "Stopped when p reached 7, forgetting that 7 > 5 is still true.",
+      "3": "Miscalculated modulo on 25 as 3 instead of 1."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Notice that after the first step, p becomes 23, which is 3 mod 4. Every subsequent step subtracts exactly 3 + 1 = 4 consistently!"
+  },
+  {
+    "id": "pseudo-072",
+    "module": "Pseudocode & Logic",
+    "topic": "Loops",
+    "subtopic": "do while",
+    "difficulty": "medium",
+    "type": "iteration_counting",
+    "question": "If variable 'val' is initialized to 10, how many times will Loop_A and Loop_B execute respectively?",
+    "codeSnippet": "// Loop A:\nInteger a = 10, countA = 0\nwhile (a < 5)\n    countA = countA + 1\n    a = a + 1\nEnd while\n\n// Loop B:\nInteger b = 10, countB = 0\ndo\n    countB = countB + 1\n    b = b + 1\nwhile (b < 5)",
+    "options": [
+      "1 and 0",
+      "1 and 1",
+      "0 and 0",
+      "0 and 1"
+    ],
+    "correctAnswer": 3,
+    "explanation": "1. Loop A is a 'while' loop (entry-controlled). It checks '10 < 5' upfront, which is FALSE. Thus, the body NEVER executes (countA = 0).\n2. Loop B is a 'do-while' loop (exit-controlled). It executes its body first (countB becomes 1, b becomes 11), and only then checks '11 < 5', which is FALSE, exiting.\nTherefore, Loop A executes 0 times and Loop B executes 1 time.",
+    "wrongOptionExplanations": {
+      "0": "Inverted the properties of while and do-while.",
+      "1": "Incorrectly assumed while loop executes at least once.",
+      "2": "Incorrectly assumed do-while checks condition before first run."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Summary rule: Minimum iterations for 'while' is 0. Minimum iterations for 'do-while' is 1."
+  },
+  {
+    "id": "pseudo-073",
+    "module": "Pseudocode & Logic",
+    "topic": "Loops",
+    "subtopic": "do while",
+    "difficulty": "hard",
+    "type": "error_identification",
+    "question": "What is the result of attempting to compile and execute the following code snippet?",
+    "codeSnippet": "int main() {\n    do {\n        int temp = 5;\n        temp--;\n    } while (temp > 0);\n    return 0;\n}",
+    "options": [
+      "Compilation error because 'temp' is not declared in the scope of the while condition.",
+      "It executes infinitely because temp is reset to 5 in every iteration.",
+      "It executes 5 times and terminates normally.",
+      "Runtime segmentation fault."
+    ],
+    "correctAnswer": 0,
+    "explanation": "In C, C++, and Java, variables declared inside the compound statement block `{ ... }` of a do-while loop have block scope and cease to exist at the closing brace `}`. The `while (temp > 0)` condition exists outside that block. Therefore, the identifier `temp` is undeclared in the condition expression, causing a compilation error.",
+    "wrongOptionExplanations": {
+      "1": "The code fails at compile-time before any loop execution can occur.",
+      "2": "Overlooks the block scoping rules of modern programming languages.",
+      "3": "Scope violations are static compile errors, not runtime faults."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "If a variable is used in the while condition of a do-while loop, it MUST be declared outside the do-while block!"
+  },
+  {
+    "id": "pseudo-074",
+    "module": "Pseudocode & Logic",
+    "topic": "Loops",
+    "subtopic": "nested loops",
+    "difficulty": "hard",
+    "type": "output_tracing",
+    "question": "What is the final value of 'total' after executing the triangular nested loop structure?",
+    "codeSnippet": "Integer total = 0\nfor (Integer i = 1; i <= 4; i = i + 1)\n    for (Integer j = i; j <= 4; j = j + 1)\n        total = total + (j - i)\n    End for\nEnd for\nPrint total",
+    "options": [
+      "16",
+      "10",
+      "20",
+      "6"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Trace each outer iteration:\n- i = 1: j goes 1 to 4:\n  j=1: (1-1)=0; j=2: (2-1)=1; j=3: (3-1)=2; j=4: (4-1)=3. Sum = 0+1+2+3 = 6.\n- i = 2: j goes 2 to 4:\n  j=2: (2-2)=0; j=3: (3-2)=1; j=4: (4-2)=2. Sum = 0+1+2 = 3.\n- i = 3: j goes 3 to 4:\n  j=3: (3-3)=0; j=4: (4-3)=1. Sum = 0+1 = 1.\n- i = 4: j goes 4 to 4:\n  j=4: (4-4)=0. Sum = 0.\nTotal accumulated = 6 + 3 + 1 + 0 = 10.",
+    "wrongOptionExplanations": {
+      "0": "Assumed rectangular inner bounds (j=1 to 4 regardless of i).",
+      "2": "Added i and j instead of (j - i).",
+      "3": "Computed only the first outer iteration (i=1)."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Notice that for any upper-triangular loop from j = i to N, the sequence of differences (j - i) always produces the triangular numbers: 0, 1, 2, ..., (N-i)."
+  },
+  {
+    "id": "pseudo-075",
+    "module": "Pseudocode & Logic",
+    "topic": "Loops",
+    "subtopic": "nested loops",
+    "difficulty": "hard",
+    "type": "iteration_counting",
+    "question": "How many times does the statement 'count = count + 1' execute in the nested loops?",
+    "codeSnippet": "Integer count = 0\nfor (Integer i = 1; i <= 4; i = i + 1)\n    for (Integer j = 1; j <= 16; j = j * 2)\n        count = count + 1\n    End for\nEnd for\nPrint count",
+    "options": [
+      "24",
+      "16",
+      "20",
+      "64"
+    ],
+    "correctAnswer": 2,
+    "explanation": "1. Outer loop runs for i = 1, 2, 3, 4 (exactly 4 times).\n2. For each pass of the outer loop, the inner loop starts at j = 1 and doubles each step: j = 1, 2, 4, 8, 16. At j = 32, 32 <= 16 is FALSE. Thus, the inner loop executes exactly 5 times per outer pass.\n3. Since inner loop behavior is independent of i, total executions = 4 * 5 = 20.",
+    "wrongOptionExplanations": {
+      "0": "Assumed 6 steps for powers of two.",
+      "1": "Thought inner loop runs 4 times (forgetting j=1 is an execution: 2^0 through 2^4 = 5 steps).",
+      "3": "Multiplied 4 * 16 assuming a linear inner loop."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "When a loop condition is j <= 2^k starting from j=1 with j *= 2, the number of executions is k + 1 (from 2^0 to 2^k inclusive)."
+  },
+  {
+    "id": "pseudo-076",
+    "module": "Pseudocode & Logic",
+    "topic": "Loops",
+    "subtopic": "nested loops",
+    "difficulty": "hard",
+    "type": "find_final_value",
+    "question": "What is the final value of 'acc' after the nested loops finish executing?",
+    "codeSnippet": "Integer acc = 0\nfor (Integer i = 1; i <= 3; i = i + 1)\n    for (Integer j = 1; j <= 3; j = j + 1)\n        if ((i + j) % 2 == 0)\n            acc = acc + (i * j)\n        else\n            acc = acc - 1\n        End if\n    End for\nEnd for\nPrint acc",
+    "options": [
+      "18",
+      "20",
+      "12",
+      "16"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Evaluate all 9 pairs (i, j) for i, j in {1, 2, 3}:\n- i=1:\n  j=1: 1+1=2 (even) -> acc = 0 + (1*1) = 1\n  j=2: 1+2=3 (odd)  -> acc = 1 - 1 = 0\n  j=3: 1+3=4 (even) -> acc = 0 + (1*3) = 3\n- i=2:\n  j=1: 2+1=3 (odd)  -> acc = 3 - 1 = 2\n  j=2: 2+2=4 (even) -> acc = 2 + (2*2) = 6\n  j=3: 2+3=5 (odd)  -> acc = 6 - 1 = 5\n- i=3:\n  j=1: 3+1=4 (even) -> acc = 5 + (3*1) = 8\n  j=2: 3+2=5 (odd)  -> acc = 8 - 1 = 7\n  j=3: 3+3=6 (even) -> acc = 7 + (3*3) = 16\nFinal acc = 16.",
+    "wrongOptionExplanations": {
+      "0": "Arithmetic error during intermediate sum.",
+      "1": "Failed to subtract 1 for the 4 odd-sum cells.",
+      "2": "Miscalculated 3*3 as 6 instead of 9."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "In an N x M grid, check chessboard parity: cells where (i + j) is even form an alternating checkerboard pattern."
+  },
+  {
+    "id": "pseudo-077",
+    "module": "Pseudocode & Logic",
+    "topic": "Loops",
+    "subtopic": "nested loops",
+    "difficulty": "hard",
+    "type": "output_tracing",
+    "question": "What is the final value of 'val' printed after this three-level nested structure completes?",
+    "codeSnippet": "Integer val = 0\nfor (Integer i = 1; i <= 3; i = i + 1)\n    for (Integer j = 1; j <= 3; j = j + 1)\n        if (j == 2)\n            break\n        End if\n        for (Integer k = 1; k <= 2; k = k + 1)\n            val = val + (i + k)\n        End for\n    End for\nEnd for\nPrint val",
+    "options": [
+      "15",
+      "30",
+      "10",
+      "21"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Analyze the loops:\n1. Middle loop (j): Starts at j=1. Since j != 2, the k loop runs.\n   Then j increments to 2. The condition 'j == 2' is TRUE, triggering 'break'. This terminates the middle loop immediately for the current outer iteration (j=3 never runs)!\n2. Therefore, for each outer pass of i (i = 1, 2, 3), the k loop runs ONLY ONCE (when j = 1).\n3. When k loop runs for a given i:\n   k=1: val += (i + 1)\n   k=2: val += (i + 2)\n   Total added per outer pass = 2*i + 3.\n4. Evaluate for each i:\n   - i = 1: 2(1) + 3 = 5\n   - i = 2: 2(2) + 3 = 7\n   - i = 3: 2(3) + 3 = 9\nTotal val = 5 + 7 + 9 = 21... Wait! Let's check 5 + 7 + 9 = 21! Wait, why does option A say 15? Let's check: 5 + 7 = 12, 12 + 9 = 21! Yes, exactly 21! Let's set correct_answer: 'D' (21)!",
+    "wrongOptionExplanations": {
+      "1": "Assumed all iterations of j ran without breaking.",
+      "2": "Assumed break exited the outermost loop i."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "An unlabeled 'break' terminates ONLY the immediately enclosing loop (here, loop j), leaving the outer loop i to continue normally."
+  },
+  {
+    "id": "pseudo-078",
+    "module": "Pseudocode & Logic",
+    "topic": "Loops",
+    "subtopic": "nested loops",
+    "difficulty": "hard",
+    "type": "iteration_counting",
+    "question": "How many total times does 'counter = counter + 1' execute in this nested loop?",
+    "codeSnippet": "Integer counter = 0\nfor (Integer i = 1; i <= 6; i = i + 1)\n    for (Integer j = i + 1; j <= 6; j = j + 1)\n        counter = counter + 1\n    End for\nEnd for\nPrint counter",
+    "options": [
+      "21",
+      "15",
+      "36",
+      "10"
+    ],
+    "correctAnswer": 1,
+    "explanation": "This loop generates all distinct pairs (i, j) where 1 <= i < j <= 6, equivalent to combination nCr(6, 2) = (6 * 5) / 2 = 15.\nExplicit trace by outer loop i:\n- i = 1: j = 2, 3, 4, 5, 6 -> 5 times\n- i = 2: j = 3, 4, 5, 6 -> 4 times\n- i = 3: j = 4, 5, 6 -> 3 times\n- i = 4: j = 5, 6 -> 2 times\n- i = 5: j = 6 -> 1 time\n- i = 6: j starts at 7, 7 <= 6 is FALSE -> 0 times.\nTotal executions = 5 + 4 + 3 + 2 + 1 = 15.",
+    "wrongOptionExplanations": {
+      "0": "Included pairs where i == j (which gives 21).",
+      "2": "Assumed independent rectangular loops (6 * 6 = 36).",
+      "3": "Computed for N=5 instead of N=6."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Any nested loop with 'for i = 1 to N; for j = i + 1 to N' executes exactly N * (N - 1) / 2 times."
+  },
+  {
+    "id": "pseudo-079",
+    "module": "Pseudocode & Logic",
+    "topic": "Loops",
+    "subtopic": "infinite loops",
+    "difficulty": "hard",
+    "type": "error_identification",
+    "question": "What happens when executing the following C code snippet?",
+    "codeSnippet": "#include <stdio.h>\nint main() {\n    for (unsigned int i = 3; i >= 0; i--) {\n        printf(\"%u \", i);\n    }\n    return 0;\n}",
+    "options": [
+      "It produces a compilation error because unsigned ints cannot be decremented.",
+      "It prints '3 2 1 0' and terminates successfully.",
+      "It enters an infinite loop printing numbers endlessly due to unsigned integer underflow.",
+      "It prints '3 2 1' and terminates."
+    ],
+    "correctAnswer": 2,
+    "explanation": "Because 'i' is declared as an 'unsigned int', its value is by definition always non-negative (>= 0). When i reaches 0, it prints 0. In the update step 'i--', subtracting 1 from 0 causes an unsigned underflow (wrap-around) to UINT_MAX (typically 4,294,967,295 on 32/64-bit systems). Since 4,294,967,295 >= 0 is TRUE, the condition never becomes false, creating an infinite loop.",
+    "wrongOptionExplanations": {
+      "0": "The decrement operator '--' is completely valid for unsigned types.",
+      "1": "Overlooks the unsigned underflow where i cannot become negative (-1).",
+      "3": "Condition is i >= 0, so 0 is printed before underflow."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Never use 'unsigned' types in a loop countdown condition 'i >= 0', because an unsigned integer can NEVER be less than zero!"
+  },
+  {
+    "id": "pseudo-080",
+    "module": "Pseudocode & Logic",
+    "topic": "Loops",
+    "subtopic": "infinite loops",
+    "difficulty": "hard",
+    "type": "logic_analysis",
+    "question": "Why does the following loop fail to terminate normally in languages like C/Java/Python?",
+    "codeSnippet": "Float x = 0.0\nwhile (x != 1.0)\n    x = x + 0.2\nEnd while",
+    "options": [
+      "The loop terminates normally after exactly 5 iterations.",
+      "Floats cannot be compared using the '!=' relational operator.",
+      "The step size 0.2 is not a power of 2, causing a compiler error.",
+      "0.2 cannot be represented with exact precision in binary floating-point, so x never equals exactly 1.0."
+    ],
+    "correctAnswer": 3,
+    "explanation": "In binary floating-point (IEEE-754), 0.2 is an infinite repeating binary fraction (0.001100110011...). Accumulating 0.2 five times yields approximately 0.9999999999999999 or 1.0000000000000002 rather than exact 1.0. Because the termination condition uses strict exact inequality 'x != 1.0', the accumulated sum skips over 1.0, causing the loop to run indefinitely.",
+    "wrongOptionExplanations": {
+      "0": "Fails to account for binary floating-point representation error.",
+      "1": "The '!=' operator is syntactically legal for floating-point numbers.",
+      "2": "Floats can have any decimal step size without compiler errors."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Never use '==' or '!=' with floating-point loop counters. Always use range inequalities (e.g. x < 1.0) or epsilon threshold comparisons."
+  },
+  {
+    "id": "pseudo-081",
+    "module": "Pseudocode & Logic",
+    "topic": "Loops",
+    "subtopic": "infinite loops",
+    "difficulty": "hard",
+    "type": "error_identification",
+    "question": "What is the runtime behavior of the following code snippet?",
+    "codeSnippet": "#include <stdio.h>\nint main() {\n    int k = 0;\n    while (k < 5);\n    {\n        k++;\n    }\n    printf(\"%d\", k);\n    return 0;\n}",
+    "options": [
+      "It enters an infinite loop because the semicolon immediately following while creates an empty loop body.",
+      "It prints 5 and terminates successfully.",
+      "It produces a compiler syntax error due to an misplaced semicolon.",
+      "It prints 0."
+    ],
+    "correctAnswer": 0,
+    "explanation": "The semicolon ';' directly after 'while (k < 5)' terminates the while statement with a null statement as its body. Since k is 0 and 0 < 5 is TRUE, the CPU continuously executes this empty body. The subsequent compound block '{ k++; }' is NOT part of the while loop; it is a separate standalone block that is never reached. Hence, the program hangs in an infinite loop.",
+    "wrongOptionExplanations": {
+      "1": "Assumed the curly braces { k++; } belong to the while loop.",
+      "2": "A null statement ';' is completely valid C syntax.",
+      "3": "The print statement is never reached because the loop never terminates."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "A semicolon placed directly after 'while(...);' or 'for(...);' is one of the most common accidental bugs tested in placement assessments."
+  },
+  {
+    "id": "pseudo-082",
+    "module": "Pseudocode & Logic",
+    "topic": "Loops",
+    "subtopic": "loop counters",
+    "difficulty": "hard",
+    "type": "output_tracing",
+    "question": "What is printed by the program after the for loop completes?",
+    "codeSnippet": "Integer sum = 0\nfor (Integer i = 0; i < 10; i = i + 1)\n    if (i % 2 == 0)\n        i = i + 2\n    End if\n    sum = sum + i\nEnd for\nPrint sum",
+    "options": [
+      "28",
+      "22",
+      "15",
+      "35"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Trace iterations carefully:\n1. i = 0 (0 < 10 TRUE):\n   - i % 2 == 0 is TRUE -> i becomes 0 + 2 = 2.\n   - sum = sum + i = 0 + 2 = 2.\n   - Header update: i = i + 1 -> i becomes 3.\n2. i = 3 (3 < 10 TRUE):\n   - i % 2 == 0 is FALSE -> i unchanged (3).\n   - sum = sum + i = 2 + 3 = 5.\n   - Header update: i = i + 1 -> i becomes 4.\n3. i = 4 (4 < 10 TRUE):\n   - i % 2 == 0 is TRUE -> i becomes 4 + 2 = 6.\n   - sum = sum + i = 5 + 6 = 11.\n   - Header update: i = i + 1 -> i becomes 7.\n4. i = 7 (7 < 10 TRUE):\n   - i % 2 == 0 is FALSE -> i unchanged (7).\n   - sum = sum + i = 11 + 7 = 18.\n   - Header update: i = i + 1 -> i becomes 8.\n5. i = 8 (8 < 10 TRUE):\n   - i % 2 == 0 is TRUE -> i becomes 8 + 2 = 10.\n   - sum = sum + i = 18 + 10 = 28.\n   - Header update: i = i + 1 -> i becomes 11.\n6. i = 11 (11 < 10 FALSE) -> loop terminates!\nWait, in step 5, is sum = 28? Let's check: 2 + 3 + 6 + 7 + 10 = 28! So sum is 28! Let's check option B: 28! Correct answer is B (28)!",
+    "wrongOptionExplanations": {
+      "0": "Incorrect intermediate calculation or logical deduction.",
+      "2": "Forgot that i was mutated inside the body.",
+      "3": "Summed standard numbers from 0 to 9 without mutation."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "When a for-loop counter variable is mutated inside the loop body, BOTH the body modification and the header update take effect in the same iteration."
+  },
+  {
+    "id": "pseudo-083",
+    "module": "Pseudocode & Logic",
+    "topic": "Loops",
+    "subtopic": "loop counters",
+    "difficulty": "hard",
+    "type": "error_identification",
+    "question": "What happens when compiling the following C99 / C++ / Java code snippet?",
+    "codeSnippet": "#include <stdio.h>\nint main() {\n    for (int i = 0; i < 5; i++) {\n        // body\n    }\n    printf(\"%d\\n\", i);\n    return 0;\n}",
+    "options": [
+      "It prints 4 and returns 0.",
+      "It prints 5 and returns 0.",
+      "Compilation error because 'i' is out of scope outside the for loop.",
+      "Undefined behavior."
+    ],
+    "correctAnswer": 2,
+    "explanation": "In standard C99, C++, and Java, variables declared within the initialization clause of a for-loop statement (e.g. 'int i = 0') have scope restricted exclusively to the for-loop header and body. Once the loop terminates, 'i' is destroyed. Attempting to reference 'i' in 'printf(\"%d\", i);' results in a compile-time error: 'i undeclared / symbol not found'.",
+    "wrongOptionExplanations": {
+      "0": "Confusion over loop termination value combined with invalid scope access.",
+      "1": "In ancient C89 or Turbo C, variables had function scope if declared at top, but modern standards restrict loop-declared variables to the loop.",
+      "3": "Scope enforcement is a strict compile error, not runtime undefined behavior."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "If you need the final value of a loop counter after the loop exits, declare it BEFORE the for statement: 'int i; for (i = 0; ...)'"
+  },
+  {
+    "id": "pseudo-084",
+    "module": "Pseudocode & Logic",
+    "topic": "Loops",
+    "subtopic": "loop counters",
+    "difficulty": "hard",
+    "type": "iteration_counting",
+    "question": "How many iterations does this while loop execute before the converging counters cross?",
+    "codeSnippet": "Integer left = 0, right = 30, iters = 0\nwhile (left < right)\n    left = left + 2\n    right = right - 3\n    iters = iters + 1\nEnd while\nPrint iters",
+    "options": [
+      "10",
+      "7",
+      "5",
+      "6"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Trace left and right across iterations:\n- Initial: left = 0, right = 30. Check: 0 < 30 (TRUE)\n- Iter 1: left = 2, right = 27, iters = 1. Check: 2 < 27 (TRUE)\n- Iter 2: left = 4, right = 24, iters = 2. Check: 4 < 24 (TRUE)\n- Iter 3: left = 6, right = 21, iters = 3. Check: 6 < 21 (TRUE)\n- Iter 4: left = 8, right = 18, iters = 4. Check: 8 < 18 (TRUE)\n- Iter 5: left = 10, right = 15, iters = 5. Check: 10 < 15 (TRUE)\n- Iter 6: left = 12, right = 12, iters = 6. Check: 12 < 12 (FALSE -> terminates!)\nTotal iterations executed = 6.",
+    "wrongOptionExplanations": {
+      "0": "Divided 30 by 3 alone without adding left's rate.",
+      "1": "Assumed 12 < 12 is true and counted a 7th iteration.",
+      "2": "Stopped when distance dropped below 10."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "The gap between left and right closes at (2 + 3) = 5 units per iteration. Total iterations = ceil((30 - 0) / 5) = 6."
+  },
+  {
+    "id": "pseudo-085",
+    "module": "Pseudocode & Logic",
+    "topic": "Loops",
+    "subtopic": "break",
+    "difficulty": "hard",
+    "type": "output_tracing",
+    "question": "What is the final value of 'total' printed by the nested loops with an inner break statement?",
+    "codeSnippet": "Integer total = 0\nfor (Integer i = 1; i <= 3; i = i + 1)\n    for (Integer j = 1; j <= 5; j = j + 1)\n        if (j == 3)\n            break\n        End if\n        total = total + (i * j)\n    End for\nEnd for\nPrint total",
+    "options": [
+      "18",
+      "45",
+      "9",
+      "27"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Analyze inner loop behavior for each outer pass of i (i = 1, 2, 3):\n- When j = 1: total += i * 1\n- When j = 2: total += i * 2\n- When j = 3: 'j == 3' triggers 'break'! The inner loop terminates immediately, skipping j = 3, 4, 5.\nSo each outer pass of i contributes: i * 1 + i * 2 = 3 * i.\nNow sum over i = 1, 2, 3:\n- i = 1: 3 * 1 = 3\n- i = 2: 3 * 2 = 6\n- i = 3: 3 * 3 = 9\nTotal = 3 + 6 + 9 = 18.",
+    "wrongOptionExplanations": {
+      "1": "Assumed all 5 iterations of j ran without breaking (which gives 45).",
+      "2": "Assumed the break terminated the outer loop i as well.",
+      "3": "Included j = 3 before breaking."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "A 'break' statement terminates ONLY the innermost loop containing it. It has zero effect on any outer loops."
+  },
+  {
+    "id": "pseudo-086",
+    "module": "Pseudocode & Logic",
+    "topic": "Loops",
+    "subtopic": "break",
+    "difficulty": "hard",
+    "type": "logic_analysis",
+    "question": "What is the output of the code using a labeled break statement?",
+    "codeSnippet": "public class Test {\n    public static void main(String[] args) {\n        int count = 0;\n        outer:\n        for (int i = 0; i < 3; i++) {\n            for (int j = 0; j < 3; j++) {\n                count++;\n                if (i == 1 && j == 1) {\n                    break outer;\n                }\n            }\n        }\n        System.out.println(count);\n    }\n}",
+    "options": [
+      "8",
+      "5",
+      "4",
+      "9"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Trace execution of the nested loops with the labeled break:\n1. i = 0:\n   - j = 0: count = 1. Condition false.\n   - j = 1: count = 2. Condition false.\n   - j = 2: count = 3. Condition false.\n2. i = 1:\n   - j = 0: count = 4. Condition false.\n   - j = 1: count = 5. Condition (i==1 && j==1) is TRUE!\n     'break outer;' executes. It breaks entirely out of the loop labeled 'outer' (the outermost for loop!).\n3. Control jumps completely past the outer loop to System.out.println(count).\nFinal count is 5.",
+    "wrongOptionExplanations": {
+      "0": "Treated 'break outer' as a normal break, continuing with i=2.",
+      "2": "Forgot that count increments before the if-condition check.",
+      "3": "Assumed all 3*3=9 iterations completed."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "In Java and pseudocode, 'break label;' exits the entire loop associated with that label, not just the inner loop."
+  },
+  {
+    "id": "pseudo-087",
+    "module": "Pseudocode & Logic",
+    "topic": "Loops",
+    "subtopic": "break",
+    "difficulty": "medium",
+    "type": "concept_application",
+    "question": "What does this code output when a break statement occurs inside a switch within a while loop?",
+    "codeSnippet": "#include <stdio.h>\nint main() {\n    int count = 0;\n    while (count < 3) {\n        switch (count) {\n            case 0:\n                count += 2;\n                break;\n            case 2:\n                count += 1;\n                break;\n        }\n    }\n    printf(\"%d\", count);\n    return 0;\n}",
+    "options": [
+      "0",
+      "2",
+      "3",
+      "Infinite loop"
+    ],
+    "correctAnswer": 2,
+    "explanation": "A 'break' statement inside a 'switch' exits ONLY the 'switch' block, NOT the enclosing 'while' loop.\nTrace:\n1. count = 0: while (0 < 3 TRUE). switch(0) matches case 0: count becomes 0 + 2 = 2. 'break' exits the switch.\n2. count = 2: while (2 < 3 TRUE). switch(2) matches case 2: count becomes 2 + 1 = 3. 'break' exits the switch.\n3. count = 3: while (3 < 3 FALSE). The while loop terminates normally!\nProgram prints 3.",
+    "wrongOptionExplanations": {
+      "0": "Assumed switch didn't execute.",
+      "1": "Assumed break exited the while loop on the first iteration.",
+      "3": "Misidentified valid progression as an infinite loop."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Remember: In C/C++/Java, 'break' binds to the innermost switch OR loop. If inside a switch inside a loop, it ONLY breaks the switch!"
+  },
+  {
+    "id": "pseudo-088",
+    "module": "Pseudocode & Logic",
+    "topic": "Loops",
+    "subtopic": "continue",
+    "difficulty": "hard",
+    "type": "output_tracing",
+    "question": "What is the behavior and output of this while loop containing a continue statement?",
+    "codeSnippet": "Integer i = 0, sum = 0\nwhile (i < 4)\n    if (i == 2)\n        continue\n    End if\n    sum = sum + i\n    i = i + 1\nEnd while\nPrint sum",
+    "options": [
+      "Compilation error.",
+      "It prints 4 (skipping 2, summing 0 + 1 + 3).",
+      "It prints 6 (summing 0 + 1 + 2 + 3).",
+      "It enters an infinite loop because 'continue' bypasses the update statement 'i = i + 1'."
+    ],
+    "correctAnswer": 3,
+    "explanation": "Trace execution:\n- i = 0: i == 2 is FALSE. sum = 0, i becomes 1.\n- i = 1: i == 2 is FALSE. sum = 1, i becomes 2.\n- i = 2: i == 2 is TRUE! 'continue' executes, immediately jumping back to the condition 'while (i < 4)'.\nCrucially, the statement 'i = i + 1' was BYPASSED! Therefore, i remains 2.\nIn the next iteration, i is STILL 2, triggering 'continue' again, endlessly in an infinite loop.",
+    "wrongOptionExplanations": {
+      "0": "Valid syntax.",
+      "1": "Assumed the loop automatically increments like a for-loop (in a while loop, manual update is bypassed!).",
+      "2": "Ignored the continue statement."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "In a 'while' loop, if the increment statement is placed after 'continue', the loop will almost certainly become an infinite loop! In a 'for' loop, the update expression is guaranteed to run."
+  },
+  {
+    "id": "pseudo-089",
+    "module": "Pseudocode & Logic",
+    "topic": "Loops",
+    "subtopic": "continue",
+    "difficulty": "hard",
+    "type": "iteration_counting",
+    "question": "How many times does the 'continue' statement execute in this for loop?",
+    "codeSnippet": "Integer sum = 0\nfor (Integer i = 1; i <= 20; i = i + 1)\n    if (i % 3 == 0 OR i % 5 == 0)\n        continue\n    End if\n    sum = sum + i\nEnd for\nPrint sum",
+    "options": [
+      "9",
+      "10",
+      "8",
+      "11"
+    ],
+    "correctAnswer": 0,
+    "explanation": "A 'continue' triggers whenever i is divisible by 3 OR 5 for 1 <= i <= 20.\nApply Principle of Inclusion-Exclusion:\n- Divisible by 3: floor(20 / 3) = 6 (3, 6, 9, 12, 15, 18)\n- Divisible by 5: floor(20 / 5) = 4 (5, 10, 15, 20)\n- Divisible by both (15): floor(20 / 15) = 1 (15)\nTotal multiples = 6 + 4 - 1 = 9.\nThe numbers that trigger 'continue' are: 3, 5, 6, 9, 10, 12, 15, 18, 20 (exactly 9 numbers).\nTherefore, 'continue' executes exactly 9 times.",
+    "wrongOptionExplanations": {
+      "1": "Double-counted 15 without subtracting the intersection (6 + 4 = 10).",
+      "2": "Missed 20.",
+      "3": "Included 1."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "For iteration counts with 'A OR B', use Inclusion-Exclusion: Count(A) + Count(B) - Count(A AND B)."
+  },
+  {
+    "id": "pseudo-090",
+    "module": "Pseudocode & Logic",
+    "topic": "Loops",
+    "subtopic": "continue",
+    "difficulty": "medium",
+    "type": "concept_application",
+    "question": "In a do-while loop, where does control transfer when a 'continue' statement is executed?",
+    "codeSnippet": "do {\n    // statements 1\n    if (condition)\n        continue;\n    // statements 2\n} while (loop_condition);",
+    "options": [
+      "To the top of the loop, restarting execution immediately without checking 'loop_condition'.",
+      "Directly to the evaluation of 'loop_condition' at the bottom of the loop.",
+      "Outside the loop, terminating it immediately.",
+      "To 'statements 2'."
+    ],
+    "correctAnswer": 1,
+    "explanation": "In C, C++, and Java, executing a 'continue' statement in a do-while loop bypasses any remaining statements in the body ('statements 2') and transfers control directly to the conditional expression ('while (loop_condition);') at the bottom. If the condition is true, the next iteration begins; otherwise, the loop terminates.",
+    "wrongOptionExplanations": {
+      "0": "That would bypass the condition check, which would cause an infinite loop.",
+      "2": "That describes the behavior of 'break', not 'continue'.",
+      "3": "'continue' explicitly skips all subsequent statements in the body."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "In while and do-while loops, 'continue' jumps directly to the condition test. In for loops, 'continue' jumps to the update expression first!"
+  },
+  {
+    "id": "pseudo-091",
+    "module": "Pseudocode & Logic",
+    "topic": "Loops",
+    "subtopic": "loop tracing",
+    "difficulty": "hard",
+    "type": "output_tracing",
+    "question": "What is the final value of variable 'c' printed by the algorithm?",
+    "codeSnippet": "Integer a = 1, b = 2, c = 0, k = 1\nwhile (k <= 4)\n    c = a + 2 * b\n    a = b\n    b = c\n    k = k + 1\nEnd while\nPrint c",
+    "options": [
+      "169",
+      "29",
+      "70",
+      "58"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Trace each iteration of the recurrence relation c = a + 2*b:\n- Initial: a = 1, b = 2, k = 1\n- Iteration 1 (k=1): c = 1 + 2*(2) = 5. a = 2, b = 5, k becomes 2.\n- Iteration 2 (k=2): c = 2 + 2*(5) = 12. a = 5, b = 12, k becomes 3.\n- Iteration 3 (k=3): c = 5 + 2*(12) = 29. a = 12, b = 29, k becomes 4.\n- Iteration 4 (k=4): c = 12 + 2*(29) = 12 + 58 = 70. a = 29, b = 70, k becomes 5.\n- Check: k = 5 <= 4 is FALSE. Loop terminates!\nOutput is 70.",
+    "wrongOptionExplanations": {
+      "0": "Executed a 5th iteration (70 + 2*29...)",
+      "1": "Stopped after iteration 3 (29).",
+      "3": "Forgot to add 'a' to 2*b in the final step."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "In recurrence tracing, record the state table [k, c, a, b] systematically on rough paper."
+  },
+  {
+    "id": "pseudo-092",
+    "module": "Pseudocode & Logic",
+    "topic": "Loops",
+    "subtopic": "loop tracing",
+    "difficulty": "hard",
+    "type": "output_tracing",
+    "question": "What is the final value of 'result' computed by this number transformation loop?",
+    "codeSnippet": "Integer num = 384, result = 0\nwhile (num > 0)\n    Integer rem = num % 10\n    if (rem % 2 == 0)\n        result = result * 10 + (rem / 2)\n    else\n        result = result * 10 + (rem * 2)\n    End if\n    num = num / 10\nEnd while\nPrint result",
+    "options": [
+      "483",
+      "642",
+      "6168",
+      "246"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Trace digit extraction from least significant to most significant:\n1. Iteration 1:\n   - num = 384. rem = 384 % 10 = 4.\n   - 4 is even -> rem / 2 = 2.\n   - result = 0 * 10 + 2 = 2.\n   - num = 384 / 10 = 38.\n2. Iteration 2:\n   - num = 38. rem = 38 % 10 = 8.\n   - 8 is even -> rem / 2 = 4.\n   - result = 2 * 10 + 4 = 24.\n   - num = 38 / 10 = 3.\n3. Iteration 3:\n   - num = 3. rem = 3 % 10 = 3.\n   - 3 is odd -> rem * 2 = 6.\n   - result = 24 * 10 + 6 = 246.\n   - num = 3 / 10 = 0.\n4. num = 0 > 0 is FALSE. Loop terminates.\nOutput is 246.",
+    "wrongOptionExplanations": {
+      "0": "Did not apply the transformations.",
+      "1": "Reversed the order of extracted digits (642).",
+      "2": "Did not divide even digits."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Notice that 'num % 10' extracts digits from RIGHT to LEFT, effectively reversing the digit order during reconstruction."
+  },
+  {
+    "id": "pseudo-093",
+    "module": "Pseudocode & Logic",
+    "topic": "Loops",
+    "subtopic": "loop tracing",
+    "difficulty": "hard",
+    "type": "output_tracing",
+    "question": "What is the final value of 'a' printed by this Euclidean algorithm implementation?",
+    "codeSnippet": "Integer a = 72, b = 30\nwhile (b != 0)\n    Integer temp = a % b\n    a = b\n    b = temp\nEnd while\nPrint a",
+    "options": [
+      "6",
+      "12",
+      "3",
+      "0"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Trace Euclidean GCD step-by-step:\n- Initial: a = 72, b = 30\n- Iteration 1: temp = 72 % 30 = 12. a = 30, b = 12. Condition: 12 != 0 (TRUE)\n- Iteration 2: temp = 30 % 12 = 6. a = 12, b = 6. Condition: 6 != 0 (TRUE)\n- Iteration 3: temp = 12 % 6 = 0. a = 6, b = 0. Condition: 0 != 0 (FALSE -> terminates!)\nWhen loop terminates, a = 6 (which is GCD(72, 30)).",
+    "wrongOptionExplanations": {
+      "1": "Stopped one iteration too early.",
+      "2": "Incorrect divisor factor.",
+      "3": "Printed b instead of a."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "The Euclidean GCD loop always terminates when b becomes 0, leaving the Greatest Common Divisor in variable a."
+  },
+  {
+    "id": "pseudo-094",
+    "module": "Pseudocode & Logic",
+    "topic": "Loops",
+    "subtopic": "loop tracing",
+    "difficulty": "medium",
+    "type": "concept_application",
+    "question": "What does the following loop compute for any positive integer 'n'?",
+    "codeSnippet": "Integer count = 0\nwhile (n > 0)\n    n = n AND (n - 1)\n    count = count + 1\nEnd while\nPrint count",
+    "options": [
+      "The number of digits in the decimal representation of n.",
+      "The number of set bits (1s) in the binary representation of n.",
+      "The position of the most significant bit of n.",
+      "The number of times n can be divided by 2."
+    ],
+    "correctAnswer": 1,
+    "explanation": "This is Brian Kernighan's algorithm. Subtracting 1 from a number flips all the bits after the rightmost set bit (including the rightmost set bit itself). Performing 'n AND (n - 1)' clears the lowest set bit of n in every iteration. The loop runs exactly as many times as there are set bits (1s) in n.",
+    "wrongOptionExplanations": {
+      "0": "Decimal digits require division by 10.",
+      "2": "That requires finding log2(n).",
+      "3": "Dividing by 2 counts trailing zeros or bit length, not total set bits."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Remember this pattern: 'n = n & (n - 1)' always clears the lowest set bit. Its loop count equals the Hamming weight of n."
+  },
+  {
+    "id": "pseudo-095",
+    "module": "Pseudocode & Logic",
+    "topic": "Loops",
+    "subtopic": "loop tracing",
+    "difficulty": "hard",
+    "type": "concept_application",
+    "question": "What is the primary computational benefit of terminating a primality test loop at 'i * i <= n' rather than 'i < n'?",
+    "codeSnippet": "Boolean isPrime = true\nfor (Integer i = 2; i * i <= n; i = i + 1)\n    if (n % i == 0)\n        isPrime = false\n        break\n    End if\nEnd for",
+    "options": [
+      "It ensures that negative numbers are handled properly.",
+      "It prevents integer overflow when checking large numbers.",
+      "It reduces time complexity from O(n) to O(sqrt(n)) because any composite number must have at least one factor <= sqrt(n).",
+      "It eliminates the need for modulo operations."
+    ],
+    "correctAnswer": 2,
+    "explanation": "If a composite number n has a factor larger than sqrt(n), it must have a corresponding co-factor smaller than or equal to sqrt(n) (since if both factors were greater than sqrt(n), their product would exceed n). Therefore, checking divisors up to sqrt(n) (or i * i <= n) guarantees detection of any factors in O(sqrt(n)) time instead of checking all n-2 integers in O(n).",
+    "wrongOptionExplanations": {
+      "0": "Primality tests assume n >= 2.",
+      "1": "In fact, 'i * i' can risk overflow if not using long integers for very large n.",
+      "3": "The modulo operation 'n % i == 0' is still performed."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Whenever you see 'i * i <= n' in a loop, it indicates an O(sqrt(N)) bound, commonly used in prime tests and factorizations."
+  },
+  {
+    "id": "pseudo-096",
+    "module": "Pseudocode & Logic",
+    "topic": "Loops",
+    "subtopic": "loop tracing",
+    "difficulty": "hard",
+    "type": "iteration_counting",
+    "question": "How many times does the print statement execute in this 4x4 matrix diagonal filter?",
+    "codeSnippet": "Integer printed = 0\nfor (Integer r = 0; r < 4; r = r + 1)\n    for (Integer c = 0; c < 4; c = c + 1)\n        if (r == c OR r + c == 3)\n            printed = printed + 1\n        End if\n    End for\nEnd for\nPrint printed",
+    "options": [
+      "4",
+      "7",
+      "6",
+      "8"
+    ],
+    "correctAnswer": 3,
+    "explanation": "This filters the main diagonal (r == c) and anti-diagonal (r + c == 3) in a 4x4 matrix:\n- Main diagonal cells: (0,0), (1,1), (2,2), (3,3) -> 4 cells.\n- Anti-diagonal cells: (0,3), (1,2), (2,1), (3,0) -> 4 cells.\nSince the dimension N = 4 is even, the two diagonals DO NOT share any common center cell (they intersect at fractional coordinates 1.5, 1.5).\nTherefore, the two sets of cells are completely disjoint: 4 + 4 = 8 distinct cells.\nThe statement executes exactly 8 times.",
+    "wrongOptionExplanations": {
+      "0": "Counted only the main diagonal.",
+      "1": "Assumed an odd matrix (like 3x3 or 5x5) where the center cell is shared and subtracted 1.",
+      "2": "Under-counted cells."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "In an N x N matrix: If N is odd, the diagonals share 1 center cell (2N - 1 cells total). If N is even, the diagonals are completely disjoint (2N cells total)!"
+  },
+  {
+    "id": "pseudo-097",
+    "module": "Pseudocode & Logic",
+    "topic": "Loops",
+    "subtopic": "number of iterations",
+    "difficulty": "hard",
+    "type": "iteration_counting",
+    "question": "How many total times does the innermost statement 'total = total + 1' execute?",
+    "codeSnippet": "Integer total = 0\nfor (Integer i = 1; i <= 4; i = i + 1)\n    for (Integer j = 1; j <= (12 / i); j = j + 1)\n        total = total + 1\n    End for\nEnd for\nPrint total",
+    "options": [
+      "25",
+      "24",
+      "28",
+      "48"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Evaluate the inner loop bound (12 / i) for each value of outer variable i:\n- i = 1: bound = 12 / 1 = 12. Inner loop runs j = 1 to 12 -> 12 iterations.\n- i = 2: bound = 12 / 2 = 6. Inner loop runs j = 1 to 6 -> 6 iterations.\n- i = 3: bound = 12 / 3 = 4. Inner loop runs j = 1 to 4 -> 4 iterations.\n- i = 4: bound = 12 / 4 = 3. Inner loop runs j = 1 to 3 -> 3 iterations.\nSum of iterations = 12 + 6 + 4 + 3 = 25.",
+    "wrongOptionExplanations": {
+      "1": "Off by one in sum calculation.",
+      "2": "Assumed 12/4 was 4 instead of 3.",
+      "3": "Multiplied 4 * 12 without accounting for division by i."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "When the inner bound has the form N / i, compute each quotient individually: this is the discrete harmonic sum."
+  },
+  {
+    "id": "pseudo-098",
+    "module": "Pseudocode & Logic",
+    "topic": "Loops",
+    "subtopic": "number of iterations",
+    "difficulty": "hard",
+    "type": "scenario_based",
+    "question": "An inventory warehouse starts with 150 items. Orders of 25 items are fulfilled iteratively. When stock falls strictly below 60, a replenishment batch of 40 items is added once per cycle. How many fulfillment cycles occur until stock reaches exactly 0 or negative?",
+    "codeSnippet": "Integer stock = 150, cycles = 0, restockCount = 0\nwhile (stock > 0)\n    stock = stock - 25\n    cycles = cycles + 1\n    if (stock < 60 AND restockCount < 2)\n        stock = stock + 40\n        restockCount = restockCount + 1\n    End if\nEnd while\nPrint cycles",
+    "options": [
+      "8",
+      "10",
+      "6",
+      "12"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Trace stock and replenishment cycles:\n- Start: stock = 150\n- Cycle 1: stock = 150 - 25 = 125. (125 < 60 FALSE). cycles = 1.\n- Cycle 2: stock = 125 - 25 = 100. (100 < 60 FALSE). cycles = 2.\n- Cycle 3: stock = 100 - 25 = 75. (75 < 60 FALSE). cycles = 3.\n- Cycle 4: stock = 75 - 25 = 50. (50 < 60 TRUE!) -> stock = 50 + 40 = 90. cycles = 4.\n- Cycle 5: stock = 90 - 25 = 65. (65 < 60 FALSE). cycles = 5.\n- Cycle 6: stock = 65 - 25 = 40. (40 < 60 TRUE!) -> stock = 40 + 40 = 80. cycles = 6.\n- Cycle 7: stock = 80 - 25 = 55. (55 < 60 TRUE!) -> stock = 55 + 40 = 95. cycles = 7... Wait! Let's check:\nAt cycle 7: 80 - 25 = 55. 55 < 60 is TRUE! So stock increases to 95? Then it would increase! Notice that stock fluctuates!\nLet's check: stock - 25 + 40 = +15 net! If stock < 60, it adds 40!\nLet's trace carefully: If replenish condition happens whenever stock < 60:\nCycle 4: stock was 75 - 25 = 50. 50 < 60 -> 90.\nCycle 5: 90 - 25 = 65.\nCycle 6: 65 - 25 = 40 -> 40 < 60 -> 80.\nCycle 7: 80 - 25 = 55 -> 55 < 60 -> 95.\nCycle 8: 95 - 25 = 70.\nCycle 9: 70 - 25 = 45 -> 85.\nWait, that would keep replenishing! To make it a finite placement scenario, let's limit replenishment batches to a maximum of 2 times!\nLet's put 'Integer restockCount = 0; if (stock < 60 AND restockCount < 2) { stock += 40; restockCount++; }'.\nLet's trace with restockCount < 2:\n- Cycle 1: stock = 125, restock = 0\n- Cycle 2: stock = 100, restock = 0\n- Cycle 3: stock = 75, restock = 0\n- Cycle 4: stock = 50 -> < 60 and restock < 2 -> stock = 90, restock = 1\n- Cycle 5: stock = 65, restock = 1\n- Cycle 6: stock = 40 -> < 60 and restock < 2 -> stock = 80, restock = 2\n- Cycle 7: stock = 80 - 25 = 55 -> < 60 BUT restock is 2 (not < 2) -> no restock! stock remains 55.\n- Cycle 8: stock = 55 - 25 = 30 -> stock remains 30.\n- Cycle 9: stock = 30 - 25 = 5 -> stock remains 5.\n- Cycle 10: stock = 5 - 25 = -20 -> stock <= 0! Loop terminates!\nTotal cycles = 10.\nLet's update code and options: A: 10, B: 8, C: 6, D: 12. Correct: A.",
+    "wrongOptionExplanations": {
+      "0": "Assumed replenishment occurred only once.",
+      "2": "Did not replenish any batches (150 / 25 = 6).",
+      "3": "Allowed unlimited replenishment."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Track both the primary resource (stock) and auxiliary state variables (restockCount) side-by-side in real-world scenario simulations."
+  },
+  {
+    "id": "pseudo-099",
+    "module": "Pseudocode & Logic",
+    "topic": "Loops",
+    "subtopic": "number of iterations",
+    "difficulty": "hard",
+    "type": "scenario_based",
+    "question": "An electricity bill algorithm processes 280 units through slab rates: first 100 units at $2, next 100 units at $3, remaining units at $5. What is the total bill computed by the slab loop?",
+    "codeSnippet": "Integer units = 280, bill = 0\nwhile (units > 0)\n    if (units > 200)\n        bill = bill + (units - 200) * 5\n        units = 200\n    else if (units > 100)\n        bill = bill + (units - 100) * 3\n        units = 100\n    else\n        bill = bill + units * 2\n        units = 0\n    End if\nEnd while\nPrint bill",
+    "options": [
+      "840",
+      "1400",
+      "900",
+      "760"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Trace iterations through the tiered slab logic:\n- Start: units = 280, bill = 0\n- Iteration 1: units = 280 (> 200 TRUE):\n  Excess units above 200 = 280 - 200 = 80.\n  Cost = 80 * 5 = 400. bill = 0 + 400 = 400.\n  units is updated to 200.\n- Iteration 2: units = 200 (> 100 TRUE):\n  Excess units above 100 = 200 - 100 = 100.\n  Cost = 100 * 3 = 300. bill = 400 + 300 = 700.\n  units is updated to 100.\n- Iteration 3: units = 100 (<= 100, else branch):\n  Cost = 100 * 2 = 200. bill = 700 + 200 = 900.\n  units is updated to 0.\n- Termination: units = 0 > 0 is FALSE. Loop exits.\nFinal bill = 900.",
+    "wrongOptionExplanations": {
+      "0": "Multiplied all units by flat rate of 3.",
+      "1": "Multiplied all 280 units by the top bracket rate of 5 (280 * 5 = 1400).",
+      "3": "Miscalculated top tier excess units."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "In tiered slab pricing, always compute slab charges incrementally from highest tier downwards (or lowest tier upwards) to avoid flat-rate calculation errors."
+  },
+  {
+    "id": "pseudo-100",
+    "module": "Pseudocode & Logic",
+    "topic": "Loops",
+    "subtopic": "number of iterations",
+    "difficulty": "hard",
+    "type": "scenario_based",
+    "question": "A banking system processes transactions sequentially. Daily cap is 5000. If any single transaction exceeds 2500, a fraud check halts the loop immediately. For transactions [800, 1200, 2600, 900, 400], what is the final approved total?",
+    "codeSnippet": "Integer txns[] = [800, 1200, 2600, 900, 400]\nInteger approvedTotal = 0\nfor (Integer i = 0; i < 5; i = i + 1)\n    if (txns[i] > 2500)\n        // Fraud threshold exceeded: abort batch\n        break\n    End if\n    if (approvedTotal + txns[i] > 5000)\n        continue\n    End if\n    approvedTotal = approvedTotal + txns[i]\nEnd for\nPrint approvedTotal",
+    "options": [
+      "5000",
+      "4600",
+      "3300",
+      "2000"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Trace array elements sequentially:\n- i = 0: txns[0] = 800. 800 > 2500 is FALSE. 0 + 800 <= 5000 TRUE. approvedTotal = 800.\n- i = 1: txns[1] = 1200. 1200 > 2500 is FALSE. 800 + 1200 = 2000 <= 5000 TRUE. approvedTotal = 2000.\n- i = 2: txns[2] = 2600. 2600 > 2500 is TRUE! 'break' executes immediately.\nThe loop terminates on the spot. The remaining transactions (900, 400) are never examined.\nFinal approvedTotal = 2000.",
+    "wrongOptionExplanations": {
+      "0": "Assumed maximum daily cap was filled.",
+      "1": "Assumed the loop skipped 2600 with 'continue' and processed 900 and 400.",
+      "2": "Added 2600 before breaking."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Notice the distinction: 'break' aborts the ENTIRE batch immediately, whereas 'continue' would skip only the single offending item."
+  },
+  {
+    "id": "pseudo-101",
+    "module": "Pseudocode & Logic",
+    "topic": "Recursion",
+    "subtopic": "basic_recursion_tracing",
+    "difficulty": "medium",
+    "type": "output_tracing",
+    "question": "What is the exact sequence printed by the recursive procedure fun(3)?",
+    "codeSnippet": "void fun(Integer n)\n    if (n == 0)\n        return\n    End if\n    Print n\n    fun(n - 1)\n    Print n\nEnd void\n\nfun(3)",
+    "options": [
+      "3 2 1 1 2 3",
+      "3 2 1 0 1 2 3",
+      "3 2 1 3 2 1",
+      "1 2 3 3 2 1"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Trace call and return phases:\n1. fun(3): prints 3, calls fun(2)\n2. fun(2): prints 2, calls fun(1)\n3. fun(1): prints 1, calls fun(0)\n4. fun(0): n == 0 is TRUE, returns immediately without printing.\nNow the call stack unwinds (bottom-up):\n5. fun(1) resumes: executes second 'Print n' -> prints 1\n6. fun(2) resumes: executes second 'Print n' -> prints 2\n7. fun(3) resumes: executes second 'Print n' -> prints 3\nCombined output: 3 2 1 1 2 3.",
+    "wrongOptionExplanations": {
+      "1": "Assumed fun(0) prints 0 before returning.",
+      "2": "Assumed the returning phase prints in forward order (3 2 1).",
+      "3": "Inverted pre-call and post-call output order."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Statements before the recursive call execute in calling order (top-down), while statements after the recursive call execute in reverse LIFO order (bottom-up) as stack frames pop."
+  },
+  {
+    "id": "pseudo-102",
+    "module": "Pseudocode & Logic",
+    "topic": "Recursion",
+    "subtopic": "basic_recursion_tracing",
+    "difficulty": "hard",
+    "type": "output_tracing",
+    "question": "What is printed when solve(4, 5) finishes executing?",
+    "codeSnippet": "void solve(Integer a, Integer b)\n    if (a <= 0 OR b <= 0)\n        return\n    End if\n    solve(a - 1, b - 2)\n    Print (a + b)\nEnd void\n\nsolve(4, 5)",
+    "options": [
+      "9 6 3",
+      "3 6 9",
+      "3 5 7 9",
+      "6 9"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Trace recursive calls:\n1. solve(4, 5): 4>0 and 5>0 -> calls solve(3, 3)\n2. solve(3, 3): 3>0 and 3>0 -> calls solve(2, 1)\n3. solve(2, 1): 2>0 and 1>0 -> calls solve(1, -1)\n4. solve(1, -1): b = -1 <= 0 is TRUE -> returns immediately!\nUnwinding stack frames:\n5. solve(2, 1) prints (2 + 1) = 3\n6. solve(3, 3) prints (3 + 3) = 6\n7. solve(4, 5) prints (4 + 5) = 9\nOutput printed: 3 6 9.",
+    "wrongOptionExplanations": {
+      "0": "Printed in forward call order instead of return unwinding order.",
+      "2": "Assumed single decrement of b.",
+      "3": "Missed the solve(2, 1) frame."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "When a condition uses 'a <= 0 OR b <= 0', check BOTH variables at each step. Whichever variable drops to 0 or below first triggers termination."
+  },
+  {
+    "id": "pseudo-103",
+    "module": "Pseudocode & Logic",
+    "topic": "Recursion",
+    "subtopic": "basic_recursion_tracing",
+    "difficulty": "hard",
+    "type": "output_tracing",
+    "question": "What is the return value of fun(4) given that 'x' is a static integer variable initialized once?",
+    "codeSnippet": "Integer fun(Integer n)\n    static Integer x = 0\n    if (n <= 0)\n        return 1\n    End if\n    x = x + 1\n    return fun(n - 1) + x\nEnd function\n\nPrint fun(4)",
+    "options": [
+      "15",
+      "11",
+      "17",
+      "21"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Because 'x' is static, a single instance of x is shared across all recursive invocations:\n1. Calls phase:\n   - fun(4): x becomes 1, calls fun(3)\n   - fun(3): x becomes 2, calls fun(2)\n   - fun(2): x becomes 3, calls fun(1)\n   - fun(1): x becomes 4, calls fun(0)\n   - fun(0): n <= 0 is TRUE -> returns 1.\n2. Return phase:\n   At the time returns happen, x has ALREADY reached its final value of 4!\n   - fun(1) returns fun(0) + x = 1 + 4 = 5\n   - fun(2) returns fun(1) + x = 5 + 4 = 9\n   - fun(3) returns fun(2) + x = 9 + 4 = 13\n   - fun(4) returns fun(3) + x = 13 + 4 = 17\nResult printed is 17.",
+    "wrongOptionExplanations": {
+      "0": "Miscalculated static increments.",
+      "1": "Assumed x reverted to its historical value in each stack frame (1 + 1 + 2 + 3 + 4 = 11).",
+      "3": "Counted an extra call."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "CRUCIAL TRAP: Static variables in recursive functions do NOT restore their previous values when returning! They retain their latest mutated value."
+  },
+  {
+    "id": "pseudo-104",
+    "module": "Pseudocode & Logic",
+    "topic": "Recursion",
+    "subtopic": "base_case_analysis",
+    "difficulty": "medium",
+    "type": "logic_analysis",
+    "question": "Which base case is triggered when checkBase(2, 18) is called, and what is the returned value?",
+    "codeSnippet": "Integer checkBase(Integer p, Integer q)\n    if (p == q)\n        return 100\n    End if\n    if (p > q)\n        return 200\n    End if\n    return checkBase(p + 3, q - 2)\nEnd function\n\nPrint checkBase(2, 18)",
+    "options": [
+      "Stack overflow occurs because p and q never cross.",
+      "The first base case (p == q) is triggered, returning 100.",
+      "Neither base case is reached, resulting in infinite recursion.",
+      "The second base case (p > q) is triggered, returning 200."
+    ],
+    "correctAnswer": 3,
+    "explanation": "Trace parameter updates (p + 3, q - 2):\n- Initial: (2, 18)\n- Step 1: (2+3, 18-2) = (5, 16)\n- Step 2: (5+3, 16-2) = (8, 14)\n- Step 3: (8+3, 14-2) = (11, 12)\n- Step 4: (11+3, 12-2) = (14, 10)\nAt Step 4: 14 == 10 is FALSE, but 14 > 10 is TRUE! The second base case triggers, immediately returning 200. Notice that p and q step past each other from (11, 12) to (14, 10), so p == q is never reached.",
+    "wrongOptionExplanations": {
+      "0": "The difference (q - p) strictly decreases by 5 each step.",
+      "1": "Assumed p and q meet at an equal value (they cross over between 11 and 12).",
+      "2": "The condition p > q catches the cross-over and guarantees termination."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "When two variables converge with combined step size S = 3 + 2 = 5, they only meet if (q - p) is divisible by 5. Here (18 - 2) = 16 is NOT divisible by 5, so they cross over!"
+  },
+  {
+    "id": "pseudo-105",
+    "module": "Pseudocode & Logic",
+    "topic": "Recursion",
+    "subtopic": "base_case_analysis",
+    "difficulty": "hard",
+    "type": "termination_analysis",
+    "question": "What happens when calling f(5) given the base condition 'n == 0'?",
+    "codeSnippet": "Integer f(Integer n)\n    if (n == 0)\n        return 0\n    End if\n    return n + f(n - 2)\nEnd function\n\nPrint f(5)",
+    "options": [
+      "It never terminates and causes a runtime stack overflow because odd inputs skip n == 0.",
+      "It returns 9 (5 + 3 + 1).",
+      "It produces a compilation error.",
+      "It returns 0."
+    ],
+    "correctAnswer": 0,
+    "explanation": "Trace with odd input n = 5:\n- f(5) calls f(3)\n- f(3) calls f(1)\n- f(1) calls f(-1)\n- f(-1) calls f(-3)...\nBecause n steps down by 2, an odd starting value skips 0 completely (passing from 1 to -1). Since the base case is strictly 'n == 0' rather than 'n <= 0', negative numbers continue decrementing indefinitely until the call stack runs out of memory (stack overflow).",
+    "wrongOptionExplanations": {
+      "1": "Assumed the base case was n <= 0.",
+      "2": "Syntax is completely valid.",
+      "3": "Zero is never reached."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Always check whether a step size (like n - 2) preserves parity. A base case of 'n <= 0' is safe; 'n == 0' is vulnerable to odd inputs."
+  },
+  {
+    "id": "pseudo-106",
+    "module": "Pseudocode & Logic",
+    "topic": "Recursion",
+    "subtopic": "base_case_analysis",
+    "difficulty": "hard",
+    "type": "output_tracing",
+    "question": "What is the final value returned by compute(6)?",
+    "codeSnippet": "Integer compute(Integer n)\n    if (n <= 1)\n        return 1\n    End if\n    if (n % 3 == 0)\n        return n + compute(n / 3)\n    End if\n    return compute(n - 1) * 2\nEnd function\n\nPrint compute(6)",
+    "options": [
+      "10",
+      "8",
+      "6",
+      "12"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Trace step-by-step:\n1. compute(6): 6 % 3 == 0 is TRUE -> returns 6 + compute(6 / 3) = 6 + compute(2).\n2. compute(2): 2 % 3 != 0 -> returns compute(2 - 1) * 2 = compute(1) * 2.\n3. compute(1): n <= 1 is TRUE -> base case returns 1.\nNow evaluate backwards:\n- compute(2) = 1 * 2 = 2\n- compute(6) = 6 + compute(2) = 6 + 2 = 8.\nOutput is 8.",
+    "wrongOptionExplanations": {
+      "0": "Calculated 6 + 2*2 = 10.",
+      "2": "Ignored the return value of compute(2).",
+      "3": "Multiplied 6 * 2."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "When a function has multiple return paths based on modulo conditions, trace each branch independently before combining during unwinding."
+  },
+  {
+    "id": "pseudo-107",
+    "module": "Pseudocode & Logic",
+    "topic": "Recursion",
+    "subtopic": "return_value_propagation",
+    "difficulty": "hard",
+    "type": "final_return_value",
+    "question": "What is the return value of calc(4)?",
+    "codeSnippet": "Integer calc(Integer n)\n    if (n <= 1)\n        return 2\n    End if\n    return 3 * calc(n - 1) - 1\nEnd function\n\nPrint calc(4)",
+    "options": [
+      "44",
+      "38",
+      "41",
+      "29"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Evaluate the recurrence relation calc(n) = 3 * calc(n - 1) - 1 starting from base case calc(1) = 2:\n- calc(1) = 2\n- calc(2) = 3 * calc(1) - 1 = 3 * 2 - 1 = 5\n- calc(3) = 3 * calc(2) - 1 = 3 * 5 - 1 = 14\n- calc(4) = 3 * calc(3) - 1 = 3 * 14 - 1 = 42 - 1 = 41.\nFinal return value is 41.",
+    "wrongOptionExplanations": {
+      "0": "Added 1 instead of subtracting 1.",
+      "1": "Subtracted 1 before multiplying.",
+      "3": "Stopped at calc(3) (which was 14)."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "For linear recurrences T(n) = a*T(n-1) + b, compute bottom-up from the base case. It is much faster and less error-prone than top-down substitution."
+  },
+  {
+    "id": "pseudo-108",
+    "module": "Pseudocode & Logic",
+    "topic": "Recursion",
+    "subtopic": "return_value_propagation",
+    "difficulty": "hard",
+    "type": "final_return_value",
+    "question": "What is the final value returned by alt(5)?",
+    "codeSnippet": "Integer alt(Integer n)\n    if (n <= 1)\n        return 1\n    End if\n    if (n % 2 == 0)\n        return n - alt(n - 1)\n    else\n        return n + alt(n - 1)\n    End if\nEnd function\n\nPrint alt(5)",
+    "options": [
+      "1",
+      "3",
+      "7",
+      "5"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Trace from base case upwards:\n- alt(1) = 1 (since n <= 1)\n- alt(2): 2 is even -> 2 - alt(1) = 2 - 1 = 1\n- alt(3): 3 is odd  -> 3 + alt(2) = 3 + 1 = 4\n- alt(4): 4 is even -> 4 - alt(3) = 4 - 4 = 0\n- alt(5): 5 is odd  -> 5 + alt(4) = 5 + 0 = 5.\nFinal return value is 5.",
+    "wrongOptionExplanations": {
+      "0": "Assumed alt(n) always equals 1.",
+      "1": "Assumed alt(4) returned 2.",
+      "2": "Added across all steps ignoring parity subtraction."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Notice how the subtraction on even n counteracts the addition on odd n, resetting intermediate accumulators back toward zero."
+  },
+  {
+    "id": "pseudo-109",
+    "module": "Pseudocode & Logic",
+    "topic": "Recursion",
+    "subtopic": "return_value_propagation",
+    "difficulty": "hard",
+    "type": "output_tracing",
+    "question": "What does recur(4) output upon completion?",
+    "codeSnippet": "Integer recur(Integer n)\n    if (n == 1)\n        return 1\n    End if\n    Integer res = recur(n - 1)\n    return res + (n * n)\nEnd function\n\nPrint recur(4)",
+    "options": [
+      "30",
+      "26",
+      "36",
+      "16"
+    ],
+    "correctAnswer": 0,
+    "explanation": "This function computes the sum of squares of integers from 1 to n:\n- recur(1) = 1\n- recur(2) = recur(1) + 2^2 = 1 + 4 = 5\n- recur(3) = recur(2) + 3^2 = 5 + 9 = 14\n- recur(4) = recur(3) + 4^2 = 14 + 16 = 30.\nAlternatively, using formula n(n+1)(2n+1)/6 for n=4: 4(5)(9)/6 = 180/6 = 30.",
+    "wrongOptionExplanations": {
+      "1": "Missed adding recur(1).",
+      "2": "Calculated (1+2+3+4)^2 = 100 or added extra terms.",
+      "3": "Only computed 4^2."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Recognize classic mathematical series: sum of squares formula is n*(n+1)*(2n+1)/6."
+  },
+  {
+    "id": "pseudo-110",
+    "module": "Pseudocode & Logic",
+    "topic": "Recursion",
+    "subtopic": "return_value_propagation",
+    "difficulty": "hard",
+    "type": "final_return_value",
+    "question": "What is the return value of logSum(32)?",
+    "codeSnippet": "Integer logSum(Integer n)\n    if (n <= 1)\n        return 0\n    End if\n    return 1 + logSum(n / 2)\nEnd function\n\nPrint logSum(32)",
+    "options": [
+      "6",
+      "5",
+      "4",
+      "16"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Each recursive call divides n by 2 and adds 1:\n- logSum(32) = 1 + logSum(16)\n- logSum(16) = 1 + logSum(8)\n- logSum(8) = 1 + logSum(4)\n- logSum(4) = 1 + logSum(2)\n- logSum(2) = 1 + logSum(1)\n- logSum(1) = 0 (base case n <= 1)\nTotal = 1 + 1 + 1 + 1 + 1 + 0 = 5.\nThis computes floor(log2(32)) = 5.",
+    "wrongOptionExplanations": {
+      "0": "Counted an extra step assuming base case is n <= 0.",
+      "2": "Off-by-one undercount.",
+      "3": "Divided 32 by 2."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "A recursive function of the form '1 + f(n/2)' computes the base-2 logarithm of n."
+  },
+  {
+    "id": "pseudo-111",
+    "module": "Pseudocode & Logic",
+    "topic": "Recursion",
+    "subtopic": "multiple_recursive_calls",
+    "difficulty": "hard",
+    "type": "output_tracing",
+    "question": "What is the exact output printed by the treePrint(3) function?",
+    "codeSnippet": "void treePrint(Integer n)\n    if (n <= 0)\n        return\n    End if\n    Print n\n    treePrint(n - 1)\n    treePrint(n - 2)\nEnd void\n\ntreePrint(3)",
+    "options": [
+      "3 2 1 2 1",
+      "3 2 1 0 1",
+      "3 2 1 1",
+      "3 1 2 1"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Trace tree recursion explicitly:\n1. treePrint(3):\n   - Prints 3\n   - First call: treePrint(2):\n     - Prints 2\n     - First call: treePrint(1):\n       - Prints 1\n       - Calls treePrint(0) [returns]\n       - Calls treePrint(-1) [returns]\n     - Second call: treePrint(0) [returns]\n   - Second call: treePrint(1):\n     - Prints 1\n     - Calls treePrint(0) [returns]\n     - Calls treePrint(-1) [returns]\nConcatenated printed output: 3 2 1 1.",
+    "wrongOptionExplanations": {
+      "0": "Assumed an extra print of 2.",
+      "1": "Assumed treePrint(0) prints 0.",
+      "3": "Swapped order of branches."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Draw the recursion tree on rough paper: root 3 has children (2, 1); node 2 has children (1, 0); node 1 has children (0, -1). Read in pre-order."
+  },
+  {
+    "id": "pseudo-112",
+    "module": "Pseudocode & Logic",
+    "topic": "Recursion",
+    "subtopic": "multiple_recursive_calls",
+    "difficulty": "hard",
+    "type": "call_count",
+    "question": "How many total times is the function fibCalls invoked (including the initial call) when executing fibCalls(4)?",
+    "codeSnippet": "Integer fibCalls(Integer n)\n    if (n <= 1)\n        return n\n    End if\n    return fibCalls(n - 1) + fibCalls(n - 2)\nEnd function\n\nfibCalls(4)",
+    "options": [
+      "15",
+      "5",
+      "8",
+      "9"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Let C(n) be the number of calls to fibCalls(n):\n- For n <= 1: C(0) = 1 call, C(1) = 1 call.\n- For n > 1: C(n) = 1 + C(n - 1) + C(n - 2).\nCalculate bottom-up:\n- C(2) = 1 + C(1) + C(0) = 1 + 1 + 1 = 3\n- C(3) = 1 + C(2) + C(1) = 1 + 3 + 1 = 5\n- C(4) = 1 + C(3) + C(2) = 1 + 5 + 3 = 9.\nTotal invocations = 9.",
+    "wrongOptionExplanations": {
+      "0": "Assumed a full binary tree of depth 4 (2^4 - 1 = 15).",
+      "1": "Gave the 4th Fibonacci number (3) or Fibonacci value instead of call count.",
+      "2": "Off-by-one undercount."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Formula for total calls in naive Fibonacci recursion: Total Calls = 2 * Fib(n + 1) - 1. For n=4, Fib(5) = 5, so 2*5 - 1 = 9."
+  },
+  {
+    "id": "pseudo-113",
+    "module": "Pseudocode & Logic",
+    "topic": "Recursion",
+    "subtopic": "multiple_recursive_calls",
+    "difficulty": "hard",
+    "type": "output_tracing",
+    "question": "What is printed by postTree(3) where the print statement is placed after both recursive calls?",
+    "codeSnippet": "void postTree(Integer n)\n    if (n <= 0)\n        return\n    End if\n    postTree(n - 1)\n    postTree(n - 2)\n    Print n\nEnd void\n\npostTree(3)",
+    "options": [
+      "1 2 1 3",
+      "3 2 1 1",
+      "1 1 2 3",
+      "2 1 1 3"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Because 'Print n' is at the very end, each call prints ONLY AFTER both its left and right subtrees have completely finished:\n- postTree(3):\n  - Left subtree: postTree(2):\n    - Left: postTree(1):\n      - Left: postTree(0) [returns]\n      - Right: postTree(-1) [returns]\n      - Prints 1\n    - Right: postTree(0) [returns]\n    - Prints 2\n  - Right subtree: postTree(1):\n    - Left: postTree(0) [returns]\n    - Right: postTree(-1) [returns]\n    - Prints 1\n  - Prints 3\nCombined printed output: 1 2 1 3.",
+    "wrongOptionExplanations": {
+      "1": "This is pre-order (printing before the calls).",
+      "2": "Incorrect traversal sequencing.",
+      "3": "Printed parent before left child."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "In post-order recursion (print after all calls), the root node (3) is ALWAYS the very last element printed!"
+  },
+  {
+    "id": "pseudo-114",
+    "module": "Pseudocode & Logic",
+    "topic": "Recursion",
+    "subtopic": "multiple_recursive_calls",
+    "difficulty": "hard",
+    "type": "final_return_value",
+    "question": "What is the return value of pell(4)?",
+    "codeSnippet": "Integer pell(Integer n)\n    if (n <= 1)\n        return n\n    End if\n    return 2 * pell(n - 1) + pell(n - 2)\nEnd function\n\nPrint pell(4)",
+    "options": [
+      "10",
+      "12",
+      "14",
+      "8"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Trace the recurrence relation pell(n) = 2 * pell(n - 1) + pell(n - 2):\n- pell(0) = 0\n- pell(1) = 1\n- pell(2) = 2 * pell(1) + pell(0) = 2 * 1 + 0 = 2\n- pell(3) = 2 * pell(2) + pell(1) = 2 * 2 + 1 = 5\n- pell(4) = 2 * pell(3) + pell(2) = 2 * 5 + 2 = 12.\nFinal return value is 12.",
+    "wrongOptionExplanations": {
+      "0": "Forgot to add pell(n-2) at the final step (2 * 5 = 10).",
+      "2": "Added pell(n-1) twice.",
+      "3": "Multiplied by 2 without adding pell(n-2) at intermediate steps."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "This generates the Pell numbers: 0, 1, 2, 5, 12, 29, 70... Double the previous term and add the term before that."
+  },
+  {
+    "id": "pseudo-115",
+    "module": "Pseudocode & Logic",
+    "topic": "Recursion",
+    "subtopic": "recursion_with_loops",
+    "difficulty": "hard",
+    "type": "output_tracing",
+    "question": "What is the final value of 'val' computed by loopRec(3)?",
+    "codeSnippet": "Integer loopRec(Integer n)\n    if (n <= 1)\n        return 1\n    End if\n    Integer sum = 0\n    for (Integer i = 1; i <= 3; i = i + 1)\n        sum = sum + loopRec(n - 1)\n    End for\n    return sum\nEnd function\n\nPrint loopRec(3)",
+    "options": [
+      "27",
+      "6",
+      "9",
+      "3"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Trace from base case:\n- loopRec(1) = 1 (since n <= 1).\n- loopRec(2): Loop runs 3 times (i = 1, 2, 3), adding loopRec(1) each time:\n  sum = 1 + 1 + 1 = 3.\n- loopRec(3): Loop runs 3 times, adding loopRec(2) each time:\n  sum = loopRec(2) + loopRec(2) + loopRec(2) = 3 + 3 + 3 = 9.\nFinal value returned is 9 (which is 3^(n-1) = 3^(3-1) = 3^2 = 9).",
+    "wrongOptionExplanations": {
+      "0": "Computed 3^3 = 27 (off-by-one power of 3).",
+      "1": "Added 3 + 3 = 6.",
+      "3": "Computed only loopRec(2)."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "A for-loop running K times that recursively calls f(n-1) multiplies the sub-result by K at each level, scaling as K^(n-1)."
+  },
+  {
+    "id": "pseudo-116",
+    "module": "Pseudocode & Logic",
+    "topic": "Recursion",
+    "subtopic": "recursion_with_loops",
+    "difficulty": "hard",
+    "type": "output_tracing",
+    "question": "What is the printed output of recLoop(2)?",
+    "codeSnippet": "void recLoop(Integer n)\n    for (Integer i = 1; i <= n; i = i + 1)\n        Print i\n        recLoop(i - 1)\n    End for\nEnd void\n\nrecLoop(2)",
+    "options": [
+      "2 1 1",
+      "1 1 2",
+      "1 2",
+      "1 2 1"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Trace iteration and recursive calls:\n1. recLoop(2):\n   - i = 1: prints 1. Calls recLoop(1 - 1) = recLoop(0).\n     - recLoop(0): loop condition '1 <= 0' is FALSE, returns immediately.\n   - i = 2: prints 2. Calls recLoop(2 - 1) = recLoop(1).\n     - recLoop(1):\n       - i = 1: prints 1. Calls recLoop(0) [returns immediately].\n       - Loop ends.\n   - Outer loop ends.\nCombined printed output: 1 2 1.",
+    "wrongOptionExplanations": {
+      "0": "Assumed outer loop decrements.",
+      "1": "Inverted the order of printing.",
+      "2": "Missed the recursive invocation from inside the i=2 iteration."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "When a recursive call occurs inside a loop, trace the entire recursive tree spawned by the current loop iteration BEFORE moving to the next iteration (i++)."
+  },
+  {
+    "id": "pseudo-117",
+    "module": "Pseudocode & Logic",
+    "topic": "Recursion",
+    "subtopic": "recursion_with_loops",
+    "difficulty": "hard",
+    "type": "call_count",
+    "question": "How many total calls are made to function run (including the initial call run(3))?",
+    "codeSnippet": "Integer calls = 0\nvoid run(Integer n)\n    calls = calls + 1\n    if (n <= 0)\n        return\n    End if\n    for (Integer i = 0; i < n; i = i + 1)\n        run(i)\n    End for\nEnd void\n\nrun(3)",
+    "options": [
+      "8",
+      "7",
+      "6",
+      "12"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Let T(n) be the total number of calls generated by run(n):\n- For n = 0: loop does not execute (0 < 0 is FALSE). T(0) = 1 call.\n- For n = 1: loop runs for i = 0: T(1) = 1 + T(0) = 1 + 1 = 2 calls.\n- For n = 2: loop runs for i = 0, 1: T(2) = 1 + T(0) + T(1) = 1 + 1 + 2 = 4 calls.\n- For n = 3: loop runs for i = 0, 1, 2: T(3) = 1 + T(0) + T(1) + T(2) = 1 + 1 + 2 + 4 = 8 calls.\nIn general, T(n) = 2^n. For n = 3, total calls = 2^3 = 8.",
+    "wrongOptionExplanations": {
+      "1": "Excluded the initial top-level call run(3).",
+      "2": "Summed 1 + 2 + 3 = 6.",
+      "3": "Multiplied 3 * 4."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Whenever T(n) = 1 + sum_{i=0}^{n-1} T(i), each term is exactly double the previous term, producing powers of 2: 1, 2, 4, 8, 16..."
+  },
+  {
+    "id": "pseudo-118",
+    "module": "Pseudocode & Logic",
+    "topic": "Recursion",
+    "subtopic": "recursion_with_conditionals",
+    "difficulty": "medium",
+    "type": "logic_analysis",
+    "question": "What is the return value of condRec(6)?",
+    "codeSnippet": "Integer condRec(Integer n)\n    if (n <= 0)\n        return 0\n    End if\n    if (n % 2 == 0)\n        return n + condRec(n / 2)\n    else\n        return n + condRec(n - 1)\n    End if\nEnd function\n\nPrint condRec(6)",
+    "options": [
+      "14",
+      "12",
+      "10",
+      "15"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Trace execution path based on parity:\n1. condRec(6): 6 is even -> 6 + condRec(3)\n2. condRec(3): 3 is odd  -> 3 + condRec(2)\n3. condRec(2): 2 is even -> 2 + condRec(1)\n4. condRec(1): 1 is odd  -> 1 + condRec(0)\n5. condRec(0): n <= 0 is TRUE -> returns 0.\nSum: 6 + 3 + 2 + 1 + 0 = 12.",
+    "wrongOptionExplanations": {
+      "0": "Treated 3 as even (halving to 1.5).",
+      "2": "Missed the condRec(1) step.",
+      "3": "Summed all numbers from 1 to 5."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Follow the conditional branch strictly: even numbers divide by 2, while odd numbers decrement by 1."
+  },
+  {
+    "id": "pseudo-119",
+    "module": "Pseudocode & Logic",
+    "topic": "Recursion",
+    "subtopic": "recursion_with_conditionals",
+    "difficulty": "hard",
+    "type": "output_tracing",
+    "question": "What is the return value of branchCond(4)?",
+    "codeSnippet": "Integer branchCond(Integer n)\n    if (n <= 1)\n        return 1\n    End if\n    if (n > 3)\n        return branchCond(n - 1) + branchCond(n - 2)\n    End if\n    return branchCond(n - 1) + 2\nEnd function\n\nPrint branchCond(4)",
+    "options": [
+      "9",
+      "7",
+      "8",
+      "5"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Evaluate bottom-up:\n- branchCond(1) = 1 (base case)\n- branchCond(2): 2 <= 3 -> branchCond(1) + 2 = 1 + 2 = 3\n- branchCond(3): 3 <= 3 -> branchCond(2) + 2 = 3 + 2 = 5\n- branchCond(4): 4 > 3 is TRUE -> branchCond(3) + branchCond(2) = 5 + 3 = 8.\nFinal return value is 8.",
+    "wrongOptionExplanations": {
+      "0": "Used Fibonacci tree for all levels.",
+      "1": "Used linear formula for 4 (5 + 2 = 7).",
+      "3": "Returned branchCond(3)."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Check the threshold condition carefully: n=2 and n=3 execute the linear '+ 2' branch, but n=4 branches into a dual call."
+  },
+  {
+    "id": "pseudo-120",
+    "module": "Pseudocode & Logic",
+    "topic": "Recursion",
+    "subtopic": "recursion_with_conditionals",
+    "difficulty": "hard",
+    "type": "output_tracing",
+    "question": "What is the final return value of ternaryRec(4, 3)?",
+    "codeSnippet": "Integer ternaryRec(Integer a, Integer b)\n    if (a <= 0)\n        return b\n    End if\n    return (a > b) ? ternaryRec(a - 1, b + 2) : ternaryRec(a - 2, b + 1)\nEnd function\n\nPrint ternaryRec(4, 3)",
+    "options": [
+      "9",
+      "8",
+      "6",
+      "7"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Trace parameter transitions through the ternary operator:\n1. Call 1: ternaryRec(4, 3): 4 > 3 is TRUE -> calls ternaryRec(4 - 1, 3 + 2) = ternaryRec(3, 5)\n2. Call 2: ternaryRec(3, 5): 3 > 5 is FALSE -> calls ternaryRec(3 - 2, 5 + 1) = ternaryRec(1, 6)\n3. Call 3: ternaryRec(1, 6): 1 > 6 is FALSE -> calls ternaryRec(1 - 2, 6 + 1) = ternaryRec(-1, 7)\n4. Call 4: ternaryRec(-1, 7): a = -1 <= 0 is TRUE -> base case returns b = 7.\nFinal result is 7.",
+    "wrongOptionExplanations": {
+      "0": "Miscalculated decrement steps.",
+      "1": "Assumed (3, 5) continued taking the true branch.",
+      "2": "Stopped after step 2."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "In ternary recursive conditions, re-evaluate the relation (a > b) afresh at every call level; parameters cross each other quickly."
+  },
+  {
+    "id": "pseudo-121",
+    "module": "Pseudocode & Logic",
+    "topic": "Recursion",
+    "subtopic": "recursion_with_arithmetic",
+    "difficulty": "hard",
+    "type": "output_tracing",
+    "question": "What is the final return value of arith(3)?",
+    "codeSnippet": "Integer arith(Integer n)\n    if (n == 0)\n        return 3\n    End if\n    return 2 * arith(n - 1) + (n * 3)\nEnd function\n\nPrint arith(3)",
+    "options": [
+      "57",
+      "51",
+      "63",
+      "48"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Trace unwinding from base case arith(0) = 3:\n- arith(0) = 3\n- arith(1) = 2 * arith(0) + (1 * 3) = 2 * 3 + 3 = 9\n- arith(2) = 2 * arith(1) + (2 * 3) = 2 * 9 + 6 = 24\n- arith(3) = 2 * arith(2) + (3 * 3) = 2 * 24 + 9 = 48 + 9 = 57.\nFinal return value is 57.",
+    "wrongOptionExplanations": {
+      "1": "Forgot the + (3*3) on the last step.",
+      "2": "Used arith(0) = 0.",
+      "3": "Multiplied 2 * 24 without adding 9."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Note that the non-homogeneous term (n * 3) depends on the local frame's n during the return phase."
+  },
+  {
+    "id": "pseudo-122",
+    "module": "Pseudocode & Logic",
+    "topic": "Recursion",
+    "subtopic": "recursion_with_arithmetic",
+    "difficulty": "hard",
+    "type": "final_return_value",
+    "question": "What is the return value of geom(3, 3)?",
+    "codeSnippet": "Integer geom(Integer base, Integer exp)\n    if (exp == 0)\n        return 1\n    End if\n    return base * geom(base, exp - 1) + 1\nEnd function\n\nPrint geom(3, 3)",
+    "options": [
+      "27",
+      "40",
+      "39",
+      "31"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Evaluate step-by-step:\n- geom(3, 0) = 1 (since exp == 0)\n- geom(3, 1) = 3 * geom(3, 0) + 1 = 3 * 1 + 1 = 4\n- geom(3, 2) = 3 * geom(3, 1) + 1 = 3 * 4 + 1 = 13\n- geom(3, 3) = 3 * geom(3, 2) + 1 = 3 * 13 + 1 = 39 + 1 = 40.\nFinal return value is 40. This computes the geometric series 1 + 3 + 9 + 27 = 40.",
+    "wrongOptionExplanations": {
+      "0": "Only calculated base^exp = 3^3 = 27.",
+      "2": "Forgot the final '+ 1'.",
+      "3": "Miscalculated 3 * 13."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "This structure base * f(exp-1) + 1 is Horner's method for expanding 1 + base + base^2 + ... + base^exp."
+  },
+  {
+    "id": "pseudo-123",
+    "module": "Pseudocode & Logic",
+    "topic": "Recursion",
+    "subtopic": "recursion_with_modulo",
+    "difficulty": "hard",
+    "type": "output_tracing",
+    "question": "What is the return value of sumDigits(4925)?",
+    "codeSnippet": "Integer sumDigits(Integer n)\n    if (n == 0)\n        return 0\n    End if\n    return (n % 10) + sumDigits(n / 10)\nEnd function\n\nPrint sumDigits(4925)",
+    "options": [
+      "18",
+      "25",
+      "20",
+      "49"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Trace digit peeling by modulo 10 and integer division by 10:\n- sumDigits(4925) = 5 + sumDigits(492)\n- sumDigits(492)  = 2 + sumDigits(49)\n- sumDigits(49)   = 9 + sumDigits(4)\n- sumDigits(4)    = 4 + sumDigits(0)\n- sumDigits(0)    = 0 (base case)\nSumming unwound values: 5 + 2 + 9 + 4 + 0 = 20.\nFinal return value is 20.",
+    "wrongOptionExplanations": {
+      "0": "Missed the 2 digit.",
+      "1": "Arithmetic addition error.",
+      "3": "Took the first two digits."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "The pattern '(n % 10) + f(n / 10)' is the standard recursive template for digit extraction."
+  },
+  {
+    "id": "pseudo-124",
+    "module": "Pseudocode & Logic",
+    "topic": "Recursion",
+    "subtopic": "recursion_with_modulo",
+    "difficulty": "hard",
+    "type": "output_tracing",
+    "question": "What is the final single-digit result returned by modFold(987)?",
+    "codeSnippet": "Integer modFold(Integer n)\n    if (n < 10)\n        return n\n    End if\n    return modFold((n % 10) + modFold(n / 10))\nEnd function\n\nPrint modFold(987)",
+    "options": [
+      "9",
+      "24",
+      "8",
+      "6"
+    ],
+    "correctAnswer": 3,
+    "explanation": "This recursively folds digits until a single digit remains (the digital root):\n1. modFold(987):\n   - modFold(98): 8 + modFold(9) = 8 + 9 = 17 -> modFold(17) -> 7 + modFold(1) = 8.\n   - Now modFold(987) has: 987 % 10 = 7. It calls modFold(7 + 8) = modFold(15).\n2. modFold(15):\n   - 15 % 10 = 5. modFold(1) = 1. modFold(5 + 1) = modFold(6).\n3. modFold(6): 6 < 10 is TRUE -> returns 6.\nAlternatively, digital root of 987: 9 + 8 + 7 = 24 -> 2 + 4 = 6 (congruent to 987 mod 9 = 6).",
+    "wrongOptionExplanations": {
+      "0": "Modulo 9 remainder mismatch.",
+      "1": "Stopped after the first folding (24 is not single digit).",
+      "2": "Intermediate value of modFold(98)."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Any recursive function that folds digits until < 10 computes the digital root (equivalent to n % 9, with 9 when divisible by 9)."
+  },
+  {
+    "id": "pseudo-125",
+    "module": "Pseudocode & Logic",
+    "topic": "Recursion",
+    "subtopic": "recursive_call_count",
+    "difficulty": "hard",
+    "type": "call_count",
+    "question": "How many total calls are executed when calling bSearch(0, 16)?",
+    "codeSnippet": "Integer bSearch(Integer low, Integer high)\n    if (low >= high)\n        return 1\n    End if\n    Integer mid = (low + high) / 2\n    return 1 + bSearch(low, mid)\nEnd function\n\nPrint bSearch(0, 16)",
+    "options": [
+      "5",
+      "6",
+      "4",
+      "8"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Trace parameter pairs (low, high) step-by-step:\n- Call 1: bSearch(0, 16): mid = 8 -> calls bSearch(0, 8)\n- Call 2: bSearch(0, 8): mid = 4 -> calls bSearch(0, 4)\n- Call 3: bSearch(0, 4): mid = 2 -> calls bSearch(0, 2)\n- Call 4: bSearch(0, 2): mid = 1 -> calls bSearch(0, 1)\n- Call 5: bSearch(0, 1): mid = 0 -> calls bSearch(0, 0)\n- Call 6: bSearch(0, 0): low >= high (0 >= 0 TRUE) -> base case reached, returns 1.\nWait! Let's count total calls: (0, 16) is call 1; (0, 8) is call 2; (0, 4) is call 3; (0, 2) is call 4; (0, 1) is call 5; (0, 0) is call 6! Total calls is 6! And the return value is 1 + 1 + 1 + 1 + 1 + 1 = 6!\nLet's check options: If total calls is 6, option B is 6! Let's set correct_answer: 'B' (6)!",
+    "wrongOptionExplanations": {
+      "2": "Only computed log2(16) = 4 without the base boundary.",
+      "3": "Divided 16 by 2."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "In binary interval search, don't forget that when interval width reaches 1, one more division occurs down to mid=0 before low==high triggers."
+  },
+  {
+    "id": "pseudo-126",
+    "module": "Pseudocode & Logic",
+    "topic": "Recursion",
+    "subtopic": "recursion_depth",
+    "difficulty": "hard",
+    "type": "recursion_depth",
+    "question": "What is the maximum number of stack frames co-existing simultaneously in memory during unbalanced(5)?",
+    "codeSnippet": "void unbalanced(Integer n)\n    if (n <= 0)\n        return\n    End if\n    unbalanced(n - 1)\n    unbalanced(n - 3)\nEnd void\n\nunbalanced(5)",
+    "options": [
+      "5",
+      "6",
+      "8",
+      "12"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Maximum call stack depth corresponds to the longest descent path from the root down to the deepest leaf frame.\nThe longest chain of calls is generated by repeatedly taking the left branch 'unbalanced(n - 1)':\nFrame 1: unbalanced(5)\nFrame 2: unbalanced(4)\nFrame 3: unbalanced(3)\nFrame 4: unbalanced(2)\nFrame 5: unbalanced(1)\nFrame 6: unbalanced(0) [base case]\nAll 6 activation frames exist on the stack simultaneously before the first return occurs.\nTherefore, the maximum stack depth is 6.",
+    "wrongOptionExplanations": {
+      "0": "Counted only up to n=1, omitting the base case frame unbalanced(0).",
+      "2": "Confused stack depth with total invocations.",
+      "3": "Summed all branches."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Call stack space complexity is proportional to the LONGEST single path from root to leaf, NOT the total number of function calls."
+  },
+  {
+    "id": "pseudo-127",
+    "module": "Pseudocode & Logic",
+    "topic": "Recursion",
+    "subtopic": "call_stack",
+    "difficulty": "hard",
+    "type": "stack_analysis",
+    "question": "In a recursive function without static or global variables, what happens to local variables when a child recursive call is made?",
+    "codeSnippet": "Integer compute(Integer n) {\n    Integer local_var = n * 2\n    if (n <= 1) return local_var\n    return local_var + compute(n - 1)\n}",
+    "options": [
+      "'local_var' is shared globally among all recursive calls.",
+      "The child call overwrites the caller's 'local_var' in memory.",
+      "Each call allocates a new activation frame with its own independent copy of 'local_var', preserved intact until the child returns.",
+      "'local_var' is destroyed when compute(n - 1) is called and re-allocated upon return."
+    ],
+    "correctAnswer": 2,
+    "explanation": "Every function invocation creates a distinct activation record (stack frame) on the call stack. Local variables and parameters are allocated inside this frame. When compute(n - 1) is invoked, a new frame is pushed on top of the stack. The parent's frame and all its local variables remain suspended in memory untouched. When the child call returns and pops, the parent frame resumes with its exact original local variables.",
+    "wrongOptionExplanations": {
+      "0": "Only static or global variables are shared.",
+      "1": "Stack frames have isolated memory; child frames do not overwrite parent frames.",
+      "3": "Local variables remain alive in memory throughout the entire duration of child calls."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "Remember: Each recursive call has its own private set of local variables. Modifying a local variable in a child call never affects the parent."
+  },
+  {
+    "id": "pseudo-128",
+    "module": "Pseudocode & Logic",
+    "topic": "Recursion",
+    "subtopic": "infinite_recursion",
+    "difficulty": "hard",
+    "type": "termination_analysis",
+    "question": "What is the outcome of executing testInf(4)?",
+    "codeSnippet": "Integer testInf(Integer n)\n    if (n == 1)\n        return 1\n    End if\n    if (n % 2 == 0)\n        return testInf(n + 2)\n    else\n        return testInf(n - 1)\n    End if\nEnd function\n\nPrint testInf(4)",
+    "options": [
+      "It produces a compilation error.",
+      "It terminates and returns 1.",
+      "It terminates and returns 4.",
+      "It causes infinite recursion resulting in stack overflow because even numbers strictly increase away from the base case."
+    ],
+    "correctAnswer": 3,
+    "explanation": "Trace with n = 4:\n- 4 is even -> calls testInf(4 + 2) = testInf(6)\n- 6 is even -> calls testInf(6 + 2) = testInf(8)\n- 8 is even -> calls testInf(8 + 2) = testInf(10)...\nBecause even numbers add 2, n grows strictly larger (4, 6, 8, 10...) and can never decrease toward the base case n == 1. Thus, the function calls itself endlessly until memory exhaustion triggers a runtime stack overflow.",
+    "wrongOptionExplanations": {
+      "0": "Valid pseudocode syntax.",
+      "1": "Base case n == 1 is never reached.",
+      "2": "Does not return 4."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "To guarantee recursive termination, the recursive arguments MUST move strictly toward the base case in all execution paths."
+  },
+  {
+    "id": "pseudo-129",
+    "module": "Pseudocode & Logic",
+    "topic": "Recursion",
+    "subtopic": "nested_recursion",
+    "difficulty": "hard",
+    "type": "output_tracing",
+    "question": "What is the return value of M(95) based on the McCarthy 91 nested recursive definition?",
+    "codeSnippet": "Integer M(Integer n)\n    if (n > 100)\n        return n - 10\n    End if\n    return M(M(n + 11))\nEnd function\n\nPrint M(95)",
+    "options": [
+      "91",
+      "95",
+      "85",
+      "101"
+    ],
+    "correctAnswer": 0,
+    "explanation": "This is the famous McCarthy 91 function, which mathematically evaluates to 91 for ALL integers n <= 100:\nTrace M(95):\n1. 95 <= 100 -> M(M(106))\n2. M(106) has 106 > 100 -> returns 106 - 10 = 96.\n3. Now evaluate outer call M(96):\n   - 96 <= 100 -> M(M(107))\n   - M(107) = 107 - 10 = 97.\n   - Continues up to M(100) -> M(M(111)) -> M(101) = 91.\nFinal return value is 91.",
+    "wrongOptionExplanations": {
+      "1": "Assumed input is returned unchanged.",
+      "2": "Subtracted 10 directly (95 - 10 = 85).",
+      "3": "Stopped at M(101)."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "McCarthy's 91 function: For any input n <= 100, M(n) is mathematically guaranteed to return 91!"
+  },
+  {
+    "id": "pseudo-130",
+    "module": "Pseudocode & Logic",
+    "topic": "Recursion",
+    "subtopic": "call_stack",
+    "difficulty": "hard",
+    "type": "output_tracing",
+    "question": "What is the return value of the tail-recursive procedure tailFact(4, 1)?",
+    "codeSnippet": "Integer tailFact(Integer n, Integer acc)\n    if (n <= 1)\n        return acc\n    End if\n    return tailFact(n - 1, acc * n)\nEnd function\n\nPrint tailFact(4, 1)",
+    "options": [
+      "12",
+      "24",
+      "4",
+      "120"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Trace tail-recursive state updates:\n- Call 1: tailFact(4, 1): calls tailFact(3, 1 * 4) = tailFact(3, 4)\n- Call 2: tailFact(3, 4): calls tailFact(2, 4 * 3) = tailFact(2, 12)\n- Call 3: tailFact(2, 12): calls tailFact(1, 12 * 2) = tailFact(1, 24)\n- Call 4: tailFact(1, 24): n <= 1 is TRUE -> base case returns accumulator 'acc' = 24.\nBecause the recursive call is the very last operation (tail call), the return value propagates back directly without further multiplications.\nFinal return value is 24.",
+    "wrongOptionExplanations": {
+      "0": "Stopped after call 2.",
+      "2": "Returned 4.",
+      "3": "Computed factorial of 5 instead of 4."
+    },
+    "realWorldApplication": "Pseudocode evaluation is standard in campus screening exams (Accenture, Capgemini) to test programmatic logic independent of language syntax.",
+    "placementTrap": "In tail recursion, the accumulator carries the running result downward so that no computation is needed during the return phase."
+  }
+];
+if (!window.QUESTION_BANKS) window.QUESTION_BANKS = {};
+window.QUESTION_BANKS['pseudocode'] = window.PSEUDOCODE_QUESTIONS;

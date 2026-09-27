@@ -10,12 +10,20 @@
       this.activeModuleId = 'programming';
       this.quizEngine = new window.QuizEngine();
       this.modules = window.MODULES_REGISTRY || [];
+      this.particleNetwork = null;
     }
 
     init() {
       this.bindGlobalEvents();
+      this.initParticles();
       this.handleRoute();
       window.addEventListener('hashchange', () => this.handleRoute());
+    }
+
+    initParticles() {
+      if (window.ParticleNetwork) {
+        this.particleNetwork = new window.ParticleNetwork('particle-canvas');
+      }
     }
 
     bindGlobalEvents() {
@@ -81,6 +89,9 @@
     }
 
     getModuleQuestions(moduleId) {
+      if (window.QUESTION_BANKS && window.QUESTION_BANKS[moduleId]) {
+        return window.QUESTION_BANKS[moduleId];
+      }
       const mod = this.modules.find(m => m.id === moduleId);
       if (!mod) return [];
       const varName = mod.dataVar;
@@ -88,7 +99,7 @@
     }
 
     startQuizView(container, moduleId, mode) {
-      const modId = moduleId || 'programming';
+      const modId = moduleId || 'programming-logic';
       const modMeta = this.modules.find(m => m.id === modId) || this.modules[0];
       const questions = this.getModuleQuestions(modMeta.id);
 
@@ -125,7 +136,7 @@
             </h1>
 
             <p class="hero-desc">
-              Comprehensive fresher technical preparation and realistic Computer-Based Test (CBT) examination platform. Designed around hiring patterns for Accenture, TCS, Infosys, Cognizant, Wipro, and global IT service enterprises.
+              High-yield technical placement preparation and realistic Computer-Based Test (CBT) examination platform designed around hiring assessment patterns of global IT service and tech enterprises.
             </p>
 
             <div class="hero-cta-group">
@@ -137,59 +148,143 @@
               </button>
             </div>
 
+            <!-- 3D Isometric Hero Showcase Frame with Floating Telemetry Chips -->
+            <div class="hero-media-wrapper">
+              <div class="hero-media-frame">
+                <img src="assets/images/hero-banner.jpg" 
+                     alt="PlacementPrep 3D Interactive Tech Platform" 
+                     class="hero-media-img"
+                     loading="eager">
+
+                <!-- Floating Telemetry Chips -->
+                <div class="telemetry-chip telemetry-chip-top-left">
+                  <span style="color: var(--success); font-size: 1.1rem;">★</span>
+                  <span>94% Placement Score Target</span>
+                </div>
+
+                <div class="telemetry-chip telemetry-chip-bottom-right">
+                  <span class="hero-pill-dot"></span>
+                  <span>Live CBT Examination Simulator</span>
+                </div>
+              </div>
+            </div>
+
             <!-- Key Metrics Bar -->
             <div class="hero-stats-grid">
               <div class="stat-card">
-                <div class="stat-value">12</div>
+                <div class="stat-value" style="color: var(--brand-primary);">12</div>
                 <div class="stat-label">Specialized Modules</div>
               </div>
               <div class="stat-card">
-                <div class="stat-value">60+</div>
+                <div class="stat-value" style="color: var(--brand-cyan);">1,000</div>
                 <div class="stat-label">Placement MCQs</div>
               </div>
               <div class="stat-card">
-                <div class="stat-value">100%</div>
+                <div class="stat-value" style="color: var(--brand-emerald);">100%</div>
                 <div class="stat-label">CBT Simulation</div>
               </div>
               <div class="stat-card">
-                <div class="stat-value">${stats.streak} Days</div>
+                <div class="stat-value" style="color: var(--brand-amber);">${stats.streak} Days</div>
                 <div class="stat-label">Study Streak</div>
               </div>
             </div>
           </div>
         </section>
 
-        <!-- Features Showcase Section -->
-        <section style="padding: 3rem 0; border-top: 1px solid var(--border-subtle);">
+        <!-- Target Company Recruitment Patterns Strip -->
+        <section class="recruiter-strip">
           <div class="container">
-            <div style="text-align: center; max-width: 650px; margin: 0 auto 2.5rem;">
-              <h2 style="margin-bottom: 0.75rem;">Engineered for Placement Excellence</h2>
-              <p>Everything you need to master technical screening assessments with confidence.</p>
+            <div class="recruiter-strip-title">
+              Targeted Hiring Patterns & Technical Syllabi
             </div>
+            <div class="recruiter-badges-grid">
+              <div class="recruiter-badge">
+                <span class="recruiter-badge-dot" style="background: #A100FF;"></span>
+                <span>Accenture</span>
+              </div>
+              <div class="recruiter-badge">
+                <span class="recruiter-badge-dot" style="background: #0076CE;"></span>
+                <span>TCS NQT</span>
+              </div>
+              <div class="recruiter-badge">
+                <span class="recruiter-badge-dot" style="background: #007CC3;"></span>
+                <span>Infosys</span>
+              </div>
+              <div class="recruiter-badge">
+                <span class="recruiter-badge-dot" style="background: #1F70B8;"></span>
+                <span>Cognizant</span>
+              </div>
+              <div class="recruiter-badge">
+                <span class="recruiter-badge-dot" style="background: #0070AD;"></span>
+                <span>Capgemini</span>
+              </div>
+              <div class="recruiter-badge">
+                <span class="recruiter-badge-dot" style="background: #E84C3D;"></span>
+                <span>Wipro</span>
+              </div>
+              <div class="recruiter-badge">
+                <span class="recruiter-badge-dot" style="background: #86BC25;"></span>
+                <span>Deloitte</span>
+              </div>
+              <div class="recruiter-badge">
+                <span class="recruiter-badge-dot" style="background: #ED6D00;"></span>
+                <span>LTIMindtree</span>
+              </div>
+            </div>
+          </div>
+        </section>
 
-            <div class="features-grid">
-              <div class="stat-card">
-                <div style="font-size: 2rem; margin-bottom: 0.75rem;">🖥️</div>
-                <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem;">Realistic CBT Examination Engine</h3>
-                <p style="font-size: 0.9rem;">
-                  Replicates TCS iON & AMCAT testing environments with 2-column workspace, question status palettes, countdown timer warnings, and review flags.
-                </p>
+        <!-- Live CBT Interface Simulator Showcase -->
+        <section class="cbt-showcase-section">
+          <div class="container">
+            <div class="cbt-showcase-grid">
+              <div class="cbt-showcase-preview-frame">
+                <img src="assets/images/cbt-simulator.jpg" 
+                     alt="Computer-Based Test Examination Environment" 
+                     class="cbt-showcase-img"
+                     loading="lazy">
               </div>
 
-              <div class="stat-card">
-                <div style="font-size: 2rem; margin-bottom: 0.75rem;">💡</div>
-                <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem;">Deep Conceptual & Distractor Explanations</h3>
-                <p style="font-size: 0.9rem;">
-                  Every question includes detailed solutions, distractor breakdown ("Why other options are wrong"), real-world IT context, and common placement traps.
+              <div>
+                <div class="badge badge-scenario" style="margin-bottom: 1rem;">
+                  <span>CBT Engine Simulator</span>
+                </div>
+                <h2 style="font-size: 2rem; margin-bottom: 1.25rem; line-height: 1.25;">
+                  Experience Real Exam Pressure Before Test Day
+                </h2>
+                <p style="color: var(--text-secondary); line-height: 1.65; margin-bottom: 2rem;">
+                  Engineered to mirror high-stakes campus assessment consoles (TCS iON, AMCAT, CoCubes, and Superset) with true two-column desktop ergonomics.
                 </p>
-              </div>
 
-              <div class="stat-card">
-                <div style="font-size: 2rem; margin-bottom: 0.75rem;">📊</div>
-                <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem;">Granular Diagnostic Scorecard</h3>
-                <p style="font-size: 0.9rem;">
-                  Measure accuracy, review questions by difficulty, track topic-wise weak areas, and evaluate placement cutoff benchmarks.
-                </p>
+                <div class="cbt-feature-point">
+                  <div class="cbt-feature-point-icon">📋</div>
+                  <div>
+                    <h4 style="font-size: 1.05rem; margin-bottom: 0.25rem;">5-State Question Status Palette</h4>
+                    <p style="font-size: 0.9rem; color: var(--text-muted);">
+                      Instantly track Unvisited, Answered, Marked for Review, and Answered+Review questions.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="cbt-feature-point">
+                  <div class="cbt-feature-point-icon">⏱️</div>
+                  <div>
+                    <h4 style="font-size: 1.05rem; margin-bottom: 0.25rem;">Non-Duplicating Countdown Timer</h4>
+                    <p style="font-size: 0.9rem; color: var(--text-muted);">
+                      Dynamic color warning thresholds (&lt; 5m amber, &lt; 1m pulsing red) with automated graceful submission.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="cbt-feature-point">
+                  <div class="cbt-feature-point-icon">📊</div>
+                  <div>
+                    <h4 style="font-size: 1.05rem; margin-bottom: 0.25rem;">Granular Diagnostic Scorecard</h4>
+                    <p style="font-size: 0.9rem; color: var(--text-muted);">
+                      Accuracy analysis, time tracking, topic mastery bars, and instant full-solution review mode.
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -198,7 +293,7 @@
         <!-- Featured Modules Preview -->
         <section style="padding: 3rem 0 4rem; border-top: 1px solid var(--border-subtle);">
           <div class="container">
-            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 2.25rem; flex-wrap: wrap; gap: 1rem;">
               <div>
                 <h2>Popular Preparation Modules</h2>
                 <p>Start practicing high-yield technical topics immediately.</p>
@@ -219,16 +314,21 @@
 
       // Quick CBT button handler
       document.getElementById('btn-quick-cbt')?.addEventListener('click', () => {
-        window.location.hash = '#cbt/programming';
+        window.location.hash = '#cbt/programming-logic';
       });
     }
 
     renderModulesView(container) {
       container.innerHTML = `
         <div class="container">
-          <div style="margin-bottom: 2rem;">
+          <div style="margin-bottom: 2.25rem;">
+            <div class="hero-pill-badge" style="margin-bottom: 0.75rem;">
+              <span>Curated Question Library</span>
+            </div>
             <h1 style="margin-bottom: 0.5rem;">Technical Preparation Modules</h1>
-            <p>Select any domain to practice in Learn Mode or launch a timed CBT Examination.</p>
+            <p style="font-size: 1.1rem; color: var(--text-secondary);">
+              Select any technical domain to practice in Learn Mode or launch a timed CBT Examination.
+            </p>
           </div>
 
           <!-- Search & Filter Controls -->
@@ -238,7 +338,7 @@
               <input type="text" 
                      id="module-search-input" 
                      class="search-input" 
-                     placeholder="Search modules by name, topic, or keyword (e.g. SQL, DNS, Git, Loops)..." 
+                     placeholder="Search modules by name, topic, or keyword (e.g. SQL, DNS, Git, Loops, XLOOKUP)..." 
                      aria-label="Search modules">
             </div>
 
@@ -293,8 +393,8 @@
 
       if (modulesList.length === 0) {
         container.innerHTML = `
-          <div style="grid-column: 1 / -1; text-align: center; padding: 4rem 1rem; color: var(--text-muted);">
-            <div style="font-size: 3rem; margin-bottom: 1rem;">🔍</div>
+          <div style="grid-column: 1 / -1; text-align: center; padding: 4.5rem 1rem; color: var(--text-muted);">
+            <div style="font-size: 3.5rem; margin-bottom: 1rem;">🔍</div>
             <h3>No modules matched your search criteria</h3>
             <p>Try searching for a different keyword or reset filters.</p>
           </div>
@@ -304,30 +404,35 @@
 
       container.innerHTML = modulesList.map(mod => {
         const questions = this.getModuleQuestions(mod.id);
-        const qCount = questions.length || 5;
+        const qCount = (questions && questions.length) ? questions.length : (mod.questionCount || 0);
 
         return `
           <article class="module-card" style="--module-accent: ${mod.accentColor}; --module-accent-light: ${mod.accentLight};">
-            <div class="module-card-header">
+            <!-- Graphical Header Banner -->
+            <div class="module-card-banner">
               <div class="module-icon-wrap">${mod.icon}</div>
               <span class="module-q-count">${qCount} Questions</span>
             </div>
 
-            <h3 class="module-title">${mod.name}</h3>
-            <p class="module-desc">${mod.description}</p>
+            <!-- Card Body Content -->
+            <div class="module-card-body">
+              <div class="module-category-pill">${mod.category}</div>
+              <h3 class="module-title">${mod.name}</h3>
+              <p class="module-desc">${mod.description}</p>
 
-            <div class="module-topics-list">
-              ${mod.topics.slice(0, 4).map(t => `<span class="module-topic-tag">${t}</span>`).join('')}
-              ${mod.topics.length > 4 ? `<span class="module-topic-tag">+${mod.topics.length - 4}</span>` : ''}
-            </div>
+              <div class="module-topics-list">
+                ${mod.topics.slice(0, 4).map(t => `<span class="module-topic-tag">${t}</span>`).join('')}
+                ${mod.topics.length > 4 ? `<span class="module-topic-tag">+${mod.topics.length - 4}</span>` : ''}
+              </div>
 
-            <div class="module-card-actions">
-              <a href="#practice/${mod.id}" class="btn btn-secondary btn-sm" title="Practice with instant solutions">
-                <span>📖 Practice</span>
-              </a>
-              <a href="#cbt/${mod.id}" class="btn btn-primary btn-sm" title="Take a timed examination">
-                <span>⏱️ Timed CBT</span>
-              </a>
+              <div class="module-card-actions">
+                <a href="#practice/${mod.id}" class="btn btn-secondary btn-sm" title="Practice with instant solutions">
+                  <span>📖 Practice</span>
+                </a>
+                <a href="#cbt/${mod.id}" class="btn btn-primary btn-sm" title="Take a timed examination">
+                  <span>⏱️ Timed CBT</span>
+                </a>
+              </div>
             </div>
           </article>
         `;
@@ -336,45 +441,48 @@
 
     renderAboutView(container) {
       container.innerHTML = `
-        <div class="container" style="max-width: 860px; padding: 2rem 1.5rem;">
-          <h1 style="margin-bottom: 1rem;">About PlacementPrep</h1>
-          <p style="font-size: 1.15rem; line-height: 1.7; margin-bottom: 2rem;">
+        <div class="container" style="max-width: 880px; padding: 2.5rem 1.5rem;">
+          <div class="hero-pill-badge" style="margin-bottom: 1rem;">
+            <span>Platform Overview & Guide</span>
+          </div>
+          <h1 style="margin-bottom: 1.25rem;">About PlacementPrep</h1>
+          <p style="font-size: 1.15rem; line-height: 1.7; margin-bottom: 2.5rem; color: var(--text-secondary);">
             PlacementPrep is an open, high-yield placement preparation and technical CBT examination platform built specifically for students and engineering graduates preparing for campus recruitment assessments at IT and service-based technology companies.
           </p>
 
-          <div style="background: var(--bg-card); border: 1px solid var(--border-card); border-radius: var(--radius-lg); padding: 2rem; margin-bottom: 2.5rem;">
-            <h2 style="font-size: 1.4rem; margin-bottom: 1rem;">Target Corporate Recruitment Patterns</h2>
-            <p style="margin-bottom: 1.25rem;">
+          <div style="background: var(--bg-card); border: 1px solid var(--border-card); border-radius: var(--radius-xl); padding: 2.25rem; margin-bottom: 2.5rem; box-shadow: var(--shadow-sm);">
+            <h2 style="font-size: 1.45rem; margin-bottom: 1rem;">Target Corporate Recruitment Patterns</h2>
+            <p style="margin-bottom: 1.5rem; color: var(--text-secondary);">
               Our question design and test structures are inspired by verified evaluation methodologies and syllabi of major recruiters:
             </p>
-            <ul style="list-style-type: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.75rem; color: var(--text-primary); font-weight: 500;">
-              <li>✓ Accenture Technical Assessment</li>
-              <li>✓ TCS NQT (National Qualifier Test)</li>
-              <li>✓ Infosys DSE & SE Technical</li>
-              <li>✓ Cognizant GenC / Elevate</li>
-              <li>✓ Capgemini Pseudocode & Tech</li>
-              <li>✓ Wipro Elite National Talent Hunt</li>
-              <li>✓ HCLTech & Tech Mahindra</li>
-              <li>✓ LTIMindtree & Deloitte USI</li>
-            </ul>
-            <p style="margin-top: 1.25rem; font-size: 0.85rem; color: var(--text-muted); font-style: italic;">
+            <div class="recruiter-badges-grid" style="justify-content: flex-start; margin-bottom: 1.5rem;">
+              <div class="recruiter-badge"><span class="recruiter-badge-dot" style="background: #A100FF;"></span>Accenture Assessment</div>
+              <div class="recruiter-badge"><span class="recruiter-badge-dot" style="background: #0076CE;"></span>TCS NQT Tech</div>
+              <div class="recruiter-badge"><span class="recruiter-badge-dot" style="background: #007CC3;"></span>Infosys DSE / SE</div>
+              <div class="recruiter-badge"><span class="recruiter-badge-dot" style="background: #1F70B8;"></span>Cognizant GenC</div>
+              <div class="recruiter-badge"><span class="recruiter-badge-dot" style="background: #0070AD;"></span>Capgemini Pseudocode</div>
+              <div class="recruiter-badge"><span class="recruiter-badge-dot" style="background: #E84C3D;"></span>Wipro Elite Tech</div>
+              <div class="recruiter-badge"><span class="recruiter-badge-dot" style="background: #86BC25;"></span>Deloitte USI</div>
+              <div class="recruiter-badge"><span class="recruiter-badge-dot" style="background: #ED6D00;"></span>LTIMindtree</div>
+            </div>
+            <p style="font-size: 0.85rem; color: var(--text-muted); font-style: italic;">
               * Note: PlacementPrep practice material is company-pattern inspired and realistic fresher technical content. It is not affiliated with or endorsed as official proprietary exams of these entities.
             </p>
           </div>
 
-          <div style="background: var(--bg-card); border: 1px solid var(--border-card); border-radius: var(--radius-lg); padding: 2rem; margin-bottom: 2.5rem;">
-            <h2 style="font-size: 1.4rem; margin-bottom: 1rem;">The Two Study Modes</h2>
+          <div style="background: var(--bg-card); border: 1px solid var(--border-card); border-radius: var(--radius-xl); padding: 2.25rem; margin-bottom: 2.5rem; box-shadow: var(--shadow-sm);">
+            <h2 style="font-size: 1.45rem; margin-bottom: 1.25rem;">The Two Study Modes</h2>
             
-            <div style="margin-bottom: 1.5rem;">
-              <h3 style="font-size: 1.1rem; color: var(--brand-primary); margin-bottom: 0.4rem;">1. Practice Mode (Instant Learning)</h3>
-              <p style="font-size: 0.95rem;">
+            <div style="margin-bottom: 1.75rem;">
+              <h3 style="font-size: 1.15rem; color: var(--brand-primary); margin-bottom: 0.4rem;">1. Practice Mode (Instant Learning)</h3>
+              <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6;">
                 Ideal for daily learning. Selecting an answer immediately reveals correctness, comprehensive conceptual explanation, distractor analysis explaining why other options are wrong, real-world IT enterprise use cases, and common placement trap warnings.
               </p>
             </div>
 
             <div>
-              <h3 style="font-size: 1.1rem; color: var(--brand-cyan); margin-bottom: 0.4rem;">2. Timed CBT Mode (Real Exam Simulator)</h3>
-              <p style="font-size: 0.95rem;">
+              <h3 style="font-size: 1.15rem; color: var(--brand-cyan); margin-bottom: 0.4rem;">2. Timed CBT Mode (Real Exam Simulator)</h3>
+              <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6;">
                 Replicates the exact pressure of an online assessment. Answers and solutions are strictly concealed during the test. Features real-time countdown timer with auto-submit, question status palette (Unvisited, Answered, Review), and a detailed diagnostic score card upon submission.
               </p>
             </div>

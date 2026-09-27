@@ -28,8 +28,17 @@ body {
 }
 
 /* ==========================================================================
-   ATMOSPHERIC AURORA GLOW & CYBER GRID
+   INTERACTIVE PARTICLE CANVAS & ATMOSPHERIC AURORA GLOW
    ========================================================================== */
+#particle-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+}
+
 .aurora-container {
   position: fixed;
   inset: 0;
@@ -44,9 +53,9 @@ body {
   left: 10%;
   width: 650px;
   height: 650px;
-  background: radial-gradient(circle, rgba(99, 102, 241, 0.14) 0%, rgba(99, 102, 241, 0) 70%);
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.16) 0%, rgba(99, 102, 241, 0) 70%);
   border-radius: 50%;
-  filter: blur(80px);
+  filter: blur(85px);
   animation: auroraFlow 22s ease-in-out infinite alternate;
 }
 
@@ -56,9 +65,9 @@ body {
   right: -5%;
   width: 700px;
   height: 700px;
-  background: radial-gradient(circle, rgba(6, 182, 212, 0.12) 0%, rgba(6, 182, 212, 0) 70%);
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.14) 0%, rgba(6, 182, 212, 0) 70%);
   border-radius: 50%;
-  filter: blur(90px);
+  filter: blur(95px);
   animation: auroraFlow 28s ease-in-out infinite alternate-reverse;
 }
 
@@ -68,16 +77,16 @@ body {
   left: 25%;
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, rgba(139, 92, 246, 0) 70%);
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.12) 0%, rgba(139, 92, 246, 0) 70%);
   border-radius: 50%;
-  filter: blur(85px);
+  filter: blur(90px);
   animation: auroraFlow 25s ease-in-out infinite alternate;
 }
 
 @keyframes auroraFlow {
   0% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(40px, -30px) scale(1.08); }
-  100% { transform: translate(-30px, 35px) scale(0.95); }
+  50% { transform: translate(45px, -35px) scale(1.1); }
+  100% { transform: translate(-35px, 40px) scale(0.92); }
 }
 
 .bg-grid-pattern {
@@ -86,15 +95,69 @@ body {
   pointer-events: none;
   z-index: 1;
   background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
   background-size: 40px 40px;
 }
 
 [data-theme="light"] .bg-grid-pattern {
   background-image: 
-    linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+    linear-gradient(to right, rgba(0, 0, 0, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.035) 1px, transparent 1px);
+}
+
+/* ==========================================================================
+   CUSTOM DUAL-ELEMENT MAGNETIC CURSOR (DESKTOP)
+   ========================================================================== */
+#custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.cursor-dot {
+  position: fixed;
+  top: -4px;
+  left: -4px;
+  width: 8px;
+  height: 8px;
+  background: var(--brand-cyan);
+  border-radius: 50%;
+  pointer-events: none;
+  box-shadow: 0 0 10px var(--brand-cyan);
+  transition: opacity 0.2s ease, transform 0.04s linear;
+}
+
+.cursor-ring {
+  position: fixed;
+  top: -18px;
+  left: -18px;
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid rgba(99, 102, 241, 0.6);
+  border-radius: 50%;
+  pointer-events: none;
+  transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              height 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.25s ease,
+              background 0.25s ease,
+              box-shadow 0.25s ease;
+}
+
+.cursor-ring.cursor-hover {
+  top: -24px;
+  left: -24px;
+  width: 48px;
+  height: 48px;
+  border-color: var(--brand-cyan);
+  background: rgba(6, 182, 212, 0.12);
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.45);
+}
+
+@media (pointer: coarse) {
+  #custom-cursor { display: none !important; }
 }
 
 /* ==========================================================================
@@ -107,9 +170,9 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: -0.02em;
 }
 
-h1 { font-size: clamp(2rem, 4vw, 3.25rem); }
-h2 { font-size: clamp(1.5rem, 3vw, 2.25rem); }
-h3 { font-size: clamp(1.25rem, 2vw, 1.6rem); }
+h1 { font-size: clamp(2.1rem, 4.5vw, 3.5rem); }
+h2 { font-size: clamp(1.6rem, 3.2vw, 2.35rem); }
+h3 { font-size: clamp(1.25rem, 2.2vw, 1.65rem); }
 h4 { font-size: 1.2rem; }
 
 p {
@@ -131,29 +194,20 @@ code, pre {
   background: var(--bg-code);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
-  padding: 1rem 1.25rem;
-  font-size: 0.92rem;
-  line-height: 1.6;
+  padding: 1.1rem 1.35rem;
+  font-size: 0.94rem;
+  line-height: 1.65;
   color: #38BDF8;
   overflow-x: auto;
-  margin: 1rem 0;
+  margin: 1.25rem 0;
   position: relative;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
 .code-block code {
   font-family: var(--font-mono);
   white-space: pre-wrap;
   word-break: break-word;
-}
-
-/* Inline Code */
-code.inline-code {
-  background: rgba(99, 102, 241, 0.12);
-  color: var(--brand-primary);
-  padding: 0.2rem 0.45rem;
-  border-radius: 4px;
-  font-size: 0.88em;
-  border: 1px solid rgba(99, 102, 241, 0.25);
 }
 
 /* Selection & Scrollbars */

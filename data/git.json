@@ -1,5 +1,4 @@
-/* PlacementPrep Question Bank: Git & GitHub (100 questions) */
-window.GIT_QUESTIONS = [
+[
   {
     "id": "git-001",
     "module": "Git & GitHub",
@@ -2600,6 +2599,4 @@ window.GIT_QUESTIONS = [
     "realWorldApplication": "Fundamental DevSecOps quality barrier protecting enterprise production branches from regressions and outages.",
     "placementTrap": "Assuming CI tools block merges by default without explicit branch protection rule enforcement."
   }
-];
-if (!window.QUESTION_BANKS) window.QUESTION_BANKS = {};
-window.QUESTION_BANKS['git'] = window.GIT_QUESTIONS;
+]

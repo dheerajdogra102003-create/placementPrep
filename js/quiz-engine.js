@@ -527,6 +527,11 @@
     renderResultPage(result) {
       if (!this.container) return;
 
+      // Trigger celebratory confetti physics if passed
+      if (result && result.passed && window.CelebrationConfetti) {
+        window.CelebrationConfetti.trigger();
+      }
+
       this.container.innerHTML = `
         <div class="site-wrapper">
           <header class="cbt-header">
