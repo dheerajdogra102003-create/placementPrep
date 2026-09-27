@@ -1,0 +1,242 @@
+/* ==========================================================================
+   PLACEMENTPREP - RESPONSIVE & MOBILE CBT ENGINE
+   No horizontal overflow, smooth drawers, touch-friendly UI
+   ========================================================================== */
+
+/* Mobile CBT Palette Drawer Toggle Button (Visible only on mobile/tablet) */
+.cbt-palette-drawer-toggle {
+  display: none;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  padding: 0.45rem 0.85rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.cbt-palette-drawer-toggle:hover {
+  background: var(--bg-surface-hover);
+  border-color: var(--border-focus);
+}
+
+.cbt-mobile-drawer-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(4px);
+  z-index: 1050;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-normal);
+}
+
+.cbt-mobile-drawer-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ==========================================================================
+   TABLET BREAKPOINT (769px - 1024px)
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .hero-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cbt-workspace-grid {
+    grid-template-columns: 1fr 280px;
+  }
+
+  .cbt-question-pane {
+    padding: 1.5rem 1.5rem;
+  }
+
+  .cbt-palette-pane {
+    padding: 1.25rem 1rem;
+  }
+
+  .cbt-palette-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ==========================================================================
+   MOBILE BREAKPOINT (< 768px)
+   ========================================================================== */
+@media (max-width: 768px) {
+  /* Navigation */
+  .mobile-nav-toggle {
+    display: block;
+  }
+
+  .nav-menu {
+    position: fixed;
+    top: 4.25rem;
+    left: 0;
+    right: 0;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-color);
+    padding: 1.25rem 1.5rem;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+    display: none;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .nav-menu.mobile-active {
+    display: flex;
+  }
+
+  .nav-item-link {
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+  }
+
+  /* Hero & Layout */
+  .hero-section {
+    padding: 1.5rem 0 2.5rem;
+  }
+
+  .hero-stats-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.85rem;
+  }
+
+  .modules-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .module-card-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .filter-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter-select {
+    width: 100%;
+  }
+
+  /* CBT MOBILE DEDICATED EXPERIENCE */
+  .cbt-header {
+    padding: 0 1rem;
+    height: 4rem;
+  }
+
+  .cbt-exam-subtitle {
+    display: none;
+  }
+
+  .cbt-palette-drawer-toggle {
+    display: inline-flex;
+  }
+
+  .cbt-workspace-grid {
+    display: block;
+    min-height: auto;
+  }
+
+  .cbt-question-pane {
+    padding: 1.25rem 1rem 6rem; /* Extra bottom padding for sticky bar */
+    border-right: none;
+  }
+
+  .cbt-question-text {
+    font-size: 1.05rem;
+  }
+
+  .cbt-option-item {
+    padding: 0.9rem 1rem;
+  }
+
+  /* Sticky Bottom Exam Dock on Mobile */
+  .cbt-action-dock {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border-color);
+    padding: 0.85rem 1rem;
+    z-index: 900;
+    margin-top: 0;
+    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.4);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.5rem;
+  }
+
+  .cbt-dock-left,
+  .cbt-dock-right {
+    display: contents;
+  }
+
+  .cbt-action-dock .btn {
+    padding: 0.65rem 0.5rem;
+    font-size: 0.85rem;
+  }
+
+  /* Slide-in Drawer for Question Palette */
+  .cbt-mobile-drawer-overlay {
+    display: block;
+  }
+
+  .cbt-palette-pane {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    bottom: 0;
+    width: 85%;
+    max-width: 360px;
+    height: 100vh;
+    z-index: 1100;
+    box-shadow: var(--shadow-lg);
+    transition: right var(--transition-smooth);
+    border-left: 1px solid var(--border-color);
+  }
+
+  .cbt-palette-pane.mobile-open {
+    right: 0;
+  }
+
+  .cbt-palette-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  /* Score Dashboard */
+  .result-stats-row {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .result-score-highlight {
+    font-size: 2.75rem;
+  }
+}
+
+/* Very Small Mobile (< 400px) */
+@media (max-width: 400px) {
+  .hero-stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cbt-action-dock {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .cbt-action-dock #btn-mark-review {
+    grid-column: span 2;
+  }
+}
