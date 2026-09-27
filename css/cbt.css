@@ -1,0 +1,621 @@
+/* ==========================================================================
+   PLACEMENTPREP - CBT (COMPUTER-BASED TEST) EXAMINATION SYSTEM
+   Professional TCS iON / AMCAT style 2-column examination layout
+   ========================================================================== */
+
+/* Full-Screen CBT Shell */
+.cbt-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--bg-base);
+  position: relative;
+  z-index: 10;
+}
+
+/* ==========================================================================
+   CBT TOP BAR
+   ========================================================================== */
+.cbt-header {
+  height: 4.25rem;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: var(--shadow-sm);
+}
+
+.cbt-header-left {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.cbt-back-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  padding: 0.45rem 0.8rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.cbt-back-btn:hover {
+  color: var(--text-primary);
+  border-color: var(--border-color);
+  background: var(--bg-surface-hover);
+}
+
+.cbt-exam-title-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.cbt-exam-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.cbt-exam-subtitle {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.cbt-header-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Timer Component */
+.cbt-timer-box {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  padding: 0.45rem 0.9rem;
+  border-radius: var(--radius-md);
+  font-family: var(--font-mono);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.cbt-timer-box.timer-warning {
+  border-color: var(--warning);
+  color: var(--warning);
+  background: var(--warning-bg);
+}
+
+.cbt-timer-box.timer-critical {
+  border-color: var(--danger);
+  color: var(--danger);
+  background: var(--danger-bg);
+  animation: timerPulse 1s infinite alternate;
+}
+
+@keyframes timerPulse {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.04); }
+}
+
+.cbt-timer-icon {
+  font-size: 1rem;
+  color: var(--brand-primary);
+}
+
+.timer-warning .cbt-timer-icon { color: var(--warning); }
+.timer-critical .cbt-timer-icon { color: var(--danger); }
+
+/* ==========================================================================
+   DESKTOP 2-COLUMN CBT WORKSPACE
+   Left: Question Area (Flexible)
+   Right: Question Palette (320px Fixed)
+   ========================================================================== */
+.cbt-workspace-grid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  flex: 1;
+  min-height: calc(100vh - 4.25rem);
+  background: var(--bg-base);
+}
+
+/* Left Column: Question Area */
+.cbt-question-pane {
+  display: flex;
+  flex-direction: column;
+  padding: 1.75rem 2.25rem;
+  overflow-y: auto;
+  border-right: 1px solid var(--border-color);
+  background: var(--bg-primary);
+}
+
+.cbt-question-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.cbt-q-number-box {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.cbt-q-current {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--brand-primary);
+  font-family: var(--font-mono);
+}
+
+.cbt-q-meta-badges {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.cbt-bookmark-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.75rem;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.cbt-bookmark-btn:hover {
+  color: var(--brand-secondary);
+  border-color: var(--brand-secondary);
+  background: rgba(139, 92, 246, 0.1);
+}
+
+.cbt-bookmark-btn.active {
+  color: #FFFFFF;
+  background: var(--brand-secondary);
+  border-color: var(--brand-secondary);
+}
+
+/* Question Prompt Body */
+.cbt-question-text {
+  font-size: 1.12rem;
+  line-height: 1.7;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+
+/* Answer Option Cards */
+.cbt-options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-bottom: 2rem;
+}
+
+.cbt-option-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.1rem 1.25rem;
+  border-radius: var(--radius-md);
+  background: var(--bg-surface);
+  border: 1.5px solid var(--border-color);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  user-select: none;
+  position: relative;
+}
+
+.cbt-option-item:hover {
+  background: var(--bg-surface-hover);
+  border-color: var(--brand-primary);
+  transform: translateX(3px);
+}
+
+.cbt-option-item.selected {
+  background: rgba(99, 102, 241, 0.12);
+  border-color: var(--brand-primary);
+  box-shadow: 0 0 12px rgba(99, 102, 241, 0.25);
+}
+
+.cbt-option-circle {
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  border: 2px solid var(--border-color);
+  background: var(--bg-base);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+  transition: all var(--transition-fast);
+  font-family: var(--font-mono);
+}
+
+.cbt-option-item:hover .cbt-option-circle {
+  border-color: var(--brand-primary);
+  color: var(--brand-primary);
+}
+
+.cbt-option-item.selected .cbt-option-circle {
+  background: var(--brand-primary);
+  border-color: var(--brand-primary);
+  color: #FFFFFF;
+}
+
+.cbt-option-text {
+  font-size: 0.98rem;
+  line-height: 1.55;
+  color: var(--text-primary);
+  flex: 1;
+}
+
+/* Practice Mode Immediate Correct / Incorrect States */
+.cbt-option-item.correct {
+  background: var(--success-bg) !important;
+  border-color: var(--success) !important;
+}
+.cbt-option-item.correct .cbt-option-circle {
+  background: var(--success) !important;
+  border-color: var(--success) !important;
+  color: #FFFFFF !important;
+}
+
+.cbt-option-item.incorrect {
+  background: var(--danger-bg) !important;
+  border-color: var(--danger) !important;
+}
+.cbt-option-item.incorrect .cbt-option-circle {
+  background: var(--danger) !important;
+  border-color: var(--danger) !important;
+  color: #FFFFFF !important;
+}
+
+/* CBT Bottom Navigation Dock */
+.cbt-action-dock {
+  margin-top: auto;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.cbt-dock-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.cbt-dock-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* ==========================================================================
+   RIGHT COLUMN: QUESTION PALETTE & STATUS OVERVIEW
+   ========================================================================== */
+.cbt-palette-pane {
+  background: var(--bg-palette);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  overflow-y: auto;
+  position: sticky;
+  top: 4.25rem;
+  height: calc(100vh - 4.25rem);
+}
+
+.cbt-candidate-info {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.cbt-candidate-avatar {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-purple));
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.cbt-candidate-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.cbt-candidate-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.cbt-candidate-roll {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+/* Palette Legend */
+.cbt-legend-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+}
+
+.cbt-legend-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+  margin-bottom: 0.85rem;
+}
+
+.cbt-legend-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem 0.5rem;
+}
+
+.cbt-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.cbt-legend-badge {
+  width: 1.35rem;
+  height: 1.35rem;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+}
+
+/* Question Palette Grid */
+.cbt-palette-grid-wrapper {
+  flex: 1;
+}
+
+.cbt-palette-header {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cbt-palette-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.5rem;
+}
+
+.cbt-palette-btn {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border: 1px solid var(--border-color);
+  background: var(--palette-unvisited-bg);
+  color: var(--palette-unvisited-text);
+  position: relative;
+}
+
+.cbt-palette-btn:hover {
+  transform: scale(1.08);
+  z-index: 2;
+  border-color: var(--border-focus);
+}
+
+/* PALETTE STATES (Strictly distinct by colors + icons/dots) */
+/* 1. Unvisited */
+.cbt-palette-btn.state-unvisited {
+  background: var(--palette-unvisited-bg);
+  color: var(--palette-unvisited-text);
+  border-color: var(--palette-unvisited-border);
+}
+
+/* 2. Current */
+.cbt-palette-btn.state-current {
+  background: var(--palette-current-bg) !important;
+  color: var(--palette-current-text) !important;
+  border-color: var(--palette-current-border) !important;
+  box-shadow: 0 0 10px var(--palette-current-glow);
+  outline: 2px solid #FFFFFF;
+  outline-offset: 1px;
+}
+
+/* 3. Answered */
+.cbt-palette-btn.state-answered {
+  background: var(--palette-answered-bg);
+  color: var(--palette-answered-text);
+  border-color: var(--palette-answered-border);
+}
+
+/* 4. Marked for Review */
+.cbt-palette-btn.state-review {
+  background: var(--palette-review-bg);
+  color: var(--palette-review-text);
+  border-color: var(--palette-review-border);
+  border-radius: 50%;
+}
+
+/* 5. Answered + Marked for Review */
+.cbt-palette-btn.state-answered-review {
+  background: var(--palette-answered-review-bg);
+  color: var(--palette-answered-review-text);
+  border-color: var(--palette-answered-review-border);
+  border-radius: 50%;
+}
+.cbt-palette-btn.state-answered-review::after {
+  content: '✓';
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  font-size: 0.6rem;
+  background: #10B981;
+  color: #FFFFFF;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+}
+
+/* ==========================================================================
+   AI / COMPREHENSIVE EXPLANATION DRAWER (Practice & Post-Exam Review)
+   ========================================================================== */
+.explanation-card {
+  margin-top: 2rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-md);
+  border-left: 4px solid var(--brand-primary);
+  animation: fadeIn var(--transition-normal);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.explanation-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.explanation-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.explanation-body {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  margin-bottom: 1.25rem;
+}
+
+.explanation-section {
+  margin-top: 1rem;
+  padding: 0.9rem 1rem;
+  border-radius: var(--radius-md);
+  background: var(--bg-base);
+  border: 1px solid var(--border-subtle);
+}
+
+.explanation-section-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.explanation-section.wrong-options {
+  border-left: 3px solid var(--warning);
+}
+.explanation-section.wrong-options .explanation-section-title {
+  color: var(--warning);
+}
+
+.explanation-section.real-world {
+  border-left: 3px solid var(--info);
+}
+.explanation-section.real-world .explanation-section-title {
+  color: var(--info);
+}
+
+.explanation-section.placement-trap {
+  border-left: 3px solid var(--brand-rose);
+}
+.explanation-section.placement-trap .explanation-section-title {
+  color: var(--brand-rose);
+}
+
+.wrong-option-item {
+  font-size: 0.88rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+.wrong-option-key {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--text-primary);
+}
