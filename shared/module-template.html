@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <script>
+        (function () {
+            const theme = localStorage.getItem('placementPrep_theme');
+            if (theme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        })();
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module Mastery - PlacementPrep</title>
+    <meta name="description" content="Master placement preparation concepts with interactive practice, timed MNC exams, and fast revision flashcards on PlacementPrep.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="module-system.css">
+</head>
+<body class="module-page-body">
+
+    <!-- Top Module Navigation Bar (Rendered by ModuleSystem) -->
+    <header class="app-header"></header>
+
+    <!-- Main Container -->
+    <main class="app-main">
+        <!-- Landing View (Rendered by ModuleSystem) -->
+        <section id="screen-mode-select" class="screen-view"></section>
+    </main>
+
+    <!-- SyncManager & Module Engine -->
+    <script src="../syncManager.js"></script>
+    <script src="module-system.js"></script>
+    <script>
+        (function () {
+            const params = new URLSearchParams(window.location.search);
+            const modId = params.get('mod') || 'programming_fundamentals';
+            window.ModuleSystem.init(modId);
+
+            // Handle start mode navigation if clicking modes
+            window.addEventListener('module:mode-selected', function (e) {
+                const mode = e.detail.mode;
+                const config = window.ModuleSystem.getConfig(modId);
+                // If a specialized folder exists, route to it
+                if (modId === 'programming_fundamentals') {
+                    window.location.href = `../programming_fundamentals/index.html?mode=${mode}`;
+                } else if (modId === 'networking') {
+                    window.location.href = `../networking/index.html?mode=${mode}`;
+                } else if (modId === 'cloud_computing') {
+                    window.location.href = `../cloud_Computing/index.html?mode=${mode}`;
+                } else if (modId === 'github') {
+                    window.location.href = `../github/index.html?mode=${mode}`;
+                } else if (modId === 'cyber_security') {
+                    window.location.href = `../cyber_security/index.html?mode=${mode}`;
+                } else if (modId === 'pseudocode') {
+                    window.location.href = `../Pseudocode/index.html?mode=${mode}`;
+                } else {
+                    alert(`Starting ${mode} for ${config.moduleName}. Practice engine initialized!`);
+                }
+            });
+        })();
+    </script>
+</body>
+</html>

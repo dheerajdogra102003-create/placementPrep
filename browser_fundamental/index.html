@@ -27,6 +27,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../shared/module-system.css">
 </head>
 <body>
 
@@ -101,16 +102,15 @@
         <!-- SCREEN 1: Mode Selection Screen -->
         <section id="screen-mode-select" class="screen-view">
             <div class="welcome-hero">
-                <div class="browser-hero-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="54" height="54" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <line x1="2" y1="12" x2="22" y2="12"></line>
-                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-                    </svg>
+                <div class="track-hero-pills">
+                    <span class="track-pill">Critical Rendering Path</span>
+                    <span class="track-pill">Reflow vs Repaint</span>
+                    <span class="track-pill">Browser Storage</span>
+                    <span class="track-pill">CORS & Security</span>
                 </div>
-                <h1>Browser Fundamentals Practice & Assessment</h1>
+                <h1>Browser Fundamentals Mastery</h1>
                 <p class="hero-desc">
-                    Master critical frontend architecture concepts: the DOM, Event Loop, Rendering Engines, DNS Resolution, Web APIs, HTTP/HTTPS, Caching, and Storage mechanisms for high-tier company technical interviews.
+                    Placement-focused practice covering the DOM, Event Loop, Rendering Engines, DNS Resolution, Web APIs, HTTP/HTTPS, Caching, and Storage mechanisms designed around technical screening and interview preparation.
                 </p>
 
                 <div class="exam-spec-banner">
@@ -118,6 +118,18 @@
                     <div class="spec-pill"><span class="pill-dot amber"></span> Scenario & Tricky MCQs</div>
                     <div class="spec-pill"><span class="pill-dot green"></span> DOM, Rendering & Event Loop</div>
                     <div class="spec-pill"><span class="pill-dot purple"></span> 20 Min Placement Timer</div>
+                </div>
+
+                <!-- Topic Selector -->
+                <div class="track-quick-filter-container">
+                    <span class="filter-label">Focus Track:</span>
+                    <div class="filter-track-pills">
+                        <button class="track-btn active" data-track="all" onclick="document.querySelectorAll('.filter-track-pills .track-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active');document.querySelector('[data-filter-cat=\'all\']')?.click();">All (30)</button>
+                        <button class="track-btn" data-track="theoretical" onclick="document.querySelectorAll('.filter-track-pills .track-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active');document.querySelector('[data-filter-cat=\'theoretical_conceptual\']')?.click();">Theoretical</button>
+                        <button class="track-btn" data-track="application" onclick="document.querySelectorAll('.filter-track-pills .track-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active');document.querySelector('[data-filter-cat=\'technical_application\']')?.click();">Application</button>
+                        <button class="track-btn" data-track="scenario" onclick="document.querySelectorAll('.filter-track-pills .track-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active');document.querySelector('[data-filter-cat=\'scenario_based\']')?.click();">⚡ Scenario</button>
+                        <button class="track-btn" data-track="problem_solving" onclick="document.querySelectorAll('.filter-track-pills .track-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active');document.querySelector('[data-filter-cat=\'problem_solving\']')?.click();">Problem Solving</button>
+                    </div>
                 </div>
             </div>
 

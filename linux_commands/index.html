@@ -27,6 +27,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../shared/module-system.css">
 </head>
 <body>
 
@@ -96,23 +97,35 @@
         <!-- SCREEN 1: Mode Selection Screen -->
         <section id="screen-mode-select" class="screen-view">
             <div class="welcome-hero">
-                <div class="terminal-hero-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="4 17 10 11 4 5"></polyline>
-                        <line x1="12" y1="19" x2="20" y2="19"></line>
-                    </svg>
+                <div class="track-hero-pills">
+                    <span class="track-pill">Permissions (chmod)</span>
+                    <span class="track-pill">Process Control</span>
+                    <span class="track-pill">Piping & Filters</span>
+                    <span class="track-pill">Networking CLI</span>
                 </div>
-                <h1>Linux &amp; Command Line Essentials</h1>
+                <h1>Linux Commands Mastery</h1>
                 <p class="hero-desc">
-                    Master essential CLI commands, file operations, directory navigation, command sequencing, and network diagnostics designed for <strong>Accenture, TCS, Capgemini, Cognizant, Infosys &amp; Wipro</strong> technical interviews.
+                    Placement-focused practice covering essential CLI commands, file operations, directory navigation, command sequencing, and network diagnostics designed around technical screening and interview preparation.
                 </p>
 
                 <div class="exam-spec-banner">
                     <div class="spec-pill"><span class="pill-dot blue"></span> 30 Placement MCQs</div>
-                    <div class="spec-pill"><span class="pill-dot green"></span> 11 Easy Fundamentals</div>
-                    <div class="spec-pill"><span class="pill-dot amber"></span> 10 Medium Comparisons</div>
-                    <div class="spec-pill"><span class="pill-dot purple"></span> 9 Hard Real-world Tasks</div>
-                    <div class="spec-pill"><span class="pill-dot blue"></span> 20 Min Exam Timer</div>
+                    <div class="spec-pill"><span class="pill-dot green"></span> 6 Topic Tracks</div>
+                    <div class="spec-pill"><span class="pill-dot amber"></span> Easy, Medium, Hard</div>
+                    <div class="spec-pill"><span class="pill-dot purple"></span> 20 Min Exam Timer</div>
+                </div>
+
+                <!-- Topic Selector -->
+                <div class="track-quick-filter-container">
+                    <span class="filter-label">Topic Tracks:</span>
+                    <div class="filter-track-pills">
+                        <button class="track-btn active" data-track="all" onclick="document.querySelectorAll('.filter-track-pills .track-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active');document.querySelector('[data-filter-topic=\'all\']')?.click();">All Topics (30)</button>
+                        <button class="track-btn" data-track="Navigation" onclick="document.querySelectorAll('.filter-track-pills .track-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active');document.querySelector('[data-filter-topic=\'Navigation\']')?.click();">Navigation</button>
+                        <button class="track-btn" data-track="Directory Management" onclick="document.querySelectorAll('.filter-track-pills .track-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active');document.querySelector('[data-filter-topic=\'Directory Management\']')?.click();">Directory</button>
+                        <button class="track-btn" data-track="File Management" onclick="document.querySelectorAll('.filter-track-pills .track-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active');document.querySelector('[data-filter-topic=\'File Management\']')?.click();">Files</button>
+                        <button class="track-btn" data-track="Command Comparison" onclick="document.querySelectorAll('.filter-track-pills .track-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active');document.querySelector('[data-filter-topic=\'Command Comparison\']')?.click();">Comparison</button>
+                        <button class="track-btn" data-track="Networking Basics" onclick="document.querySelectorAll('.filter-track-pills .track-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active');document.querySelector('[data-filter-topic=\'Networking Basics\']')?.click();">Networking</button>
+                    </div>
                 </div>
             </div>
 

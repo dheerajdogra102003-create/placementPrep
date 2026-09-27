@@ -27,8 +27,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../shared/module-system.css">
 </head>
-<body>
+<body style="--module-accent: #E60023; --module-accent-light: rgba(230, 0, 35, 0.08); --module-accent-border: rgba(230, 0, 35, 0.25); --module-accent-glow: rgba(230, 0, 35, 0.2);">
 
     <!-- Header Navigation -->
     <header class="app-header">
@@ -39,7 +40,7 @@
                         <line x1="19" y1="12" x2="5" y2="12"></line>
                         <polyline points="12 19 5 12 12 5"></polyline>
                     </svg>
-                    Dashboard
+                    <span>Dashboard</span>
                 </a>
                 <div class="header-divider"></div>
                 <div class="module-title-area">
@@ -65,7 +66,7 @@
             </div>
 
             <div class="header-right">
-                <a href="../notes/cybersecurity.html" class="notes-nav-btn" style="display:inline-flex;align-items:center;gap:6px;padding:6px 12px;background:var(--card-bg, #fff);border:1px solid var(--border-color, #e2e8f0);border-radius:10px;font-size:12px;font-weight:700;color:var(--text-color, #0f172a);text-decoration:none;transition:.2s;" title="Read Comprehensive Cybersecurity Placement Final-Day Notes">
+                <a href="../notes/cybersecurity.html" class="notes-nav-btn" title="Read Comprehensive Cybersecurity Placement Notes">
                     📖 Study Notes
                 </a>
                 <div id="score-counter" class="score-pill">
@@ -98,22 +99,49 @@
         <!-- SCREEN 1: Mode Selection Screen -->
         <section id="screen-mode-select" class="screen-view">
             <div class="welcome-hero">
-                <div class="cyber-hero-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                        <path d="M9 12l2 2 4-4"/>
-                    </svg>
+                <div class="track-hero-pills">
+                    <span class="track-hero-pill">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                        Network Security
+                    </span>
+                    <span class="track-hero-pill">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                        Cryptography
+                    </span>
+                    <span class="track-hero-pill">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                        Cyber Attacks
+                    </span>
                 </div>
-                <h1>Cybersecurity & Information Defense Question Bank 2026</h1>
+                <h1>Cyber Security Mastery</h1>
                 <p class="hero-desc">
-                    Master Network Security, Cryptography, Cyber Attacks, Firewalls, and <strong>35 realistic enterprise scenarios</strong> modeled for technical assessments at <strong>Accenture, TCS, Capgemini, Infosys, Wipro, Cognizant, HCLTech, Deloitte, IBM & LTIMindtree</strong>.
+                    Master Network Security, Cryptography, Cyber Attacks, Firewalls, and <strong>35 realistic enterprise scenarios</strong> modeled for technical assessments at <strong>Accenture, TCS, Capgemini, Infosys, Wipro, Cognizant, HCLTech, Deloitte, IBM &amp; LTIMindtree</strong>.
                 </p>
 
                 <div class="exam-spec-banner">
-                    <div class="spec-pill"><span class="pill-dot cyan"></span> 100 Target Questions</div>
-                    <div class="spec-pill"><span class="pill-dot amber"></span> 35 Scenarios (35%)</div>
-                    <div class="spec-pill"><span class="pill-dot purple"></span> 15 Conceptual Traps</div>
-                    <div class="spec-pill"><span class="pill-dot emerald"></span> 45 Min Placement Timer</div>
+                    <div class="spec-pill"><span class="pill-dot" style="background:#E60023;"></span> 100 Target Questions</div>
+                    <div class="spec-pill"><span class="pill-dot amber"></span> 4 Core Tracks</div>
+                    <div class="spec-pill"><span class="pill-dot green"></span> Easy, Medium, Hard</div>
+                    <div class="spec-pill"><span class="pill-dot blue"></span> 45 Min Placement Timer</div>
+                </div>
+
+                <!-- Reusable Segmented Topic Selector -->
+                <div class="track-quick-filter-container">
+                    <span class="filter-headline">Focus Practice Track:</span>
+                    <div class="track-filter-buttons">
+                        <button class="track-pill-btn active" data-filter-type="all">
+                            All Topics (100)
+                        </button>
+                        <button class="track-pill-btn" data-filter-type="scenario">
+                            🏢 Scenarios (35)
+                        </button>
+                        <button class="track-pill-btn" data-filter-type="trap">
+                            ⚠️ Traps &amp; Vulnerabilities (15)
+                        </button>
+                        <button class="track-pill-btn" data-filter-type="regular">
+                            🛡️ Core Defense (50)
+                        </button>
+                    </div>
                 </div>
             </div>
 

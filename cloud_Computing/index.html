@@ -27,8 +27,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../shared/module-system.css">
 </head>
-<body>
+<body style="--module-accent: #6366F1; --module-accent-light: rgba(99, 102, 241, 0.08); --module-accent-border: rgba(99, 102, 241, 0.25); --module-accent-glow: rgba(99, 102, 241, 0.2);">
 
     <!-- Header Navigation -->
     <header class="app-header">
@@ -39,7 +40,7 @@
                         <line x1="19" y1="12" x2="5" y2="12"></line>
                         <polyline points="12 19 5 12 12 5"></polyline>
                     </svg>
-                    Dashboard
+                    <span>Dashboard</span>
                 </a>
                 <div class="header-divider"></div>
                 <div class="module-title-area">
@@ -95,21 +96,46 @@
         <!-- SCREEN 1: Mode Selection Screen -->
         <section id="screen-mode-select" class="screen-view">
             <div class="welcome-hero">
-                <div class="cloud-hero-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>
-                    </svg>
+                <div class="track-hero-pills">
+                    <span class="track-hero-pill">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>
+                        Cloud Architecture
+                    </span>
+                    <span class="track-hero-pill">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+                        IaaS / PaaS / SaaS
+                    </span>
+                    <span class="track-hero-pill">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                        IAM &amp; Security
+                    </span>
                 </div>
-                <h1>Cloud Computing Practice & Assessment</h1>
+                <h1>Cloud Computing Mastery</h1>
                 <p class="hero-desc">
-                    Master essential cloud architecture concepts, IaaS/PaaS/SaaS, Virtualization, Security, IAM, and <strong>18 realistic company placement scenarios</strong> designed for <strong>Accenture, TCS, Capgemini, Cognizant, Infosys & Wipro</strong> technical rounds.
+                    Master essential cloud architecture concepts, IaaS/PaaS/SaaS, Virtualization, Security, IAM, and <strong>18 realistic company placement scenarios</strong> designed for <strong>Accenture, TCS, Capgemini, Cognizant, Infosys &amp; Wipro</strong> technical rounds.
                 </p>
 
                 <div class="exam-spec-banner">
-                    <div class="spec-pill"><span class="pill-dot blue"></span> 60 Questions</div>
-                    <div class="spec-pill"><span class="pill-dot amber"></span> 18 Scenario-Based (30%)</div>
-                    <div class="spec-pill"><span class="pill-dot green"></span> 42 Regular Concepts (70%)</div>
-                    <div class="spec-pill"><span class="pill-dot purple"></span> 45 Min Placement Timer</div>
+                    <div class="spec-pill"><span class="pill-dot" style="background:#6366F1;"></span> 60 Placement MCQs</div>
+                    <div class="spec-pill"><span class="pill-dot amber"></span> 5 Core Tracks</div>
+                    <div class="spec-pill"><span class="pill-dot green"></span> Easy, Medium, Hard</div>
+                    <div class="spec-pill"><span class="pill-dot blue"></span> 45 Min Placement Timer</div>
+                </div>
+
+                <!-- Reusable Segmented Topic Selector -->
+                <div class="track-quick-filter-container">
+                    <span class="filter-headline">Focus Practice Track:</span>
+                    <div class="track-filter-buttons">
+                        <button class="track-pill-btn active" data-filter-type="all">
+                            All Topics (60)
+                        </button>
+                        <button class="track-pill-btn" data-filter-type="scenario">
+                            🏢 Scenarios (18)
+                        </button>
+                        <button class="track-pill-btn" data-filter-type="regular">
+                            ☁️ Core Concepts (42)
+                        </button>
+                    </div>
                 </div>
             </div>
 

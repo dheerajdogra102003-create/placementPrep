@@ -18,6 +18,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../shared/module-system.css">
 </head>
 <body>
 
@@ -94,18 +95,35 @@
         <!-- SCREEN 1: Welcome & Mode Selection -->
         <section id="screen-welcome" class="screen-view">
             <div class="welcome-hero">
-                <div class="hero-pill">🤖 MNC Technical Recruitment 2026 Edition</div>
-                <h1>Artificial Intelligence, Machine Learning &amp; Deep Learning</h1>
-                <p>Master 100 realistic placement assessment MCQs with deep distractor breakdowns, algorithmic reasoning, model selection scenarios, and numerical calculations.</p>
+                <div class="track-hero-pills">
+                    <span class="track-pill">Supervised Learning</span>
+                    <span class="track-pill">Neural Networks</span>
+                    <span class="track-pill">Loss Functions & Metrics</span>
+                    <span class="track-pill">Deep Learning</span>
+                </div>
+                <h1>AI & Machine Learning Mastery</h1>
+                <p class="hero-desc">Placement-focused practice covering Artificial Intelligence, Machine Learning algorithms, Loss Functions, Gradient Descent, and Neural Network Architectures designed around technical screening and interview preparation.</p>
 
-                <div class="meta-stats-strip">
-                    <div class="meta-stat-item">Total: <strong>100 Questions</strong></div>
-                    <div class="meta-stat-item">AI: <strong>20</strong> | ML: <strong>50</strong> | DL: <strong>30</strong></div>
-                    <div class="meta-stat-item">Easy: <strong>15</strong> | Medium: <strong>50</strong> | Hard: <strong>35</strong></div>
-                    <div class="meta-stat-item">Code &amp; Math: <strong>30+ Qs</strong></div>
+                <div class="exam-spec-banner">
+                    <div class="spec-pill"><span class="pill-dot blue"></span> 100 Placement MCQs</div>
+                    <div class="spec-pill"><span class="pill-dot green"></span> 3 Core Tracks (AI, ML, DL)</div>
+                    <div class="spec-pill"><span class="pill-dot amber"></span> Easy, Medium, Hard</div>
+                    <div class="spec-pill"><span class="pill-dot purple"></span> 60 Min Exam Timer</div>
                 </div>
 
-                <div class="mode-cards-grid">
+                <!-- Topic Selector -->
+                <div class="track-quick-filter-container">
+                    <span class="filter-label">Focus Track:</span>
+                    <div class="filter-track-pills">
+                        <button class="track-btn active" data-track="all" onclick="document.querySelectorAll('.filter-track-pills .track-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active');">All Topics (100)</button>
+                        <button class="track-btn" data-track="ai" onclick="document.querySelectorAll('.filter-track-pills .track-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active');">Artificial Intelligence (20)</button>
+                        <button class="track-btn" data-track="ml" onclick="document.querySelectorAll('.filter-track-pills .track-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active');">Machine Learning (50)</button>
+                        <button class="track-btn" data-track="dl" onclick="document.querySelectorAll('.filter-track-pills .track-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active');">Deep Learning (30)</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modes-grid mode-cards-grid">
                     <!-- Mode 1: Practice Mode -->
                     <div class="mode-card featured">
                         <span class="featured-pill">Recommended</span>

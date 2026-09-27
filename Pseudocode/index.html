@@ -27,6 +27,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../shared/module-system.css">
 </head>
 <body>
 
@@ -96,31 +97,52 @@
         <!-- SCREEN 1: Mode Selection Screen -->
         <section id="screen-mode-select" class="screen-view active">
             <div class="welcome-hero">
-                <div class="code-hero-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="16 18 22 12 16 6"></polyline>
-                        <polyline points="8 6 2 12 8 18"></polyline>
-                    </svg>
+                <div class="track-hero-pills">
+                    <span class="track-pill">Core Logic</span>
+                    <span class="track-pill">Branching Traps</span>
+                    <span class="track-pill">Loop Unwinding</span>
+                    <span class="track-pill">Recursion Trees</span>
                 </div>
-                <h1>Pseudocode & Programming Logic</h1>
+                <h1>Pseudocode & Logic Mastery</h1>
                 <p class="hero-desc">
-                    Comprehensive <strong>100-Question Assessment Bank</strong> designed for <strong>2026 Campus Placements</strong>. Master code tracing, loop unwinding, operator traps, recursion trees, bitwise manipulation, and array logic asked in top tech assessments.
+                    Placement-focused assessment bank covering code tracing, loop unwinding, operator traps, recursion trees, and edge-case dry runs designed around technical screening.
                 </p>
 
-                <div class="hero-badges-row">
-                    <span class="company-pill">Accenture</span>
-                    <span class="company-pill">Capgemini</span>
-                    <span class="company-pill">TCS NQT</span>
-                    <span class="company-pill">Infosys</span>
-                    <span class="company-pill">Wipro</span>
-                    <span class="company-pill">Cognizant</span>
-                    <span class="company-pill">LTIMindtree</span>
-                    <span class="company-pill">Deloitte</span>
+                <!-- Spec Banner -->
+                <div class="exam-spec-banner">
+                    <div class="spec-pill">
+                        <span class="spec-label">BANK SIZE</span>
+                        <span class="spec-val">130 Questions</span>
+                    </div>
+                    <div class="spec-pill">
+                        <span class="spec-label">TOPIC TRACKS</span>
+                        <span class="spec-val">4 Core Tracks</span>
+                    </div>
+                    <div class="spec-pill">
+                        <span class="spec-label">DIFFICULTY</span>
+                        <span class="spec-val">Medium to Hard</span>
+                    </div>
+                    <div class="spec-pill">
+                        <span class="spec-label">EXAM TIME</span>
+                        <span class="spec-val">60 Minutes</span>
+                    </div>
+                </div>
+
+                <!-- Topic Selector -->
+                <div class="track-quick-filter-container">
+                    <span class="filter-label">Topic Tracks:</span>
+                    <div class="filter-track-pills">
+                        <button class="track-btn active" data-track="all" onclick="document.querySelectorAll('.filter-track-pills .track-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active');if(window.PseudocodeApp)window.PseudocodeApp.applyTopicFilter('all');">All Topics (130)</button>
+                        <button class="track-btn" data-track="fundamentals" onclick="document.querySelectorAll('.filter-track-pills .track-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active');if(window.PseudocodeApp)window.PseudocodeApp.applyTopicFilter('Programming Fundamentals');">Variables & Logic (35)</button>
+                        <button class="track-btn" data-track="conditionals" onclick="document.querySelectorAll('.filter-track-pills .track-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active');if(window.PseudocodeApp)window.PseudocodeApp.applyTopicFilter('Conditional Statements');">Conditionals (25)</button>
+                        <button class="track-btn" data-track="loops" onclick="document.querySelectorAll('.filter-track-pills .track-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active');if(window.PseudocodeApp)window.PseudocodeApp.applyTopicFilter('Loops');">Loops & Iterations (40)</button>
+                        <button class="track-btn" data-track="recursion" onclick="document.querySelectorAll('.filter-track-pills .track-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active');if(window.PseudocodeApp)window.PseudocodeApp.applyTopicFilter('Recursion');">Recursion (30)</button>
+                    </div>
                 </div>
             </div>
 
             <!-- Mode Options Grid -->
-            <div class="mode-cards-grid">
+            <div class="modes-grid mode-cards-grid">
                 <!-- Practice Mode -->
                 <div class="mode-card featured">
                     <span class="mode-card-badge">Self-Paced</span>
