@@ -523,4 +523,22 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         updateDashboardUI();
     }
+
+    // =========================================================================
+    // 10. HERO READINESS MATRIX - SIMULATED LIVE STUDENT COUNTER
+    // =========================================================================
+    initHeroReadinessCounter();
+
+    function initHeroReadinessCounter() {
+        const liveCountEl = document.getElementById('hero-live-count');
+        if (!liveCountEl) return;
+
+        let currentCount = 1248;
+        setInterval(() => {
+            // Gentle fluctuation between 1,230 and 1,270
+            const delta = Math.floor(Math.random() * 5) - 2;
+            currentCount = Math.max(1230, Math.min(1270, currentCount + delta));
+            liveCountEl.textContent = currentCount.toLocaleString();
+        }, 3500);
+    }
 });
