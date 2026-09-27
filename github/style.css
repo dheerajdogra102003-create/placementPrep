@@ -1651,3 +1651,18 @@ body {
     display: flex;
     justify-content: flex-end;
 }
+
+/* Practice Mode & Clickable Cards */
+.mode-card {
+    cursor: pointer !important;
+}
+.mode-tag,
+.badge.mode-tag {
+    cursor: pointer !important;
+    transition: transform 0.18s ease, opacity 0.18s ease;
+}
+.mode-tag:hover,
+.badge.mode-tag:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+}

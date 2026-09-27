@@ -245,9 +245,38 @@
 
     // Event Bindings
     function bindEvents() {
+        // Header Mode Badge click
+        if (headerModeBadge) {
+            headerModeBadge.style.cursor = 'pointer';
+            headerModeBadge.setAttribute('role', 'button');
+            headerModeBadge.setAttribute('tabindex', '0');
+            headerModeBadge.title = 'Switch to Interactive Practice';
+            headerModeBadge.addEventListener('click', () => startMode('practice'));
+            headerModeBadge.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    startMode('practice');
+                }
+            });
+        }
+
+        // Mode Cards Click (make entire card clickable)
+        document.querySelectorAll('.mode-card').forEach(card => {
+            card.style.cursor = 'pointer';
+            card.addEventListener('click', (e) => {
+                if (e.target.closest('.start-mode-btn')) return;
+                const btn = card.querySelector('.start-mode-btn');
+                if (btn) {
+                    const mode = btn.getAttribute('data-mode');
+                    if (mode) startMode(mode);
+                }
+            });
+        });
+
         // Mode Selection Cards
         document.querySelectorAll('.start-mode-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
+                e.stopPropagation();
                 const mode = e.currentTarget.getAttribute('data-mode');
                 startMode(mode);
             });

@@ -877,7 +877,7 @@
                         ${config.icon}
                         <span>${config.moduleName}</span>
                     </div>
-                    <span id="header-mode-badge" class="badge mode-tag">Practice Mode</span>
+                    <span id="header-mode-badge" class="badge mode-tag clickable-mode-badge" role="button" tabindex="0" title="Click to start Interactive Practice" aria-label="Click to start Interactive Practice">Practice Mode</span>
                 </div>
             </div>
 
@@ -1120,9 +1120,38 @@
                 });
             });
 
+            // Header Mode Badge click
+            const headerModeBadge = document.getElementById('header-mode-badge');
+            if (headerModeBadge) {
+                headerModeBadge.style.cursor = 'pointer';
+                const triggerPractice = () => {
+                    window.dispatchEvent(new CustomEvent('module:mode-selected', { detail: { mode: 'practice' } }));
+                };
+                headerModeBadge.addEventListener('click', triggerPractice);
+                headerModeBadge.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        triggerPractice();
+                    }
+                });
+            }
+
+            // Mode Cards click (make entire card clickable)
+            document.querySelectorAll('.mode-card').forEach(card => {
+                card.style.cursor = 'pointer';
+                card.addEventListener('click', (e) => {
+                    if (e.target.closest('.start-mode-btn')) return;
+                    const mode = card.getAttribute('data-mode');
+                    if (mode) {
+                        window.dispatchEvent(new CustomEvent('module:mode-selected', { detail: { mode } }));
+                    }
+                });
+            });
+
             // Start Mode Buttons
             document.querySelectorAll('.start-mode-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
                     const mode = e.currentTarget.getAttribute('data-mode');
                     window.dispatchEvent(new CustomEvent('module:mode-selected', { detail: { mode } }));
                 });
@@ -1172,10 +1201,20 @@
          * Auto-initialize on DOM ready
          */
         init: function (moduleId) {
-            if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', () => this.render(moduleId));
-            } else {
+            const onReady = () => {
                 this.render(moduleId);
+                const params = new URLSearchParams(window.location.search);
+                const modeParam = params.get('mode');
+                if (modeParam && ['practice', 'exam', 'flashcards'].includes(modeParam.toLowerCase())) {
+                    setTimeout(() => {
+                        window.dispatchEvent(new CustomEvent('module:mode-selected', { detail: { mode: modeParam.toLowerCase() } }));
+                    }, 50);
+                }
+            };
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', onReady);
+            } else {
+                onReady();
             }
         }
     };

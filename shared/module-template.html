@@ -45,22 +45,22 @@
             // Handle start mode navigation if clicking modes
             window.addEventListener('module:mode-selected', function (e) {
                 const mode = e.detail.mode;
-                const config = window.ModuleSystem.getConfig(modId);
-                // If a specialized folder exists, route to it
-                if (modId === 'programming_fundamentals') {
-                    window.location.href = `../programming_fundamentals/index.html?mode=${mode}`;
-                } else if (modId === 'networking') {
-                    window.location.href = `../networking/index.html?mode=${mode}`;
-                } else if (modId === 'cloud_computing') {
-                    window.location.href = `../cloud_Computing/index.html?mode=${mode}`;
-                } else if (modId === 'github') {
-                    window.location.href = `../github/index.html?mode=${mode}`;
-                } else if (modId === 'cyber_security') {
-                    window.location.href = `../cyber_security/index.html?mode=${mode}`;
-                } else if (modId === 'pseudocode') {
-                    window.location.href = `../Pseudocode/index.html?mode=${mode}`;
+                const routeMap = {
+                    'programming_fundamentals': '../programming_fundamentals/index.html',
+                    'networking': '../networking/index.html',
+                    'cloud_computing': '../cloud_Computing/index.html',
+                    'github': '../github/index.html',
+                    'cyber_security': '../cyber_security/index.html',
+                    'pseudocode': '../Pseudocode/index.html',
+                    'ai_ml': '../ai_ml/index.html',
+                    'linux_commands': '../linux_commands/index.html',
+                    'browser_fundamental': '../browser_fundamental/index.html',
+                    'office_suite': '../Microsoft%20Office%20Suite%20Mastery/index.html'
+                };
+                if (routeMap[modId]) {
+                    window.location.href = `${routeMap[modId]}?mode=${mode}`;
                 } else {
-                    alert(`Starting ${mode} for ${config.moduleName}. Practice engine initialized!`);
+                    window.location.href = `../programming_fundamentals/index.html?mode=${mode}`;
                 }
             });
         })();

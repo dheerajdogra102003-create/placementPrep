@@ -72,8 +72,8 @@
                 if (routeMap[modId]) {
                     window.location.href = `${routeMap[modId]}?mode=${mode}`;
                 } else {
-                    // For upcoming catalog modules like DBMS, OS, Web Dev, Aptitude
-                    alert(`Starting ${mode.toUpperCase()} mode for ${config.moduleName}.\n\nPreparing placement assessment bank with ${config.questionCount} MCQs...`);
+                    // Fallback to primary practice arena
+                    window.location.href = `programming_fundamentals/index.html?mode=${mode}`;
                 }
             });
         })();

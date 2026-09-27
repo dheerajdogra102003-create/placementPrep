@@ -345,16 +345,31 @@ document.addEventListener('DOMContentLoaded', () => {
     // =========================================================================
     const qpCards = document.querySelectorAll('.qp-card');
     qpCards.forEach(card => {
+        card.style.cursor = 'pointer';
         card.addEventListener('click', () => {
-            const modulesSection = document.getElementById('modules');
-            if (modulesSection) {
-                modulesSection.scrollIntoView({ behavior: 'smooth' });
-                // Briefly highlight first 2 coding modules
-                const firstCard = document.querySelector('.module-card');
-                if (firstCard) {
-                    firstCard.style.outline = '2px solid var(--accent-red)';
-                    setTimeout(() => { firstCard.style.outline = 'none'; }, 1600);
-                }
+            const drill = card.getAttribute('data-drill');
+            if (drill === '10') {
+                window.location.href = 'programming_fundamentals/index.html?mode=practice&drill=10';
+            } else if (drill === '20') {
+                window.location.href = 'programming_fundamentals/index.html?mode=practice&drill=20';
+            } else if (drill === 'timed') {
+                window.location.href = 'programming_fundamentals/index.html?mode=exam';
+            } else if (drill === 'random') {
+                const modules = [
+                    'programming_fundamentals/index.html?mode=practice',
+                    'Pseudocode/index.html?mode=practice',
+                    'networking/index.html?mode=practice',
+                    'cloud_Computing/index.html?mode=practice',
+                    'github/index.html?mode=practice',
+                    'cyber_security/index.html?mode=practice',
+                    'linux_commands/index.html?mode=practice',
+                    'browser_fundamental/index.html?mode=practice',
+                    'ai_ml/index.html?mode=practice'
+                ];
+                const randomModule = modules[Math.floor(Math.random() * modules.length)];
+                window.location.href = randomModule;
+            } else {
+                window.location.href = 'programming_fundamentals/index.html?mode=practice';
             }
         });
     });

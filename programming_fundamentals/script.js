@@ -340,9 +340,37 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Header Mode Badge click
+    if (dom.headerModeBadge) {
+        dom.headerModeBadge.style.cursor = 'pointer';
+        dom.headerModeBadge.setAttribute('role', 'button');
+        dom.headerModeBadge.setAttribute('tabindex', '0');
+        dom.headerModeBadge.title = 'Switch to Interactive Practice';
+        dom.headerModeBadge.addEventListener('click', () => {
+            startMode('practice');
+        });
+        dom.headerModeBadge.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                startMode('practice');
+            }
+        });
+    }
+
+    // Mode Cards Click (make entire card clickable)
+    document.querySelectorAll('.mode-card').forEach(card => {
+        card.style.cursor = 'pointer';
+        card.addEventListener('click', (e) => {
+            if (e.target.closest('.start-mode-btn')) return;
+            const mode = card.getAttribute('data-mode');
+            if (mode) startMode(mode);
+        });
+    });
+
     // Start Mode Handler
     document.querySelectorAll('.start-mode-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
             const mode = btn.getAttribute('data-mode');
             startMode(mode);
         });
@@ -1248,6 +1276,22 @@ document.addEventListener('DOMContentLoaded', () => {
     applyFilters();
     state.score = Object.values(state.userAnswers).filter(a => a && a.isCorrect).length;
     updateScoreBadge();
+
+    // URL parameter parsing (?mode=practice|exam|flashcards and ?drill=10|20)
+    const urlParams = new URLSearchParams(window.location.search);
+    const requestedMode = urlParams.get('mode');
+    if (requestedMode && ['practice', 'exam', 'flashcards'].includes(requestedMode.toLowerCase())) {
+        startMode(requestedMode.toLowerCase());
+        const drill = urlParams.get('drill');
+        if (drill && state.filteredQuestions.length > 0) {
+            const count = parseInt(drill, 10);
+            if (count > 0) {
+                state.filteredQuestions = state.filteredQuestions.slice(0, count);
+                renderQuestion();
+                renderPalette();
+            }
+        }
+    }
 
     // Auto-prompt on first visit if no username set
     if (window.SyncManager && !window.SyncManager.getUsername() && !sessionStorage.getItem('prep_sync_prompted')) {

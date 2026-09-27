@@ -832,6 +832,38 @@
         initTheme();
         initSyncManager();
         loadQuestionsData();
+
+        // Header Mode Badge click
+        if (headerModeBadge) {
+            headerModeBadge.style.cursor = 'pointer';
+            headerModeBadge.setAttribute('role', 'button');
+            headerModeBadge.setAttribute('tabindex', '0');
+            headerModeBadge.title = 'Switch to Practice Mode';
+            headerModeBadge.addEventListener('click', () => startMode('practice'));
+            headerModeBadge.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    startMode('practice');
+                }
+            });
+        }
+
+        // Mode Cards Click (make entire card clickable)
+        document.querySelectorAll('.mode-card').forEach(card => {
+            card.style.cursor = 'pointer';
+            card.addEventListener('click', (e) => {
+                if (e.target.closest('.btn-start-mode')) return;
+                const btn = card.querySelector('.btn-start-mode');
+                if (btn) btn.click();
+            });
+        });
+
+        // URL parameter parsing (?mode=practice|exam|flashcards)
+        const urlParams = new URLSearchParams(window.location.search);
+        const reqMode = urlParams.get('mode');
+        if (reqMode && ['practice', 'exam', 'flashcards'].includes(reqMode.toLowerCase())) {
+            startMode(reqMode.toLowerCase());
+        }
     });
 
 })();

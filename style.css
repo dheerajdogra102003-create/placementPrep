@@ -2567,3 +2567,8 @@ body {
         width: 100%;
     }
 }
+
+/* Quick Practice Interactive Cursor */
+.qp-card {
+    cursor: pointer !important;
+}
