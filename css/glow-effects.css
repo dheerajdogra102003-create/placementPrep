@@ -340,22 +340,31 @@
   pointer-events: none;
   z-index: 0;
   opacity: 0.25;
+  max-width: 80vw;
+  max-height: 80vw;
 }
 
 .orb-purple {
-  width: 350px;
-  height: 350px;
+  width: min(350px, 75vw);
+  height: min(350px, 75vw);
   background: #a855f7;
 }
 
 .orb-cyan {
-  width: 300px;
-  height: 300px;
+  width: min(300px, 65vw);
+  height: min(300px, 65vw);
   background: #06b6d4;
 }
 
 .orb-pink {
-  width: 250px;
-  height: 250px;
+  width: min(250px, 55vw);
+  height: min(250px, 55vw);
   background: #ec4899;
+}
+
+@media (max-width: 768px) {
+  .ambient-glow-orb {
+    filter: blur(40px);
+    opacity: 0.18;
+  }
 }

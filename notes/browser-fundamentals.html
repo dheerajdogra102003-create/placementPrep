@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="../css/layout.css">
   <link rel="stylesheet" href="../css/components.css">
   <link rel="stylesheet" href="../css/notes.css">
+  <link rel="stylesheet" href="../css/responsive.css">
 </head>
 <body>
 
@@ -70,6 +71,9 @@
           <a href="../index.html#cbt/browser" class="btn btn-primary btn-sm">
             <span>⏱️ Timed CBT</span>
           </a>
+          <button type="button" class="mobile-nav-toggle" id="mobile-nav-toggle" aria-label="Toggle Navigation Menu">
+            ☰
+          </button>
         </div>
       </div>
     </header>
@@ -3218,6 +3222,26 @@ async function fetchUserProfile(userId) {
       const icon = document.querySelector('.theme-toggle-icon');
       if (icon) icon.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
     })();
+
+    // 6. Mobile Navigation Drawer Toggle
+    const mobileNavToggle = document.getElementById('mobile-nav-toggle');
+    const navMenu = document.getElementById('nav-menu');
+    mobileNavToggle?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      navMenu?.classList.toggle('mobile-active');
+    });
+
+    document.querySelectorAll('.nav-item-link, .nav-dropdown-item, .nav-dropdown-hub-link').forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu?.classList.remove('mobile-active');
+      });
+    });
+
+    document.addEventListener('click', (e) => {
+      if (navMenu?.classList.contains('mobile-active') && !navMenu.contains(e.target) && !mobileNavToggle?.contains(e.target)) {
+        navMenu.classList.remove('mobile-active');
+      }
+    });
   </script>
 
 </body>

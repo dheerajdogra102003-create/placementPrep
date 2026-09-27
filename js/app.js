@@ -35,15 +35,35 @@
       // Mobile Menu Toggle
       const mobileNavToggle = document.getElementById('mobile-nav-toggle');
       const navMenu = document.getElementById('nav-menu');
-      mobileNavToggle?.addEventListener('click', () => {
-        navMenu?.classList.toggle('mobile-active');
+      
+      const closeMobileNav = () => {
+        navMenu?.classList.remove('mobile-active');
+        mobileNavToggle?.setAttribute('aria-expanded', 'false');
+      };
+
+      mobileNavToggle?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = navMenu?.classList.toggle('mobile-active');
+        mobileNavToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
       });
 
-      // Close mobile nav on navigation link click
-      document.querySelectorAll('.nav-item-link').forEach(link => {
-        link.addEventListener('click', () => {
-          navMenu?.classList.remove('mobile-active');
-        });
+      // Close mobile nav on any navigation link click (including dropdown items)
+      document.querySelectorAll('.nav-item-link, .nav-dropdown-item, .nav-dropdown-hub-link').forEach(link => {
+        link.addEventListener('click', closeMobileNav);
+      });
+
+      // Close mobile nav when clicking outside
+      document.addEventListener('click', (e) => {
+        if (navMenu?.classList.contains('mobile-active') && !navMenu.contains(e.target) && !mobileNavToggle?.contains(e.target)) {
+          closeMobileNav();
+        }
+      });
+
+      // Close mobile nav on Escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          closeMobileNav();
+        }
       });
     }
 

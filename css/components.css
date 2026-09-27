@@ -428,7 +428,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1.5rem;
+  padding: clamp(0.75rem, 3vw, 1.5rem);
   opacity: 0;
   pointer-events: none;
   transition: opacity var(--transition-normal);
@@ -444,11 +444,19 @@
   border: 1px solid var(--border-card);
   border-radius: var(--radius-xl);
   width: 100%;
-  max-width: 540px;
+  max-width: min(calc(100vw - 1.5rem), 540px);
+  max-height: calc(100dvh - 2rem);
+  display: flex;
+  flex-direction: column;
   box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
   transform: translateY(20px) scale(0.97);
   transition: transform var(--transition-normal);
   overflow: hidden;
+}
+
+.modal-header,
+.modal-footer {
+  flex-shrink: 0;
 }
 
 .modal-backdrop.active .modal-dialog {

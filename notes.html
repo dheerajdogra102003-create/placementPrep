@@ -42,7 +42,7 @@
     }
     .subject-notes-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
       gap: 1.75rem;
       margin: 2.5rem 0 4rem;
     }
@@ -117,6 +117,9 @@
           <a href="index.html#modules" class="btn-glow-rgb" style="padding:0.45rem 1rem; font-size:0.825rem;">
             <span>⏱️ Start CBT</span>
           </a>
+          <button type="button" class="mobile-nav-toggle" id="mobile-nav-toggle" aria-label="Toggle Navigation Menu">
+            ☰
+          </button>
         </div>
       </div>
     </header>
@@ -129,7 +132,7 @@
           <span class="badge-neon-cyan">2026 Recruitment Edition</span>
         </div>
 
-        <h1 style="font-size:3rem; font-weight:800; line-height:1.2; margin-bottom:1.25rem;">
+        <h1 style="font-size: clamp(1.85rem, 5vw, 3rem); font-weight:800; line-height:1.2; margin-bottom:1.25rem;">
           Master Subject Notes <span class="text-rgb-glow">& Technical Hub</span>
         </h1>
 
@@ -636,6 +639,26 @@
         themeBtn.querySelector('.theme-toggle-icon').textContent = saved === 'dark' ? '☀️' : '🌙';
       }
     }
+
+    // Mobile Navigation Drawer Toggle
+    const mobileNavToggle = document.getElementById('mobile-nav-toggle');
+    const navMenu = document.getElementById('nav-menu');
+    mobileNavToggle?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      navMenu?.classList.toggle('mobile-active');
+    });
+
+    document.querySelectorAll('.nav-item-link, .nav-dropdown-item, .nav-dropdown-hub-link').forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu?.classList.remove('mobile-active');
+      });
+    });
+
+    document.addEventListener('click', (e) => {
+      if (navMenu?.classList.contains('mobile-active') && !navMenu.contains(e.target) && !mobileNavToggle?.contains(e.target)) {
+        navMenu.classList.remove('mobile-active');
+      }
+    });
 
     // Category Filter Tabs
     const filterBtns = document.querySelectorAll('.filter-tab-btn');

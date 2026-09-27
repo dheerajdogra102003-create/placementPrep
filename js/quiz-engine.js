@@ -159,6 +159,12 @@
 
             <!-- Right Column: Question Status Palette & Profile -->
             <aside class="cbt-palette-pane" id="cbt-palette-pane" role="complementary" aria-label="Question Navigation Palette">
+              <!-- Mobile Drawer Header with Close Button -->
+              <div class="cbt-palette-drawer-header">
+                <span class="cbt-palette-drawer-title">📋 Question Palette</span>
+                <button type="button" class="cbt-palette-close-btn" id="btn-close-palette-drawer" aria-label="Close Question Palette">✕</button>
+              </div>
+
               <div class="cbt-candidate-info">
                 <div class="cbt-candidate-avatar">ST</div>
                 <div class="cbt-candidate-meta">
@@ -250,11 +256,13 @@
         }
       });
 
-      // Mobile Drawer Toggle
+      // Mobile Drawer Toggle & Close
       const paletteToggle = document.getElementById('btn-palette-toggle');
       const drawerOverlay = document.getElementById('palette-drawer-overlay');
+      const drawerCloseBtn = document.getElementById('btn-close-palette-drawer');
       paletteToggle?.addEventListener('click', () => this.toggleMobileDrawer());
       drawerOverlay?.addEventListener('click', () => this.closeMobileDrawer());
+      drawerCloseBtn?.addEventListener('click', () => this.closeMobileDrawer());
     }
 
     toggleMobileDrawer() {
@@ -461,6 +469,7 @@
 
         this.currentIndex = index;
         this.renderCurrentQuestion();
+        this.closeMobileDrawer();
       }
     }
 

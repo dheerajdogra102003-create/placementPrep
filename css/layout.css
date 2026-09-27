@@ -15,7 +15,7 @@
   width: 100%;
   max-width: 1320px;
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 clamp(0.85rem, 3.5vw, 1.5rem);
 }
 
 .main-content {
@@ -51,27 +51,30 @@
 .brand-link {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: clamp(0.4rem, 1.5vw, 0.75rem);
   font-weight: 800;
-  font-size: 1.25rem;
+  font-size: clamp(1.05rem, 3.5vw, 1.25rem);
   letter-spacing: -0.02em;
   color: var(--text-primary);
   text-decoration: none;
+  min-width: 0;
+  flex-shrink: 1;
 }
 
 .brand-icon {
-  width: 2.35rem;
-  height: 2.35rem;
+  width: clamp(2rem, 5vw, 2.35rem);
+  height: clamp(2rem, 5vw, 2.35rem);
   border-radius: var(--radius-md);
   background: linear-gradient(135deg, var(--brand-primary), var(--brand-cyan));
   display: flex;
   align-items: center;
   justify-content: center;
   color: #FFFFFF;
-  font-size: 1.15rem;
+  font-size: clamp(1rem, 2.5vw, 1.15rem);
   font-weight: 900;
   box-shadow: 0 2px 14px rgba(99, 102, 241, 0.5);
   transition: transform var(--transition-fast);
+  flex-shrink: 0;
 }
 
 .brand-link:hover .brand-icon {
@@ -574,14 +577,14 @@
    ========================================================================== */
 .modules-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: 1.75rem;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+  gap: 1.5rem;
 }
 
 .features-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.75rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: 1.5rem;
   margin-top: 2.5rem;
 }
 

@@ -169,6 +169,9 @@
           <a href="../index.html#cbt/dbms" class="btn btn-primary btn-sm" style="background:linear-gradient(135deg, #2563eb, #0284c7);">
             <span>⏱️ Timed CBT</span>
           </a>
+          <button type="button" class="mobile-nav-toggle" id="mobile-nav-toggle" aria-label="Toggle Navigation Menu">
+            ☰
+          </button>
         </div>
       </div>
     </header>
@@ -8392,6 +8395,26 @@ FROM Employee;
         tbody.innerHTML = '<tr><td>6</td><td>3</td><td>16000</td></tr>';
       }
     }
+
+    // Mobile Navigation Drawer Toggle
+    const mobileNavToggle = document.getElementById('mobile-nav-toggle');
+    const navMenu = document.getElementById('nav-menu');
+    mobileNavToggle?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      navMenu?.classList.toggle('mobile-active');
+    });
+
+    document.querySelectorAll('.nav-item-link, .nav-dropdown-item, .nav-dropdown-hub-link').forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu?.classList.remove('mobile-active');
+      });
+    });
+
+    document.addEventListener('click', (e) => {
+      if (navMenu?.classList.contains('mobile-active') && !navMenu.contains(e.target) && !mobileNavToggle?.contains(e.target)) {
+        navMenu.classList.remove('mobile-active');
+      }
+    });
   </script>
 </body>
 </html>
