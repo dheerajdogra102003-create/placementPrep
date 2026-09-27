@@ -3,6 +3,8 @@
    Modern Educational SaaS UI/UX Architecture for All Learning Modules
    ========================================================================== */
 
+@import url('cbt-exam-system.css');
+
 :root,
 [data-theme="light"] {
     /* Global Color System */
