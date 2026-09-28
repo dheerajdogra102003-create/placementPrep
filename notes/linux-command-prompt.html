@@ -238,29 +238,87 @@
     Mastering the command line requires progressing systematically through three technical domains: <strong>Filesystem Navigation & Storage</strong>, <strong>I/O Streams & Pipeline Processing</strong>, and <strong>Operating System Administration (Permissions, Processes & Networking)</strong>.
   </p>
 
-  <div class="diagram-card">
-    <div class="diagram-title">🗺️ Complete CLI Architectural Knowledge Map</div>
-    <div style="background: #06090E; border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 1.5rem; font-family: var(--font-mono); font-size: 0.85rem; color: #94A3B8; line-height: 1.6; overflow-x: auto;">
-      <pre style="margin: 0; color: #E2E8F0;">
-                                          OPERATING SYSTEM USER SPACE
-                                                       │
-                           ┌───────────────────────────┴───────────────────────────┐
-                           ▼                                                       ▼
-                GRAPHICAL USER INTERFACE (GUI)                           COMMAND LINE INTERFACE (CLI)
-              (Mouse, Windows, Menus, Icons)                       (Text commands, fast automation, remote servers)
-                                                                                   │
-                                                          ┌────────────────────────┴────────────────────────┐
-                                                          ▼                                                 ▼
-                                                TERMINAL EMULATOR                                     COMMAND SHELL
-                                           (Alacritty, Windows Terminal, GNOME)            (Interprets syntax: Bash, Zsh, CMD)
-                                                                                                    │
-                 ┌────────────────────────────────────────┬─────────────────────────────────────────┼─────────────────────────┐
-                 ▼                                        ▼                                         ▼                         ▼
-         FILESYSTEM & PATHS                      I/O STREAMS & DATA                       SYSTEM PERMISSIONS            PROCESSES & NETWORK
-     • Root / vs Windows C:\                • stdin (0), stdout (1), stderr (2)       • Owner, Group, Others         • PIDs, ps, top, tasklist
-     • Absolute vs Relative paths           • Redirection: &gt; (overwrite), &gt;&gt; (append)  • Read (4), Write (2), Exec (1) • kill -9, taskkill /PID
-     • pwd, cd, ls, mkdir, touch            • Pipes (|): Output &rarr; Input chaining      • chmod 755 / 644, chown       • ping, ipconfig, traceroute
-     • find (files) vs grep (contents)      • Environment Variables ($PATH, %PATH%)   • sudo elevation, root user    • Ports: 80, 443, 22, 53</pre>
+  <div class="visual-learning-card">
+    <div class="visual-header">
+      <div class="visual-title-group">
+        <span class="visual-icon">⚡</span>
+        <h3 class="visual-title">Operating System Shell &amp; CLI Architecture</h3>
+      </div>
+      <div class="visual-controls">
+        <span class="visual-badge">🖥️ Core Architecture</span>
+      </div>
+    </div>
+
+    <!-- Visual Canvas: 4 Pillars of CLI -->
+    <div class="visual-canvas">
+      <div class="pipeline-flow">
+        <!-- Pillar 1 -->
+        <div class="pipeline-node">
+          <span class="node-step-badge">Pillar 01</span>
+          <div class="node-title">📁 Filesystem &amp; Paths</div>
+          <div class="node-desc">Root (<code>/</code>) vs Windows <code>C:\</code>, Absolute vs Relative paths, <code>pwd</code>, <code>cd</code>, <code>ls</code>, <code>mkdir</code></div>
+        </div>
+
+        <div class="pipeline-connector">
+          <div class="connector-line"><div class="connector-particle"></div></div>
+          <span class="connector-label">pipes |</span>
+        </div>
+
+        <!-- Pillar 2 -->
+        <div class="pipeline-node">
+          <span class="node-step-badge">Pillar 02</span>
+          <div class="node-title">🌊 I/O Streams &amp; Redirection</div>
+          <div class="node-desc">stdin (0), stdout (1), stderr (2), Overwrite (<code>&gt;</code>), Append (<code>&gt;&gt;</code>), Pipe chaining (<code>|</code>)</div>
+        </div>
+
+        <div class="pipeline-connector">
+          <div class="connector-line"><div class="connector-particle" style="animation-delay:0.5s;"></div></div>
+          <span class="connector-label">chmod</span>
+        </div>
+
+        <!-- Pillar 3 -->
+        <div class="pipeline-node">
+          <span class="node-step-badge">Pillar 03</span>
+          <div class="node-title">🛡️ Permissions &amp; Security</div>
+          <div class="node-desc">User / Group / Others bits, Read (4) + Write (2) + Exec (1) = 755 / 644, <code>sudo</code>, <code>chown</code></div>
+        </div>
+
+        <div class="pipeline-connector">
+          <div class="connector-line"><div class="connector-particle" style="animation-delay:1s;"></div></div>
+          <span class="connector-label">signals</span>
+        </div>
+
+        <!-- Pillar 4 -->
+        <div class="pipeline-node">
+          <span class="node-step-badge">Pillar 04</span>
+          <div class="node-title">⚙️ Processes &amp; Network</div>
+          <div class="node-desc">Process PIDs, <code>ps</code>, <code>top</code>, <code>kill -9</code>, <code>ping</code>, <code>netstat</code>, <code>curl</code></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pedagogical 3-Part Explainer -->
+    <div class="visual-explainer-grid">
+      <div class="explainer-box happening">
+        <span class="explainer-label">💡 What is Happening?</span>
+        <p class="explainer-content">
+          The CLI executes within OS User Space. A <strong>Terminal Emulator</strong> (like Windows Terminal or GNOME Terminal) accepts keyboard input and renders text, passing keystrokes to a <strong>Shell</strong> (Bash, Zsh, CMD) which parses commands, evaluates environment variables (<code>$PATH</code>), and orchestrates files, streams, permissions, and background processes.
+        </p>
+      </div>
+
+      <div class="explainer-box remember">
+        <span class="explainer-label">🎯 Placement Takeaway</span>
+        <p class="explainer-content">
+          <strong>Viva Distinction:</strong> A <em>Terminal</em> is merely the GUI display window; a <em>Shell</em> is the actual language interpreter executing your logic. <code>find</code> searches for files by name/metadata on disk, whereas <code>grep</code> scans for text inside files.
+        </p>
+      </div>
+
+      <div class="explainer-box analogy">
+        <span class="explainer-label">🌍 Real-Life Analogy</span>
+        <p class="explainer-content">
+          A terminal is like a TV screen showing the game, while the shell is the game engine processing the rules. Piping commands (<code>command1 | command2</code>) is like an assembly factory line where one worker's finished output becomes the next worker's raw material.
+        </p>
+      </div>
     </div>
   </div>
 </section>
@@ -345,28 +403,65 @@
     <div class="topic-card-body">
       <p class="notes-paragraph">In placement interviews at Accenture, Cognizant, and TCS, students frequently conflate "Terminal" and "Shell". They are distinctly separate layers of software:</p>
 
-      <div class="diagram-title">🎯 Terminal vs Shell Architecture Diagram</div>
-      <div class="notes-diagram-box" style="background:#0B0F17; border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; font-family: monospace; font-size: 0.85rem; color:#60A5FA;">
-        [ USER KEYBOARD INPUT ]<br>
-                  │<br>
-                  ▼<br>
-        ┌────────────────────────────────────────────────────────┐<br>
-        │ TERMINAL EMULATOR (The Visual Container)               │<br>
-        │ Draws the graphical window, handles fonts, colors,     │<br>
-        │ copy/paste, and receives keystrokes.                   │<br>
-        │ Examples: GNOME Terminal, Windows Terminal, Alacritty  │<br>
-        └──────────────────────────┬─────────────────────────────┘<br>
-                                   │ Raw character bytes<br>
-                                   ▼<br>
-        ┌────────────────────────────────────────────────────────┐<br>
-        │ COMMAND SHELL (The Language Interpreter)               │<br>
-        │ Parses command strings, expands wildcards ($VAR, *),   │<br>
-        │ manages pipelines (|), forks processes, executes logic.│<br>
-        │ Examples: Bash, Zsh, Fish, Windows cmd.exe, PowerShell │<br>
-        └──────────────────────────┬─────────────────────────────┘<br>
-                                   │ System calls (fork, exec, read)<br>
-                                   ▼<br>
-        [ OPERATING SYSTEM KERNEL (Linux / Windows NT) ]
+      <!-- Visual Learning Card: Terminal vs Shell Architecture -->
+      <div class="visual-learning-card" style="margin: 1.25rem 0;">
+        <div class="visual-card-header">
+          <span class="visual-card-title">🖥️ Terminal vs Shell vs Kernel Architecture</span>
+          <span class="visual-card-badge">GUI Wrapper &bull; Parser &bull; System Calls</span>
+        </div>
+
+        <div class="layered-stack" style="margin: 1.25rem 0;">
+          <div class="layer-item" style="border-left: 4px solid #38bdf8; background: rgba(56, 189, 248, 0.08);">
+            <div class="layer-badge" style="background: #0284c7; color: #fff;">Window</div>
+            <div class="layer-info">
+              <div class="layer-name">Terminal Emulator (GUI Container)</div>
+              <div class="layer-desc">Draws window, renders fonts/colors, captures keyboard strokes. (Windows Terminal, GNOME Terminal, iTerm2).</div>
+            </div>
+          </div>
+
+          <div style="text-align: center; color: #38bdf8; font-size: 0.75rem; font-weight: 700;">&darr; Character stream byte pipes (stdin/stdout) &darr;</div>
+
+          <div class="layer-item" style="border-left: 4px solid #10b981; background: rgba(16, 185, 129, 0.08);">
+            <div class="layer-badge" style="background: #059669; color: #fff;">Parser</div>
+            <div class="layer-info">
+              <div class="layer-name">Command Shell (Command Interpreter)</div>
+              <div class="layer-desc">Expands variables ($PATH), connects pipelines (|), evaluates loops, forks sub-processes. (Bash, Zsh, PowerShell).</div>
+            </div>
+          </div>
+
+          <div style="text-align: center; color: #10b981; font-size: 0.75rem; font-weight: 700;">&darr; Privileged System Calls (fork, execve, read, write) &darr;</div>
+
+          <div class="layer-item" style="border-left: 4px solid #8b5cf6; background: rgba(139, 92, 246, 0.08);">
+            <div class="layer-badge" style="background: #7c3aed; color: #fff;">Kernel</div>
+            <div class="layer-info">
+              <div class="layer-name">Operating System Kernel (Linux / NT)</div>
+              <div class="layer-desc">Schedules CPU threads, allocates page RAM, manages disk drivers, controls network interfaces.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="visual-explainer-grid">
+          <div class="explainer-box happening">
+            <div class="explainer-label">💡 What is happening?</div>
+            <div class="explainer-text">
+              The Terminal Emulator is merely a graphical canvas that listens to your keyboard. It pipes the raw text to the Shell (Bash), which interprets commands and invokes the OS Kernel to perform work on physical hardware.
+            </div>
+          </div>
+
+          <div class="explainer-box remember">
+            <div class="explainer-label">🎯 Remember for Exams</div>
+            <div class="explainer-text">
+              Terminal != Shell. You can open one Windows Terminal window and run tabs for <strong>Bash</strong>, <strong>PowerShell</strong>, <strong>cmd.exe</strong>, or <strong>Python REPL</strong> side-by-side.
+            </div>
+          </div>
+
+          <div class="explainer-box analogy">
+            <div class="explainer-label">🌍 Real-Life Analogy</div>
+            <div class="explainer-text">
+              The Terminal is the telephone handset (speaker &amp; microphone); the Shell is the human translator who understands foreign languages; the Kernel is the CEO executing decisions.
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="placement-trap-card" style="margin-top: 1.25rem;">
@@ -506,19 +601,46 @@
     <div class="topic-card-body">
       <p class="notes-paragraph">Windows organizes storage under discrete hardware drive letters (<code>C:\</code>, <code>D:\</code>, <code>E:\</code>). In stark contrast, Linux has <strong>one unified root directory</strong> denoted by a single forward slash (<code>/</code>). All physical drives, SSDs, USB devices, and virtual filesystems are mounted as folders underneath this single root.</p>
 
-      <div class="diagram-title">🌳 Linux Unified Inverted Directory Tree</div>
-      <div class="notes-diagram-box" style="background:#0B0F17; border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; font-family: monospace; font-size: 0.85rem; color:#A7F3D0;">
-        / (Root Directory - The ancestor of all files)<br>
-        ├── bin/       &rarr; Essential binary executables (ls, cp, rm, bash)<br>
-        ├── etc/       &rarr; System-wide configuration files (passwd, hosts, nginx.conf)<br>
-        ├── home/      &rarr; User personal home directories<br>
-        │   └── ubuntu/ (denoted by ~ shorthand)<br>
-        │       ├── Documents/<br>
-        │       └── projects/<br>
-        ├── root/      &rarr; Home directory of the root superuser (not / itself!)<br>
-        ├── tmp/       &rarr; Temporary files (emptied upon system reboot)<br>
-        ├── usr/       &rarr; User utilities and secondary software (usr/bin, usr/lib)<br>
-        └── var/       &rarr; Variable dynamic data (logs in /var/log, databases)
+      <!-- Linux FHS Root Tree Visual Card -->
+      <div class="visual-learning-card" style="margin-top: 1.5rem;">
+        <div class="visual-card-header">
+          <div class="visual-card-title">🌳 Linux Filesystem Hierarchy Standard (FHS) Root Tree</div>
+          <span class="visual-card-badge">System Architecture</span>
+        </div>
+
+        <div class="visual-comparison-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; margin: 1.5rem 0;">
+          <div style="background:#0F172A; border-left:3px solid #38BDF8; padding:10px; border-radius:6px;">
+            <strong style="color:#7DD3FC; font-size:0.85rem;">/bin &amp; /sbin</strong>
+            <p style="font-size:0.8rem; color:var(--text-secondary); margin:4px 0 0 0;">Essential user binaries (<code>ls</code>, <code>cp</code>, <code>bash</code>) and system binaries (<code>iptables</code>, <code>fdisk</code>).</p>
+          </div>
+          <div style="background:#0F172A; border-left:3px solid #F59E0B; padding:10px; border-radius:6px;">
+            <strong style="color:#FBBF24; font-size:0.85rem;">/etc</strong>
+            <p style="font-size:0.8rem; color:var(--text-secondary); margin:4px 0 0 0;">System-wide static configuration files (<code>passwd</code>, <code>hosts</code>, <code>nginx.conf</code>, <code>fstab</code>).</p>
+          </div>
+          <div style="background:#0F172A; border-left:3px solid #10B981; padding:10px; border-radius:6px;">
+            <strong style="color:#34D399; font-size:0.85rem;">/home &amp; /root</strong>
+            <p style="font-size:0.8rem; color:var(--text-secondary); margin:4px 0 0 0;"><code>/home/username</code> stores personal user files. <code>/root</code> is superuser home (not / itself!).</p>
+          </div>
+          <div style="background:#0F172A; border-left:3px solid #8B5CF6; padding:10px; border-radius:6px;">
+            <strong style="color:#A78BFA; font-size:0.85rem;">/var &amp; /tmp</strong>
+            <p style="font-size:0.8rem; color:var(--text-secondary); margin:4px 0 0 0;"><code>/var</code> stores variable dynamic logs (<code>/var/log</code>) and databases. <code>/tmp</code> holds temporary files.</p>
+          </div>
+        </div>
+
+        <div class="visual-explainer-grid">
+          <div class="explainer-box happening">
+            <div class="explainer-label">💡 What is happening?</div>
+            <p>Unlike Windows which isolates storage by hardware drive letters (C:, D:), Linux unifies all physical storage disks, partitions, and virtual memory filesystems underneath a single root '/' mount point.</p>
+          </div>
+          <div class="explainer-box remember">
+            <div class="explainer-label">🎯 Remember for Interviews</div>
+            <p>'/' is the Root Directory; '/root' is the superuser's personal home directory. They are completely different paths! Also, '~' expands to the current user's home directory (/home/username).</p>
+          </div>
+          <div class="explainer-box analogy">
+            <div class="explainer-label">🌍 Real-Life Example</div>
+            <p>Single skyscraper lobby: In Windows, every building in town has its own independent front door (C:\, D:\); in Linux, every office and floor is reached through one single Grand Central entrance lobby (/).</p>
+          </div>
+        </div>
       </div>
 
       <div class="placement-trap-card" style="margin-top: 1.25rem;">
@@ -1108,15 +1230,58 @@ ps aux --sort=-%mem | head -n 6</code></pre>
     <div class="topic-card-body">
       <p class="notes-paragraph">In Linux, every file and directory enforces strict permission controls divided into three user categories: <strong>User (Owner)</strong>, <strong>Group</strong>, and <strong>Others (World)</strong>.</p>
 
-      <div class="diagram-title">📐 Anatomy of the 10-Character Permission String</div>
-      <div style="background:#06090E; border:1px solid var(--border-color); border-radius:6px; padding:1.25rem; font-family:monospace; color:#E2E8F0; font-size:0.9rem; line-height:1.7;">
-        -  r w x  r - x  r - -<br>
-        │  └──┬──┘ └──┬──┘ └──┬──┘<br>
-        │     │       │       └── OTHERS (Read only: 4 + 0 + 0 = 4)<br>
-        │     │       └────────── GROUP (Read & Execute: 4 + 0 + 1 = 5)<br>
-        │     └────────────────── OWNER / USER (Read, Write & Execute: 4 + 2 + 1 = 7)<br>
-        └──────────────────────── FILE TYPE (- = normal file, d = directory, l = symlink)<br>
-        <span style="color:#FACC15; font-weight:700;">OCTAL PERMISSION NUMBER: 755</span>
+      <!-- 10-char Permissions Visual Card -->
+      <div class="visual-learning-card" style="margin-top: 1.5rem;">
+        <div class="visual-card-header">
+          <div class="visual-card-title">📐 Anatomy of the 10-Character Permission String &amp; Octal Math</div>
+          <span class="visual-card-badge">File Security</span>
+        </div>
+
+        <div style="background:#0F172A; border:1px solid var(--border-color); border-radius:10px; padding:1.25rem; margin:1.5rem 0;">
+          <div style="display:flex; justify-content:center; gap:8px; font-family:monospace; font-size:1.3rem; font-weight:800; margin-bottom:12px; flex-wrap:wrap;">
+            <span style="background:rgba(239,68,68,0.2); color:#F87171; padding:4px 10px; border-radius:4px;">-</span>
+            <span style="background:rgba(56,189,248,0.2); color:#38BDF8; padding:4px 10px; border-radius:4px;">r w x</span>
+            <span style="background:rgba(167,139,250,0.2); color:#A78BFA; padding:4px 10px; border-radius:4px;">r - x</span>
+            <span style="background:rgba(52,211,153,0.2); color:#34D399; padding:4px 10px; border-radius:4px;">r - -</span>
+          </div>
+
+          <div class="visual-comparison-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px;">
+            <div style="background:#06090E; padding:8px 12px; border-radius:6px; font-size:0.8rem; border-left:3px solid #F87171;">
+              <strong style="color:#F87171;">Char 1: File Type</strong><br>
+              <code>-</code> (File), <code>d</code> (Directory), <code>l</code> (Symlink)
+            </div>
+            <div style="background:#06090E; padding:8px 12px; border-radius:6px; font-size:0.8rem; border-left:3px solid #38BDF8;">
+              <strong style="color:#38BDF8;">Chars 2-4: Owner / User (7)</strong><br>
+              r (4) + w (2) + x (1) = <strong>7</strong>
+            </div>
+            <div style="background:#06090E; padding:8px 12px; border-radius:6px; font-size:0.8rem; border-left:3px solid #A78BFA;">
+              <strong style="color:#A78BFA;">Chars 5-7: Group (5)</strong><br>
+              r (4) + - (0) + x (1) = <strong>5</strong>
+            </div>
+            <div style="background:#06090E; padding:8px 12px; border-radius:6px; font-size:0.8rem; border-left:3px solid #34D399;">
+              <strong style="color:#34D399;">Chars 8-10: Others / World (4)</strong><br>
+              r (4) + - (0) + - (0) = <strong>4</strong>
+            </div>
+          </div>
+          <div style="text-align:center; margin-top:10px; font-weight:700; color:#FACC15; font-size:0.9rem;">
+            OCTAL PERMISSION VALUE: 754 (Owner Full, Group Read+Exec, Others Read-Only)
+          </div>
+        </div>
+
+        <div class="visual-explainer-grid">
+          <div class="explainer-box happening">
+            <div class="explainer-label">💡 What is happening?</div>
+            <p>The 10-character Linux permission string parses into the file type followed by three triplets representing Owner, Group, and Others. Each triad uses binary flags: Read = 4, Write = 2, Execute = 1, summing to an octal digit between 0 and 7.</p>
+          </div>
+          <div class="explainer-box remember">
+            <div class="explainer-label">🎯 Remember for Interviews</div>
+            <p>chmod 777 grants full read, write, and execute permissions to the entire world, creating a catastrophic security hole. Production web roots should typically be chmod 755 for directories and 644 for files.</p>
+          </div>
+          <div class="explainer-box analogy">
+            <div class="explainer-label">🌍 Real-Life Example</div>
+            <p>Bank Safety Deposit: The account holder has full access (Owner 7); the bank vault guard can open and inspect with key (Group 5); members of the public can only view the vault door (Others 0).</p>
+          </div>
+        </div>
       </div>
 
       <div class="table-responsive" style="margin-top: 1.5rem;">
@@ -3360,27 +3525,61 @@ pause</code></pre>
 
   <!-- Part C: Command Decision Tree -->
   <h3 style="color:var(--brand-primary); margin-top:2rem;">Part C: Interactive Command Decision Tree</h3>
-  <div class="interactive-command-tree" style="background:var(--bg-card); padding:1.5rem; border-radius:8px; border:1px solid var(--border-color); font-family:monospace; line-height:1.8;">
-    <div style="font-weight:700; color:var(--brand-primary); margin-bottom:0.5rem;">WHAT IS YOUR OBJECTIVE?</div>
-    <div style="padding-left:1rem;">
-      ├── 📁 <strong>Navigate folders?</strong> ──▶ <code>cd &lt;dir&gt;</code> | <code>pwd</code> | <code>ls -la</code> (Windows: <code>dir</code>)<br>
-      ├── 📄 <strong>Create a file?</strong> ──▶ <code>touch file.txt</code> (Windows: <code>type nul &gt; file.txt</code>)<br>
-      ├── 📂 <strong>Create directory?</strong> ──▶ <code>mkdir -p parent/child</code><br>
-      ├── 📋 <strong>Copy files?</strong> ──▶ <code>cp -r src/ dst/</code> (Windows: <code>copy</code> / <code>robocopy</code>)<br>
-      ├── 🔄 <strong>Move or rename?</strong> ──▶ <code>mv old new</code> (Windows: <code>move</code>)<br>
-      ├── 🗑️ <strong>Delete files?</strong> ──▶ <code>rm file</code> | <code>rm -r folder</code> (Windows: <code>del</code> | <code>rmdir</code>)<br>
-      ├── 🔍 <strong>Search for files by name?</strong> ──▶ <code>find . -name "*.js"</code><br>
-      ├── 🔎 <strong>Search text inside files?</strong> ──▶ <code>grep -rn "pattern" .</code> (Windows: <code>findstr /s "pattern" *.*</code>)<br>
-      ├── 🛡️ <strong>Modify permissions?</strong> ──▶ <code>chmod 755 file</code> | <code>chmod +x script.sh</code><br>
-      ├── 👤 <strong>Change ownership?</strong> ──▶ <code>chown user:group file</code><br>
-      ├── ⚡ <strong>Check running processes?</strong> ──▶ <code>ps aux</code> | <code>top</code> (Windows: <code>tasklist</code>)<br>
-      ├── 🛑 <strong>Stop stuck process?</strong> ──▶ <code>kill &lt;PID&gt;</code> | <code>kill -9 &lt;PID&gt;</code> (Windows: <code>taskkill /PID &lt;PID&gt; /F</code>)<br>
-      ├── 🌐 <strong>Test host reachability?</strong> ──▶ <code>ping &lt;host&gt;</code><br>
-      ├── 📡 <strong>Check IP configuration?</strong> ──▶ <code>ip addr</code> (Windows: <code>ipconfig /all</code>)<br>
-      ├── 🗺️ <strong>Trace network hops?</strong> ──▶ <code>traceroute &lt;host&gt;</code> (Windows: <code>tracert &lt;host&gt;</code>)<br>
-      ├── 🌍 <strong>Troubleshoot DNS resolution?</strong> ──▶ <code>nslookup &lt;domain&gt;</code> | <code>dig &lt;domain&gt;</code><br>
-      ├── 🔌 <strong>Check occupied ports?</strong> ──▶ <code>ss -tulpn | grep &lt;port&gt;</code> | <code>lsof -i :&lt;port&gt;</code><br>
-      └── 🚀 <strong>Test HTTP REST API endpoint?</strong> ──▶ <code>curl -I &lt;URL&gt;</code> | <code>curl -X POST -d '{"k":"v"}' &lt;URL&gt;</code>
+  <!-- Command Decision Tree Visual Card -->
+  <div class="visual-learning-card" style="margin-top: 1.5rem;">
+    <div class="visual-card-header">
+      <div class="visual-card-title">🧭 Interactive Command Decision Tree</div>
+      <span class="visual-card-badge">CLI Cheatsheet</span>
+    </div>
+
+    <div class="visual-comparison-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 10px; margin: 1.5rem 0;">
+      <div style="background:#0F172A; border-left:3px solid #38BDF8; padding:10px; border-radius:6px;">
+        <span style="color:#7DD3FC; font-weight:700; font-size:0.85rem;">📁 File &amp; Directory Ops</span>
+        <div style="font-size:0.8rem; color:var(--text-secondary); margin-top:4px;">
+          &bull; Navigate: <code>cd &lt;dir&gt;</code> &bull; <code>pwd</code> &bull; <code>ls -la</code><br>
+          &bull; Create: <code>touch file.txt</code> &bull; <code>mkdir -p dir</code><br>
+          &bull; Copy / Move: <code>cp -r src/ dst/</code> &bull; <code>mv old new</code>
+        </div>
+      </div>
+      <div style="background:#0F172A; border-left:3px solid #10B981; padding:10px; border-radius:6px;">
+        <span style="color:#34D399; font-weight:700; font-size:0.85rem;">🔍 Search &amp; Text Processing</span>
+        <div style="font-size:0.8rem; color:var(--text-secondary); margin-top:4px;">
+          &bull; Find files: <code>find . -name "*.js"</code><br>
+          &bull; Search text: <code>grep -rn "pattern" .</code><br>
+          &bull; Stream edit: <code>sed 's/old/new/g'</code> &bull; <code>awk '{print $1}'</code>
+        </div>
+      </div>
+      <div style="background:#0F172A; border-left:3px solid #F59E0B; padding:10px; border-radius:6px;">
+        <span style="color:#FBBF24; font-weight:700; font-size:0.85rem;">⚡ Process &amp; System Health</span>
+        <div style="font-size:0.8rem; color:var(--text-secondary); margin-top:4px;">
+          &bull; Running processes: <code>ps aux</code> &bull; <code>top</code><br>
+          &bull; Terminate: <code>kill &lt;PID&gt;</code> &bull; <code>kill -9 &lt;PID&gt;</code><br>
+          &bull; Resource usage: <code>df -h</code> &bull; <code>free -m</code>
+        </div>
+      </div>
+      <div style="background:#0F172A; border-left:3px solid #EC4899; padding:10px; border-radius:6px;">
+        <span style="color:#F472B6; font-weight:700; font-size:0.85rem;">🌐 Networking Diagnostics</span>
+        <div style="font-size:0.8rem; color:var(--text-secondary); margin-top:4px;">
+          &bull; Reachability: <code>ping &lt;host&gt;</code> &bull; <code>traceroute</code><br>
+          &bull; Ports &amp; Sockets: <code>ss -tulnp</code> &bull; <code>netstat</code><br>
+          &bull; HTTP testing: <code>curl -I &lt;url&gt;</code>
+        </div>
+      </div>
+    </div>
+
+    <div class="visual-explainer-grid">
+      <div class="explainer-box happening">
+        <div class="explainer-label">💡 What is happening?</div>
+        <p>This decision matrix groups everyday sysadmin and developer tasks by practical engineering intent, showing the primary POSIX terminal commands alongside flag recommendations.</p>
+      </div>
+      <div class="explainer-box remember">
+        <div class="explainer-label">🎯 Remember for Interviews</div>
+        <p>Linux philosophy: Each tool does one thing and does it well. Combine simple tools via pipes ('|') to build powerful one-liner data processing pipelines without writing scripts.</p>
+      </div>
+      <div class="explainer-box analogy">
+        <div class="explainer-label">🌍 Real-Life Example</div>
+        <p>A Swiss Army Knife: You don't use the corkscrew to cut rope; selecting the exact specialized blade for the task ensures clean, fast execution.</p>
+      </div>
     </div>
   </div>
 

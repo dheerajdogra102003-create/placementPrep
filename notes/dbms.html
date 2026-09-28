@@ -345,43 +345,75 @@
             Mastering DBMS requires progressing from logical data modeling to SQL query execution, relational algebra, storage engines, and ACID concurrency guarantees. Follow this structured roadmap to ace technical interviews.
           </p>
 
-          <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:12px; padding:1.5rem; margin:1.5rem 0;">
-            <div style="font-family:'JetBrains Mono', monospace; font-size:0.875rem; line-height:1.7; color:var(--text-main); overflow-x:auto;">
-<span style="color:#60a5fa; font-weight:700;">🗄️ DATABASE MANAGEMENT SYSTEM (PLACEMENT ROADMAP)</span>
-│
-├── <span style="color:#34d399; font-weight:600;">01. Database Fundamentals</span> ───────── Definition, File System vs DBMS, 3-Schema Architecture
-│
-├── <span style="color:#34d399; font-weight:600;">02. Relational Model</span> ─────────────── Tables, Tuples, Attributes, Domains, Degree, Cardinality
-│
-├── <span style="color:#fbbf24; font-weight:600;">03. Keys & Integrity</span> ─────────────── Super Key ➔ Candidate Key ➔ Primary Key, Foreign Key, Composite Key
-│
-├── <span style="color:#a78bfa; font-weight:600;">04. ER Modeling</span> ──────────────────── Entities, Attributes, Relationships, Cardinality (1:1, 1:N, M:N), Participation
-│
-├── <span style="color:#38bdf8; font-weight:600;">05. Structured Query Language (SQL)</span>
-│   ├── <span style="color:#94a3b8;">Command Classes:</span> DDL (CREATE, ALTER, DROP, TRUNCATE), DML (INSERT, UPDATE, DELETE), DQL (SELECT), TCL, DCL
-│   ├── <span style="color:#94a3b8;">Data Filtering:</span> WHERE, AND/OR/NOT, BETWEEN, IN, LIKE ('%A', '_a%'), NULL 3-Valued Logic
-│   ├── <span style="color:#94a3b8;">Grouping & Aggregation:</span> COUNT(*), COUNT(col), GROUP BY, HAVING, WHERE vs HAVING
-│   └── <span style="color:#f43f5e; font-weight:700;">Conceptual Execution Order:</span> FROM ➔ JOIN ➔ WHERE ➔ GROUP BY ➔ HAVING ➔ SELECT ➔ DISTINCT ➔ ORDER BY ➔ LIMIT
-│
-├── <span style="color:#f472b6; font-weight:600;">06. Relational JOINS</span> ─────────────── INNER JOIN, LEFT JOIN, RIGHT JOIN, FULL OUTER JOIN, CROSS JOIN, SELF JOIN
-│
-├── <span style="color:#c084fc; font-weight:600;">07. Advanced SQL</span> ─────────────────── Subqueries (Scalar, Multi-Row, Correlated), EXISTS vs IN, Views, Window Functions
-│
-├── <span style="color:#fb7185; font-weight:700;">08. Relational Normalization</span>
-│   ├── <span style="color:#94a3b8;">Anomalies:</span> Insertion, Update, Deletion anomalies in unnormalized schemas
-│   ├── <span style="color:#94a3b8;">Functional Dependencies:</span> Trivial, Non-trivial, Partial, Transitive dependencies
-│   └── <span style="color:#94a3b8;">Normal Forms:</span> 1NF (Atomic) ➔ 2NF (No partial) ➔ 3NF (No transitive) ➔ BCNF (Det is superkey)
-│
-├── <span style="color:#fbbf24; font-weight:600;">09. Indexing & Storage</span> ───────────── Clustered vs Secondary Indexes, B+ Trees, Composite Index Left-Prefix rule
-│
-├── <span style="color:#34d399; font-weight:700;">10. Transactions & ACID</span> ──────────── Atomicity (All/None), Consistency, Isolation, Durability, COMMIT, ROLLBACK
-│
-├── <span style="color:#60a5fa; font-weight:700;">11. Concurrency Control</span>
-│   ├── <span style="color:#94a3b8;">Phenomena:</span> Lost Update, Dirty Read, Non-Repeatable Read, Phantom Read
-│   ├── <span style="color:#94a3b8;">Isolation Levels:</span> Read Uncommitted, Read Committed, Repeatable Read, Serializable
-│   └── <span style="color:#94a3b8;">Protocols:</span> Shared/Exclusive Locks, Two-Phase Locking (2PL), Deadlocks & Detection, WAL Recovery
-│
-└── <span style="color:#a855f7; font-weight:700;">12. Placement Masterclass</span> ────────── 15 Query Reasoning Labs, 40 Traps, 30 Challenges, 50 MCQs, 30 Interview Qs
+          <!-- Visual Architecture & Roadmap Card -->
+          <div class="visual-learning-card" style="margin: 1.5rem 0;">
+            <div class="visual-card-header">
+              <span class="visual-card-title">🗄️ Relational DBMS &amp; SQL Placement Learning Architecture</span>
+              <span class="visual-card-badge">Foundations &rarr; Engine Internals</span>
+            </div>
+
+            <div class="pipeline-flow" style="margin: 1.25rem 0;">
+              <div class="pipeline-node" style="border-left: 3px solid #3b82f6;">
+                <div class="node-icon">📐</div>
+                <div class="node-label">1. Schema &amp; Keys</div>
+                <div class="node-subtext">3-Tier Schema • Super, Candidate, Primary &amp; Foreign Keys</div>
+              </div>
+
+              <div class="pipeline-connector">
+                <span class="connector-arrow">&rarr;</span>
+                <span class="connector-particle"></span>
+              </div>
+
+              <div class="pipeline-node" style="border-left: 3px solid #06b6d4;">
+                <div class="node-icon">⚡</div>
+                <div class="node-label">2. SQL Query Engine</div>
+                <div class="node-subtext">FROM &rarr; WHERE &rarr; GROUP BY &rarr; HAVING &rarr; SELECT</div>
+              </div>
+
+              <div class="pipeline-connector">
+                <span class="connector-arrow">&rarr;</span>
+                <span class="connector-particle"></span>
+              </div>
+
+              <div class="pipeline-node" style="border-left: 3px solid #10b981;">
+                <div class="node-icon">🌲</div>
+                <div class="node-label">3. B+ Trees &amp; 1NF-BCNF</div>
+                <div class="node-subtext">Clustered vs Secondary Indexes • Functional Dependencies</div>
+              </div>
+
+              <div class="pipeline-connector">
+                <span class="connector-arrow">&rarr;</span>
+                <span class="connector-particle"></span>
+              </div>
+
+              <div class="pipeline-node" style="border-left: 3px solid #8b5cf6;">
+                <div class="node-icon">🔒</div>
+                <div class="node-label">4. ACID &amp; Concurrency</div>
+                <div class="node-subtext">2PL Locks • Serializable Isolation • WAL Recovery</div>
+              </div>
+            </div>
+
+            <div class="visual-explainer-grid">
+              <div class="explainer-box happening">
+                <div class="explainer-label">💡 What is happening?</div>
+                <div class="explainer-text">
+                  A Relational DBMS systematically separates the high-level declarative query language (SQL) from physical byte storage. Your queries are parsed into logical relational algebra trees, cost-optimized using index statistics, and executed under strict ACID guarantees to prevent corruption during concurrent transactions.
+                </div>
+              </div>
+
+              <div class="explainer-box remember">
+                <div class="explainer-label">🎯 Remember for Exams</div>
+                <div class="explainer-text">
+                  Interviews frequently test the <strong>Three-Schema Architecture</strong>: External Schema (Views/Users), Conceptual Schema (Tables, Constraints, ER design), and Internal Schema (B-Tree indexes, page blocks on disk) providing physical and logical data independence.
+                </div>
+              </div>
+
+              <div class="explainer-box analogy">
+                <div class="explainer-label">🌍 Real-Life Analogy</div>
+                <div class="explainer-text">
+                  Think of a grand library: The catalog search terminal is the SQL parser; the librarian finding the exact shelf row is the B+ Tree Index; and checkout locks prevent two borrowers from checking out the exact same physical copy at the same second.
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -786,23 +818,49 @@
             Keys are relational attributes used to uniquely identify rows, prevent duplicate data, and establish referential relationships between tables.
           </p>
 
-          <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:12px; padding:1.5rem; margin:1.5rem 0;">
-            <div style="font-family:'JetBrains Mono', monospace; font-size:0.875rem; line-height:1.7; color:var(--text-main);">
-<span style="color:#60a5fa; font-weight:700;">RELATIONAL KEYS HIERARCHY & RELATIONSHIPS</span>
-│
-├── <strong style="color:#f59e0b;">Super Key:</strong> Any attribute combination that uniquely identifies a row (can have redundant columns)
-│     │
-│     ▼ (Filter out redundant columns to make minimal)
-│
-├── <strong style="color:#10b981;">Candidate Key:</strong> A minimal Super Key with NO redundant attributes
-│     │
-│     ├─► <strong style="color:#ef4444;">Primary Key:</strong> The chosen Candidate Key (Unique + NOT NULL, 1 per table)
-│     │
-│     └─► <strong style="color:#8b5cf6;">Alternate Key:</strong> Remaining Candidate Keys not selected as Primary Key
-│
-├── <strong style="color:#06b6d4;">Foreign Key:</strong> References a Candidate/Primary Key in another table (Referential link)
-│
-└── <strong style="color:#ec4899;">Composite Key:</strong> Any key comprised of two or more attributes together
+          <!-- Keys Hierarchy Visual Card -->
+          <div class="visual-learning-card" style="margin-top: 1.5rem;">
+            <div class="visual-card-header">
+              <div class="visual-card-title">🔑 Relational Database Keys Hierarchy &amp; Categorization</div>
+              <span class="visual-card-badge">Data Modeling</span>
+            </div>
+
+            <div class="layered-stack" style="margin: 1.5rem 0;">
+              <div class="layer-item" style="border-left:4px solid #F59E0B;">
+                <div class="layer-name" style="color:#FBBF24;">1. SUPER KEY (Broadest Set)</div>
+                <div class="layer-desc">Any attribute or combination of attributes that uniquely identifies a row in a table. May contain redundant or unnecessary extra columns (e.g. {Roll_No, Name, Age}).</div>
+              </div>
+              <div class="layer-item" style="border-left:4px solid #10B981;">
+                <div class="layer-name" style="color:#34D399;">2. CANDIDATE KEY (Minimal Super Key)</div>
+                <div class="layer-desc">A minimal Super Key having NO redundant attributes. Removing any single column destroys unique identification property (e.g. {Roll_No} or {Aadhar_No}).</div>
+              </div>
+              <div class="layer-item" style="border-left:4px solid #EF4444;">
+                <div class="layer-name" style="color:#F87171;">3. PRIMARY KEY (The Chosen Identifier)</div>
+                <div class="layer-desc">The single Candidate Key explicitly designated by database architect to identify tuples. Strictly enforced as UNIQUE + NOT NULL (Only 1 Primary Key per table).</div>
+              </div>
+              <div class="layer-item" style="border-left:4px solid #8B5CF6;">
+                <div class="layer-name" style="color:#A78BFA;">4. ALTERNATE KEY (Secondary Candidate Keys)</div>
+                <div class="layer-desc">All candidate keys that were NOT selected as the Primary Key (e.g., if Roll_No is chosen as PK, Aadhar_No becomes the Alternate Key).</div>
+              </div>
+              <div class="layer-item" style="border-left:4px solid #06B6D4;">
+                <div class="layer-name" style="color:#38BDF8;">5. FOREIGN KEY &amp; COMPOSITE KEY</div>
+                <div class="layer-desc"><strong>Foreign Key:</strong> References Primary Key in parent table. <strong>Composite Key:</strong> Primary key constructed from two or more attributes combined.</div>
+              </div>
+            </div>
+
+            <div class="visual-explainer-grid">
+              <div class="explainer-box happening">
+                <div class="explainer-label">💡 What is happening?</div>
+                <p>Relational keys form a concentric mathematical hierarchy. Every Primary Key is a Candidate Key, and every Candidate Key is a minimal Super Key. Alternate keys represent all unselected candidate keys.</p>
+              </div>
+              <div class="explainer-box remember">
+                <div class="explainer-label">🎯 Remember for Interviews</div>
+                <p>Candidate Key = Minimal Super Key. A table can have multiple Candidate Keys, but strictly ONE Primary Key. Primary Keys NEVER allow NULL; Unique keys allow NULL in most SQL dialects.</p>
+              </div>
+              <div class="explainer-box analogy">
+                <div class="explainer-label">🌍 Real-Life Example</div>
+                <p>Citizen Identity: Passport Number, Driver's License, and National ID Card are all Candidate Keys; the government designates National ID as the Primary Key for official tax filings.</p>
+              </div>
             </div>
           </div>
         </section>
@@ -907,26 +965,93 @@ CREATE TABLE Student (
             A <strong>Foreign Key</strong> is an attribute (or collection of attributes) in one table that references a Primary Key (or unique candidate key) in another parent table, establishing a verified logical relationship.
           </p>
 
-          <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:12px; padding:1.5rem; margin:1.5rem 0;">
-            <div style="font-family:'JetBrains Mono', monospace; font-size:0.875rem; line-height:1.7;">
-              <span style="color:#60a5fa; font-weight:700;">PARENT TABLE: Department</span><br>
-              ┌───────────────┬──────────────────┐<br>
-              │ dept_id <span class="key-badge badge-pk">PK</span>   │ dept_name        │<br>
-              ├───────────────┼──────────────────┤<br>
-              │ 10            │ Computer Science │<br>
-              │ 20            │ Electronics      │<br>
-              └───────────────┴──────────────────┘<br>
-                     ▲<br>
-                     │ (Referential Integrity Constraint)<br>
-                     │<br>
-              <span style="color:#34d399; font-weight:700;">CHILD TABLE: Employee</span><br>
-              ┌─────────┬──────────────┬───────────────┐<br>
-              │ emp_id  │ emp_name     │ dept_id <span class="key-badge badge-fk">FK</span>   │<br>
-              ├─────────┼──────────────┼───────────────┤<br>
-              │ 1       │ Alice        │ 10            │ (Valid: 10 exists in parent)<br>
-              │ 2       │ Bob          │ 20            │ (Valid: 20 exists in parent)<br>
-              │ 3       │ Charlie      │ <span style="color:#ef4444; font-weight:700;">99</span>            │ <span style="color:#ef4444;">❌ ERROR! 99 does not exist in Department!</span><br>
-              └─────────┴──────────────┴───────────────┘
+          <!-- Referential Integrity Visual Card -->
+          <div class="visual-learning-card" style="margin-top: 1.5rem;">
+            <div class="visual-card-header">
+              <div class="visual-card-title">🎯 Referential Integrity: Parent (PK) vs Child (FK) Constraint</div>
+              <span class="visual-card-badge">Data Integrity</span>
+            </div>
+
+            <div style="display:flex; flex-direction:column; gap:1.25rem; margin:1.5rem 0;">
+              <!-- Parent Table -->
+              <div style="background:#0F172A; border:1px solid #38BDF8; border-radius:10px; padding:1rem;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                  <span style="color:#38BDF8; font-weight:800; font-size:0.95rem;">🏢 PARENT TABLE: Department</span>
+                  <span style="font-size:0.75rem; background:rgba(56,189,248,0.2); color:#7DD3FC; padding:2px 8px; border-radius:4px;">Referenced Entity</span>
+                </div>
+                <div class="table-responsive">
+                  <table class="notes-table" style="margin:0;">
+                    <thead>
+                      <tr>
+                        <th>dept_id <span class="key-badge badge-pk">PK</span></th>
+                        <th>dept_name</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr><td><strong>10</strong></td><td>Computer Science</td></tr>
+                      <tr><td><strong>20</strong></td><td>Electronics</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <!-- Constraint Connector -->
+              <div style="display:flex; align-items:center; justify-content:center; gap:10px; color:#F59E0B; font-weight:700; font-size:0.85rem;">
+                <span>⬆️</span>
+                <span style="background:rgba(245, 158, 11, 0.1); border:1px dashed #F59E0B; padding:6px 14px; border-radius:20px;">
+                  Referential Integrity Constraint: Child FK must match Parent PK or be NULL
+                </span>
+                <span>⬆️</span>
+              </div>
+
+              <!-- Child Table -->
+              <div style="background:#0F172A; border:1px solid #34D399; border-radius:10px; padding:1rem;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                  <span style="color:#34D399; font-weight:800; font-size:0.95rem;">👨‍💼 CHILD TABLE: Employee</span>
+                  <span style="font-size:0.75rem; background:rgba(52,211,153,0.2); color:#6EE7B7; padding:2px 8px; border-radius:4px;">Referencing Entity</span>
+                </div>
+                <div class="table-responsive">
+                  <table class="notes-table" style="margin:0;">
+                    <thead>
+                      <tr>
+                        <th>emp_id <span class="key-badge badge-pk">PK</span></th>
+                        <th>emp_name</th>
+                        <th>dept_id <span class="key-badge badge-fk">FK</span></th>
+                        <th>Integrity Validation Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>1</td><td>Alice</td><td>10</td>
+                        <td><span style="color:#34D399; font-weight:700;">✅ Valid: dept_id 10 exists in Department</span></td>
+                      </tr>
+                      <tr>
+                        <td>2</td><td>Bob</td><td>20</td>
+                        <td><span style="color:#34D399; font-weight:700;">✅ Valid: dept_id 20 exists in Department</span></td>
+                      </tr>
+                      <tr style="background:rgba(239, 68, 68, 0.1);">
+                        <td>3</td><td>Charlie</td><td><strong style="color:#EF4444;">99</strong></td>
+                        <td><span style="color:#EF4444; font-weight:700;">❌ REJECTED! Foreign Key Violation (99 does not exist)</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <div class="visual-explainer-grid">
+              <div class="explainer-box happening">
+                <div class="explainer-label">💡 What is happening?</div>
+                <p>A Foreign Key in a child table enforces referential integrity by requiring every non-null foreign key value to match a valid primary key row in the referenced parent table. When an insert for Charlie specifies dept_id 99, the relational engine immediately blocks the transaction to prevent orphan records.</p>
+              </div>
+              <div class="explainer-box remember">
+                <div class="explainer-label">🎯 Remember for Interviews</div>
+                <p>Referential integrity guarantees database consistency. Foreign key constraint violation actions include <code>ON DELETE RESTRICT</code> (abort delete if child exists), <code>ON DELETE CASCADE</code> (delete children automatically), and <code>ON DELETE SET NULL</code>.</p>
+              </div>
+              <div class="explainer-box analogy">
+                <div class="explainer-label">🌍 Real-Life Example</div>
+                <p>University Course Registration: A student cannot enroll in a class section with course code 'CS999' if the academic department has not registered that course in the master catalog.</p>
+              </div>
             </div>
           </div>
         </section>
@@ -1745,14 +1870,52 @@ ORDER BY department ASC, salary DESC;</code></pre>
             Collapses rows sharing identical values in specified columns into summary rows, enabling aggregate calculations per category.
           </p>
 
-          <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:12px; padding:1.25rem; margin:1rem 0;">
-            <div style="font-family:'JetBrains Mono', monospace; font-size:0.85rem; line-height:1.6;">
-              Row 1: [Engineering, ₹60k] ──┐<br>
-              Row 2: [Engineering, ₹80k] ──┼─► [Engineering Group] ──► COUNT = 3, AVG = ₹70,000<br>
-              Row 3: [Engineering, ₹70k] ──┘<br>
-              Row 4: [Marketing,   ₹50k] ──┐<br>
-              Row 5: [Marketing,   ₹60k] ──┼─► [Marketing Group]   ──► COUNT = 2, AVG = ₹55,000<br>
-              Row 6: [Marketing,   ₹55k] ──┘
+          <!-- GROUP BY Aggregation Visual Card -->
+          <div class="visual-learning-card" style="margin-top: 1.5rem;">
+            <div class="visual-card-header">
+              <div class="visual-card-title">📊 SQL GROUP BY Aggregation &amp; Reduction Flow</div>
+              <span class="visual-card-badge">Data Aggregation</span>
+            </div>
+
+            <div class="visual-comparison-grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
+              <div style="background:#0F172A; border-left:4px solid #38BDF8; border-radius:8px; padding:1.1rem;">
+                <div style="font-weight:700; color:#38BDF8; margin-bottom:8px;">👥 Engineering Bucket (3 Rows)</div>
+                <div style="font-size:0.8rem; color:var(--text-secondary); line-height:1.6;">
+                  &bull; Row 1: [Eng, ₹60,000]<br>
+                  &bull; Row 2: [Eng, ₹80,000]<br>
+                  &bull; Row 3: [Eng, ₹70,000]<br>
+                  <div style="margin-top:8px; background:rgba(56, 189, 248, 0.1); padding:6px; border-radius:4px; color:#7DD3FC; font-weight:700;">
+                    COUNT = 3 &bull; AVG = ₹70,000
+                  </div>
+                </div>
+              </div>
+
+              <div style="background:#0F172A; border-left:4px solid #10B981; border-radius:8px; padding:1.1rem;">
+                <div style="font-weight:700; color:#34D399; margin-bottom:8px;">👥 Marketing Bucket (3 Rows)</div>
+                <div style="font-size:0.8rem; color:var(--text-secondary); line-height:1.6;">
+                  &bull; Row 4: [Mkt, ₹50,000]<br>
+                  &bull; Row 5: [Mkt, ₹60,000]<br>
+                  &bull; Row 6: [Mkt, ₹55,000]<br>
+                  <div style="margin-top:8px; background:rgba(52, 211, 153, 0.1); padding:6px; border-radius:4px; color:#6EE7B7; font-weight:700;">
+                    COUNT = 3 &bull; AVG = ₹55,000
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="visual-explainer-grid">
+              <div class="explainer-box happening">
+                <div class="explainer-label">💡 What is happening?</div>
+                <p>The GROUP BY clause collapses thousands of raw relational records into distinct categorical buckets based on common grouping keys, enabling aggregate math (COUNT, SUM, AVG, MIN, MAX) per group.</p>
+              </div>
+              <div class="explainer-box remember">
+                <div class="explainer-label">🎯 Remember for Interviews</div>
+                <p>Every column listed in the SELECT statement that is NOT inside an aggregate function MUST be explicitly included in the GROUP BY clause; otherwise, the SQL compiler raises a syntax error.</p>
+              </div>
+              <div class="explainer-box analogy">
+                <div class="explainer-label">🌍 Real-Life Example</div>
+                <p>Sorting coins into piggy banks: Sorting a scattered pile of coins into 10-rupee, 5-rupee, and 2-rupee jars, then counting the total sum inside each jar separately.</p>
+              </div>
             </div>
           </div>
         </section>
@@ -1837,6 +2000,100 @@ HAVING COUNT(*) &gt; 5 AND AVG(salary) &gt; 60000;</code></pre>
             Although developers write SQL starting with <code>SELECT</code>, the database's <strong>conceptual logical query processor</strong> executes clauses in an entirely different sequence!
           </p>
 
+          <!-- Visual Learning Card: SQL Logical Execution Pipeline -->
+          <div class="visual-learning-card" style="margin: 1.5rem 0;">
+            <div class="visual-card-header">
+              <span class="visual-card-title">⚡ The 9-Stage SQL Logical Query Processing Pipeline</span>
+              <span class="visual-card-badge">Evaluation Engine Sequence</span>
+            </div>
+
+            <div class="pipeline-flow" style="margin: 1.25rem 0; overflow-x: auto; padding-bottom: 0.5rem;">
+              <div class="pipeline-node" style="border-left: 3px solid #3b82f6;">
+                <div class="node-icon">1️⃣</div>
+                <div class="node-label">FROM &amp; JOIN</div>
+                <div class="node-subtext">Table scan &amp; Cartesians</div>
+              </div>
+
+              <div class="pipeline-connector">
+                <span class="connector-arrow">&rarr;</span>
+                <span class="connector-particle"></span>
+              </div>
+
+              <div class="pipeline-node" style="border-left: 3px solid #06b6d4;">
+                <div class="node-icon">2️⃣</div>
+                <div class="node-label">WHERE</div>
+                <div class="node-subtext">Row-level filter</div>
+              </div>
+
+              <div class="pipeline-connector">
+                <span class="connector-arrow">&rarr;</span>
+                <span class="connector-particle"></span>
+              </div>
+
+              <div class="pipeline-node" style="border-left: 3px solid #f59e0b;">
+                <div class="node-icon">3️⃣</div>
+                <div class="node-label">GROUP BY</div>
+                <div class="node-subtext">Bucket row buckets</div>
+              </div>
+
+              <div class="pipeline-connector">
+                <span class="connector-arrow">&rarr;</span>
+                <span class="connector-particle"></span>
+              </div>
+
+              <div class="pipeline-node" style="border-left: 3px solid #ef4444;">
+                <div class="node-icon">4️⃣</div>
+                <div class="node-label">HAVING</div>
+                <div class="node-subtext">Filter group aggregates</div>
+              </div>
+
+              <div class="pipeline-connector">
+                <span class="connector-arrow">&rarr;</span>
+                <span class="connector-particle"></span>
+              </div>
+
+              <div class="pipeline-node" style="border-left: 3px solid #10b981;">
+                <div class="node-icon">5️⃣</div>
+                <div class="node-label">SELECT</div>
+                <div class="node-subtext">Column projection &amp; alias</div>
+              </div>
+
+              <div class="pipeline-connector">
+                <span class="connector-arrow">&rarr;</span>
+                <span class="connector-particle"></span>
+              </div>
+
+              <div class="pipeline-node" style="border-left: 3px solid #8b5cf6;">
+                <div class="node-icon">6️⃣</div>
+                <div class="node-label">ORDER BY &amp; LIMIT</div>
+                <div class="node-subtext">Sort &amp; slice pagination</div>
+              </div>
+            </div>
+
+            <div class="visual-explainer-grid">
+              <div class="explainer-box happening">
+                <div class="explainer-label">💡 What is happening?</div>
+                <div class="explainer-text">
+                  While SQL queries are grammatically written as <code>SELECT col FROM table WHERE filter</code>, the database engine executes <code>FROM</code> first to load tables, then applies <code>WHERE</code> to discard invalid rows before aggregating with <code>GROUP BY</code>. <code>SELECT</code> and its calculated aliases only evaluate near the very end.
+                </div>
+              </div>
+
+              <div class="explainer-box remember">
+                <div class="explainer-label">🎯 Remember for Exams</div>
+                <div class="explainer-text">
+                  This explains the #1 SQL MCQ trap: You <strong>CANNOT</strong> use an alias defined in <code>SELECT</code> inside a <code>WHERE</code> clause because <code>WHERE</code> runs at Stage 2, before Stage 5 creates the alias! However, <code>ORDER BY</code> (Stage 6) <strong>CAN</strong> freely use SELECT aliases.
+                </div>
+              </div>
+
+              <div class="explainer-box analogy">
+                <div class="explainer-label">🌍 Real-Life Analogy</div>
+                <div class="explainer-text">
+                  Imagine cooking: First you pull all ingredients from the pantry (FROM), discard expired items (WHERE), chop into recipe bowls (GROUP BY), taste test seasoning (HAVING), plate the best dishes (SELECT), garnish neatly in order (ORDER BY), and serve the top 3 portions (LIMIT).
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div style="margin:1.5rem 0;">
             <div class="query-exec-step">
               <div class="query-step-num">1</div>
@@ -1897,21 +2154,53 @@ HAVING COUNT(*) &gt; 5 AND AVG(salary) &gt; 60000;</code></pre>
             A <strong>JOIN</strong> combines columns from two or more tables based on a related column between them (typically foreign key = primary key).
           </p>
 
-          <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:12px; padding:1.5rem; margin:1.5rem 0;">
-            <div style="font-family:'JetBrains Mono', monospace; font-size:0.875rem; line-height:1.7;">
-<span style="color:#60a5fa; font-weight:700;">SQL JOIN FAMILY TREE</span>
-│
-├── <strong style="color:#10b981;">INNER JOIN:</strong> Returns rows that have matching values in BOTH tables.
-│
-├── <strong style="color:#38bdf8;">LEFT (OUTER) JOIN:</strong> Returns all rows from left table + matched rows from right table (NULL if no match).
-│
-├── <strong style="color:#818cf8;">RIGHT (OUTER) JOIN:</strong> Returns all rows from right table + matched rows from left table (NULL if no match).
-│
-├── <strong style="color:#f472b6;">FULL (OUTER) JOIN:</strong> Returns all rows when there is a match in either left or right table.
-│
-├── <strong style="color:#fbbf24;">CROSS JOIN:</strong> Produces Cartesian Product (Every row in Table A paired with every row in Table B).
-│
-└── <strong style="color:#a78bfa;">SELF JOIN:</strong> A table joined with itself (requires distinct table aliases, e.g., Employee to Manager).
+          <!-- SQL Join Taxonomy Visual Card -->
+          <div class="visual-learning-card" style="margin-top: 1.5rem;">
+            <div class="visual-card-header">
+              <div class="visual-card-title">🔗 SQL Join Family Tree &amp; Venn Relationships</div>
+              <span class="visual-card-badge">Query Operations</span>
+            </div>
+
+            <div class="visual-comparison-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
+              <div style="background:#0F172A; border-left:3px solid #10B981; padding:10px; border-radius:6px;">
+                <strong style="color:#34D399; font-size:0.9rem;">INNER JOIN</strong>
+                <p style="font-size:0.8rem; color:var(--text-secondary); margin:4px 0 0 0;">Returns rows having matching keys in BOTH left and right tables (Intersection A &cap; B).</p>
+              </div>
+              <div style="background:#0F172A; border-left:3px solid #38BDF8; padding:10px; border-radius:6px;">
+                <strong style="color:#38BDF8; font-size:0.9rem;">LEFT (OUTER) JOIN</strong>
+                <p style="font-size:0.8rem; color:var(--text-secondary); margin:4px 0 0 0;">All rows from Left table + matching Right rows (Right columns filled with NULL if no match).</p>
+              </div>
+              <div style="background:#0F172A; border-left:3px solid #818CF8; padding:10px; border-radius:6px;">
+                <strong style="color:#818CF8; font-size:0.9rem;">RIGHT (OUTER) JOIN</strong>
+                <p style="font-size:0.8rem; color:var(--text-secondary); margin:4px 0 0 0;">All rows from Right table + matching Left rows (Left columns filled with NULL if no match).</p>
+              </div>
+              <div style="background:#0F172A; border-left:3px solid #F472B6; padding:10px; border-radius:6px;">
+                <strong style="color:#F472B6; font-size:0.9rem;">FULL (OUTER) JOIN</strong>
+                <p style="font-size:0.8rem; color:var(--text-secondary); margin:4px 0 0 0;">Returns all rows when a match exists in either table (Union A &cup; B). Replaces non-matches with NULL.</p>
+              </div>
+              <div style="background:#0F172A; border-left:3px solid #FBBF24; padding:10px; border-radius:6px;">
+                <strong style="color:#FBBF24; font-size:0.9rem;">CROSS JOIN</strong>
+                <p style="font-size:0.8rem; color:var(--text-secondary); margin:4px 0 0 0;">Cartesian product pairing every row in Table A with every row in Table B (Total rows = m &times; n).</p>
+              </div>
+              <div style="background:#0F172A; border-left:3px solid #A78BFA; padding:10px; border-radius:6px;">
+                <strong style="color:#C4B5FD; font-size:0.9rem;">SELF JOIN</strong>
+                <p style="font-size:0.8rem; color:var(--text-secondary); margin:4px 0 0 0;">A table joined with itself using distinct table aliases (e.g. Employee e JOIN Employee m ON e.mgr_id = m.emp_id).</p>
+              </div>
+            </div>
+
+            <div class="visual-explainer-grid">
+              <div class="explainer-box happening">
+                <div class="explainer-label">💡 What is happening?</div>
+                <p>Joins combine columns from one or more tables by evaluating predicate logic on related keys. Inner joins prune unmatched records; outer joins preserve unmatched records by backfilling missing columns with NULL values.</p>
+              </div>
+              <div class="explainer-box remember">
+                <div class="explainer-label">🎯 Remember for Interviews</div>
+                <p>Be prepared for Cartesian blowup: An accidental CROSS JOIN or missing ON predicate between two 100,000-row tables generates 10 billion rows, consuming RAM and crashing the database engine.</p>
+              </div>
+              <div class="explainer-box analogy">
+                <div class="explainer-label">🌍 Real-Life Example</div>
+                <p>Class Reunion: INNER JOIN is inviting alumni who brought a spouse; LEFT JOIN is inviting all alumni, seating single alumni with an empty chair (NULL spouse).</p>
+              </div>
             </div>
           </div>
         </section>
@@ -3923,27 +4212,61 @@ ResultSet rs = stmt.executeQuery();</code></pre>
             In modern cloud production systems, an application never connects to a single monolithic database server directly. Here is how scalable enterprise tiers are structured:
           </p>
 
-          <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:12px; padding:1.5rem; margin:1.5rem 0; text-align:center;">
-            <div style="display:inline-block; font-family:'JetBrains Mono', monospace; font-size:0.875rem; line-height:1.7; text-align:left;">
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;👥 Millions of Web &amp; Mobile Users<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▼<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;🌐 Load Balancer &amp; API Gateway<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▼<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⚙️ Stateless Backend API Cluster<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│ (Connection Pooling via PgBouncer/ProxySQL)<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▼<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┌───────────────────────────────────────┐<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DATABASE TIER (Primary &amp; Replicas) &nbsp;│<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└───────────────────┬───────────────────┘<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┌─────────┴─────────┐<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▼ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▼<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ PRIMARY DB INSTANCE ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ READ REPLICA POOL ]<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;• Handles All WRITES &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;• Handles Scalable READS<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;• Synchronous / Async WAL Stream ─► (SELECT queries, reports)<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;• Daily automated snapshots to S3 / Cloud Storage
+          <!-- Enterprise Database Tier Visual Card -->
+          <div class="visual-learning-card" style="margin-top: 1.5rem;">
+            <div class="visual-card-header">
+              <div class="visual-card-title">🏗️ High-Availability Enterprise Database Architecture</div>
+              <span class="visual-card-badge">Production Architecture</span>
+            </div>
+
+            <div class="pipeline-flow" style="margin: 1.5rem 0; flex-wrap:wrap;">
+              <div class="pipeline-node" style="border-left:3px solid #60A5FA;">
+                <span class="pipeline-node-num">1</span>
+                <span class="pipeline-node-title">👥 Clients</span>
+                <span class="pipeline-node-sub">Web &amp; Mobile Traffic</span>
+              </div>
+              <div class="pipeline-connector"><span class="connector-particle"></span></div>
+              <div class="pipeline-node" style="border-left:3px solid #38BDF8;">
+                <span class="pipeline-node-num">2</span>
+                <span class="pipeline-node-title">🌐 Load Balancer</span>
+                <span class="pipeline-node-sub">TLS &amp; API Gateway</span>
+              </div>
+              <div class="pipeline-connector"><span class="connector-particle"></span></div>
+              <div class="pipeline-node" style="border-left:3px solid #A78BFA;">
+                <span class="pipeline-node-num">3</span>
+                <span class="pipeline-node-title">⚙️ API Cluster</span>
+                <span class="pipeline-node-sub">PgBouncer Pool</span>
+              </div>
+              <div class="pipeline-connector"><span class="connector-particle"></span></div>
+              <div class="pipeline-node" style="border-left:3px solid #34D399; flex:2; min-width:280px;">
+                <span class="pipeline-node-num">4</span>
+                <span class="pipeline-node-title">💾 Database Tier</span>
+                <div style="display:flex; gap:10px; margin-top:8px;">
+                  <div style="flex:1; background:#0B0F17; border:1px solid #38BDF8; border-radius:6px; padding:6px; font-size:0.75rem;">
+                    <strong style="color:#38BDF8;">Primary Instance (Leader)</strong><br>
+                    Handles All Writes (INSERT/UPDATE/DELETE). Emits WAL replication stream.
+                  </div>
+                  <div style="flex:1; background:#0B0F17; border:1px solid #34D399; border-radius:6px; padding:6px; font-size:0.75rem;">
+                    <strong style="color:#34D399;">Read Replica Pool (Followers)</strong><br>
+                    Scales read-heavy SELECT queries, reports, and background analytics.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="visual-explainer-grid">
+              <div class="explainer-box happening">
+                <div class="explainer-label">💡 What is happening?</div>
+                <p>Enterprise systems separate stateful database writes from reads. All mutating writes (transactions, checkouts) route to the single Primary Master node, while an asynchronous or semi-synchronous Write-Ahead Log (WAL) stream syncs read replicas to handle massive read concurrency.</p>
+              </div>
+              <div class="explainer-box remember">
+                <div class="explainer-label">🎯 Remember for Interviews</div>
+                <p>Read replicas create replication lag (eventual consistency). If a user updates their profile and immediately refreshes, reading from a replica might show stale data. Critical 'read-your-own-writes' requests must be pinned to the Primary database!</p>
+              </div>
+              <div class="explainer-box analogy">
+                <div class="explainer-label">🌍 Real-Life Example</div>
+                <p>Publishing newspaper: The editor writes and approves 1 master copy of tomorrow's news (Primary DB), and printing presses generate 500,000 replica copies distributed to newsstands across the country for readers (Read Replicas).</p>
+              </div>
             </div>
           </div>
         </section>
@@ -7657,128 +7980,337 @@ FROM Employee;
           </p>
 
           <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:1.25rem; margin:1.5rem 0;">
-            <!-- Diagram 1 -->
-            <div class="concept-card">
-              <h4 style="color:#60a5fa; font-size:0.9rem;">Diagram 1: DBMS 3-Level Architecture</h4>
-              <div style="font-family:'JetBrains Mono', monospace; font-size:0.75rem; background:var(--bg-main); padding:0.75rem; border-radius:6px; margin-top:0.5rem; line-height:1.5;">
-                [ External View 1 ] [ External View 2 ]<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│ (Logical Independence)<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▼<br>
-                ┌───────────────────────────────────┐<br>
-                │ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CONCEPTUAL SCHEMA &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│<br>
-                │ &nbsp;&nbsp;(Tables, Keys, Constraints) &nbsp;&nbsp;&nbsp;&nbsp;│<br>
-                └─────────────────┬─────────────────┘<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│ (Physical Independence)<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▼<br>
-                ┌───────────────────────────────────┐<br>
-                │ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INTERNAL SCHEMA &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│<br>
-                │ &nbsp;&nbsp;(B-Trees, Data Pages, Hashing) &nbsp;│<br>
-                └───────────────────────────────────┘
+            <!-- Diagram 1: 3-Level Architecture -->
+            <div class="visual-learning-card">
+              <div class="visual-card-header">
+                <span class="visual-card-title">Diagram 1: DBMS 3-Level ANSI/SPARC Architecture</span>
+                <span class="visual-card-badge">Data Independence</span>
+              </div>
+              <div class="layered-stack" style="margin:1rem 0;">
+                <div class="layer-item" style="border-left: 3px solid #60a5fa; background:rgba(59,130,246,0.08);">
+                  <div class="layer-badge" style="background:#2563eb; color:#fff;">Layer 3</div>
+                  <div class="layer-info">
+                    <div class="layer-name">External Schema (User Views)</div>
+                    <div class="layer-desc">Tailored UI views, security masks, and customized user projections.</div>
+                  </div>
+                </div>
+                <div style="text-align:center; color:#60a5fa; font-size:0.75rem; font-weight:700; padding:0.2rem 0;">↕ Logical Data Independence (Insulates views from table schema changes)</div>
+                <div class="layer-item" style="border-left: 3px solid #10b981; background:rgba(16,185,129,0.08);">
+                  <div class="layer-badge" style="background:#059669; color:#fff;">Layer 2</div>
+                  <div class="layer-info">
+                    <div class="layer-name">Conceptual Schema (Logical Design)</div>
+                    <div class="layer-desc">All tables, attributes, relationships, foreign keys, and integrity constraints.</div>
+                  </div>
+                </div>
+                <div style="text-align:center; color:#10b981; font-size:0.75rem; font-weight:700; padding:0.2rem 0;">↕ Physical Data Independence (Insulates schema from index/disk changes)</div>
+                <div class="layer-item" style="border-left: 3px solid #8b5cf6; background:rgba(139,92,246,0.08);">
+                  <div class="layer-badge" style="background:#7c3aed; color:#fff;">Layer 1</div>
+                  <div class="layer-info">
+                    <div class="layer-name">Internal Schema (Physical Storage)</div>
+                    <div class="layer-desc">B+ Tree indices, storage allocation, page hashing, and byte records on disk.</div>
+                  </div>
+                </div>
+              </div>
+              <div class="visual-explainer-grid">
+                <div class="explainer-box happening">
+                  <div class="explainer-label">💡 What is happening?</div>
+                  <div class="explainer-text">The 3-schema architecture insulates end-user views from underlying schema re-designs and physical storage changes.</div>
+                </div>
+                <div class="explainer-box remember">
+                  <div class="explainer-label">🎯 Remember</div>
+                  <div class="explainer-text">Adding an index changes the <strong>Internal Schema</strong> but requires ZERO changes to application code or the Conceptual Schema.</div>
+                </div>
+                <div class="explainer-box analogy">
+                  <div class="explainer-label">🌍 Real-Life Example</div>
+                  <div class="explainer-text">Like electricity: You plug in your charger into the wall socket (External view) without caring if power is generated from solar or coal (Internal).</div>
+                </div>
               </div>
             </div>
 
-            <!-- Diagram 2 -->
-            <div class="concept-card">
-              <h4 style="color:#34d399; font-size:0.9rem;">Diagram 2: Relational Table Dimensions</h4>
-              <div style="font-family:'JetBrains Mono', monospace; font-size:0.75rem; background:var(--bg-main); padding:0.75rem; border-radius:6px; margin-top:0.5rem; line-height:1.5;">
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Degree = 3 Attributes (Columns) ➔<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┌────────┬─────────────┬─────────┐<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│ id(PK) │ name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│ salary &nbsp;│<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├────────┼─────────────┼─────────┤<br>
-                Row 1 ──►│ 101 &nbsp;&nbsp;&nbsp;│ Rahul &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│ 60000 &nbsp;&nbsp;│ │ Cardinality<br>
-                Row 2 ──►│ 102 &nbsp;&nbsp;&nbsp;│ Aman &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│ 50000 &nbsp;&nbsp;│ │ = 3 Tuples<br>
-                Row 3 ──►│ 103 &nbsp;&nbsp;&nbsp;│ Priya &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│ 70000 &nbsp;&nbsp;│ ▼ (Rows)<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└────────┴─────────────┴─────────┘
+            <!-- Diagram 2: Table Dimensions -->
+            <div class="visual-learning-card">
+              <div class="visual-card-header">
+                <span class="visual-card-title">Diagram 2: Relational Table Dimensions</span>
+                <span class="visual-card-badge">Degree vs Cardinality</span>
+              </div>
+              <div style="margin:1rem 0; overflow-x:auto;">
+                <div style="display:flex; justify-content:space-between; font-size:0.75rem; font-weight:700; color:#34d399; margin-bottom:0.4rem;">
+                  <span>&larr; Degree = 3 Attributes (Columns) &rarr;</span>
+                  <span>Cardinality = 3 Tuples (Rows) &darr;</span>
+                </div>
+                <table class="db-table-visual" style="margin:0;">
+                  <thead>
+                    <tr>
+                      <th>id <span style="background:rgba(59,130,246,0.3); padding:0.1rem 0.4rem; border-radius:4px; font-size:0.65rem;">PK</span></th>
+                      <th>name</th>
+                      <th>salary</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>101</td><td>Rahul</td><td>₹60,000</td></tr>
+                    <tr><td>102</td><td>Aman</td><td>₹50,000</td></tr>
+                    <tr><td>103</td><td>Priya</td><td>₹70,000</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="visual-explainer-grid">
+                <div class="explainer-box happening">
+                  <div class="explainer-label">💡 What is happening?</div>
+                  <div class="explainer-text">A table (relation) is a 2D matrix where columns represent attributes and rows represent atomic tuples.</div>
+                </div>
+                <div class="explainer-box remember">
+                  <div class="explainer-label">🎯 Remember</div>
+                  <div class="explainer-text"><strong>Degree</strong> = Count of Columns. <strong>Cardinality</strong> = Count of Rows. Frequent trap in placement MCQs!</div>
+                </div>
+                <div class="explainer-box analogy">
+                  <div class="explainer-label">🌍 Real-Life Example</div>
+                  <div class="explainer-text">An attendance sheet has columns for Roll No, Name, Date (Degree = 3) and 60 student rows (Cardinality = 60).</div>
+                </div>
               </div>
             </div>
 
-            <!-- Diagram 3 -->
-            <div class="concept-card">
-              <h4 style="color:#fbbf24; font-size:0.9rem;">Diagram 3: Relational Keys Hierarchy</h4>
-              <div style="font-family:'JetBrains Mono', monospace; font-size:0.75rem; background:var(--bg-main); padding:0.75rem; border-radius:6px; margin-top:0.5rem; line-height:1.5;">
-                ┌───────────────────────────────────────┐<br>
-                │ SUPER KEYS (All unique combinations) &nbsp;│<br>
-                │ &nbsp;┌─────────────────────────────────┐ &nbsp;│<br>
-                │ &nbsp;│ CANDIDATE KEYS (Minimal supers) │ &nbsp;│<br>
-                │ &nbsp;│ &nbsp;┌─────────────┐ ┌───────────┐ &nbsp;│ &nbsp;│<br>
-                │ &nbsp;│ &nbsp;│ PRIMARY KEY │ │ ALTERNATE │ &nbsp;│ &nbsp;│<br>
-                │ &nbsp;│ &nbsp;│ &nbsp;&nbsp;(Chosen) &nbsp;│ │ &nbsp;&nbsp;KEYS &nbsp;&nbsp;&nbsp;│ &nbsp;│ &nbsp;│<br>
-                │ &nbsp;│ &nbsp;└─────────────┘ └───────────┘ &nbsp;│ &nbsp;│<br>
-                │ &nbsp;└─────────────────────────────────┘ &nbsp;│<br>
-                └───────────────────────────────────────┘
+            <!-- Diagram 3: Keys Hierarchy -->
+            <div class="visual-learning-card">
+              <div class="visual-card-header">
+                <span class="visual-card-title">Diagram 3: Relational Keys Hierarchy</span>
+                <span class="visual-card-badge">Superset &rarr; Subset</span>
+              </div>
+              <div style="margin:1rem 0; padding:1rem; border-radius:8px; background:rgba(245,158,11,0.08); border:1px solid rgba(245,158,11,0.3);">
+                <div style="font-weight:700; color:#fbbf24; font-size:0.85rem; margin-bottom:0.6rem;">🗂️ SUPER KEYS (Any attribute set that uniquely identifies a row)</div>
+                <div style="margin-left:0.75rem; padding:0.75rem; border-radius:6px; background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.3);">
+                  <div style="font-weight:700; color:#34d399; font-size:0.8rem; margin-bottom:0.5rem;">🔑 CANDIDATE KEYS (Minimal super keys with no extraneous columns)</div>
+                  <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-left:0.5rem;">
+                    <div style="flex:1; min-width:130px; padding:0.5rem; border-radius:6px; background:rgba(59,130,246,0.2); border:1px solid #3b82f6;">
+                      <div style="font-weight:700; color:#60a5fa; font-size:0.75rem;">⭐ PRIMARY KEY</div>
+                      <div style="font-size:0.7rem; color:var(--text-muted);">Chosen identifier (Unique + NOT NULL, 1 per table).</div>
+                    </div>
+                    <div style="flex:1; min-width:130px; padding:0.5rem; border-radius:6px; background:rgba(139,92,246,0.15); border:1px solid #8b5cf6;">
+                      <div style="font-weight:700; color:#a78bfa; font-size:0.75rem;">🔄 ALTERNATE KEYS</div>
+                      <div style="font-size:0.7rem; color:var(--text-muted);">Unchosen candidate keys (can be UNIQUE).</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="visual-explainer-grid">
+                <div class="explainer-box happening">
+                  <div class="explainer-label">💡 What is happening?</div>
+                  <div class="explainer-text">Every Primary Key is a Candidate Key, and every Candidate Key is a Super Key. The reverse is false.</div>
+                </div>
+                <div class="explainer-box remember">
+                  <div class="explainer-label">🎯 Remember</div>
+                  <div class="explainer-text">A Candidate Key stripped of any attribute loses its uniqueness property (minimality principle).</div>
+                </div>
+                <div class="explainer-box analogy">
+                  <div class="explainer-label">🌍 Real-Life Example</div>
+                  <div class="explainer-text">A citizen can be identified by (Aadhaar, Passport, PAN). All 3 are Candidate Keys; the government picks Aadhaar as Primary Key.</div>
+                </div>
               </div>
             </div>
 
-            <!-- Diagram 4 -->
-            <div class="concept-card">
-              <h4 style="color:#f472b6; font-size:0.9rem;">Diagram 4: Referential Integrity Link</h4>
-              <div style="font-family:'JetBrains Mono', monospace; font-size:0.75rem; background:var(--bg-main); padding:0.75rem; border-radius:6px; margin-top:0.5rem; line-height:1.5;">
-                [ DEPARTMENT (Parent) ]<br>
-                dept_id (PRIMARY KEY): [ 10, 20 ]<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▲<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│ (Constraint: Value must exist in Parent!)<br>
-                [ EMPLOYEE (Child) ]<br>
-                emp_id (PK) │ name &nbsp;│ dept_id (FOREIGN KEY)<br>
-                1 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│ Alice │ 10 &nbsp;✅ Valid<br>
-                2 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│ Bob &nbsp;&nbsp;│ 99 &nbsp;❌ Constraint Violation!
+            <!-- Diagram 4: Referential Integrity Link -->
+            <div class="visual-learning-card">
+              <div class="visual-card-header">
+                <span class="visual-card-title">Diagram 4: Referential Integrity Link</span>
+                <span class="visual-card-badge">Foreign Key Validation</span>
+              </div>
+              <div style="display:flex; flex-direction:column; gap:0.75rem; margin:1rem 0;">
+                <div style="padding:0.75rem; border-radius:8px; background:rgba(59,130,246,0.1); border:1px solid rgba(59,130,246,0.3);">
+                  <div style="font-weight:700; color:#60a5fa; font-size:0.8rem;">DEPARTMENT (Parent Table)</div>
+                  <div style="font-size:0.75rem; color:var(--text-muted);">dept_id [PRIMARY KEY]: <span style="color:#10b981; font-weight:700;">10</span>, <span style="color:#10b981; font-weight:700;">20</span></div>
+                </div>
+                <div style="text-align:center; font-weight:700; color:#f472b6; font-size:0.8rem;">&uarr; Foreign Key Constraint Reference &uarr;</div>
+                <div style="padding:0.75rem; border-radius:8px; background:rgba(244,114,182,0.1); border:1px solid rgba(244,114,182,0.3);">
+                  <div style="font-weight:700; color:#f472b6; font-size:0.8rem;">EMPLOYEE (Child Table)</div>
+                  <div style="font-size:0.75rem; margin-top:0.25rem;">
+                    <div>• emp_id: 1, name: Alice, dept_id: <strong>10</strong> &nbsp;<span style="color:#10b981; font-weight:700;">&check; Valid (Exists in Parent)</span></div>
+                    <div>• emp_id: 2, name: Bob, dept_id: <strong>99</strong> &nbsp;<span style="color:#ef4444; font-weight:700;">&cross; Violation (dept 99 missing)</span></div>
+                  </div>
+                </div>
+              </div>
+              <div class="visual-explainer-grid">
+                <div class="explainer-box happening">
+                  <div class="explainer-label">💡 What is happening?</div>
+                  <div class="explainer-text">Foreign keys guarantee that a child row cannot reference a nonexistent parent key, preventing orphaned data.</div>
+                </div>
+                <div class="explainer-box remember">
+                  <div class="explainer-label">🎯 Remember</div>
+                  <div class="explainer-text">A Foreign Key <strong>CAN</strong> accept NULL values unless explicitly declared with a <code>NOT NULL</code> constraint!</div>
+                </div>
+                <div class="explainer-box analogy">
+                  <div class="explainer-label">🌍 Real-Life Example</div>
+                  <div class="explainer-text">You cannot register a vehicle to a driver's license number that does not exist in the DMV master registry.</div>
+                </div>
               </div>
             </div>
 
-            <!-- Diagram 5 -->
-            <div class="concept-card">
-              <h4 style="color:#a78bfa; font-size:0.9rem;">Diagram 5: SQL Logical Processing Flow</h4>
-              <div style="font-family:'JetBrains Mono', monospace; font-size:0.75rem; background:var(--bg-main); padding:0.75rem; border-radius:6px; margin-top:0.5rem; line-height:1.5;">
-                FROM ➔ ON/JOIN ➔ WHERE ➔ GROUP BY ➔ HAVING ➔ SELECT ➔ DISTINCT ➔ ORDER BY ➔ LIMIT<br>
-                &nbsp;&nbsp;│ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│<br>
-                &nbsp;&nbsp;└───────── Aliases defined here CANNOT be used here! ────────────────┘
+            <!-- Diagram 5: SQL Logical Processing Flow -->
+            <div class="visual-learning-card">
+              <div class="visual-card-header">
+                <span class="visual-card-title">Diagram 5: SQL Logical Processing Flow</span>
+                <span class="visual-card-badge">Engine Pipeline</span>
+              </div>
+              <div class="pipeline-flow" style="margin:1rem 0;">
+                <div class="pipeline-node" style="padding:0.5rem 0.6rem; min-width:85px;">
+                  <div class="node-label" style="font-size:0.75rem;">1. FROM</div>
+                </div>
+                <div class="pipeline-connector"><span class="connector-arrow">&rarr;</span></div>
+                <div class="pipeline-node" style="padding:0.5rem 0.6rem; min-width:85px;">
+                  <div class="node-label" style="font-size:0.75rem;">2. WHERE</div>
+                </div>
+                <div class="pipeline-connector"><span class="connector-arrow">&rarr;</span></div>
+                <div class="pipeline-node" style="padding:0.5rem 0.6rem; min-width:85px;">
+                  <div class="node-label" style="font-size:0.75rem;">3. GROUP</div>
+                </div>
+                <div class="pipeline-connector"><span class="connector-arrow">&rarr;</span></div>
+                <div class="pipeline-node" style="padding:0.5rem 0.6rem; min-width:85px;">
+                  <div class="node-label" style="font-size:0.75rem;">4. HAVING</div>
+                </div>
+                <div class="pipeline-connector"><span class="connector-arrow">&rarr;</span></div>
+                <div class="pipeline-node" style="padding:0.5rem 0.6rem; min-width:85px;">
+                  <div class="node-label" style="font-size:0.75rem;">5. SELECT</div>
+                </div>
+              </div>
+              <div class="visual-explainer-grid">
+                <div class="explainer-box happening">
+                  <div class="explainer-label">💡 What is happening?</div>
+                  <div class="explainer-text">The query optimizer resolves base row sets and filter criteria before projecting output columns and aliases.</div>
+                </div>
+                <div class="explainer-box remember">
+                  <div class="explainer-label">🎯 Remember</div>
+                  <div class="explainer-text">Never filter aggregate calculations in WHERE; you must use HAVING because aggregation occurs in step 3.</div>
+                </div>
+                <div class="explainer-box analogy">
+                  <div class="explainer-label">🌍 Real-Life Example</div>
+                  <div class="explainer-text">You inspect applicants' resumes first (WHERE), sort them into tech stacks (GROUP BY), and invite only batches with &gt;5 people (HAVING).</div>
+                </div>
               </div>
             </div>
 
-            <!-- Diagram 6 -->
-            <div class="concept-card">
-              <h4 style="color:#06b6d4; font-size:0.9rem;">Diagram 6: Normalization Flowchart</h4>
-              <div style="font-family:'JetBrains Mono', monospace; font-size:0.75rem; background:var(--bg-main); padding:0.75rem; border-radius:6px; margin-top:0.5rem; line-height:1.5;">
-                Raw Data ➔ [1NF: Atomic Values]<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│ (Remove Partial Dependencies)<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▼<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2NF: Full Functional Dependency]<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│ (Remove Transitive Dependencies)<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▼<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3NF: No Transitive Dependencies]<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│ (Strict: Every Det is Superkey)<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▼<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[BCNF: Boyce-Codd Normal Form]
+            <!-- Diagram 6: Normalization Flowchart -->
+            <div class="visual-learning-card">
+              <div class="visual-card-header">
+                <span class="visual-card-title">Diagram 6: Relational Normalization Ladder</span>
+                <span class="visual-card-badge">Eliminating Redundancy</span>
+              </div>
+              <div class="layered-stack" style="margin:1rem 0;">
+                <div class="layer-item" style="border-left:3px solid #ef4444; background:rgba(239,68,68,0.06);">
+                  <div class="layer-badge" style="background:#dc2626; color:#fff;">1NF</div>
+                  <div class="layer-info">
+                    <div class="layer-name">Atomic Attributes</div>
+                    <div class="layer-desc">Eliminate repeating groups, array columns, and multi-valued comma lists.</div>
+                  </div>
+                </div>
+                <div class="layer-item" style="border-left:3px solid #f59e0b; background:rgba(245,158,11,0.06);">
+                  <div class="layer-badge" style="background:#d97706; color:#fff;">2NF</div>
+                  <div class="layer-info">
+                    <div class="layer-name">No Partial Dependencies</div>
+                    <div class="layer-desc">Every non-prime attribute must depend on the WHOLE composite primary key.</div>
+                  </div>
+                </div>
+                <div class="layer-item" style="border-left:3px solid #10b981; background:rgba(16,185,129,0.06);">
+                  <div class="layer-badge" style="background:#059669; color:#fff;">3NF</div>
+                  <div class="layer-info">
+                    <div class="layer-name">No Transitive Dependencies</div>
+                    <div class="layer-desc">Non-key attributes cannot determine other non-key attributes (A &rarr; B &rarr; C).</div>
+                  </div>
+                </div>
+                <div class="layer-item" style="border-left:3px solid #8b5cf6; background:rgba(139,92,246,0.06);">
+                  <div class="layer-badge" style="background:#7c3aed; color:#fff;">BCNF</div>
+                  <div class="layer-info">
+                    <div class="layer-name">Boyce-Codd Normal Form</div>
+                    <div class="layer-desc">For every functional dependency X &rarr; Y, X must be a Super Key.</div>
+                  </div>
+                </div>
+              </div>
+              <div class="visual-explainer-grid">
+                <div class="explainer-box happening">
+                  <div class="explainer-label">💡 What is happening?</div>
+                  <div class="explainer-text">Each successive normal form decomposes bloated relations into clean, anomaly-free relational structures.</div>
+                </div>
+                <div class="explainer-box remember">
+                  <div class="explainer-label">🎯 Remember</div>
+                  <div class="explainer-text">Most OLTP enterprise databases normalize up to <strong>3NF</strong> or BCNF to prevent update and delete anomalies.</div>
+                </div>
+                <div class="explainer-box analogy">
+                  <div class="explainer-label">🌍 Real-Life Example</div>
+                  <div class="explainer-text">Storing customer city &amp; zip code on every order record causes inconsistency if a zip code changes; normalize customer into its own table!</div>
+                </div>
               </div>
             </div>
 
-            <!-- Diagram 7 -->
-            <div class="concept-card">
-              <h4 style="color:#10b981; font-size:0.9rem;">Diagram 7: Two-Phase Locking (2PL)</h4>
-              <div style="font-family:'JetBrains Mono', monospace; font-size:0.75rem; background:var(--bg-main); padding:0.75rem; border-radius:6px; margin-top:0.5rem; line-height:1.5;">
-                Lock Count<br>
-                &nbsp;&nbsp;&nbsp;▲ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ Lock Point ]<br>
-                &nbsp;&nbsp;&nbsp;│ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▲<br>
-                &nbsp;&nbsp;&nbsp;│ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╱ &nbsp;&nbsp;╲ &nbsp;&nbsp;SHRINKING PHASE<br>
-                &nbsp;&nbsp;&nbsp;│ &nbsp;GROWING &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╱ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╲ (Releasing locks only)<br>
-                &nbsp;&nbsp;&nbsp;│ &nbsp;&nbsp;PHASE &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╱ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╲<br>
-                &nbsp;&nbsp;&nbsp;│ (Acquiring) ╱ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╲ (No new locks!)<br>
-                &nbsp;&nbsp;&nbsp;└────────────┴─────────────┴──────────► Time
+            <!-- Diagram 7: Two-Phase Locking (2PL) -->
+            <div class="visual-learning-card">
+              <div class="visual-card-header">
+                <span class="visual-card-title">Diagram 7: Two-Phase Locking (2PL Protocol)</span>
+                <span class="visual-card-badge">Serializability Guarantee</span>
+              </div>
+              <div style="margin:1rem 0; padding:1rem; border-radius:8px; background:rgba(16,185,129,0.08); border:1px solid rgba(16,185,129,0.3);">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
+                  <div style="color:#10b981; font-weight:700; font-size:0.8rem;">Phase 1: Growing Phase</div>
+                  <div style="background:#10b981; color:#0b0f19; font-weight:800; padding:0.2rem 0.6rem; border-radius:4px; font-size:0.75rem;">Lock Point</div>
+                  <div style="color:#ef4444; font-weight:700; font-size:0.8rem;">Phase 2: Shrinking Phase</div>
+                </div>
+                <div style="display:flex; gap:0.5rem; font-size:0.75rem;">
+                  <div style="flex:1; padding:0.5rem; background:rgba(16,185,129,0.15); border-radius:4px;">
+                    Acquiring shared/exclusive locks. <strong>No lock can be released!</strong>
+                  </div>
+                  <div style="flex:1; padding:0.5rem; background:rgba(239,68,68,0.15); border-radius:4px;">
+                    Releasing locks. <strong>Zero new locks can be acquired!</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="visual-explainer-grid">
+                <div class="explainer-box happening">
+                  <div class="explainer-label">💡 What is happening?</div>
+                  <div class="explainer-text">2PL mathematically guarantees conflict serializability by separating lock acquisition from lock release.</div>
+                </div>
+                <div class="explainer-box remember">
+                  <div class="explainer-label">🎯 Remember</div>
+                  <div class="explainer-text">Basic 2PL guarantees serializability but does <strong>NOT</strong> prevent deadlocks!</div>
+                </div>
+                <div class="explainer-box analogy">
+                  <div class="explainer-label">🌍 Real-Life Example</div>
+                  <div class="explainer-text">A chef gathers all required pots and pans first (Growing). Once they wash and put back one pot (Shrinking), they cannot grab any new pan!</div>
+                </div>
               </div>
             </div>
 
-            <!-- Diagram 8 -->
-            <div class="concept-card">
-              <h4 style="color:#ef4444; font-size:0.9rem;">Diagram 8: Deadlock Circular Wait</h4>
-              <div style="font-family:'JetBrains Mono', monospace; font-size:0.75rem; background:var(--bg-main); padding:0.75rem; border-radius:6px; margin-top:0.5rem; line-height:1.5;">
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ Transaction T1 ]<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╱ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▲<br>
-                Holds Lock A &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Waits for Lock A<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▼ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│<br>
-                Waits for Lock B &nbsp;&nbsp;Holds Lock B<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▼<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└──► [ Transaction T2 ]
+            <!-- Diagram 8: Deadlock Circular Wait -->
+            <div class="visual-learning-card">
+              <div class="visual-card-header">
+                <span class="visual-card-title">Diagram 8: Deadlock Circular Wait Graph</span>
+                <span class="visual-card-badge">Concurrency Anomaly</span>
+              </div>
+              <div style="margin:1rem 0; padding:1rem; border-radius:8px; background:rgba(239,68,68,0.08); border:1px solid rgba(239,68,68,0.3);">
+                <div style="display:flex; justify-content:space-around; align-items:center;">
+                  <div style="padding:0.6rem 0.8rem; background:rgba(59,130,246,0.2); border:1px solid #3b82f6; border-radius:6px; font-weight:700; font-size:0.8rem; color:#60a5fa;">
+                    Transaction T1<br><span style="font-size:0.7rem; color:var(--text-muted);">Holds Lock A</span>
+                  </div>
+                  <div style="color:#ef4444; font-weight:800; font-size:1.1rem;">&rlarr;</div>
+                  <div style="padding:0.6rem 0.8rem; background:rgba(139,92,246,0.2); border:1px solid #8b5cf6; border-radius:6px; font-weight:700; font-size:0.8rem; color:#a78bfa;">
+                    Transaction T2<br><span style="font-size:0.7rem; color:var(--text-muted);">Holds Lock B</span>
+                  </div>
+                </div>
+                <div style="text-align:center; font-size:0.75rem; color:#f87171; margin-top:0.6rem; font-weight:600;">
+                  T1 waits for Lock B (held by T2) &bull; T2 waits for Lock A (held by T1) &bull; Deadlock!
+                </div>
+              </div>
+              <div class="visual-explainer-grid">
+                <div class="explainer-box happening">
+                  <div class="explainer-label">💡 What is happening?</div>
+                  <div class="explainer-text">Two transactions each hold a resource the other needs to complete, creating an unbreakable circular wait cycle.</div>
+                </div>
+                <div class="explainer-box remember">
+                  <div class="explainer-label">🎯 Remember</div>
+                  <div class="explainer-text">DBMS uses <strong>Wait-For Graph</strong> cycle detection to abort (victim-kill) one transaction and rollback its changes.</div>
+                </div>
+                <div class="explainer-box analogy">
+                  <div class="explainer-label">🌍 Real-Life Example</div>
+                  <div class="explainer-text">Two cars meet head-to-head on a narrow one-lane bridge; neither can advance unless one car puts itself in reverse.</div>
+                </div>
               </div>
             </div>
+          </div>
           </div>
         </section>
 

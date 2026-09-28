@@ -296,27 +296,87 @@
     Legacy browsers ran everything in a single process. If a single tab experienced an infinite loop or crashed, the entire browser window crashed. Modern browsers (like Chromium-based Chrome/Edge and Safari) utilize a <strong>multi-process architecture</strong> that isolates functions across distinct OS processes for fault tolerance, security sandboxing, and responsiveness.
   </p>
 
-  <div class="diagram-card">
-    <div class="diagram-title">⚡ High-Level Multi-Process Architecture</div>
-    <div style="background: #06090E; border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 1.5rem; font-family: var(--font-mono); font-size: 0.85rem; color: #94A3B8; line-height: 1.6; overflow-x: auto;">
-      <pre style="margin: 0; color: #E2E8F0;">
-                        ┌──────────────────────────────────────────────┐
-                        │                BROWSER PROCESS               │
-                        │ (UI, Address Bar, Bookmarks, File I/O, Tabs) │
-                        └──────────────────────┬───────────────────────┘
-                                               │
-       ┌────────────────────────┬──────────────┴───────────────┬────────────────────────┐
-       ▼                        ▼                              ▼                        ▼
-┌──────────────┐       ┌─────────────────┐           ┌─────────────────┐       ┌─────────────────┐
-│ GPU PROCESS  │       │ NETWORK PROCESS │           │ STORAGE PROCESS │       │RENDERER PROCESS │
-│(3D, Shaders, │       │ (HTTP/S, TLS,   │           │ (Cookies, DB,   │       │(Tab Sandbox:    │
-│ Compositing) │       │ DNS, Sockets)   │           │ LocalStorage)   │       │ V8, DOM, CSSOM) │
-└──────┬───────┘       └────────┬────────┘           └─────────────────┘       └────────┬────────┘
-       │                        │                                                       │
-       │                        ▼                                                       ▼
-       │                  INTERNET (TCP/IP)                                      COMPOSITED TILES
-       ▼                                                                                │
-  SCREEN (Pixels) ◄─────────────────────────────────────────────────────────────────────┘</pre>
+  <div class="visual-learning-card">
+    <div class="visual-header">
+      <div class="visual-title-group">
+        <span class="visual-icon">⚡</span>
+        <h3 class="visual-title">Modern Multi-Process Browser Architecture</h3>
+      </div>
+      <div class="visual-controls">
+        <span class="visual-badge">🛡️ Process Isolation</span>
+      </div>
+    </div>
+
+    <!-- Visual Architecture Grid -->
+    <div class="visual-canvas">
+      <div class="pipeline-flow">
+        <!-- Process 1: Browser Process -->
+        <div class="pipeline-node" style="border-top: 3px solid #38bdf8;">
+          <span class="node-step-badge">Coordinator</span>
+          <div class="node-title">🖥️ Browser Process</div>
+          <div class="node-desc">Manages UI window chrome, URL address bar, tabs lifecycle, bookmarks, and disk I/O</div>
+        </div>
+
+        <div class="pipeline-connector">
+          <div class="connector-line"><div class="connector-particle"></div></div>
+          <span class="connector-label">IPC</span>
+        </div>
+
+        <!-- Process 2: Network Process -->
+        <div class="pipeline-node" style="border-top: 3px solid #10b981;">
+          <span class="node-step-badge">I/O Tunnel</span>
+          <div class="node-title">🌐 Network Process</div>
+          <div class="node-desc">Handles DNS queries, TCP/TLS handshakes, HTTP/3, CORS checks, and data streams</div>
+        </div>
+
+        <div class="pipeline-connector">
+          <div class="connector-line"><div class="connector-particle" style="animation-delay:0.5s;"></div></div>
+          <span class="connector-label">HTML/CSS</span>
+        </div>
+
+        <!-- Process 3: Renderer Process -->
+        <div class="pipeline-node" style="border-top: 3px solid #f59e0b;">
+          <span class="node-step-badge">Sandbox</span>
+          <div class="node-title">🎨 Renderer Process</div>
+          <div class="node-desc">One per tab: Executes V8 JS engine, parses DOM &amp; CSSOM, computes style layouts</div>
+        </div>
+
+        <div class="pipeline-connector">
+          <div class="connector-line"><div class="connector-particle" style="animation-delay:1s;"></div></div>
+          <span class="connector-label">GPU draw</span>
+        </div>
+
+        <!-- Process 4: GPU Process -->
+        <div class="pipeline-node" style="border-top: 3px solid #c084fc;">
+          <span class="node-step-badge">Hardware</span>
+          <div class="node-title">🎮 GPU Process</div>
+          <div class="node-desc">Hardware acceleration: Composites tile layers, applies 3D transforms, renders pixels</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pedagogical 3-Part Explainer -->
+    <div class="visual-explainer-grid">
+      <div class="explainer-box happening">
+        <span class="explainer-label">💡 What is Happening?</span>
+        <p class="explainer-content">
+          Instead of running everything in a single fragile thread, modern browsers (Chromium/Blink) isolate responsibilities across separate OS processes communicating via Inter-Process Communication (IPC). If JavaScript inside a tab encounters an infinite loop or crashes, only that individual <strong>Renderer Process</strong> terminates; your browser window, network downloads, and other tabs stay running.
+        </p>
+      </div>
+
+      <div class="explainer-box remember">
+        <span class="explainer-label">🎯 Placement Takeaway</span>
+        <p class="explainer-content">
+          <strong>Security Trap:</strong> The Renderer Process is strictly <em>sandboxed</em>. It has ZERO permission to access the local hard drive, webcam, or network sockets directly. When JavaScript requests a file or network fetch, it must request the Browser/Network process via IPC to mediate the access.
+        </p>
+      </div>
+
+      <div class="explainer-box analogy">
+        <span class="explainer-label">🌍 Real-Life Analogy</span>
+        <p class="explainer-content">
+          Think of a restaurant: The Browser Process is the manager greeting guests at the door; the Network Process is delivery drivers fetching groceries; the Renderer Process is the kitchen preparing individual dishes in a fireproof room; and the GPU Process is the food plating and lighting presentation.
+        </p>
+      </div>
     </div>
   </div>
 
@@ -669,20 +729,68 @@
     HTTP is an application-layer request-response communication protocol operating over TCP/IP (port 80 for HTTP, port 443 for HTTPS). It is fundamentally <strong>stateless</strong>: each request-response transaction is completely independent; the server does not natively remember previous interactions from the same client without auxiliary state mechanisms (cookies, tokens, sessions).
   </p>
 
-  <div class="diagram-card">
-    <div class="diagram-title">🔄 The Stateless Request-Response Exchange</div>
-    <div style="background: #06090E; border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 1.25rem; font-family: var(--font-mono); font-size: 0.85rem; color: #94A3B8;">
-      <pre style="margin: 0; color: #E2E8F0;">
-    CLIENT (Browser)                                    SERVER (Backend/Nginx)
-           │                                                       │
-           │  1. HTTP Request (GET /products HTTP/1.1)            │
-           ├──────────────────────────────────────────────────────►│
-           │                                                       │ (Server queries DB,
-           │                                                       │  constructs HTML/JSON)
-           │  2. HTTP Response (HTTP/1.1 200 OK + Payload)         │
-           │◄──────────────────────────────────────────────────────┤
-           │                                                       │
-           ▼ (Browser parses & paints)                             ▼ (Connection closed or kept-alive)</pre>
+  <div class="visual-learning-card">
+    <div class="visual-header">
+      <div class="visual-title-group">
+        <span class="visual-icon">🔄</span>
+        <h3 class="visual-title">The Stateless HTTP Request &rarr; Response Exchange</h3>
+      </div>
+      <div class="visual-controls">
+        <span class="visual-badge">📡 Client-Server Lifecycle</span>
+      </div>
+    </div>
+
+    <!-- Visual Canvas: Sequence Diagram -->
+    <div class="visual-canvas">
+      <div class="sequence-container">
+        <div class="sequence-actors">
+          <div class="sequence-actor actor-client">🌐 Client (Browser)</div>
+          <div class="sequence-actor actor-server">🖥️ Web Server (Backend/Nginx)</div>
+        </div>
+
+        <!-- Step 1: Request -->
+        <div class="sequence-message">
+          <div class="sequence-arrow arrow-right">
+            <span class="sequence-label">1. HTTP Request: GET /products HTTP/1.1</span>
+          </div>
+        </div>
+
+        <!-- Step 2: Processing -->
+        <div style="text-align:right; font-size:0.75rem; color:#94a3b8; font-style:italic; padding-right:1rem;">
+          ⚙️ Server processes query, verifies auth, serializes JSON/HTML...
+        </div>
+
+        <!-- Step 3: Response -->
+        <div class="sequence-message">
+          <div class="sequence-arrow arrow-left">
+            <span class="sequence-label">2. HTTP Response: HTTP/1.1 200 OK (Content-Type: application/json)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pedagogical 3-Part Explainer -->
+    <div class="visual-explainer-grid">
+      <div class="explainer-box happening">
+        <span class="explainer-label">💡 What is Happening?</span>
+        <p class="explainer-content">
+          HTTP is inherently <strong>stateless</strong>: each request sent by the client is completely self-contained. The server evaluates headers and query params, performs business logic, and streams back the status code and payload without remembering past interactions unless explicit tokens or session cookies are attached.
+        </p>
+      </div>
+
+      <div class="explainer-box remember">
+        <span class="explainer-label">🎯 Placement Takeaway</span>
+        <p class="explainer-content">
+          <strong>Viva Question:</strong> <em>"How do websites remember users if HTTP is stateless?"</em> Answers: Cookies (auto-attached via <code>Cookie</code> header), LocalStorage / SessionStorage, or Bearer Tokens in the <code>Authorization</code> header!
+        </p>
+      </div>
+
+      <div class="explainer-box analogy">
+        <span class="explainer-label">🌍 Real-Life Analogy</span>
+        <p class="explainer-content">
+          Ordering at a busy fast-food counter: the cashier takes your order, gives you your burger, and immediately forgets your face for the next customer unless you show your receipt ticket (token/cookie).
+        </p>
+      </div>
     </div>
   </div>
 </section>
@@ -978,17 +1086,74 @@ Set-Cookie: session_id=xyz987; Secure; HttpOnly; SameSite=Strict
     <strong>HTTPS (Hypertext Transfer Protocol Secure)</strong> is HTTP executed over an encrypted cryptographic transport layer: <strong>TLS (Transport Layer Security)</strong>, previously known as SSL. HTTPS operates on default TCP port 443 (compared to HTTP's port 80).
   </p>
 
-  <div class="diagram-card">
-    <div class="diagram-title">🛡️ Transport Encryption Comparison</div>
-    <div style="background: #06090E; border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 1.25rem; font-family: var(--font-mono); font-size: 0.85rem; color: #94A3B8;">
-      <pre style="margin: 0; color: #E2E8F0;">
-HTTP (Plain Text):
-Client ──────────────────────────────────────────► Server
-  "GET /account?pwd=secret123"  (Any ISP, Wi-Fi router, or attacker in middle can read & modify)
+  <div class="visual-learning-card">
+    <div class="visual-header">
+      <div class="visual-title-group">
+        <span class="visual-icon">🛡️</span>
+        <h3 class="visual-title">HTTP Plaintext vs HTTPS TLS Encrypted Transport</h3>
+      </div>
+      <span class="visual-badge">🔐 Cryptographic Tunnel</span>
+    </div>
 
-HTTPS (TLS Encrypted Tunnel):
-Client ══════════════════════════════════════════► Server
-  "a8f93b01c7d2e4..." (Ciphertext: Attackers see only gibberish scrambled bytes)</pre>
+    <!-- Visual Canvas: HTTP vs HTTPS -->
+    <div class="visual-canvas">
+      <div style="display:flex; flex-direction:column; gap:1.25rem;">
+        <!-- HTTP: Unencrypted -->
+        <div style="background:rgba(239, 68, 68, 0.08); border:1px solid rgba(239, 68, 68, 0.3); border-radius:10px; padding:1rem 1.25rem;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+            <strong style="color:#f87171; font-size:0.9rem;">❌ HTTP (Port 80) — Cleartext Vulnerability</strong>
+            <span style="font-size:0.75rem; color:#fca5a5; font-family:var(--font-mono, monospace);">Plaintext Exposure</span>
+          </div>
+          <div class="pipeline-flow" style="margin-top:0.4rem;">
+            <div style="padding:0.4rem 0.8rem; background:rgba(255,255,255,0.06); border-radius:6px; font-size:0.8rem; font-weight:700;">Client Browser</div>
+            <div class="pipeline-connector" style="flex-grow:1;">
+              <div class="connector-line" style="background:#ef4444;"><div class="connector-particle" style="background:#ef4444; box-shadow:0 0 8px #ef4444;"></div></div>
+              <span class="connector-label" style="color:#ef4444;">GET /login?pwd=secret123</span>
+            </div>
+            <div style="padding:0.4rem 0.8rem; background:rgba(255,255,255,0.06); border-radius:6px; font-size:0.8rem; font-weight:700;">Public Wi-Fi / Sniffer</div>
+          </div>
+        </div>
+
+        <!-- HTTPS: Encrypted -->
+        <div style="background:rgba(16, 185, 129, 0.08); border:1px solid rgba(16, 185, 129, 0.3); border-radius:10px; padding:1rem 1.25rem;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+            <strong style="color:#34d399; font-size:0.9rem;">✅ HTTPS (Port 443) — TLS Symmetric Cipher Tunnel</strong>
+            <span style="font-size:0.75rem; color:#6ee7b7; font-family:var(--font-mono, monospace);">AES-256-GCM Scrambled</span>
+          </div>
+          <div class="pipeline-flow" style="margin-top:0.4rem;">
+            <div style="padding:0.4rem 0.8rem; background:rgba(255,255,255,0.06); border-radius:6px; font-size:0.8rem; font-weight:700;">Client Browser</div>
+            <div class="pipeline-connector" style="flex-grow:1;">
+              <div class="connector-line" style="background:#10b981;"><div class="connector-particle" style="background:#10b981; box-shadow:0 0 8px #10b981;"></div></div>
+              <span class="connector-label" style="color:#10b981;">a8f93b01c7d2e4... (Ciphertext)</span>
+            </div>
+            <div style="padding:0.4rem 0.8rem; background:rgba(255,255,255,0.06); border-radius:6px; font-size:0.8rem; font-weight:700;">Origin Server</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pedagogical 3-Part Explainer -->
+    <div class="visual-explainer-grid">
+      <div class="explainer-box happening">
+        <span class="explainer-label">💡 What is Happening?</span>
+        <p class="explainer-content">
+          In cleartext HTTP, raw passwords, session cookies, and request URLs are sent as unencrypted ASCII across network cables, allowing any intermediate router or Wi-Fi packet sniffer to eavesdrop. HTTPS wraps HTTP inside an encrypted TLS session tunnel, transforming bytes into unreadable ciphertext.
+        </p>
+      </div>
+
+      <div class="explainer-box remember">
+        <span class="explainer-label">🎯 Placement Takeaway</span>
+        <p class="explainer-content">
+          <strong>Exam Trap:</strong> HTTPS provides three distinct security guarantees: <strong>Confidentiality</strong> (encryption prevents eavesdropping), <strong>Integrity</strong> (HMAC prevents packet tampering), and <strong>Authentication</strong> (CA certificates verify server identity).
+        </p>
+      </div>
+
+      <div class="explainer-box analogy">
+        <span class="explainer-label">🌍 Real-Life Analogy</span>
+        <p class="explainer-content">
+          Sending data via HTTP is like mailing an open postcard where the postman, courier, and anyone who glances at it can read every word. HTTPS is like locking the letter inside a titanium briefcase that only the intended recipient possesses the key to unlock.
+        </p>
+      </div>
     </div>
   </div>
 
@@ -1434,23 +1599,67 @@ history.go(-2);    // Go back two steps in session history</code></pre>
     The <strong>DOM</strong> is a platform- and language-neutral tree-structured object representation of an HTML document constructed in RAM by the browser's parser. Every HTML tag becomes an element node, attributes become attribute nodes, and enclosed text becomes text nodes.
   </p>
 
-  <div class="diagram-card">
-    <div class="diagram-title">🌳 HTML to DOM Tree Parsing</div>
-    <div style="background: #06090E; border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 1.25rem; font-family: var(--font-mono); font-size: 0.85rem; color: #94A3B8;">
-      <pre style="margin: 0; color: #E2E8F0;">
-Raw HTML Bytes ──► Characters ──► Tokens (&lt;html&gt;, &lt;body&gt;) ──► Nodes ──► DOM Tree:
+  <!-- Visual Learning Card: HTML to DOM Tree Parsing Pipeline -->
+  <div class="visual-learning-card" style="margin: 1.5rem 0;">
+    <div class="visual-card-header">
+      <span class="visual-card-title">🌳 HTML Parser to DOM Node Tree Architecture</span>
+      <span class="visual-card-badge">Bytes &rarr; Tokens &rarr; Nodes &rarr; DOM Object Tree</span>
+    </div>
 
-                                Document
-                                   │
-                                &lt;html&gt;
-                            ┌──────┴──────┐
-                            ▼             ▼
-                         &lt;head&gt;         &lt;body&gt;
-                            │        ┌─────┴─────┐
-                         &lt;title&gt;     ▼           ▼
-                                   &lt;h1&gt;       &lt;button&gt;
-                                    │            │
-                                  "Hello"     "Click Me"</pre>
+    <div class="pipeline-flow" style="margin: 1.25rem 0;">
+      <div class="pipeline-node" style="border-left: 3px solid #38bdf8;">
+        <div class="node-icon">0101</div>
+        <div class="node-label">1. Raw Bytes</div>
+        <div class="node-subtext">3C 68 74 6D 6C... (UTF-8)</div>
+      </div>
+
+      <div class="pipeline-connector">
+        <span class="connector-arrow">&rarr;</span>
+        <span class="connector-particle"></span>
+      </div>
+
+      <div class="pipeline-node" style="border-left: 3px solid #10b981;">
+        <div class="node-icon">🔡</div>
+        <div class="node-label">2. Characters</div>
+        <div class="node-subtext">&lt;html&gt;, &lt;body&gt;, &lt;h1&gt;</div>
+      </div>
+
+      <div class="pipeline-connector">
+        <span class="connector-arrow">&rarr;</span>
+        <span class="connector-particle"></span>
+      </div>
+
+      <div class="pipeline-node" style="border-left: 3px solid #f59e0b;">
+        <div class="node-icon">🏷️</div>
+        <div class="node-label">3. Tokens</div>
+        <div class="node-subtext">StartTag, Attrs, EndTag</div>
+      </div>
+
+      <div class="pipeline-connector">
+        <span class="connector-arrow">&rarr;</span>
+        <span class="connector-particle"></span>
+      </div>
+
+      <div class="pipeline-node" style="border-left: 3px solid #8b5cf6;">
+        <div class="node-icon">🌿</div>
+        <div class="node-label">4. DOM Tree</div>
+        <div class="node-subtext">Document &rarr; html &rarr; body &rarr; h1</div>
+      </div>
+    </div>
+
+    <div class="visual-explainer-grid">
+      <div class="explainer-box happening">
+        <div class="explainer-label">💡 What is happening?</div>
+        <div class="explainer-text">The browser engine takes incoming network bytes, decodes them to characters, tokenizes start and end tags, creates C++ Node objects, and links them into a hierarchical tree in memory called the <strong>Document Object Model (DOM)</strong>.</div>
+      </div>
+      <div class="explainer-box remember">
+        <div class="explainer-label">🎯 Remember for Exams</div>
+        <div class="explainer-text">The DOM is a live, programmable in-memory representation of the HTML document. JavaScript queries and mutates the DOM via the DOM API; modifying the DOM can trigger expensive <strong>Reflow</strong> (layout calculation) and <strong>Repaint</strong> operations.</div>
+      </div>
+      <div class="explainer-box analogy">
+        <div class="explainer-label">🌍 Real-Life Example</div>
+        <div class="explainer-text">An architectural blueprint: Raw text instructions (HTML) are parsed by builders into a physical 3D structural model with rooms and doors (DOM) that can be redecorated at runtime.</div>
+      </div>
     </div>
   </div>
 </section>
@@ -1600,29 +1809,66 @@ element.classList.add('active'); // Best practice: toggle CSS classes!</code></p
     JavaScript is <strong>single-threaded</strong>: it possesses only ONE call stack and executes one statement at a time. Yet, the browser can perform non-blocking AJAX network requests, user click tracking, and audio playback concurrently. How? Through the <strong>Event Loop</strong>!
   </p>
 
-  <div class="diagram-card">
-    <div class="diagram-title">🔄 The Event Loop Execution Priority Queue</div>
-    <div style="background: #06090E; border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 1.25rem; font-family: var(--font-mono); font-size: 0.85rem; color: #94A3B8;">
-      <pre style="margin: 0; color: #E2E8F0;">
-    ┌──────────────────────┐
-    │      CALL STACK      │ ◄─── Single execution thread (Run-to-completion)
-    └──────────┬───────────┘
-               │ (Async API called: setTimeout, fetch)
-               ▼
-    ┌──────────────────────┐
-    │   BROWSER WEB APIs   │ ◄─── Multi-threaded background threads (C++)
-    └──────────┬───────────┘
-               │ (Timer expires, network data returns)
-               ▼
- ┌────────────────────────────────────────────────────────┐
- │ MICROTASK QUEUE: [ Promise.then(), queueMicrotask() ]  │ ◄── Priority 1: DRAINED COMPLETELY!
- ├────────────────────────────────────────────────────────┤
- │ MACROTASK QUEUE: [ setTimeout, setInterval, UI events ]│ ◄── Priority 2: ONE TASK PER TICK!
- └─────────────────────────┬──────────────────────────────┘
-                           │
-                           ▼
-                  [ EVENT LOOP MONITOR ]
- (Pushes next queue callback to Call Stack ONLY when Call Stack is COMPLETELY EMPTY!)</pre>
+  <!-- Visual Learning Card: Event Loop Priority Architecture -->
+  <div class="visual-learning-card" style="margin: 1.5rem 0;">
+    <div class="visual-card-header">
+      <span class="visual-card-title">🔄 The Browser Event Loop &amp; Microtask Priority Architecture</span>
+      <span class="visual-card-badge">Call Stack &bull; Web APIs &bull; Microtasks &bull; Macrotasks</span>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:0.75rem; margin:1.25rem 0;">
+      <!-- Call Stack & Web APIs -->
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:0.75rem;">
+        <div style="padding:0.85rem; border-radius:8px; background:rgba(59,130,246,0.15); border:1px solid #3b82f6;">
+          <div style="font-weight:700; color:#60a5fa; font-size:0.85rem;">📚 CALL STACK (Single JS Thread)</div>
+          <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.25rem;">LIFO execution &bull; Synchronous run-to-completion frames.</div>
+        </div>
+
+        <div style="padding:0.85rem; border-radius:8px; background:rgba(168,85,247,0.15); border:1px solid #8b5cf6;">
+          <div style="font-weight:700; color:#c084fc; font-size:0.85rem;">🌐 BROWSER WEB APIs (C++ Threads)</div>
+          <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.25rem;">DOM Events, <code>setTimeout</code> countdowns, <code>fetch()</code> network calls.</div>
+        </div>
+      </div>
+
+      <div style="text-align:center; color:#38bdf8; font-size:0.85rem; font-weight:700;">&darr; Async Callbacks Queued by Priority &darr;</div>
+
+      <!-- Priority Queues -->
+      <div style="display:flex; flex-direction:column; gap:0.5rem;">
+        <div style="padding:0.75rem 1rem; border-radius:8px; background:rgba(239,68,68,0.1); border-left:4px solid #ef4444;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-weight:800; color:#f87171; font-size:0.85rem;">⚡ Priority 1: MICROTASK QUEUE (Drained Completely!)</span>
+            <span style="font-size:0.7rem; background:#dc2626; color:#fff; padding:0.15rem 0.5rem; border-radius:4px; font-weight:700;">Immediate</span>
+          </div>
+          <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.25rem;">
+            <code>Promise.then()</code>, <code>Promise.catch()</code>, <code>async/await</code> resume, <code>queueMicrotask()</code>, <code>MutationObserver</code>.
+          </div>
+        </div>
+
+        <div style="padding:0.75rem 1rem; border-radius:8px; background:rgba(245,158,11,0.1); border-left:4px solid #f59e0b;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-weight:800; color:#fbbf24; font-size:0.85rem;">⏳ Priority 2: MACROTASK QUEUE (One Task Per Tick!)</span>
+            <span style="font-size:0.7rem; background:#d97706; color:#fff; padding:0.15rem 0.5rem; border-radius:4px; font-weight:700;">Scheduled</span>
+          </div>
+          <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.25rem;">
+            <code>setTimeout()</code>, <code>setInterval()</code>, <code>setImmediate()</code>, UI click events, I/O callbacks.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="visual-explainer-grid">
+      <div class="explainer-box happening">
+        <div class="explainer-label">💡 What is happening?</div>
+        <div class="explainer-text">The Event Loop continuously monitors the Call Stack. The millisecond the Call Stack is empty, it drains the ENTIRE Microtask queue before picking a single task from the Macrotask queue.</div>
+      </div>
+      <div class="explainer-box remember">
+        <div class="explainer-label">🎯 Remember for Exams</div>
+        <div class="explainer-text"><code>Promise.resolve().then(...)</code> ALWAYS executes BEFORE <code>setTimeout(..., 0)</code>! Microtasks have absolute priority over timers and macrotasks in placement tracing questions.</div>
+      </div>
+      <div class="explainer-box analogy">
+        <div class="explainer-label">🌍 Real-Life Example</div>
+        <div class="explainer-text">At a doctor's clinic: Scheduled general checkup patients wait in line (Macrotask Queue), but if an ambulance emergency arrives (Microtask Queue), the doctor sees ALL emergency cases before calling the next scheduled patient!</div>
+      </div>
     </div>
   </div>
 

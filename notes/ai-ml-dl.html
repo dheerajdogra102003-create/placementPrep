@@ -236,44 +236,87 @@
     Before diving into individual equations and libraries, anchor yourself with the universal architectural hierarchy. Artificial Intelligence is the broad umbrella discipline; Machine Learning is the data-driven subset; Deep Learning is the multi-layered neural network subset of ML; and Generative AI represents modern foundation models creating novel content.
   </p>
 
-  <div class="diagram-card">
-    <div class="diagram-title">🗺️ Master AI, ML, DL & Generative AI Taxonomy Map</div>
-    <div style="background: #06090E; border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 1.5rem; font-family: var(--font-mono); font-size: 0.85rem; color: #94A3B8; line-height: 1.6; overflow-x: auto;">
-      <pre style="margin: 0; color: #E2E8F0;">
-                                  ARTIFICIAL INTELLIGENCE (Broad Field: Systems simulating human intelligence)
-                                                         │
-                        ┌────────────────────────────────┼────────────────────────────────┐
-                        ▼                                ▼                                ▼
-                 Rule-Based Systems              MACHINE LEARNING                 Search & Planning
-              (Expert Systems, If-Else)       (Learning from patterns in data)   (A* Search, Minimax)
-                                                         │
-                     ┌───────────────────────────────────┼───────────────────────────────────┐
-                     ▼                                   ▼                                   ▼
-             SUPERVISED LEARNING                UNSUPERVISED LEARNING              REINFORCEMENT LEARNING
-           (Labeled Data: Inputs + Targets)    (Unlabeled Data: Discover Structure) (Agent, Environment & Reward)
-                     │                                   │                                   │
-          ┌──────────┴──────────┐              ┌─────────┴─────────┐                         ▼
-          ▼                     ▼              ▼                   ▼                  Q-Learning / PPO
-     Regression           Classification   Clustering       Dimensionality
-   (Continuous Numbers)     (Categories)   (K-Means, DBSCAN)  (PCA, t-SNE)
-          │                     │
-          └──────────┬──────────┘
-                     │
-                     ▼
-               DEEP LEARNING (Multi-Layer Neural Networks learning hierarchical representations)
-                     │
-     ┌───────────────┼──────────────────────────────┐
-     ▼               ▼                              ▼
-    CNN             RNN / LSTM                 TRANSFORMERS (2017 Attention Is All You Need)
- (Spatial Data:   (Sequential Data:                 │
-Computer Vision)  Time Series, Speech)              ▼
-                                              GENERATIVE AI (Creating novel text, code, images, audio)
-                                                    │
-                               ┌────────────────────┼────────────────────┐
-                               ▼                    ▼                    ▼
-                         FOUNDATION LLMs           RAG               AI AGENTS
-                       (GPT-4, Claude, LLaMA) (Retrieval Augmented (Autonomous Tool Use,
-                                              Generation + Vectors) ReAct Planning Loops)</pre>
+  <div class="visual-learning-card">
+    <div class="visual-header">
+      <div class="visual-title-group">
+        <span class="visual-icon">⚡</span>
+        <h3 class="visual-title">Hierarchical AI &rarr; ML &rarr; DL &rarr; GenAI Architecture</h3>
+      </div>
+      <div class="visual-controls">
+        <span class="visual-badge">🧠 Neural Intelligence Flow</span>
+      </div>
+    </div>
+
+    <!-- Visual Canvas: 4 Nested Tiers -->
+    <div class="visual-canvas">
+      <div class="pipeline-flow">
+        <!-- Tier 1 -->
+        <div class="pipeline-node">
+          <span class="node-step-badge">Level 01</span>
+          <div class="node-title">🌐 Artificial Intelligence</div>
+          <div class="node-desc">Broadest discipline: Any system exhibiting human-like reasoning, search, or heuristics</div>
+        </div>
+
+        <div class="pipeline-connector">
+          <div class="connector-line"><div class="connector-particle"></div></div>
+          <span class="connector-label">data learning</span>
+        </div>
+
+        <!-- Tier 2 -->
+        <div class="pipeline-node">
+          <span class="node-step-badge">Level 02</span>
+          <div class="node-title">📊 Machine Learning</div>
+          <div class="node-desc">Statistical algorithms learning patterns from data without being explicitly programmed</div>
+        </div>
+
+        <div class="pipeline-connector">
+          <div class="connector-line"><div class="connector-particle" style="animation-delay:0.5s;"></div></div>
+          <span class="connector-label">neural nets</span>
+        </div>
+
+        <!-- Tier 3 -->
+        <div class="pipeline-node">
+          <span class="node-step-badge">Level 03</span>
+          <div class="node-title">🧠 Deep Learning</div>
+          <div class="node-desc">Multi-layer artificial neural networks performing automatic feature extraction (CNN, RNN)</div>
+        </div>
+
+        <div class="pipeline-connector">
+          <div class="connector-line"><div class="connector-particle" style="animation-delay:1s;"></div></div>
+          <span class="connector-label">attention</span>
+        </div>
+
+        <!-- Tier 4 -->
+        <div class="pipeline-node">
+          <span class="node-step-badge">Level 04</span>
+          <div class="node-title">✨ Generative AI</div>
+          <div class="node-desc">Transformer foundation models generating novel text, code, media &amp; agentic actions</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pedagogical 3-Part Explainer -->
+    <div class="visual-explainer-grid">
+      <div class="explainer-box happening">
+        <span class="explainer-label">💡 What is Happening?</span>
+        <p class="explainer-content">
+          AI encompasses all intelligent systems (including classical rule-based algorithms). <strong>Machine Learning</strong> is the subset that learns from mathematical data patterns. <strong>Deep Learning</strong> is the subset of ML utilizing deep layered neural architectures that discover hierarchical representations on their own, and <strong>Generative AI</strong> represents modern self-attention foundation models.
+        </p>
+      </div>
+
+      <div class="explainer-box remember">
+        <span class="explainer-label">🎯 Placement Takeaway</span>
+        <p class="explainer-content">
+          <strong>Key Interview Principle:</strong> <em>"All Deep Learning is Machine Learning, but not all Machine Learning is Deep Learning."</em> Traditional ML requires manual feature engineering, whereas Deep Learning performs end-to-end automatic feature extraction directly from raw high-dimensional data.
+        </p>
+      </div>
+
+      <div class="explainer-box analogy">
+        <span class="explainer-label">🌍 Real-Life Analogy</span>
+        <p class="explainer-content">
+          Think of vehicle engineering: Transportation is AI; Motor Vehicles are ML; High-Performance Electric Cars (Tesla) are Deep Learning; and an Autonomous Self-Driving Fleet with real-time navigation intelligence is Generative AI.
+        </p>
+      </div>
     </div>
   </div>
 </section>
@@ -346,24 +389,56 @@ Computer Vision)  Time Series, Speech)              ▼
         </table>
       </div>
 
-      <!-- AI vs ML vs DL -->
-      <div class="diagram-title" style="margin-top: 1.5rem;">🎯 AI vs ML vs DL: Venn Hierarchy</div>
-      <div class="notes-diagram-box" style="background:#0B0F17; border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; font-family: monospace; font-size: 0.85rem; color: #38BDF8;">
-        ┌─────────────────────────────────────────────────────────────────────────────┐<br>
-        │ ARTIFICIAL INTELLIGENCE (1950s)                                             │<br>
-        │ Broad discipline: Systems displaying human-like problem solving.            │<br>
-        │ Includes: Expert systems, A* search, Knowledge bases, Symbolic AI.          │<br>
-        │   ┌─────────────────────────────────────────────────────────────────────┐   │<br>
-        │   │ MACHINE LEARNING (1980s)                                            │   │<br>
-        │   │ Algorithms that learn patterns from data without explicit rules.     │   │<br>
-        │   │ Includes: Linear Regression, Random Forests, SVMs, K-Means.         │   │<br>
-        │   │   ┌─────────────────────────────────────────────────────────────┐   │   │<br>
-        │   │   │ DEEP LEARNING (2010s)                                       │   │   │<br>
-        │   │   │ Multi-layered Artificial Neural Networks learning features. │   │   │<br>
-        │   │   │ Includes: CNNs, RNNs, LSTMs, Transformers, Diffusion, LLMs. │   │   │<br>
-        │   │   └─────────────────────────────────────────────────────────────┘   │   │<br>
-        │   └─────────────────────────────────────────────────────────────────────┘   │<br>
-        └─────────────────────────────────────────────────────────────────────────────┘
+      <!-- AI vs ML vs DL Visual Card -->
+      <div class="visual-learning-card" style="margin-top: 1.5rem;">
+        <div class="visual-card-header">
+          <div class="visual-card-title">🎯 AI vs ML vs DL: Concentric Venn Hierarchy</div>
+          <span class="visual-card-badge">Foundational Architecture</span>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:12px; margin: 1.25rem 0;">
+          <!-- Outer AI Layer -->
+          <div style="background: rgba(56, 189, 248, 0.06); border: 2px solid #38BDF8; border-radius: 12px; padding: 1.25rem;">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; margin-bottom:8px;">
+              <span style="font-weight:800; font-size:1.05rem; color:#38BDF8; letter-spacing:0.5px;">1. ARTIFICIAL INTELLIGENCE (1950s)</span>
+              <span style="font-size:0.75rem; background:rgba(56,189,248,0.2); color:#7DD3FC; padding:2px 8px; border-radius:12px;">Broadest Umbrella</span>
+            </div>
+            <p style="font-size:0.875rem; color:var(--text-secondary); margin:0 0 10px 0;">Any technique enabling machines to mimic human intelligence, reasoning, or decision-making. Includes symbolic logic, expert systems (MYCIN), heuristic graph search (A*), and minimax game trees.</p>
+
+            <!-- Middle ML Layer -->
+            <div style="background: rgba(167, 139, 250, 0.08); border: 2px solid #A78BFA; border-radius: 10px; padding: 1.25rem; margin-top:8px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; margin-bottom:8px;">
+                <span style="font-weight:800; font-size:1rem; color:#A78BFA; letter-spacing:0.5px;">2. MACHINE LEARNING (1980s)</span>
+                <span style="font-size:0.75rem; background:rgba(167,139,250,0.2); color:#C4B5FD; padding:2px 8px; border-radius:12px;">Subset of AI</span>
+              </div>
+              <p style="font-size:0.85rem; color:var(--text-secondary); margin:0 0 10px 0;">Statistical algorithms that discover mathematical mappings $f(X) \approx y$ from historical datasets without handcrafted procedural rules. Includes Linear Regression, Decision Trees, Random Forests, SVMs, and K-Means.</p>
+
+              <!-- Inner DL Layer -->
+              <div style="background: rgba(52, 211, 153, 0.1); border: 2px solid #34D399; border-radius: 8px; padding: 1.15rem; margin-top:8px;">
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; margin-bottom:8px;">
+                  <span style="font-weight:800; font-size:0.95rem; color:#34D399; letter-spacing:0.5px;">3. DEEP LEARNING (2010s)</span>
+                  <span style="font-size:0.75rem; background:rgba(52,211,153,0.2); color:#6EE7B7; padding:2px 8px; border-radius:12px;">Subset of ML</span>
+                </div>
+                <p style="font-size:0.85rem; color:var(--text-secondary); margin:0;">Multi-layered Artificial Neural Networks with automated hierarchical feature extraction from raw unstructured data (pixels, text tokens, audio). Includes CNNs, RNNs, LSTMs, Transformers, Diffusion Models, and LLMs.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="visual-explainer-grid">
+          <div class="explainer-box happening">
+            <div class="explainer-label">💡 What is happening?</div>
+            <p>Artificial Intelligence is the expansive macro-discipline created in 1956 to simulate cognitive reasoning. Machine Learning is a mathematical subset where models self-adjust parameters from tabular training data. Deep Learning is an extreme specialization within ML that uses deep multi-tier neural networks to self-discover features without human manual engineering.</p>
+          </div>
+          <div class="explainer-box remember">
+            <div class="explainer-label">🎯 Remember for Interviews</div>
+            <p>Every Deep Learning model is an ML algorithm, and every ML algorithm is AI. But the reverse is strictly FALSE: classic rule-based expert systems or A* pathfinding are pure AI without any Machine Learning.</p>
+          </div>
+          <div class="explainer-box analogy">
+            <div class="explainer-label">🌍 Real-Life Example</div>
+            <p>Automobile transportation: A bicycle with mechanical gears is deterministic automation; a car with an automatic gearbox adapting shift points to driving style is Machine Learning; an autonomous Tesla steering via vision neural networks is Deep Learning.</p>
+          </div>
+        </div>
       </div>
 
       <div class="placement-trap-card" style="margin-top: 1.25rem;">
@@ -415,23 +490,79 @@ Computer Vision)  Time Series, Speech)              ▼
     <div class="topic-card-body">
       <p class="notes-paragraph"><strong>1. Core Philosophy:</strong> Arthur Samuel (1959) defined Machine Learning as the field of study that gives computers the ability to learn without being explicitly programmed. Tom Mitchell formalized this: A computer program learns from Experience (E) with respect to Task (T) and Performance measure (P), if its performance on T improves with E.</p>
 
-      <!-- Flowchart Diagram -->
-      <div class="diagram-title">⚙️ The Three Core Paradigms of Machine Learning</div>
-      <div class="notes-diagram-box" style="background:#0B0F17; border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; font-family: monospace; font-size: 0.85rem; color: #A7F3D0;">
-                               MACHINE LEARNING<br>
-                                      │<br>
-             ┌────────────────────────┼────────────────────────┐<br>
-             ▼                        ▼                        ▼<br>
-       SUPERVISED               UNSUPERVISED              REINFORCEMENT<br>
-        LEARNING                  LEARNING                  LEARNING<br>
-             │                        │                        │<br>
-    Labeled Input (X, y)        Raw Data (X only)         Agent + Environment<br>
-    "Teacher is present"     "Discover hidden patterns"   "Trial, error & rewards"<br>
-             │                        │                        │<br>
-      ┌──────┴──────┐          ┌──────┴──────┐                 ▼<br>
-      ▼             ▼          ▼             ▼            Reward Signal<br>
-  Regression  Classification Clustering  Dimensionality   (e.g., AlphaGo,<br>
-  (Continuous) (Categories) (K-Means)    Reduction (PCA)   Autonomous Drone)
+      <!-- Paradigms of ML Visual Card -->
+      <div class="visual-learning-card" style="margin-top: 1.5rem;">
+        <div class="visual-card-header">
+          <div class="visual-card-title">⚙️ The Three Core Paradigms of Machine Learning</div>
+          <span class="visual-card-badge">Taxonomy Tree</span>
+        </div>
+
+        <div class="visual-comparison-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin: 1.25rem 0;">
+          <div style="background: rgba(56, 189, 248, 0.05); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 10px; padding: 1.2rem;">
+            <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+              <span style="font-size:1.3rem;">🎯</span>
+              <span style="font-weight:700; color:#38BDF8; font-size:1rem;">Supervised Learning</span>
+            </div>
+            <p style="font-size:0.82rem; color:var(--text-secondary); margin-bottom:10px;"><strong>Input:</strong> Labeled Data $(X, y)$ &bull; <em>Teacher is present</em></p>
+            <div style="display:flex; flex-direction:column; gap:6px;">
+              <div style="background:#0F172A; border-left:3px solid #38BDF8; padding:6px 10px; border-radius:4px; font-size:0.8rem;">
+                <strong style="color:#7DD3FC;">Regression:</strong> Continuous numeric values (Real estate price, stock forecasting).
+              </div>
+              <div style="background:#0F172A; border-left:3px solid #38BDF8; padding:6px 10px; border-radius:4px; font-size:0.8rem;">
+                <strong style="color:#7DD3FC;">Classification:</strong> Discrete categories (Spam detection, Medical CT scans).
+              </div>
+            </div>
+          </div>
+
+          <div style="background: rgba(167, 139, 250, 0.05); border: 1px solid rgba(167, 139, 250, 0.3); border-radius: 10px; padding: 1.2rem;">
+            <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+              <span style="font-size:1.3rem;">🔍</span>
+              <span style="font-weight:700; color:#A78BFA; font-size:1rem;">Unsupervised Learning</span>
+            </div>
+            <p style="font-size:0.82rem; color:var(--text-secondary); margin-bottom:10px;"><strong>Input:</strong> Unlabeled Data $(X 	ext{ only})$ &bull; <em>Discover hidden structure</em></p>
+            <div style="display:flex; flex-direction:column; gap:6px;">
+              <div style="background:#0F172A; border-left:3px solid #A78BFA; padding:6px 10px; border-radius:4px; font-size:0.8rem;">
+                <strong style="color:#C4B5FD;">Clustering:</strong> Grouping intrinsic clusters (K-Means, Customer personas).
+              </div>
+              <div style="background:#0F172A; border-left:3px solid #A78BFA; padding:6px 10px; border-radius:4px; font-size:0.8rem;">
+                <strong style="color:#C4B5FD;">Dimensionality Reduction:</strong> Compressing redundant features (PCA, t-SNE).
+              </div>
+            </div>
+          </div>
+
+          <div style="background: rgba(52, 211, 153, 0.05); border: 1px solid rgba(52, 211, 153, 0.3); border-radius: 10px; padding: 1.2rem;">
+            <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+              <span style="font-size:1.3rem;">🎮</span>
+              <span style="font-weight:700; color:#34D399; font-size:1rem;">Reinforcement Learning</span>
+            </div>
+            <p style="font-size:0.82rem; color:var(--text-secondary); margin-bottom:10px;"><strong>Input:</strong> Autonomous Agent + Environment &bull; <em>Trial, error & rewards</em></p>
+            <div style="display:flex; flex-direction:column; gap:6px;">
+              <div style="background:#0F172A; border-left:3px solid #34D399; padding:6px 10px; border-radius:4px; font-size:0.8rem;">
+                <strong style="color:#6EE7B7;">Policy Optimization:</strong> Learning mapping $\pi(a|s)$ to maximize cumulative rewards.
+              </div>
+              <div style="background:#0F172A; border-left:3px solid #34D399; padding:6px 10px; border-radius:4px; font-size:0.8rem;">
+                <strong style="color:#6EE7B7;">Applications:</strong> AlphaGo, autonomous driving, robotics manipulation.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="visual-explainer-grid">
+          <div class="explainer-box happening">
+            <div class="explainer-label">💡 What is happening?</div>
+            <p>Machine learning splits into 3 primary learning modalities based on signal availability. Supervised uses labeled ground-truth answers; Unsupervised finds geometric clusters or latent patterns without answers; Reinforcement learning uses an active agent receiving scalar penalties or rewards from an interactive environment.</p>
+          </div>
+          <div class="explainer-box remember">
+            <div class="explainer-label">🎯 Remember for Interviews</div>
+            <p>If the training data has target labels $y$, it is Supervised (Continuous $y 
+ightarrow$ Regression; Discrete $y 
+ightarrow$ Classification). If there are NO targets, it is Unsupervised. If feedback is delayed scalar rewards over multi-step actions, it is Reinforcement Learning.</p>
+          </div>
+          <div class="explainer-box analogy">
+            <div class="explainer-label">🌍 Real-Life Example</div>
+            <p>Learning mathematics: A student studying flashcards with questions and answers on the back is Supervised; a student sorting a pile of unsorted papers into similar subjects is Unsupervised; a baby learning to walk by stumbling and balancing is Reinforcement Learning.</p>
+          </div>
+        </div>
       </div>
 
       <div class="table-responsive" style="margin-top: 1.5rem;">
@@ -550,14 +681,45 @@ Computer Vision)  Time Series, Speech)              ▼
         </table>
       </div>
 
-      <div class="diagram-title" style="margin-top: 1.5rem;">✂️ Train / Validation / Test 3-Way Split</div>
-      <div class="notes-diagram-box" style="background:#0B0F17; border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; font-family: monospace; font-size: 0.85rem;">
-        <span style="color: #60A5FA;">TOTAL DATASET (100%)</span><br>
-        ┌────────────────────────────────────────────────────────┬──────────────────────┬──────────────────────┐<br>
-        │              TRAINING SET (70% - 80%)                  │ VALIDATION SET (10%) │    TEST SET (10%)    │<br>
-        │  Used to calculate gradients & adjust model weights.   │ Tune hyperparameters │ Final unbiased exam. │<br>
-        │  Model sees this continuously during backprop/fitting. │ & select best model. │ Touch only ONCE!     │<br>
-        └────────────────────────────────────────────────────────┴──────────────────────┴──────────────────────┘
+      <!-- Train / Val / Test Split Visual Card -->
+      <div class="visual-learning-card" style="margin-top: 1.5rem;">
+        <div class="visual-card-header">
+          <div class="visual-card-title">✂️ Train / Validation / Test 3-Way Split &amp; Generalization Barrier</div>
+          <span class="visual-card-badge">Data Hygiene</span>
+        </div>
+
+        <div style="margin: 1.5rem 0;">
+          <div style="font-size:0.85rem; color:#60A5FA; font-weight:700; margin-bottom:8px;">TOTAL DATASET (100% UNBIASED POPULATION)</div>
+          <div style="display:flex; border-radius:10px; overflow:hidden; border:2px solid var(--border-color); min-height:85px; flex-wrap:wrap;">
+            <div style="flex: 7; min-width:200px; background:rgba(56, 189, 248, 0.15); border-right:2px solid #38BDF8; padding:12px; display:flex; flex-direction:column; justify-content:center;">
+              <span style="font-weight:800; color:#38BDF8; font-size:0.95rem;">📚 TRAINING SET (70% - 80%)</span>
+              <span style="font-size:0.8rem; color:var(--text-secondary); margin-top:4px;">Used to calculate loss gradients &amp; update model weights via backprop. Model sees this continuously.</span>
+            </div>
+            <div style="flex: 1.5; min-width:140px; background:rgba(167, 139, 250, 0.15); border-right:2px solid #A78BFA; padding:12px; display:flex; flex-direction:column; justify-content:center;">
+              <span style="font-weight:800; color:#A78BFA; font-size:0.95rem;">🎯 VALIDATION (10% - 15%)</span>
+              <span style="font-size:0.8rem; color:var(--text-secondary); margin-top:4px;">Tune hyperparameters (learning rate, depth) &amp; early stopping checkpointing.</span>
+            </div>
+            <div style="flex: 1.5; min-width:140px; background:rgba(52, 211, 153, 0.15); padding:12px; display:flex; flex-direction:column; justify-content:center;">
+              <span style="font-weight:800; color:#34D399; font-size:0.95rem;">🏆 TEST SET (10% - 15%)</span>
+              <span style="font-size:0.8rem; color:var(--text-secondary); margin-top:4px;">Final unbiased exam score. Evaluated strictly ONCE before production deployment.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="visual-explainer-grid">
+          <div class="explainer-box happening">
+            <div class="explainer-label">💡 What is happening?</div>
+            <p>A machine learning dataset is partitioned into three airtight subsets to prevent data leakage. The model learns parameters exclusively on the Training set, hyperparameter decisions and model architectures are selected using the Validation set, and the Test set measures genuine unseen generalization.</p>
+          </div>
+          <div class="explainer-box remember">
+            <div class="explainer-label">🎯 Remember for Interviews</div>
+            <p>NEVER tune hyperparameters on the Test set! Doing so causes 'test set snooping' or data leakage where information from the test set subtly biases architecture decisions, giving overly optimistic accuracy that crashes in production.</p>
+          </div>
+          <div class="explainer-box analogy">
+            <div class="explainer-label">🌍 Real-Life Example</div>
+            <p>Academic schooling: Textbook exercises solved daily with solutions are the Training Set; weekly mock exams to identify study weaknesses are the Validation Set; the final board examination held at the end of the year is the Test Set.</p>
+          </div>
+        </div>
       </div>
 
       <div class="placement-trap-card" style="margin-top: 1.25rem;">
@@ -833,18 +995,54 @@ X_train, X_val, y_train, y_val = train_test_split(
     <div class="topic-card-body">
       <p class="notes-paragraph">In Reinforcement Learning (RL), an autonomous <strong>Agent</strong> interacts with a dynamic <strong>Environment</strong>. There is no training supervisor telling the agent the correct action. Instead, the agent learns by trial-and-error, guided by numerical <strong>Reward</strong> signals.</p>
 
-      <div class="diagram-title">🔄 The Reinforcement Learning Feedback Cycle</div>
-      <div class="notes-diagram-box" style="background:#0B0F17; border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; font-family: monospace; font-size: 0.85rem; color:#A7F3D0;">
-                   ┌──────────────────────────────────────────────┐<br>
-                   │                    AGENT                     │<br>
-                   │  Maintains Policy π(a|s) & Value function Q  │<br>
-                   └───────┬──────────────────────────────▲───────┘<br>
-                           │ Action a_t                   │ State s_t & Reward r_t<br>
-                           ▼                              │<br>
-                   ┌──────────────────────────────────────┴───────┐<br>
-                   │                 ENVIRONMENT                  │<br>
-                   │ Transitions: P(s_{t+1} | s_t, a_t)           │<br>
-                   └──────────────────────────────────────────────┘
+      <!-- RL Feedback Cycle Visual Card -->
+      <div class="visual-learning-card" style="margin-top: 1.5rem;">
+        <div class="visual-card-header">
+          <div class="visual-card-title">🔄 The Reinforcement Learning Feedback Loop (MDP)</div>
+          <span class="visual-card-badge">Closed-Loop Control</span>
+        </div>
+
+        <div style="display:flex; flex-direction:column; align-items:center; gap:16px; margin:1.5rem 0;">
+          <div style="width:100%; max-width:540px; background:rgba(56, 189, 248, 0.1); border:2px solid #38BDF8; border-radius:12px; padding:1.25rem; text-align:center;">
+            <div style="font-size:1.1rem; font-weight:800; color:#38BDF8; display:flex; align-items:center; justify-content:center; gap:8px;">
+              <span>🤖</span> AGENT (Decision Maker)
+            </div>
+            <p style="font-size:0.85rem; color:var(--text-secondary); margin:6px 0 0 0;">Maintains Policy $\pi(a|s)$ &amp; Value Function $Q(s, a)$. Selects optimal actions to maximize long-term reward.</p>
+          </div>
+
+          <div style="width:100%; max-width:540px; display:flex; justify-content:space-around; align-items:center; gap:12px; flex-wrap:wrap;">
+            <div style="flex:1; min-width:180px; background:#0B0F17; border:1px solid #F59E0B; border-radius:8px; padding:8px 12px; text-align:center;">
+              <span style="font-size:0.8rem; color:#FBBF24; font-weight:700;">⬇️ Action $a_t$</span>
+              <div style="font-size:0.75rem; color:var(--text-secondary);">Agent executes move in world</div>
+            </div>
+            <div style="flex:1; min-width:180px; background:#0B0F17; border:1px solid #10B981; border-radius:8px; padding:8px 12px; text-align:center;">
+              <span style="font-size:0.8rem; color:#34D399; font-weight:700;">⬆️ State $s_{t+1}$ + Reward $r_t$</span>
+              <div style="font-size:0.75rem; color:var(--text-secondary);">Environment updates &amp; scores action</div>
+            </div>
+          </div>
+
+          <div style="width:100%; max-width:540px; background:rgba(16, 185, 129, 0.1); border:2px solid #10B981; border-radius:12px; padding:1.25rem; text-align:center;">
+            <div style="font-size:1.1rem; font-weight:800; color:#34D399; display:flex; align-items:center; justify-content:center; gap:8px;">
+              <span>🌍</span> ENVIRONMENT (World Dynamics)
+            </div>
+            <p style="font-size:0.85rem; color:var(--text-secondary); margin:6px 0 0 0;">State transition probability $P(s_{t+1} | s_t, a_t)$ + Reward function $R(s_t, a_t)$. Returns new state and scalar feedback.</p>
+          </div>
+        </div>
+
+        <div class="visual-explainer-grid">
+          <div class="explainer-box happening">
+            <div class="explainer-label">💡 What is happening?</div>
+            <p>At every discrete timestep $t$, the Agent perceives the current State $s_t$ of the Environment and selects an Action $a_t$ according to its policy $\pi$. The Environment processes the action, transitions to a new state $s_{t+1}$, and transmits a scalar Reward $r_{t+1}$ back to the agent to reinforce or deter future behavior.</p>
+          </div>
+          <div class="explainer-box remember">
+            <div class="explainer-label">🎯 Remember for Interviews</div>
+            <p>Reinforcement Learning optimizes for <em>cumulative discounted future reward</em> ($G_t = \sum \gamma^k r_{t+k}$), not just immediate return. The discount factor $\gamma \in [0, 1)$ balances immediate gratification vs long-term strategic gain.</p>
+          </div>
+          <div class="explainer-box analogy">
+            <div class="explainer-label">🌍 Real-Life Example</div>
+            <p>Training a puppy: The puppy (Agent) is presented with a hand command (State in Environment). If it sits (Action), it gets a treat (Positive Reward +1). If it jumps on the couch (Action), it gets a verbal reprimand (Negative Reward -10).</p>
+          </div>
+        </div>
       </div>
 
       <h4 style="color: var(--brand-cyan); margin-top: 1.5rem;">Core Vocabulary of RL</h4>
@@ -1226,11 +1424,53 @@ X_train, X_val, y_train, y_val = train_test_split(
     </div>
     <div class="topic-card-body">
 
-      <div class="diagram-title">⚡ Artificial Neuron (Perceptron) Math Flow</div>
-      <div class="notes-diagram-box" style="background:#0B0F17; border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; font-family: monospace; font-size: 0.85rem; color:#FDE047;">
-        x1 ──[w1]──┐<br>
-        x2 ──[w2]──┼──→ Weighted Sum: z = &Sigma;(w_i * x_i) + b ──→ Non-Linear Activation &phi;(z) ──→ Output a<br>
-        x3 ──[w3]──┘
+      <!-- Perceptron Flow Visual Card -->
+      <div class="visual-learning-card" style="margin-top: 1.5rem;">
+        <div class="visual-card-header">
+          <div class="visual-card-title">⚡ Artificial Neuron (Perceptron) Computational Flow</div>
+          <span class="visual-card-badge">Foundational Math</span>
+        </div>
+
+        <div class="pipeline-flow" style="margin: 1.5rem 0; flex-wrap:wrap;">
+          <div class="pipeline-node" style="border-left:3px solid #38BDF8;">
+            <span class="pipeline-node-num">1</span>
+            <span class="pipeline-node-title">📥 Inputs &amp; Weights</span>
+            <span class="pipeline-node-sub">Features: (x₁, x₂, x₃)<br>Weights: (w₁, w₂, w₃) + Bias b</span>
+          </div>
+          <div class="pipeline-connector"><span class="connector-particle"></span></div>
+          <div class="pipeline-node" style="border-left:3px solid #F59E0B;">
+            <span class="pipeline-node-num">2</span>
+            <span class="pipeline-node-title">∑ Linear Summation</span>
+            <span class="pipeline-node-sub">Dot Product:<br>z = ∑(wᵢ &times; xᵢ) + b</span>
+          </div>
+          <div class="pipeline-connector"><span class="connector-particle"></span></div>
+          <div class="pipeline-node" style="border-left:3px solid #A78BFA;">
+            <span class="pipeline-node-num">3</span>
+            <span class="pipeline-node-title">⚡ Non-Linear Activation</span>
+            <span class="pipeline-node-sub">Activation Function:<br>a = &phi;(z) [ReLU, Sigmoid]</span>
+          </div>
+          <div class="pipeline-connector"><span class="connector-particle"></span></div>
+          <div class="pipeline-node" style="border-left:3px solid #34D399;">
+            <span class="pipeline-node-num">4</span>
+            <span class="pipeline-node-title">📤 Output Activation</span>
+            <span class="pipeline-node-sub">Output Signal a &rarr;<br>Next Layer / Loss Function</span>
+          </div>
+        </div>
+
+        <div class="visual-explainer-grid">
+          <div class="explainer-box happening">
+            <div class="explainer-label">💡 What is happening?</div>
+            <p>An artificial neuron computes the dot product of input features and learned synaptic weights, shifts the value by a scalar bias, and pipes the scalar through a non-linear activation function &phi;(z) to introduce curved decision boundaries.</p>
+          </div>
+          <div class="explainer-box remember">
+            <div class="explainer-label">🎯 Remember for Interviews</div>
+            <p>Without non-linear activations, stacking 100 deep neural layers collapses mathematically into a single linear matrix multiplication: W₂(W₁x + b₁) + b₂ = W_new(x) + b_new. Non-linearity enables universal function approximation.</p>
+          </div>
+          <div class="explainer-box analogy">
+            <div class="explainer-label">🌍 Real-Life Example</div>
+            <p>Job Offer Decision: Inputs are Salary, Commute Time, and Culture (x); your personal priorities are the Weights (w); your baseline financial threshold is the Bias (b); and your final yes/no decision threshold is the Activation function.</p>
+          </div>
+        </div>
       </div>
 
       <h4 style="color: var(--brand-primary); margin-top: 1.5rem;">Activation Functions: Why Non-Linearity is Essential</h4>
@@ -1826,20 +2066,55 @@ X_train, X_val, y_train, y_val = train_test_split(
     <div class="topic-card-body">
       <p class="notes-paragraph">A passive LLM merely outputs text strings. An <strong>AI Agent</strong> is an active cognitive system where the LLM functions as a central reasoning engine connected to external <strong>Tools</strong> (APIs, Python code interpreters, web search, database connections) through an iterative autonomous execution loop.</p>
 
-      <div class="diagram-title">🔄 The ReAct (Reason + Act + Observe) Execution Cycle</div>
-      <div class="notes-diagram-box" style="background:#0B0F17; border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; font-family: monospace; font-size: 0.85rem; color:#A7F3D0;">
-        User Goal: "What is current Apple stock price multiplied by 1.15?"<br>
-        ┌────────────────────────────────────────────────────────────────────────┐<br>
-        │ 1. THOUGHT: "I need to fetch real-time AAPL price. I will use API."    │<br>
-        │ 2. ACTION: CallTool('fetch_stock_quote', symbol='AAPL')                │<br>
-        │ 3. OBSERVATION: API returns: {"price": 180.50}                         │<br>
-        │ 4. THOUGHT: "Now calculate 180.50 * 1.15. I will run Python code."    │<br>
-        │ 5. ACTION: CallTool('python_repl', code='print(180.50 * 1.15)')        │<br>
-        │ 6. OBSERVATION: Console output: 207.575                                │<br>
-        │ 7. FINAL ANSWER: "The current Apple stock price x 1.15 is $207.58."   │<br>
-        └────────────────────────────────────────────────────────────────────────┘
+      <!-- ReAct Loop Visual Card -->
+      <div class="visual-learning-card" style="margin-top: 1.5rem;">
+        <div class="visual-card-header">
+          <div class="visual-card-title">🤖 The ReAct (Reason + Act + Observe) Autonomous Execution Loop</div>
+          <span class="visual-card-badge">Agentic AI</span>
+        </div>
+
+        <div style="background:rgba(56, 189, 248, 0.04); border:1px solid rgba(56, 189, 248, 0.2); border-radius:10px; padding:1rem; margin:1.25rem 0;">
+          <div style="font-size:0.85rem; color:#38BDF8; font-weight:700; margin-bottom:10px;">🎯 User Goal: "What is current Apple stock price multiplied by 1.15?"</div>
+          <div class="pipeline-flow" style="flex-direction:column; gap:10px;">
+            <div class="pipeline-node" style="text-align:left; border-left:4px solid #38BDF8; padding:10px 14px; background:#0F172A;">
+              <span style="color:#38BDF8; font-weight:800; font-size:0.85rem;">1. THOUGHT</span>
+              <div style="font-size:0.82rem; color:var(--text-secondary);">"I need to fetch the real-time AAPL quote because my internal weights have a knowledge cutoff. I will invoke the financial quote API."</div>
+            </div>
+            <div class="pipeline-node" style="text-align:left; border-left:4px solid #F59E0B; padding:10px 14px; background:#0F172A;">
+              <span style="color:#FBBF24; font-weight:800; font-size:0.85rem;">2. ACTION</span>
+              <div style="font-size:0.82rem; color:#FDE68A; font-family:monospace;">CallTool('fetch_stock_quote', symbol='AAPL')</div>
+            </div>
+            <div class="pipeline-node" style="text-align:left; border-left:4px solid #10B981; padding:10px 14px; background:#0F172A;">
+              <span style="color:#34D399; font-weight:800; font-size:0.85rem;">3. OBSERVATION</span>
+              <div style="font-size:0.82rem; color:#A7F3D0; font-family:monospace;">Tool Output: {"symbol": "AAPL", "price": 180.50}</div>
+            </div>
+            <div class="pipeline-node" style="text-align:left; border-left:4px solid #A78BFA; padding:10px 14px; background:#0F172A;">
+              <span style="color:#C4B5FD; font-weight:800; font-size:0.85rem;">4. THOUGHT &amp; ACTION</span>
+              <div style="font-size:0.82rem; color:var(--text-secondary);">"Now calculate 180.50 * 1.15 deterministically using Python REPL." &rarr; <span style="font-family:monospace; color:#DDD6FE;">CallTool('python_repl', code='print(180.50 * 1.15)')</span></div>
+            </div>
+            <div class="pipeline-node" style="text-align:left; border-left:4px solid #EC4899; padding:10px 14px; background:#0F172A;">
+              <span style="color:#F472B6; font-weight:800; font-size:0.85rem;">5. FINAL ANSWER</span>
+              <div style="font-size:0.85rem; color:#FDF2F8; font-weight:700;">"The current Apple stock price multiplied by 1.15 is $207.58."</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="visual-explainer-grid">
+          <div class="explainer-box happening">
+            <div class="explainer-label">💡 What is happening?</div>
+            <p>The ReAct pattern interleaves natural language reasoning traces (Thoughts) with domain-specific tool executions (Actions) and reads returned tool results (Observations). This cyclical loop prevents hallucinations by grounding the LLM in external reality and computational APIs.</p>
+          </div>
+          <div class="explainer-box remember">
+            <div class="explainer-label">🎯 Remember for Interviews</div>
+            <p>LLMs are not calculators; they are probabilistic next-token predictors. For arithmetic, real-time database queries, and live web access, production AI systems must use Function Calling and Agent loops to invoke deterministic external tools.</p>
+          </div>
+          <div class="explainer-box analogy">
+            <div class="explainer-label">🌍 Real-Life Example</div>
+            <p>A research assistant: Asked for the company's Q3 revenue converted to Euros, the assistant thinks about where to look, opens the CFO's spreadsheet (Tool 1), notes the USD figure, opens currency exchange website (Tool 2), performs the math, and drafts the report.</p>
+          </div>
+        </div>
       </div>
-    </div>
+      </div>
   </div>
 </section>
 
@@ -3546,29 +3821,63 @@ X_train, X_val, y_train, y_val = train_test_split(
   </div>
 
   <!-- Interactive Final Knowledge Map -->
-  <h3 style="color:var(--brand-emerald); margin-top:2.5rem;">Interactive Master Knowledge Map</h3>
-  <div class="diagram-card">
-    <div class="diagram-title">🗺️ Click Any Topic to Jump Directly to its Section</div>
-    <div style="background:#06090E; border:1px solid var(--border-color); border-radius:8px; padding:1.5rem; font-family:var(--font-mono); font-size:0.85rem; line-height:1.7;">
-      <a href="#sec-02" style="color:#C084FC; text-decoration:none; font-weight:700;">Artificial Intelligence</a><br>
-      │<br>
-      ├── <a href="#sec-03" style="color:#60A5FA; text-decoration:none;">Machine Learning</a><br>
-      │   ├── <a href="#sec-06" style="color:#38BDF8; text-decoration:none;">Supervised Learning</a> &rarr; <a href="#sec-10" style="color:#93C5FD; text-decoration:none;">[Linear, Logistic, Trees, Forest, KNN]</a><br>
-      │   ├── <a href="#sec-07" style="color:#38BDF8; text-decoration:none;">Unsupervised Learning</a> &rarr; <a href="#sec-07" style="color:#93C5FD; text-decoration:none;">[K-Means, Elbow Method]</a><br>
-      │   └── <a href="#sec-08" style="color:#38BDF8; text-decoration:none;">Reinforcement Learning</a> &rarr; <a href="#sec-08" style="color:#93C5FD; text-decoration:none;">[Agent, Policy, MDP]</a><br>
-      │<br>
-      ├── <a href="#sec-12" style="color:#34D399; text-decoration:none; font-weight:700;">Deep Learning</a><br>
-      │   ├── <a href="#sec-13" style="color:#A7F3D0; text-decoration:none;">Neural Networks</a> &rarr; <a href="#sec-13" style="color:#BBF7D0; text-decoration:none;">[Perceptron, Activations, Backprop, Dropout]</a><br>
-      │   ├── <a href="#sec-14" style="color:#A7F3D0; text-decoration:none;">CNN (Vision)</a> &rarr; <a href="#sec-14" style="color:#BBF7D0; text-decoration:none;">[Convolution, Pooling, Padding]</a><br>
-      │   ├── <a href="#sec-15" style="color:#A7F3D0; text-decoration:none;">RNN & LSTM (Sequences)</a> &rarr; <a href="#sec-15" style="color:#BBF7D0; text-decoration:none;">[Hidden State, Gated Cells]</a><br>
-      │   └── <a href="#sec-16" style="color:#A7F3D0; text-decoration:none;">Transformers</a> &rarr; <a href="#sec-16" style="color:#BBF7D0; text-decoration:none;">[Self-Attention, QKV]</a><br>
-      │<br>
-      └── <a href="#sec-18" style="color:#FDE047; text-decoration:none; font-weight:700;">Generative AI</a><br>
-          ├── <a href="#sec-19" style="color:#FEF08A; text-decoration:none;">LLMs</a> &rarr; <a href="#sec-19" style="color:#FEF9C3; text-decoration:none;">[Next-Token, Temperature, Hallucination]</a><br>
-          ├── <a href="#sec-20" style="color:#FEF08A; text-decoration:none;">Embeddings</a> &rarr; <a href="#sec-20" style="color:#FEF9C3; text-decoration:none;">[Semantic Space, Cosine Similarity]</a><br>
-          ├── <a href="#sec-21" style="color:#FEF08A; text-decoration:none;">RAG</a> &rarr; <a href="#sec-22" style="color:#FEF9C3; text-decoration:none;">[Vector DBs, Document Retrieval]</a><br>
-          ├── <a href="#sec-23" style="color:#FEF08A; text-decoration:none;">Fine-Tuning</a> &rarr; <a href="#sec-23" style="color:#FEF9C3; text-decoration:none;">[PEFT, LoRA]</a><br>
-          └── <a href="#sec-25" style="color:#FEF08A; text-decoration:none;">AI Agents</a> &rarr; <a href="#sec-25" style="color:#FEF9C3; text-decoration:none;">[ReAct Loop, Tool Calling]</a>
+  <div class="visual-learning-card" style="margin-top:2rem;">
+    <div class="visual-header">
+      <div class="visual-title-group">
+        <span class="visual-icon">🗺️</span>
+        <h4 class="visual-title">Interactive Master AI, ML &amp; GenAI Knowledge Map</h4>
+      </div>
+      <span class="visual-badge">Explore Core Modules</span>
+    </div>
+
+    <div class="visual-comparison-grid">
+      <!-- Cluster 1: Machine Learning -->
+      <div class="comparison-card">
+        <div class="comparison-card-title" style="color:#60a5fa;">📊 Classical Machine Learning</div>
+        <ul class="comparison-card-list">
+          <li>🔹 <a href="#sec-06" style="color:var(--text-main); text-decoration:none;">Supervised Learning (Linear, Trees)</a></li>
+          <li>🔹 <a href="#sec-07" style="color:var(--text-main); text-decoration:none;">Unsupervised Learning (K-Means, PCA)</a></li>
+          <li>🔹 <a href="#sec-08" style="color:var(--text-main); text-decoration:none;">Reinforcement Learning (Policy, MDP)</a></li>
+          <li>🔹 <a href="#sec-10" style="color:var(--text-main); text-decoration:none;">Ensemble Methods &amp; Random Forest</a></li>
+          <li>🔹 <a href="#sec-09" style="color:var(--text-main); text-decoration:none;">Evaluation Metrics (F1, ROC-AUC)</a></li>
+        </ul>
+      </div>
+
+      <!-- Cluster 2: Deep Learning -->
+      <div class="comparison-card">
+        <div class="comparison-card-title" style="color:#34d399;">🧠 Deep Learning &amp; Vision</div>
+        <ul class="comparison-card-list">
+          <li>🔹 <a href="#sec-13" style="color:var(--text-main); text-decoration:none;">Perceptron, Activation &amp; Backpropagation</a></li>
+          <li>🔹 <a href="#sec-14" style="color:var(--text-main); text-decoration:none;">CNNs: Convolutions &amp; Pooling</a></li>
+          <li>🔹 <a href="#sec-15" style="color:var(--text-main); text-decoration:none;">RNNs &amp; LSTMs: Sequential Processing</a></li>
+          <li>🔹 <a href="#sec-16" style="color:var(--text-main); text-decoration:none;">Transformers &amp; Self-Attention (QKV)</a></li>
+          <li>🔹 <a href="#sec-17" style="color:var(--text-main); text-decoration:none;">Overfitting: Dropout, L1/L2 Norms</a></li>
+        </ul>
+      </div>
+
+      <!-- Cluster 3: Generative AI -->
+      <div class="comparison-card">
+        <div class="comparison-card-title" style="color:#fde047;">✨ LLMs &amp; Foundation Models</div>
+        <ul class="comparison-card-list">
+          <li>🔹 <a href="#sec-19" style="color:var(--text-main); text-decoration:none;">Next-Token Generation &amp; Temperature</a></li>
+          <li>🔹 <a href="#sec-20" style="color:var(--text-main); text-decoration:none;">Embeddings &amp; Vector Cosine Space</a></li>
+          <li>🔹 <a href="#sec-21" style="color:var(--text-main); text-decoration:none;">RAG (Retrieval Augmented Generation)</a></li>
+          <li>🔹 <a href="#sec-22" style="color:var(--text-main); text-decoration:none;">Vector Databases (Pinecone, Chroma)</a></li>
+          <li>🔹 <a href="#sec-23" style="color:var(--text-main); text-decoration:none;">Fine-Tuning: PEFT, LoRA, QLoRA</a></li>
+        </ul>
+      </div>
+
+      <!-- Cluster 4: Production AI -->
+      <div class="comparison-card">
+        <div class="comparison-card-title" style="color:#fb7185;">🤖 AI Agents &amp; Deployment</div>
+        <ul class="comparison-card-list">
+          <li>🔹 <a href="#sec-25" style="color:var(--text-main); text-decoration:none;">Autonomous Agents &amp; ReAct Loops</a></li>
+          <li>🔹 <a href="#sec-24" style="color:var(--text-main); text-decoration:none;">Prompt Engineering &amp; Few-Shot</a></li>
+          <li>🔹 <a href="#sec-27" style="color:var(--text-main); text-decoration:none;">Hallucination Detection &amp; Safety</a></li>
+          <li>🔹 <a href="#sec-31" style="color:var(--text-main); text-decoration:none;">Placement Viva Q&amp;A (30 Answers)</a></li>
+          <li>🔹 <a href="#sec-32" style="color:var(--text-main); text-decoration:none;">Practice 30 MCQs Examination</a></li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>

@@ -328,35 +328,77 @@
               Mastering computer networking and cybersecurity for MNC technical assessments requires understanding how raw electrical or optical bits transform into application data, how packets traverse global routers, and how defensive perimeters safeguard enterprise infrastructure against adversarial compromise.
             </p>
 
-            <div class="diagram-box">
-┌─────────────────────────────────────────────────────────────────────────────────────────────┐
-│                       🌐 COMPLETE NETWORKING &amp; SECURITY ROADMAP                            │
-└─────────────────────────────────────────────────────────────────────────────────────────────┘
-                                           │
-         ┌─────────────────────────────────┴─────────────────────────────────┐
-         ▼                                                                   ▼
-┌─────────────────────────────────────────┐       ┌──────────────────────────────────────────┐
-│        🌐 COMPUTER NETWORKING           │       │          🔐 NETWORK SECURITY             │
-├─────────────────────────────────────────┤       ├──────────────────────────────────────────┤
-│ ├── 01. Fundamentals &amp; Topologies       │       │ ├── 47. CIA Triad &amp; AAA Framework       │
-│ ├── 02. Network Types (LAN/WAN/PAN)     │       │ ├── 48. Authentication vs Authorization  │
-│ ├── 03. Hardware: Hub, Switch, Router   │       │ ├── 49. Encryption: Symmetric &amp; Asymmetric│
-│ ├── 04. Addressing: MAC vs IPv4 vs IPv6 │       │ ├── 50. Hashing &amp; Digital Signatures     │
-│ ├── 05. OSI 7 Layers &amp; TCP/IP Stack     │       │ ├── 51. Defenses: Firewall, IDS, IPS, VPN│
-│ ├── 06. Subnetting &amp; CIDR (/24, /25)    │       │ ├── 52. Attacks: MITM, DoS, DDoS, Phishing│
-│ ├── 07. Protocols: DNS, DHCP (DORA), ARP│       │ ├── 53. Web Vulnerabilities: SQLi &amp; XSS  │
-│ ├── 08. Transport: TCP Handshake vs UDP │       │ ├── 54. Malware: Virus, Worm, Ransomware │
-│ ├── 09. Application: HTTP, HTTPS, Ports │       │ ├── 55. Zero Trust Architecture (NIST)   │
-│ └── 10. CLI Troubleshooting (ping/trace)│       │ └── 56. Network Segmentation &amp; DMZ       │
-└─────────────────────────────────────────┘       └──────────────────────────────────────────┘
-                                           │
-                                           ▼
-┌─────────────────────────────────────────────────────────────────────────────────────────────┐
-│                            🎯 RECRUITMENT ASSESSMENT READINESS                              │
-├─────────────────────────────────────────────────────────────────────────────────────────────┤
-│  ⚡ 40 Placement Traps  │  📝 90 Curated MCQs  │  🎤 30 Interview Q&amp;As  │  🚨 25 Scenarios   │
-└─────────────────────────────────────────────────────────────────────────────────────────────┘
+          <!-- Visual Architecture & Learning Roadmap -->
+          <div class="visual-learning-card" style="margin: 1.5rem 0;">
+            <div class="visual-card-header">
+              <span class="visual-card-title">🌐 Master Networking &amp; Security Architecture Pipeline</span>
+              <span class="visual-card-badge">Foundations &rarr; Enterprise Defense</span>
             </div>
+
+            <div class="pipeline-flow" style="margin: 1.25rem 0;">
+              <div class="pipeline-node" style="border-left: 3px solid #10b981;">
+                <div class="node-icon">🔌</div>
+                <div class="node-label">1. Physical &amp; Link</div>
+                <div class="node-subtext">Hubs, Switches, Ethernet Frames, 48-bit MAC Addresses</div>
+              </div>
+
+              <div class="pipeline-connector">
+                <span class="connector-arrow">&rarr;</span>
+                <span class="connector-particle"></span>
+              </div>
+
+              <div class="pipeline-node" style="border-left: 3px solid #0ea5e9;">
+                <div class="node-icon">🗺️</div>
+                <div class="node-label">2. Network &amp; Routing</div>
+                <div class="node-subtext">IPv4 / IPv6, CIDR Subnets, Routers, ARP, ICMP</div>
+              </div>
+
+              <div class="pipeline-connector">
+                <span class="connector-arrow">&rarr;</span>
+                <span class="connector-particle"></span>
+              </div>
+
+              <div class="pipeline-node" style="border-left: 3px solid #8b5cf6;">
+                <div class="node-icon">⚡</div>
+                <div class="node-label">3. Transport Reliability</div>
+                <div class="node-subtext">TCP 3-Way Handshake, Flow Control vs UDP Streaming</div>
+              </div>
+
+              <div class="pipeline-connector">
+                <span class="connector-arrow">&rarr;</span>
+                <span class="connector-particle"></span>
+              </div>
+
+              <div class="pipeline-node" style="border-left: 3px solid #f43f5e;">
+                <div class="node-icon">🛡️</div>
+                <div class="node-label">4. Security &amp; Defense</div>
+                <div class="node-subtext">CIA Triad, TLS 1.3, Firewalls, DMZ, Zero Trust</div>
+              </div>
+            </div>
+
+            <div class="visual-explainer-grid">
+              <div class="explainer-box happening">
+                <div class="explainer-label">💡 What is happening?</div>
+                <div class="explainer-text">
+                  Computer networks transform high-level application data down into encrypted segments, packets, and electrical or optical bits that navigate switches, routers, and firewalls across the globe, arriving at target web servers in sub-second round trips.
+                </div>
+              </div>
+
+              <div class="explainer-box remember">
+                <div class="explainer-label">🎯 Remember for Exams</div>
+                <div class="explainer-text">
+                  Switches forward based on <strong>MAC addresses</strong> (Layer 2) within a broadcast domain. Routers route packets between subnets based on <strong>IP addresses</strong> (Layer 3). Firewalls filter based on <strong>IP, Port, and Protocol state</strong>.
+                </div>
+              </div>
+
+              <div class="explainer-box analogy">
+                <div class="explainer-label">🌍 Real-Life Analogy</div>
+                <div class="explainer-text">
+                  Sending an international package: MAC is the street-level delivery van; IP is the country and city postal code; TCP is the signature-required delivery confirmation; TLS encryption is the sealed tamper-proof security box.
+                </div>
+              </div>
+            </div>
+          </div>
             <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.6;">
               💡 <em>Click any topic on the left sidebar to jump straight to that technical section, inspect architectural diagrams, review real-world interview responses, and validate your placement exam readiness with interactive questions.</em>
             </p>
@@ -468,23 +510,56 @@ Application (Data) ───> NIC Encapsulates into Packets/Frames ───> Sw
               A common technical interview screening question asks candidates to distinguish enterprise network accessibility models.
             </p>
 
-            <div class="diagram-box">
-┌────────────────────────────────────────────────────────────────────────────────────────┐
-│                                 🌐 THE PUBLIC INTERNET                                 │
-│                   Accessible by ANYONE worldwide with an active ISP link               │
-│                                                                                        │
-│        ┌──────────────────────────────────────────────────────────────────────┐        │
-│        │                       🏢 ENTERPRISE EXTRANET                         │        │
-│        │        Controlled access granted to trusted partners, vendors,       │        │
-│        │        and clients via secure VPN tunnels or client certificates     │        │
-│        │                                                                      │        │
-│        │        ┌────────────────────────────────────────────────────┐        │        │
-│        │        │                 🔒 PRIVATE INTRANET                │        │        │
-│        │        │     Strictly INTERNAL to employees/staff only.     │        │        │
-│        │        │     Payroll, HR portals, internal code repos.      │        │        │
-│        │        └────────────────────────────────────────────────────┘        │        │
-│        └──────────────────────────────────────────────────────────────────────┘        │
-└────────────────────────────────────────────────────────────────────────────────────────┘
+            <!-- Intranet vs Extranet vs Internet Visual Card -->
+            <div class="visual-learning-card" style="margin-top: 1.5rem;">
+              <div class="visual-card-header">
+                <div class="visual-card-title">🌐 Enterprise Perimeter: Intranet vs Extranet vs Public Internet</div>
+                <span class="visual-card-badge">Network Segmentation</span>
+              </div>
+
+              <div style="display:flex; flex-direction:column; gap:12px; margin:1.5rem 0;">
+                <!-- Public Internet -->
+                <div style="background:rgba(239, 68, 68, 0.05); border:2px solid #EF4444; border-radius:12px; padding:1.25rem;">
+                  <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; margin-bottom:6px;">
+                    <span style="font-weight:800; font-size:1rem; color:#F87171;">🌍 PUBLIC INTERNET (Untrusted Zone)</span>
+                    <span style="font-size:0.75rem; background:rgba(239,68,68,0.2); color:#FCA5A5; padding:2px 8px; border-radius:12px;">Zero Trust</span>
+                  </div>
+                  <p style="font-size:0.85rem; color:var(--text-secondary); margin:0 0 10px 0;">Open to all global users and potential attackers without physical security or access controls.</p>
+
+                  <!-- Extranet -->
+                  <div style="background:rgba(245, 158, 11, 0.06); border:2px solid #F59E0B; border-radius:10px; padding:1.25rem; margin-top:8px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; margin-bottom:6px;">
+                      <span style="font-weight:800; font-size:0.95rem; color:#FBBF24;">🏢 ENTERPRISE EXTRANET (Semi-Trusted Partner Zone)</span>
+                      <span style="font-size:0.75rem; background:rgba(245,158,11,0.2); color:#FDE68A; padding:2px 8px; border-radius:12px;">Mutual TLS / VPN</span>
+                    </div>
+                    <p style="font-size:0.85rem; color:var(--text-secondary); margin:0 0 10px 0;">Controlled access granted to verified partners, vendors, and B2B clients via IPsec tunnels, API gateways, and client certificates.</p>
+
+                    <!-- Intranet -->
+                    <div style="background:rgba(52, 211, 153, 0.08); border:2px solid #10B981; border-radius:8px; padding:1.15rem; margin-top:8px;">
+                      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; margin-bottom:6px;">
+                        <span style="font-weight:800; font-size:0.95rem; color:#34D399;">🔒 PRIVATE INTRANET (Trusted Internal Core)</span>
+                        <span style="font-size:0.75rem; background:rgba(52,211,153,0.2); color:#A7F3D0; padding:2px 8px; border-radius:12px;">Employees Only</span>
+                      </div>
+                      <p style="font-size:0.85rem; color:var(--text-secondary); margin:0;">Strictly isolated internal LAN for corporate employees. Hosts confidential systems: payroll, HR databases, ERP, and proprietary code repositories.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="visual-explainer-grid">
+                <div class="explainer-box happening">
+                  <div class="explainer-label">💡 What is happening?</div>
+                  <p>Enterprise network architectures divide infrastructure into concentric trust perimeters. The Public Internet has no trust guarantees; Extranets allow authenticated external partners through encrypted VPN tunnels; the Intranet is completely shielded for internal employee access.</p>
+                </div>
+                <div class="explainer-box remember">
+                  <div class="explainer-label">🎯 Remember for Interviews</div>
+                  <p>Direct incoming connections from the Internet to the Intranet are strictly forbidden by security baselines. Inbound traffic must terminate in a DMZ, and outbound traffic must pass through NAT and egress stateful filtering proxies.</p>
+                </div>
+                <div class="explainer-box analogy">
+                  <div class="explainer-label">🌍 Real-Life Example</div>
+                  <p>International Airport: The public check-in hall is the Public Internet; the VIP airline lounge accessible only with verified boarding passes is the Extranet; the security-screened Air Traffic Control tower is the Private Intranet.</p>
+                </div>
+              </div>
             </div>
 
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem;">
@@ -522,20 +597,65 @@ Application (Data) ───> NIC Encapsulates into Packets/Frames ───> Sw
               A <strong>network topology</strong> defines the geometric arrangement of nodes and physical or logical links connecting them.
             </p>
 
-            <div class="diagram-box">
-  [ BUS TOPOLOGY ]                          [ STAR TOPOLOGY ]
-Terminator                                       PC1   PC2
-  └──┬───────┬───────┬── Terminator                \   /
-    PC1     PC2     PC3                         PC4─ SWITCH ─PC3
-(Single backbone cable; taps)                  (Central hub/switch device)
+            <!-- Network Topologies Visual Card -->
+            <div class="visual-learning-card" style="margin-top: 1.5rem;">
+              <div class="visual-card-header">
+                <div class="visual-card-title">🌐 Core Network Topologies Architecture</div>
+                <span class="visual-card-badge">Geometric Layouts</span>
+              </div>
 
-  [ RING TOPOLOGY ]                         [ FULL MESH TOPOLOGY ]
-    PC1 ───> PC2                                  PC1 ───── PC2
-     ^        │                                   │ ╲     ╱ │
-     │        v                                   │   ╳   │
-    PC4 &lt;─── PC3                                  │ ╱     ╲ │
-(Token passes in single loop)                     PC4 ───── PC3
-                                         (Links = n*(n-1)/2 = 4*3/2 = 6 links)
+              <div class="visual-comparison-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
+                <div style="background:rgba(56, 189, 248, 0.05); border:1px solid rgba(56, 189, 248, 0.25); border-radius:10px; padding:1.1rem;">
+                  <div style="font-weight:700; color:#38BDF8; font-size:0.95rem; margin-bottom:6px;">🚌 Bus Topology</div>
+                  <div style="font-size:0.75rem; color:#7DD3FC; margin-bottom:8px;">Single Backbone Trunk with Terminators</div>
+                  <div style="background:#0F172A; border-radius:6px; padding:8px; font-size:0.78rem; color:var(--text-secondary); line-height:1.5;">
+                    &bull; <strong>Pros:</strong> Minimal cabling, simple installation.<br>
+                    &bull; <strong>Cons:</strong> Single point of failure (break halts all nodes), high packet collisions.
+                  </div>
+                </div>
+
+                <div style="background:rgba(167, 139, 250, 0.05); border:1px solid rgba(167, 139, 250, 0.25); border-radius:10px; padding:1.1rem;">
+                  <div style="font-weight:700; color:#A78BFA; font-size:0.95rem; margin-bottom:6px;">⭐ Star Topology</div>
+                  <div style="font-size:0.75rem; color:#C4B5FD; margin-bottom:8px;">Central Switch with Dedicated Host Runs</div>
+                  <div style="background:#0F172A; border-radius:6px; padding:8px; font-size:0.78rem; color:var(--text-secondary); line-height:1.5;">
+                    &bull; <strong>Pros:</strong> Cable break affects single node; easy to scale.<br>
+                    &bull; <strong>Cons:</strong> Central switch is SPOF. Modern enterprise LAN standard!
+                  </div>
+                </div>
+
+                <div style="background:rgba(245, 158, 11, 0.05); border:1px solid rgba(245, 158, 11, 0.25); border-radius:10px; padding:1.1rem;">
+                  <div style="font-weight:700; color:#FBBF24; font-size:0.95rem; margin-bottom:6px;">💍 Ring Topology</div>
+                  <div style="font-size:0.75rem; color:#FDE68A; margin-bottom:8px;">Unidirectional Closed Token Passing Loop</div>
+                  <div style="background:#0F172A; border-radius:6px; padding:8px; font-size:0.78rem; color:var(--text-secondary); line-height:1.5;">
+                    &bull; <strong>Pros:</strong> Deterministic token passing, zero collision domain.<br>
+                    &bull; <strong>Cons:</strong> Single node failure breaks token circulation (remedied by Dual-Ring FDDI).
+                  </div>
+                </div>
+
+                <div style="background:rgba(52, 211, 153, 0.05); border:1px solid rgba(52, 211, 153, 0.25); border-radius:10px; padding:1.1rem;">
+                  <div style="font-weight:700; color:#34D399; font-size:0.95rem; margin-bottom:6px;">🕸️ Full Mesh Topology</div>
+                  <div style="font-size:0.75rem; color:#6EE7B7; margin-bottom:8px;">Direct Point-to-Point Links: [n(n-1)] / 2</div>
+                  <div style="background:#0F172A; border-radius:6px; padding:8px; font-size:0.78rem; color:var(--text-secondary); line-height:1.5;">
+                    &bull; <strong>Pros:</strong> Maximum redundancy, zero single points of failure.<br>
+                    &bull; <strong>Cons:</strong> Quadratic cable growth; used in cloud data center core backbones.
+                  </div>
+                </div>
+              </div>
+
+              <div class="visual-explainer-grid">
+                <div class="explainer-box happening">
+                  <div class="explainer-label">💡 What is happening?</div>
+                  <p>Network topologies define the geometric arrangement of links connecting devices. Modern enterprise LANs universally adopt Star topology for local switching, whereas WAN cores and cloud availability zones deploy Full or Partial Mesh architectures for fault-tolerant high availability.</p>
+                </div>
+                <div class="explainer-box remember">
+                  <div class="explainer-label">🎯 Remember for Interviews</div>
+                  <p>Full Mesh cable calculation formula: Number of duplex links = [n(n-1)] / 2. For n=6 routers, links = (6 * 5) / 2 = 15 dedicated cables. Number of ports required per device = n - 1.</p>
+                </div>
+                <div class="explainer-box analogy">
+                  <div class="explainer-label">🌍 Real-Life Example</div>
+                  <p>Airline Routes: Star is hub-and-spoke (all flights connect through Chicago or Atlanta); Mesh is direct flights connecting every city pair directly to each other without layovers.</p>
+                </div>
+              </div>
             </div>
 
             <div style="overflow-x: auto; margin-bottom: 1.5rem;">
@@ -610,17 +730,53 @@ Terminator                                       PC1   PC2
               Network infrastructure relies on specialized hardware operating at distinct layers of the OSI model to amplify, filter, switch, and route digital transmissions.
             </p>
 
-            <div class="diagram-box">
-[ END-TO-END ENTERPRISE PACKET PATH ]
-┌────────┐               ┌────────┐               ┌────────┐               ┌────────┐
-│ PC /   │ ──(Cat6)───>  │ LAYER 2│ ──(Trunk)──>  │ LAYER 3│ ──(WAN)───>   │ PUBLIC │
-│ Laptop │  Untagged     │ SWITCH │  Tagged       │ ROUTER │  IP Packets   │ INTERNET
-└────────┘  Frame        └────────┘  VLAN Frame   └────────┘               └────────┘
-     ▲                       │                        │
-     │                       ▼                        ▼
-[ MAC Addr ]          [ CAM/MAC Table ]       [ IP Routing Table ]
-00:1A:2B:3C:4D:5E     Port 2 -> MAC A         192.168.1.0/24 -> eth0
-                      Port 3 -> MAC B         0.0.0.0/0 -> Next-Hop ISP
+            <!-- End-to-End Enterprise Packet Path Visual Card -->
+            <div class="visual-learning-card" style="margin-top: 1.5rem;">
+              <div class="visual-card-header">
+                <div class="visual-card-title">🛣️ End-to-End Enterprise Packet Path: Host to Internet</div>
+                <span class="visual-card-badge">Packet Journey</span>
+              </div>
+
+              <div class="pipeline-flow" style="margin: 1.5rem 0; flex-wrap:wrap;">
+                <div class="pipeline-node" style="border-left:3px solid #60A5FA;">
+                  <span class="pipeline-node-num">1</span>
+                  <span class="pipeline-node-title">💻 Client Host</span>
+                  <span class="pipeline-node-sub">MAC: 00:1A:2B:3C:4D:5E<br>Untagged Ethernet Frame</span>
+                </div>
+                <div class="pipeline-connector"><span class="connector-particle"></span></div>
+                <div class="pipeline-node" style="border-left:3px solid #38BDF8;">
+                  <span class="pipeline-node-num">2</span>
+                  <span class="pipeline-node-title">🔀 Layer 2 Switch</span>
+                  <span class="pipeline-node-sub">CAM Table Port Forwarding<br>802.1Q Tagged VLAN Frame</span>
+                </div>
+                <div class="pipeline-connector"><span class="connector-particle"></span></div>
+                <div class="pipeline-node" style="border-left:3px solid #A78BFA;">
+                  <span class="pipeline-node-num">3</span>
+                  <span class="pipeline-node-title">📡 Layer 3 Router</span>
+                  <span class="pipeline-node-sub">Strips L2 &bull; IP Routing Table<br>PAT / NAT Overload</span>
+                </div>
+                <div class="pipeline-connector"><span class="connector-particle"></span></div>
+                <div class="pipeline-node" style="border-left:3px solid #34D399;">
+                  <span class="pipeline-node-num">4</span>
+                  <span class="pipeline-node-title">🌐 Public Internet</span>
+                  <span class="pipeline-node-sub">BGP Next-Hop Transit<br>Destination Cloud Server</span>
+                </div>
+              </div>
+
+              <div class="visual-explainer-grid">
+                <div class="explainer-box happening">
+                  <div class="explainer-label">💡 What is happening?</div>
+                  <p>When an endpoint sends traffic, the Layer 2 switch looks up its MAC Address Table (CAM) to switch the frame across local VLAN trunks without altering IP headers. At the gateway, the Layer 3 router strips the Ethernet frame, determines the path using its IP routing table, translates private IPs via NAT, and forwards packets over the WAN.</p>
+                </div>
+                <div class="explainer-box remember">
+                  <div class="explainer-label">🎯 Remember for Interviews</div>
+                  <p>Switches operate at Layer 2 and forward based on MAC addresses within the same subnet. Routers operate at Layer 3, forward based on IP addresses across different networks, and rewrite Layer 2 headers at every routing hop.</p>
+                </div>
+                <div class="explainer-box analogy">
+                  <div class="explainer-label">🌍 Real-Life Example</div>
+                  <p>Corporate Mailroom: The office floor messenger (Switch) moves inter-office memos directly between desks; outgoing external mail is handed to the Postal Logistics office (Router) which assigns international postage and routes it across cities.</p>
+                </div>
+              </div>
             </div>
           </section>
 
@@ -814,17 +970,47 @@ Terminator                                       PC1   PC2
               A <strong>MAC (Media Access Control) address</strong>, also known as a physical, hardware, or burned-in address (BIA), is a globally unique 48-bit (6-byte) identifier permanently assigned to a Network Interface Card (NIC) by its manufacturer.
             </p>
 
-            <div class="diagram-box">
-             ┌──────────────────────── 48 BITS (6 BYTES) ────────────────────────┐
-             │                                                                   │
-             │     24 BITS (3 BYTES)               24 BITS (3 BYTES)             │
-             │  Organizationally Unique        Network Interface Controller      │
-             │       Identifier (OUI)           Specific Extension (NIC ID)      │
-             │   (Assigned by IEEE to mfr)        (Assigned by Manufacturer)     │
-             │                                                                   │
-HEX FORMAT:  │      00  :  1A  :  2B          :        3C  :  4D  :  5E          │
-BINARY:      │  00000000 00011010 00101011    :    00111100 01001101 01011110    │
-             └───────────────────────────────────────────────────────────────────┘
+            <!-- MAC 48-bit Architecture Visual Card -->
+            <div class="visual-learning-card" style="margin-top: 1.5rem;">
+              <div class="visual-card-header">
+                <div class="visual-card-title">🏷️ 48-Bit MAC Address Hardware Architecture</div>
+                <span class="visual-card-badge">Data Link (Layer 2)</span>
+              </div>
+
+              <div style="background:#0F172A; border:1px solid var(--border-color); border-radius:10px; padding:1.25rem; margin:1.5rem 0;">
+                <div style="text-align:center; font-weight:700; color:#60A5FA; margin-bottom:12px; font-size:0.9rem;">
+                  TOTAL HARDWARE ADDRESS: 48 BITS (6 BYTES)
+                </div>
+                <div style="display:flex; gap:12px; flex-wrap:wrap;">
+                  <div style="flex:1; min-width:240px; background:rgba(56, 189, 248, 0.1); border:2px solid #38BDF8; border-radius:8px; padding:1rem; text-align:center;">
+                    <div style="font-size:0.8rem; color:#7DD3FC; font-weight:700;">FIRST 24 BITS (3 BYTES)</div>
+                    <div style="font-size:1.15rem; font-weight:800; color:#38BDF8; margin:6px 0; font-family:monospace;">00 : 1A : 2B</div>
+                    <div style="font-weight:700; color:#E2E8F0; font-size:0.85rem;">Organizationally Unique Identifier (OUI)</div>
+                    <p style="font-size:0.75rem; color:var(--text-secondary); margin:4px 0 0 0;">Assigned globally by IEEE to manufacturer (e.g. Cisco, Apple, Intel). Contains Unicast/Multicast &amp; Universal/Local bits.</p>
+                  </div>
+                  <div style="flex:1; min-width:240px; background:rgba(52, 211, 153, 0.1); border:2px solid #34D399; border-radius:8px; padding:1rem; text-align:center;">
+                    <div style="font-size:0.8rem; color:#6EE7B7; font-weight:700;">LAST 24 BITS (3 BYTES)</div>
+                    <div style="font-size:1.15rem; font-weight:800; color:#34D399; margin:6px 0; font-family:monospace;">3C : 4D : 5E</div>
+                    <div style="font-weight:700; color:#E2E8F0; font-size:0.85rem;">NIC-Specific Extension</div>
+                    <p style="font-size:0.75rem; color:var(--text-secondary); margin:4px 0 0 0;">Unique sequential serial number assigned by hardware manufacturer to individual physical network controller chip.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="visual-explainer-grid">
+                <div class="explainer-box happening">
+                  <div class="explainer-label">💡 What is happening?</div>
+                  <p>A Media Access Control (MAC) address is permanently burned into a Network Interface Card (NIC) ROM. The first 24 bits identify the vendor entity registered with the IEEE, while the final 24 bits identify the individual device uniquely worldwide.</p>
+                </div>
+                <div class="explainer-box remember">
+                  <div class="explainer-label">🎯 Remember for Interviews</div>
+                  <p>MAC addresses are physical Layer 2 addresses that cannot be routed across the Internet. Routers strip incoming MAC addresses and rewrite them with the next-hop router's MAC at every hop!</p>
+                </div>
+                <div class="explainer-box analogy">
+                  <div class="explainer-label">🌍 Real-Life Example</div>
+                  <p>Vehicle Identification Number (VIN): The first 3 characters identify the car manufacturer and country of origin (OUI), and the remaining digits represent that car's unique factory serial number (NIC extension).</p>
+                </div>
+              </div>
             </div>
             <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">
               💡 <em>Common notations:</em> Colons (<code>00:1A:2B:3C:4D:5E</code> in Linux), Hyphens (<code>00-1A-2B-3C-4D-5E</code> in Windows cmd), or Dots (<code>001a.2b3c.4d5e</code> in Cisco IOS).
@@ -900,8 +1086,94 @@ BINARY:      │  00000000 00011010 00101011    :    00111100 01001101 01011110 
               The 7-Layer OSI Reference Model Deep Dive
             </h2>
             <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem;">
-              Developed by ISO in 1984, the <strong>Open Systems Interconnection (OSI)</strong> reference model partitions network communication into 7 distinct, modular abstraction layers. Each layer performs specialized functions and communicates strictly with its adjacent layers.
-            </p>
+            <!-- Visual Learning Card: 7-Layer OSI Interactive Architecture -->
+            <div class="visual-learning-card" style="margin: 1.5rem 0;">
+              <div class="visual-card-header">
+                <span class="visual-card-title">🧩 The 7-Layer OSI Reference Architecture</span>
+                <span class="visual-card-badge">Top-Down Encapsulation &bull; Bottom-Up Decapsulation</span>
+              </div>
+
+              <div class="layered-stack" style="margin: 1.25rem 0;">
+                <div class="layer-item" style="border-left: 4px solid #c084fc; background: rgba(168, 85, 247, 0.08);">
+                  <div class="layer-badge" style="background: #9333ea; color: #fff;">L7</div>
+                  <div class="layer-info">
+                    <div class="layer-name">Application Layer &bull; <span style="font-size:0.75rem; color:#c084fc;">PDU: Data</span></div>
+                    <div class="layer-desc">User interface &amp; network APIs: HTTP, HTTPS, DNS, FTP, SMTP, SSH, DHCP.</div>
+                  </div>
+                </div>
+
+                <div class="layer-item" style="border-left: 4px solid #a78bfa; background: rgba(139, 92, 246, 0.08);">
+                  <div class="layer-badge" style="background: #7c3aed; color: #fff;">L6</div>
+                  <div class="layer-info">
+                    <div class="layer-name">Presentation Layer &bull; <span style="font-size:0.75rem; color:#a78bfa;">PDU: Data</span></div>
+                    <div class="layer-desc">Syntax translation, TLS/SSL encryption, gzip compression, ASCII/JPEG encoding.</div>
+                  </div>
+                </div>
+
+                <div class="layer-item" style="border-left: 4px solid #818cf8; background: rgba(99, 102, 241, 0.08);">
+                  <div class="layer-badge" style="background: #4f46e5; color: #fff;">L5</div>
+                  <div class="layer-info">
+                    <div class="layer-name">Session Layer &bull; <span style="font-size:0.75rem; color:#818cf8;">PDU: Data</span></div>
+                    <div class="layer-desc">Dialogue control, session tokens, RPC, recovery checkpoints.</div>
+                  </div>
+                </div>
+
+                <div class="layer-item" style="border-left: 4px solid #38bdf8; background: rgba(14, 165, 233, 0.08);">
+                  <div class="layer-badge" style="background: #0284c7; color: #fff;">L4</div>
+                  <div class="layer-info">
+                    <div class="layer-name">Transport Layer &bull; <span style="font-size:0.75rem; color:#38bdf8;">PDU: Segments (TCP) / Datagrams (UDP)</span></div>
+                    <div class="layer-desc">End-to-end delivery, port numbers, TCP 3-way handshake, flow &amp; congestion control.</div>
+                  </div>
+                </div>
+
+                <div class="layer-item" style="border-left: 4px solid #34d399; background: rgba(16, 185, 129, 0.08);">
+                  <div class="layer-badge" style="background: #059669; color: #fff;">L3</div>
+                  <div class="layer-info">
+                    <div class="layer-name">Network Layer &bull; <span style="font-size:0.75rem; color:#34d399;">PDU: Packets</span></div>
+                    <div class="layer-desc">Logical IP addressing (IPv4/IPv6), routing paths, ICMP diagnostics &bull; <strong>Device: Router</strong></div>
+                  </div>
+                </div>
+
+                <div class="layer-item" style="border-left: 4px solid #fbbf24; background: rgba(245, 158, 11, 0.08);">
+                  <div class="layer-badge" style="background: #d97706; color: #fff;">L2</div>
+                  <div class="layer-info">
+                    <div class="layer-name">Data Link Layer &bull; <span style="font-size:0.75rem; color:#fbbf24;">PDU: Frames</span></div>
+                    <div class="layer-desc">Physical MAC addressing, Ethernet framing, CRC trailer checksum &bull; <strong>Device: Switch, Bridge</strong></div>
+                  </div>
+                </div>
+
+                <div class="layer-item" style="border-left: 4px solid #f87171; background: rgba(239, 68, 68, 0.08);">
+                  <div class="layer-badge" style="background: #dc2626; color: #fff;">L1</div>
+                  <div class="layer-info">
+                    <div class="layer-name">Physical Layer &bull; <span style="font-size:0.75rem; color:#f87171;">PDU: Bits</span></div>
+                    <div class="layer-desc">Raw 1s and 0s over copper, fiber optics, radio waves &bull; <strong>Device: Hub, Repeater, Cable</strong></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="visual-explainer-grid">
+                <div class="explainer-box happening">
+                  <div class="explainer-label">💡 What is happening?</div>
+                  <div class="explainer-text">
+                    As data moves down from Layer 7 to Layer 1 (Encapsulation), each layer prepends its own header containing routing, transport, or addressing metadata. Layer 2 additionally appends a CRC error-checking trailer. On the receiving host, the process reverses (Decapsulation).
+                  </div>
+                </div>
+
+                <div class="explainer-box remember">
+                  <div class="explainer-label">🎯 Remember for Exams</div>
+                  <div class="explainer-text">
+                    Mnemonic top-to-bottom: <em>"<strong>A</strong>ll <strong>P</strong>eople <strong>S</strong>eem <strong>T</strong>o <strong>N</strong>eed <strong>D</strong>ata <strong>P</strong>rocessing"</em>. Layer 2 is the <strong>ONLY</strong> layer with a Trailer (CRC). Hubs are Layer 1, Switches are Layer 2, Routers are Layer 3.
+                  </div>
+                </div>
+
+                <div class="explainer-box analogy">
+                  <div class="explainer-label">🌍 Real-Life Analogy</div>
+                  <div class="explainer-text">
+                    Like sending confidential corporate contracts: Executive writes letter (L7), legal encodes in English cipher (L6), secretary schedules courier batch (L5), postal manager logs tracking code (L4), sorting depot routes to airport (L3), truck driver drives to address (L2), road pavement carries tires (L1).
+                  </div>
+                </div>
+              </div>
+            </div>
 
             <!-- 7 Layers Breakdown Cards -->
             <div style="display: flex; flex-direction: column; gap: 1.25rem;">
@@ -1187,23 +1459,79 @@ LAYER 1:         0 1 1 0 1 0 0 1 1 1 0 1 0 0 1 0 1 1 0 1 0 1 1 0                
               While the OSI model is a 7-layer theoretical reference, the <strong>TCP/IP model</strong> (DoD Model) is the real-world, 4-layer architecture upon which the modern Internet is built.
             </p>
 
-            <div class="diagram-box">
-┌───────────────────────────┐                ┌───────────────────────────┐
-│     OSI MODEL (7 Layers)  │                │   TCP/IP MODEL (4 Layers) │
-├───────────────────────────┤                ├───────────────────────────┤
-│ Layer 7: Application      │ ──┐            │                           │
-│ Layer 6: Presentation     │ ──┼──────────> │ Layer 4: Application      │
-│ Layer 5: Session          │ ──┘            │ (HTTP, DNS, SSH, SMTP)    │
-├───────────────────────────┤                ├───────────────────────────┤
-│ Layer 4: Transport        │ ─────────────> │ Layer 3: Transport        │
-│                           │                │ (TCP, UDP)                │
-├───────────────────────────┤                ├───────────────────────────┤
-│ Layer 3: Network          │ ─────────────> │ Layer 2: Internet         │
-│                           │                │ (IPv4, IPv6, ICMP, ARP)   │
-├───────────────────────────┤                ├───────────────────────────┤
-│ Layer 2: Data Link        │ ──┐            │ Layer 1: Network Access / │
-│ Layer 1: Physical         │ ──┴──────────> │ Link (Ethernet, Wi-Fi)    │
-└───────────────────────────┘                └───────────────────────────┘
+            <!-- OSI vs TCP/IP Mapping Visual Card -->
+            <div class="visual-learning-card" style="margin-top: 1.5rem;">
+              <div class="visual-card-header">
+                <div class="visual-card-title">🔄 OSI 7-Layer vs TCP/IP 4-Layer Architectural Mapping</div>
+                <span class="visual-card-badge">Protocol Stacks</span>
+              </div>
+
+              <div class="table-responsive" style="margin: 1.5rem 0;">
+                <table class="notes-table" style="margin:0;">
+                  <thead>
+                    <tr>
+                      <th style="width:50%;">OSI Theoretical Model (7 Layers)</th>
+                      <th style="width:50%;">TCP/IP Practical Stack (4 Layers)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <span style="color:#F472B6; font-weight:700;">Layer 7: Application</span><br>
+                        <span style="color:#C084FC; font-weight:700;">Layer 6: Presentation</span><br>
+                        <span style="color:#818CF8; font-weight:700;">Layer 5: Session</span>
+                      </td>
+                      <td style="background:rgba(192, 132, 252, 0.08); vertical-align:middle;">
+                        <strong style="color:#C084FC; font-size:1rem;">Layer 4: Application Layer</strong><br>
+                        <span style="font-size:0.8rem; color:var(--text-secondary);">Protocols: HTTP, HTTPS, DNS, SSH, SMTP, FTP, WebSocket</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <span style="color:#60A5FA; font-weight:700;">Layer 4: Transport Layer</span>
+                      </td>
+                      <td style="background:rgba(96, 165, 250, 0.08); vertical-align:middle;">
+                        <strong style="color:#60A5FA; font-size:1rem;">Layer 3: Transport Layer</strong><br>
+                        <span style="font-size:0.8rem; color:var(--text-secondary);">Protocols: TCP (Reliable stream), UDP (Datagrams)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <span style="color:#34D399; font-weight:700;">Layer 3: Network Layer</span>
+                      </td>
+                      <td style="background:rgba(52, 211, 153, 0.08); vertical-align:middle;">
+                        <strong style="color:#34D399; font-size:1rem;">Layer 2: Internet Layer</strong><br>
+                        <span style="font-size:0.8rem; color:var(--text-secondary);">Protocols: IPv4, IPv6, ICMP (Ping), ARP, IPsec</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <span style="color:#FBBF24; font-weight:700;">Layer 2: Data Link Layer</span><br>
+                        <span style="color:#F87171; font-weight:700;">Layer 1: Physical Layer</span>
+                      </td>
+                      <td style="background:rgba(251, 191, 36, 0.08); vertical-align:middle;">
+                        <strong style="color:#FBBF24; font-size:1rem;">Layer 1: Network Access / Link Layer</strong><br>
+                        <span style="font-size:0.8rem; color:var(--text-secondary);">Standards: Ethernet (802.3), Wi-Fi (802.11), Fiber optics, DOCSIS</span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="visual-explainer-grid">
+                <div class="explainer-box happening">
+                  <div class="explainer-label">💡 What is happening?</div>
+                  <p>The OSI model is a 7-layer theoretical reference framework created by ISO. The actual Internet operates on DARPA's 4-layer TCP/IP suite, which consolidated OSI layers 5, 6, and 7 into the Application layer, and layers 1 and 2 into Network Access.</p>
+                </div>
+                <div class="explainer-box remember">
+                  <div class="explainer-label">🎯 Remember for Interviews</div>
+                  <p>OSI is an educational reference model; TCP/IP is the practical implementation governing real hardware. Transport and Network layers align 1-to-1 between both models, but TCP/IP lets applications handle sessions and presentation encoding internally.</p>
+                </div>
+                <div class="explainer-box analogy">
+                  <div class="explainer-label">🌍 Real-Life Example</div>
+                  <p>Architectural plan vs building execution: The 7-step blueprint details every sub-phase, but real construction teams combine framing, wiring, and insulation into consolidated milestone phases to ship faster.</p>
+                </div>
+              </div>
             </div>
 
             <div style="overflow-x: auto;">
@@ -1623,19 +1951,86 @@ Scenario: Host A (192.168.1.10) wants to send data to Host B (192.168.1.20).
               The <strong>Transmission Control Protocol (TCP)</strong> is a connection-oriented, reliable, byte-stream transport protocol. It guarantees in-order delivery, retransmits lost segments, detects duplicate data, and performs congestion and flow control.
             </p>
 
-            <div class="diagram-box">
-             CLIENT                                              SERVER
-                │                                                   │
-                │ ──── 1. SYN (Synchronize: Seq = x) ──────────────>│
-                │      "I want to connect! My start sequence is x"  │
-                │                                                   │
-                │ &lt;─── 2. SYN-ACK (Seq = y, Ack = x + 1) ───────────│
-                │      "Acknowledged x! My start sequence is y"     │
-                │                                                   │
-                │ ──── 3. ACK (Seq = x + 1, Ack = y + 1) ──────────>│
-                │      "Acknowledged y! Connection Established."    │
-                ▼                                                   ▼
-                       [ FULL-DUPLEX TCP SOCKET ESTABLISHED ]
+            <!-- Visual Learning Card: Animated TCP 3-Way Handshake -->
+            <div class="visual-learning-card" style="margin: 1.5rem 0;">
+              <div class="visual-card-header">
+                <span class="visual-card-title">🤝 TCP 3-Way Handshake Interactive Sequence</span>
+                <span class="visual-card-badge">Reliable Socket Establishment</span>
+              </div>
+
+              <div class="sequence-container" style="margin: 1.5rem 0;">
+                <div class="seq-parties">
+                  <div class="party-node client-node" style="padding: 0.6rem 1.25rem;">
+                    <div style="font-size: 1.25rem;">💻</div>
+                    <div style="font-weight: 700; color: #38bdf8;">Client (Browser)</div>
+                    <div style="font-size: 0.7rem; color: var(--text-muted);">Initiates Connection</div>
+                  </div>
+                  <div class="party-node server-node" style="padding: 0.6rem 1.25rem;">
+                    <div style="font-size: 1.25rem;">🖥️</div>
+                    <div style="font-weight: 700; color: #34d399;">Server (Port 443 / 80)</div>
+                    <div style="font-size: 0.7rem; color: var(--text-muted);">Listening Socket</div>
+                  </div>
+                </div>
+
+                <div class="seq-timeline" style="margin-top: 1.25rem; gap: 1.25rem;">
+                  <!-- Step 1: SYN -->
+                  <div class="seq-step" style="border-left: 3px solid #38bdf8; background: rgba(14, 165, 233, 0.06); padding: 0.75rem 1rem; border-radius: 8px;">
+                    <div class="seq-step-badge" style="background: #0284c7; color: #fff;">1</div>
+                    <div class="seq-arrow to-right" style="color: #38bdf8; font-weight: 700;">
+                      <span class="arrow-label">SYN [Seq = x] &bull; "Let's connect, my ISN is x"</span>
+                      <span class="arrow-line">──────────────────────────────►</span>
+                      <span class="packet-particle" style="background: #38bdf8; box-shadow: 0 0 10px #38bdf8;"></span>
+                    </div>
+                  </div>
+
+                  <!-- Step 2: SYN-ACK -->
+                  <div class="seq-step" style="border-left: 3px solid #34d399; background: rgba(16, 185, 129, 0.06); padding: 0.75rem 1rem; border-radius: 8px;">
+                    <div class="seq-step-badge" style="background: #059669; color: #fff;">2</div>
+                    <div class="seq-arrow to-left" style="color: #34d399; font-weight: 700;">
+                      <span class="arrow-line">◄──────────────────────────────</span>
+                      <span class="arrow-label">SYN-ACK [Seq = y, Ack = x + 1] &bull; "Acknowledged x! My ISN is y"</span>
+                      <span class="packet-particle" style="background: #34d399; box-shadow: 0 0 10px #34d399;"></span>
+                    </div>
+                  </div>
+
+                  <!-- Step 3: ACK -->
+                  <div class="seq-step" style="border-left: 3px solid #8b5cf6; background: rgba(139, 92, 246, 0.06); padding: 0.75rem 1rem; border-radius: 8px;">
+                    <div class="seq-step-badge" style="background: #7c3aed; color: #fff;">3</div>
+                    <div class="seq-arrow to-right" style="color: #a78bfa; font-weight: 700;">
+                      <span class="arrow-label">ACK [Seq = x + 1, Ack = y + 1] &bull; "Acknowledged y! Socket ESTABLISHED"</span>
+                      <span class="arrow-line">──────────────────────────────►</span>
+                      <span class="packet-particle" style="background: #a78bfa; box-shadow: 0 0 10px #a78bfa;"></span>
+                    </div>
+                  </div>
+
+                  <div style="text-align: center; padding: 0.5rem; background: rgba(16, 185, 129, 0.15); border: 1px solid #10b981; border-radius: 6px; color: #34d399; font-weight: 700; font-size: 0.85rem;">
+                    🎉 FULL-DUPLEX TCP SOCKET SYNCHRONIZED &amp; ESTABLISHED
+                  </div>
+                </div>
+              </div>
+
+              <div class="visual-explainer-grid">
+                <div class="explainer-box happening">
+                  <div class="explainer-label">💡 What is happening?</div>
+                  <div class="explainer-text">
+                    Before exchanging payload data, both endpoints agree on randomized Initial Sequence Numbers (ISNs) to prevent stale packet confusion. The client sends <strong>SYN</strong>, the server confirms with <strong>SYN-ACK</strong>, and the client seals the deal with <strong>ACK</strong>.
+                  </div>
+                </div>
+
+                <div class="explainer-box remember">
+                  <div class="explainer-label">🎯 Remember for Exams</div>
+                  <div class="explainer-text">
+                    Every ACK number is always <code>incoming Seq + 1</code>. In the <strong>SYN Flood DoS attack</strong>, an adversary spams millions of SYN packets with forged IP addresses and never sends Step 3 (ACK), exhausting the server's half-open connection memory table (backlog queue).
+                  </div>
+                </div>
+
+                <div class="explainer-box analogy">
+                  <div class="explainer-label">🌍 Real-Life Analogy</div>
+                  <div class="explainer-text">
+                    Like a walkie-talkie protocol: Alice: <em>"Bob, do you copy? (SYN)"</em> &bull; Bob: <em>"Copy that Alice, loud and clear! Can you hear me? (SYN-ACK)"</em> &bull; Alice: <em>"Hearing you clearly Bob, ready to speak! (ACK)"</em>.
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div class="concept-card">
@@ -1984,19 +2379,56 @@ STEP 6: Test DNS Resolution ────> 'nslookup google.com' (Validates DNS n
               A staple interview distinction that trips up junior candidates across technical assessment rounds.
             </p>
 
-            <div class="diagram-box">
-┌────────────────────────────────────────────────────────────────────────────────────────┐
-│                                 THE AAA FRAMEWORK                                      │
-├────────────────────────────────────────────────────────────────────────────────────────┤
-│ 1. AUTHENTICATION (AuthN): "Who are you?"                                              │
-│    -> Verifies identity claim via Password, Biometrics, Smartcard, or OTP.             │
-│                                                                                        │
-│ 2. AUTHORIZATION (AuthZ):  "What are you allowed to do?"                               │
-│    -> Evaluates permissions, Role-Based Access Control (RBAC), and policy scopes.      │
-│                                                                                        │
-│ 3. ACCOUNTING / AUDITING:  "What did you actually do and when?"                        │
-│    -> Logs session timestamps, IP addresses, queries executed, and file reads.        │
-└────────────────────────────────────────────────────────────────────────────────────────┘
+            <!-- AAA Framework Visual Card -->
+            <div class="visual-learning-card" style="margin-top: 1.5rem;">
+              <div class="visual-card-header">
+                <div class="visual-card-title">🛡️ The AAA Security Framework: AuthN, AuthZ &amp; Accounting</div>
+                <span class="visual-card-badge">Access Control</span>
+              </div>
+
+              <div class="visual-comparison-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
+                <div style="background:rgba(56, 189, 248, 0.05); border:1px solid rgba(56, 189, 248, 0.3); border-radius:10px; padding:1.2rem;">
+                  <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+                    <span style="font-size:1.3rem;">🔐</span>
+                    <span style="font-weight:700; color:#38BDF8; font-size:1rem;">1. Authentication (AuthN)</span>
+                  </div>
+                  <div style="font-size:0.85rem; color:#E2E8F0; font-weight:700; margin-bottom:6px;">"Who are you?"</div>
+                  <p style="font-size:0.8rem; color:var(--text-secondary); margin:0;">Validates claimed identity via something you know (Password), something you have (MFA Token, Smartcard), or something you are (Biometrics).</p>
+                </div>
+
+                <div style="background:rgba(167, 139, 250, 0.05); border:1px solid rgba(167, 139, 250, 0.3); border-radius:10px; padding:1.2rem;">
+                  <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+                    <span style="font-size:1.3rem;">📜</span>
+                    <span style="font-weight:700; color:#A78BFA; font-size:1rem;">2. Authorization (AuthZ)</span>
+                  </div>
+                  <div style="font-size:0.85rem; color:#E2E8F0; font-weight:700; margin-bottom:6px;">"What can you do?"</div>
+                  <p style="font-size:0.8rem; color:var(--text-secondary); margin:0;">Enforces least-privilege permission grants via Role-Based Access Control (RBAC), OAuth scopes, and access policies (e.g. read-only vs admin).</p>
+                </div>
+
+                <div style="background:rgba(52, 211, 153, 0.05); border:1px solid rgba(52, 211, 153, 0.3); border-radius:10px; padding:1.2rem;">
+                  <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+                    <span style="font-size:1.3rem;">📝</span>
+                    <span style="font-weight:700; color:#34D399; font-size:1rem;">3. Accounting &amp; Audit</span>
+                  </div>
+                  <div style="font-size:0.85rem; color:#E2E8F0; font-weight:700; margin-bottom:6px;">"What did you do &amp; when?"</div>
+                  <p style="font-size:0.8rem; color:var(--text-secondary); margin:0;">Maintains tamper-evident audit trails recording login timestamps, accessed IP addresses, database queries executed, and file modifications.</p>
+                </div>
+              </div>
+
+              <div class="visual-explainer-grid">
+                <div class="explainer-box happening">
+                  <div class="explainer-label">💡 What is happening?</div>
+                  <p>The AAA model is the core security standard (RADIUS, TACACS+, IAM) ensuring network entities prove their identity, receive only explicitly granted privileges, and leave immutable audit logs for compliance.</p>
+                </div>
+                <div class="explainer-box remember">
+                  <div class="explainer-label">🎯 Remember for Interviews</div>
+                  <p>AuthN verifies Identity; AuthZ verifies Permissions. HTTP 401 Unauthorized means AuthN failed (credentials missing/invalid); HTTP 403 Forbidden means AuthN succeeded but AuthZ failed (insufficient privileges).</p>
+                </div>
+                <div class="explainer-box analogy">
+                  <div class="explainer-label">🌍 Real-Life Example</div>
+                  <p>Commercial Flight: Showing passport to TSA is Authentication; boarding pass assigning Economy seat 18B is Authorization; gate manifest logging when you boarded is Accounting.</p>
+                </div>
+              </div>
             </div>
 
             <div class="trap-box">
@@ -2211,19 +2643,62 @@ Internet ───> [ 1. FIREWALL ] ───> [ 2. INLINE IPS ] ───> Prot
               Understanding how adversarial attacks exploit protocol oversights, unencrypted channels, and human psychology is essential for technical campus evaluations.
             </p>
 
-            <div class="diagram-box">
-┌────────────────────────────────────────────────────────────────────────────────────────┐
-│                        🚨 ENTERPRISE NETWORK THREAT TAXONOMY                           │
-├────────────────────────────────────────────────────────────────────────────────────────┤
-│ ├── 1. RECONNAISSANCE: Port scanning (Nmap), Ping sweeps, OS fingerprinting           │
-│ ├── 2. EAVESDROPPING: Packet sniffing (Wireshark), Man-In-The-Middle (MITM)           │
-│ ├── 3. IDENTITY SPOOFING: IP Spoofing, MAC Spoofing, DNS Poisoning, Email Spoofing    │
-│ ├── 4. RESOURCE DISRUPTION: SYN Floods, ICMP Smurf, Distributed DoS (Botnet DDoS)     │
-│ ├── 5. APPLICATION EXPLOITATION: SQL Injection (SQLi), Cross-Site Scripting (XSS)      │
-│ ├── 6. CREDENTIAL ATTACKS: Brute Force, Dictionary, Credential Stuffing, Password Spray│
-│ ├── 7. MALICIOUS CODE: Ransomware, Self-replicating Worms, Trojan Backdoors, Spyware   │
-│ └── 8. HUMAN DECEPTION: Phishing, Spear Phishing, Pretexting, Baiting                  │
-└────────────────────────────────────────────────────────────────────────────────────────┘
+            <!-- Enterprise Network Threat Taxonomy Visual Card -->
+            <div class="visual-learning-card" style="margin-top: 1.5rem;">
+              <div class="visual-card-header">
+                <div class="visual-card-title">🚨 Enterprise Network Threat Taxonomy &amp; Attack Vectors</div>
+                <span class="visual-card-badge">Threat Modeling</span>
+              </div>
+
+              <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:10px; margin:1.5rem 0;">
+                <div style="background:#0F172A; border-left:3px solid #38BDF8; padding:10px; border-radius:6px;">
+                  <strong style="color:#7DD3FC; font-size:0.85rem;">1. Reconnaissance</strong>
+                  <div style="font-size:0.8rem; color:var(--text-secondary);">Port scanning (Nmap), ping sweeps, OS fingerprinting, DNS zone transfers.</div>
+                </div>
+                <div style="background:#0F172A; border-left:3px solid #A78BFA; padding:10px; border-radius:6px;">
+                  <strong style="color:#C4B5FD; font-size:0.85rem;">2. Eavesdropping / MITM</strong>
+                  <div style="font-size:0.8rem; color:var(--text-secondary);">Packet sniffing (Wireshark), ARP cache poisoning, SSL/TLS stripping.</div>
+                </div>
+                <div style="background:#0F172A; border-left:3px solid #F59E0B; padding:10px; border-radius:6px;">
+                  <strong style="color:#FBBF24; font-size:0.85rem;">3. Identity Spoofing</strong>
+                  <div style="font-size:0.8rem; color:var(--text-secondary);">IP spoofing, MAC spoofing, DNS cache poisoning, DHCP starvation.</div>
+                </div>
+                <div style="background:#0F172A; border-left:3px solid #EF4444; padding:10px; border-radius:6px;">
+                  <strong style="color:#F87171; font-size:0.85rem;">4. Resource Disruption (DoS)</strong>
+                  <div style="font-size:0.8rem; color:var(--text-secondary);">SYN flood, UDP amplification, botnet DDoS, slowloris connection exhaust.</div>
+                </div>
+                <div style="background:#0F172A; border-left:3px solid #EC4899; padding:10px; border-radius:6px;">
+                  <strong style="color:#F472B6; font-size:0.85rem;">5. Application Exploits</strong>
+                  <div style="font-size:0.8rem; color:var(--text-secondary);">SQL Injection (SQLi), Cross-Site Scripting (XSS), SSRF, Buffer overflows.</div>
+                </div>
+                <div style="background:#0F172A; border-left:3px solid #10B981; padding:10px; border-radius:6px;">
+                  <strong style="color:#34D399; font-size:0.85rem;">6. Credential Attacks</strong>
+                  <div style="font-size:0.8rem; color:var(--text-secondary);">Brute-force dictionary, credential stuffing, password spraying attacks.</div>
+                </div>
+                <div style="background:#0F172A; border-left:3px solid #6366F1; padding:10px; border-radius:6px;">
+                  <strong style="color:#818CF8; font-size:0.85rem;">7. Malicious Code</strong>
+                  <div style="font-size:0.8rem; color:var(--text-secondary);">Ransomware encrypters, self-propagating worms, trojan remote access tools.</div>
+                </div>
+                <div style="background:#0F172A; border-left:3px solid #E11D48; padding:10px; border-radius:6px;">
+                  <strong style="color:#FB7185; font-size:0.85rem;">8. Social Engineering</strong>
+                  <div style="font-size:0.8rem; color:var(--text-secondary);">Spear phishing, executive BEC fraud, pretexting, watering hole attacks.</div>
+                </div>
+              </div>
+
+              <div class="visual-explainer-grid">
+                <div class="explainer-box happening">
+                  <div class="explainer-label">💡 What is happening?</div>
+                  <p>Cyber adversaries employ a multi-stage kill chain: reconnaissance to identify open ports, spoofing or exploits to bypass perimeters, followed by persistence, lateral network movement, and denial of service.</p>
+                </div>
+                <div class="explainer-box remember">
+                  <div class="explainer-label">🎯 Remember for Interviews</div>
+                  <p>Defense-in-depth requires layered controls matching each threat vector: IPS/IDS for reconnaissance, TLS for eavesdropping, WAF for injection, rate limiting for DoS, and MFA for credential stuffing.</p>
+                </div>
+                <div class="explainer-box analogy">
+                  <div class="explainer-label">🌍 Real-Life Example</div>
+                  <p>Bank Security: Reconnaissance is casing the bank branch; Spoofing is fake uniforms; DoS is blocking the front doors with a crowd; Exploitation is picking the vault combination.</p>
+                </div>
+              </div>
             </div>
           </section>
 
@@ -2423,38 +2898,59 @@ Internet ───> [ 1. FIREWALL ] ───> [ 2. INLINE IPS ] ───> Prot
               Legacy castle-and-moat security assumed that once a user crossed the perimeter firewall, everything on the internal network was safe. Modern enterprise cloud security operates on <strong>Zero Trust</strong>.
             </p>
 
-            <div class="diagram-box">
-[ DEMILITARIZED ZONE (DMZ) ENTERPRISE SEGMENTATION ]
-Public Internet
-      │
-      ▼
-┌──────────────┐
-│ EXTERNAL FW  │
-└──────────────┘
-      │
-      ├───────────────────┐
-      │                   ▼
-      │           ┌──────────────────────────────────────────────┐
-      │           │              🏢 DMZ SUB-NETWORK              │
-      │           │ Publicly Accessible Systems Only:            │
-      │           │ • Web Servers (Port 80/443)                  │
-      │           │ • Mail Relay (Port 25)                       │
-      │           │ • Public DNS Server                          │
-      │           └──────────────────────────────────────────────┘
-      │                   │
-      ▼                   ▼
-┌──────────────┐    (Filtered DB Queries Only)
-│ INTERNAL FW  │ &lt;────────┘
-└──────────────┘
-      │
-      ▼
-┌────────────────────────────────────────────────────────┐
-│               🔒 PRIVATE INTERNAL NETWORK              │
-│ Highly Sensitive Isolated Assets:                      │
-│ • Production Database Cluster (Port 5432 / 3306)       │
-│ • Active Directory Domain Controllers                  │
-│ • Employee Workstations &amp; Internal HR Systems          │
-└────────────────────────────────────────────────────────┘
+            <!-- DMZ Dual-Firewall Visual Card -->
+            <div class="visual-learning-card" style="margin-top: 1.5rem;">
+              <div class="visual-card-header">
+                <div class="visual-card-title">🏰 DMZ (Demilitarized Zone) Dual-Firewall Architecture</div>
+                <span class="visual-card-badge">Perimeter Isolation</span>
+              </div>
+
+              <div class="pipeline-flow" style="margin: 1.5rem 0; flex-wrap:wrap;">
+                <div class="pipeline-node" style="border-left:3px solid #EF4444;">
+                  <span class="pipeline-node-num">1</span>
+                  <span class="pipeline-node-title">🌍 Public Internet</span>
+                  <span class="pipeline-node-sub">Untrusted Web Traffic</span>
+                </div>
+                <div class="pipeline-connector"><span class="connector-particle"></span></div>
+                <div class="pipeline-node" style="border-left:3px solid #F59E0B;">
+                  <span class="pipeline-node-num">2</span>
+                  <span class="pipeline-node-title">🛡️ External Firewall</span>
+                  <span class="pipeline-node-sub">Filters Inbound Ports<br>Allows 80, 443, 25 Only</span>
+                </div>
+                <div class="pipeline-connector"><span class="connector-particle"></span></div>
+                <div class="pipeline-node" style="border-left:3px solid #38BDF8; flex:1.5; min-width:240px;">
+                  <span class="pipeline-node-num">3</span>
+                  <span class="pipeline-node-title">🏢 DMZ Sub-Network</span>
+                  <span class="pipeline-node-sub">Public Servers Buffer:<br>&bull; Reverse Proxy / Nginx<br>&bull; Mail Relay &bull; Public DNS</span>
+                </div>
+                <div class="pipeline-connector"><span class="connector-particle"></span></div>
+                <div class="pipeline-node" style="border-left:3px solid #8B5CF6;">
+                  <span class="pipeline-node-num">4</span>
+                  <span class="pipeline-node-title">🛡️ Internal Firewall</span>
+                  <span class="pipeline-node-sub">Strict Port Isolation<br>Blocks All Except Whitelist DB</span>
+                </div>
+                <div class="pipeline-connector"><span class="connector-particle"></span></div>
+                <div class="pipeline-node" style="border-left:3px solid #10B981;">
+                  <span class="pipeline-node-num">5</span>
+                  <span class="pipeline-node-title">🔒 Private Intranet</span>
+                  <span class="pipeline-node-sub">Backend Databases<br>Active Directory &amp; HR</span>
+                </div>
+              </div>
+
+              <div class="visual-explainer-grid">
+                <div class="explainer-box happening">
+                  <div class="explainer-label">💡 What is happening?</div>
+                  <p>A DMZ (Demilitarized Zone) isolates internet-facing servers from the internal corporate network using dual firewalls. Even if an attacker gains root access to a DMZ web server via a zero-day exploit, the internal firewall blocks them from accessing backend customer databases and intranet resources.</p>
+                </div>
+                <div class="explainer-box remember">
+                  <div class="explainer-label">🎯 Remember for Interviews</div>
+                  <p>In high-security architecture, the external and internal firewalls are from different vendors (heterogeneous firewalling) so that a firmware vulnerability affecting one does not compromise the other.</p>
+                </div>
+                <div class="explainer-box analogy">
+                  <div class="explainer-label">🌍 Real-Life Example</div>
+                  <p>Embassy Security: Visitors enter the consular visa waiting room (DMZ) through the outer security gate (External Firewall), but are strictly barred from entering the diplomatic classified chambers (Private Intranet) guarded by armed inner guards (Internal Firewall).</p>
+                </div>
+              </div>
             </div>
 
             <div class="concept-card">
@@ -2553,18 +3049,87 @@ Public Internet
               This is the single most celebrated end-to-end technical interview question. It unifies every layer, device, and protocol into one seamless journey:
             </p>
 
-            <div class="diagram-box">
-[ THE COMPLETE 10-STEP WEB PACKET JOURNEY ]
-STEP 01: URL Parsing &amp; HSTS Check ──> Browser validates protocol (HTTPS), domain, and path.
-STEP 02: DNS Resolution ────────────> Browser Cache -> OS Cache -> Recursive Resolver -> A Record IP.
-STEP 03: Local ARP Lookup ──────────> Finds Default Gateway Router's MAC address on local LAN.
-STEP 04: TCP 3-Way Handshake ───────> Client SYN ➔ Server SYN-ACK ➔ Client ACK (Port 443).
-STEP 05: TLS Cryptographic Handshake> Negotiates cipher suite, verifies X.509 cert, exchanges session key.
-STEP 06: HTTP Request Transmission ─> Client encrypts 'GET / HTTP/1.1' and sends through TCP socket.
-STEP 07: Global Router Traversal ───> Packets hop intermediate ISP routers via BGP/OSPF; TTL decrements.
-STEP 08: Server &amp; Reverse Proxy ────> Load balancer terminates TLS, forwards request to backend app.
-STEP 09: HTTP Response &amp; Stream ────> Server generates HTML, returns '200 OK', and streams bytes back.
-STEP 10: Browser DOM &amp; Render Tree ─> Browser parses HTML ➔ DOM, CSS ➔ CSSOM ➔ Render Tree ➔ Paint!
+            <!-- Visual Learning Card: Animated Web Packet Journey -->
+            <div class="visual-learning-card" style="margin: 1.5rem 0;">
+              <div class="visual-card-header">
+                <span class="visual-card-title">🌐 The End-to-End Web Packet Journey ("Typing a URL")</span>
+                <span class="visual-card-badge">Browser &rarr; DNS &rarr; TLS &rarr; Server &rarr; DOM Paint</span>
+              </div>
+
+              <div class="pipeline-flow" style="margin: 1.25rem 0; overflow-x: auto; padding-bottom: 0.5rem;">
+                <div class="pipeline-node" style="border-left: 3px solid #38bdf8;">
+                  <div class="node-icon">👤</div>
+                  <div class="node-label">1. User &amp; Browser</div>
+                  <div class="node-subtext">URL Parse &amp; HSTS cache check</div>
+                </div>
+
+                <div class="pipeline-connector">
+                  <span class="connector-arrow">&rarr;</span>
+                  <span class="connector-particle"></span>
+                </div>
+
+                <div class="pipeline-node" style="border-left: 3px solid #f59e0b;">
+                  <div class="node-icon">🔍</div>
+                  <div class="node-label">2. DNS Resolver</div>
+                  <div class="node-subtext">Recursive query &rarr; IP Address</div>
+                </div>
+
+                <div class="pipeline-connector">
+                  <span class="connector-arrow">&rarr;</span>
+                  <span class="connector-particle"></span>
+                </div>
+
+                <div class="pipeline-node" style="border-left: 3px solid #10b981;">
+                  <div class="node-icon">🤝</div>
+                  <div class="node-label">3. TCP &amp; TLS 1.3</div>
+                  <div class="node-subtext">3-Way SYN/ACK &bull; Cipher Key Exchange</div>
+                </div>
+
+                <div class="pipeline-connector">
+                  <span class="connector-arrow">&rarr;</span>
+                  <span class="connector-particle"></span>
+                </div>
+
+                <div class="pipeline-node" style="border-left: 3px solid #8b5cf6;">
+                  <div class="node-icon">🖥️</div>
+                  <div class="node-label">4. Web Server</div>
+                  <div class="node-subtext">Reverse Proxy &bull; 200 OK HTML Stream</div>
+                </div>
+
+                <div class="pipeline-connector">
+                  <span class="connector-arrow">&rarr;</span>
+                  <span class="connector-particle"></span>
+                </div>
+
+                <div class="pipeline-node" style="border-left: 3px solid #f43f5e;">
+                  <div class="node-icon">🎨</div>
+                  <div class="node-label">5. DOM Render</div>
+                  <div class="node-subtext">DOM &plus; CSSOM &rarr; Render Tree &rarr; Paint</div>
+                </div>
+              </div>
+
+              <div class="visual-explainer-grid">
+                <div class="explainer-box happening">
+                  <div class="explainer-label">💡 What is happening?</div>
+                  <div class="explainer-text">
+                    When you type <code>https://example.com</code>, your browser checks its local cache and queries DNS to find the server's IP address. It performs ARP to reach the default gateway, opens a reliable TCP connection via a 3-way handshake, establishes a TLS encryption tunnel, sends an encrypted <code>GET /</code> request, and streams back HTML/CSS to render pixels onto your screen.
+                  </div>
+                </div>
+
+                <div class="explainer-box remember">
+                  <div class="explainer-label">🎯 Remember for Exams</div>
+                  <div class="explainer-text">
+                    Interviews test the exact sequence: <strong>DNS</strong> (UDP 53) &rarr; <strong>ARP</strong> (finds Gateway MAC) &rarr; <strong>TCP Handshake</strong> (SYN, SYN-ACK, ACK on Port 443) &rarr; <strong>TLS Handshake</strong> (ClientHello, ServerHello) &rarr; <strong>Encrypted HTTP GET</strong> &rarr; <strong>Browser Paint</strong>.
+                  </div>
+                </div>
+
+                <div class="explainer-box analogy">
+                  <div class="explainer-label">🌍 Real-Life Analogy</div>
+                  <div class="explainer-text">
+                    Like calling a restaurant for takeout: You look up the phone number in the contacts directory (DNS), dial the area code and establish a ringing line (TCP), verify the manager's restaurant credentials (TLS), order your meal (HTTP GET), and eat the delivered dish (DOM Paint).
+                  </div>
+                </div>
+              </div>
             </div>
           </section>
 

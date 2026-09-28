@@ -244,42 +244,95 @@
     Mastering version control requires understanding how data moves across the four physical and logical spaces of Git: the <strong>Working Directory</strong>, the <strong>Staging Area (Index)</strong>, the <strong>Local Repository (.git)</strong>, and the <strong>Remote Repository (GitHub)</strong>.
   </p>
 
-  <div class="diagram-card">
-    <div class="diagram-title">🗺️ Master Git Architecture & Command Pipeline Map</div>
-    <div style="background: #06090E; border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 1.5rem; font-family: var(--font-mono); font-size: 0.85rem; color: #94A3B8; line-height: 1.6; overflow-x: auto;">
-      <pre style="margin: 0; color: #E2E8F0;">
-                                  LOCAL COMPUTER                                              REMOTE HOST (GITHUB)
- ┌─────────────────────────┬─────────────────────────┬─────────────────────────┐         ┌─────────────────────────┐
- │    WORKING DIRECTORY    │   STAGING AREA (INDEX)  │    LOCAL REPOSITORY     │         │    REMOTE REPOSITORY    │
- │ (Your real files on disk│  (Prepared change snapshot) (Committed .git database) │         │ (GitHub / GitLab / Bit) │
- └───────────┬─────────────┴────────────┬────────────┴────────────┬────────────┘         └────────────┬────────────┘
-             │                          │                         │                                   │
-             │─────── git add file ────&gt;│                         │                                   │
-             │   (Stage modified files) │                         │                                   │
-             │                          │                         │                                   │
-             │&lt;── git restore --staged ─│                         │                                   │
-             │      (Unstage files)     │                         │                                   │
-             │                          │                         │                                   │
-             │                          │──── git commit -m ─────&gt;│                                   │
-             │                          │ (Create immutable snap) │                                   │
-             │                          │                         │                                   │
-             │&lt;───────────── git restore file ────────────────────│                                   │
-             │        (Discard local uncommitted edits)           │                                   │
-             │                                                    │                                   │
-             │&lt;────────────────── git reset --hard ───────────────│                                   │
-             │             (Reset HEAD, Index & Working Tree)     │                                   │
-             │                                                    │                                   │
-             │                                                    │──────────── git push ────────────&gt;│
-             │                                                    │    (Upload local commits)         │
-             │                                                    │                                   │
-             │                                                    │&lt;─────────── git fetch ────────────│
-             │                                                    │  (Download refs without merging)  │
-             │                                                    │                                   │
-             │&lt;───────────────────────────── git pull ────────────────────────────────────────────────│
-             │                           (Fetch remote + Merge into active branch)                    │
-             │                                                                                        │
-             │&lt;───────────────────────────── git clone ───────────────────────────────────────────────│
-             │                          (Full download of entire repository history)                  │</pre>
+  <div class="visual-learning-card">
+    <div class="visual-header">
+      <div class="visual-title-group">
+        <span class="visual-icon">⚡</span>
+        <h3 class="visual-title">Interactive 4-Zone Git Lifecycle &amp; Command Pipeline</h3>
+      </div>
+      <div class="visual-controls">
+        <span class="visual-badge">🔄 Live Data Flow</span>
+      </div>
+    </div>
+
+    <div class="visual-canvas">
+      <div class="pipeline-flow">
+        <!-- Zone 1: Working Directory -->
+        <div class="pipeline-node" onclick="showGitInfo('wd')">
+          <span class="node-step-badge">Zone 01</span>
+          <div class="node-title">📁 Working Directory</div>
+          <div class="node-desc">Actual project files on your hard disk (Untracked / Modified)</div>
+        </div>
+
+        <!-- Connector 1: git add -->
+        <div class="pipeline-connector">
+          <div class="connector-line">
+            <div class="connector-particle"></div>
+          </div>
+          <span class="connector-label">git add</span>
+        </div>
+
+        <!-- Zone 2: Staging Area -->
+        <div class="pipeline-node" onclick="showGitInfo('staging')">
+          <span class="node-step-badge">Zone 02</span>
+          <div class="node-title">📦 Staging Area (Index)</div>
+          <div class="node-desc">Binary snapshot preparing files ready for the next commit</div>
+        </div>
+
+        <!-- Connector 2: git commit -->
+        <div class="pipeline-connector">
+          <div class="connector-line">
+            <div class="connector-particle" style="animation-delay:0.5s;"></div>
+          </div>
+          <span class="connector-label">git commit</span>
+        </div>
+
+        <!-- Zone 3: Local Repo -->
+        <div class="pipeline-node" onclick="showGitInfo('local')">
+          <span class="node-step-badge">Zone 03</span>
+          <div class="node-title">💾 Local Repository</div>
+          <div class="node-desc">Immutable commit history stored securely in your local .git folder</div>
+        </div>
+
+        <!-- Connector 3: git push -->
+        <div class="pipeline-connector">
+          <div class="connector-line">
+            <div class="connector-particle" style="animation-delay:1s;"></div>
+          </div>
+          <span class="connector-label">git push</span>
+        </div>
+
+        <!-- Zone 4: Remote Repo -->
+        <div class="pipeline-node" onclick="showGitInfo('remote')">
+          <span class="node-step-badge">Zone 04</span>
+          <div class="node-title">☁️ Remote (GitHub)</div>
+          <div class="node-desc">Centralized repository for collaborative team synchronization</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pedagogical 3-Part Explainer -->
+    <div class="visual-explainer-grid">
+      <div class="explainer-box happening">
+        <span class="explainer-label">💡 What is Happening?</span>
+        <p class="explainer-content">
+          Git does not snapshot modified files directly to history. Instead, edits first live in your <strong>Working Directory</strong>, move to the intermediate <strong>Staging Area</strong> via <code>git add</code>, become an immutable commit in your <strong>Local Repository</strong> via <code>git commit</code>, and sync upstream to <strong>GitHub</strong> via <code>git push</code>.
+        </p>
+      </div>
+
+      <div class="explainer-box remember">
+        <span class="explainer-label">🎯 Placement Takeaway</span>
+        <p class="explainer-content">
+          <strong>Exam Trap:</strong> <code>git commit</code> NEVER touches GitHub! It only updates your local repository. <code>git status</code> checks Working Dir vs Staging Area, while <code>git fetch</code> downloads commits without merging, unlike <code>git pull</code> which runs fetch + merge.
+        </p>
+      </div>
+
+      <div class="explainer-box analogy">
+        <span class="explainer-label">🌍 Real-Life Analogy</span>
+        <p class="explainer-content">
+          Think of online shopping: your Working Directory is browsing items in a store; Staging Area is placing selected items into your cart; Local Repository is checking out and paying for the order; and Remote Repository is sharing the order confirmation with your team.
+        </p>
+      </div>
     </div>
   </div>
 </section>
@@ -498,22 +551,46 @@ git config --list --show-origin</code></pre>
     <div class="topic-card-body">
       <p class="notes-paragraph">Running <code>git init</code> turns a plain operating system folder into a tracked Git repository by creating a hidden subfolder called <code>.git</code>.</p>
 
-      <div class="diagram-title">🔍 The Anatomy of the .git Directory</div>
-      <div class="notes-diagram-box" style="background:#0B0F17; border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; font-family: monospace; font-size: 0.85rem; color:#60A5FA;">
-        my-project/<br>
-        ├── src/<br>
-        │   ├── index.js<br>
-        │   └── style.css<br>
-        ├── package.json<br>
-        └── .git/                     &lt;--- THE ACTUAL GIT DATABASE<br>
-            ├── HEAD                  &lt;--- Points to active branch (e.g. "ref: refs/heads/main")<br>
-            ├── config                &lt;--- Repo-specific configurations and remote URLs<br>
-            ├── description           &lt;--- Used by GitWeb<br>
-            ├── hooks/                &lt;--- Client-side / server-side scripts executed on actions<br>
-            ├── info/exclude          &lt;--- Local ignore rules not shared with team<br>
-            ├── index                 &lt;--- Binary file holding the STAGING AREA state<br>
-            ├── objects/              &lt;--- Object store: Blobs (files), Trees (dirs), Commits<br>
-            └── refs/                 &lt;--- Pointers to commit hashes (heads/branches, tags, remotes)
+      <!-- .git Anatomy Visual Card -->
+      <div class="visual-learning-card" style="margin-top: 1.5rem;">
+        <div class="visual-card-header">
+          <div class="visual-card-title">🔍 Anatomy of the Internal .git Database</div>
+          <span class="visual-card-badge">Internals</span>
+        </div>
+
+        <div class="visual-comparison-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; margin: 1.5rem 0;">
+          <div style="background:#0F172A; border-left:3px solid #38BDF8; padding:10px; border-radius:6px;">
+            <strong style="color:#7DD3FC; font-size:0.85rem;">HEAD</strong>
+            <p style="font-size:0.8rem; color:var(--text-secondary); margin:4px 0 0 0;">Points to the currently active branch pointer (e.g. <code>ref: refs/heads/main</code>).</p>
+          </div>
+          <div style="background:#0F172A; border-left:3px solid #A78BFA; padding:10px; border-radius:6px;">
+            <strong style="color:#C4B5FD; font-size:0.85rem;">index</strong>
+            <p style="font-size:0.8rem; color:var(--text-secondary); margin:4px 0 0 0;">Binary file storing the STAGING AREA state (file SHA-1 hashes and file mode flags).</p>
+          </div>
+          <div style="background:#0F172A; border-left:3px solid #34D399; padding:10px; border-radius:6px;">
+            <strong style="color:#6EE7B7; font-size:0.85rem;">objects/</strong>
+            <p style="font-size:0.8rem; color:var(--text-secondary); margin:4px 0 0 0;">Content-addressable store holding 4 Git primitives: Blobs (files), Trees (dirs), Commits, and Tags.</p>
+          </div>
+          <div style="background:#0F172A; border-left:3px solid #F59E0B; padding:10px; border-radius:6px;">
+            <strong style="color:#FBBF24; font-size:0.85rem;">refs/</strong>
+            <p style="font-size:0.8rem; color:var(--text-secondary); margin:4px 0 0 0;">Pointers to commit hashes for local branches (heads), tags, and remote tracking branches.</p>
+          </div>
+        </div>
+
+        <div class="visual-explainer-grid">
+          <div class="explainer-box happening">
+            <div class="explainer-label">💡 What is happening?</div>
+            <p>The hidden .git directory IS your entire Git repository. Your root workspace is merely a temporary checkout projection of the commit history stored inside .git/objects and .git/refs.</p>
+          </div>
+          <div class="explainer-box remember">
+            <div class="explainer-label">🎯 Remember for Interviews</div>
+            <p>Deleting the .git folder does NOT delete your code files, but it instantly destroys all version history, commit logs, branches, and remote links, turning your directory into an untracked folder.</p>
+          </div>
+          <div class="explainer-box analogy">
+            <div class="explainer-label">🌍 Real-Life Example</div>
+            <p>A camera with an SD card: The visible photo album on your laptop screen is the working directory; the SD card hardware holding all RAW files and timestamps is the .git folder.</p>
+          </div>
+        </div>
       </div>
 
       <div class="placement-trap-card" style="margin-top: 1.25rem;">
@@ -548,13 +625,53 @@ git config --list --show-origin</code></pre>
     <div class="topic-card-body">
       <p class="notes-paragraph">Every file inside your project directory exists in one of four distinct states within Git's lifecycle tracking engine:</p>
 
-      <div class="diagram-title">🔄 The 4 States of a File in Git</div>
-      <div class="notes-diagram-box" style="background:#0B0F17; border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; font-family: monospace; font-size: 0.85rem; color:#A7F3D0;">
-        [ UNTRACKED ] ── git add ──&gt; [ STAGED ] ── git commit ──&gt; [ COMMITTED / UNMODIFIED ]<br>
-                                        ▲                                    │<br>
-                                        │                               Edit file on disk<br>
-                                        │                                    ▼<br>
-                                        └────────── git add ────────── [ MODIFIED ]
+      <!-- 4 States of File Visual Card -->
+      <div class="visual-learning-card" style="margin-top: 1.5rem;">
+        <div class="visual-card-header">
+          <div class="visual-card-title">🔄 The 4 States of a File in the Git Lifecycle</div>
+          <span class="visual-card-badge">File Lifecycle</span>
+        </div>
+
+        <div class="pipeline-flow" style="margin: 1.5rem 0; flex-wrap:wrap;">
+          <div class="pipeline-node" style="border-left:3px solid #EF4444;">
+            <span class="pipeline-node-num">1</span>
+            <span class="pipeline-node-title">⚪ UNTRACKED</span>
+            <span class="pipeline-node-sub">New file created on disk.<br>Git has no record.</span>
+          </div>
+          <div class="pipeline-connector"><span class="connector-particle"></span></div>
+          <div class="pipeline-node" style="border-left:3px solid #38BDF8;">
+            <span class="pipeline-node-num">2</span>
+            <span class="pipeline-node-title">🟢 STAGED</span>
+            <span class="pipeline-node-sub"><code>git add</code> snapshot<br>Ready for commit.</span>
+          </div>
+          <div class="pipeline-connector"><span class="connector-particle"></span></div>
+          <div class="pipeline-node" style="border-left:3px solid #10B981;">
+            <span class="pipeline-node-num">3</span>
+            <span class="pipeline-node-title">🔵 COMMITTED</span>
+            <span class="pipeline-node-sub"><code>git commit</code> stored<br>Immutable in .git DB.</span>
+          </div>
+          <div class="pipeline-connector"><span class="connector-particle"></span></div>
+          <div class="pipeline-node" style="border-left:3px solid #F59E0B;">
+            <span class="pipeline-node-num">4</span>
+            <span class="pipeline-node-title">🟡 MODIFIED</span>
+            <span class="pipeline-node-sub">File edited on disk.<br>Differs from last commit.</span>
+          </div>
+        </div>
+
+        <div class="visual-explainer-grid">
+          <div class="explainer-box happening">
+            <div class="explainer-label">💡 What is happening?</div>
+            <p>Every file transitions between four deterministic states: newly created files begin Untracked, 'git add' stages the file snapshot into the index, 'git commit' stores the snapshot permanently, and subsequent edits flag the file as Modified.</p>
+          </div>
+          <div class="explainer-box remember">
+            <div class="explainer-label">🎯 Remember for Interviews</div>
+            <p>A file can be STAGED and MODIFIED at the exact same moment! If you stage a file with 'git add', then edit it again before committing, Git holds the earlier staged snapshot for the commit while leaving your recent disk edits as modified in the working tree.</p>
+          </div>
+          <div class="explainer-box analogy">
+            <div class="explainer-label">🌍 Real-Life Example</div>
+            <p>Cargo Shipping: Writing a letter is Untracked; placing it into a shipping box and taping the label is Staged; loading the box into the shipping container is Committed; reopening the box to add a brochure is Modified.</p>
+          </div>
+        </div>
       </div>
 
       <div class="table-responsive" style="margin-top: 1.5rem;">
@@ -3048,34 +3165,63 @@ git switch -c rescued-branch e9f8d7c</code></pre>
     </table>
   </div>
 
-  <h3 style="color:var(--brand-emerald); margin-top:2.5rem;">Interactive Master Knowledge Map</h3>
-  <div class="diagram-card">
-    <div class="diagram-title">🗺️ Click Any Topic to Jump Directly to its Section</div>
-    <div style="background:#06090E; border:1px solid var(--border-color); border-radius:8px; padding:1.5rem; font-family:var(--font-mono); font-size:0.85rem; line-height:1.7;">
-      <a href="#sec-02" style="color:#C084FC; text-decoration:none; font-weight:700;">Git & Version Control Systems</a><br>
-      │<br>
-      ├── <a href="#sec-05" style="color:#60A5FA; text-decoration:none;">Architecture & Storage</a><br>
-      │   ├── <a href="#sec-06" style="color:#38BDF8; text-decoration:none;">Working Directory</a> &rarr; <a href="#sec-07" style="color:#93C5FD; text-decoration:none;">[Staging Area / Index]</a><br>
-      │   ├── <a href="#sec-08" style="color:#38BDF8; text-decoration:none;">Commits & Hashes</a> &rarr; <a href="#sec-09" style="color:#93C5FD; text-decoration:none;">[HEAD Pointer]</a><br>
-      │   └── <a href="#sec-25" style="color:#38BDF8; text-decoration:none;">.gitignore Rules</a><br>
-      │<br>
-      ├── <a href="#sec-10" style="color:#34D399; text-decoration:none; font-weight:700;">Branching & Merging</a><br>
-      │   ├── <a href="#sec-10" style="color:#A7F3D0; text-decoration:none;">Branch Creation & Switch</a><br>
-      │   ├── <a href="#sec-11" style="color:#A7F3D0; text-decoration:none;">Fast-Forward vs 3-Way Merge</a><br>
-      │   ├── <a href="#sec-12" style="color:#A7F3D0; text-decoration:none;">Conflict Resolution</a><br>
-      │   └── <a href="#sec-23" style="color:#A7F3D0; text-decoration:none;">Rebase vs Merge</a><br>
-      │<br>
-      ├── <a href="#sec-13" style="color:#FDE047; text-decoration:none; font-weight:700;">Remote Collaboration</a><br>
-      │   ├── <a href="#sec-14" style="color:#FEF08A; text-decoration:none;">Clone & Origin</a><br>
-      │   ├── <a href="#sec-15" style="color:#FEF08A; text-decoration:none;">Push & Upstream (-u)</a><br>
-      │   └── <a href="#sec-17" style="color:#FEF08A; text-decoration:none;">Fetch vs Pull</a><br>
-      │<br>
-      └── <a href="#sec-26" style="color:#FB7185; text-decoration:none; font-weight:700;">GitHub & CI/CD</a><br>
-          ├── <a href="#sec-27" style="color:#FDA4AF; text-decoration:none;">Pull Requests & Code Reviews</a><br>
-          ├── <a href="#sec-28" style="color:#FDA4AF; text-decoration:none;">Forking Open-Source</a><br>
-          ├── <a href="#sec-29" style="color:#FDA4AF; text-decoration:none;">GitHub Actions Workflows</a><br>
-          ├── <a href="#sec-31" style="color:#FDA4AF; text-decoration:none;">Emergency Troubleshooting</a><br>
-          └── <a href="#sec-33" style="color:#FDA4AF; text-decoration:none;">Reflog & History Recovery</a>
+  <div class="visual-learning-card" style="margin-top:2rem;">
+    <div class="visual-header">
+      <div class="visual-title-group">
+        <span class="visual-icon">🗺️</span>
+        <h4 class="visual-title">Interactive Master Git Knowledge Map</h4>
+      </div>
+      <span class="visual-badge">Explore Core Modules</span>
+    </div>
+
+    <div class="visual-comparison-grid">
+      <!-- Cluster 1: Architecture -->
+      <div class="comparison-card">
+        <div class="comparison-card-title" style="color:#60a5fa;">📁 Storage &amp; Architecture</div>
+        <ul class="comparison-card-list">
+          <li>🔹 <a href="#sec-06" style="color:var(--text-main); text-decoration:none;">Working Directory (Disk Files)</a></li>
+          <li>🔹 <a href="#sec-07" style="color:var(--text-main); text-decoration:none;">Staging Area (Index Snapshot)</a></li>
+          <li>🔹 <a href="#sec-08" style="color:var(--text-main); text-decoration:none;">Commits &amp; SHA-1 Hashes</a></li>
+          <li>🔹 <a href="#sec-09" style="color:var(--text-main); text-decoration:none;">HEAD Pointer &amp; Detached HEAD</a></li>
+          <li>🔹 <a href="#sec-25" style="color:var(--text-main); text-decoration:none;">.gitignore Hierarchy &amp; Rules</a></li>
+        </ul>
+      </div>
+
+      <!-- Cluster 2: Branching -->
+      <div class="comparison-card">
+        <div class="comparison-card-title" style="color:#34d399;">🔀 Branching &amp; Merging</div>
+        <ul class="comparison-card-list">
+          <li>🔹 <a href="#sec-10" style="color:var(--text-main); text-decoration:none;">Branch Creation &amp; Switch</a></li>
+          <li>🔹 <a href="#sec-11" style="color:var(--text-main); text-decoration:none;">Fast-Forward vs 3-Way Merge</a></li>
+          <li>🔹 <a href="#sec-12" style="color:var(--text-main); text-decoration:none;">Conflict Resolution Workflow</a></li>
+          <li>🔹 <a href="#sec-23" style="color:var(--text-main); text-decoration:none;">Rebase vs Merge Comparison</a></li>
+          <li>🔹 <a href="#sec-19" style="color:var(--text-main); text-decoration:none;">git stash &amp; Temporary Work</a></li>
+        </ul>
+      </div>
+
+      <!-- Cluster 3: Remote -->
+      <div class="comparison-card">
+        <div class="comparison-card-title" style="color:#fde047;">🌐 Remote &amp; Team Collaboration</div>
+        <ul class="comparison-card-list">
+          <li>🔹 <a href="#sec-14" style="color:var(--text-main); text-decoration:none;">Clone &amp; Remote Origin</a></li>
+          <li>🔹 <a href="#sec-15" style="color:var(--text-main); text-decoration:none;">Push &amp; Upstream Tracking (-u)</a></li>
+          <li>🔹 <a href="#sec-17" style="color:var(--text-main); text-decoration:none;">Fetch vs Pull Differences</a></li>
+          <li>🔹 <a href="#sec-27" style="color:var(--text-main); text-decoration:none;">Pull Requests &amp; Code Review</a></li>
+          <li>🔹 <a href="#sec-28" style="color:var(--text-main); text-decoration:none;">Forking Open-Source Repos</a></li>
+        </ul>
+      </div>
+
+      <!-- Cluster 4: Emergency & CI/CD -->
+      <div class="comparison-card">
+        <div class="comparison-card-title" style="color:#fb7185;">🛡️ CI/CD &amp; Recovery</div>
+        <ul class="comparison-card-list">
+          <li>🔹 <a href="#sec-20" style="color:var(--text-main); text-decoration:none;">git reset vs git revert</a></li>
+          <li>🔹 <a href="#sec-33" style="color:var(--text-main); text-decoration:none;">git reflog (Lost Commit Recovery)</a></li>
+          <li>🔹 <a href="#sec-29" style="color:var(--text-main); text-decoration:none;">GitHub Actions &amp; CI Workflows</a></li>
+          <li>🔹 <a href="#sec-31" style="color:var(--text-main); text-decoration:none;">Emergency Traps &amp; Fixes</a></li>
+          <li>🔹 <a href="#sec-34" style="color:var(--text-main); text-decoration:none;">Exam MCQs Practice</a></li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
