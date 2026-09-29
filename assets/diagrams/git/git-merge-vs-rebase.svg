@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 450" width="100%" height="100%" style="background: linear-gradient(135deg, #090D16 0%, #111827 100%); border-radius: 12px; font-family: 'Inter', system-ui, -apple-system, sans-serif;">
+  <defs>
+    <linearGradient id="grad-card" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="rgba(30, 41, 59, 0.85)"/>
+      <stop offset="100%" stop-color="rgba(15, 23, 42, 0.95)"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.4"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#38BDF8"/>
+    </marker>
+    <marker id="arrow-emerald" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#10B981"/>
+    </marker>
+  </defs>
+
+  <title>Git Merge vs Rebase Strategy</title>
+  <text x="420" y="36" text-anchor="middle" fill="#F8FAFC" font-size="20" font-weight="800">Branch Integration: Git Merge vs Git Rebase</text>
+  <text x="420" y="56" text-anchor="middle" fill="#94A3B8" font-size="12">Preserving complete branching history vs creating a clean linear commit graph</text>
+
+  <!-- Left: Git Merge -->
+  <g transform="translate(40, 85)">
+    <rect x="0" y="0" width="360" height="320" rx="10" fill="url(#grad-card)" stroke="#38BDF8" stroke-width="1.5" filter="url(#shadow)"/>
+    <rect x="0" y="0" width="360" height="42" rx="10" fill="#1E293B"/>
+    <text x="180" y="26" text-anchor="middle" fill="#38BDF8" font-size="14" font-weight="800">🔀 git merge feature (3-Way Merge)</text>
+
+    <!-- Visual Branches -->
+    <g transform="translate(30, 70)">
+      <!-- Main branch line -->
+      <line x1="20" y1="90" x2="280" y2="90" stroke="#38BDF8" stroke-width="3"/>
+      <!-- Feature branch line -->
+      <path d="M 80 90 Q 120 30 160 30 L 210 30 Q 240 30 260 90" fill="none" stroke="#F59E0B" stroke-width="3"/>
+
+      <!-- Commits on Main -->
+      <circle cx="40" cy="90" r="12" fill="#0284C7"/><text x="40" y="94" text-anchor="middle" fill="#FFF" font-size="9" font-weight="700">C1</text>
+      <circle cx="80" cy="90" r="12" fill="#0284C7"/><text x="80" y="94" text-anchor="middle" fill="#FFF" font-size="9" font-weight="700">C2</text>
+      <circle cx="160" cy="90" r="12" fill="#0284C7"/><text x="160" y="94" text-anchor="middle" fill="#FFF" font-size="9" font-weight="700">C3</text>
+      <circle cx="260" cy="90" r="15" fill="#10B981" stroke="#34D399" stroke-width="2"/><text x="260" y="94" text-anchor="middle" fill="#FFF" font-size="9" font-weight="800">M1</text>
+      <text x="260" y="125" text-anchor="middle" fill="#34D399" font-size="9" font-weight="700">Merge Commit</text>
+
+      <!-- Commits on Feature -->
+      <circle cx="150" cy="30" r="12" fill="#D97706"/><text x="150" y="34" text-anchor="middle" fill="#FFF" font-size="9" font-weight="700">F1</text>
+      <circle cx="200" cy="30" r="12" fill="#D97706"/><text x="200" y="34" text-anchor="middle" fill="#FFF" font-size="9" font-weight="700">F2</text>
+    </g>
+
+    <g transform="translate(20, 220)">
+      <text x="0" y="15" fill="#38BDF8" font-size="11" font-weight="700">Key Characteristics:</text>
+      <text x="0" y="32" fill="#E2E8F0" font-size="10">• Non-destructive: Existing commit hashes NEVER change</text>
+      <text x="0" y="48" fill="#E2E8F0" font-size="10">• Creates an explicit 2-parent Merge Commit (M1)</text>
+      <text x="0" y="64" fill="#94A3B8" font-size="10">• Best for shared public branches (main/production)</text>
+    </g>
+  </g>
+
+  <!-- Right: Git Rebase -->
+  <g transform="translate(440, 85)">
+    <rect x="0" y="0" width="360" height="320" rx="10" fill="url(#grad-card)" stroke="#A855F7" stroke-width="1.5" filter="url(#shadow)"/>
+    <rect x="0" y="0" width="360" height="42" rx="10" fill="#1E293B"/>
+    <text x="180" y="26" text-anchor="middle" fill="#C084FC" font-size="14" font-weight="800">📏 git rebase main (Linear History)</text>
+
+    <!-- Visual Branches -->
+    <g transform="translate(30, 70)">
+      <!-- Linear single line -->
+      <line x1="20" y1="90" x2="280" y2="90" stroke="#A855F7" stroke-width="3"/>
+
+      <!-- Rebased Linear Commits -->
+      <circle cx="40" cy="90" r="12" fill="#0284C7"/><text x="40" y="94" text-anchor="middle" fill="#FFF" font-size="9" font-weight="700">C1</text>
+      <circle cx="80" cy="90" r="12" fill="#0284C7"/><text x="80" y="94" text-anchor="middle" fill="#FFF" font-size="9" font-weight="700">C2</text>
+      <circle cx="130" cy="90" r="12" fill="#0284C7"/><text x="130" y="94" text-anchor="middle" fill="#FFF" font-size="9" font-weight="700">C3</text>
+      <circle cx="185" cy="90" r="12" fill="#7C3AED"/><text x="185" y="94" text-anchor="middle" fill="#FFF" font-size="9" font-weight="700">F1'</text>
+      <circle cx="240" cy="90" r="12" fill="#7C3AED"/><text x="240" y="94" text-anchor="middle" fill="#FFF" font-size="9" font-weight="700">F2'</text>
+      <text x="212" y="125" text-anchor="middle" fill="#C084FC" font-size="9" font-weight="700">Replayed with new SHAs</text>
+    </g>
+
+    <g transform="translate(20, 220)">
+      <text x="0" y="15" fill="#C084FC" font-size="11" font-weight="700">Key Characteristics:</text>
+      <text x="0" y="32" fill="#E2E8F0" font-size="10">• Rewrites history: Feature commits replayed onto tip of main</text>
+      <text x="0" y="48" fill="#E2E8F0" font-size="10">• Result: Perfectly linear git log without extra merge bubbles</text>
+      <text x="0" y="64" fill="#F87171" font-size="10">• Golden Rule: NEVER rebase a public shared branch!</text>
+    </g>
+  </g>
+
+  <!-- Footer Tip -->
+  <text x="420" y="435" text-anchor="middle" fill="#CBD5E1" font-size="11">Placement Trap: Rebasing modifies commit hashes. If colleagues pull the original branch, their commit histories will diverge.</text>
+</svg>

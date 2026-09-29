@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="../css/components.css">
   <link rel="stylesheet" href="../css/notes.css">
   <link rel="stylesheet" href="../css/responsive.css">
+  <link rel="stylesheet" href="../css/visual-learning.css">
 </head>
 <body>
 
@@ -28,9 +29,9 @@
     <!-- Global Navigation Bar -->
     <header class="site-navbar" id="site-navbar">
       <div class="container navbar-inner">
-        <a href="../index.html#home" class="brand-link" aria-label="PlacementPrep Home">
-          <div class="brand-icon">P</div>
-          <span>Placement<span class="brand-text-accent">Prep</span></span>
+        <a href="../index.html#home" class="nav-brand brand-link" aria-label="PlacementPrep Home">
+          <div class="brand-icon" aria-hidden="true">P</div>
+          <span class="brand-title">Placement<span class="brand-text-accent">Prep</span></span>
         </a>
 
         <nav role="navigation" aria-label="Main Navigation">
@@ -613,7 +614,110 @@ git config --list --show-origin</code></pre>
     <h2 class="notes-section-title">The Working Directory & File States</h2>
   </div>
 
-  <div class="topic-card">
+  
+
+          <!-- Visual Learning Card: Git Three-Trees Architecture (Working, Staging, Repo, Remote) -->
+          <div class="concept-visual-card featured-card">
+            <div class="concept-card-header">
+              <div class="concept-title-group">
+                <h3 class="concept-title"><span>🌳</span> Git Three-Trees Architecture (Working, Staging, Repo, Remote)</h3>
+                <p class="concept-one-liner">Understanding file state transitions through Working Directory, Index, Local HEAD, and Remote.</p>
+              </div>
+              <div class="concept-badges">
+                <span class="visual-badge badge-interactive">🐙 Interactive Git State Simulator</span>
+                <span class="visual-badge badge-trap">⚠️ High-Yield Trap</span>
+              </div>
+            </div>
+
+            <div class="visual-diagram-container">
+              <img src="../assets/diagrams/git/git-three-trees-workflow.svg" alt="Git four-state architecture: Working Directory, Staging Area, Local Repository, Remote" loading="lazy">
+              <div class="diagram-caption">
+                <div class="diagram-caption-left">
+                  <span>📊</span> <strong>Figure:</strong> Git Four Lifecycle Stages and Primary CLI Command State Transitions
+                </div>
+                <span class="diagram-type-tag">SVG Vector Diagram</span>
+              </div>
+            </div>
+            
+            <div id="git-interactive-simulator" class="interactive-visual-widget" style="background:#0b1120; border:1px solid #1e293b; border-radius:10px; padding:1.25rem; margin:1.25rem 0;">
+              <div class="widget-header" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
+                <div class="widget-title" style="font-size:1.05rem; font-weight:800; color:#c084fc;">🐙 Interactive Git 3-Stage Workflow Simulator</div>
+                <span class="widget-tag" style="background:rgba(192,132,252,0.15); color:#c084fc; padding:0.2rem 0.6rem; border-radius:4px; font-size:0.75rem; font-weight:700;">Live State Flow</span>
+              </div>
+              <p class="widget-desc" style="font-size:0.875rem; color:#94a3b8; margin-bottom:1rem;">Click each phase to trace files traveling across Working Directory, Staging Index, Local HEAD, and GitHub Remote:</p>
+              <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom:1rem;">
+                <button type="button" class="git-step-btn active btn btn-sm btn-outline" style="padding:0.35rem 0.75rem; font-size:0.8rem;">1. Edit Code</button>
+                <button type="button" class="git-step-btn btn btn-sm btn-outline" style="padding:0.35rem 0.75rem; font-size:0.8rem;">2. git add</button>
+                <button type="button" class="git-step-btn btn btn-sm btn-outline" style="padding:0.35rem 0.75rem; font-size:0.8rem;">3. git commit</button>
+                <button type="button" class="git-step-btn btn btn-sm btn-outline" style="padding:0.35rem 0.75rem; font-size:0.8rem;">4. git push</button>
+              </div>
+              <div style="background:#020617; border:1px solid #334155; border-radius:8px; padding:0.75rem 1rem; margin-bottom:1rem; font-family:'JetBrains Mono', monospace; font-size:0.85rem;">
+                <span style="color:#64748b;">CLI Command:</span> <code class="git-command-text" style="color:#38bdf8;">$ echo "console.log('Hello')" &gt; app.js</code>
+              </div>
+              <p class="git-status-text" style="font-size:0.875rem; color:#cbd5e1; margin-bottom:1.25rem;">
+                File created/modified in <strong>Working Directory</strong>. Currently Untracked by Git.
+              </p>
+              <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(130px, 1fr)); gap:0.75rem;">
+                <div class="git-stage-lane" style="border:2px solid #F87171; background:rgba(255,255,255,0.06); border-radius:8px; padding:0.75rem; text-align:center;">
+                  <div style="font-weight:700; font-size:0.8rem; color:#F87171; text-transform:uppercase; margin-bottom:0.25rem;">1. Working Dir</div>
+                  <div style="font-size:0.72rem; color:#94a3b8;">Untracked / Modified</div>
+                </div>
+                <div class="git-stage-lane" style="border:1px solid rgba(255,255,255,0.1); background:transparent; border-radius:8px; padding:0.75rem; text-align:center;">
+                  <div style="font-weight:700; font-size:0.8rem; color:#FBBF24; text-transform:uppercase; margin-bottom:0.25rem;">2. Staging Area</div>
+                  <div style="font-size:0.72rem; color:#94a3b8;">Staged (Index)</div>
+                </div>
+                <div class="git-stage-lane" style="border:1px solid rgba(255,255,255,0.1); background:transparent; border-radius:8px; padding:0.75rem; text-align:center;">
+                  <div style="font-weight:700; font-size:0.8rem; color:#34D399; text-transform:uppercase; margin-bottom:0.25rem;">3. Local Repo</div>
+                  <div style="font-size:0.72rem; color:#94a3b8;">Committed (HEAD)</div>
+                </div>
+                <div class="git-stage-lane" style="border:1px solid rgba(255,255,255,0.1); background:transparent; border-radius:8px; padding:0.75rem; text-align:center;">
+                  <div style="font-weight:700; font-size:0.8rem; color:#C084FC; text-transform:uppercase; margin-bottom:0.25rem;">4. Remote Repo</div>
+                  <div style="font-size:0.72rem; color:#94a3b8;">origin / main</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="placement-trap-box">
+              <div class="trap-header">
+                <span>⚠️</span> Is 'git add' Just a Pre-Commit Check?
+              </div>
+              <div class="trap-body">
+                <p>Understanding the Staging Area (Index) is essential:</p>
+<ul>
+  <li><strong>Working Directory:</strong> Actual files on your filesystem. Untracked or modified.</li>
+  <li><strong>Staging Area (Index):</strong> A binary index file (<code>.git/index</code>) that stores precise cryptographic blob snapshots prepared for the next commit.</li>
+  <li><strong>Local Repository (.git):</strong> Permanent, immutable commits referenced by <code>HEAD</code>.</li>
+  <li><strong>Placement Trap:</strong> Modifying a file AFTER running <code>git add</code> leaves the file in TWO states: staged for commit AND unstaged in the working directory!</li>
+</ul>
+                <span class="trap-takeaway">🎯 Key Takeaway: git add stages a snapshot into the Index; git commit freezes that staged snapshot into the permanent repository tree.</span>
+              </div>
+            </div>
+
+            <div class="real-life-scenario-box">
+              <div class="scenario-header">
+                <div class="scenario-title"><span>🏢</span> Feature Branch Cherry-Picking & Selective Staging</div>
+                <span class="company-tag">Software Engineering Team</span>
+              </div>
+              <div class="scenario-content">
+                A developer debugs two different bugs in <code>app.py</code> and <code>utils.py</code>. Using <code>git add utils.py</code>, they stage only the utility fix into a distinct single-concern commit, leaving <code>app.py</code> safely in the working tree for the next commit.
+              </div>
+            </div>
+
+            <div class="mini-challenge-box">
+              <div class="challenge-header">
+                <span>❓</span> Quick Placement Check
+              </div>
+              <p class="challenge-question">If you run 'git add index.html', then edit index.html to add a paragraph, and run 'git commit', does the new paragraph enter the commit?</p>
+              <button type="button" class="challenge-reveal-btn" aria-expanded="false">
+                <span>💡 Reveal Verified Answer &amp; Placement Trap</span>
+              </button>
+              <div class="challenge-answer">
+                <p><strong>Answer:</strong> NO. 'git add' creates a snapshot of the file at the exact moment it was run. Edits made after 'git add' remain unstaged in the working directory unless added again.</p>
+              </div>
+            </div>
+          </div>
+
+<div class="topic-card">
     <div class="topic-card-header">
       <div class="topic-card-title">📋 File Lifecycle & git status Decoding</div>
       <div class="topic-card-meta">
@@ -1268,7 +1372,71 @@ git restore --staged app.js</code></pre>
     <h2 class="notes-section-title">git reset: Soft, Mixed & Hard Explained</h2>
   </div>
 
-  <div class="topic-card">
+  
+
+          <!-- Visual Learning Card: Git Undo Operations: git reset vs git revert -->
+          <div class="concept-visual-card featured-card">
+            <div class="concept-card-header">
+              <div class="concept-title-group">
+                <h3 class="concept-title"><span>⏪</span> Git Undo Operations: git reset vs git revert</h3>
+                <p class="concept-one-liner">Rewinding commit history locally versus appending safe forward-undo inversion commits.</p>
+              </div>
+              <div class="concept-badges">
+                <span class="visual-badge badge-diagram">⏪ Git Undo Matrix</span>
+                <span class="visual-badge badge-trap">⚠️ High-Yield Trap</span>
+              </div>
+            </div>
+
+            <div class="visual-diagram-container">
+              <img src="../assets/diagrams/git/git-reset-vs-revert.svg" alt="Git reset rewind history vs Git revert safe forward-undo patch commit comparison" loading="lazy">
+              <div class="diagram-caption">
+                <div class="diagram-caption-left">
+                  <span>📊</span> <strong>Figure:</strong> History Rewriting (git reset) vs Safe Collaborative Inversion (git revert)
+                </div>
+                <span class="diagram-type-tag">SVG Vector Diagram</span>
+              </div>
+            </div>
+            
+            <div class="placement-trap-box">
+              <div class="trap-header">
+                <span>⚠️</span> The Golden Rule: Never 'git reset' on Shared Remote Branches!
+              </div>
+              <div class="trap-body">
+                <p>The #1 Git blunder interview question:</p>
+<ul>
+  <li><strong>git reset (--soft / --mixed / --hard):</strong> Moves branch pointer <strong>BACKWARD</strong>, deleting or unwinding commits from history. Safe ONLY on private, unpushed local branches.</li>
+  <li><strong>git revert:</strong> Moves history <strong>FORWARD</strong> by generating a brand new commit that mathematically inverses changes from a previous commit.</li>
+  <li><strong>Placement Trap:</strong> If code has already been pushed to GitHub (origin/main), ALWAYS use <code>git revert</code>! Using <code>git reset</code> and <code>git push --force</code> corrupts commit history for all teammates.</li>
+</ul>
+                <span class="trap-takeaway">🎯 Key Takeaway: Reset rewinds private local history. Revert safely appends inverse commits on shared public branches.</span>
+              </div>
+            </div>
+
+            <div class="real-life-scenario-box">
+              <div class="scenario-header">
+                <div class="scenario-title"><span>🏢</span> Hotfix Rollback on Production Main Branch</div>
+                <span class="company-tag">Stripe / GitHub</span>
+              </div>
+              <div class="scenario-content">
+                A commit causing payment timeout errors was merged to production <code>main</code>. The on-call engineer runs <code>git revert HEAD -m 'Revert broken payment API'</code> and immediately pushes to production. Teammates pull the clean inverse commit with zero merge conflicts.
+              </div>
+            </div>
+
+            <div class="mini-challenge-box">
+              <div class="challenge-header">
+                <span>❓</span> Quick Placement Check
+              </div>
+              <p class="challenge-question">What happens to your local modified files if you run 'git reset --hard HEAD~1'?</p>
+              <button type="button" class="challenge-reveal-btn" aria-expanded="false">
+                <span>💡 Reveal Verified Answer &amp; Placement Trap</span>
+              </button>
+              <div class="challenge-answer">
+                <p><strong>Answer:</strong> The commit is discarded, the staging area is cleared, AND all uncommitted local file modifications are permanently destroyed.</p>
+              </div>
+            </div>
+          </div>
+
+<div class="topic-card">
     <div class="topic-card-header">
       <div class="topic-card-title">⏪ Rewinding Local Commit History</div>
       <div class="topic-card-meta">
@@ -1411,7 +1579,71 @@ git stash clear</code></pre>
     <h2 class="notes-section-title">git rebase vs git merge</h2>
   </div>
 
-  <div class="topic-card">
+  
+
+          <!-- Visual Learning Card: Git Merge vs Git Rebase Commit Histories -->
+          <div class="concept-visual-card featured-card">
+            <div class="concept-card-header">
+              <div class="concept-title-group">
+                <h3 class="concept-title"><span>🔀</span> Git Merge vs Git Rebase Commit Histories</h3>
+                <p class="concept-one-liner">Preserving chronological 3-way merge commits versus maintaining clean linear rebased histories.</p>
+              </div>
+              <div class="concept-badges">
+                <span class="visual-badge badge-diagram">🔀 Branch Integration</span>
+                <span class="visual-badge badge-trap">⚠️ High-Yield Trap</span>
+              </div>
+            </div>
+
+            <div class="visual-diagram-container">
+              <img src="../assets/diagrams/git/git-merge-vs-rebase.svg" alt="Git 3-Way Merge with merge commit vs Git Rebase linear commit history comparison" loading="lazy">
+              <div class="diagram-caption">
+                <div class="diagram-caption-left">
+                  <span>📊</span> <strong>Figure:</strong> 3-Way Merge Commit with True History vs Linear Rebase Replaying Commits
+                </div>
+                <span class="diagram-type-tag">SVG Vector Diagram</span>
+              </div>
+            </div>
+            
+            <div class="placement-trap-box">
+              <div class="trap-header">
+                <span>⚠️</span> Why Does 'git rebase' Change Commit Hashes?
+              </div>
+              <div class="trap-body">
+                <p>Deep-dive Git mechanics interview test:</p>
+<ul>
+  <li><strong>git merge:</strong> Preserves the complete historical timeline. Combines branches via a new <strong>Merge Commit</strong> with two parent hashes.</li>
+  <li><strong>git rebase:</strong> Replays your branch commits one by one on top of the target branch tip. It creates <strong>brand new commits with completely new SHA-1 hashes</strong>!</li>
+  <li><strong>Exam Trap:</strong> Rebasing a branch that other developers have cloned breaks their commit lineage. Never rebase shared public branches.</li>
+</ul>
+                <span class="trap-takeaway">🎯 Key Takeaway: Merge preserves true chronological branch context. Rebase creates a clean, linear commit log for easy reading.</span>
+              </div>
+            </div>
+
+            <div class="real-life-scenario-box">
+              <div class="scenario-header">
+                <div class="scenario-title"><span>🏢</span> Open-Source Pull Request Hygiene</div>
+                <span class="company-tag">Kubernetes Open Source</span>
+              </div>
+              <div class="scenario-content">
+                Before submitting a PR to the upstream Kubernetes repo, contributors run <code>git fetch upstream && git rebase upstream/main</code>. This stacks feature commits cleanly on top of the latest main branch, resolving conflicts locally without polluting git log with merge commits.
+              </div>
+            </div>
+
+            <div class="mini-challenge-box">
+              <div class="challenge-header">
+                <span>❓</span> Quick Placement Check
+              </div>
+              <p class="challenge-question">Does 'git merge feature-branch' create a merge commit if fast-forward is possible and no diverging commits exist?</p>
+              <button type="button" class="challenge-reveal-btn" aria-expanded="false">
+                <span>💡 Reveal Verified Answer &amp; Placement Trap</span>
+              </button>
+              <div class="challenge-answer">
+                <p><strong>Answer:</strong> No. By default, Git performs a 'Fast-Forward' merge, simply advancing the branch pointer to the feature commit without creating an extra merge commit.</p>
+              </div>
+            </div>
+          </div>
+
+<div class="topic-card">
     <div class="topic-card-header">
       <div class="topic-card-title">🌿 Linear History vs Preserving Divergence</div>
       <div class="topic-card-meta">
@@ -3235,9 +3467,9 @@ git switch -c rescued-branch e9f8d7c</code></pre>
     <footer class="site-footer">
       <div class="container footer-inner">
         <div class="footer-brand">
-          <div class="brand-link">
-            <div class="brand-icon">P</div>
-            <span>Placement<span class="brand-text-accent">Prep</span></span>
+          <div class="nav-brand brand-link">
+            <div class="brand-icon" aria-hidden="true">P</div>
+            <span class="brand-title">Placement<span class="brand-text-accent">Prep</span></span>
           </div>
           <p class="footer-tagline">Engineered for MCA, BCA & B.Tech IT Campus Recruitments.</p>
         </div>
@@ -3345,5 +3577,6 @@ git switch -c rescued-branch e9f8d7c</code></pre>
       }
     });
   </script>
+  <script src="../js/visual-learning.js"></script>
 </body>
 </html>

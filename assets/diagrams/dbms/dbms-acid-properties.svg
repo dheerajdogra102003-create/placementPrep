@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 460" width="100%" height="100%" style="background: linear-gradient(135deg, #090D16 0%, #111827 100%); border-radius: 12px; font-family: 'Inter', system-ui, -apple-system, sans-serif;">
+  <defs>
+    <linearGradient id="grad-cyan" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06B6D4"/>
+      <stop offset="100%" stop-color="#3B82F6"/>
+    </linearGradient>
+    <linearGradient id="grad-purple" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8B5CF6"/>
+      <stop offset="100%" stop-color="#EC4899"/>
+    </linearGradient>
+    <linearGradient id="grad-emerald" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10B981"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <linearGradient id="grad-amber" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#D97706"/>
+    </linearGradient>
+    <linearGradient id="grad-card" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="rgba(30, 41, 59, 0.85)"/>
+      <stop offset="100%" stop-color="rgba(15, 23, 42, 0.95)"/>
+    </linearGradient>
+    <filter id="glow-cyan" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.4"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#38BDF8"/>
+    </marker>
+    <marker id="arrow-emerald" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#10B981"/>
+    </marker>
+    <marker id="arrow-purple" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#8B5CF6"/>
+    </marker>
+  </defs>
+
+  <title>DBMS ACID Properties (Atomicity, Consistency, Isolation, Durability)</title>
+  <text x="420" y="36" text-anchor="middle" fill="#F8FAFC" font-size="20" font-weight="800">DBMS Transaction Foundations: The ACID Properties</text>
+  <text x="420" y="56" text-anchor="middle" fill="#94A3B8" font-size="12">Guarantees that database transactions are processed reliably</text>
+
+  <!-- 4 Grid Cards -->
+  <!-- A: Atomicity -->
+  <g transform="translate(40, 80)">
+    <rect x="0" y="0" width="360" height="155" rx="10" fill="url(#grad-card)" stroke="#EF4444" stroke-width="1.5" filter="url(#shadow)"/>
+    <rect x="0" y="0" width="360" height="34" rx="10" fill="#1E293B"/>
+    <text x="180" y="23" text-anchor="middle" fill="#F87171" font-size="13" font-weight="800">🅰️ Atomicity ("All or Nothing")</text>
+    <text x="15" y="58" fill="#E2E8F0" font-size="11"><strong>Concept:</strong> Every step succeeds OR entire transaction rolls back.</text>
+    <text x="15" y="78" fill="#94A3B8" font-size="11"><strong>Real-Life:</strong> Bank Transfer (Debit Account A → Credit Account B).</text>
+    <text x="15" y="98" fill="#FCA5A5" font-size="11">If power fails after debit, money is NOT lost—it rolls back.</text>
+    <text x="15" y="125" fill="#38BDF8" font-size="10" font-weight="600">Managed by: Recovery Manager &amp; Write-Ahead Logging (WAL)</text>
+  </g>
+
+  <!-- C: Consistency -->
+  <g transform="translate(440, 80)">
+    <rect x="0" y="0" width="360" height="155" rx="10" fill="url(#grad-card)" stroke="#38BDF8" stroke-width="1.5" filter="url(#shadow)"/>
+    <rect x="0" y="0" width="360" height="34" rx="10" fill="#1E293B"/>
+    <text x="180" y="23" text-anchor="middle" fill="#38BDF8" font-size="13" font-weight="800">🅲 Consistency (Preserves Invariants)</text>
+    <text x="15" y="58" fill="#E2E8F0" font-size="11"><strong>Concept:</strong> Database transitions from one valid state to another.</text>
+    <text x="15" y="78" fill="#94A3B8" font-size="11"><strong>Constraints:</strong> Primary key uniqueness, Foreign Key integrity.</text>
+    <text x="15" y="98" fill="#A5F3FC" font-size="11">Total system money (A + B) remains identical before and after.</text>
+    <text x="15" y="125" fill="#34D399" font-size="10" font-weight="600">Managed by: Schema Constraints &amp; Application Business Logic</text>
+  </g>
+
+  <!-- I: Isolation -->
+  <g transform="translate(40, 255)">
+    <rect x="0" y="0" width="360" height="155" rx="10" fill="url(#grad-card)" stroke="#F59E0B" stroke-width="1.5" filter="url(#shadow)"/>
+    <rect x="0" y="0" width="360" height="34" rx="10" fill="#1E293B"/>
+    <text x="180" y="23" text-anchor="middle" fill="#FBBF24" font-size="13" font-weight="800">🅸 Isolation (Independent Execution)</text>
+    <text x="15" y="58" fill="#E2E8F0" font-size="11"><strong>Concept:</strong> Concurrent transactions run as if serial (isolated).</text>
+    <text x="15" y="78" fill="#94A3B8" font-size="11">Prevents Dirty Reads, Non-Repeatable Reads, Phantom Reads.</text>
+    <text x="15" y="98" fill="#FDE68A" font-size="11">Levels: Read Uncommitted &lt; Committed &lt; Repeatable &lt; Serializable.</text>
+    <text x="15" y="125" fill="#C084FC" font-size="10" font-weight="600">Managed by: Concurrency Control (2-Phase Locking 2PL, MVCC)</text>
+  </g>
+
+  <!-- D: Durability -->
+  <g transform="translate(440, 255)">
+    <rect x="0" y="0" width="360" height="155" rx="10" fill="url(#grad-card)" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)"/>
+    <rect x="0" y="0" width="360" height="34" rx="10" fill="#1E293B"/>
+    <text x="180" y="23" text-anchor="middle" fill="#34D399" font-size="13" font-weight="800">🅳 Durability (Survives Crashes)</text>
+    <text x="15" y="58" fill="#E2E8F0" font-size="11"><strong>Concept:</strong> Once COMMIT returns success, updates are permanent.</text>
+    <text x="15" y="78" fill="#94A3B8" font-size="11">Even if server explodes 1ms later, changes persist on non-volatile disk.</text>
+    <text x="15" y="98" fill="#A7F3D0" font-size="11">Changes are flushed to transaction redo-log before confirmation.</text>
+    <text x="15" y="125" fill="#38BDF8" font-size="10" font-weight="600">Managed by: Non-Volatile Storage &amp; Redo Logging Checkpoints</text>
+  </g>
+
+  <!-- Footer -->
+  <text x="420" y="440" text-anchor="middle" fill="#94A3B8" font-size="11">TCS/Infosys Question: "Which ACID property is violated if an uncommitted transaction's updates are read?" Answer: Isolation (Dirty Read).</text>
+</svg>

@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 430" width="100%" height="100%" style="background: linear-gradient(135deg, #090D16 0%, #111827 100%); border-radius: 12px; font-family: 'Inter', system-ui, -apple-system, sans-serif;">
+  <defs>
+    <linearGradient id="grad-card" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="rgba(30, 41, 59, 0.85)"/>
+      <stop offset="100%" stop-color="rgba(15, 23, 42, 0.95)"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <title>Git Undo Operations: git reset vs git revert</title>
+  <text x="420" y="36" text-anchor="middle" fill="#F8FAFC" font-size="20" font-weight="800">Git Undo Mechanics: git reset vs git revert</text>
+  <text x="420" y="56" text-anchor="middle" fill="#94A3B8" font-size="12">Understanding when to rewrite commit history versus creating an inversion commit</text>
+
+  <!-- Left: git reset -->
+  <g transform="translate(40, 85)">
+    <rect x="0" y="0" width="360" height="295" rx="10" fill="url(#grad-card)" stroke="#EF4444" stroke-width="1.5" filter="url(#shadow)"/>
+    <rect x="0" y="0" width="360" height="42" rx="10" fill="#1E293B"/>
+    <text x="180" y="26" text-anchor="middle" fill="#F87171" font-size="14" font-weight="800">⏪ git reset HEAD~1 (Rewind History)</text>
+
+    <g transform="translate(20, 60)">
+      <text x="0" y="15" fill="#EF4444" font-size="11" font-weight="700">What it does:</text>
+      <text x="0" y="32" fill="#E2E8F0" font-size="10">Moves HEAD pointer backward in time.</text>
+      <text x="0" y="48" fill="#FCA5A5" font-size="9">Target commit is orphaned / erased from branch log!</text>
+
+      <text x="0" y="75" fill="#38BDF8" font-size="11" font-weight="700">The 3 Modes:</text>
+      <text x="0" y="92" fill="#34D399" font-size="10"><strong>--soft:</strong> Keeps changes in Staging Area</text>
+      <text x="0" y="108" fill="#FBBF24" font-size="10"><strong>--mixed (default):</strong> Keeps changes in Working Dir</text>
+      <text x="0" y="124" fill="#F87171" font-size="10"><strong>--hard:</strong> Permanently destroys all changes!</text>
+
+      <rect x="0" y="145" width="320" height="50" rx="6" fill="#0F172A" stroke="#EF4444"/>
+      <text x="160" y="165" text-anchor="middle" fill="#F87171" font-size="10" font-weight="700">⚠️ Only use on local private commits!</text>
+      <text x="160" y="180" text-anchor="middle" fill="#CBD5E1" font-size="9">If already pushed to GitHub, reset causes sync chaos.</text>
+    </g>
+  </g>
+
+  <!-- Right: git revert -->
+  <g transform="translate(440, 85)">
+    <rect x="0" y="0" width="360" height="295" rx="10" fill="url(#grad-card)" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)"/>
+    <rect x="0" y="0" width="360" height="42" rx="10" fill="#1E293B"/>
+    <text x="180" y="26" text-anchor="middle" fill="#34D399" font-size="14" font-weight="800">🔁 git revert &lt;commit&gt; (Forward Undo)</text>
+
+    <g transform="translate(20, 60)">
+      <text x="0" y="15" fill="#10B981" font-size="11" font-weight="700">What it does:</text>
+      <text x="0" y="32" fill="#E2E8F0" font-size="10">Creates a BRAND NEW commit that inverse-patches</text>
+      <text x="0" y="48" fill="#A7F3D0" font-size="9">the accidental changes (adds deleted lines, deletes added lines).</text>
+
+      <text x="0" y="75" fill="#38BDF8" font-size="11" font-weight="700">Commit Log Integrity:</text>
+      <text x="0" y="92" fill="#34D399" font-size="10">100% Non-destructive: History is completely preserved.</text>
+      <text x="0" y="108" fill="#CBD5E1" font-size="9">Original bad commit stays visible for audit trails.</text>
+
+      <rect x="0" y="145" width="320" height="50" rx="6" fill="#0F172A" stroke="#10B981"/>
+      <text x="160" y="165" text-anchor="middle" fill="#34D399" font-size="10" font-weight="700">✅ Safe for shared production branches!</text>
+      <text x="160" y="180" text-anchor="middle" fill="#CBD5E1" font-size="9">Pushing revert to GitHub is completely safe for teammates.</text>
+    </g>
+  </g>
+
+  <!-- Footer Tip -->
+  <text x="420" y="410" text-anchor="middle" fill="#CBD5E1" font-size="11">Interview Rule: "Accidentally pushed sensitive API key to GitHub? Revert public branch, immediately revoke key."</text>
+</svg>

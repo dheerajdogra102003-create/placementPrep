@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 480" width="100%" height="100%" style="background: linear-gradient(135deg, #090D16 0%, #111827 100%); border-radius: 12px; font-family: 'Inter', system-ui, -apple-system, sans-serif;">
+  <defs>
+    <linearGradient id="grad-cyan" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06B6D4"/>
+      <stop offset="100%" stop-color="#3B82F6"/>
+    </linearGradient>
+    <linearGradient id="grad-purple" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8B5CF6"/>
+      <stop offset="100%" stop-color="#EC4899"/>
+    </linearGradient>
+    <linearGradient id="grad-emerald" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10B981"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <linearGradient id="grad-amber" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#D97706"/>
+    </linearGradient>
+    <linearGradient id="grad-card" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="rgba(30, 41, 59, 0.85)"/>
+      <stop offset="100%" stop-color="rgba(15, 23, 42, 0.95)"/>
+    </linearGradient>
+    <filter id="glow-cyan" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.4"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#38BDF8"/>
+    </marker>
+    <marker id="arrow-emerald" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#10B981"/>
+    </marker>
+    <marker id="arrow-purple" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#8B5CF6"/>
+    </marker>
+  </defs>
+
+  <title>Virtual Machines vs Docker Containers Architecture</title>
+  <text x="420" y="36" text-anchor="middle" fill="#F8FAFC" font-size="20" font-weight="800">Architecture: Virtual Machines (VM) vs Docker Containers</text>
+  <text x="420" y="58" text-anchor="middle" fill="#94A3B8" font-size="12">Key Difference: Containers share the Host OS Kernel | VMs require a full Guest OS per instance</text>
+
+  <!-- Left: Virtual Machine Architecture -->
+  <g transform="translate(50, 80)">
+    <rect x="0" y="0" width="340" height="350" rx="12" fill="url(#grad-card)" stroke="#8B5CF6" stroke-width="1.5" filter="url(#shadow)"/>
+    <rect x="0" y="0" width="340" height="42" rx="12" fill="#1E293B"/>
+    <text x="170" y="26" text-anchor="middle" fill="#C084FC" font-size="14" font-weight="700">Virtual Machine (Hypervisor-Based)</text>
+
+    <!-- Top Apps & Guest OS (3 Columns) -->
+    <!-- VM 1 -->
+    <g transform="translate(20, 55)">
+      <rect x="0" y="0" width="90" height="35" rx="5" fill="#3B82F6"/><text x="45" y="22" text-anchor="middle" fill="#FFF" font-size="10" font-weight="700">App A</text>
+      <rect x="0" y="40" width="90" height="28" rx="5" fill="#2563EB"/><text x="45" y="58" text-anchor="middle" fill="#FFF" font-size="9">Bins / Libs</text>
+      <rect x="0" y="73" width="90" height="45" rx="5" fill="#7C3AED"/><text x="45" y="93" text-anchor="middle" fill="#FFF" font-size="10" font-weight="700">Guest OS</text><text x="45" y="106" text-anchor="middle" fill="#DDD" font-size="8">(Ubuntu ~2GB)</text>
+    </g>
+    <!-- VM 2 -->
+    <g transform="translate(125, 55)">
+      <rect x="0" y="0" width="90" height="35" rx="5" fill="#3B82F6"/><text x="45" y="22" text-anchor="middle" fill="#FFF" font-size="10" font-weight="700">App B</text>
+      <rect x="0" y="40" width="90" height="28" rx="5" fill="#2563EB"/><text x="45" y="58" text-anchor="middle" fill="#FFF" font-size="9">Bins / Libs</text>
+      <rect x="0" y="73" width="90" height="45" rx="5" fill="#7C3AED"/><text x="45" y="93" text-anchor="middle" fill="#FFF" font-size="10" font-weight="700">Guest OS</text><text x="45" y="106" text-anchor="middle" fill="#DDD" font-size="8">(Windows ~15GB)</text>
+    </g>
+    <!-- VM 3 -->
+    <g transform="translate(230, 55)">
+      <rect x="0" y="0" width="90" height="35" rx="5" fill="#3B82F6"/><text x="45" y="22" text-anchor="middle" fill="#FFF" font-size="10" font-weight="700">App C</text>
+      <rect x="0" y="40" width="90" height="28" rx="5" fill="#2563EB"/><text x="45" y="58" text-anchor="middle" fill="#FFF" font-size="9">Bins / Libs</text>
+      <rect x="0" y="73" width="90" height="45" rx="5" fill="#7C3AED"/><text x="45" y="93" text-anchor="middle" fill="#FFF" font-size="10" font-weight="700">Guest OS</text><text x="45" y="106" text-anchor="middle" fill="#DDD" font-size="8">(RHEL ~3GB)</text>
+    </g>
+
+    <!-- Hypervisor -->
+    <rect x="20" y="180" width="300" height="40" rx="6" fill="#F59E0B"/>
+    <text x="170" y="205" text-anchor="middle" fill="#FFF" font-size="12" font-weight="800">Hypervisor (Type 1 or Type 2 / ESXi / KVM)</text>
+
+    <!-- Host OS -->
+    <rect x="20" y="228" width="300" height="35" rx="6" fill="#334155"/>
+    <text x="170" y="250" text-anchor="middle" fill="#F8FAFC" font-size="11" font-weight="600">Host Operating System</text>
+
+    <!-- Physical Hardware -->
+    <rect x="20" y="271" width="300" height="40" rx="6" fill="#1E293B" stroke="#475569"/>
+    <text x="170" y="295" text-anchor="middle" fill="#94A3B8" font-size="11" font-weight="700">Physical Infrastructure (CPU, RAM, Disk)</text>
+
+    <text x="170" y="332" text-anchor="middle" fill="#F43F5E" font-size="10" font-weight="600">⚠️ Heavyweight | Minutes to Boot | Gigabytes Size</text>
+  </g>
+
+  <!-- Right: Container Architecture -->
+  <g transform="translate(450, 80)">
+    <rect x="0" y="0" width="340" height="350" rx="12" fill="url(#grad-card)" stroke="#06B6D4" stroke-width="1.5" filter="url(#shadow)"/>
+    <rect x="0" y="0" width="340" height="42" rx="12" fill="#1E293B"/>
+    <text x="170" y="26" text-anchor="middle" fill="#38BDF8" font-size="14" font-weight="700">Docker Container (OS-Level Virtualization)</text>
+
+    <!-- Top Apps & Bins (3 Containers) -->
+    <!-- Cont 1 -->
+    <g transform="translate(20, 55)">
+      <rect x="0" y="0" width="90" height="50" rx="5" fill="#0284C7"/><text x="45" y="30" text-anchor="middle" fill="#FFF" font-size="11" font-weight="700">App A</text>
+      <rect x="0" y="55" width="90" height="45" rx="5" fill="#0369A1"/><text x="45" y="78" text-anchor="middle" fill="#FFF" font-size="9" font-weight="600">Bins / Libs</text><text x="45" y="90" text-anchor="middle" fill="#BAE6FD" font-size="7">~50MB</text>
+    </g>
+    <!-- Cont 2 -->
+    <g transform="translate(125, 55)">
+      <rect x="0" y="0" width="90" height="50" rx="5" fill="#0284C7"/><text x="45" y="30" text-anchor="middle" fill="#FFF" font-size="11" font-weight="700">App B</text>
+      <rect x="0" y="55" width="90" height="45" rx="5" fill="#0369A1"/><text x="45" y="78" text-anchor="middle" fill="#FFF" font-size="9" font-weight="600">Bins / Libs</text><text x="45" y="90" text-anchor="middle" fill="#BAE6FD" font-size="7">~80MB</text>
+    </g>
+    <!-- Cont 3 -->
+    <g transform="translate(230, 55)">
+      <rect x="0" y="0" width="90" height="50" rx="5" fill="#0284C7"/><text x="45" y="30" text-anchor="middle" fill="#FFF" font-size="11" font-weight="700">App C</text>
+      <rect x="0" y="55" width="90" height="45" rx="5" fill="#0369A1"/><text x="45" y="78" text-anchor="middle" fill="#FFF" font-size="9" font-weight="600">Bins / Libs</text><text x="45" y="90" text-anchor="middle" fill="#BAE6FD" font-size="7">~40MB</text>
+    </g>
+
+    <!-- Container Engine (Docker) -->
+    <rect x="20" y="165" width="300" height="45" rx="6" fill="#06B6D4"/>
+    <text x="170" y="193" text-anchor="middle" fill="#0B132B" font-size="13" font-weight="900">Container Engine (Docker / containerd)</text>
+
+    <!-- Host OS Kernel (Shared) -->
+    <rect x="20" y="218" width="300" height="45" rx="6" fill="#10B981"/>
+    <text x="170" y="240" text-anchor="middle" fill="#FFF" font-size="12" font-weight="700">Host OS (Shared Linux / Windows Kernel)</text>
+    <text x="170" y="254" text-anchor="middle" fill="#D1FAE5" font-size="9">cgroups &amp; namespaces provide isolation</text>
+
+    <!-- Physical Hardware -->
+    <rect x="20" y="271" width="300" height="40" rx="6" fill="#1E293B" stroke="#475569"/>
+    <text x="170" y="295" text-anchor="middle" fill="#94A3B8" font-size="11" font-weight="700">Physical Infrastructure (CPU, RAM, Disk)</text>
+
+    <text x="170" y="332" text-anchor="middle" fill="#10B981" font-size="10" font-weight="700">⚡ Lightweight | Millisecond Startups | Megabytes Size</text>
+  </g>
+
+  <!-- Key Takeaway -->
+  <text x="420" y="455" text-anchor="middle" fill="#E2E8F0" font-size="12" font-weight="600">Interview Answer: "Containers share the Host OS kernel via namespaces and cgroups, making them 10x-50x faster and smaller than VMs."</text>
+</svg>

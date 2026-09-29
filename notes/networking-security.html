@@ -95,6 +95,7 @@
       background: rgba(56, 189, 248, 0.15);
     }
   </style>
+  <link rel="stylesheet" href="../css/visual-learning.css">
 </head>
 <body>
   <!-- Reading Progress Bar -->
@@ -104,9 +105,9 @@
     <!-- Navbar -->
     <header class="site-navbar" id="site-navbar">
       <div class="container navbar-inner">
-        <a href="../index.html#home" class="brand-link" aria-label="PlacementPrep Home">
-          <div class="brand-icon">P</div>
-          <span>Placement<span class="brand-text-accent">Prep</span></span>
+        <a href="../index.html#home" class="nav-brand brand-link" aria-label="PlacementPrep Home">
+          <div class="brand-icon" aria-hidden="true">P</div>
+          <span class="brand-title">Placement<span class="brand-text-accent">Prep</span></span>
         </a>
 
         <nav role="navigation" aria-label="Main Navigation">
@@ -723,7 +724,71 @@ Application (Data) ───> NIC Encapsulates into Packets/Frames ───> Sw
               <span class="badge-net">SECTION 06</span>
               <span style="font-size: 0.8rem; color: var(--text-muted);">Hardware Ecosystem</span>
             </div>
-            <h2 style="font-size: 1.85rem; font-weight: 800; margin-bottom: 1rem; color: #f8fafc;">
+            
+
+          <!-- Visual Learning Card: Network Devices: Hub vs Switch vs Router -->
+          <div class="concept-visual-card featured-card">
+            <div class="concept-card-header">
+              <div class="concept-title-group">
+                <h3 class="concept-title"><span>🔌</span> Network Devices: Hub vs Switch vs Router</h3>
+                <p class="concept-one-liner">Analyzing OSI Layer 1, 2, and 3 networking equipment, collision domains, and broadcast isolation.</p>
+              </div>
+              <div class="concept-badges">
+                <span class="visual-badge badge-diagram">📊 Hardware Comparison</span>
+                <span class="visual-badge badge-trap">⚠️ High-Yield Trap</span>
+              </div>
+            </div>
+
+            <div class="visual-diagram-container">
+              <img src="../assets/diagrams/networking/network-device-comparison.svg" alt="Network Hub Layer 1 vs Switch Layer 2 vs Router Layer 3 comparison" loading="lazy">
+              <div class="diagram-caption">
+                <div class="diagram-caption-left">
+                  <span>📊</span> <strong>Figure:</strong> Collision & Broadcast Domain Boundaries across Hubs, Switches, and Routers
+                </div>
+                <span class="diagram-type-tag">SVG Vector Diagram</span>
+              </div>
+            </div>
+            
+            <div class="placement-trap-box">
+              <div class="trap-header">
+                <span>⚠️</span> Collision Domain vs Broadcast Domain Boundaries
+              </div>
+              <div class="trap-body">
+                <p>The #1 hardware interview question:</p>
+<ul>
+  <li><strong>Hub (Layer 1):</strong> 1 Collision Domain, 1 Broadcast Domain. Repeats bits to all ports; massive packet collisions and security sniffing vulnerabilities.</li>
+  <li><strong>Switch (Layer 2):</strong> <strong>N Collision Domains</strong> (each port is its own collision domain), but <strong>1 Broadcast Domain</strong>. Forwards frames using MAC address tables.</li>
+  <li><strong>Router (Layer 3):</strong> Separates BOTH collision domains AND <strong>broadcast domains</strong>. Forwards packets between independent IP subnets.</li>
+</ul>
+                <span class="trap-takeaway">🎯 Key Takeaway: Switches break up collision domains. Routers break up broadcast domains.</span>
+              </div>
+            </div>
+
+            <div class="real-life-scenario-box">
+              <div class="scenario-header">
+                <div class="scenario-title"><span>🏢</span> Office Campus LAN Segmentation</div>
+                <span class="company-tag">Cisco Enterprise</span>
+              </div>
+              <div class="scenario-content">
+                An engineering office connects 200 workstations via Layer 2 Managed Switches so workstations never collide. Routers and Layer 3 switches divide Human Resources, Engineering, and Guest Wi-Fi into separate subnets, preventing broadcast storm propagation.
+              </div>
+            </div>
+
+            <div class="mini-challenge-box">
+              <div class="challenge-header">
+                <span>❓</span> Quick Placement Check
+              </div>
+              <p class="challenge-question">If a 24-port switch has 20 PCs connected, how many collision domains and how many broadcast domains exist on that switch?</p>
+              <button type="button" class="challenge-reveal-btn" aria-expanded="false">
+                <span>💡 Reveal Verified Answer &amp; Placement Trap</span>
+              </button>
+              <div class="challenge-answer">
+                <p><strong>Answer:</strong> 20 Collision Domains (each active port forms its own collision domain) and exactly 1 Broadcast Domain (all ports receive broadcast frames unless partitioned into VLANs).</p>
+              </div>
+            </div>
+          </div>
+
+<h2 style="font-size: 1.85rem; font-weight: 800; margin-bottom: 1rem; color: #f8fafc;">
               Network Devices Overview &amp; Packet Flow
             </h2>
             <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem;">
@@ -1082,7 +1147,119 @@ Application (Data) ───> NIC Encapsulates into Packets/Frames ───> Sw
               <span class="badge-net">SECTION 16</span>
               <span style="font-size: 0.8rem; color: var(--text-muted);">Core Architecture</span>
             </div>
-            <h2 style="font-size: 1.85rem; font-weight: 800; margin-bottom: 1rem; color: #f8fafc;">
+            
+
+          <!-- Visual Learning Card: OSI 7-Layer Reference Model & PDU Hierarchy -->
+          <div class="concept-visual-card featured-card">
+            <div class="concept-card-header">
+              <div class="concept-title-group">
+                <h3 class="concept-title"><span>🌐</span> OSI 7-Layer Reference Model & PDU Hierarchy</h3>
+                <p class="concept-one-liner">Comprehensive protocol stack analysis from Physical electrical signals to Application interfaces.</p>
+              </div>
+              <div class="concept-badges">
+                <span class="visual-badge badge-interactive">🌐 Interactive Protocol Inspector</span>
+                <span class="visual-badge badge-trap">⚠️ High-Yield Trap</span>
+              </div>
+            </div>
+
+            <div class="visual-diagram-container">
+              <img src="../assets/diagrams/networking/network-osi-seven-layers.svg" alt="Complete OSI 7-Layer reference model diagram with PDUs and protocols" loading="lazy">
+              <div class="diagram-caption">
+                <div class="diagram-caption-left">
+                  <span>📊</span> <strong>Figure:</strong> OSI 7-Layer Stack: Data Encapsulation, PDU Hierarchy, and Protocol Mapping
+                </div>
+                <span class="diagram-type-tag">SVG Vector Diagram</span>
+              </div>
+            </div>
+            
+            <div class="interactive-visual-widget" style="background:#0b1120; border:1px solid #1e293b; border-radius:10px; padding:1.25rem; margin:1.25rem 0;">
+              <div class="widget-header" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
+                <div class="widget-title" style="font-size:1.05rem; font-weight:800; color:#38bdf8;">🌐 Interactive OSI 7-Layer Protocol Inspector</div>
+                <span class="widget-tag" style="background:rgba(56,189,248,0.15); color:#38bdf8; padding:0.2rem 0.6rem; border-radius:4px; font-size:0.75rem; font-weight:700;">Click Layer to Inspect PDU &amp; Role</span>
+              </div>
+              <p class="widget-desc" style="font-size:0.875rem; color:#94a3b8; margin-bottom:1rem;">Click any layer to inspect protocol units, hardware devices, and interview expectations:</p>
+              <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:1.25rem;">
+                <div class="osi-layer-stack">
+                  <div class="osi-layer-pill active" data-layer="7" style="cursor:pointer; padding:0.6rem 0.85rem; border-radius:8px; margin-bottom:0.4rem; display:flex; justify-content:space-between; align-items:center; border:1px solid #38bdf8; background:rgba(56,189,248,0.15);">
+                    <span style="font-weight:700; font-size:0.85rem;">Layer 7: Application</span>
+                    <span style="font-size:0.75rem; color:#38bdf8; font-weight:700;">Data</span>
+                  </div>
+                  <div class="osi-layer-pill" data-layer="6" style="cursor:pointer; padding:0.6rem 0.85rem; border-radius:8px; margin-bottom:0.4rem; display:flex; justify-content:space-between; align-items:center; border:1px solid #334155; background:#0f172a;">
+                    <span style="font-weight:700; font-size:0.85rem;">Layer 6: Presentation</span>
+                    <span style="font-size:0.75rem; color:#38bdf8; font-weight:700;">Data</span>
+                  </div>
+                  <div class="osi-layer-pill" data-layer="5" style="cursor:pointer; padding:0.6rem 0.85rem; border-radius:8px; margin-bottom:0.4rem; display:flex; justify-content:space-between; align-items:center; border:1px solid #334155; background:#0f172a;">
+                    <span style="font-weight:700; font-size:0.85rem;">Layer 5: Session</span>
+                    <span style="font-size:0.75rem; color:#38bdf8; font-weight:700;">Data</span>
+                  </div>
+                  <div class="osi-layer-pill" data-layer="4" style="cursor:pointer; padding:0.6rem 0.85rem; border-radius:8px; margin-bottom:0.4rem; display:flex; justify-content:space-between; align-items:center; border:1px solid #334155; background:#0f172a;">
+                    <span style="font-weight:700; font-size:0.85rem;">Layer 4: Transport</span>
+                    <span style="font-size:0.75rem; color:#34d399; font-weight:700;">Segments</span>
+                  </div>
+                  <div class="osi-layer-pill" data-layer="3" style="cursor:pointer; padding:0.6rem 0.85rem; border-radius:8px; margin-bottom:0.4rem; display:flex; justify-content:space-between; align-items:center; border:1px solid #334155; background:#0f172a;">
+                    <span style="font-weight:700; font-size:0.85rem;">Layer 3: Network</span>
+                    <span style="font-size:0.75rem; color:#fbbf24; font-weight:700;">Packets</span>
+                  </div>
+                  <div class="osi-layer-pill" data-layer="2" style="cursor:pointer; padding:0.6rem 0.85rem; border-radius:8px; margin-bottom:0.4rem; display:flex; justify-content:space-between; align-items:center; border:1px solid #334155; background:#0f172a;">
+                    <span style="font-weight:700; font-size:0.85rem;">Layer 2: Data Link</span>
+                    <span style="font-size:0.75rem; color:#f87171; font-weight:700;">Frames</span>
+                  </div>
+                  <div class="osi-layer-pill" data-layer="1" style="cursor:pointer; padding:0.6rem 0.85rem; border-radius:8px; margin-bottom:0.4rem; display:flex; justify-content:space-between; align-items:center; border:1px solid #334155; background:#0f172a;">
+                    <span style="font-weight:700; font-size:0.85rem;">Layer 1: Physical</span>
+                    <span style="font-size:0.75rem; color:#a855f7; font-weight:700;">Bits</span>
+                  </div>
+                </div>
+                <div id="osi-layer-info-panel" style="background:#090d16; border:1px solid #334155; border-radius:10px; padding:1.25rem; display:flex; flex-direction:column; justify-content:center;">
+                  <div style="font-size:1.1rem; font-weight:800; color:#38BDF8; margin-bottom:0.4rem;">Layer 7: Application</div>
+                  <div style="font-size:0.875rem; color:#CBD5E1; margin-bottom:0.3rem;"><strong>PDU (Data Unit):</strong> <span style="color:#34D399; font-weight:700;">Data</span></div>
+                  <div style="font-size:0.875rem; color:#CBD5E1; margin-bottom:0.4rem;"><strong>Key Protocols:</strong> HTTP, HTTPS, DNS, FTP, SMTP, SSH</div>
+                  <div style="font-size:0.825rem; color:#94A3B8; line-height:1.5;">Provides direct communication interfaces to user software applications.</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="placement-trap-box">
+              <div class="trap-header">
+                <span>⚠️</span> Protocol Data Unit (PDU) & Header Encapsulation Trap
+              </div>
+              <div class="trap-body">
+                <p>Recruiters check if you know the exact PDU name at each OSI layer:</p>
+<ul>
+  <li><strong>Layer 7-5:</strong> PDU is <strong>Data</strong> (HTTP, DNS, SSL).</li>
+  <li><strong>Layer 4 (Transport):</strong> PDU is <strong>Segment</strong> (TCP) or <strong>Datagram</strong> (UDP). Contains source/dest port numbers.</li>
+  <li><strong>Layer 3 (Network):</strong> PDU is <strong>Packet</strong>. Contains source/dest IP addresses.</li>
+  <li><strong>Layer 2 (Data Link):</strong> PDU is <strong>Frame</strong>. Contains source/dest MAC addresses.</li>
+  <li><strong>Layer 1 (Physical):</strong> PDU is <strong>Bits</strong> (0s and 1s).</li>
+</ul>
+                <span class="trap-takeaway">🎯 Key Takeaway: Data &rarr; Segment (L4) &rarr; Packet (L3) &rarr; Frame (L2) &rarr; Bits (L1).</span>
+              </div>
+            </div>
+
+            <div class="real-life-scenario-box">
+              <div class="scenario-header">
+                <div class="scenario-title"><span>🏢</span> Wireshark Packet Capture Analysis</div>
+                <span class="company-tag">Network Operations Center</span>
+              </div>
+              <div class="scenario-content">
+                Network engineers debugging dropped transactions inspect packet headers in Wireshark. An HTTP 504 timeout reveals TCP segments (L4) retransmitting SYN packets because a firewall router (L3) blocked the destination IP.
+              </div>
+            </div>
+
+            <div class="mini-challenge-box">
+              <div class="challenge-header">
+                <span>❓</span> Quick Placement Check
+              </div>
+              <p class="challenge-question">At which OSI layer does an IP Router operate, and what is the exact technical name of the data unit it inspects and forwards?</p>
+              <button type="button" class="challenge-reveal-btn" aria-expanded="false">
+                <span>💡 Reveal Verified Answer &amp; Placement Trap</span>
+              </button>
+              <div class="challenge-answer">
+                <p><strong>Answer:</strong> Layer 3 (Network Layer). The Protocol Data Unit (PDU) at Layer 3 is a Packet.</p>
+              </div>
+            </div>
+          </div>
+
+<h2 style="font-size: 1.85rem; font-weight: 800; margin-bottom: 1rem; color: #f8fafc;">
               The 7-Layer OSI Reference Model Deep Dive
             </h2>
             <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem;">
@@ -1746,7 +1923,72 @@ Usable Assignable Host Range:  192.168.1.1 to 192.168.1.254
               <span class="badge-net">SECTION 30</span>
               <span style="font-size: 0.8rem; color: var(--text-muted);">Name Resolution</span>
             </div>
-            <h2 style="font-size: 1.85rem; font-weight: 800; margin-bottom: 1rem; color: #f8fafc;">
+            
+
+          <!-- Visual Learning Card: DNS Resolution 8-Step Recursive Flow -->
+          <div class="concept-visual-card featured-card">
+            <div class="concept-card-header">
+              <div class="concept-title-group">
+                <h3 class="concept-title"><span>🔍</span> DNS Resolution 8-Step Recursive Flow</h3>
+                <p class="concept-one-liner">Step-by-step query traversal from browser cache through Root, TLD, and Authoritative Nameservers.</p>
+              </div>
+              <div class="concept-badges">
+                <span class="visual-badge badge-diagram">🔄 Flow Diagram</span>
+                <span class="visual-badge badge-trap">⚠️ High-Yield Trap</span>
+              </div>
+            </div>
+
+            <div class="visual-diagram-container">
+              <img src="../assets/diagrams/networking/network-dns-resolution-flow.svg" alt="DNS recursive resolution flow diagram from browser through resolver to root and TLD" loading="lazy">
+              <div class="diagram-caption">
+                <div class="diagram-caption-left">
+                  <span>📊</span> <strong>Figure:</strong> 8-Step Recursive & Iterative DNS Resolution Sequence
+                </div>
+                <span class="diagram-type-tag">SVG Vector Diagram</span>
+              </div>
+            </div>
+            
+            <div class="placement-trap-box">
+              <div class="trap-header">
+                <span>⚠️</span> Where is DNS Checked BEFORE Querying the Network?
+              </div>
+              <div class="trap-body">
+                <p>A classic technical interview trap question:</p>
+<ul>
+  <li>1. <strong>Browser Cache:</strong> Chrome/Firefox cache recent DNS lookups for ~60 seconds.</li>
+  <li>2. <strong>Operating System Cache:</strong> OS resolver cache (flushed via <code>ipconfig /flushdns</code>).</li>
+  <li>3. <strong>Local Hosts File:</strong> <code>/etc/hosts</code> (Linux) or <code>C:\Windows\System32\drivers\etc\hosts</code> is evaluated *before* any network request!</li>
+  <li>4. Only if all three fail does your machine send a recursive query to the ISP/Cloudflare (1.1.1.1) Resolver.</li>
+</ul>
+                <span class="trap-takeaway">🎯 Key Takeaway: Local checks (Browser &rarr; OS &rarr; Hosts file) always intercept queries before network DNS servers are reached.</span>
+              </div>
+            </div>
+
+            <div class="real-life-scenario-box">
+              <div class="scenario-header">
+                <div class="scenario-title"><span>🏢</span> Zero-Downtime Domain Migration</div>
+                <span class="company-tag">Cloudflare / Route 53</span>
+              </div>
+              <div class="scenario-content">
+                DevOps teams reduce the DNS record Time-To-Live (TTL) to 300 seconds (5 mins) 48 hours prior to server migrations. When DNS records switch to new server IP addresses, worldwide client resolvers reflect the update almost immediately without caching dead IPs.
+              </div>
+            </div>
+
+            <div class="mini-challenge-box">
+              <div class="challenge-header">
+                <span>❓</span> Quick Placement Check
+              </div>
+              <p class="challenge-question">What type of DNS server holds the final, authoritative mapping for a domain record (e.g. google.com &rarr; 142.250.190.46)?</p>
+              <button type="button" class="challenge-reveal-btn" aria-expanded="false">
+                <span>💡 Reveal Verified Answer &amp; Placement Trap</span>
+              </button>
+              <div class="challenge-answer">
+                <p><strong>Answer:</strong> The Authoritative Nameserver (held by the domain registrar or DNS host like AWS Route 53 or Cloudflare).</p>
+              </div>
+            </div>
+          </div>
+
+<h2 style="font-size: 1.85rem; font-weight: 800; margin-bottom: 1rem; color: #f8fafc;">
               DNS: The Phonebook of the Internet
             </h2>
             <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem;">
@@ -1944,7 +2186,72 @@ Scenario: Host A (192.168.1.10) wants to send data to Host B (192.168.1.20).
               <span class="badge-net">SECTIONS 34 &amp; 35</span>
               <span style="font-size: 0.8rem; color: var(--text-muted);">Connection Reliability</span>
             </div>
-            <h2 style="font-size: 1.85rem; font-weight: 800; margin-bottom: 1rem; color: #f8fafc;">
+            
+<div id="sec-35"></div>
+          <!-- Visual Learning Card: TCP 3-Way Handshake Connection Lifecycle -->
+          <div class="concept-visual-card featured-card">
+            <div class="concept-card-header">
+              <div class="concept-title-group">
+                <h3 class="concept-title"><span>🤝</span> TCP 3-Way Handshake Connection Lifecycle</h3>
+                <p class="concept-one-liner">Connection establishment via SYN, SYN-ACK, ACK sequence synchronization and SYN-flood mitigation.</p>
+              </div>
+              <div class="concept-badges">
+                <span class="visual-badge badge-diagram">📐 Protocol Flow</span>
+                <span class="visual-badge badge-trap">⚠️ High-Yield Trap</span>
+              </div>
+            </div>
+
+            <div class="visual-diagram-container">
+              <img src="../assets/diagrams/networking/network-tcp-three-way-handshake.svg" alt="TCP 3-Way Handshake step-by-step sequence diagram" loading="lazy">
+              <div class="diagram-caption">
+                <div class="diagram-caption-left">
+                  <span>📊</span> <strong>Figure:</strong> TCP 3-Way Handshake Sequence Numbers, Acknowledgments, and Connection States
+                </div>
+                <span class="diagram-type-tag">SVG Vector Diagram</span>
+              </div>
+            </div>
+            
+            <div class="placement-trap-box">
+              <div class="trap-header">
+                <span>⚠️</span> How Sequence and Acknowledgment Numbers Increment
+              </div>
+              <div class="trap-body">
+                <p>Technical exams expect exact mathematical understanding of sequence numbers:</p>
+<ul>
+  <li><strong>Step 1 (Client &rarr; Server):</strong> <code>SYN, Seq = x</code> (Client chooses random initial sequence number x).</li>
+  <li><strong>Step 2 (Server &rarr; Client):</strong> <code>SYN-ACK, Seq = y, Ack = x + 1</code> (Server acknowledges x and sends its own seq y).</li>
+  <li><strong>Step 3 (Client &rarr; Server):</strong> <code>ACK, Seq = x + 1, Ack = y + 1</code> (Connection is established!).</li>
+  <li><strong>Placement Trap:</strong> ACK number is always the received sequence number <strong>PLUS 1</strong>!</li>
+</ul>
+                <span class="trap-takeaway">🎯 Key Takeaway: SYN(x) &rarr; SYN(y)-ACK(x+1) &rarr; ACK(y+1). Both sides synchronize and confirm bidirectional reliability.</span>
+              </div>
+            </div>
+
+            <div class="real-life-scenario-box">
+              <div class="scenario-header">
+                <div class="scenario-title"><span>🏢</span> SYN Flood DDoS Defense via SYN Cookies</div>
+                <span class="company-tag">Cloudflare DDoS Shield</span>
+              </div>
+              <div class="scenario-content">
+                Attackers flood web servers with millions of spoofed SYN packets and never send the concluding ACK, exhausting server connection memory tables. Enterprise load balancers enable SYN Cookies, encoding state in sequence numbers without allocating RAM until the final ACK arrives.
+              </div>
+            </div>
+
+            <div class="mini-challenge-box">
+              <div class="challenge-header">
+                <span>❓</span> Quick Placement Check
+              </div>
+              <p class="challenge-question">If a client sends SYN with Seq = 1000, what will be the Ack number in the server's SYN-ACK response?</p>
+              <button type="button" class="challenge-reveal-btn" aria-expanded="false">
+                <span>💡 Reveal Verified Answer &amp; Placement Trap</span>
+              </button>
+              <div class="challenge-answer">
+                <p><strong>Answer:</strong> Ack = 1001 (The server acknowledges receipt by calculating received Seq + 1).</p>
+              </div>
+            </div>
+          </div>
+
+<h2 style="font-size: 1.85rem; font-weight: 800; margin-bottom: 1rem; color: #f8fafc;">
               TCP &amp; The 3-Way Handshake
             </h2>
             <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem;">
@@ -2048,7 +2355,71 @@ Scenario: Host A (192.168.1.10) wants to send data to Host B (192.168.1.20).
               <span class="badge-net">SECTIONS 36 &amp; 37</span>
               <span style="font-size: 0.8rem; color: var(--text-muted);">Transport Protocols</span>
             </div>
-            <h2 style="font-size: 1.85rem; font-weight: 800; margin-bottom: 1rem; color: #f8fafc;">
+            
+<div id="sec-37"></div>
+          <!-- Visual Learning Card: TCP vs UDP Transport Protocol Faceoff -->
+          <div class="concept-visual-card featured-card">
+            <div class="concept-card-header">
+              <div class="concept-title-group">
+                <h3 class="concept-title"><span>⚖️</span> TCP vs UDP Transport Protocol Faceoff</h3>
+                <p class="concept-one-liner">Comparing connection-oriented reliability and congestion control against connectionless low-latency streaming.</p>
+              </div>
+              <div class="concept-badges">
+                <span class="visual-badge badge-diagram">📊 Protocol Matrix</span>
+                <span class="visual-badge badge-trap">⚠️ High-Yield Trap</span>
+              </div>
+            </div>
+
+            <div class="visual-diagram-container">
+              <img src="../assets/diagrams/networking/network-tcp-vs-udp.svg" alt="TCP connection-oriented vs UDP connectionless protocol comparison" loading="lazy">
+              <div class="diagram-caption">
+                <div class="diagram-caption-left">
+                  <span>📊</span> <strong>Figure:</strong> Transport Protocol Comparison: 20-Byte TCP Reliability vs 8-Byte UDP Speed
+                </div>
+                <span class="diagram-type-tag">SVG Vector Diagram</span>
+              </div>
+            </div>
+            
+            <div class="placement-trap-box">
+              <div class="trap-header">
+                <span>⚠️</span> Why Does Live Video Streaming Use UDP Instead of TCP?
+              </div>
+              <div class="trap-body">
+                <p>Interviewers probe protocol trade-offs:</p>
+<ul>
+  <li><strong>TCP:</strong> Heavyweight (20-60 byte header). Guarantees ordered delivery via ACK, retransmission of lost packets, and flow control. Perfect for web pages, file downloads, banking.</li>
+  <li><strong>UDP:</strong> Featherweight (8-byte header). 'Fire and forget'—no handshakes, no acknowledgments, no retransmissions.</li>
+  <li><strong>Placement Trap:</strong> In live Zoom calls or gaming, a retransmitted 2-second-old dropped voice packet is useless noise; immediate low latency is far more important than 100% packet integrity!</li>
+</ul>
+                <span class="trap-takeaway">🎯 Key Takeaway: TCP = 100% Reliable, in-order, heavier. UDP = Ultra-low latency, loss-tolerant, lightweight.</span>
+              </div>
+            </div>
+
+            <div class="real-life-scenario-box">
+              <div class="scenario-header">
+                <div class="scenario-title"><span>🏢</span> Multiplayer Esports Gaming & Discord Voice</div>
+                <span class="company-tag">Discord / Riot Games</span>
+              </div>
+              <div class="scenario-content">
+                Discord voice calls and League of Legends packet streams run over UDP. If 0.1% of voice packets drop due to Wi-Fi jitter, the user barely notices a micro-glitch, whereas TCP would freeze the voice stream waiting for retransmission.
+              </div>
+            </div>
+
+            <div class="mini-challenge-box">
+              <div class="challenge-header">
+                <span>❓</span> Quick Placement Check
+              </div>
+              <p class="challenge-question">Which transport layer protocol (TCP or UDP) is primarily used by DNS query lookups and DHCP, and why?</p>
+              <button type="button" class="challenge-reveal-btn" aria-expanded="false">
+                <span>💡 Reveal Verified Answer &amp; Placement Trap</span>
+              </button>
+              <div class="challenge-answer">
+                <p><strong>Answer:</strong> UDP (specifically port 53 for standard DNS queries, port 67/68 for DHCP) because queries are single-request/single-response transactions where establishing a 3-way TCP handshake would double latency.</p>
+              </div>
+            </div>
+          </div>
+
+<h2 style="font-size: 1.85rem; font-weight: 800; margin-bottom: 1rem; color: #f8fafc;">
               UDP &amp; The Master TCP vs UDP Comparison
             </h2>
             <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem;">
@@ -2316,7 +2687,71 @@ STEP 6: Test DNS Resolution ────> 'nslookup google.com' (Validates DNS n
               <span class="badge-sec">SECTION 48</span>
               <span style="font-size: 0.8rem; color: var(--text-muted);">Core Security Pillar</span>
             </div>
-            <h2 style="font-size: 1.85rem; font-weight: 800; margin-bottom: 1rem; color: #f8fafc;">
+            
+
+          <!-- Visual Learning Card: CIA Security Triad & Threat Countermeasures -->
+          <div class="concept-visual-card featured-card">
+            <div class="concept-card-header">
+              <div class="concept-title-group">
+                <h3 class="concept-title"><span>🛡️</span> CIA Security Triad & Threat Countermeasures</h3>
+                <p class="concept-one-liner">Core information security pillars: Confidentiality, Integrity, and Availability with defense architecture.</p>
+              </div>
+              <div class="concept-badges">
+                <span class="visual-badge badge-diagram">🔒 Security Model</span>
+                <span class="visual-badge badge-trap">⚠️ High-Yield Trap</span>
+              </div>
+            </div>
+
+            <div class="visual-diagram-container">
+              <img src="../assets/diagrams/networking/network-cia-triad.svg" alt="CIA Security Triad illustrating Confidentiality, Integrity, and Availability" loading="lazy">
+              <div class="diagram-caption">
+                <div class="diagram-caption-left">
+                  <span>📊</span> <strong>Figure:</strong> The CIA Triad: Core Security Pillars and Enterprise Defensive Mechanisms
+                </div>
+                <span class="diagram-type-tag">SVG Vector Diagram</span>
+              </div>
+            </div>
+            
+            <div class="placement-trap-box">
+              <div class="trap-header">
+                <span>⚠️</span> Confidentiality vs Integrity: Encryption vs Hashing
+              </div>
+              <div class="trap-body">
+                <p>Interviewers frequently check if you confuse security objectives:</p>
+<ul>
+  <li><strong>Confidentiality:</strong> Preventing unauthorized viewing. Enforced via <strong>Encryption</strong> (AES-256, TLS 1.3) and Role-Based Access Control (RBAC).</li>
+  <li><strong>Integrity:</strong> Preventing unauthorized modification or tampering. Enforced via <strong>Cryptographic Hashing</strong> (SHA-256, HMAC) and Digital Signatures.</li>
+  <li><strong>Availability:</strong> Ensuring authorized users have uninterrupted access. Enforced via <strong>Redundancy, Multi-AZ backups, and DDoS mitigation</strong>.</li>
+</ul>
+                <span class="trap-takeaway">🎯 Key Takeaway: Confidentiality protects secrets (Encryption). Integrity prevents tampering (Hashing). Availability guarantees uptime (Redundancy).</span>
+              </div>
+            </div>
+
+            <div class="real-life-scenario-box">
+              <div class="scenario-header">
+                <div class="scenario-title"><span>🏢</span> Healthcare Electronic Medical Records System</div>
+                <span class="company-tag">Hospital HIPAA Compliance</span>
+              </div>
+              <div class="scenario-content">
+                Patient diagnoses are encrypted at rest with AES-256 (Confidentiality), medical lab test results are cryptographically signed with digital hashes to detect any tampering (Integrity), and the patient records database replicates across dual power datacenters (Availability).
+              </div>
+            </div>
+
+            <div class="mini-challenge-box">
+              <div class="challenge-header">
+                <span>❓</span> Quick Placement Check
+              </div>
+              <p class="challenge-question">A ransomware attacker encrypts all files on a corporate database server and locks out employees. Which pillar of the CIA Triad has been primarily violated?</p>
+              <button type="button" class="challenge-reveal-btn" aria-expanded="false">
+                <span>💡 Reveal Verified Answer &amp; Placement Trap</span>
+              </button>
+              <div class="challenge-answer">
+                <p><strong>Answer:</strong> Availability (authorized users are completely blocked from accessing legitimate data and services).</p>
+              </div>
+            </div>
+          </div>
+
+<h2 style="font-size: 1.85rem; font-weight: 800; margin-bottom: 1rem; color: #f8fafc;">
               The CIA Triad: Confidentiality, Integrity &amp; Availability
             </h2>
             <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem;">
@@ -8519,5 +8954,6 @@ Internet ───> [ 1. FIREWALL ] ───> [ 2. INLINE IPS ] ───> Prot
       }
     });
   </script>
+  <script src="../js/visual-learning.js"></script>
 </body>
 </html>

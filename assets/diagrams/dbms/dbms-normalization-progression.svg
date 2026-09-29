@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 450" width="100%" height="100%" style="background: linear-gradient(135deg, #090D16 0%, #111827 100%); border-radius: 12px; font-family: 'Inter', system-ui, -apple-system, sans-serif;">
+  <defs>
+    <linearGradient id="grad-card" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="rgba(30, 41, 59, 0.85)"/>
+      <stop offset="100%" stop-color="rgba(15, 23, 42, 0.95)"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.4"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#38BDF8"/>
+    </marker>
+    <marker id="arrow-emerald" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#10B981"/>
+    </marker>
+  </defs>
+
+  <title>Database Normalization: 1NF to BCNF</title>
+  <text x="420" y="36" text-anchor="middle" fill="#F8FAFC" font-size="20" font-weight="800">Database Normalization Ladder (1NF → 2NF → 3NF → BCNF)</text>
+  <text x="420" y="56" text-anchor="middle" fill="#94A3B8" font-size="12">Eliminating redundancy, update anomalies, and invalid dependencies step-by-step</text>
+
+  <!-- Step 1: 1NF -->
+  <g transform="translate(40, 90)">
+    <rect x="0" y="0" width="175" height="280" rx="10" fill="url(#grad-card)" stroke="#EF4444" stroke-width="1.5" filter="url(#shadow)"/>
+    <rect x="0" y="0" width="175" height="42" rx="10" fill="#1E293B"/>
+    <text x="87" y="26" text-anchor="middle" fill="#F87171" font-size="15" font-weight="800">1NF (First NF)</text>
+
+    <g transform="translate(12, 60)">
+      <text x="0" y="15" fill="#38BDF8" font-size="11" font-weight="700">Requirement:</text>
+      <text x="0" y="35" fill="#E2E8F0" font-size="11" font-weight="700">Atomic Values</text>
+      <text x="0" y="52" fill="#94A3B8" font-size="9">No multi-valued attributes</text>
+      <text x="0" y="66" fill="#94A3B8" font-size="9">No repeating groups</text>
+
+      <text x="0" y="95" fill="#F87171" font-size="11" font-weight="700">Bad Example:</text>
+      <text x="0" y="112" fill="#CBD5E1" font-size="9">Skills = "Java, Python, C"</text>
+
+      <text x="0" y="140" fill="#34D399" font-size="11" font-weight="700">Fixed in 1NF:</text>
+      <text x="0" y="157" fill="#CBD5E1" font-size="9">Split into separate rows</text>
+      <text x="0" y="171" fill="#CBD5E1" font-size="9">Each cell holds 1 value</text>
+    </g>
+  </g>
+
+  <!-- Arrow 1 to 2 -->
+  <line x1="215" y1="230" x2="245" y2="230" stroke="#38BDF8" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Step 2: 2NF -->
+  <g transform="translate(245, 90)">
+    <rect x="0" y="0" width="175" height="280" rx="10" fill="url(#grad-card)" stroke="#F59E0B" stroke-width="1.5" filter="url(#shadow)"/>
+    <rect x="0" y="0" width="175" height="42" rx="10" fill="#1E293B"/>
+    <text x="87" y="26" text-anchor="middle" fill="#FBBF24" font-size="15" font-weight="800">2NF (Second NF)</text>
+
+    <g transform="translate(12, 60)">
+      <text x="0" y="15" fill="#38BDF8" font-size="11" font-weight="700">Requirement:</text>
+      <text x="0" y="35" fill="#E2E8F0" font-size="11" font-weight="700">In 1NF + No Partial</text>
+      <text x="0" y="52" fill="#E2E8F0" font-size="11" font-weight="700">Dependency</text>
+      <text x="0" y="70" fill="#94A3B8" font-size="9">Non-prime attributes must</text>
+      <text x="0" y="84" fill="#94A3B8" font-size="9">depend on FULL primary key</text>
+
+      <text x="0" y="112" fill="#F87171" font-size="10" font-weight="700">Applies when:</text>
+      <text x="0" y="128" fill="#CBD5E1" font-size="9">PK is Composite (A, B)</text>
+      <text x="0" y="142" fill="#CBD5E1" font-size="9">If C depends only on A,</text>
+      <text x="0" y="156" fill="#F87171" font-size="9">move (A, C) to new table!</text>
+    </g>
+  </g>
+
+  <!-- Arrow 2 to 3 -->
+  <line x1="420" y1="230" x2="450" y2="230" stroke="#38BDF8" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Step 3: 3NF -->
+  <g transform="translate(450, 90)">
+    <rect x="0" y="0" width="175" height="280" rx="10" fill="url(#grad-card)" stroke="#38BDF8" stroke-width="1.5" filter="url(#shadow)"/>
+    <rect x="0" y="0" width="175" height="42" rx="10" fill="#1E293B"/>
+    <text x="87" y="26" text-anchor="middle" fill="#38BDF8" font-size="15" font-weight="800">3NF (Third NF)</text>
+
+    <g transform="translate(12, 60)">
+      <text x="0" y="15" fill="#38BDF8" font-size="11" font-weight="700">Requirement:</text>
+      <text x="0" y="35" fill="#E2E8F0" font-size="11" font-weight="700">In 2NF + No Transitive</text>
+      <text x="0" y="52" fill="#E2E8F0" font-size="11" font-weight="700">Dependency</text>
+      <text x="0" y="70" fill="#94A3B8" font-size="9">Non-prime attributes cannot</text>
+      <text x="0" y="84" fill="#94A3B8" font-size="9">depend on other non-primes</text>
+
+      <text x="0" y="112" fill="#F87171" font-size="10" font-weight="700">Bad Example:</text>
+      <text x="0" y="128" fill="#CBD5E1" font-size="9">Emp_ID → Dept_ID</text>
+      <text x="0" y="142" fill="#CBD5E1" font-size="9">Dept_ID → Dept_Name</text>
+      <text x="0" y="156" fill="#F87171" font-size="9">(Emp_ID → Dept_Name is Transitive!)</text>
+    </g>
+  </g>
+
+  <!-- Arrow 3 to BCNF -->
+  <line x1="625" y1="230" x2="655" y2="230" stroke="#38BDF8" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Step 4: BCNF -->
+  <g transform="translate(655, 90)">
+    <rect x="0" y="0" width="150" height="280" rx="10" fill="url(#grad-card)" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)"/>
+    <rect x="0" y="0" width="150" height="42" rx="10" fill="#1E293B"/>
+    <text x="75" y="26" text-anchor="middle" fill="#34D399" font-size="14" font-weight="800">BCNF (3.5 NF)</text>
+
+    <g transform="translate(10, 60)">
+      <text x="0" y="15" fill="#38BDF8" font-size="10" font-weight="700">Requirement:</text>
+      <text x="0" y="32" fill="#34D399" font-size="11" font-weight="800">Strict Super Key</text>
+      <text x="0" y="48" fill="#94A3B8" font-size="8">In A → B,</text>
+      <text x="0" y="60" fill="#94A3B8" font-size="8">A MUST be a Super Key</text>
+
+      <text x="0" y="85" fill="#FBBF24" font-size="10" font-weight="700">Difference from 3NF:</text>
+      <text x="0" y="102" fill="#CBD5E1" font-size="8">3NF permits B to be prime.</text>
+      <text x="0" y="115" fill="#CBD5E1" font-size="8">BCNF disallows even that.</text>
+      <text x="0" y="140" fill="#34D399" font-size="9" font-weight="700">Strongest Normal Form</text>
+    </g>
+  </g>
+
+  <!-- Footer Tip -->
+  <text x="420" y="420" text-anchor="middle" fill="#CBD5E1" font-size="11">Interview Mnemonic: "The Key (1NF), the Whole Key (2NF), and Nothing but the Key (3NF), so help me Codd (BCNF)."</text>
+</svg>

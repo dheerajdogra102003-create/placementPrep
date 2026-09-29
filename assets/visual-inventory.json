@@ -1,0 +1,286 @@
+{
+  "version": "1.0.0",
+  "total_modules": 12,
+  "inventory": [
+    {
+      "module": "cloud_computing",
+      "concept": "IaaS vs PaaS vs SaaS Shared Responsibility",
+      "currently_has_visual": true,
+      "visual_needed": true,
+      "visual_type": "architecture_diagram",
+      "existing_asset": "assets/diagrams/cloud/cloud-iaas-paas-saas.svg",
+      "new_asset_required": false,
+      "reuse_possible": true
+    },
+    {
+      "module": "cloud_computing",
+      "concept": "Scalability vs Elasticity (Placement Trap)",
+      "currently_has_visual": true,
+      "visual_needed": true,
+      "visual_type": "comparison_visual",
+      "existing_asset": "assets/diagrams/cloud/cloud-scalability-vs-elasticity.svg",
+      "new_asset_required": false,
+      "reuse_possible": true
+    },
+    {
+      "module": "cloud_computing",
+      "concept": "Docker Containers vs Virtual Machines",
+      "currently_has_visual": true,
+      "visual_needed": true,
+      "visual_type": "architecture_diagram",
+      "existing_asset": "assets/diagrams/cloud/cloud-docker-vs-vm.svg",
+      "new_asset_required": false,
+      "reuse_possible": true
+    },
+    {
+      "module": "cloud_computing",
+      "concept": "Storage Matrix: S3 vs EBS vs EFS",
+      "currently_has_visual": true,
+      "visual_needed": true,
+      "visual_type": "comparison_visual",
+      "existing_asset": "assets/diagrams/cloud/cloud-storage-hierarchy.svg",
+      "new_asset_required": false,
+      "reuse_possible": true
+    },
+    {
+      "module": "cloud_computing",
+      "concept": "Disaster Recovery Timeline (RPO vs RTO)",
+      "currently_has_visual": true,
+      "visual_needed": true,
+      "visual_type": "timeline",
+      "existing_asset": "assets/diagrams/cloud/cloud-rpo-rto-timeline.svg",
+      "new_asset_required": false,
+      "reuse_possible": true
+    },
+    {
+      "module": "cloud_computing",
+      "concept": "AWS VPC, Public/Private Subnets & NAT Gateway",
+      "currently_has_visual": true,
+      "visual_needed": true,
+      "visual_type": "cloud_infrastructure_diagram",
+      "existing_asset": "assets/diagrams/cloud/cloud-vpc-subnets-architecture.svg",
+      "new_asset_required": false,
+      "reuse_possible": true
+    },
+    {
+      "module": "networking_security",
+      "concept": "OSI 7-Layer Reference Model & PDU Hierarchy",
+      "currently_has_visual": true,
+      "visual_needed": true,
+      "visual_type": "layer_diagram",
+      "existing_asset": "assets/diagrams/networking/network-osi-seven-layers.svg",
+      "new_asset_required": false,
+      "reuse_possible": true
+    },
+    {
+      "module": "networking_security",
+      "concept": "TCP 3-Way Handshake Lifecycle",
+      "currently_has_visual": true,
+      "visual_needed": true,
+      "visual_type": "process_diagram",
+      "existing_asset": "assets/diagrams/networking/network-tcp-three-way-handshake.svg",
+      "new_asset_required": false,
+      "reuse_possible": true
+    },
+    {
+      "module": "networking_security",
+      "concept": "TCP vs UDP Transport Protocol Faceoff",
+      "currently_has_visual": true,
+      "visual_needed": true,
+      "visual_type": "comparison_visual",
+      "existing_asset": "assets/diagrams/networking/network-tcp-vs-udp.svg",
+      "new_asset_required": false,
+      "reuse_possible": true
+    },
+    {
+      "module": "networking_security",
+      "concept": "DNS Resolution 8-Step Recursive Flow",
+      "currently_has_visual": true,
+      "visual_needed": true,
+      "visual_type": "data_flow_diagram",
+      "existing_asset": "assets/diagrams/networking/network-dns-resolution-flow.svg",
+      "new_asset_required": false,
+      "reuse_possible": true
+    },
+    {
+      "module": "networking_security",
+      "concept": "CIA Security Triad & Threat Countermeasures",
+      "currently_has_visual": true,
+      "visual_needed": true,
+      "visual_type": "concept_map",
+      "existing_asset": "assets/diagrams/networking/network-cia-triad.svg",
+      "new_asset_required": false,
+      "reuse_possible": true
+    },
+    {
+      "module": "networking_security",
+      "concept": "Network Devices: Hub vs Switch vs Router",
+      "currently_has_visual": true,
+      "visual_needed": true,
+      "visual_type": "comparison_visual",
+      "existing_asset": "assets/diagrams/networking/network-device-comparison.svg",
+      "new_asset_required": false,
+      "reuse_possible": true
+    },
+    {
+      "module": "dbms",
+      "concept": "ACID Properties & Bank Transfer Lifecycle",
+      "currently_has_visual": true,
+      "visual_needed": true,
+      "visual_type": "concept_map",
+      "existing_asset": "assets/diagrams/dbms/dbms-acid-properties.svg",
+      "new_asset_required": false,
+      "reuse_possible": true
+    },
+    {
+      "module": "dbms",
+      "concept": "Relational Key Hierarchy & Foreign Key Integrity",
+      "currently_has_visual": true,
+      "visual_needed": true,
+      "visual_type": "hierarchy_diagram",
+      "existing_asset": "assets/diagrams/dbms/dbms-relational-keys-architecture.svg",
+      "new_asset_required": false,
+      "reuse_possible": true
+    },
+    {
+      "module": "dbms",
+      "concept": "Database Normalization Ladder (1NF to BCNF)",
+      "currently_has_visual": true,
+      "visual_needed": true,
+      "visual_type": "process_diagram",
+      "existing_asset": "assets/diagrams/dbms/dbms-normalization-progression.svg",
+      "new_asset_required": false,
+      "reuse_possible": true
+    },
+    {
+      "module": "dbms",
+      "concept": "SQL Joins (INNER, LEFT, RIGHT, FULL OUTER) Venn Sets",
+      "currently_has_visual": true,
+      "visual_needed": true,
+      "visual_type": "database_diagram",
+      "existing_asset": "assets/diagrams/dbms/dbms-sql-joins-venn.svg",
+      "new_asset_required": false,
+      "reuse_possible": true
+    },
+    {
+      "module": "git_github",
+      "concept": "Git Three-Trees Architecture (Working, Staging, Repo, Remote)",
+      "currently_has_visual": true,
+      "visual_needed": true,
+      "visual_type": "git_workflow",
+      "existing_asset": "assets/diagrams/git/git-three-trees-workflow.svg",
+      "new_asset_required": false,
+      "reuse_possible": true
+    },
+    {
+      "module": "git_github",
+      "concept": "Git Merge vs Git Rebase Commit Histories",
+      "currently_has_visual": true,
+      "visual_needed": true,
+      "visual_type": "git_workflow",
+      "existing_asset": "assets/diagrams/git/git-merge-vs-rebase.svg",
+      "new_asset_required": false,
+      "reuse_possible": true
+    },
+    {
+      "module": "git_github",
+      "concept": "Git Undo: git reset vs git revert",
+      "currently_has_visual": true,
+      "visual_needed": true,
+      "visual_type": "git_workflow",
+      "existing_asset": "assets/diagrams/git/git-reset-vs-revert.svg",
+      "new_asset_required": false,
+      "reuse_possible": true
+    },
+    {
+      "module": "ai_ml_dl",
+      "concept": "AI vs ML vs Deep Learning Concentric Hierarchy",
+      "currently_has_visual": true,
+      "visual_needed": true,
+      "visual_type": "hierarchy_diagram",
+      "existing_asset": "assets/diagrams/ai-ml/aiml-ai-ml-dl-hierarchy.svg",
+      "new_asset_required": false,
+      "reuse_possible": true
+    },
+    {
+      "module": "ai_ml_dl",
+      "concept": "Bias-Variance Tradeoff: Underfitting vs Overfitting",
+      "currently_has_visual": true,
+      "visual_needed": true,
+      "visual_type": "algorithm_visualization",
+      "existing_asset": "assets/diagrams/ai-ml/aiml-bias-variance-tradeoff.svg",
+      "new_asset_required": false,
+      "reuse_possible": true
+    },
+    {
+      "module": "ai_ml_dl",
+      "concept": "Confusion Matrix, Precision, Recall & F1 Formula Vault",
+      "currently_has_visual": true,
+      "visual_needed": true,
+      "visual_type": "input_output_diagram",
+      "existing_asset": "assets/diagrams/ai-ml/aiml-confusion-matrix.svg",
+      "new_asset_required": false,
+      "reuse_possible": true
+    },
+    {
+      "module": "linux_command_prompt",
+      "concept": "Linux Filesystem Hierarchy Standard (FHS Tree)",
+      "currently_has_visual": true,
+      "visual_needed": true,
+      "visual_type": "system_architecture",
+      "existing_asset": "assets/diagrams/linux/linux-filesystem-hierarchy.svg",
+      "new_asset_required": false,
+      "reuse_possible": true
+    },
+    {
+      "module": "linux_command_prompt",
+      "concept": "chmod 755 Octal File Permissions & Binary Triad",
+      "currently_has_visual": true,
+      "visual_needed": true,
+      "visual_type": "operating_system_visual",
+      "existing_asset": "assets/diagrams/linux/linux-file-permissions.svg",
+      "new_asset_required": false,
+      "reuse_possible": true
+    },
+    {
+      "module": "browser_fundamentals",
+      "concept": "Critical Rendering Path (CRP): HTML to Screen Pixels",
+      "currently_has_visual": true,
+      "visual_needed": true,
+      "visual_type": "process_diagram",
+      "existing_asset": "assets/diagrams/browser/browser-request-response-lifecycle.svg",
+      "new_asset_required": false,
+      "reuse_possible": true
+    },
+    {
+      "module": "browser_fundamentals",
+      "concept": "Client Storage: Cookies vs LocalStorage vs SessionStorage",
+      "currently_has_visual": true,
+      "visual_needed": true,
+      "visual_type": "comparison_visual",
+      "existing_asset": "assets/diagrams/browser/browser-storage-comparison.svg",
+      "new_asset_required": false,
+      "reuse_possible": true
+    },
+    {
+      "module": "programming_python",
+      "concept": "Call Stack vs Heap Memory Organization",
+      "currently_has_visual": true,
+      "visual_needed": true,
+      "visual_type": "memory_visualization",
+      "existing_asset": "assets/diagrams/programming/programming-variable-memory-stack-heap.svg",
+      "new_asset_required": false,
+      "reuse_possible": true
+    },
+    {
+      "module": "conditional_statements_loops_variables",
+      "concept": "Iteration Control Flowchart: For/While, Break & Continue",
+      "currently_has_visual": true,
+      "visual_needed": true,
+      "visual_type": "flowchart",
+      "existing_asset": "assets/diagrams/programming/programming-loop-execution-flow.svg",
+      "new_asset_required": false,
+      "reuse_possible": true
+    }
+  ]
+}

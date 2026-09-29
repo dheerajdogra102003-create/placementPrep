@@ -117,6 +117,7 @@
       box-shadow: 0 0 12px var(--brand-dbms-glow);
     }
   </style>
+  <link rel="stylesheet" href="../css/visual-learning.css">
 </head>
 <body>
   <!-- Reading Progress Bar -->
@@ -126,9 +127,9 @@
     <!-- Navbar -->
     <header class="site-navbar" id="site-navbar">
       <div class="container navbar-inner">
-        <a href="../index.html#home" class="brand-link" aria-label="PlacementPrep Home">
-          <div class="brand-icon" style="background:linear-gradient(135deg, #3b82f6, #06b6d4);">P</div>
-          <span>Placement<span class="brand-text-accent" style="color:#3b82f6;">Prep</span></span>
+        <a href="../index.html#home" class="nav-brand brand-link" aria-label="PlacementPrep Home">
+          <div class="brand-icon" style="background:linear-gradient(135deg, #3b82f6, #06b6d4);" aria-hidden="true">P</div>
+          <span class="brand-title">Placement<span class="brand-text-accent" style="color:#3b82f6;">Prep</span></span>
         </a>
 
         <nav role="navigation" aria-label="Main Navigation">
@@ -817,6 +818,70 @@
           <p class="notes-lead">
             Keys are relational attributes used to uniquely identify rows, prevent duplicate data, and establish referential relationships between tables.
           </p>
+
+          <!-- Visual Learning Card: Relational Key Hierarchy & Foreign Key Referential Integrity -->
+          <div class="concept-visual-card featured-card">
+            <div class="concept-card-header">
+              <div class="concept-title-group">
+                <h3 class="concept-title"><span>🔑</span> Relational Key Hierarchy & Foreign Key Referential Integrity</h3>
+                <p class="concept-one-liner">Hierarchy of Super Keys, Candidate Keys, Primary Keys, and Referential Constraints.</p>
+              </div>
+              <div class="concept-badges">
+                <span class="visual-badge badge-diagram">📐 Schema Architecture</span>
+                <span class="visual-badge badge-trap">⚠️ High-Yield Trap</span>
+              </div>
+            </div>
+
+            <div class="visual-diagram-container">
+              <img src="../assets/diagrams/dbms/dbms-relational-keys-architecture.svg" alt="Relational keys hierarchy of Super Key, Candidate Key, Primary Key, and Foreign Key" loading="lazy">
+              <div class="diagram-caption">
+                <div class="diagram-caption-left">
+                  <span>📊</span> <strong>Figure:</strong> Relational Key Set Hierarchy & Parent-Child Referential Foreign Key Links
+                </div>
+                <span class="diagram-type-tag">SVG Vector Diagram</span>
+              </div>
+            </div>
+            
+            <div class="placement-trap-box">
+              <div class="trap-header">
+                <span>⚠️</span> Primary Key vs UNIQUE Constraint (NULL Trap)
+              </div>
+              <div class="trap-body">
+                <p>The #1 relational keys interview trick:</p>
+<ul>
+  <li><strong>Candidate Key:</strong> A minimal Super Key with no redundant attributes.</li>
+  <li><strong>Primary Key:</strong> The chosen Candidate Key. It can <strong>NEVER contain NULL values</strong> and each table can have only ONE Primary Key.</li>
+  <li><strong>UNIQUE Constraint:</strong> Guarantees distinct values, BUT allows <strong>one NULL value</strong> (in standard SQL implementations like PostgreSQL and SQL Server). A table can have multiple UNIQUE columns.</li>
+</ul>
+                <span class="trap-takeaway">🎯 Key Takeaway: Super Key &ge; Candidate Key &ge; Primary Key. Primary Keys strictly forbid NULLs.</span>
+              </div>
+            </div>
+
+            <div class="real-life-scenario-box">
+              <div class="scenario-header">
+                <div class="scenario-title"><span>🏢</span> University Enrollment Portal Parent-Child Integrity</div>
+                <span class="company-tag">University Systems</span>
+              </div>
+              <div class="scenario-content">
+                A <code>Students</code> table defines <code>student_id</code> as Primary Key. An <code>Enrollments</code> table references it as a Foreign Key with <code>ON DELETE RESTRICT</code>, preventing accidental deletion of a student record while active course enrollment rows still exist.
+              </div>
+            </div>
+
+            <div class="mini-challenge-box">
+              <div class="challenge-header">
+                <span>❓</span> Quick Placement Check
+              </div>
+              <p class="challenge-question">Can a table have two Candidate Keys? If yes, how many of them can become the Primary Key?</p>
+              <button type="button" class="challenge-reveal-btn" aria-expanded="false">
+                <span>💡 Reveal Verified Answer &amp; Placement Trap</span>
+              </button>
+              <div class="challenge-answer">
+                <p><strong>Answer:</strong> Yes, a table can have multiple Candidate Keys (e.g. employee_id and passport_number). However, only EXACTLY ONE can be designated as the Primary Key.</p>
+              </div>
+            </div>
+          </div>
+
+
 
           <!-- Keys Hierarchy Visual Card -->
           <div class="visual-learning-card" style="margin-top: 1.5rem;">
@@ -2154,6 +2219,70 @@ HAVING COUNT(*) &gt; 5 AND AVG(salary) &gt; 60000;</code></pre>
             A <strong>JOIN</strong> combines columns from two or more tables based on a related column between them (typically foreign key = primary key).
           </p>
 
+          <!-- Visual Learning Card: SQL Joins (INNER, LEFT, RIGHT, FULL OUTER) Venn Sets -->
+          <div class="concept-visual-card featured-card">
+            <div class="concept-card-header">
+              <div class="concept-title-group">
+                <h3 class="concept-title"><span>🔗</span> SQL Joins (INNER, LEFT, RIGHT, FULL OUTER) Venn Sets</h3>
+                <p class="concept-one-liner">Visualizing set-theory intersections and NULL-handling across relational table joins.</p>
+              </div>
+              <div class="concept-badges">
+                <span class="visual-badge badge-diagram">📊 Venn Sets</span>
+                <span class="visual-badge badge-trap">⚠️ High-Yield Trap</span>
+              </div>
+            </div>
+
+            <div class="visual-diagram-container">
+              <img src="../assets/diagrams/dbms/dbms-sql-joins-venn.svg" alt="Visual SQL Joins Venn diagrams showing INNER, LEFT, RIGHT, and FULL OUTER joins" loading="lazy">
+              <div class="diagram-caption">
+                <div class="diagram-caption-left">
+                  <span>📊</span> <strong>Figure:</strong> Relational Set Theory: INNER, LEFT, RIGHT, and FULL OUTER JOIN Intersections
+                </div>
+                <span class="diagram-type-tag">SVG Vector Diagram</span>
+              </div>
+            </div>
+            
+            <div class="placement-trap-box">
+              <div class="trap-header">
+                <span>⚠️</span> LEFT JOIN vs INNER JOIN NULL Values Trap
+              </div>
+              <div class="trap-body">
+                <p>Interviewers test join filtering pitfalls:</p>
+<ul>
+  <li><strong>INNER JOIN:</strong> Returns rows ONLY when there is a match in BOTH tables. Any unmatched rows from either side are excluded.</li>
+  <li><strong>LEFT JOIN:</strong> Returns ALL rows from the Left table, regardless of whether a match exists on the right. Unmatched columns from the right table are populated with <strong>NULL</strong>.</li>
+  <li><strong>Placement Trap:</strong> Placing a condition like <code>WHERE Orders.order_date = '2026-01-01'</code> on a LEFT JOIN converts it into an INNER JOIN because it filters out NULL rows! Move conditions to the <code>ON</code> clause to preserve outer rows.</li>
+</ul>
+                <span class="trap-takeaway">🎯 Key Takeaway: INNER JOIN keeps common rows. LEFT JOIN preserves all left rows (filling missing right columns with NULL).</span>
+              </div>
+            </div>
+
+            <div class="real-life-scenario-box">
+              <div class="scenario-header">
+                <div class="scenario-title"><span>🏢</span> E-Commerce Inactive Customer Marketing Campaign</div>
+                <span class="company-tag">Amazon / Flipkart</span>
+              </div>
+              <div class="scenario-content">
+                Marketers find customers who registered but never placed an order using: <code>SELECT Customers.email FROM Customers LEFT JOIN Orders ON Customers.id = Orders.customer_id WHERE Orders.id IS NULL;</code>
+              </div>
+            </div>
+
+            <div class="mini-challenge-box">
+              <div class="challenge-header">
+                <span>❓</span> Quick Placement Check
+              </div>
+              <p class="challenge-question">Table A has 5 rows and Table B has 0 rows. How many rows will be returned by: 1) INNER JOIN, and 2) LEFT JOIN (Table A LEFT JOIN Table B)?</p>
+              <button type="button" class="challenge-reveal-btn" aria-expanded="false">
+                <span>💡 Reveal Verified Answer &amp; Placement Trap</span>
+              </button>
+              <div class="challenge-answer">
+                <p><strong>Answer:</strong> 1) INNER JOIN returns 0 rows (no matches exist). 2) LEFT JOIN returns 5 rows (all rows from Table A, with NULLs for all columns of Table B).</p>
+              </div>
+            </div>
+          </div>
+
+
+
           <!-- SQL Join Taxonomy Visual Card -->
           <div class="visual-learning-card" style="margin-top: 1.5rem;">
             <div class="visual-card-header">
@@ -2544,6 +2673,71 @@ FROM Employee;</code></pre>
           <p class="notes-lead">
             <strong>Normalization</strong> is the systematic mathematical process of organizing attributes and tables in a relational database to minimize unnecessary data redundancy and eliminate undesirable update, insertion, and deletion anomalies.
           </p>
+
+          <!-- Visual Learning Card: Database Normalization Ladder (1NF to BCNF) -->
+          <div class="concept-visual-card featured-card">
+            <div class="concept-card-header">
+              <div class="concept-title-group">
+                <h3 class="concept-title"><span>🪜</span> Database Normalization Ladder (1NF to BCNF)</h3>
+                <p class="concept-one-liner">Eliminating data redundancy and update/insert/delete anomalies step-by-step.</p>
+              </div>
+              <div class="concept-badges">
+                <span class="visual-badge badge-diagram">🪜 Process Progression</span>
+                <span class="visual-badge badge-trap">⚠️ High-Yield Trap</span>
+              </div>
+            </div>
+
+            <div class="visual-diagram-container">
+              <img src="../assets/diagrams/dbms/dbms-normalization-progression.svg" alt="Database normalization progression from 1NF atomic values through 2NF, 3NF, to BCNF" loading="lazy">
+              <div class="diagram-caption">
+                <div class="diagram-caption-left">
+                  <span>📊</span> <strong>Figure:</strong> Normalization Progression: Step-by-Step Dependency Resolution up to BCNF
+                </div>
+                <span class="diagram-type-tag">SVG Vector Diagram</span>
+              </div>
+            </div>
+            
+            <div class="placement-trap-box">
+              <div class="trap-header">
+                <span>⚠️</span> 2NF vs 3NF Dependency Trap
+              </div>
+              <div class="trap-body">
+                <p>Recruiters check your functional dependency vocabulary:</p>
+<ul>
+  <li><strong>1NF:</strong> All attribute values must be <strong>Atomic</strong> (no multi-valued lists like phone numbers '987, 654').</li>
+  <li><strong>2NF:</strong> In 1NF + <strong>No Partial Dependency</strong> (no non-prime attribute depends on only part of a composite primary key).</li>
+  <li><strong>3NF:</strong> In 2NF + <strong>No Transitive Dependency</strong> (non-prime attributes must depend ONLY on the primary key: <code>A &rarr; B &rarr; C</code> is forbidden).</li>
+  <li><strong>BCNF (Boyce-Codd):</strong> Stricter 3NF—for every functional dependency <code>X &rarr; Y</code>, <code>X</code> must be a <strong>Super Key</strong>.</li>
+</ul>
+                <span class="trap-takeaway">🎯 Key Takeaway: 1NF = Atomic values. 2NF = Remove Partial Dependencies. 3NF = Remove Transitive Dependencies. BCNF = Determinant is always Super Key.</span>
+              </div>
+            </div>
+
+            <div class="real-life-scenario-box">
+              <div class="scenario-header">
+                <div class="scenario-title"><span>🏢</span> Hospital Patient Management Schema Refactor</div>
+                <span class="company-tag">Epic Systems / HealthTech</span>
+              </div>
+              <div class="scenario-content">
+                A non-normalized table stored doctor details alongside patient visits. If a doctor changed phone numbers, 5,000 appointment rows had to be updated (Update Anomaly). Normalizing to 3NF placed doctors in a dedicated table with an ID reference, ensuring updates happen in exactly one place.
+              </div>
+            </div>
+
+            <div class="mini-challenge-box">
+              <div class="challenge-header">
+                <span>❓</span> Quick Placement Check
+              </div>
+              <p class="challenge-question">If a relation has a single-column Primary Key and is already in 1NF, is it automatically in 2NF?</p>
+              <button type="button" class="challenge-reveal-btn" aria-expanded="false">
+                <span>💡 Reveal Verified Answer &amp; Placement Trap</span>
+              </button>
+              <div class="challenge-answer">
+                <p><strong>Answer:</strong> YES! Partial dependencies can ONLY occur when a Primary Key is Composite (consisting of two or more columns). With a single-column Primary Key, partial dependency is impossible.</p>
+              </div>
+            </div>
+          </div>
+
+
 
           <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:12px; padding:1.5rem; margin:1.5rem 0;">
             <div style="font-family:'JetBrains Mono', monospace; font-size:0.875rem; line-height:1.8;">
@@ -2975,6 +3169,71 @@ Unnormalized Data (Repeating groups, multi-valued attributes)<br>
           <p class="notes-lead">
             Every relational database engine guarantees four cornerstone properties known collectively as <strong>ACID</strong>:
           </p>
+
+          <!-- Visual Learning Card: ACID Properties & Bank Transfer Lifecycle -->
+          <div class="concept-visual-card featured-card">
+            <div class="concept-card-header">
+              <div class="concept-title-group">
+                <h3 class="concept-title"><span>🏦</span> ACID Properties & Bank Transfer Lifecycle</h3>
+                <p class="concept-one-liner">Guaranteeing transactional reliability, serializability, and durability in mission-critical databases.</p>
+              </div>
+              <div class="concept-badges">
+                <span class="visual-badge badge-diagram">🔒 Transaction Engine</span>
+                <span class="visual-badge badge-trap">⚠️ High-Yield Trap</span>
+              </div>
+            </div>
+
+            <div class="visual-diagram-container">
+              <img src="../assets/diagrams/dbms/dbms-acid-properties.svg" alt="DBMS ACID properties breakdown: Atomicity, Consistency, Isolation, and Durability" loading="lazy">
+              <div class="diagram-caption">
+                <div class="diagram-caption-left">
+                  <span>📊</span> <strong>Figure:</strong> ACID Transaction Model Illustrated with Bank Account ₹5,000 Fund Transfer
+                </div>
+                <span class="diagram-type-tag">SVG Vector Diagram</span>
+              </div>
+            </div>
+            
+            <div class="placement-trap-box">
+              <div class="trap-header">
+                <span>⚠️</span> Atomicity vs Consistency: Who Enforces What?
+              </div>
+              <div class="trap-body">
+                <p>Exam questions love to probe the four pillars:</p>
+<ul>
+  <li><strong>Atomicity (All or Nothing):</strong> Enforced by DBMS Transaction Manager via Undo Logs/WAL. If power cuts halfway through transferring ₹5,000, changes are completely rolled back.</li>
+  <li><strong>Consistency:</strong> Total money in the system must remain constant before and after. Enforced jointly by DBMS constraints and application logic.</li>
+  <li><strong>Isolation:</strong> Concurrent transactions do not read intermediate states. Enforced via Locks and 2-Phase Locking (2PL).</li>
+  <li><strong>Durability:</strong> Once COMMIT returns success, updates survive hardware failure. Enforced via non-volatile Write-Ahead Logs (WAL).</li>
+</ul>
+                <span class="trap-takeaway">🎯 Key Takeaway: Atomicity = All-or-nothing. Consistency = Rules preserved. Isolation = Concurrency protected. Durability = Survives power failure.</span>
+              </div>
+            </div>
+
+            <div class="real-life-scenario-box">
+              <div class="scenario-header">
+                <div class="scenario-title"><span>🏢</span> UPI / ATM Fund Transfer Transaction</div>
+                <span class="company-tag">Banking & NPCI UPI</span>
+              </div>
+              <div class="scenario-content">
+                Account A debits ₹5,000 and Account B credits ₹5,000. If the mobile network drops after debiting A but before crediting B, the transaction automatically aborts and rolls back to restore Account A's balance to its original state (Atomicity).
+              </div>
+            </div>
+
+            <div class="mini-challenge-box">
+              <div class="challenge-header">
+                <span>❓</span> Quick Placement Check
+              </div>
+              <p class="challenge-question">Which component of the DBMS architecture ensures Durability even if the power cable is pulled immediately after a COMMIT?</p>
+              <button type="button" class="challenge-reveal-btn" aria-expanded="false">
+                <span>💡 Reveal Verified Answer &amp; Placement Trap</span>
+              </button>
+              <div class="challenge-answer">
+                <p><strong>Answer:</strong> Write-Ahead Logging (WAL) and Redo Logs written to non-volatile disk storage before memory buffers are flushed.</p>
+              </div>
+            </div>
+          </div>
+
+
 
           <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:1.25rem; margin:1.5rem 0;">
             <div class="scenario-box" style="border-top:4px solid #ef4444;">
@@ -8740,9 +8999,9 @@ FROM Employee;
     <!-- PlacementPrep Footer -->
     <footer class="site-footer" style="background:var(--bg-card); border-top:1px solid var(--border-color); padding:3rem 0; margin-top:4rem;">
       <div class="container" style="text-align:center;">
-        <div style="display:inline-flex; align-items:center; gap:0.5rem; margin-bottom:1rem;">
-          <div class="brand-icon" style="background:linear-gradient(135deg, #3b82f6, #06b6d4);">P</div>
-          <span style="font-weight:800; font-size:1.25rem;">Placement<span style="color:#3b82f6;">Prep</span></span>
+        <div class="nav-brand brand-link" style="display:inline-flex; align-items:center; gap:0.5rem; margin-bottom:1rem;">
+          <div class="brand-icon" style="background:linear-gradient(135deg, #3b82f6, #06b6d4);" aria-hidden="true">P</div>
+          <span class="brand-title" style="font-weight:800; font-size:1.25rem;">Placement<span style="color:#3b82f6;">Prep</span></span>
         </div>
         <p style="color:var(--text-muted); font-size:0.875rem; max-width:600px; margin:0 auto 1.5rem;">
           The all-in-one placement preparation engine for technical assessments, coding rounds, and engineering interviews.
@@ -8948,5 +9207,6 @@ FROM Employee;
       }
     });
   </script>
+  <script src="../js/visual-learning.js"></script>
 </body>
 </html>

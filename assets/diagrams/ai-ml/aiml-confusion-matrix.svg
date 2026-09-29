@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 450" width="100%" height="100%" style="background: linear-gradient(135deg, #090D16 0%, #111827 100%); border-radius: 12px; font-family: 'Inter', system-ui, -apple-system, sans-serif;">
+  <defs>
+    <linearGradient id="grad-card" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="rgba(30, 41, 59, 0.85)"/>
+      <stop offset="100%" stop-color="rgba(15, 23, 42, 0.95)"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.4"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#38BDF8"/>
+    </marker>
+    <marker id="arrow-emerald" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#10B981"/>
+    </marker>
+  </defs>
+
+  <title>Machine Learning Confusion Matrix & Evaluation Metrics</title>
+  <text x="420" y="34" text-anchor="middle" fill="#F8FAFC" font-size="20" font-weight="800">Classification Metrics: Confusion Matrix &amp; Evaluation Formulas</text>
+  <text x="420" y="54" text-anchor="middle" fill="#94A3B8" font-size="12">Understanding True Positives, False Positives, Precision, Recall, and F1-Score</text>
+
+  <!-- 2x2 Matrix on Left -->
+  <g transform="translate(60, 95)">
+    <!-- Header Labels -->
+    <text x="180" y="-12" text-anchor="middle" fill="#38BDF8" font-size="13" font-weight="800">PREDICTED CLASS</text>
+    <text x="110" y="15" text-anchor="middle" fill="#CBD5E1" font-size="11" font-weight="700">Predicted Positive</text>
+    <text x="250" y="15" text-anchor="middle" fill="#CBD5E1" font-size="11" font-weight="700">Predicted Negative</text>
+
+    <text x="-45" y="110" text-anchor="middle" fill="#FBBF24" font-size="13" font-weight="800" transform="rotate(-90 -45 110)">ACTUAL CLASS</text>
+    <text x="-15" y="80" text-anchor="end" fill="#CBD5E1" font-size="10" font-weight="700">Actual Pos</text>
+    <text x="-15" y="180" text-anchor="end" fill="#CBD5E1" font-size="10" font-weight="700">Actual Neg</text>
+
+    <!-- Cell TP -->
+    <rect x="40" y="30" width="140" height="90" rx="8" fill="#14532D" stroke="#10B981" stroke-width="2"/>
+    <text x="110" y="65" text-anchor="middle" fill="#34D399" font-size="16" font-weight="900">TP</text>
+    <text x="110" y="85" text-anchor="middle" fill="#FFF" font-size="11" font-weight="700">True Positive</text>
+    <text x="110" y="102" text-anchor="middle" fill="#A7F3D0" font-size="9">Sick &amp; Predicted Sick</text>
+
+    <!-- Cell FN -->
+    <rect x="185" y="30" width="140" height="90" rx="8" fill="#450A0A" stroke="#EF4444" stroke-width="1.5"/>
+    <text x="255" y="65" text-anchor="middle" fill="#F87171" font-size="16" font-weight="900">FN (Type II Error)</text>
+    <text x="255" y="85" text-anchor="middle" fill="#FFF" font-size="11" font-weight="700">False Negative</text>
+    <text x="255" y="102" text-anchor="middle" fill="#FCA5A5" font-size="9">Sick &amp; Predicted Healthy</text>
+
+    <!-- Cell FP -->
+    <rect x="40" y="125" width="140" height="90" rx="8" fill="#450A0A" stroke="#EF4444" stroke-width="1.5"/>
+    <text x="110" y="160" text-anchor="middle" fill="#F87171" font-size="16" font-weight="900">FP (Type I Error)</text>
+    <text x="110" y="180" text-anchor="middle" fill="#FFF" font-size="11" font-weight="700">False Positive</text>
+    <text x="110" y="197" text-anchor="middle" fill="#FCA5A5" font-size="9">Healthy &amp; Predicted Sick</text>
+
+    <!-- Cell TN -->
+    <rect x="185" y="125" width="140" height="90" rx="8" fill="#14532D" stroke="#10B981" stroke-width="2"/>
+    <text x="255" y="160" text-anchor="middle" fill="#34D399" font-size="16" font-weight="900">TN</text>
+    <text x="255" y="180" text-anchor="middle" fill="#FFF" font-size="11" font-weight="700">True Negative</text>
+    <text x="255" y="197" text-anchor="middle" fill="#A7F3D0" font-size="9">Healthy &amp; Predicted Healthy</text>
+  </g>
+
+  <!-- Right: Metric Formulas -->
+  <g transform="translate(450, 95)">
+    <rect x="0" y="0" width="350" height="235" rx="10" fill="#1E293B" stroke="#334155"/>
+    <text x="175" y="25" text-anchor="middle" fill="#F8FAFC" font-size="13" font-weight="800">Placement Formula Vault</text>
+
+    <!-- Formula 1: Accuracy -->
+    <g transform="translate(15, 45)">
+      <text x="0" y="15" fill="#38BDF8" font-size="11" font-weight="700">Accuracy:</text>
+      <text x="90" y="15" fill="#E2E8F0" font-size="11">(TP + TN) / (TP + TN + FP + FN)</text>
+      <text x="90" y="28" fill="#F87171" font-size="9">Misleading when classes are imbalanced!</text>
+    </g>
+
+    <!-- Formula 2: Precision -->
+    <g transform="translate(15, 90)">
+      <text x="0" y="15" fill="#10B981" font-size="11" font-weight="700">Precision:</text>
+      <text x="90" y="15" fill="#E2E8F0" font-size="11">TP / (TP + FP)</text>
+      <text x="90" y="28" fill="#94A3B8" font-size="9">"Out of all positive predictions, how many were right?"</text>
+    </g>
+
+    <!-- Formula 3: Recall -->
+    <g transform="translate(15, 135)">
+      <text x="0" y="15" fill="#F59E0B" font-size="11" font-weight="700">Recall / Sens:</text>
+      <text x="90" y="15" fill="#E2E8F0" font-size="11">TP / (TP + FN)</text>
+      <text x="90" y="28" fill="#94A3B8" font-size="9">"Out of all real positives, how many did we catch?"</text>
+    </g>
+
+    <!-- Formula 4: F1 Score -->
+    <g transform="translate(15, 180)">
+      <text x="0" y="15" fill="#C084FC" font-size="11" font-weight="700">F1-Score:</text>
+      <text x="90" y="15" fill="#E2E8F0" font-size="11">2 × (Precision × Recall) / (Precision + Recall)</text>
+      <text x="90" y="28" fill="#DDD" font-size="9">Harmonic Mean of Precision and Recall</text>
+    </g>
+  </g>
+
+  <!-- Bottom Tip -->
+  <g transform="translate(60, 355)">
+    <rect x="0" y="0" width="740" height="70" rx="8" fill="#0F172A" stroke="#334155"/>
+    <text x="20" y="24" fill="#38BDF8" font-size="11" font-weight="700">Real-World Interview Scenarios:</text>
+    <text x="20" y="44" fill="#CBD5E1" font-size="10">• <tspan fill="#FBBF24" font-weight="700">Cancer Diagnosis / Covid Test:</tspan> High RECALL is critical (false negative means an untreated sick patient dies).</text>
+    <text x="20" y="60" fill="#CBD5E1" font-size="10">• <tspan fill="#34D399" font-weight="700">Email Spam Filter:</tspan> High PRECISION is critical (false positive means vital job offer email goes to junk folder).</text>
+  </g>
+</svg>

@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="../css/components.css">
   <link rel="stylesheet" href="../css/notes.css">
   <link rel="stylesheet" href="../css/responsive.css">
+  <link rel="stylesheet" href="../css/visual-learning.css">
 </head>
 <body>
 
@@ -28,9 +29,9 @@
     <!-- Global Navigation Bar -->
     <header class="site-navbar" id="site-navbar">
       <div class="container navbar-inner">
-        <a href="../index.html#home" class="brand-link" aria-label="PlacementPrep Home">
-          <div class="brand-icon">P</div>
-          <span>Placement<span class="brand-text-accent">Prep</span></span>
+        <a href="../index.html#home" class="nav-brand brand-link" aria-label="PlacementPrep Home">
+          <div class="brand-icon" aria-hidden="true">P</div>
+          <span class="brand-title">Placement<span class="brand-text-accent">Prep</span></span>
         </a>
 
         <nav role="navigation" aria-label="Main Navigation">
@@ -330,7 +331,72 @@
     <h2 class="notes-section-title">Artificial Intelligence Fundamentals</h2>
   </div>
 
-  <div class="topic-card">
+  
+
+          <!-- Visual Learning Card: AI vs ML vs Deep Learning Concentric Hierarchy -->
+          <div class="concept-visual-card featured-card">
+            <div class="concept-card-header">
+              <div class="concept-title-group">
+                <h3 class="concept-title"><span>🤖</span> AI vs ML vs Deep Learning Concentric Hierarchy</h3>
+                <p class="concept-one-liner">Clarifying subset relationships between Artificial Intelligence, Machine Learning, Deep Neural Networks, and LLMs.</p>
+              </div>
+              <div class="concept-badges">
+                <span class="visual-badge badge-diagram">📐 Domains Hierarchy</span>
+                <span class="visual-badge badge-trap">⚠️ High-Yield Trap</span>
+              </div>
+            </div>
+
+            <div class="visual-diagram-container">
+              <img src="../assets/diagrams/ai-ml/aiml-ai-ml-dl-hierarchy.svg" alt="Concentric circle hierarchy of Artificial Intelligence, Machine Learning, Deep Learning, and LLMs" loading="lazy">
+              <div class="diagram-caption">
+                <div class="diagram-caption-left">
+                  <span>📊</span> <strong>Figure:</strong> Concentric Hierarchy: AI (Umbrella) &rarr; ML (Statistical) &rarr; DL (Neural) &rarr; GenAI/LLMs
+                </div>
+                <span class="diagram-type-tag">SVG Vector Diagram</span>
+              </div>
+            </div>
+            
+            <div class="placement-trap-box">
+              <div class="trap-header">
+                <span>⚠️</span> Are All AI Systems Machine Learning?
+              </div>
+              <div class="trap-body">
+                <p>The classic foundational interview question:</p>
+<ul>
+  <li><strong>Artificial Intelligence (AI):</strong> The broad umbrella covering ANY system displaying human-like problem solving (including rule-based expert systems and decision trees).</li>
+  <li><strong>Machine Learning (ML):</strong> A subset of AI that learns patterns and makes predictions from statistical training data without hardcoded if-else logic.</li>
+  <li><strong>Deep Learning (DL):</strong> A subset of ML utilizing multi-layered Artificial Neural Networks (ANNs/CNNs/Transformers) capable of automatic feature extraction from unstructured data (images, audio).</li>
+  <li><strong>LLMs / GenAI:</strong> Deep learning transformer models trained on massive text corpora to generate novel sequences.</li>
+</ul>
+                <span class="trap-takeaway">🎯 Key Takeaway: All Deep Learning is ML; all ML is AI; but NOT all AI is ML (e.g. Chess engines with Minimax rules are AI, not ML).</span>
+              </div>
+            </div>
+
+            <div class="real-life-scenario-box">
+              <div class="scenario-header">
+                <div class="scenario-title"><span>🏢</span> Tesla Autonomous Autopilot Perception Stack</div>
+                <span class="company-tag">Tesla AI</span>
+              </div>
+              <div class="scenario-content">
+                Autopilot utilizes Deep Learning Convolutional Neural Networks and Vision Transformers to identify lane markers and pedestrians directly from camera pixels, while path-planning controllers use reinforcement learning and heuristic AI optimization to steer safely.
+              </div>
+            </div>
+
+            <div class="mini-challenge-box">
+              <div class="challenge-header">
+                <span>❓</span> Quick Placement Check
+              </div>
+              <p class="challenge-question">Is an automated chess game engine programmed entirely with hardcoded minimax evaluation rules an example of Machine Learning?</p>
+              <button type="button" class="challenge-reveal-btn" aria-expanded="false">
+                <span>💡 Reveal Verified Answer &amp; Placement Trap</span>
+              </button>
+              <div class="challenge-answer">
+                <p><strong>Answer:</strong> NO. It is Artificial Intelligence (rule-based heuristic expert system), but NOT Machine Learning because it does not learn parameters statistically from training data.</p>
+              </div>
+            </div>
+          </div>
+
+<div class="topic-card">
     <div class="topic-card-header">
       <div class="topic-card-title">🤖 Artificial Intelligence (AI) Overview</div>
       <div class="topic-card-meta">
@@ -1068,7 +1134,72 @@ X_train, X_val, y_train, y_val = train_test_split(
     <h2 class="notes-section-title">Model Evaluation Metrics</h2>
   </div>
 
-  <div class="topic-card">
+  
+
+          <!-- Visual Learning Card: Confusion Matrix, Precision, Recall & F1 Formula Vault -->
+          <div class="concept-visual-card featured-card">
+            <div class="concept-card-header">
+              <div class="concept-title-group">
+                <h3 class="concept-title"><span>🎯</span> Confusion Matrix, Precision, Recall & F1 Formula Vault</h3>
+                <p class="concept-one-liner">Evaluating classification performance beyond basic accuracy on imbalanced datasets.</p>
+              </div>
+              <div class="concept-badges">
+                <span class="visual-badge badge-diagram">📊 Formula Vault</span>
+                <span class="visual-badge badge-trap">⚠️ High-Yield Trap</span>
+              </div>
+            </div>
+
+            <div class="visual-diagram-container">
+              <img src="../assets/diagrams/ai-ml/aiml-confusion-matrix.svg" alt="Confusion matrix with True Positive, False Positive, Precision, Recall, and F1 formulas" loading="lazy">
+              <div class="diagram-caption">
+                <div class="diagram-caption-left">
+                  <span>📊</span> <strong>Figure:</strong> Confusion Matrix 2x2 Grid and Core Performance Metrics Formulas
+                </div>
+                <span class="diagram-type-tag">SVG Vector Diagram</span>
+              </div>
+            </div>
+            
+            <div class="placement-trap-box">
+              <div class="trap-header">
+                <span>⚠️</span> Accuracy Paradox: When Accuracy Fails Miserably!
+              </div>
+              <div class="trap-body">
+                <p>The #1 data science placement trap:</p>
+<ul>
+  <li><strong>The Trap:</strong> In a medical test for a rare disease affecting 1 in 1,000 patients (99.9% negative), a dumb model predicting 'Healthy' for EVERY patient achieves <strong>99.9% Accuracy</strong>, but is completely lethal!</li>
+  <li><strong>Precision = TP / (TP + FP):</strong> 'Out of all predicted positives, how many are actually positive?' Use when False Positives are costly (e.g., Email Spam filter).</li>
+  <li><strong>Recall = TP / (TP + FN):</strong> 'Out of all actual positives, how many did we catch?' Use when False Negatives are fatal (e.g., Cancer screening).</li>
+  <li><strong>F1-Score:</strong> Harmonic mean: <code>2 &times; (Precision &times; Recall) / (Precision + Recall)</code>.</li>
+</ul>
+                <span class="trap-takeaway">🎯 Key Takeaway: Accuracy is misleading on imbalanced datasets. Use Recall for medical/fraud (high FN cost); use Precision for spam (high FP cost).</span>
+              </div>
+            </div>
+
+            <div class="real-life-scenario-box">
+              <div class="scenario-header">
+                <div class="scenario-title"><span>🏢</span> Credit Card Fraud Detection Engine</div>
+                <span class="company-tag">Visa / Mastercard</span>
+              </div>
+              <div class="scenario-content">
+                Only 0.01% of transactions are fraudulent. The fraud model prioritizes high <strong>Recall</strong> to flag suspicious transfers for two-factor verification, accepting occasional false positive SMS alerts rather than letting real fraud slip through.
+              </div>
+            </div>
+
+            <div class="mini-challenge-box">
+              <div class="challenge-header">
+                <span>❓</span> Quick Placement Check
+              </div>
+              <p class="challenge-question">If a cancer detection model predicts 10 patients have cancer, but only 8 actually do, while 2 patients with cancer were missed, calculate Precision and Recall.</p>
+              <button type="button" class="challenge-reveal-btn" aria-expanded="false">
+                <span>💡 Reveal Verified Answer &amp; Placement Trap</span>
+              </button>
+              <div class="challenge-answer">
+                <p><strong>Answer:</strong> TP = 8, FP = 2, FN = 2. Precision = 8 / (8 + 2) = 80%. Recall = 8 / (8 + 2) = 80%.</p>
+              </div>
+            </div>
+          </div>
+
+<div class="topic-card">
     <div class="topic-card-header">
       <div class="topic-card-title">📊 Confusion Matrix, Precision, Recall & Regression Metrics</div>
       <div class="topic-card-meta">
@@ -1289,7 +1420,90 @@ X_train, X_val, y_train, y_val = train_test_split(
     <h2 class="notes-section-title">ML Optimization, Bias-Variance & Regularization</h2>
   </div>
 
-  <div class="topic-card">
+  
+
+          <!-- Visual Learning Card: Bias-Variance Tradeoff: Underfitting vs Overfitting -->
+          <div class="concept-visual-card featured-card">
+            <div class="concept-card-header">
+              <div class="concept-title-group">
+                <h3 class="concept-title"><span>⚖️</span> Bias-Variance Tradeoff: Underfitting vs Overfitting</h3>
+                <p class="concept-one-liner">Balancing model complexity to maximize generalization on unseen test data.</p>
+              </div>
+              <div class="concept-badges">
+                <span class="visual-badge badge-interactive">🤖 Interactive ML Pipeline</span>
+                <span class="visual-badge badge-trap">⚠️ High-Yield Trap</span>
+              </div>
+            </div>
+
+            <div class="visual-diagram-container">
+              <img src="../assets/diagrams/ai-ml/aiml-bias-variance-tradeoff.svg" alt="Underfitting High Bias vs Optimal Generalization vs Overfitting High Variance curves" loading="lazy">
+              <div class="diagram-caption">
+                <div class="diagram-caption-left">
+                  <span>📊</span> <strong>Figure:</strong> Bias-Variance Tradeoff: Total Error U-Curve and Model Complexity Balance
+                </div>
+                <span class="diagram-type-tag">SVG Vector Diagram</span>
+              </div>
+            </div>
+            
+            <div class="interactive-visual-widget" style="background:#0b1120; border:1px solid #1e293b; border-radius:10px; padding:1.25rem; margin:1.25rem 0;">
+              <div class="widget-header" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
+                <div class="widget-title" style="font-size:1.05rem; font-weight:800; color:#c084fc;">🤖 Interactive Machine Learning Pipeline Explorer</div>
+                <span class="widget-tag" style="background:rgba(192,132,252,0.15); color:#c084fc; padding:0.2rem 0.6rem; border-radius:4px; font-size:0.75rem; font-weight:700;">5-Stage Production Flow</span>
+              </div>
+              <p class="widget-desc" style="font-size:0.875rem; color:#94a3b8; margin-bottom:1rem;">Click each phase to inspect production engineering best practices and interview formulas:</p>
+              <div style="display:flex; gap:0.45rem; flex-wrap:wrap; margin-bottom:1rem;">
+                <button type="button" class="ml-stage-btn active btn btn-sm btn-outline" data-stage="1" style="padding:0.35rem 0.75rem; font-size:0.8rem;">1. Preprocessing</button>
+                <button type="button" class="ml-stage-btn btn btn-sm btn-outline" data-stage="2" style="padding:0.35rem 0.75rem; font-size:0.8rem;">2. Feature Eng</button>
+                <button type="button" class="ml-stage-btn btn btn-sm btn-outline" data-stage="3" style="padding:0.35rem 0.75rem; font-size:0.8rem;">3. Train/Test Split</button>
+                <button type="button" class="ml-stage-btn btn btn-sm btn-outline" data-stage="4" style="padding:0.35rem 0.75rem; font-size:0.8rem;">4. Model Training</button>
+                <button type="button" class="ml-stage-btn btn btn-sm btn-outline" data-stage="5" style="padding:0.35rem 0.75rem; font-size:0.8rem;">5. Evaluation</button>
+              </div>
+              <div id="ml-stage-desc" style="background:#090d16; border:1px solid #334155; border-radius:10px; padding:1.25rem;">
+                <div style="font-size:1.05rem; font-weight:800; color:#C084FC; margin-bottom:0.4rem;">Stage 1: Data Preprocessing &amp; Cleaning</div>
+                <p style="font-size:0.875rem; color:#CBD5E1; line-height:1.6; margin:0;">Handle missing values (imputation), remove duplicate records, scale features (StandardScaler, MinMaxScaler), encode categorical variables (One-Hot / Label encoding).</p>
+              </div>
+            </div>
+
+            <div class="placement-trap-box">
+              <div class="trap-header">
+                <span>⚠️</span> High Bias vs High Variance Symptoms
+              </div>
+              <div class="trap-body">
+                <p>Technical interviews always probe this diagnostic table:</p>
+<ul>
+  <li><strong>High Bias (Underfitting):</strong> Model is too simplistic (e.g., linear line on quadratic data). Result: High training error AND high test error. Fix: Add features, increase model complexity.</li>
+  <li><strong>High Variance (Overfitting):</strong> Model is overly complex (e.g., degree-20 polynomial memorizing training points). Result: <strong>Near-zero training error, but disastrously high test error!</strong></li>
+  <li><strong>Fix for Overfitting:</strong> Regularization (L1 Lasso, L2 Ridge), Dropout, Pruning, or collecting more training data.</li>
+</ul>
+                <span class="trap-takeaway">🎯 Key Takeaway: High Bias = Underfitting (Can't learn the trend). High Variance = Overfitting (Memorizes training noise).</span>
+              </div>
+            </div>
+
+            <div class="real-life-scenario-box">
+              <div class="scenario-header">
+                <div class="scenario-title"><span>🏢</span> Real Estate House Price Valuation Model</div>
+                <span class="company-tag">Zillow / Housing.com</span>
+              </div>
+              <div class="scenario-content">
+                A regression model with 500 polynomial features achieved 99.8% R² score on historical 2025 sales, but lost millions when predicting 2026 sales due to severe overfitting. Adding L2 Ridge regularization eliminated noise coefficients and stabilized predictions.
+              </div>
+            </div>
+
+            <div class="mini-challenge-box">
+              <div class="challenge-header">
+                <span>❓</span> Quick Placement Check
+              </div>
+              <p class="challenge-question">A machine learning model achieves 99.5% accuracy on its training dataset, but drops to 64% accuracy on the test set. What problem does it suffer from?</p>
+              <button type="button" class="challenge-reveal-btn" aria-expanded="false">
+                <span>💡 Reveal Verified Answer &amp; Placement Trap</span>
+              </button>
+              <div class="challenge-answer">
+                <p><strong>Answer:</strong> Overfitting (High Variance). The model memorized training set noise rather than learning generalizable underlying patterns.</p>
+              </div>
+            </div>
+          </div>
+
+<div class="topic-card">
     <div class="topic-card-header">
       <div class="topic-card-title">⚖️ Overfitting, Underfitting, Bias vs Variance & Gradient Descent</div>
       <div class="topic-card-meta">
@@ -3891,9 +4105,9 @@ X_train, X_val, y_train, y_val = train_test_split(
     <footer class="site-footer">
       <div class="container footer-inner">
         <div class="footer-brand">
-          <div class="brand-link">
-            <div class="brand-icon">P</div>
-            <span>Placement<span class="brand-text-accent">Prep</span></span>
+          <div class="nav-brand brand-link">
+            <div class="brand-icon" aria-hidden="true">P</div>
+            <span class="brand-title">Placement<span class="brand-text-accent">Prep</span></span>
           </div>
           <p class="footer-tagline">Engineered for MCA, BCA & B.Tech IT Campus Recruitments.</p>
         </div>
@@ -3999,5 +4213,6 @@ X_train, X_val, y_train, y_val = train_test_split(
       }
     });
   </script>
+  <script src="../js/visual-learning.js"></script>
 </body>
 </html>

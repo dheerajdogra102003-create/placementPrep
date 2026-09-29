@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 450" width="100%" height="100%" style="background: linear-gradient(135deg, #090D16 0%, #111827 100%); border-radius: 12px; font-family: 'Inter', system-ui, -apple-system, sans-serif;">
+  <defs>
+    <linearGradient id="grad-cyan" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06B6D4"/>
+      <stop offset="100%" stop-color="#3B82F6"/>
+    </linearGradient>
+    <linearGradient id="grad-purple" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8B5CF6"/>
+      <stop offset="100%" stop-color="#EC4899"/>
+    </linearGradient>
+    <linearGradient id="grad-emerald" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10B981"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <linearGradient id="grad-amber" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#D97706"/>
+    </linearGradient>
+    <linearGradient id="grad-card" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="rgba(30, 41, 59, 0.85)"/>
+      <stop offset="100%" stop-color="rgba(15, 23, 42, 0.95)"/>
+    </linearGradient>
+    <filter id="glow-cyan" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.4"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#38BDF8"/>
+    </marker>
+    <marker id="arrow-emerald" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#10B981"/>
+    </marker>
+    <marker id="arrow-purple" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#8B5CF6"/>
+    </marker>
+  </defs>
+
+  <title>Program Execution Memory: Stack vs Heap</title>
+  <text x="420" y="36" text-anchor="middle" fill="#F8FAFC" font-size="20" font-weight="800">Memory Allocation Architecture: Call Stack vs Heap Space</text>
+  <text x="420" y="56" text-anchor="middle" fill="#94A3B8" font-size="12">How variables, primitives, and objects are organized during code execution</text>
+
+  <!-- Stack Box -->
+  <g transform="translate(50, 80)">
+    <rect x="0" y="0" width="340" height="320" rx="12" fill="url(#grad-card)" stroke="#38BDF8" stroke-width="1.5" filter="url(#shadow)"/>
+    <rect x="0" y="0" width="340" height="42" rx="12" fill="#1E293B"/>
+    <text x="170" y="26" text-anchor="middle" fill="#38BDF8" font-size="14" font-weight="800">📚 Stack Memory (LIFO - Fast)</text>
+
+    <!-- Stack Frames (Bottom up) -->
+    <g transform="translate(20, 55)">
+      <rect x="0" y="165" width="300" height="45" rx="6" fill="#1E293B" stroke="#334155"/>
+      <text x="15" y="185" fill="#38BDF8" font-size="11" font-weight="700">main() Frame:</text>
+      <text x="15" y="200" fill="#E2E8F0" font-size="10">int age = 22; boolean isPlaced = true;</text>
+
+      <rect x="0" y="110" width="300" height="45" rx="6" fill="#1E293B" stroke="#38BDF8"/>
+      <text x="15" y="130" fill="#38BDF8" font-size="11" font-weight="700">calculatePackage() Frame:</text>
+      <text x="15" y="145" fill="#E2E8F0" font-size="10">double base = 8.5; ptr = 0x7FFF4A</text>
+
+      <rect x="0" y="55" width="300" height="45" rx="6" fill="#1E293B" stroke="#A855F7"/>
+      <text x="15" y="75" fill="#C084FC" font-size="11" font-weight="700">printResult() Frame [Active HEAD]:</text>
+      <text x="15" y="90" fill="#E2E8F0" font-size="10">stringRef = 0x7FFF92</text>
+    </g>
+
+    <text x="170" y="295" text-anchor="middle" fill="#10B981" font-size="10" font-weight="700">⚡ Auto deallocated when function finishes</text>
+  </g>
+
+  <!-- Pointer Arrow -->
+  <line x1="390" y1="200" x2="445" y2="180" stroke="#F59E0B" stroke-width="2.5" stroke-dasharray="4,3" marker-end="url(#arrow)"/>
+  <text x="420" y="165" text-anchor="middle" fill="#FBBF24" font-size="10" font-weight="700">Reference</text>
+
+  <!-- Heap Box -->
+  <g transform="translate(450, 80)">
+    <rect x="0" y="0" width="340" height="320" rx="12" fill="url(#grad-card)" stroke="#A855F7" stroke-width="1.5" filter="url(#shadow)"/>
+    <rect x="0" y="0" width="340" height="42" rx="12" fill="#1E293B"/>
+    <text x="170" y="26" text-anchor="middle" fill="#C084FC" font-size="14" font-weight="800">🌐 Heap Space (Dynamic / Flexible)</text>
+
+    <!-- Allocated Objects in Heap -->
+    <g transform="translate(20, 55)">
+      <rect x="10" y="15" width="130" height="70" rx="8" fill="#2E1065" stroke="#A855F7"/>
+      <text x="75" y="38" text-anchor="middle" fill="#E9D5FF" font-size="10" font-weight="700">Candidate Object</text>
+      <text x="75" y="55" text-anchor="middle" fill="#C084FC" font-size="9">@0x7FFF4A</text>
+      <text x="75" y="70" text-anchor="middle" fill="#DDD" font-size="8">name="Dheeraj"</text>
+
+      <rect x="160" y="15" width="130" height="70" rx="8" fill="#14532D" stroke="#10B981"/>
+      <text x="225" y="38" text-anchor="middle" fill="#D1FAE5" font-size="10" font-weight="700">String Pool</text>
+      <text x="225" y="55" text-anchor="middle" fill="#34D399" font-size="9">@0x7FFF92</text>
+      <text x="225" y="70" text-anchor="middle" fill="#DDD" font-size="8">"TCS Digital"</text>
+
+      <rect x="50" y="115" width="200" height="60" rx="8" fill="#1E293B" stroke="#F59E0B"/>
+      <text x="150" y="138" text-anchor="middle" fill="#FDE68A" font-size="10" font-weight="700">int[] scores = new int[1000]</text>
+      <text x="150" y="156" text-anchor="middle" fill="#94A3B8" font-size="9">Dynamic Array Allocation</text>
+    </g>
+
+    <text x="170" y="295" text-anchor="middle" fill="#F87171" font-size="10" font-weight="700">🗑️ Managed by Garbage Collector (GC)</text>
+  </g>
+
+  <!-- Footer -->
+  <text x="420" y="430" text-anchor="middle" fill="#94A3B8" font-size="11">Placement Trap: <tspan fill="#F87171" font-weight="700">StackOverflowError</tspan> occurs when recursion is too deep. <tspan fill="#F87171" font-weight="700">OutOfMemoryError</tspan> occurs when Heap runs out of space.</text>
+</svg>

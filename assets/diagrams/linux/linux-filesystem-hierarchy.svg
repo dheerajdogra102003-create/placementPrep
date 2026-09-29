@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 450" width="100%" height="100%" style="background: linear-gradient(135deg, #090D16 0%, #111827 100%); border-radius: 12px; font-family: 'Inter', system-ui, -apple-system, sans-serif;">
+  <defs>
+    <linearGradient id="grad-card" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="rgba(30, 41, 59, 0.85)"/>
+      <stop offset="100%" stop-color="rgba(15, 23, 42, 0.95)"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.4"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#38BDF8"/>
+    </marker>
+    <marker id="arrow-emerald" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#10B981"/>
+    </marker>
+  </defs>
+
+  <title>Linux Filesystem Hierarchy Standard (FHS)</title>
+  <text x="420" y="36" text-anchor="middle" fill="#F8FAFC" font-size="20" font-weight="800">Linux Filesystem Hierarchy Standard (FHS)</text>
+  <text x="420" y="56" text-anchor="middle" fill="#94A3B8" font-size="12">Everything in Linux is a file, starting from the single root directory (/)</text>
+
+  <!-- Root Node -->
+  <g transform="translate(420, 85)">
+    <circle cx="0" cy="0" r="28" fill="#0284C7" stroke="#38BDF8" stroke-width="2"/>
+    <text x="0" y="8" text-anchor="middle" fill="#FFF" font-size="22" font-weight="900" font-family="monospace">/</text>
+    <text x="0" y="42" text-anchor="middle" fill="#38BDF8" font-size="11" font-weight="800">Root Directory</text>
+  </g>
+
+  <!-- Main Directory Nodes (8 Directories) -->
+  <!-- Row 1: 4 dirs -->
+  <g transform="translate(60, 160)">
+    <rect x="0" y="0" width="165" height="95" rx="8" fill="#1E293B" stroke="#334155"/>
+    <text x="12" y="24" fill="#38BDF8" font-size="13" font-weight="800" font-family="monospace">/bin &amp; /sbin</text>
+    <text x="12" y="46" fill="#E2E8F0" font-size="10">Essential Binaries</text>
+    <text x="12" y="62" fill="#94A3B8" font-size="9">ls, cp, rm, bash, grep</text>
+    <text x="12" y="78" fill="#FBBF24" font-size="9">/sbin = admin tools (iptables)</text>
+  </g>
+
+  <g transform="translate(245, 160)">
+    <rect x="0" y="0" width="165" height="95" rx="8" fill="#1E293B" stroke="#334155"/>
+    <text x="12" y="24" fill="#34D399" font-size="13" font-weight="800" font-family="monospace">/etc</text>
+    <text x="12" y="46" fill="#E2E8F0" font-size="10">System Configuration</text>
+    <text x="12" y="62" fill="#94A3B8" font-size="9">/etc/passwd (user records)</text>
+    <text x="12" y="78" fill="#94A3B8" font-size="9">/etc/hosts, network configs</text>
+  </g>
+
+  <g transform="translate(430, 160)">
+    <rect x="0" y="0" width="165" height="95" rx="8" fill="#1E293B" stroke="#334155"/>
+    <text x="12" y="24" fill="#C084FC" font-size="13" font-weight="800" font-family="monospace">/home &amp; /root</text>
+    <text x="12" y="46" fill="#E2E8F0" font-size="10">User Personal Files</text>
+    <text x="12" y="62" fill="#94A3B8" font-size="9">/home/student/ (~)</text>
+    <text x="12" y="78" fill="#F87171" font-size="9">/root = superuser home</text>
+  </g>
+
+  <g transform="translate(615, 160)">
+    <rect x="0" y="0" width="165" height="95" rx="8" fill="#1E293B" stroke="#334155"/>
+    <text x="12" y="24" fill="#F59E0B" font-size="13" font-weight="800" font-family="monospace">/var</text>
+    <text x="12" y="46" fill="#E2E8F0" font-size="10">Variable Runtime Data</text>
+    <text x="12" y="62" fill="#94A3B8" font-size="9">/var/log/syslog (logs)</text>
+    <text x="12" y="78" fill="#94A3B8" font-size="9">/var/www/html (web files)</text>
+  </g>
+
+  <!-- Row 2: 4 dirs -->
+  <g transform="translate(60, 275)">
+    <rect x="0" y="0" width="165" height="95" rx="8" fill="#1E293B" stroke="#334155"/>
+    <text x="12" y="24" fill="#F472B6" font-size="13" font-weight="800" font-family="monospace">/dev</text>
+    <text x="12" y="46" fill="#E2E8F0" font-size="10">Device Files</text>
+    <text x="12" y="62" fill="#94A3B8" font-size="9">/dev/sda (hard disk)</text>
+    <text x="12" y="78" fill="#94A3B8" font-size="9">/dev/null (black hole)</text>
+  </g>
+
+  <g transform="translate(245, 275)">
+    <rect x="0" y="0" width="165" height="95" rx="8" fill="#1E293B" stroke="#334155"/>
+    <text x="12" y="24" fill="#60A5FA" font-size="13" font-weight="800" font-family="monospace">/proc</text>
+    <text x="12" y="46" fill="#E2E8F0" font-size="10">Virtual Process FS</text>
+    <text x="12" y="62" fill="#94A3B8" font-size="9">RAM only (Kernel info)</text>
+    <text x="12" y="78" fill="#94A3B8" font-size="9">/proc/cpuinfo, /proc/meminfo</text>
+  </g>
+
+  <g transform="translate(430, 275)">
+    <rect x="0" y="0" width="165" height="95" rx="8" fill="#1E293B" stroke="#334155"/>
+    <text x="12" y="24" fill="#FBBF24" font-size="13" font-weight="800" font-family="monospace">/tmp</text>
+    <text x="12" y="46" fill="#E2E8F0" font-size="10">Temporary Storage</text>
+    <text x="12" y="62" fill="#94A3B8" font-size="9">Cleared automatically</text>
+    <text x="12" y="78" fill="#94A3B8" font-size="9">World-writable sticky bit</text>
+  </g>
+
+  <g transform="translate(615, 275)">
+    <rect x="0" y="0" width="165" height="95" rx="8" fill="#1E293B" stroke="#334155"/>
+    <text x="12" y="24" fill="#34D399" font-size="13" font-weight="800" font-family="monospace">/usr &amp; /opt</text>
+    <text x="12" y="46" fill="#E2E8F0" font-size="10">User Programs &amp; Apps</text>
+    <text x="12" y="62" fill="#94A3B8" font-size="9">/usr/bin (software packages)</text>
+    <text x="12" y="78" fill="#94A3B8" font-size="9">/opt (optional 3rd party apps)</text>
+  </g>
+
+  <!-- Trunk Lines -->
+  <line x1="420" y1="113" x2="420" y2="140" stroke="#38BDF8" stroke-width="2"/>
+  <line x1="142" y1="140" x2="697" y2="140" stroke="#38BDF8" stroke-width="2"/>
+
+  <!-- Footer Tip -->
+  <text x="420" y="415" text-anchor="middle" fill="#CBD5E1" font-size="11">Placement Difference: Windows uses drive letters (C:\, D:\). Linux uses a single unified tree where drives are MOUNTED into directories.</text>
+</svg>

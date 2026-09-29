@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 450" width="100%" height="100%" style="background: linear-gradient(135deg, #090D16 0%, #111827 100%); border-radius: 12px; font-family: 'Inter', system-ui, -apple-system, sans-serif;">
+  <defs>
+    <linearGradient id="grad-cyan" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06B6D4"/>
+      <stop offset="100%" stop-color="#3B82F6"/>
+    </linearGradient>
+    <linearGradient id="grad-purple" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8B5CF6"/>
+      <stop offset="100%" stop-color="#EC4899"/>
+    </linearGradient>
+    <linearGradient id="grad-emerald" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10B981"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <linearGradient id="grad-amber" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#D97706"/>
+    </linearGradient>
+    <linearGradient id="grad-card" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="rgba(30, 41, 59, 0.85)"/>
+      <stop offset="100%" stop-color="rgba(15, 23, 42, 0.95)"/>
+    </linearGradient>
+    <filter id="glow-cyan" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.4"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#38BDF8"/>
+    </marker>
+    <marker id="arrow-emerald" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#10B981"/>
+    </marker>
+    <marker id="arrow-purple" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#8B5CF6"/>
+    </marker>
+  </defs>
+
+  <title>AI vs ML vs Deep Learning Hierarchy</title>
+  <text x="420" y="36" text-anchor="middle" fill="#F8FAFC" font-size="20" font-weight="800">Artificial Intelligence vs Machine Learning vs Deep Learning</text>
+  <text x="420" y="56" text-anchor="middle" fill="#94A3B8" font-size="12">Nested concentric hierarchy showing how modern intelligent systems relate</text>
+
+  <!-- Outer Circle: AI -->
+  <g transform="translate(420, 240)">
+    <circle cx="0" cy="0" r="170" fill="rgba(37, 99, 235, 0.15)" stroke="#3B82F6" stroke-width="2"/>
+    <text x="0" y="-140" text-anchor="middle" fill="#60A5FA" font-size="14" font-weight="800">Artificial Intelligence (AI)</text>
+    <text x="0" y="-124" text-anchor="middle" fill="#94A3B8" font-size="10">Any technique enabling machines to mimic human behavior (Expert systems, rules)</text>
+
+    <!-- Middle Circle: ML -->
+    <circle cx="0" cy="20" r="120" fill="rgba(168, 85, 247, 0.2)" stroke="#A855F7" stroke-width="2"/>
+    <text x="0" y="-75" text-anchor="middle" fill="#C084FC" font-size="13" font-weight="800">Machine Learning (ML)</text>
+    <text x="0" y="-60" text-anchor="middle" fill="#DDD" font-size="10">Learning patterns from data without explicit programming</text>
+    <text x="0" y="-46" text-anchor="middle" fill="#94A3B8" font-size="9">Linear Regression, SVM, Decision Trees, Random Forests, K-Means</text>
+
+    <!-- Inner Circle: DL -->
+    <circle cx="0" cy="45" r="70" fill="rgba(16, 185, 129, 0.3)" stroke="#10B981" stroke-width="2"/>
+    <text x="0" y="25" text-anchor="middle" fill="#34D399" font-size="12" font-weight="800">Deep Learning (DL)</text>
+    <text x="0" y="42" text-anchor="middle" fill="#FFF" font-size="9">Multi-layer Neural Networks</text>
+    <text x="0" y="56" text-anchor="middle" fill="#A7F3D0" font-size="8">CNN, RNN, LSTM, Transformers</text>
+
+    <!-- Core: GenAI / LLM -->
+    <circle cx="0" cy="85" r="24" fill="#06B6D4"/>
+    <text x="0" y="89" text-anchor="middle" fill="#090D16" font-size="9" font-weight="900">LLMs</text>
+  </g>
+
+  <!-- Left Callout Box -->
+  <g transform="translate(40, 110)">
+    <rect x="0" y="0" width="180" height="150" rx="8" fill="#1E293B" stroke="#334155"/>
+    <text x="15" y="25" fill="#38BDF8" font-size="12" font-weight="700">Feature Engineering:</text>
+    <text x="15" y="50" fill="#CBD5E1" font-size="10"><strong>Traditional ML:</strong></text>
+    <text x="15" y="68" fill="#94A3B8" font-size="9">Requires human experts to extract features manually.</text>
+    <text x="15" y="95" fill="#34D399" font-size="10"><strong>Deep Learning:</strong></text>
+    <text x="15" y="113" fill="#94A3B8" font-size="9">Extracts complex features automatically via hidden layers.</text>
+  </g>
+
+  <!-- Right Callout Box -->
+  <g transform="translate(620, 110)">
+    <rect x="0" y="0" width="180" height="150" rx="8" fill="#1E293B" stroke="#334155"/>
+    <text x="15" y="25" fill="#FBBF24" font-size="12" font-weight="700">Data &amp; Hardware:</text>
+    <text x="15" y="50" fill="#CBD5E1" font-size="10"><strong>ML:</strong></text>
+    <text x="15" y="68" fill="#94A3B8" font-size="9">Performs well on small/medium tabular datasets on CPU.</text>
+    <text x="15" y="95" fill="#C084FC" font-size="10"><strong>DL:</strong></text>
+    <text x="15" y="113" fill="#94A3B8" font-size="9">Needs massive data (images/text) &amp; GPUs/TPUs to avoid overfitting.</text>
+  </g>
+
+  <text x="420" y="435" text-anchor="middle" fill="#CBD5E1" font-size="11">Placement Fact: All Deep Learning is Machine Learning, but not all Machine Learning is Deep Learning.</text>
+</svg>

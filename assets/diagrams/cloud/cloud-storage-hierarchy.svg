@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 460" width="100%" height="100%" style="background: linear-gradient(135deg, #090D16 0%, #111827 100%); border-radius: 12px; font-family: 'Inter', system-ui, -apple-system, sans-serif;">
+  <defs>
+    <linearGradient id="grad-card" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="rgba(30, 41, 59, 0.85)"/>
+      <stop offset="100%" stop-color="rgba(15, 23, 42, 0.95)"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.4"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#38BDF8"/>
+    </marker>
+    <marker id="arrow-emerald" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#10B981"/>
+    </marker>
+  </defs>
+
+  <title>AWS / Cloud Storage Types: S3 vs EBS vs EFS</title>
+  <text x="420" y="36" text-anchor="middle" fill="#F8FAFC" font-size="20" font-weight="800">Placement Matrix: S3 vs EBS vs EFS Storage Services</text>
+  <text x="420" y="56" text-anchor="middle" fill="#94A3B8" font-size="12">Choosing between Object Storage, Block Storage, and Shared Network File System</text>
+
+  <!-- 3 Columns -->
+  <!-- Col 1: S3 -->
+  <g transform="translate(40, 85)">
+    <rect x="0" y="0" width="235" height="325" rx="10" fill="url(#grad-card)" stroke="#F59E0B" stroke-width="1.5" filter="url(#shadow)"/>
+    <rect x="0" y="0" width="235" height="42" rx="10" fill="#1E293B"/>
+    <text x="117" y="26" text-anchor="middle" fill="#FBBF24" font-size="14" font-weight="800">🪣 Amazon S3 (Object)</text>
+
+    <g transform="translate(15, 60)">
+      <text x="0" y="15" fill="#38BDF8" font-size="11" font-weight="700">Storage Architecture:</text>
+      <text x="0" y="32" fill="#E2E8F0" font-size="10">Key-Value Object Store</text>
+      <text x="0" y="46" fill="#94A3B8" font-size="9">(Bucket + Key + Data + Meta)</text>
+
+      <text x="0" y="75" fill="#38BDF8" font-size="11" font-weight="700">Access Method:</text>
+      <text x="0" y="92" fill="#E2E8F0" font-size="10">HTTP / HTTPS REST API</text>
+      <text x="0" y="106" fill="#94A3B8" font-size="9">Global URL accessible</text>
+
+      <text x="0" y="135" fill="#38BDF8" font-size="11" font-weight="700">Scalability &amp; Durability:</text>
+      <text x="0" y="152" fill="#34D399" font-size="10" font-weight="700">99.999999999% (11 9's)</text>
+      <text x="0" y="166" fill="#94A3B8" font-size="9">Unlimited total capacity</text>
+
+      <text x="0" y="195" fill="#38BDF8" font-size="11" font-weight="700">Best For:</text>
+      <text x="0" y="212" fill="#E2E8F0" font-size="10">Images, videos, backups,</text>
+      <text x="0" y="226" fill="#E2E8F0" font-size="10">static website hosting</text>
+    </g>
+  </g>
+
+  <!-- Col 2: EBS -->
+  <g transform="translate(302, 85)">
+    <rect x="0" y="0" width="235" height="325" rx="10" fill="url(#grad-card)" stroke="#38BDF8" stroke-width="1.5" filter="url(#shadow)"/>
+    <rect x="0" y="0" width="235" height="42" rx="10" fill="#1E293B"/>
+    <text x="117" y="26" text-anchor="middle" fill="#38BDF8" font-size="14" font-weight="800">💾 Amazon EBS (Block)</text>
+
+    <g transform="translate(15, 60)">
+      <text x="0" y="15" fill="#38BDF8" font-size="11" font-weight="700">Storage Architecture:</text>
+      <text x="0" y="32" fill="#E2E8F0" font-size="10">Raw Block Volume</text>
+      <text x="0" y="46" fill="#94A3B8" font-size="9">(Virtual Hard Drive for EC2)</text>
+
+      <text x="0" y="75" fill="#38BDF8" font-size="11" font-weight="700">Access Method:</text>
+      <text x="0" y="92" fill="#E2E8F0" font-size="10">Attached directly to 1 EC2</text>
+      <text x="0" y="106" fill="#F87171" font-size="9">Locked to single Availability Zone</text>
+
+      <text x="0" y="135" fill="#38BDF8" font-size="11" font-weight="700">Performance:</text>
+      <text x="0" y="152" fill="#FBBF24" font-size="10" font-weight="700">Ultra-low latency (SSD)</text>
+      <text x="0" y="166" fill="#94A3B8" font-size="9">High IOPS provisioned</text>
+
+      <text x="0" y="195" fill="#38BDF8" font-size="11" font-weight="700">Best For:</text>
+      <text x="0" y="212" fill="#E2E8F0" font-size="10">Operating system root disks,</text>
+      <text x="0" y="226" fill="#E2E8F0" font-size="10">database storage (Postgres/MySQL)</text>
+    </g>
+  </g>
+
+  <!-- Col 3: EFS -->
+  <g transform="translate(565, 85)">
+    <rect x="0" y="0" width="235" height="325" rx="10" fill="url(#grad-card)" stroke="#A855F7" stroke-width="1.5" filter="url(#shadow)"/>
+    <rect x="0" y="0" width="235" height="42" rx="10" fill="#1E293B"/>
+    <text x="117" y="26" text-anchor="middle" fill="#C084FC" font-size="14" font-weight="800">📂 Amazon EFS (File)</text>
+
+    <g transform="translate(15, 60)">
+      <text x="0" y="15" fill="#38BDF8" font-size="11" font-weight="700">Storage Architecture:</text>
+      <text x="0" y="32" fill="#E2E8F0" font-size="10">Hierarchical File System</text>
+      <text x="0" y="46" fill="#94A3B8" font-size="9">(Managed NFSv4 Protocol)</text>
+
+      <text x="0" y="75" fill="#38BDF8" font-size="11" font-weight="700">Access Method:</text>
+      <text x="0" y="92" fill="#34D399" font-size="10" font-weight="700">Shared Multi-Attach</text>
+      <text x="0" y="106" fill="#A7F3D0" font-size="9">1,000s of EC2 instances at once</text>
+
+      <text x="0" y="135" fill="#38BDF8" font-size="11" font-weight="700">Availability:</text>
+      <text x="0" y="152" fill="#E2E8F0" font-size="10">Multi-AZ by default</text>
+      <text x="0" y="166" fill="#94A3B8" font-size="9">Elastic auto-grow/shrink</text>
+
+      <text x="0" y="195" fill="#38BDF8" font-size="11" font-weight="700">Best For:</text>
+      <text x="0" y="212" fill="#E2E8F0" font-size="10">Content management (WordPress),</text>
+      <text x="0" y="226" fill="#E2E8F0" font-size="10">shared big data &amp; analytics</text>
+    </g>
+  </g>
+
+  <!-- Summary Footer -->
+  <text x="420" y="435" text-anchor="middle" fill="#CBD5E1" font-size="11">Placement Rule: Need bootable OS drive? → EBS. Need public static assets? → S3. Need 100 VMs sharing same files? → EFS.</text>
+</svg>

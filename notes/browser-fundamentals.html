@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="../css/components.css">
   <link rel="stylesheet" href="../css/notes.css">
   <link rel="stylesheet" href="../css/responsive.css">
+  <link rel="stylesheet" href="../css/visual-learning.css">
 </head>
 <body>
 
@@ -28,9 +29,9 @@
     <!-- Global Navigation Bar -->
     <header class="site-navbar" id="site-navbar">
       <div class="container navbar-inner">
-        <a href="../index.html#home" class="brand-link" aria-label="PlacementPrep Home">
-          <div class="brand-icon">P</div>
-          <span>Placement<span class="brand-text-accent">Prep</span></span>
+        <a href="../index.html#home" class="nav-brand brand-link" aria-label="PlacementPrep Home">
+          <div class="brand-icon" aria-hidden="true">P</div>
+          <span class="brand-title">Placement<span class="brand-text-accent">Prep</span></span>
         </a>
 
         <nav role="navigation" aria-label="Main Navigation">
@@ -1458,7 +1459,71 @@ localStorage.clear();</code></pre>
     <h2 class="notes-section-title">Client-Side Storage Comparison Matrix</h2>
   </div>
 
-  <div class="table-responsive-wrapper">
+  
+
+          <!-- Visual Learning Card: Browser Client Storage: Cookies vs LocalStorage vs SessionStorage -->
+          <div class="concept-visual-card featured-card">
+            <div class="concept-card-header">
+              <div class="concept-title-group">
+                <h3 class="concept-title"><span>🍪</span> Browser Client Storage: Cookies vs LocalStorage vs SessionStorage</h3>
+                <p class="concept-one-liner">Evaluating storage capacity, lifecycle persistence, and HTTP header transmission overhead.</p>
+              </div>
+              <div class="concept-badges">
+                <span class="visual-badge badge-diagram">📊 Storage Comparison</span>
+                <span class="visual-badge badge-trap">⚠️ High-Yield Trap</span>
+              </div>
+            </div>
+
+            <div class="visual-diagram-container">
+              <img src="../assets/diagrams/browser/browser-storage-comparison.svg" alt="Browser storage comparison: HTTP Cookies 4KB vs localStorage 10MB vs sessionStorage 5MB" loading="lazy">
+              <div class="diagram-caption">
+                <div class="diagram-caption-left">
+                  <span>📊</span> <strong>Figure:</strong> Browser Storage Comparison: Scope, Lifetime, Capacity, and Server Transmission
+                </div>
+                <span class="diagram-type-tag">SVG Vector Diagram</span>
+              </div>
+            </div>
+            
+            <div class="placement-trap-box">
+              <div class="trap-header">
+                <span>⚠️</span> Are LocalStorage Values Sent with HTTP Requests?
+              </div>
+              <div class="trap-body">
+                <p>A high-yield frontend web architecture question:</p>
+<ul>
+  <li><strong>HTTP Cookies (~4 KB):</strong> Automatically transmitted in the <code>Cookie:</code> header with <strong>EVERY single HTTP request</strong> to that domain (including images and CSS). Great for auth session IDs, terrible for storing large data.</li>
+  <li><strong>localStorage (~5-10 MB):</strong> Stored purely on the client machine; <strong>NEVER automatically sent to the server</strong>. Persists indefinitely until cleared via JavaScript or user cache reset.</li>
+  <li><strong>sessionStorage (~5 MB):</strong> Client-only; strictly scoped to the <strong>single browser tab</strong>. Closing the tab immediately destroys the data.</li>
+</ul>
+                <span class="trap-takeaway">🎯 Key Takeaway: Cookies travel with every HTTP header (4KB). LocalStorage stays in the browser across restarts (10MB). SessionStorage dies when the tab closes.</span>
+              </div>
+            </div>
+
+            <div class="real-life-scenario-box">
+              <div class="scenario-header">
+                <div class="scenario-title"><span>🏢</span> E-Commerce Multi-Tab Shopping Cart</div>
+                <span class="company-tag">Amazon / Flipkart</span>
+              </div>
+              <div class="scenario-content">
+                A user's authentication token is stored in an <code>HttpOnly, Secure</code> cookie to prevent XSS theft. Their active shopping cart draft is preserved in <code>localStorage</code> so items survive browser restarts, while single-session checkout steps live in <code>sessionStorage</code>.
+              </div>
+            </div>
+
+            <div class="mini-challenge-box">
+              <div class="challenge-header">
+                <span>❓</span> Quick Placement Check
+              </div>
+              <p class="challenge-question">If a user opens the exact same web app in two different tabs of the same browser window, do both tabs share the same sessionStorage?</p>
+              <button type="button" class="challenge-reveal-btn" aria-expanded="false">
+                <span>💡 Reveal Verified Answer &amp; Placement Trap</span>
+              </button>
+              <div class="challenge-answer">
+                <p><strong>Answer:</strong> NO. sessionStorage is strictly scoped to the unique tab/window browsing context. Opening the same URL in a new tab initializes a completely new, independent sessionStorage instance.</p>
+              </div>
+            </div>
+          </div>
+
+<div class="table-responsive-wrapper">
     <table class="notes-table">
       <thead>
         <tr>
@@ -1723,6 +1788,72 @@ element.classList.add('active'); // Best practice: toggle CSS classes!</code></p
   <p class="notes-paragraph">
     Understanding the exact stages of the browser's <strong>Critical Rendering Path (CRP)</strong> is one of the most respected answers a candidate can give in technical placement interviews:
   </p>
+
+          <!-- Visual Learning Card: Critical Rendering Path (CRP): HTML to Screen Pixels -->
+          <div class="concept-visual-card featured-card">
+            <div class="concept-card-header">
+              <div class="concept-title-group">
+                <h3 class="concept-title"><span>🎨</span> Critical Rendering Path (CRP): HTML to Screen Pixels</h3>
+                <p class="concept-one-liner">Tracing the browser rendering pipeline: DOM, CSSOM, Render Tree, Layout Reflow, and GPU Paint.</p>
+              </div>
+              <div class="concept-badges">
+                <span class="visual-badge badge-diagram">📐 Rendering Pipeline</span>
+                <span class="visual-badge badge-trap">⚠️ High-Yield Trap</span>
+              </div>
+            </div>
+
+            <div class="visual-diagram-container">
+              <img src="../assets/diagrams/browser/browser-request-response-lifecycle.svg" alt="Browser Critical Rendering Path: HTML to DOM to CSSOM to Render Tree to Layout to Paint" loading="lazy">
+              <div class="diagram-caption">
+                <div class="diagram-caption-left">
+                  <span>📊</span> <strong>Figure:</strong> Critical Rendering Path: 5-Step Pipeline from HTML Network Stream to Display Pixels
+                </div>
+                <span class="diagram-type-tag">SVG Vector Diagram</span>
+              </div>
+            </div>
+            
+            <div class="placement-trap-box">
+              <div class="trap-header">
+                <span>⚠️</span> Reflow (Layout) vs Repaint: Performance Trap
+              </div>
+              <div class="trap-body">
+                <p>The #1 Web Performance &amp; UI Developer interview test:</p>
+<ul>
+  <li><strong>1. DOM + CSSOM Construction:</strong> HTML builds DOM tree; CSS builds CSSOM tree. CSS is <strong>render-blocking</strong>!</li>
+  <li><strong>2. Render Tree:</strong> Combines visible DOM elements with CSSOM styles (skips <code>display: none</code> elements!).</li>
+  <li><strong>3. Layout (Reflow):</strong> Calculates the exact geometric dimensions and x/y screen coordinates. Extremely expensive!</li>
+  <li><strong>4. Paint (Rasterize):</strong> Fills pixels (colors, borders, shadows) onto layers.</li>
+  <li><strong>Placement Trap:</strong> Changing <code>width</code> or <code>font-size</code> triggers an expensive <strong>Reflow + Repaint</strong>. Changing <code>opacity</code> or <code>transform</code> runs purely on the GPU compositor, causing zero reflow!</li>
+</ul>
+                <span class="trap-takeaway">🎯 Key Takeaway: HTML &rarr; DOM & CSSOM &rarr; Render Tree &rarr; Layout (Geometry) &rarr; Paint (Pixels) &rarr; Composite.</span>
+              </div>
+            </div>
+
+            <div class="real-life-scenario-box">
+              <div class="scenario-header">
+                <div class="scenario-title"><span>🏢</span> Google Lighthouse Core Web Vitals (INP & LCP)</div>
+                <span class="company-tag">Google Chrome Team</span>
+              </div>
+              <div class="scenario-content">
+                Web optimization engineers improve Interaction to Next Paint (INP) by animating UI cards using CSS <code>transform: translate3d()</code> instead of modifying <code>top/left</code> margin styles, avoiding layout reflows and running animations at 60 FPS on mobile GPUs.
+              </div>
+            </div>
+
+            <div class="mini-challenge-box">
+              <div class="challenge-header">
+                <span>❓</span> Quick Placement Check
+              </div>
+              <p class="challenge-question">Does an element with CSS 'display: none' get included in the browser's Render Tree?</p>
+              <button type="button" class="challenge-reveal-btn" aria-expanded="false">
+                <span>💡 Reveal Verified Answer &amp; Placement Trap</span>
+              </button>
+              <div class="challenge-answer">
+                <p><strong>Answer:</strong> NO. Elements with 'display: none' exist in the DOM tree, but are completely omitted from the Render Tree because they take up zero visual geometry and no pixels on screen (unlike 'visibility: hidden', which remains in the Render Tree).</p>
+              </div>
+            </div>
+          </div>
+
+
 
   <div class="diagram-hero-journey">
     <div class="journey-step">
@@ -3490,5 +3621,6 @@ async function fetchUserProfile(userId) {
     });
   </script>
 
+  <script src="../js/visual-learning.js"></script>
 </body>
 </html>

@@ -1,0 +1,231 @@
+{
+  "version": "1.0.0",
+  "updated": "2026-09-29",
+  "total_assets": 28,
+  "assets": {
+    "cloud_iaas_paas_saas": {
+      "file": "assets/diagrams/cloud/cloud-iaas-paas-saas.svg",
+      "type": "architecture_diagram",
+      "module": "cloud",
+      "concept": "shared_responsibility_model",
+      "alt": "IaaS vs PaaS vs SaaS Shared Responsibility Stack Diagram",
+      "reusable": true
+    },
+    "cloud_scalability_vs_elasticity": {
+      "file": "assets/diagrams/cloud/cloud-scalability-vs-elasticity.svg",
+      "type": "comparison_visual",
+      "module": "cloud",
+      "concept": "scalability_and_elasticity",
+      "alt": "Scalability vertical and horizontal expansion vs Elasticity real-time traffic spike adjustment",
+      "reusable": true
+    },
+    "cloud_docker_vs_vm": {
+      "file": "assets/diagrams/cloud/cloud-docker-vs-vm.svg",
+      "type": "architecture_diagram",
+      "module": "cloud",
+      "concept": "virtualization_vs_containers",
+      "alt": "Virtual Machine Hypervisor guest OS stack vs Docker Container shared host OS kernel architecture",
+      "reusable": true
+    },
+    "cloud_storage_hierarchy": {
+      "file": "assets/diagrams/cloud/cloud-storage-hierarchy.svg",
+      "type": "comparison_visual",
+      "module": "cloud",
+      "concept": "storage_types",
+      "alt": "AWS Storage comparison between S3 Object storage, EBS Block storage, and EFS File storage",
+      "reusable": true
+    },
+    "cloud_rpo_rto_timeline": {
+      "file": "assets/diagrams/cloud/cloud-rpo-rto-timeline.svg",
+      "type": "timeline",
+      "module": "cloud",
+      "concept": "disaster_recovery",
+      "alt": "Disaster recovery timeline illustrating Recovery Point Objective (RPO) and Recovery Time Objective (RTO)",
+      "reusable": true
+    },
+    "cloud_vpc_subnets_architecture": {
+      "file": "assets/diagrams/cloud/cloud-vpc-subnets-architecture.svg",
+      "type": "cloud_infrastructure_diagram",
+      "module": "cloud",
+      "concept": "vpc_and_subnets",
+      "alt": "AWS VPC architecture showing Internet Gateway, Public Subnet with ALB and NAT, and Private Subnet with RDS",
+      "reusable": true
+    },
+    "network_osi_seven_layers": {
+      "file": "assets/diagrams/networking/network-osi-seven-layers.svg",
+      "type": "layer_diagram",
+      "module": "networking-security",
+      "concept": "osi_reference_model",
+      "alt": "Complete OSI 7-Layer reference model from Physical to Application with PDUs, protocols, and hardware",
+      "reusable": true
+    },
+    "network_tcp_three_way_handshake": {
+      "file": "assets/diagrams/networking/network-tcp-three-way-handshake.svg",
+      "type": "process_diagram",
+      "module": "networking-security",
+      "concept": "tcp_connection_establishment",
+      "alt": "TCP 3-Way Handshake step-by-step diagram showing SYN, SYN-ACK, and ACK sequence numbers",
+      "reusable": true
+    },
+    "network_tcp_vs_udp": {
+      "file": "assets/diagrams/networking/network-tcp-vs-udp.svg",
+      "type": "comparison_visual",
+      "module": "networking-security",
+      "concept": "transport_protocols",
+      "alt": "TCP connection-oriented reliability vs UDP connectionless low-latency packet streaming comparison",
+      "reusable": true
+    },
+    "network_dns_resolution_flow": {
+      "file": "assets/diagrams/networking/network-dns-resolution-flow.svg",
+      "type": "data_flow_diagram",
+      "module": "networking-security",
+      "concept": "dns_resolution",
+      "alt": "DNS recursive query workflow from browser through resolver, root, TLD, and authoritative nameserver",
+      "reusable": true
+    },
+    "network_cia_triad": {
+      "file": "assets/diagrams/networking/network-cia-triad.svg",
+      "type": "concept_map",
+      "module": "networking-security",
+      "concept": "information_security",
+      "alt": "CIA Security Triad illustrating Confidentiality, Integrity, and Availability with defense mechanisms",
+      "reusable": true
+    },
+    "network_device_comparison": {
+      "file": "assets/diagrams/networking/network-device-comparison.svg",
+      "type": "comparison_visual",
+      "module": "networking-security",
+      "concept": "network_devices",
+      "alt": "Network Hub Layer 1 vs Switch Layer 2 vs Router Layer 3 collision and broadcast domain comparison",
+      "reusable": true
+    },
+    "dbms_relational_keys_architecture": {
+      "file": "assets/diagrams/dbms/dbms-relational-keys-architecture.svg",
+      "type": "hierarchy_diagram",
+      "module": "dbms",
+      "concept": "keys_and_referential_integrity",
+      "alt": "Relational keys hierarchy of Super Key, Candidate Key, Primary Key, and Foreign Key referential integrity",
+      "reusable": true
+    },
+    "dbms_acid_properties": {
+      "file": "assets/diagrams/dbms/dbms-acid-properties.svg",
+      "type": "concept_map",
+      "module": "dbms",
+      "concept": "transaction_management",
+      "alt": "DBMS ACID properties breakdown: Atomicity, Consistency, Isolation, and Durability with bank transfer scenario",
+      "reusable": true
+    },
+    "dbms_normalization_progression": {
+      "file": "assets/diagrams/dbms/dbms-normalization-progression.svg",
+      "type": "process_diagram",
+      "module": "dbms",
+      "concept": "normalization",
+      "alt": "Database normalization progression from 1NF atomic values through 2NF, 3NF, to BCNF strict super key",
+      "reusable": true
+    },
+    "dbms_sql_joins_venn": {
+      "file": "assets/diagrams/dbms/dbms-sql-joins-venn.svg",
+      "type": "database_diagram",
+      "module": "dbms",
+      "concept": "sql_joins",
+      "alt": "Visual SQL Joins Venn diagrams showing INNER, LEFT, RIGHT, and FULL OUTER join intersections",
+      "reusable": true
+    },
+    "git_three_trees_workflow": {
+      "file": "assets/diagrams/git/git-three-trees-workflow.svg",
+      "type": "git_workflow",
+      "module": "git",
+      "concept": "three_trees_architecture",
+      "alt": "Git four-state architecture: Working Directory, Staging Area, Local Repository, and Remote Repository",
+      "reusable": true
+    },
+    "git_merge_vs_rebase": {
+      "file": "assets/diagrams/git/git-merge-vs-rebase.svg",
+      "type": "git_workflow",
+      "module": "git",
+      "concept": "branch_integration",
+      "alt": "Git 3-Way Merge with merge commit vs Git Rebase linear commit history comparison",
+      "reusable": true
+    },
+    "git_reset_vs_revert": {
+      "file": "assets/diagrams/git/git-reset-vs-revert.svg",
+      "type": "git_workflow",
+      "module": "git",
+      "concept": "undo_operations",
+      "alt": "Git reset rewind history vs Git revert safe forward-undo patch commit comparison",
+      "reusable": true
+    },
+    "aiml_ai_ml_dl_hierarchy": {
+      "file": "assets/diagrams/ai-ml/aiml-ai-ml-dl-hierarchy.svg",
+      "type": "hierarchy_diagram",
+      "module": "ai-ml-dl",
+      "concept": "domains_hierarchy",
+      "alt": "Concentric circle hierarchy of Artificial Intelligence, Machine Learning, Deep Learning, and LLMs",
+      "reusable": true
+    },
+    "aiml_bias_variance_tradeoff": {
+      "file": "assets/diagrams/ai-ml/aiml-bias-variance-tradeoff.svg",
+      "type": "algorithm_visualization",
+      "module": "ai-ml-dl",
+      "concept": "model_generalization",
+      "alt": "Underfitting High Bias vs Optimal Generalization vs Overfitting High Variance curves",
+      "reusable": true
+    },
+    "aiml_confusion_matrix": {
+      "file": "assets/diagrams/ai-ml/aiml-confusion-matrix.svg",
+      "type": "input_output_diagram",
+      "module": "ai-ml-dl",
+      "concept": "classification_metrics",
+      "alt": "Confusion matrix with True Positive, False Positive, True Negative, False Negative, Precision, Recall, and F1",
+      "reusable": true
+    },
+    "linux_filesystem_hierarchy": {
+      "file": "assets/diagrams/linux/linux-filesystem-hierarchy.svg",
+      "type": "system_architecture",
+      "module": "linux",
+      "concept": "fhs_directory_tree",
+      "alt": "Linux Filesystem Hierarchy Standard tree starting from root down through bin, etc, home, var, dev, proc, tmp",
+      "reusable": true
+    },
+    "linux_file_permissions": {
+      "file": "assets/diagrams/linux/linux-file-permissions.svg",
+      "type": "operating_system_visual",
+      "module": "linux",
+      "concept": "octal_permissions",
+      "alt": "Linux file permission structure rwxr-xr-x chmod 755 binary weights and User Group Others octal breakdown",
+      "reusable": true
+    },
+    "browser_request_response_lifecycle": {
+      "file": "assets/diagrams/browser/browser-request-response-lifecycle.svg",
+      "type": "process_diagram",
+      "module": "browser",
+      "concept": "critical_rendering_path",
+      "alt": "Browser Critical Rendering Path: HTML to DOM and CSSOM to Render Tree to Layout Reflow to GPU Paint",
+      "reusable": true
+    },
+    "browser_storage_comparison": {
+      "file": "assets/diagrams/browser/browser-storage-comparison.svg",
+      "type": "comparison_visual",
+      "module": "browser",
+      "concept": "web_storage",
+      "alt": "Browser storage comparison: HTTP Cookies 4KB vs localStorage 10MB vs sessionStorage 5MB per tab",
+      "reusable": true
+    },
+    "programming_variable_memory_stack_heap": {
+      "file": "assets/diagrams/programming/programming-variable-memory-stack-heap.svg",
+      "type": "memory_visualization",
+      "module": "programming",
+      "concept": "stack_vs_heap_memory",
+      "alt": "Stack memory LIFO call frames vs Heap space dynamic object allocation and pointer references",
+      "reusable": true
+    },
+    "programming_loop_execution_flow": {
+      "file": "assets/diagrams/programming/programming-loop-execution-flow.svg",
+      "type": "flowchart",
+      "module": "programming",
+      "concept": "iteration_control",
+      "alt": "For and while loop execution flowchart with initialization, condition test, body, update, break, and continue",
+      "reusable": true
+    }
+  }
+}

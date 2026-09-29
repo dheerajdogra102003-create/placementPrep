@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 460" width="100%" height="100%" style="background: linear-gradient(135deg, #090D16 0%, #111827 100%); border-radius: 12px; font-family: 'Inter', system-ui, -apple-system, sans-serif;">
+  <defs>
+    <linearGradient id="grad-cyan" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06B6D4"/>
+      <stop offset="100%" stop-color="#3B82F6"/>
+    </linearGradient>
+    <linearGradient id="grad-purple" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8B5CF6"/>
+      <stop offset="100%" stop-color="#EC4899"/>
+    </linearGradient>
+    <linearGradient id="grad-emerald" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10B981"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <linearGradient id="grad-amber" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#D97706"/>
+    </linearGradient>
+    <linearGradient id="grad-card" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="rgba(30, 41, 59, 0.85)"/>
+      <stop offset="100%" stop-color="rgba(15, 23, 42, 0.95)"/>
+    </linearGradient>
+    <filter id="glow-cyan" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.4"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#38BDF8"/>
+    </marker>
+    <marker id="arrow-emerald" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#10B981"/>
+    </marker>
+    <marker id="arrow-purple" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#8B5CF6"/>
+    </marker>
+  </defs>
+
+  <title>Git Three-Tree Architecture and Workflow</title>
+  <text x="430" y="36" text-anchor="middle" fill="#F8FAFC" font-size="20" font-weight="800">Git Three-Tree Architecture &amp; Lifecycle</text>
+  <text x="430" y="56" text-anchor="middle" fill="#94A3B8" font-size="12">The 4 States: Working Directory → Staging Area (Index) → Local Repository (HEAD) → Remote</text>
+
+  <!-- Stage 1: Working Dir -->
+  <g transform="translate(30, 90)">
+    <rect x="0" y="0" width="180" height="240" rx="10" fill="url(#grad-card)" stroke="#EF4444" stroke-width="1.5" filter="url(#shadow)"/>
+    <rect x="0" y="0" width="180" height="40" rx="10" fill="#1E293B"/>
+    <text x="90" y="25" text-anchor="middle" fill="#F87171" font-size="12" font-weight="800">1. Working Directory</text>
+    <text x="90" y="65" text-anchor="middle" fill="#CBD5E1" font-size="11">Your local files on disk</text>
+    <rect x="25" y="85" width="130" height="30" rx="5" fill="#1E293B"/><text x="90" y="105" text-anchor="middle" fill="#F87171" font-size="10">Untracked / Modified</text>
+    <rect x="25" y="125" width="130" height="30" rx="5" fill="#1E293B"/><text x="90" y="145" text-anchor="middle" fill="#CBD5E1" font-size="10">index.html (edited)</text>
+    <rect x="25" y="165" width="130" height="30" rx="5" fill="#1E293B"/><text x="90" y="185" text-anchor="middle" fill="#CBD5E1" font-size="10">style.css (new)</text>
+  </g>
+
+  <!-- Arrow 1: git add -->
+  <g transform="translate(210, 170)">
+    <line x1="10" y1="0" x2="60" y2="0" stroke="#F59E0B" stroke-width="3" marker-end="url(#arrow)"/>
+    <text x="35" y="-12" text-anchor="middle" fill="#FBBF24" font-size="11" font-weight="800">git add</text>
+  </g>
+
+  <!-- Stage 2: Staging Area -->
+  <g transform="translate(280, 90)">
+    <rect x="0" y="0" width="180" height="240" rx="10" fill="url(#grad-card)" stroke="#F59E0B" stroke-width="1.5" filter="url(#shadow)"/>
+    <rect x="0" y="0" width="180" height="40" rx="10" fill="#1E293B"/>
+    <text x="90" y="25" text-anchor="middle" fill="#FBBF24" font-size="12" font-weight="800">2. Staging Area (Index)</text>
+    <text x="90" y="65" text-anchor="middle" fill="#CBD5E1" font-size="11">Pre-commit snapshot</text>
+    <rect x="25" y="85" width="130" height="30" rx="5" fill="#1E293B"/><text x="90" y="105" text-anchor="middle" fill="#FBBF24" font-size="10">Staged for commit</text>
+    <rect x="25" y="125" width="130" height="30" rx="5" fill="#1E293B"/><text x="90" y="145" text-anchor="middle" fill="#34D399" font-size="10">+ index.html</text>
+    <rect x="25" y="165" width="130" height="30" rx="5" fill="#1E293B"/><text x="90" y="185" text-anchor="middle" fill="#34D399" font-size="10">+ style.css</text>
+  </g>
+
+  <!-- Arrow 2: git commit -->
+  <g transform="translate(460, 170)">
+    <line x1="10" y1="0" x2="60" y2="0" stroke="#10B981" stroke-width="3" marker-end="url(#arrow-emerald)"/>
+    <text x="35" y="-12" text-anchor="middle" fill="#34D399" font-size="11" font-weight="800">git commit</text>
+  </g>
+
+  <!-- Stage 3: Local Repo -->
+  <g transform="translate(530, 90)">
+    <rect x="0" y="0" width="180" height="240" rx="10" fill="url(#grad-card)" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)"/>
+    <rect x="0" y="0" width="180" height="40" rx="10" fill="#1E293B"/>
+    <text x="90" y="25" text-anchor="middle" fill="#34D399" font-size="12" font-weight="800">3. Local Repo (HEAD)</text>
+    <text x="90" y="65" text-anchor="middle" fill="#CBD5E1" font-size="11">Permanent .git history</text>
+    <rect x="25" y="85" width="130" height="30" rx="5" fill="#1E293B"/><text x="90" y="105" text-anchor="middle" fill="#38BDF8" font-size="10">Commit c4f89a</text>
+    <rect x="25" y="125" width="130" height="30" rx="5" fill="#1E293B"/><text x="90" y="145" text-anchor="middle" fill="#38BDF8" font-size="10">Commit b7e21d</text>
+    <rect x="25" y="165" width="130" height="30" rx="5" fill="#1E293B"/><text x="90" y="185" text-anchor="middle" fill="#C084FC" font-size="10">HEAD -> main</text>
+  </g>
+
+  <!-- Arrow 3: git push -->
+  <g transform="translate(710, 170)">
+    <line x1="10" y1="0" x2="55" y2="0" stroke="#8B5CF6" stroke-width="3" marker-end="url(#arrow-purple)"/>
+    <text x="32" y="-12" text-anchor="middle" fill="#C084FC" font-size="11" font-weight="800">git push</text>
+  </g>
+
+  <!-- Stage 4: Remote -->
+  <g transform="translate(775, 90)">
+    <rect x="0" y="0" width="70" height="240" rx="10" fill="url(#grad-card)" stroke="#8B5CF6" stroke-width="1.5"/>
+    <text x="35" y="120" text-anchor="middle" fill="#C084FC" font-size="12" font-weight="800" transform="rotate(-90 35 120)">GitHub Remote</text>
+  </g>
+
+  <!-- Reverse Flows: Checkout / Restore / Pull -->
+  <g transform="translate(30, 350)">
+    <rect x="0" y="0" width="800" height="85" rx="8" fill="#1E293B"/>
+    <text x="20" y="24" fill="#38BDF8" font-size="12" font-weight="800">Reversal Commands &amp; Placement Traps:</text>
+    <text x="20" y="44" fill="#CBD5E1" font-size="11">• <tspan fill="#F87171" font-weight="700">git restore &lt;file&gt;</tspan> discards uncommitted changes in Working Directory.</text>
+    <text x="20" y="62" fill="#CBD5E1" font-size="11">• <tspan fill="#FBBF24" font-weight="700">git restore --staged &lt;file&gt;</tspan> un-stages file from Staging Area back to Working Dir (keeps changes).</text>
+    <text x="20" y="80" fill="#CBD5E1" font-size="11">• <tspan fill="#34D399" font-weight="700">git reset --soft HEAD~1</tspan> undoes commit but retains changes in Staging Area.</text>
+  </g>
+</svg>

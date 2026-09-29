@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 450" width="100%" height="100%" style="background: linear-gradient(135deg, #090D16 0%, #111827 100%); border-radius: 12px; font-family: 'Inter', system-ui, -apple-system, sans-serif;">
+  <defs>
+    <linearGradient id="grad-card" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="rgba(30, 41, 59, 0.85)"/>
+      <stop offset="100%" stop-color="rgba(15, 23, 42, 0.95)"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.4"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#38BDF8"/>
+    </marker>
+    <marker id="arrow-emerald" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#10B981"/>
+    </marker>
+  </defs>
+
+  <title>Browser Storage Comparison: Cookies vs LocalStorage vs SessionStorage</title>
+  <text x="420" y="36" text-anchor="middle" fill="#F8FAFC" font-size="20" font-weight="800">Client-Side Storage: Cookies vs LocalStorage vs SessionStorage</text>
+  <text x="420" y="56" text-anchor="middle" fill="#94A3B8" font-size="12">Placement interview comparison of capacity, lifespan, network transmission, and security</text>
+
+  <!-- 3 Cards -->
+  <!-- Cookies -->
+  <g transform="translate(40, 85)">
+    <rect x="0" y="0" width="235" height="325" rx="10" fill="url(#grad-card)" stroke="#F59E0B" stroke-width="1.5" filter="url(#shadow)"/>
+    <rect x="0" y="0" width="235" height="42" rx="10" fill="#1E293B"/>
+    <text x="117" y="26" text-anchor="middle" fill="#FBBF24" font-size="14" font-weight="800">🍪 HTTP Cookies</text>
+
+    <g transform="translate(15, 60)">
+      <text x="0" y="15" fill="#38BDF8" font-size="11" font-weight="700">Storage Capacity:</text>
+      <text x="0" y="32" fill="#F87171" font-size="12" font-weight="800">~4 KB only</text>
+
+      <text x="0" y="65" fill="#38BDF8" font-size="11" font-weight="700">Network Transmission:</text>
+      <text x="0" y="82" fill="#FBBF24" font-size="10" font-weight="700">Sent with EVERY HTTP request</text>
+      <text x="0" y="96" fill="#94A3B8" font-size="9">(Increases bandwidth consumption)</text>
+
+      <text x="0" y="128" fill="#38BDF8" font-size="11" font-weight="700">Expiration / Lifespan:</text>
+      <text x="0" y="145" fill="#E2E8F0" font-size="10">Manually set by server</text>
+      <text x="0" y="159" fill="#94A3B8" font-size="9">(Expires / Max-Age attribute)</text>
+
+      <text x="0" y="190" fill="#38BDF8" font-size="11" font-weight="700">Security Attributes:</text>
+      <text x="0" y="207" fill="#34D399" font-size="10" font-weight="700">HttpOnly &amp; Secure &amp; SameSite</text>
+      <text x="0" y="221" fill="#94A3B8" font-size="9">Protects against XSS session theft</text>
+
+      <text x="0" y="248" fill="#38BDF8" font-size="11" font-weight="700">Best For:</text>
+      <text x="0" y="265" fill="#E2E8F0" font-size="10">Auth tokens &amp; session IDs</text>
+    </g>
+  </g>
+
+  <!-- LocalStorage -->
+  <g transform="translate(302, 85)">
+    <rect x="0" y="0" width="235" height="325" rx="10" fill="url(#grad-card)" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)"/>
+    <rect x="0" y="0" width="235" height="42" rx="10" fill="#1E293B"/>
+    <text x="117" y="26" text-anchor="middle" fill="#34D399" font-size="14" font-weight="800">💾 localStorage</text>
+
+    <g transform="translate(15, 60)">
+      <text x="0" y="15" fill="#38BDF8" font-size="11" font-weight="700">Storage Capacity:</text>
+      <text x="0" y="32" fill="#34D399" font-size="12" font-weight="800">5 MB – 10 MB</text>
+
+      <text x="0" y="65" fill="#38BDF8" font-size="11" font-weight="700">Network Transmission:</text>
+      <text x="0" y="82" fill="#34D399" font-size="10" font-weight="700">NEVER sent to server</text>
+      <text x="0" y="96" fill="#94A3B8" font-size="9">(Purely client-side access via JS)</text>
+
+      <text x="0" y="128" fill="#38BDF8" font-size="11" font-weight="700">Expiration / Lifespan:</text>
+      <text x="0" y="145" fill="#E2E8F0" font-size="10">Permanent until deleted</text>
+      <text x="0" y="159" fill="#94A3B8" font-size="9">Survives tab &amp; browser restarts</text>
+
+      <text x="0" y="190" fill="#38BDF8" font-size="11" font-weight="700">Security Warning:</text>
+      <text x="0" y="207" fill="#F87171" font-size="10" font-weight="700">Vulnerable to XSS</text>
+      <text x="0" y="221" fill="#94A3B8" font-size="9">Never store passwords / secret JWT</text>
+
+      <text x="0" y="248" fill="#38BDF8" font-size="11" font-weight="700">Best For:</text>
+      <text x="0" y="265" fill="#E2E8F0" font-size="10">Dark mode theme, cached UI state</text>
+    </g>
+  </g>
+
+  <!-- SessionStorage -->
+  <g transform="translate(565, 85)">
+    <rect x="0" y="0" width="235" height="325" rx="10" fill="url(#grad-card)" stroke="#38BDF8" stroke-width="1.5" filter="url(#shadow)"/>
+    <rect x="0" y="0" width="235" height="42" rx="10" fill="#1E293B"/>
+    <text x="117" y="26" text-anchor="middle" fill="#38BDF8" font-size="14" font-weight="800">⏱️ sessionStorage</text>
+
+    <g transform="translate(15, 60)">
+      <text x="0" y="15" fill="#38BDF8" font-size="11" font-weight="700">Storage Capacity:</text>
+      <text x="0" y="32" fill="#34D399" font-size="12" font-weight="800">~5 MB</text>
+
+      <text x="0" y="65" fill="#38BDF8" font-size="11" font-weight="700">Network Transmission:</text>
+      <text x="0" y="82" fill="#34D399" font-size="10" font-weight="700">NEVER sent to server</text>
+      <text x="0" y="96" fill="#94A3B8" font-size="9">(Isolated to specific browser tab)</text>
+
+      <text x="0" y="128" fill="#38BDF8" font-size="11" font-weight="700">Expiration / Lifespan:</text>
+      <text x="0" y="145" fill="#FBBF24" font-size="10" font-weight="700">Cleared on Tab Close</text>
+      <text x="0" y="159" fill="#94A3B8" font-size="9">Survives page reloads within tab</text>
+
+      <text x="0" y="190" fill="#38BDF8" font-size="11" font-weight="700">Scope:</text>
+      <text x="0" y="207" fill="#E2E8F0" font-size="10">Single Tab Only</text>
+      <text x="0" y="221" fill="#94A3B8" font-size="9">New tab = brand new session storage</text>
+
+      <text x="0" y="248" fill="#38BDF8" font-size="11" font-weight="700">Best For:</text>
+      <text x="0" y="265" fill="#E2E8F0" font-size="10">Multi-step form wizard data, CBT exam drafts</text>
+    </g>
+  </g>
+
+  <!-- Footer Tip -->
+  <text x="420" y="435" text-anchor="middle" fill="#CBD5E1" font-size="11">Exam Trap: "If I open the same URL in a new tab, can it access sessionStorage?" Answer: <strong>No</strong>, each tab has an isolated instance.</text>
+</svg>

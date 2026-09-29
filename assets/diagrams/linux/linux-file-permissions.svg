@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 450" width="100%" height="100%" style="background: linear-gradient(135deg, #090D16 0%, #111827 100%); border-radius: 12px; font-family: 'Inter', system-ui, -apple-system, sans-serif;">
+  <defs>
+    <linearGradient id="grad-cyan" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06B6D4"/>
+      <stop offset="100%" stop-color="#3B82F6"/>
+    </linearGradient>
+    <linearGradient id="grad-purple" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8B5CF6"/>
+      <stop offset="100%" stop-color="#EC4899"/>
+    </linearGradient>
+    <linearGradient id="grad-emerald" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10B981"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <linearGradient id="grad-amber" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#D97706"/>
+    </linearGradient>
+    <linearGradient id="grad-card" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="rgba(30, 41, 59, 0.85)"/>
+      <stop offset="100%" stop-color="rgba(15, 23, 42, 0.95)"/>
+    </linearGradient>
+    <filter id="glow-cyan" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.4"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#38BDF8"/>
+    </marker>
+    <marker id="arrow-emerald" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#10B981"/>
+    </marker>
+    <marker id="arrow-purple" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#8B5CF6"/>
+    </marker>
+  </defs>
+
+  <title>Linux Octal File Permissions (chmod 755)</title>
+  <text x="420" y="36" text-anchor="middle" fill="#F8FAFC" font-size="20" font-weight="800">Linux File Permission Architecture (chmod 755 Demystified)</text>
+  <text x="420" y="56" text-anchor="middle" fill="#94A3B8" font-size="12">Binary weights: Read (4) + Write (2) + Execute (1) = Octal permission</text>
+
+  <!-- Main 10-char Permission Display -->
+  <g transform="translate(140, 85)">
+    <rect x="0" y="0" width="560" height="60" rx="10" fill="#0F172A" stroke="#38BDF8" stroke-width="2"/>
+    
+    <!-- File Type -->
+    <rect x="15" y="10" width="40" height="40" rx="6" fill="#334155"/>
+    <text x="35" y="36" text-anchor="middle" fill="#F8FAFC" font-size="20" font-weight="900" font-family="monospace">-</text>
+
+    <!-- User: rwx -->
+    <rect x="70" y="10" width="130" height="40" rx="6" fill="#1E3A8A"/>
+    <text x="135" y="36" text-anchor="middle" fill="#60A5FA" font-size="20" font-weight="900" font-family="monospace">r  w  x</text>
+
+    <!-- Group: r-x -->
+    <rect x="220" y="10" width="130" height="40" rx="6" fill="#581C87"/>
+    <text x="285" y="36" text-anchor="middle" fill="#C084FC" font-size="20" font-weight="900" font-family="monospace">r  -  x</text>
+
+    <!-- Others: r-x -->
+    <rect x="370" y="10" width="130" height="40" rx="6" fill="#064E3B"/>
+    <text x="435" y="36" text-anchor="middle" fill="#34D399" font-size="20" font-weight="900" font-family="monospace">r  -  x</text>
+  </g>
+
+  <!-- Labels -->
+  <g transform="translate(140, 155)">
+    <text x="35" y="18" text-anchor="middle" fill="#94A3B8" font-size="10">File (-)</text>
+    <text x="35" y="30" text-anchor="middle" fill="#94A3B8" font-size="9">or Dir (d)</text>
+
+    <text x="135" y="18" text-anchor="middle" fill="#60A5FA" font-size="12" font-weight="800">User / Owner</text>
+    <text x="135" y="32" text-anchor="middle" fill="#F8FAFC" font-size="12" font-weight="700">4 + 2 + 1 = 7</text>
+
+    <text x="285" y="18" text-anchor="middle" fill="#C084FC" font-size="12" font-weight="800">Group</text>
+    <text x="285" y="32" text-anchor="middle" fill="#F8FAFC" font-size="12" font-weight="700">4 + 0 + 1 = 5</text>
+
+    <text x="435" y="18" text-anchor="middle" fill="#34D399" font-size="12" font-weight="800">Others / World</text>
+    <text x="435" y="32" text-anchor="middle" fill="#F8FAFC" font-size="12" font-weight="700">4 + 0 + 1 = 5</text>
+  </g>
+
+  <!-- Binary Breakdown Table -->
+  <g transform="translate(100, 215)">
+    <rect x="0" y="0" width="640" height="150" rx="10" fill="#1E293B"/>
+    <text x="320" y="26" text-anchor="middle" fill="#F8FAFC" font-size="13" font-weight="700">Permission Triad Calculation (Binary Values)</text>
+
+    <g transform="translate(30, 45)">
+      <rect x="0" y="0" width="170" height="85" rx="6" fill="#0F172A"/>
+      <text x="85" y="25" text-anchor="middle" fill="#38BDF8" font-size="13" font-weight="800">Read (r) = 4</text>
+      <text x="85" y="45" text-anchor="middle" fill="#CBD5E1" font-size="10">Binary: 1 0 0 (Bit 2)</text>
+      <text x="85" y="65" text-anchor="middle" fill="#94A3B8" font-size="10">View file content / ls dir</text>
+    </g>
+
+    <g transform="translate(235, 45)">
+      <rect x="0" y="0" width="170" height="85" rx="6" fill="#0F172A"/>
+      <text x="85" y="25" text-anchor="middle" fill="#FBBF24" font-size="13" font-weight="800">Write (w) = 2</text>
+      <text x="85" y="45" text-anchor="middle" fill="#CBD5E1" font-size="10">Binary: 0 1 0 (Bit 1)</text>
+      <text x="85" y="65" text-anchor="middle" fill="#94A3B8" font-size="10">Edit, save, delete files</text>
+    </g>
+
+    <g transform="translate(440, 45)">
+      <rect x="0" y="0" width="170" height="85" rx="6" fill="#0F172A"/>
+      <text x="85" y="25" text-anchor="middle" fill="#34D399" font-size="13" font-weight="800">Execute (x) = 1</text>
+      <text x="85" y="45" text-anchor="middle" fill="#CBD5E1" font-size="10">Binary: 0 0 1 (Bit 0)</text>
+      <text x="85" y="65" text-anchor="middle" fill="#94A3B8" font-size="10">Run scripts / cd into dir</text>
+    </g>
+  </g>
+
+  <!-- Footer -->
+  <text x="420" y="410" text-anchor="middle" fill="#E2E8F0" font-size="12">Command: <tspan fill="#38BDF8" font-family="monospace">chmod 755 script.sh</tspan> gives owner full control (7), and others read+execute (5).</text>
+  <text x="420" y="430" text-anchor="middle" fill="#F87171" font-size="11">Security Trap: <tspan font-family="monospace">chmod 777</tspan> gives anyone write permission, creating severe vulnerabilities.</text>
+</svg>

@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 450" width="100%" height="100%" style="background: linear-gradient(135deg, #090D16 0%, #111827 100%); border-radius: 12px; font-family: 'Inter', system-ui, -apple-system, sans-serif;">
+  <defs>
+    <linearGradient id="grad-cyan" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06B6D4"/>
+      <stop offset="100%" stop-color="#3B82F6"/>
+    </linearGradient>
+    <linearGradient id="grad-purple" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8B5CF6"/>
+      <stop offset="100%" stop-color="#EC4899"/>
+    </linearGradient>
+    <linearGradient id="grad-emerald" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10B981"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <linearGradient id="grad-amber" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#D97706"/>
+    </linearGradient>
+    <linearGradient id="grad-card" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="rgba(30, 41, 59, 0.85)"/>
+      <stop offset="100%" stop-color="rgba(15, 23, 42, 0.95)"/>
+    </linearGradient>
+    <filter id="glow-cyan" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.4"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#38BDF8"/>
+    </marker>
+    <marker id="arrow-emerald" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#10B981"/>
+    </marker>
+    <marker id="arrow-purple" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#8B5CF6"/>
+    </marker>
+  </defs>
+
+  <title>TCP 3-Way Handshake (SYN, SYN-ACK, ACK)</title>
+  <text x="420" y="36" text-anchor="middle" fill="#F8FAFC" font-size="20" font-weight="800">TCP 3-Way Handshake Connection Lifecycle</text>
+  <text x="420" y="56" text-anchor="middle" fill="#94A3B8" font-size="12">Reliable connection establishment before any application data is sent</text>
+
+  <!-- Client & Server Headers -->
+  <g transform="translate(140, 80)">
+    <rect x="0" y="0" width="160" height="50" rx="8" fill="#1E293B" stroke="#38BDF8" stroke-width="2"/>
+    <text x="80" y="30" text-anchor="middle" fill="#38BDF8" font-size="14" font-weight="700">💻 Client</text>
+    <text x="80" y="44" text-anchor="middle" fill="#94A3B8" font-size="9">(Active Opener)</text>
+    <line x1="80" y1="50" x2="80" y2="310" stroke="#334155" stroke-width="3" stroke-dasharray="6,4"/>
+  </g>
+
+  <g transform="translate(540, 80)">
+    <rect x="0" y="0" width="160" height="50" rx="8" fill="#1E293B" stroke="#10B981" stroke-width="2"/>
+    <text x="80" y="30" text-anchor="middle" fill="#34D399" font-size="14" font-weight="700">🖥️ Server</text>
+    <text x="80" y="44" text-anchor="middle" fill="#94A3B8" font-size="9">(Passive Listener)</text>
+    <line x1="80" y1="50" x2="80" y2="310" stroke="#334155" stroke-width="3" stroke-dasharray="6,4"/>
+  </g>
+
+  <!-- Step 1: SYN -->
+  <g transform="translate(220, 160)">
+    <line x1="0" y1="0" x2="400" y2="35" stroke="#38BDF8" stroke-width="3" marker-end="url(#arrow)"/>
+    <rect x="130" y="-12" width="140" height="32" rx="6" fill="#0F172A" stroke="#38BDF8"/>
+    <text x="200" y="8" text-anchor="middle" fill="#38BDF8" font-size="11" font-weight="800">1. SYN (Seq = X)</text>
+    <text x="200" y="32" text-anchor="middle" fill="#94A3B8" font-size="9">"Can we talk? My seq is X"</text>
+  </g>
+
+  <!-- Step 2: SYN-ACK -->
+  <g transform="translate(220, 230)">
+    <line x1="400" y1="0" x2="0" y2="35" stroke="#F59E0B" stroke-width="3" marker-end="url(#arrow)"/>
+    <rect x="110" y="-12" width="180" height="32" rx="6" fill="#0F172A" stroke="#F59E0B"/>
+    <text x="200" y="8" text-anchor="middle" fill="#FBBF24" font-size="11" font-weight="800">2. SYN-ACK (Seq=Y, Ack=X+1)</text>
+    <text x="200" y="32" text-anchor="middle" fill="#94A3B8" font-size="9">"Yes! My seq is Y, got your X"</text>
+  </g>
+
+  <!-- Step 3: ACK -->
+  <g transform="translate(220, 300)">
+    <line x1="0" y1="0" x2="400" y2="35" stroke="#10B981" stroke-width="3" marker-end="url(#arrow-emerald)"/>
+    <rect x="120" y="-12" width="160" height="32" rx="6" fill="#0F172A" stroke="#10B981"/>
+    <text x="200" y="8" text-anchor="middle" fill="#34D399" font-size="11" font-weight="800">3. ACK (Ack = Y+1)</text>
+    <text x="200" y="32" text-anchor="middle" fill="#94A3B8" font-size="9">"Acknowledged! Connection ESTABLISHED"</text>
+  </g>
+
+  <!-- State badges -->
+  <rect x="160" y="375" width="120" height="28" rx="6" fill="#059669"/>
+  <text x="220" y="394" text-anchor="middle" fill="#FFF" font-size="11" font-weight="800">ESTABLISHED</text>
+
+  <rect x="560" y="375" width="120" height="28" rx="6" fill="#059669"/>
+  <text x="620" y="394" text-anchor="middle" fill="#FFF" font-size="11" font-weight="800">ESTABLISHED</text>
+
+  <text x="420" y="430" text-anchor="middle" fill="#CBD5E1" font-size="11">Placement Question: SYN flood attacks overwhelm servers during Step 2 by keeping connections in SYN_RECEIVED state.</text>
+</svg>

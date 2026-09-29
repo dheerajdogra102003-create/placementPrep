@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 450" width="100%" height="100%" style="background: linear-gradient(135deg, #090D16 0%, #111827 100%); border-radius: 12px; font-family: 'Inter', system-ui, -apple-system, sans-serif;">
+  <defs>
+    <linearGradient id="grad-card" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="rgba(30, 41, 59, 0.85)"/>
+      <stop offset="100%" stop-color="rgba(15, 23, 42, 0.95)"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.4"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#38BDF8"/>
+    </marker>
+    <marker id="arrow-emerald" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#10B981"/>
+    </marker>
+  </defs>
+
+  <title>DBMS Keys Architecture: Candidate, Primary, Alternate, Foreign</title>
+  <text x="420" y="36" text-anchor="middle" fill="#F8FAFC" font-size="20" font-weight="800">Relational Database Key Hierarchy &amp; Relationships</text>
+  <text x="420" y="56" text-anchor="middle" fill="#94A3B8" font-size="12">Super Key ⊃ Candidate Key ⊃ Primary Key, and Foreign Key referential integrity</text>
+
+  <!-- Left: Concentric Key Hierarchy -->
+  <g transform="translate(60, 90)">
+    <rect x="0" y="0" width="340" height="320" rx="10" fill="url(#grad-card)" stroke="#334155" filter="url(#shadow)"/>
+    <text x="170" y="30" text-anchor="middle" fill="#F8FAFC" font-size="14" font-weight="700">Key Hierarchy (Venn Subsets)</text>
+
+    <!-- Super Key -->
+    <rect x="25" y="50" width="290" height="240" rx="8" fill="rgba(37, 99, 235, 0.15)" stroke="#3B82F6"/>
+    <text x="40" y="75" fill="#60A5FA" font-size="12" font-weight="800">Super Key</text>
+    <text x="40" y="90" fill="#94A3B8" font-size="9">Any set of columns that uniquely identifies a row</text>
+
+    <!-- Candidate Key -->
+    <rect x="45" y="110" width="250" height="165" rx="8" fill="rgba(168, 85, 247, 0.2)" stroke="#A855F7"/>
+    <text x="60" y="135" fill="#C084FC" font-size="12" font-weight="800">Candidate Key</text>
+    <text x="60" y="150" fill="#DDD" font-size="9">Minimal Super Key (no redundant attributes)</text>
+
+    <!-- Primary Key -->
+    <rect x="65" y="170" width="105" height="90" rx="6" fill="#10B981"/>
+    <text x="117" y="200" text-anchor="middle" fill="#FFF" font-size="11" font-weight="800">Primary Key</text>
+    <text x="117" y="218" text-anchor="middle" fill="#D1FAE5" font-size="8">Chosen Unique</text>
+    <text x="117" y="230" text-anchor="middle" fill="#D1FAE5" font-size="8">Cannot be NULL</text>
+
+    <!-- Alternate Key -->
+    <rect x="180" y="170" width="100" height="90" rx="6" fill="#334155"/>
+    <text x="230" y="200" text-anchor="middle" fill="#F8FAFC" font-size="11" font-weight="700">Alternate Key</text>
+    <text x="230" y="218" text-anchor="middle" fill="#CBD5E1" font-size="8">Remaining</text>
+    <text x="230" y="230" text-anchor="middle" fill="#CBD5E1" font-size="8">Candidate Keys</text>
+  </g>
+
+  <!-- Right: Foreign Key Relation Diagram -->
+  <g transform="translate(430, 90)">
+    <rect x="0" y="0" width="370" height="320" rx="10" fill="url(#grad-card)" stroke="#38BDF8" stroke-width="1.5" filter="url(#shadow)"/>
+    <text x="185" y="30" text-anchor="middle" fill="#38BDF8" font-size="14" font-weight="700">Foreign Key Referential Integrity</text>
+
+    <!-- Parent Table: Department -->
+    <g transform="translate(25, 55)">
+      <rect x="0" y="0" width="320" height="85" rx="6" fill="#0F172A" stroke="#10B981"/>
+      <rect x="0" y="0" width="320" height="25" rx="6" fill="#14532D"/>
+      <text x="160" y="17" text-anchor="middle" fill="#34D399" font-size="11" font-weight="800">PARENT TABLE: Department</text>
+      <text x="15" y="45" fill="#E2E8F0" font-size="10"><tspan fill="#34D399" font-weight="800">Dept_ID (PK)</tspan>  |  Dept_Name  |  Location</text>
+      <text x="15" y="65" fill="#CBD5E1" font-size="9">101 → Computer Science  |  102 → Electronics</text>
+    </g>
+
+    <!-- Arrow linking PK to FK -->
+    <line x1="185" y1="140" x2="185" y2="185" stroke="#F59E0B" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <text x="235" y="165" fill="#FBBF24" font-size="10" font-weight="700">References PK</text>
+
+    <!-- Child Table: Employee -->
+    <g transform="translate(25, 195)">
+      <rect x="0" y="0" width="320" height="85" rx="6" fill="#0F172A" stroke="#38BDF8"/>
+      <rect x="0" y="0" width="320" height="25" rx="6" fill="#1E3A8A"/>
+      <text x="160" y="17" text-anchor="middle" fill="#60A5FA" font-size="11" font-weight="800">CHILD TABLE: Employee</text>
+      <text x="15" y="45" fill="#E2E8F0" font-size="10">Emp_ID (PK)  |  Emp_Name  |  <tspan fill="#FBBF24" font-weight="800">Dept_ID (FK)</tspan></text>
+      <text x="15" y="65" fill="#CBD5E1" font-size="9">E01 → Dheeraj → 101  |  E02 → Neha → 102</text>
+    </g>
+
+    <text x="185" y="305" text-anchor="middle" fill="#F87171" font-size="9" font-weight="700">Constraint: Cannot insert Dept_ID=999 in Employee if 999 does not exist in Dept!</text>
+  </g>
+
+  <!-- Footer Tip -->
+  <text x="420" y="435" text-anchor="middle" fill="#94A3B8" font-size="11">Placement Rule: A table can have multiple Candidate Keys, but ONLY ONE Primary Key. Foreign Key CAN contain NULL values.</text>
+</svg>

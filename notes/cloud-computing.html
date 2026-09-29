@@ -34,6 +34,7 @@
       margin: 1.5rem 0;
     }
   </style>
+  <link rel="stylesheet" href="../css/visual-learning.css">
 </head>
 <body>
   <!-- Reading Progress Bar -->
@@ -43,9 +44,9 @@
     <!-- Navbar -->
     <header class="site-navbar" id="site-navbar">
       <div class="container navbar-inner">
-        <a href="../index.html#home" class="brand-link" aria-label="PlacementPrep Home">
-          <div class="brand-icon">P</div>
-          <span>Placement<span class="brand-text-accent">Prep</span></span>
+        <a href="../index.html#home" class="nav-brand brand-link" aria-label="PlacementPrep Home">
+          <div class="brand-icon" aria-hidden="true">P</div>
+          <span class="brand-title">Placement<span class="brand-text-accent">Prep</span></span>
         </a>
 
         <nav role="navigation" aria-label="Main Navigation">
@@ -814,7 +815,71 @@
     <h2 class="notes-section-title">IaaS vs PaaS vs SaaS High-Value Comparison Matrix</h2>
   </div>
 
-  <div class="table-container" style="overflow-x:auto;">
+  
+
+          <!-- Visual Learning Card: IaaS vs PaaS vs SaaS Shared Responsibility Stack -->
+          <div class="concept-visual-card featured-card">
+            <div class="concept-card-header">
+              <div class="concept-title-group">
+                <h3 class="concept-title"><span>☁️</span> IaaS vs PaaS vs SaaS Shared Responsibility Stack</h3>
+                <p class="concept-one-liner">Demarcation of operational duties between customer engineers and cloud provider.</p>
+              </div>
+              <div class="concept-badges">
+                <span class="visual-badge badge-diagram">📐 Architecture Diagram</span>
+                <span class="visual-badge badge-trap">⚠️ High-Yield Trap</span>
+              </div>
+            </div>
+
+            <div class="visual-diagram-container">
+              <img src="../assets/diagrams/cloud/cloud-iaas-paas-saas.svg" alt="IaaS vs PaaS vs SaaS Shared Responsibility Stack Diagram" loading="lazy">
+              <div class="diagram-caption">
+                <div class="diagram-caption-left">
+                  <span>📊</span> <strong>Figure:</strong> Shared Responsibility Model: Customer Management Boundary across SPI Layers
+                </div>
+                <span class="diagram-type-tag">SVG Vector Diagram</span>
+              </div>
+            </div>
+            
+            <div class="placement-trap-box">
+              <div class="trap-header">
+                <span>⚠️</span> Who Patches the OS in AWS EC2 vs RDS?
+              </div>
+              <div class="trap-body">
+                <p>Recruiters frequently ask who manages OS patching and backups in AWS services:</p>
+<ul>
+  <li><strong>EC2 (IaaS):</strong> YOU are 100% responsible for installing security patches, OS upgrades, and configuring automated snapshot scripts.</li>
+  <li><strong>RDS (PaaS):</strong> AWS manages the underlying Linux OS, security patches, and automated multi-AZ replication. You only manage database schemas and SQL queries.</li>
+  <li><strong>Google Workspace (SaaS):</strong> Google manages the entire stack end-to-end; you only manage user access accounts.</li>
+</ul>
+                <span class="trap-takeaway">🎯 Key Takeaway: Higher level of abstraction (SaaS > PaaS > IaaS) = Provider manages more infrastructure, customer controls less.</span>
+              </div>
+            </div>
+
+            <div class="real-life-scenario-box">
+              <div class="scenario-header">
+                <div class="scenario-title"><span>🏢</span> Netflix Transcoding vs Global Metadata Storage</div>
+                <span class="company-tag">Netflix</span>
+              </div>
+              <div class="scenario-content">
+                Netflix utilizes EC2 and ECS (IaaS/CaaS) for custom GPU-accelerated video rendering pipelines requiring low-level hardware control, but relies on Amazon DynamoDB and S3 (PaaS/Managed) for user profile storage without provisioning database servers.
+              </div>
+            </div>
+
+            <div class="mini-challenge-box">
+              <div class="challenge-header">
+                <span>❓</span> Quick Placement Check
+              </div>
+              <p class="challenge-question">A company moves their legacy Node.js monolithic app to an AWS EC2 instance without changes. Which cloud service model was used, and who must patch Ubuntu kernel vulnerabilities?</p>
+              <button type="button" class="challenge-reveal-btn" aria-expanded="false">
+                <span>💡 Reveal Verified Answer &amp; Placement Trap</span>
+              </button>
+              <div class="challenge-answer">
+                <p><strong>Answer:</strong> IaaS (Infrastructure as a Service). The company is 100% responsible for OS security patching, firewall ports, and system runtime updates.</p>
+              </div>
+            </div>
+          </div>
+
+<div class="table-container" style="overflow-x:auto;">
     <table class="notes-table">
       <thead>
         <tr>
@@ -1122,7 +1187,91 @@
     <h2 class="notes-section-title">Docker vs Virtual Machine Comparison Matrix</h2>
   </div>
 
-  <div class="table-container" style="overflow-x:auto;">
+  
+
+          <!-- Visual Learning Card: Docker Containers vs Virtual Machines Architecture -->
+          <div class="concept-visual-card featured-card">
+            <div class="concept-card-header">
+              <div class="concept-title-group">
+                <h3 class="concept-title"><span>📦</span> Docker Containers vs Virtual Machines Architecture</h3>
+                <p class="concept-one-liner">Contrasting Type-1/2 Hypervisor hardware virtualization with Linux kernel containerization.</p>
+              </div>
+              <div class="concept-badges">
+                <span class="visual-badge badge-interactive">🔄 Interactive Comparison</span>
+                <span class="visual-badge badge-trap">⚠️ High-Yield Trap</span>
+              </div>
+            </div>
+
+            <div class="visual-diagram-container">
+              <img src="../assets/diagrams/cloud/cloud-docker-vs-vm.svg" alt="Virtual Machine Hypervisor vs Docker Container Architecture" loading="lazy">
+              <div class="diagram-caption">
+                <div class="diagram-caption-left">
+                  <span>📊</span> <strong>Figure:</strong> Host OS Shared Kernel vs Guest OS Hypervisor Isolation Boundaries
+                </div>
+                <span class="diagram-type-tag">SVG Vector Diagram</span>
+              </div>
+            </div>
+            
+            <div class="interactive-visual-widget" style="background:#0b1120; border:1px solid #1e293b; border-radius:10px; padding:1.25rem; margin:1.25rem 0;">
+              <div class="widget-header" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.75rem; margin-bottom:0.75rem;">
+                <div class="widget-title" style="font-size:1.05rem; font-weight:800; color:#38bdf8;">🔄 Architecture Deep Dive: VM vs Containers</div>
+                <div style="display:flex; gap:0.5rem;">
+                  <button type="button" id="toggle-show-vm" class="btn btn-sm btn-outline active" style="padding:0.35rem 0.75rem; font-size:0.8rem;">Virtual Machine View</button>
+                  <button type="button" id="toggle-show-docker" class="btn btn-sm btn-outline" style="padding:0.35rem 0.75rem; font-size:0.8rem;">Docker Container View</button>
+                </div>
+              </div>
+              <div id="arch-view-vm" style="margin-top:0.75rem;">
+                <div style="padding:0.85rem; background:rgba(255,255,255,0.03); border:1px solid #334155; border-radius:8px; font-size:0.875rem; color:#cbd5e1; line-height:1.5;">
+                  <strong style="color:#f59e0b;">Virtual Machine Isolation:</strong> Each VM packages full Guest OS binaries, kernel, and dependencies managed by a Hypervisor. Heavy footprint (several gigabytes), boot time in minutes, but complete hardware-level boundary.
+                </div>
+              </div>
+              <div id="arch-view-docker" style="margin-top:0.75rem; display:none;">
+                <div style="padding:0.85rem; background:rgba(255,255,255,0.03); border:1px solid #334155; border-radius:8px; font-size:0.875rem; color:#cbd5e1; line-height:1.5;">
+                  <strong style="color:#10b981;">Docker Container Agility:</strong> Containers share the single Host OS kernel and isolate user space using Linux <code>cgroups</code> (resource limits) and <code>namespaces</code> (process trees). Featherweight (megabytes), sub-second startup, perfect for CI/CD microservices.
+                </div>
+              </div>
+            </div>
+
+            <div class="placement-trap-box">
+              <div class="trap-header">
+                <span>⚠️</span> Do Docker Containers Have Their Own Kernel?
+              </div>
+              <div class="trap-body">
+                <p>The #1 Fresher Interview Trick Question:</p>
+<ul>
+  <li><strong>Common Fallacy:</strong> Many students believe containers are mini virtual machines with their own tiny kernel.</li>
+  <li><strong>Technical Truth:</strong> Docker containers share the exact same host Linux kernel! They isolate processes using Linux kernel <code>cgroups</code> (CPU/RAM limits) and <code>namespaces</code> (isolated PID/mount trees).</li>
+  <li><strong>Result:</strong> Containers start in <strong>milliseconds</strong> and consume megabytes, whereas VMs take <strong>minutes</strong> to boot full independent operating systems.</li>
+</ul>
+                <span class="trap-takeaway">🎯 Key Takeaway: VMs isolate hardware with full Guest OS instances. Containers isolate user space processes sharing one host kernel.</span>
+              </div>
+            </div>
+
+            <div class="real-life-scenario-box">
+              <div class="scenario-header">
+                <div class="scenario-title"><span>🏢</span> Uber Microservice Deployments</div>
+                <span class="company-tag">Uber</span>
+              </div>
+              <div class="scenario-content">
+                Uber runs over 4,000 independent microservices. By deploying them in Docker containers orchestrated across Kubernetes clusters, new application revisions deploy in sub-second intervals without rebooting server hardware.
+              </div>
+            </div>
+
+            <div class="mini-challenge-box">
+              <div class="challenge-header">
+                <span>❓</span> Quick Placement Check
+              </div>
+              <p class="challenge-question">If an Ubuntu host runs 15 active Docker containers, how many Linux kernels are executing simultaneously on the physical CPU?</p>
+              <button type="button" class="challenge-reveal-btn" aria-expanded="false">
+                <span>💡 Reveal Verified Answer &amp; Placement Trap</span>
+              </button>
+              <div class="challenge-answer">
+                <p><strong>Answer:</strong> Exactly ONE Linux kernel. All 15 containers share the underlying host operating system kernel.</p>
+              </div>
+            </div>
+          </div>
+
+<div class="table-container" style="overflow-x:auto;">
     <table class="notes-table">
       <thead>
         <tr>
@@ -1240,7 +1389,89 @@
     <h2 class="notes-section-title">Elasticity vs Scalability: The Exam Trap</h2>
   </div>
 
-  <div class="highlight-callout" style="background:rgba(239,68,68,0.08); border-left:4px solid #ef4444; padding:1.25rem; border-radius:8px;">
+  
+
+          <!-- Visual Learning Card: Scalability vs Elasticity (Placement Trap) -->
+          <div class="concept-visual-card featured-card">
+            <div class="concept-card-header">
+              <div class="concept-title-group">
+                <h3 class="concept-title"><span>⚡</span> Scalability vs Elasticity (Placement Trap)</h3>
+                <p class="concept-one-liner">Differentiating static workload capacity expansion from real-time autonomous auto-scaling.</p>
+              </div>
+              <div class="concept-badges">
+                <span class="visual-badge badge-interactive">⚡ Live Traffic Simulator</span>
+                <span class="visual-badge badge-trap">⚠️ High-Yield Trap</span>
+              </div>
+            </div>
+
+            <div class="visual-diagram-container">
+              <img src="../assets/diagrams/cloud/cloud-scalability-vs-elasticity.svg" alt="Scalability expansion vs Elasticity traffic spike adaptation diagram" loading="lazy">
+              <div class="diagram-caption">
+                <div class="diagram-caption-left">
+                  <span>📊</span> <strong>Figure:</strong> Vertical/Horizontal Scalability vs Autonomous Dynamic Elasticity
+                </div>
+                <span class="diagram-type-tag">SVG Vector Diagram</span>
+              </div>
+            </div>
+            
+            <div class="interactive-visual-widget" style="background:#0b1120; border:1px solid #1e293b; border-radius:10px; padding:1.25rem; margin:1.25rem 0;">
+              <div class="widget-header" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
+                <div class="widget-title" style="font-size:1.05rem; font-weight:800; color:#38bdf8;">⚡ Interactive Cloud Scalability &amp; Elasticity Simulator</div>
+                <span class="widget-tag" style="background:rgba(56,189,248,0.15); color:#38bdf8; padding:0.2rem 0.6rem; border-radius:4px; font-size:0.75rem; font-weight:700;">Live Traffic Simulation</span>
+              </div>
+              <p class="widget-desc" style="font-size:0.875rem; color:#94a3b8; margin-bottom:1rem;">Adjust incoming traffic to simulate dynamic cloud elasticity auto-scaling EC2 instances and real-time hourly billing.</p>
+              <div style="margin: 1.25rem 0;">
+                <div style="display:flex; justify-content:space-between; margin-bottom:0.5rem; font-size:0.875rem; flex-wrap:wrap; gap:0.5rem;">
+                  <span>Traffic: <strong id="cloud-traffic-val" style="color:#6366f1;">2,500 users/sec</strong></span>
+                  <span>Capacity: <strong id="cloud-instances-val" style="color:#10b981;">1 Auto-Scaled Instances</strong></span>
+                  <span>Estimated Cost: <strong id="cloud-cost-val" style="color:#f59e0b;">$0.08/hr</strong></span>
+                </div>
+                <input type="range" id="cloud-traffic-slider" min="500" max="25000" step="500" value="2500" style="width:100%; cursor:pointer;">
+              </div>
+              <div style="font-size:0.8rem; font-weight:700; color:#94a3b8; margin-bottom:0.5rem; text-transform:uppercase;">Active Cloud Cluster Nodes:</div>
+              <div id="cloud-servers-visual" style="display:flex; gap:0.5rem; flex-wrap:wrap; min-height:36px;"></div>
+            </div>
+
+            <div class="placement-trap-box">
+              <div class="trap-header">
+                <span>⚠️</span> Scalability vs Elasticity: Top Exam Confusion
+              </div>
+              <div class="trap-body">
+                <p>Recruiters love testing whether you understand this critical distinction:</p>
+<ul>
+  <li><strong>Scalability:</strong> The <em>architectural capacity</em> of a system to grow (either by scaling up CPU/RAM or scaling out nodes) to handle increased load when planned.</li>
+  <li><strong>Elasticity:</strong> The <em>automatic, real-time dynamic adjustment</em> of resources to match current traffic—scaling UP during spikes and scaling DOWN during idle hours to eliminate wasted spend.</li>
+  <li><strong>Exam Trap:</strong> An engineer manually upgrading a server RAM on Sunday is <em>Scalability</em>, NOT Elasticity!</li>
+</ul>
+                <span class="trap-takeaway">🎯 Key Takeaway: All elastic cloud architectures are scalable, but not all scalable systems are elastic (manual scaling lacks elasticity).</span>
+              </div>
+            </div>
+
+            <div class="real-life-scenario-box">
+              <div class="scenario-header">
+                <div class="scenario-title"><span>🏢</span> Amazon Prime Day Flash Sale Surge</div>
+                <span class="company-tag">Amazon / Flipkart</span>
+              </div>
+              <div class="scenario-content">
+                At 12:00 AM during flash sale launches, concurrent checkout queries surge 50× within seconds. AWS Auto Scaling groups dynamically add hundreds of EC2 instances behind Application Load Balancers, then terminate them when traffic subsides.
+              </div>
+            </div>
+
+            <div class="mini-challenge-box">
+              <div class="challenge-header">
+                <span>❓</span> Quick Placement Check
+              </div>
+              <p class="challenge-question">An e-commerce site schedules 10 extra EC2 instances manually every Friday afternoon for weekend traffic. Is this Scalability or Elasticity?</p>
+              <button type="button" class="challenge-reveal-btn" aria-expanded="false">
+                <span>💡 Reveal Verified Answer &amp; Placement Trap</span>
+              </button>
+              <div class="challenge-answer">
+                <p><strong>Answer:</strong> This is Scalability (Horizontal Scaling). It is NOT Elasticity because it required manual scheduled human intervention rather than dynamic real-time traffic-driven autoscaling.</p>
+              </div>
+            </div>
+          </div>
+
+<div class="highlight-callout" style="background:rgba(239,68,68,0.08); border-left:4px solid #ef4444; padding:1.25rem; border-radius:8px;">
     <h4 style="color:#ef4444; margin-top:0;">⚠️ The #1 Most Failed Placement Concept</h4>
     <p>Students frequently confuse <strong>Scalability</strong> with <strong>Elasticity</strong>:</p>
     <ul>
@@ -1548,7 +1779,71 @@
     <h2 class="notes-section-title">Storage Selection Matrix & Decision Guide</h2>
   </div>
 
-  <div class="table-container" style="overflow-x:auto;">
+  
+
+          <!-- Visual Learning Card: AWS Storage Matrix: S3 vs EBS vs EFS -->
+          <div class="concept-visual-card featured-card">
+            <div class="concept-card-header">
+              <div class="concept-title-group">
+                <h3 class="concept-title"><span>🗄️</span> AWS Storage Matrix: S3 vs EBS vs EFS</h3>
+                <p class="concept-one-liner">Selecting optimal cloud storage across Object, Block, and Network File System paradigms.</p>
+              </div>
+              <div class="concept-badges">
+                <span class="visual-badge badge-diagram">📊 Storage Comparison</span>
+                <span class="visual-badge badge-trap">⚠️ High-Yield Trap</span>
+              </div>
+            </div>
+
+            <div class="visual-diagram-container">
+              <img src="../assets/diagrams/cloud/cloud-storage-hierarchy.svg" alt="AWS Storage comparison between S3 Object storage, EBS Block storage, and EFS File storage" loading="lazy">
+              <div class="diagram-caption">
+                <div class="diagram-caption-left">
+                  <span>📊</span> <strong>Figure:</strong> Storage Architecture: Object (REST HTTP) vs Block (Virtual SSD) vs File (Shared NFS)
+                </div>
+                <span class="diagram-type-tag">SVG Vector Diagram</span>
+              </div>
+            </div>
+            
+            <div class="placement-trap-box">
+              <div class="trap-header">
+                <span>⚠️</span> Can Amazon EBS Be Mounted to Multiple EC2 Instances Simultaneously?
+              </div>
+              <div class="trap-body">
+                <p>Interviewers frequently test storage attach boundaries:</p>
+<ul>
+  <li><strong>Amazon EBS (Block Storage):</strong> Functions like a physical dedicated SSD. Standard EBS volumes can only attach to <strong>one EC2 instance in a single Availability Zone</strong>.</li>
+  <li><strong>Amazon EFS (File Storage):</strong> A managed POSIX NFS file system that can be <strong>mounted simultaneously to thousands of EC2 instances</strong> across multiple AZs.</li>
+  <li><strong>Amazon S3 (Object Storage):</strong> Not a filesystem; stores binary objects accessed via HTTP GET/PUT REST APIs with 11 9's of durability.</li>
+</ul>
+                <span class="trap-takeaway">🎯 Key Takeaway: EBS = Dedicated single-node drive. EFS = Shared multi-instance directory. S3 = Global REST-accessible object store.</span>
+              </div>
+            </div>
+
+            <div class="real-life-scenario-box">
+              <div class="scenario-header">
+                <div class="scenario-title"><span>🏢</span> High-Traffic WordPress Cluster Media Directory</div>
+                <span class="company-tag">WordPress Enterprise</span>
+              </div>
+              <div class="scenario-content">
+                A load-balanced fleet of 6 EC2 instances serves web traffic. The application mounts a shared Amazon EFS volume at <code>/var/www/html/wp-content/uploads</code> so image uploads by editors are instantaneously visible across all 6 servers.
+              </div>
+            </div>
+
+            <div class="mini-challenge-box">
+              <div class="challenge-header">
+                <span>❓</span> Quick Placement Check
+              </div>
+              <p class="challenge-question">Which AWS storage service should you select to store 100 million user profile images accessed directly by mobile apps over HTTPS?</p>
+              <button type="button" class="challenge-reveal-btn" aria-expanded="false">
+                <span>💡 Reveal Verified Answer &amp; Placement Trap</span>
+              </button>
+              <div class="challenge-answer">
+                <p><strong>Answer:</strong> Amazon S3 (Simple Storage Service). S3 provides native HTTPS REST endpoints, CDN caching (CloudFront), and 99.999999999% durability.</p>
+              </div>
+            </div>
+          </div>
+
+<div class="table-container" style="overflow-x:auto;">
     <table class="notes-table">
       <thead>
         <tr>
@@ -1694,6 +1989,70 @@
   <p class="notes-paragraph">
     A <strong>Virtual Private Cloud (VPC)</strong> is a logically isolated virtual network dedicated to your cloud account. It closely resembles a traditional physical network inside a datacenter:
   </p>
+
+          <!-- Visual Learning Card: AWS VPC, Public/Private Subnets & NAT Gateway Architecture -->
+          <div class="concept-visual-card featured-card">
+            <div class="concept-card-header">
+              <div class="concept-title-group">
+                <h3 class="concept-title"><span>🛡️</span> AWS VPC, Public/Private Subnets & NAT Gateway Architecture</h3>
+                <p class="concept-one-liner">Enterprise network isolation, security groups, route tables, and one-way internet egress.</p>
+              </div>
+              <div class="concept-badges">
+                <span class="visual-badge badge-diagram">🌐 Network Architecture</span>
+                <span class="visual-badge badge-trap">⚠️ High-Yield Trap</span>
+              </div>
+            </div>
+
+            <div class="visual-diagram-container">
+              <img src="../assets/diagrams/cloud/cloud-vpc-subnets-architecture.svg" alt="AWS VPC architecture showing Internet Gateway, Public Subnet, and Private Subnet with NAT" loading="lazy">
+              <div class="diagram-caption">
+                <div class="diagram-caption-left">
+                  <span>📊</span> <strong>Figure:</strong> VPC Topology: Dual-Tier Architecture with Public Egress and Isolated Private Subnet
+                </div>
+                <span class="diagram-type-tag">SVG Vector Diagram</span>
+              </div>
+            </div>
+            
+            <div class="placement-trap-box">
+              <div class="trap-header">
+                <span>⚠️</span> Where Should Production Databases Live?
+              </div>
+              <div class="trap-body">
+                <p>A critical cloud security interview test:</p>
+<ul>
+  <li><strong>Public Subnet:</strong> Has a route table entry pointing to an <strong>Internet Gateway (IGW)</strong>. Web servers and Load Balancers live here.</li>
+  <li><strong>Private Subnet:</strong> Has NO route to an Internet Gateway. Production databases (RDS/PostgreSQL) must ALWAYS live in private subnets with no public IPs!</li>
+  <li><strong>NAT Gateway:</strong> Placed in the Public Subnet to allow private database instances to initiate outbound requests (e.g. OS security patches) while blocking inbound connections.</li>
+</ul>
+                <span class="trap-takeaway">🎯 Key Takeaway: Internet Gateway = Bi-directional public internet access. NAT Gateway = Outbound-only internet egress for private resources.</span>
+              </div>
+            </div>
+
+            <div class="real-life-scenario-box">
+              <div class="scenario-header">
+                <div class="scenario-title"><span>🏢</span> Banking & FinTech Payment Gateway VPC</div>
+                <span class="company-tag">Razorpay / PayTM</span>
+              </div>
+              <div class="scenario-content">
+                Payment APIs terminate TLS on public Application Load Balancers. The financial transaction processor and card vault database reside strictly in private subnets with strict Security Group rules permitting traffic only from the app tier.
+              </div>
+            </div>
+
+            <div class="mini-challenge-box">
+              <div class="challenge-header">
+                <span>❓</span> Quick Placement Check
+              </div>
+              <p class="challenge-question">Can a malicious hacker on the public internet initiate a direct SSH connection to an EC2 instance in a private subnet behind a NAT Gateway?</p>
+              <button type="button" class="challenge-reveal-btn" aria-expanded="false">
+                <span>💡 Reveal Verified Answer &amp; Placement Trap</span>
+              </button>
+              <div class="challenge-answer">
+                <p><strong>Answer:</strong> NO. A NAT Gateway only translates outbound connections initiated from inside the private subnet; it drops all unrequested inbound packets from the internet.</p>
+              </div>
+            </div>
+          </div>
+
+
   <ul>
     <li><strong>Subnets:</strong> Segments of a VPC's IP address range.
       <ul>
@@ -1969,7 +2328,70 @@
     <h2 class="notes-section-title">RPO and RTO: Key Business Continuity Metrics</h2>
   </div>
 
-  <div class="topic-priority-badge" style="margin-bottom:1rem;">
+  
+
+          <!-- Visual Learning Card: Disaster Recovery Timeline: RPO vs RTO Objectives -->
+          <div class="concept-visual-card featured-card">
+            <div class="concept-card-header">
+              <div class="concept-title-group">
+                <h3 class="concept-title"><span>⏱️</span> Disaster Recovery Timeline: RPO vs RTO Objectives</h3>
+                <p class="concept-one-liner">Quantifying acceptable data loss versus business downtime in business continuity planning.</p>
+              </div>
+              <div class="concept-badges">
+                <span class="visual-badge badge-diagram">⏳ Timeline Metric</span>
+                <span class="visual-badge badge-trap">⚠️ High-Yield Trap</span>
+              </div>
+            </div>
+
+            <div class="visual-diagram-container">
+              <img src="../assets/diagrams/cloud/cloud-rpo-rto-timeline.svg" alt="Disaster recovery timeline illustrating RPO and RTO milestones" loading="lazy">
+              <div class="diagram-caption">
+                <div class="diagram-caption-left">
+                  <span>📊</span> <strong>Figure:</strong> Disaster Recovery Lifecycle: Quantifying Data Loss (RPO) vs Recovery Duration (RTO)
+                </div>
+                <span class="diagram-type-tag">SVG Vector Diagram</span>
+              </div>
+            </div>
+            
+            <div class="placement-trap-box">
+              <div class="trap-header">
+                <span>⚠️</span> RPO vs RTO: Time Direction Confusion
+              </div>
+              <div class="trap-body">
+                <p>Students frequently confuse the backward and forward vectors:</p>
+<ul>
+  <li><strong>RPO (Recovery Point Objective):</strong> Looks <strong>BACKWARD</strong> from the disaster event. Measures the maximum acceptable amount of data loss in time (e.g., 2 hours of uncommitted transactions).</li>
+  <li><strong>RTO (Recovery Time Objective):</strong> Looks <strong>FORWARD</strong> from the disaster event. Measures the maximum allowable downtime before business operations are restored.</li>
+</ul>
+                <span class="trap-takeaway">🎯 Key Takeaway: RPO = 'How much data can we tolerate losing?' RTO = 'How long can we tolerate being down?'</span>
+              </div>
+            </div>
+
+            <div class="real-life-scenario-box">
+              <div class="scenario-header">
+                <div class="scenario-title"><span>🏢</span> Core Stock Trading Exchange Failover</div>
+                <span class="company-tag">NSE / NASDAQ</span>
+              </div>
+              <div class="scenario-content">
+                Stock trading platforms maintain RPO = 0 using synchronous Multi-Region active-active replication (zero trade records lost), and RTO < 30 seconds using automatic Route 53 DNS health-check failover to hot standby clusters.
+              </div>
+            </div>
+
+            <div class="mini-challenge-box">
+              <div class="challenge-header">
+                <span>❓</span> Quick Placement Check
+              </div>
+              <p class="challenge-question">A company takes incremental database backups daily at 1:00 AM. A ransomware attack strikes at 2:00 PM. What is the maximum data loss in hours, and which metric does this represent?</p>
+              <button type="button" class="challenge-reveal-btn" aria-expanded="false">
+                <span>💡 Reveal Verified Answer &amp; Placement Trap</span>
+              </button>
+              <div class="challenge-answer">
+                <p><strong>Answer:</strong> 13 hours of data loss (1:00 AM to 2:00 PM). This metric represents the Recovery Point Objective (RPO).</p>
+              </div>
+            </div>
+          </div>
+
+<div class="topic-priority-badge" style="margin-bottom:1rem;">
     <span class="badge-neon-purple">🔥🔥 High Placement Value</span>
   </div>
 
@@ -4623,6 +5045,7 @@
       }
     });
   </script>
+  <script src="../js/visual-learning.js"></script>
 </body>
 </html><!-- Multi-AZ VPC Architecture Visual Card -->
   <div class="visual-learning-card" style="margin-top: 1.5rem;">
@@ -4716,9 +5139,9 @@
     <!-- Navbar -->
     <header class="site-navbar" id="site-navbar">
       <div class="container navbar-inner">
-        <a href="../index.html#home" class="brand-link" aria-label="PlacementPrep Home">
-          <div class="brand-icon">P</div>
-          <span>Placement<span class="brand-text-accent">Prep</span></span>
+        <a href="../index.html#home" class="nav-brand brand-link" aria-label="PlacementPrep Home">
+          <div class="brand-icon" aria-hidden="true">P</div>
+          <span class="brand-title">Placement<span class="brand-text-accent">Prep</span></span>
         </a>
 
         <nav role="navigation" aria-label="Main Navigation">

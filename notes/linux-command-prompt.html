@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="../css/components.css">
   <link rel="stylesheet" href="../css/notes.css">
   <link rel="stylesheet" href="../css/responsive.css">
+  <link rel="stylesheet" href="../css/visual-learning.css">
 </head>
 <body>
 
@@ -28,9 +29,9 @@
     <!-- Global Navigation Bar -->
     <header class="site-navbar" id="site-navbar">
       <div class="container navbar-inner">
-        <a href="../index.html#home" class="brand-link" aria-label="PlacementPrep Home">
-          <div class="brand-icon">P</div>
-          <span>Placement<span class="brand-text-accent">Prep</span></span>
+        <a href="../index.html#home" class="nav-brand brand-link" aria-label="PlacementPrep Home">
+          <div class="brand-icon" aria-hidden="true">P</div>
+          <span class="brand-title">Placement<span class="brand-text-accent">Prep</span></span>
         </a>
 
         <nav role="navigation" aria-label="Main Navigation">
@@ -589,7 +590,73 @@
     <h2 class="notes-section-title">File System Hierarchy: Single Root vs Drive Letters</h2>
   </div>
 
-  <div class="topic-card">
+  
+
+          <!-- Visual Learning Card: Linux Filesystem Hierarchy Standard (FHS Tree) -->
+          <div class="concept-visual-card featured-card">
+            <div class="concept-card-header">
+              <div class="concept-title-group">
+                <h3 class="concept-title"><span>📁</span> Linux Filesystem Hierarchy Standard (FHS Tree)</h3>
+                <p class="concept-one-liner">Navigating the root tree structure, binary storage, config paths, and virtual device files.</p>
+              </div>
+              <div class="concept-badges">
+                <span class="visual-badge badge-diagram">🐧 System Architecture</span>
+                <span class="visual-badge badge-trap">⚠️ High-Yield Trap</span>
+              </div>
+            </div>
+
+            <div class="visual-diagram-container">
+              <img src="../assets/diagrams/linux/linux-filesystem-hierarchy.svg" alt="Linux Filesystem Hierarchy Standard tree starting from root down through directories" loading="lazy">
+              <div class="diagram-caption">
+                <div class="diagram-caption-left">
+                  <span>📊</span> <strong>Figure:</strong> Linux FHS Directory Tree: Unified Single Root Architecture
+                </div>
+                <span class="diagram-type-tag">SVG Vector Diagram</span>
+              </div>
+            </div>
+            
+            <div class="placement-trap-box">
+              <div class="trap-header">
+                <span>⚠️</span> Where do Configuration Files vs Logs vs Binaries Live?
+              </div>
+              <div class="trap-body">
+                <p>Essential placement exam directory mapping:</p>
+<ul>
+  <li><strong>/ (Root):</strong> The single top-level parent of all files and mounted drives (no C: or D: drives in Linux!).</li>
+  <li><strong>/etc:</strong> Host-specific system-wide configuration files (e.g. <code>/etc/hosts</code>, <code>/etc/passwd</code>, <code>/etc/nginx/nginx.conf</code>).</li>
+  <li><strong>/var:</strong> Variable dynamic data that grows continuously: log files (<code>/var/log/syslog</code>), mail spools, and web databases.</li>
+  <li><strong>/bin &amp; /usr/bin:</strong> Essential executable user command binaries (<code>ls</code>, <code>cp</code>, <code>python</code>).</li>
+  <li><strong>/proc:</strong> Virtual pseudo-filesystem residing purely in RAM containing kernel runtime statistics and active Process IDs (PIDs).</li>
+</ul>
+                <span class="trap-takeaway">🎯 Key Takeaway: Linux unifies all physical disks into a single root tree (/); /etc = configs, /var = logs, /bin = binaries.</span>
+              </div>
+            </div>
+
+            <div class="real-life-scenario-box">
+              <div class="scenario-header">
+                <div class="scenario-title"><span>🏢</span> Apache Web Server Troubleshooting on Ubuntu Server</div>
+                <span class="company-tag">SysAdmin Production</span>
+              </div>
+              <div class="scenario-content">
+                When an Nginx web server throws HTTP 502 errors, systems engineers check <code>/etc/nginx/nginx.conf</code> for syntax misconfigurations, inspect error stack traces in <code>/var/log/nginx/error.log</code>, and inspect active worker PIDs in <code>/proc</code>.
+              </div>
+            </div>
+
+            <div class="mini-challenge-box">
+              <div class="challenge-header">
+                <span>❓</span> Quick Placement Check
+              </div>
+              <p class="challenge-question">Does Linux assign drive letters like C:\ or D:\ when a new physical hard drive or USB stick is connected?</p>
+              <button type="button" class="challenge-reveal-btn" aria-expanded="false">
+                <span>💡 Reveal Verified Answer &amp; Placement Trap</span>
+              </button>
+              <div class="challenge-answer">
+                <p><strong>Answer:</strong> NO. Linux mounts all physical and virtual drives as directories attached into the single unified root (/) filesystem hierarchy (e.g. /mnt/usb or /media/drive).</p>
+              </div>
+            </div>
+          </div>
+
+<div class="topic-card">
     <div class="topic-card-header">
       <div class="topic-card-title">🌲 The Inverted Tree Architecture</div>
       <div class="topic-card-meta">
@@ -1218,7 +1285,71 @@ ps aux --sort=-%mem | head -n 6</code></pre>
     <h2 class="notes-section-title">Linux File Permissions & chmod Numerical System</h2>
   </div>
 
-  <div class="topic-card">
+  
+
+          <!-- Visual Learning Card: chmod 755 Octal File Permissions & Binary Triad -->
+          <div class="concept-visual-card featured-card">
+            <div class="concept-card-header">
+              <div class="concept-title-group">
+                <h3 class="concept-title"><span>🔒</span> chmod 755 Octal File Permissions & Binary Triad</h3>
+                <p class="concept-one-liner">Calculating read, write, and execute permissions across User, Group, and Others.</p>
+              </div>
+              <div class="concept-badges">
+                <span class="visual-badge badge-diagram">🔢 Permission Matrix</span>
+                <span class="visual-badge badge-trap">⚠️ High-Yield Trap</span>
+              </div>
+            </div>
+
+            <div class="visual-diagram-container">
+              <img src="../assets/diagrams/linux/linux-file-permissions.svg" alt="Linux file permission structure rwxr-xr-x chmod 755 binary weights breakdown" loading="lazy">
+              <div class="diagram-caption">
+                <div class="diagram-caption-left">
+                  <span>📊</span> <strong>Figure:</strong> chmod 755 File Permissions: Octal Weights and User/Group/Other Permissions
+                </div>
+                <span class="diagram-type-tag">SVG Vector Diagram</span>
+              </div>
+            </div>
+            
+            <div class="placement-trap-box">
+              <div class="trap-header">
+                <span>⚠️</span> Directory Execute (x) Permission Trap
+              </div>
+              <div class="trap-body">
+                <p>The #1 Linux file permission trick question:</p>
+<ul>
+  <li><strong>Numeric Octal Values:</strong> Read (r) = 4, Write (w) = 2, Execute (x) = 1.</li>
+  <li><strong>chmod 755:</strong> User = 7 (4+2+1 = rwx), Group = 5 (4+0+1 = r-x), Others = 5 (4+0+1 = r-x).</li>
+  <li><strong>The Placement Trap:</strong> On a <em>directory</em>, what does 'Execute' (x) mean? It does NOT mean running a program; it means <strong>permission to <code>cd</code> into the directory and traverse its contents</strong>! Without 'x', a user cannot open a directory even if they have read ('r') permission!</li>
+</ul>
+                <span class="trap-takeaway">🎯 Key Takeaway: r=4, w=2, x=1. On directories, 'x' is mandatory to traverse (cd) into the folder.</span>
+              </div>
+            </div>
+
+            <div class="real-life-scenario-box">
+              <div class="scenario-header">
+                <div class="scenario-title"><span>🏢</span> Web Server Security Hardening (chmod 644 vs 755)</div>
+                <span class="company-tag">DevOps Hardening</span>
+              </div>
+              <div class="scenario-content">
+                Web servers apply <code>chmod 755</code> to public directories (allowing web servers and users to traverse folders) and <code>chmod 644</code> to PHP/HTML scripts (read/write for developer, read-only for public), preventing attackers from modifying website code.
+              </div>
+            </div>
+
+            <div class="mini-challenge-box">
+              <div class="challenge-header">
+                <span>❓</span> Quick Placement Check
+              </div>
+              <p class="challenge-question">What octal chmod number represents read and write permissions for the User, read-only for the Group, and zero permissions for Others?</p>
+              <button type="button" class="challenge-reveal-btn" aria-expanded="false">
+                <span>💡 Reveal Verified Answer &amp; Placement Trap</span>
+              </button>
+              <div class="challenge-answer">
+                <p><strong>Answer:</strong> chmod 640 (User: 4+2=6, Group: 4=4, Others: 0=0).</p>
+              </div>
+            </div>
+          </div>
+
+<div class="topic-card">
     <div class="topic-card-header">
       <div class="topic-card-title">🔐 Decoding -rwxr-xr-- & The Octal Permission Matrix</div>
       <div class="topic-card-meta">
@@ -3700,5 +3831,6 @@ pause</code></pre>
       }
     });
   </script>
+  <script src="../js/visual-learning.js"></script>
 </body>
 </html>

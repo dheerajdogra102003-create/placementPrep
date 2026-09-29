@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 430" width="100%" height="100%" style="background: linear-gradient(135deg, #090D16 0%, #111827 100%); border-radius: 12px; font-family: 'Inter', system-ui, -apple-system, sans-serif;">
+  <defs>
+    <linearGradient id="grad-card" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="rgba(30, 41, 59, 0.85)"/>
+      <stop offset="100%" stop-color="rgba(15, 23, 42, 0.95)"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.4"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#38BDF8"/>
+    </marker>
+    <marker id="arrow-emerald" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#10B981"/>
+    </marker>
+  </defs>
+
+  <title>Disaster Recovery: RPO vs RTO</title>
+  <text x="420" y="36" text-anchor="middle" fill="#F8FAFC" font-size="20" font-weight="800">Disaster Recovery Metrics: RPO vs RTO Timeline</text>
+  <text x="420" y="56" text-anchor="middle" fill="#94A3B8" font-size="12">Critical metrics in cloud architecture for business continuity and disaster planning</text>
+
+  <!-- Main Timeline Bar -->
+  <g transform="translate(60, 180)">
+    <line x1="0" y1="0" x2="720" y2="0" stroke="#475569" stroke-width="4"/>
+    
+    <!-- Past Event: Last Backup -->
+    <circle cx="150" cy="0" r="10" fill="#38BDF8"/>
+    <text x="150" y="-20" text-anchor="middle" fill="#38BDF8" font-size="12" font-weight="700">💾 Last Backup</text>
+    <text x="150" y="30" text-anchor="middle" fill="#94A3B8" font-size="10">2:00 AM</text>
+
+    <!-- Incident: Disaster -->
+    <circle cx="360" cy="0" r="14" fill="#EF4444"/>
+    <text x="360" y="-30" text-anchor="middle" fill="#F87171" font-size="14" font-weight="900">💥 DISASTER EVENT</text>
+    <text x="360" y="-15" text-anchor="middle" fill="#FCA5A5" font-size="10">(Server Crash / Datacenter Outage)</text>
+    <text x="360" y="30" text-anchor="middle" fill="#94A3B8" font-size="10">4:00 AM</text>
+
+    <!-- Recovery Point: System Restored -->
+    <circle cx="570" cy="0" r="10" fill="#10B981"/>
+    <text x="570" y="-20" text-anchor="middle" fill="#34D399" font-size="12" font-weight="700">🟢 Service Restored</text>
+    <text x="570" y="30" text-anchor="middle" fill="#94A3B8" font-size="10">7:00 AM</text>
+
+    <!-- Span 1: RPO -->
+    <rect x="150" y="50" width="210" height="45" rx="6" fill="rgba(245, 158, 11, 0.15)" stroke="#F59E0B"/>
+    <text x="255" y="72" text-anchor="middle" fill="#FBBF24" font-size="12" font-weight="800">RPO (Recovery Point Objective)</text>
+    <text x="255" y="86" text-anchor="middle" fill="#E2E8F0" font-size="10">Maximum acceptable DATA LOSS (2 hrs data lost)</text>
+
+    <!-- Span 2: RTO -->
+    <rect x="360" y="50" width="210" height="45" rx="6" fill="rgba(6, 182, 212, 0.15)" stroke="#06B6D4"/>
+    <text x="465" y="72" text-anchor="middle" fill="#38BDF8" font-size="12" font-weight="800">RTO (Recovery Time Objective)</text>
+    <text x="465" y="86" text-anchor="middle" fill="#E2E8F0" font-size="10">Maximum acceptable DOWNTIME (3 hrs to restore)</text>
+  </g>
+
+  <!-- Summary Cards -->
+  <g transform="translate(60, 310)">
+    <rect x="0" y="0" width="345" height="90" rx="8" fill="#1E293B" stroke="#F59E0B" stroke-width="1"/>
+    <text x="15" y="24" fill="#FBBF24" font-size="13" font-weight="800">RPO focuses on DATA</text>
+    <text x="15" y="45" fill="#E2E8F0" font-size="10">• How much data can the business afford to lose?</text>
+    <text x="15" y="62" fill="#94A3B8" font-size="10">• Controlled by backup frequency (snapshots, replication)</text>
+    <text x="15" y="78" fill="#FDE68A" font-size="9">Target for Banking: RPO ≈ 0 (Synchronous replication)</text>
+  </g>
+
+  <g transform="translate(435, 310)">
+    <rect x="0" y="0" width="345" height="90" rx="8" fill="#1E293B" stroke="#06B6D4" stroke-width="1"/>
+    <text x="15" y="24" fill="#38BDF8" font-size="13" font-weight="800">RTO focuses on TIME</text>
+    <text x="15" y="45" fill="#E2E8F0" font-size="10">• How long can the system stay offline before collapse?</text>
+    <text x="15" y="62" fill="#94A3B8" font-size="10">• Controlled by failover automation (Multi-AZ, DNS swap)</text>
+    <text x="15" y="78" fill="#BAE6FD" font-size="9">Target for E-Commerce: RTO &lt; 5 minutes (Auto-failover)</text>
+  </g>
+</svg>

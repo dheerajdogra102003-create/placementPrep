@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 450" width="100%" height="100%" style="background: linear-gradient(135deg, #090D16 0%, #111827 100%); border-radius: 12px; font-family: 'Inter', system-ui, -apple-system, sans-serif;">
+  <defs>
+    <linearGradient id="grad-card" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="rgba(30, 41, 59, 0.85)"/>
+      <stop offset="100%" stop-color="rgba(15, 23, 42, 0.95)"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.4"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#38BDF8"/>
+    </marker>
+    <marker id="arrow-emerald" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#10B981"/>
+    </marker>
+  </defs>
+
+  <title>Step-by-Step DNS Resolution Architecture</title>
+  <text x="420" y="36" text-anchor="middle" fill="#F8FAFC" font-size="20" font-weight="800">The 8 Steps of DNS Resolution: From URL to IP</text>
+  <text x="420" y="56" text-anchor="middle" fill="#94A3B8" font-size="12">What happens behind the scenes when a user types "google.com" into a browser</text>
+
+  <!-- Step Nodes -->
+  <!-- 1. Browser -->
+  <g transform="translate(40, 100)">
+    <rect x="0" y="0" width="130" height="90" rx="8" fill="#1E293B" stroke="#38BDF8" stroke-width="2"/>
+    <text x="65" y="28" text-anchor="middle" fill="#38BDF8" font-size="12" font-weight="800">1. Browser</text>
+    <text x="65" y="48" text-anchor="middle" fill="#E2E8F0" font-size="10">Check cache</text>
+    <text x="65" y="66" text-anchor="middle" fill="#94A3B8" font-size="9">If miss → asks OS</text>
+  </g>
+
+  <!-- Arrow 1 to 2 -->
+  <line x1="170" y1="145" x2="215" y2="145" stroke="#38BDF8" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- 2. Recursive Resolver -->
+  <g transform="translate(220, 100)">
+    <rect x="0" y="0" width="150" height="90" rx="8" fill="#1E293B" stroke="#F59E0B" stroke-width="2"/>
+    <text x="75" y="28" text-anchor="middle" fill="#FBBF24" font-size="12" font-weight="800">2. DNS Resolver</text>
+    <text x="75" y="48" text-anchor="middle" fill="#E2E8F0" font-size="10">ISP / 8.8.8.8</text>
+    <text x="75" y="66" text-anchor="middle" fill="#94A3B8" font-size="9">Recursive Searcher</text>
+  </g>
+
+  <!-- Arrows to 3 servers -->
+  <!-- 3. Root Server -->
+  <g transform="translate(440, 85)">
+    <rect x="0" y="0" width="170" height="65" rx="6" fill="#1E293B" stroke="#EF4444"/>
+    <text x="85" y="25" text-anchor="middle" fill="#F87171" font-size="11" font-weight="800">3. Root DNS Server (.)</text>
+    <text x="85" y="45" text-anchor="middle" fill="#CBD5E1" font-size="9">"I don't know, ask .COM TLD"</text>
+  </g>
+
+  <!-- 4. TLD Server -->
+  <g transform="translate(440, 170)">
+    <rect x="0" y="0" width="170" height="65" rx="6" fill="#1E293B" stroke="#A855F7"/>
+    <text x="85" y="25" text-anchor="middle" fill="#C084FC" font-size="11" font-weight="800">4. TLD Server (.com)</text>
+    <text x="85" y="45" text-anchor="middle" fill="#CBD5E1" font-size="9">"Ask Google's Auth server"</text>
+  </g>
+
+  <!-- 5. Authoritative Server -->
+  <g transform="translate(440, 255)">
+    <rect x="0" y="0" width="170" height="65" rx="6" fill="#1E293B" stroke="#10B981" stroke-width="2"/>
+    <text x="85" y="25" text-anchor="middle" fill="#34D399" font-size="11" font-weight="800">5. Authoritative Server</text>
+    <text x="85" y="45" text-anchor="middle" fill="#A7F3D0" font-size="9">"IP is 142.250.190.46!"</text>
+  </g>
+
+  <!-- Flow Lines from Resolver -->
+  <line x1="370" y1="125" x2="435" y2="115" stroke="#38BDF8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="370" y1="145" x2="435" y2="195" stroke="#38BDF8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="370" y1="165" x2="435" y2="280" stroke="#38BDF8" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- IP Return Journey -->
+  <g transform="translate(640, 130)">
+    <rect x="0" y="0" width="160" height="150" rx="8" fill="#14532D" stroke="#10B981"/>
+    <text x="80" y="30" text-anchor="middle" fill="#34D399" font-size="13" font-weight="800">IP Resolved!</text>
+    <text x="80" y="60" text-anchor="middle" fill="#FFF" font-size="12" font-family="monospace">142.250.190.46</text>
+    <text x="80" y="85" text-anchor="middle" fill="#A7F3D0" font-size="9">Cached with TTL</text>
+    <text x="80" y="115" text-anchor="middle" fill="#FFF" font-size="10" font-weight="700">Browser initiates</text>
+    <text x="80" y="130" text-anchor="middle" fill="#38BDF8" font-size="10" font-weight="700">TCP Handshake →</text>
+  </g>
+
+  <!-- Bottom Tip -->
+  <g transform="translate(40, 360)">
+    <rect x="0" y="0" width="760" height="60" rx="8" fill="#0F172A" stroke="#334155"/>
+    <text x="380" y="24" text-anchor="middle" fill="#FBBF24" font-size="11" font-weight="700">Placement Record Types:</text>
+    <text x="380" y="44" text-anchor="middle" fill="#CBD5E1" font-size="10"><tspan fill="#38BDF8" font-weight="700">A:</tspan> Domain → IPv4 | <tspan fill="#38BDF8" font-weight="700">AAAA:</tspan> Domain → IPv6 | <tspan fill="#34D399" font-weight="700">CNAME:</tspan> Alias to another domain | <tspan fill="#F472B6" font-weight="700">MX:</tspan> Mail exchange server</text>
+  </g>
+</svg>
