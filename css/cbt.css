@@ -619,3 +619,123 @@
   font-weight: 700;
   color: var(--text-primary);
 }
+
+/* ==========================================================================
+   CBT TIER BADGES (Foundational, Application, High-Difficulty)
+   ========================================================================== */
+.badge-tier-foundational {
+  background: rgba(16, 185, 129, 0.15);
+  color: #10B981;
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  font-weight: 700;
+  text-transform: none;
+}
+
+.badge-tier-application {
+  background: rgba(245, 158, 11, 0.15);
+  color: #F59E0B;
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  font-weight: 700;
+  text-transform: none;
+}
+
+.badge-tier-high {
+  background: rgba(239, 68, 68, 0.15);
+  color: #EF4444;
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  font-weight: 700;
+  text-transform: none;
+}
+
+/* ==========================================================================
+   CBT PRE-EXAM BRIEFING & CALIBRATION CONSOLE
+   ========================================================================== */
+.cbt-briefing-shell {
+  min-height: 100vh;
+  padding: 3rem 1.5rem;
+  background: radial-gradient(circle at 50% 10%, rgba(99, 102, 241, 0.15) 0%, var(--bg-base) 70%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cbt-briefing-card {
+  max-width: 840px;
+  width: 100%;
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-xl);
+  padding: 2.5rem;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 30px rgba(99, 102, 241, 0.15);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  position: relative;
+  overflow: hidden;
+}
+
+.cbt-briefing-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 1.75rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.cbt-blueprint-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.cbt-blueprint-item {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform var(--transition-fast), border-color var(--transition-fast);
+}
+
+.cbt-blueprint-item:hover {
+  transform: translateY(-2px);
+  border-color: var(--border-color);
+}
+
+.cbt-count-selector {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 0.75rem;
+}
+
+.cbt-count-btn {
+  flex: 1;
+  min-width: 140px;
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius-md);
+  background: var(--bg-surface);
+  border: 1.5px solid var(--border-color);
+  color: var(--text-secondary);
+  cursor: pointer;
+  text-align: center;
+  transition: all var(--transition-fast);
+  font-family: inherit;
+}
+
+.cbt-count-btn:hover {
+  border-color: var(--brand-primary);
+  color: var(--text-primary);
+}
+
+.cbt-count-btn.active {
+  background: rgba(99, 102, 241, 0.15);
+  border-color: var(--brand-primary);
+  color: #FFFFFF;
+  box-shadow: 0 0 15px rgba(99, 102, 241, 0.3);
+}
+

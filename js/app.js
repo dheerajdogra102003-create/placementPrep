@@ -70,8 +70,13 @@
     handleRoute() {
       const hash = window.location.hash.slice(1) || 'home';
       const parts = hash.split('/');
-      const view = parts[0] || 'home';
-      const param = parts[1] || '';
+      let view = parts[0] || 'home';
+      let param = parts[1] || '';
+
+      if (view === 'cbt-test') {
+        view = 'cbt';
+        param = param || 'command-prompt';
+      }
 
       this.currentView = view;
       this.updateNavActiveState(view);
@@ -118,8 +123,27 @@
       return window[varName] || [];
     }
 
+    resolveModuleId(id) {
+      if (!id) return 'programming-logic';
+      const clean = id.toLowerCase().trim();
+      const map = {
+        'cloud-computing': 'cloud',
+        'browser-internet': 'browser',
+        'dbms-sql': 'dbms',
+        'linux-command-prompt': 'command-prompt',
+        'linux': 'command-prompt',
+        'command': 'command-prompt',
+        'git-github': 'git',
+        'ai-ml': 'ai-ml-dl',
+        'aiml': 'ai-ml-dl',
+        'programming': 'programming-logic',
+        'office-suite': 'office'
+      };
+      return map[clean] || clean;
+    }
+
     startQuizView(container, moduleId, mode) {
-      const modId = moduleId || 'programming-logic';
+      const modId = this.resolveModuleId(moduleId);
       const modMeta = this.modules.find(m => m.id === modId) || this.modules[0];
       const questions = this.getModuleQuestions(modMeta.id);
 
@@ -134,8 +158,192 @@
         return;
       }
 
-      // Initialize the reusable Quiz Engine
-      this.quizEngine.init(container, questions, modMeta, mode);
+      if (mode === 'cbt') {
+        this.renderCBTBriefing(container, questions, modMeta);
+      } else {
+        // Interactive Practice mode with full bank
+        this.quizEngine.init(container, questions, modMeta, 'practice', { fullBank: questions });
+      }
+    }
+
+    renderCBTBriefing(container, questions, modMeta) {
+      const maxCount = Math.min(40, questions.length);
+      const defaultCount = Math.min(30, maxCount);
+      let selectedCount = defaultCount;
+
+      const updatePreview = () => {
+        const wantFound = Math.round(selectedCount * 0.40);
+        const wantHigh = Math.round(selectedCount * 0.20);
+        const wantApp = selectedCount - wantFound - wantHigh;
+        const totalDurationMins = Math.round(((wantFound * 45) + (wantApp * 60) + (wantHigh * 90)) / 60);
+
+        const elFound = document.getElementById('briefing-count-found');
+        const elApp = document.getElementById('briefing-count-app');
+        const elHigh = document.getElementById('briefing-count-high');
+        const elTotal = document.getElementById('briefing-total-count');
+        const elMins = document.getElementById('briefing-duration-mins');
+
+        if (elFound) elFound.textContent = `${wantFound} Qs (40%)`;
+        if (elApp) elApp.textContent = `${wantApp} Qs (40%)`;
+        if (elHigh) elHigh.textContent = `${wantHigh} Qs (20%)`;
+        if (elTotal) elTotal.textContent = `${selectedCount} Questions`;
+        if (elMins) elMins.textContent = `${totalDurationMins} Mins`;
+      };
+
+      container.innerHTML = `
+        <div class="cbt-briefing-shell">
+          <div class="cbt-briefing-card">
+            <div class="cbt-briefing-header">
+              <div>
+                <div style="display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.5rem;">
+                  <span style="font-size: 1.75rem;">${modMeta.icon || '⏱️'}</span>
+                  <div class="badge badge-topic" style="font-size: 0.82rem;">${modMeta.category}</div>
+                  <div class="badge badge-easy" style="font-size: 0.82rem;">Calibrated Speed Drill</div>
+                </div>
+                <h1 style="font-size: 1.75rem; margin-bottom: 0.35rem; color: var(--text-primary);">
+                  ${modMeta.name} — CBT Speed Drill
+                </h1>
+                <p style="color: var(--text-secondary); font-size: 0.95rem; margin: 0;">
+                  Strict competitive-exam simulator calibrated for 45–60s per question pacing. Anti-spoiler rules strictly enforced.
+                </p>
+              </div>
+
+              <a href="#modules" class="btn btn-outline btn-sm" style="flex-shrink: 0;">
+                <span>✕ Exit to Modules</span>
+              </a>
+            </div>
+
+            <!-- Question Count & Speed Drill Selector -->
+            <div style="margin-bottom: 1.5rem;">
+              <label style="font-size: 0.9rem; font-weight: 700; color: var(--text-primary); display: flex; align-items: center; gap: 0.5rem;">
+                <span>🎯 Select Module Cap &amp; Pacing Target:</span>
+                <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 500;">(Strictly 30–40 questions)</span>
+              </label>
+              
+              <div class="cbt-count-selector" id="briefing-count-selector">
+                <button type="button" class="cbt-count-btn ${selectedCount === 30 ? 'active' : ''}" data-count="30">
+                  <div style="font-weight: 800; font-size: 1.05rem;">30 Questions</div>
+                  <div style="font-size: 0.78rem; opacity: 0.85;">30-Min Standard Drill (Recommended)</div>
+                </button>
+                ${questions.length >= 35 ? `
+                  <button type="button" class="cbt-count-btn ${selectedCount === 35 ? 'active' : ''}" data-count="35">
+                    <div style="font-weight: 800; font-size: 1.05rem;">35 Questions</div>
+                    <div style="font-size: 0.78rem; opacity: 0.85;">35-Min Extended Drill</div>
+                  </button>
+                ` : ''}
+                ${questions.length >= 40 ? `
+                  <button type="button" class="cbt-count-btn ${selectedCount === 40 ? 'active' : ''}" data-count="40">
+                    <div style="font-weight: 800; font-size: 1.05rem;">40 Questions</div>
+                    <div style="font-size: 0.78rem; opacity: 0.85;">40-Min Maximum Cap</div>
+                  </button>
+                ` : ''}
+              </div>
+            </div>
+
+            <!-- Calibrated 40-40-20 Content Distribution Cards -->
+            <div style="margin-bottom: 1.5rem;">
+              <div style="font-size: 0.9rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem;">
+                📊 Calibrated 40% - 40% - 20% Content Blueprint:
+              </div>
+              <div class="cbt-blueprint-grid">
+                <div class="cbt-blueprint-item" style="border-left: 3px solid var(--brand-emerald);">
+                  <div style="font-weight: 700; font-size: 0.92rem; color: var(--text-primary); margin-bottom: 0.25rem;">
+                    🟢 40% Foundational Recall
+                  </div>
+                  <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.75rem; line-height: 1.4;">
+                    Direct conceptual recall, core definitions &amp; basic syntax.
+                  </p>
+                  <div style="display: flex; justify-content: space-between; font-size: 0.82rem; font-family: var(--font-mono); font-weight: 700;">
+                    <span id="briefing-count-found" style="color: var(--brand-emerald);">12 Qs (40%)</span>
+                    <span style="color: var(--text-muted);">~45s / Q</span>
+                  </div>
+                </div>
+
+                <div class="cbt-blueprint-item" style="border-left: 3px solid var(--brand-amber);">
+                  <div style="font-weight: 700; font-size: 0.92rem; color: var(--text-primary); margin-bottom: 0.25rem;">
+                    🟡 40% Application &amp; Problem
+                  </div>
+                  <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.75rem; line-height: 1.4;">
+                    Practical scenarios, moderate tracing, queries &amp; logic.
+                  </p>
+                  <div style="display: flex; justify-content: space-between; font-size: 0.82rem; font-family: var(--font-mono); font-weight: 700;">
+                    <span id="briefing-count-app" style="color: var(--brand-amber);">12 Qs (40%)</span>
+                    <span style="color: var(--text-muted);">~60s / Q</span>
+                  </div>
+                </div>
+
+                <div class="cbt-blueprint-item" style="border-left: 3px solid var(--brand-rose);">
+                  <div style="font-weight: 700; font-size: 0.92rem; color: var(--text-primary); margin-bottom: 0.25rem;">
+                    🔴 20% High-Difficulty Multi-Step
+                  </div>
+                  <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.75rem; line-height: 1.4;">
+                    Deep recursion, scope traps, complex joins &amp; edge cases.
+                  </p>
+                  <div style="display: flex; justify-content: space-between; font-size: 0.82rem; font-family: var(--font-mono); font-weight: 700;">
+                    <span id="briefing-count-high" style="color: var(--brand-rose);">6 Qs (20%)</span>
+                    <span style="color: var(--text-muted);">~90s / Q</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Rules & Anti-Spoiler Notification Strip -->
+            <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 1.15rem; margin-bottom: 2rem;">
+              <div style="font-weight: 700; font-size: 0.85rem; color: var(--text-primary); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.4rem;">
+                <span>🔒 Strict Examination Rules &amp; Anti-Spoiler Safeguards:</span>
+              </div>
+              <ul style="margin: 0; padding-left: 1.25rem; font-size: 0.83rem; color: var(--text-secondary); line-height: 1.6;">
+                <li><strong>Anti-Spoiler Protocol:</strong> Answers, hints, and explanations remain locked until exam submission.</li>
+                <li><strong>Strict Timer Auto-Submit:</strong> When the countdown reaches <code>00:00</code>, responses are automatically graded.</li>
+                <li><strong>MNC Benchmark Cutoff:</strong> A score of <strong>70% or higher</strong> is required to clear campus screening.</li>
+                <li><strong>Navigation:</strong> Use the Question Palette to jump freely between questions and flag items for review.</li>
+              </ul>
+            </div>
+
+            <!-- Action Controls -->
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+              <div style="font-family: var(--font-mono); font-size: 0.92rem; color: var(--text-muted);">
+                Exam Target: <strong id="briefing-total-count" style="color: var(--text-primary);">${selectedCount} Questions</strong> • 
+                Speed Drill Time: <strong id="briefing-duration-mins" style="color: var(--brand-cyan);">30 Mins</strong>
+              </div>
+
+              <div style="display: flex; gap: 0.75rem;">
+                <a href="#practice/${modMeta.id}" class="btn btn-outline" title="Practice freely with instant solutions">
+                  <span>📖 Learn Mode</span>
+                </a>
+                <button type="button" class="btn btn-primary btn-lg" id="btn-start-cbt-exam">
+                  <span>🚀 Start Timed Speed Drill →</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+
+      // Attach button selectors
+      container.querySelectorAll('.cbt-count-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          container.querySelectorAll('.cbt-count-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          selectedCount = parseInt(btn.getAttribute('data-count'), 10);
+          updatePreview();
+        });
+      });
+
+      // Start Exam Handler
+      container.querySelector('#btn-start-cbt-exam')?.addEventListener('click', () => {
+        const assembledExam = window.CBTAssembler 
+          ? window.CBTAssembler.assemble(questions, selectedCount)
+          : { questions: questions.slice(0, selectedCount), durationSeconds: selectedCount * 60 };
+
+        this.quizEngine.init(container, assembledExam.questions, modMeta, 'cbt', {
+          durationSeconds: assembledExam.durationSeconds,
+          fullBank: questions,
+          distribution: assembledExam.distribution
+        });
+      });
+
+      updatePreview();
     }
 
     renderHomeView(container) {
@@ -587,8 +795,8 @@
                 <a href="#practice/${mod.id}" class="btn btn-secondary btn-sm" title="Practice with instant solutions">
                   <span>📖 Practice</span>
                 </a>
-                <a href="#cbt/${mod.id}" class="btn btn-primary btn-sm" title="Take a timed examination">
-                  <span>⏱️ Timed CBT</span>
+                <a href="#cbt/${mod.id}" class="btn btn-primary btn-sm" title="Launch calibrated 30-40 question speed drill">
+                  <span>⏱️ Timed CBT (30-40 Qs)</span>
                 </a>
               </div>
             </div>
@@ -641,7 +849,7 @@
             <div>
               <h3 style="font-size: 1.15rem; color: var(--brand-cyan); margin-bottom: 0.4rem;">2. Timed CBT Mode (Real Exam Simulator)</h3>
               <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6;">
-                Replicates the exact pressure of an online assessment. Answers and solutions are strictly concealed during the test. Features real-time countdown timer with auto-submit, question status palette (Unvisited, Answered, Review), and a detailed diagnostic score card upon submission.
+                Strict 30-minute speed drill (capped between 30–40 questions) calibrated across 40% Foundational Recall (~45s), 40% Application &amp; Problem-Solving (~60s), and 20% High-Difficulty Edge Cases (~90s). Anti-spoiler rules strictly enforced until submission, complete with real-time countdown timer, question palette, and diagnostic score card.
               </p>
             </div>
           </div>

@@ -28,6 +28,8 @@
       this.questions = questions || [];
       this.moduleMeta = moduleMeta || { name: 'Placement Practice', id: 'practice' };
       this.mode = mode;
+      this.options = options || {};
+      this.fullBank = options.fullBank || questions;
       this.currentIndex = 0;
       this.userAnswers = {};
       this.markedForReview = {};
@@ -39,9 +41,10 @@
         this.timer = null;
       }
 
-      // Configure timer for CBT mode (default 1 minute per question or configured duration)
+      // Configure timer for CBT mode (calibrated based on tier pacing)
       if (this.mode === 'cbt') {
         const durationSeconds = options.durationSeconds || (this.questions.length * 60);
+        this.durationSeconds = durationSeconds;
         this.timer = new window.CBTTimer(
           durationSeconds,
           (formattedTime, remaining, warningState) => {
@@ -71,11 +74,12 @@
       const isPractice = this.mode === 'practice';
       const isReview = this.mode === 'review';
 
+      const durationMinutes = Math.round((this.durationSeconds || (this.questions.length * 60)) / 60);
       const modeTitle = isPractice 
         ? 'Interactive Practice Mode' 
         : isReview 
           ? 'Exam Solution Review' 
-          : 'Timed CBT Examination';
+          : `Timed CBT Speed Drill • ${this.questions.length} Questions (${durationMinutes} Mins • 40/40/20)`;
 
       this.container.innerHTML = `
         <div class="cbt-shell">
@@ -351,8 +355,12 @@
           </div>
 
           <div class="cbt-q-meta-badges">
+            ${q.cbtTier === 'foundational' 
+              ? `<span class="badge badge-tier-foundational" title="Foundational / Direct Conceptual Recall (~45s target pace)">🟢 Foundational Recall (~45s)</span>`
+              : q.cbtTier === 'highDifficulty'
+                ? `<span class="badge badge-tier-high" title="High-Difficulty Edge Case / Multi-Step (~90s target pace)">🔴 Advanced Edge Case (~90s)</span>`
+                : `<span class="badge badge-tier-application" title="Application & Moderate Problem-Solving (~60s target pace)">🟡 Application (~60s)</span>`}
             <span class="badge badge-topic">${q.topic || 'General'}</span>
-            <span class="badge badge-${(q.difficulty || 'medium').toLowerCase()}">${q.difficulty || 'Medium'}</span>
             <span class="badge badge-scenario">${q.type || 'MCQ'}</span>
             <button type="button" class="cbt-bookmark-btn ${window.StorageManager.isBookmarked(this.moduleMeta.id, q.id) ? 'active' : ''}" id="btn-bookmark-q" title="Bookmark Question">
               <span>★</span>
@@ -570,7 +578,15 @@
       });
 
       document.getElementById('btn-result-retake')?.addEventListener('click', () => {
-        this.init(this.container, this.questions, this.moduleMeta, this.mode);
+        if (this.mode === 'cbt' && window.CBTAssembler && this.fullBank) {
+          const freshExam = window.CBTAssembler.assemble(this.fullBank, this.questions.length);
+          this.init(this.container, freshExam.questions, this.moduleMeta, 'cbt', {
+            durationSeconds: freshExam.durationSeconds,
+            fullBank: this.fullBank
+          });
+        } else {
+          this.init(this.container, this.questions, this.moduleMeta, this.mode, this.options);
+        }
       });
 
       document.getElementById('btn-result-review')?.addEventListener('click', () => {
