@@ -13,14 +13,14 @@ html,
 body {
   width: 100%;
   max-width: 100%;
-  overflow-x: hidden;
+  overflow-x: clip;
   position: relative;
 }
 
 .site-wrapper {
   width: 100%;
   max-width: 100%;
-  overflow-x: hidden;
+  overflow-x: clip;
   min-height: 100vh;
   min-height: 100dvh;
 }
@@ -165,16 +165,18 @@ code,
     gap: 0.45rem;
   }
 
-  /* Notes Layout */
+  /* Notes Layout: preserve sticky 2-column layout on laptops/tablets down to 768px */
   .notes-layout {
-    grid-template-columns: 1fr !important;
-    gap: 2rem;
+    grid-template-columns: 260px minmax(0, 1fr);
+    gap: 1.5rem;
   }
 
   .notes-toc-sidebar,
   .notes-sidebar {
-    position: static !important;
-    max-height: 320px !important;
+    position: sticky;
+    top: calc(var(--nav-height) + 1rem);
+    height: calc(100vh - var(--nav-height) - 2rem);
+    max-height: calc(100vh - var(--nav-height) - 2rem);
     overflow-y: auto;
     border-radius: var(--radius-lg);
   }

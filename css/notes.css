@@ -25,24 +25,27 @@
 
 /* Master Notes Layout */
 .notes-container {
-  max-width: 1380px;
+  max-width: 1440px;
   margin: 0 auto;
-  padding: 1.5rem 1.25rem 6rem;
+  padding: calc(var(--nav-height) + 1.25rem) 1.25rem 6rem;
+  width: 100%;
 }
 
 .notes-layout {
   display: grid;
-  grid-template-columns: 290px 1fr;
+  grid-template-columns: 300px minmax(0, 1fr);
   gap: 2.5rem;
   align-items: start;
+  width: 100%;
 }
 
-/* Sticky Table of Contents Sidebar */
+/* Sticky Table of Contents Sidebar - Static Window Element */
 .notes-toc-sidebar,
 .notes-sidebar {
   position: sticky;
-  top: calc(var(--nav-height) + 1.5rem);
-  max-height: calc(100vh - var(--nav-height) - 3rem);
+  top: calc(var(--nav-height) + 1.25rem);
+  height: calc(100vh - var(--nav-height) - 2.5rem);
+  max-height: calc(100vh - var(--nav-height) - 2.5rem);
   background: var(--bg-surface);
   border: 1px solid var(--border-card);
   border-radius: var(--radius-xl);
@@ -52,7 +55,9 @@
   flex-direction: column;
   box-shadow: var(--shadow-sm);
   backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   margin-bottom: 2rem;
+  z-index: 20;
 }
 
 .notes-toc-sidebar::-webkit-scrollbar,
@@ -843,13 +848,16 @@
 /* Responsive Overrides */
 @media (max-width: 1024px) {
   .notes-layout {
-    grid-template-columns: 1fr;
-    gap: 1.75rem;
+    grid-template-columns: 260px minmax(0, 1fr);
+    gap: 1.5rem;
   }
 
-  .notes-toc-sidebar {
-    position: static;
-    max-height: 320px;
+  .notes-toc-sidebar,
+  .notes-sidebar {
+    position: sticky;
+    top: calc(var(--nav-height) + 1rem);
+    height: calc(100vh - var(--nav-height) - 2rem);
+    max-height: calc(100vh - var(--nav-height) - 2rem);
     overflow-y: auto;
     border-radius: var(--radius-lg);
   }
