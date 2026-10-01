@@ -182,9 +182,15 @@
       <div class="notes-layout">
         <!-- Notes Sidebar Table of Contents -->
         <aside class="notes-sidebar">
-        <div class="notes-sidebar-header">
-          <span class="notes-badge" style="background:rgba(59,130,246,0.15); color:var(--brand-dbms); border:1px solid rgba(59,130,246,0.3);">🗄️ DBMS Placement Hub</span>
-          <h3 class="notes-sidebar-title">Table of Contents</h3>
+        <div class="notes-sidebar-header" style="display:flex; justify-content:space-between; align-items:flex-start; gap:0.5rem;">
+          <div>
+            <span class="notes-badge" style="background:rgba(59,130,246,0.15); color:var(--brand-dbms); border:1px solid rgba(59,130,246,0.3);">🗄️ DBMS Placement Hub</span>
+            <h3 class="notes-sidebar-title" style="margin-top:0.4rem;">Table of Contents</h3>
+          </div>
+          <button class="notes-toc-collapse-toggle" id="toc-collapse-toggle" title="Collapse Table of Contents (Alt + T)" aria-label="Collapse Table of Contents">
+            <span class="collapse-icon">◀</span>
+            <span class="collapse-text">Hide</span>
+          </button>
         </div>
 
         <div class="notes-search-wrapper" style="padding:0.75rem 1rem;">
@@ -4502,11 +4508,11 @@ ResultSet rs = stmt.executeQuery();</code></pre>
                 <span class="pipeline-node-num">4</span>
                 <span class="pipeline-node-title">💾 Database Tier</span>
                 <div style="display:flex; gap:10px; margin-top:8px;">
-                  <div style="flex:1; background:#0B0F17; border:1px solid #38BDF8; border-radius:6px; padding:6px; font-size:0.75rem;">
+                  <div style="flex:1; background:#0B0F17; color:#E2E8F0; border:1px solid #38BDF8; border-radius:6px; padding:6px; font-size:0.75rem;">
                     <strong style="color:#38BDF8;">Primary Instance (Leader)</strong><br>
                     Handles All Writes (INSERT/UPDATE/DELETE). Emits WAL replication stream.
                   </div>
-                  <div style="flex:1; background:#0B0F17; border:1px solid #34D399; border-radius:6px; padding:6px; font-size:0.75rem;">
+                  <div style="flex:1; background:#0B0F17; color:#E2E8F0; border:1px solid #34D399; border-radius:6px; padding:6px; font-size:0.75rem;">
                     <strong style="color:#34D399;">Read Replica Pool (Followers)</strong><br>
                     Scales read-heavy SELECT queries, reports, and background analytics.
                   </div>
@@ -8507,7 +8513,7 @@ FROM Employee;
               <div style="margin:1rem 0; padding:1rem; border-radius:8px; background:rgba(16,185,129,0.08); border:1px solid rgba(16,185,129,0.3);">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
                   <div style="color:#10b981; font-weight:700; font-size:0.8rem;">Phase 1: Growing Phase</div>
-                  <div style="background:#10b981; color:#0b0f19; font-weight:800; padding:0.2rem 0.6rem; border-radius:4px; font-size:0.75rem;">Lock Point</div>
+                  <div style="background:#059669; color:#ffffff; font-weight:800; padding:0.2rem 0.6rem; border-radius:4px; font-size:0.75rem;">Lock Point</div>
                   <div style="color:#ef4444; font-weight:700; font-size:0.8rem;">Phase 2: Shrinking Phase</div>
                 </div>
                 <div style="display:flex; gap:0.5rem; font-size:0.75rem;">

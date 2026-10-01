@@ -37,6 +37,104 @@
   gap: 2.5rem;
   align-items: start;
   width: 100%;
+  transition: grid-template-columns 0.3s cubic-bezier(0.16, 1, 0.3, 1), gap 0.3s ease;
+}
+
+/* Collapsible Table of Contents */
+.notes-layout.toc-collapsed {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0;
+}
+
+.notes-layout.toc-collapsed .notes-toc-sidebar,
+.notes-layout.toc-collapsed .notes-sidebar {
+  display: none !important;
+}
+
+/* TOC Collapse Toggle in Sidebar Header */
+.notes-toc-collapse-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: var(--bg-surface-hover, rgba(255, 255, 255, 0.06));
+  border: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.1));
+  border-radius: var(--radius-sm, 6px);
+  padding: 0.28rem 0.55rem;
+  color: var(--text-secondary, #94A3B8);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast, 150ms ease);
+  flex-shrink: 0;
+}
+
+.notes-toc-collapse-toggle:hover {
+  background: var(--brand-primary-light, rgba(99, 102, 241, 0.15));
+  border-color: var(--brand-primary, #6366F1);
+  color: var(--text-primary, #F8FAFC);
+  transform: translateX(-1px);
+}
+
+.notes-toc-collapse-toggle .collapse-icon {
+  font-size: 0.7rem;
+  transition: transform 0.2s ease;
+}
+
+/* Floating Expand Trigger Button when TOC is Collapsed */
+.notes-toc-floating-btn {
+  position: fixed;
+  left: 1.25rem;
+  top: calc(var(--nav-height) + 1.25rem);
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--bg-card-solid, #171E28);
+  border: 1px solid var(--brand-primary, #6366F1);
+  border-radius: var(--radius-full, 9999px);
+  padding: 0.55rem 1rem;
+  color: var(--text-primary, #F8FAFC);
+  font-size: 0.825rem;
+  font-weight: 600;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45), 0 0 16px rgba(99, 102, 241, 0.3);
+  cursor: pointer;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all var(--transition-normal, 250ms ease);
+}
+
+.notes-toc-floating-btn:hover {
+  background: var(--bg-surface-hover, #1E2735);
+  border-color: var(--brand-cyan, #06B6D4);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.55), 0 0 22px rgba(6, 182, 212, 0.4);
+}
+
+.notes-toc-floating-btn .toc-float-kbd {
+  font-size: 0.68rem;
+  padding: 0.15rem 0.35rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  color: var(--text-muted, #64748B);
+  font-family: var(--font-mono, monospace);
+}
+
+.notes-layout.toc-collapsed ~ .notes-toc-floating-btn,
+body.toc-collapsed-active .notes-toc-floating-btn {
+  display: inline-flex;
+  animation: tocFloatSlideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes tocFloatSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 /* Sticky Table of Contents Sidebar - Static Window Element */
@@ -1818,4 +1916,77 @@ header.site-navbar {
     transition: none !important;
   }
 }
+
+/* ==========================================================================
+   TARGETED FIX: Specific containers with dark/black backgrounds
+   Ensures text inside black/dark containers is always crisp, legible light text
+   WITHOUT affecting normal readable body paragraphs or headings
+   ========================================================================== */
+.code-block-wrapper pre,
+.code-block-wrapper code,
+pre.notes-code,
+.notes-code code,
+.code-block,
+.code-block code,
+.terminal-body,
+.terminal-window,
+.pipeline-node,
+.layer-item,
+.interactive-visual-widget,
+[style*="background:#000"],
+[style*="background: #000"],
+[style*="background:black"],
+[style*="background: black"],
+[style*="background:#06090E"],
+[style*="background:#0B0F17"],
+[style*="background:#0F172A"],
+[style*="background:#0b1120"],
+[style*="background:#070b14"],
+[style*="background:#090d16"],
+[style*="background:#020617"],
+[style*="background: #06090E"],
+[style*="background: #0B0F17"],
+[style*="background: #0F172A"],
+[style*="background: #0b1120"],
+[style*="background: #070b14"],
+[style*="background: #090d16"],
+[style*="background: #020617"] {
+  color: #E2E8F0;
+}
+
+/* Also ensure in light theme that elements with hardcoded dark backgrounds retain light text */
+[data-theme="light"] .code-block-wrapper pre,
+[data-theme="light"] .code-block-wrapper code,
+[data-theme="light"] pre.notes-code,
+[data-theme="light"] .notes-code code,
+[data-theme="light"] .code-block,
+[data-theme="light"] .code-block code,
+[data-theme="light"] .terminal-body,
+[data-theme="light"] .terminal-window,
+[data-theme="light"] .pipeline-node,
+[data-theme="light"] .layer-item,
+[data-theme="light"] .interactive-visual-widget,
+[data-theme="light"] [style*="background:#000"],
+[data-theme="light"] [style*="background: #000"],
+[data-theme="light"] [style*="background:black"],
+[data-theme="light"] [style*="background: black"],
+[data-theme="light"] [style*="background:#06090E"],
+[data-theme="light"] [style*="background:#0B0F17"],
+[data-theme="light"] [style*="background:#0F172A"],
+[data-theme="light"] [style*="background:#0b1120"],
+[data-theme="light"] [style*="background:#070b14"],
+[data-theme="light"] [style*="background:#090d16"],
+[data-theme="light"] [style*="background:#020617"] {
+  color: #E2E8F0 !important;
+}
+
+[data-theme="light"] [style*="background:#000"] strong,
+[data-theme="light"] [style*="background: #000"] strong,
+[data-theme="light"] [style*="background:#0B0F17"] strong,
+[data-theme="light"] [style*="background:#0F172A"] strong,
+[data-theme="light"] [style*="background:#0b1120"] strong,
+[data-theme="light"] [style*="background:#070b14"] strong {
+  color: inherit;
+}
+
 

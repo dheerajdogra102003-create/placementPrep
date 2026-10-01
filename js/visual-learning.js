@@ -18,6 +18,7 @@
     initDockerVsVmToggle();
     initOsiLayerInspector();
     initMlPipelineExplorer();
+    initNotesTocCollapse();
   }
 
   // -------------------------------------------------------------------------
@@ -228,6 +229,92 @@
           `;
         }
       });
+    });
+  }
+
+  // -------------------------------------------------------------------------
+  // 7. Collapsible Table of Contents (TOC) with Floating Trigger & Alt+T
+  // -------------------------------------------------------------------------
+  function initNotesTocCollapse() {
+    const layout = document.querySelector('.notes-layout');
+    const sidebar = document.querySelector('.notes-toc-sidebar, .notes-sidebar');
+    if (!layout || !sidebar) return;
+
+    // Header container inside sidebar
+    const header = sidebar.querySelector('.notes-toc-header, .notes-sidebar-header');
+
+    // Create or find collapse toggle in sidebar
+    let collapseBtn = document.getElementById('toc-collapse-toggle');
+    if (!collapseBtn && header) {
+      collapseBtn = document.createElement('button');
+      collapseBtn.id = 'toc-collapse-toggle';
+      collapseBtn.className = 'notes-toc-collapse-toggle';
+      collapseBtn.type = 'button';
+      collapseBtn.title = 'Collapse Table of Contents (Alt + T)';
+      collapseBtn.setAttribute('aria-label', 'Collapse Table of Contents');
+      collapseBtn.innerHTML = '<span class="collapse-icon">◀</span><span class="collapse-text">Hide</span>';
+      header.appendChild(collapseBtn);
+    }
+
+    // Create or find floating expand trigger
+    let floatBtn = document.getElementById('toc-floating-btn');
+    if (!floatBtn) {
+      floatBtn = document.createElement('button');
+      floatBtn.id = 'toc-floating-btn';
+      floatBtn.className = 'notes-toc-floating-btn';
+      floatBtn.type = 'button';
+      floatBtn.title = 'Expand Table of Contents (Alt + T)';
+      floatBtn.setAttribute('aria-label', 'Expand Table of Contents');
+      floatBtn.innerHTML = '<span class="toc-float-icon">📑</span><span class="toc-float-text">Contents</span><span class="toc-float-arrow">▶</span><kbd class="toc-float-kbd">Alt+T</kbd>';
+      document.body.appendChild(floatBtn);
+    }
+
+    function setCollapsed(isCollapsed, savePref) {
+      if (savePref === undefined) savePref = true;
+      if (isCollapsed) {
+        layout.classList.add('toc-collapsed');
+        document.body.classList.add('toc-collapsed-active');
+        if (floatBtn) floatBtn.style.display = 'inline-flex';
+      } else {
+        layout.classList.remove('toc-collapsed');
+        document.body.classList.remove('toc-collapsed-active');
+        if (floatBtn) floatBtn.style.display = 'none';
+      }
+      if (savePref) {
+        try {
+          localStorage.setItem('placementprep_toc_collapsed', isCollapsed ? 'true' : 'false');
+        } catch (e) {}
+      }
+    }
+
+    // Restore saved user preference
+    try {
+      const saved = localStorage.getItem('placementprep_toc_collapsed');
+      if (saved === 'true') {
+        setCollapsed(true, false);
+      }
+    } catch (e) {}
+
+    // Event listeners
+    collapseBtn?.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      setCollapsed(true);
+    });
+
+    floatBtn?.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      setCollapsed(false);
+    });
+
+    // Keyboard shortcut: Alt + T (or Option + T)
+    document.addEventListener('keydown', (e) => {
+      if (e.altKey && (e.key === 't' || e.key === 'T')) {
+        e.preventDefault();
+        const isCollapsed = layout.classList.contains('toc-collapsed');
+        setCollapsed(!isCollapsed);
+      }
     });
   }
 
