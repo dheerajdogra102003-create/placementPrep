@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="../css/notes.css">
   <link rel="stylesheet" href="../css/responsive.css">
   <link rel="stylesheet" href="../css/visual-learning.css">
+  <link rel="stylesheet" href="../css/scrollbars.css">
   <!-- KaTeX: Mathematical Rendering -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
 
@@ -310,9 +311,7 @@
         <div class="pipeline-node" onclick="showGitInfo('remote')">
           <span class="node-step-badge">Zone 04</span>
           <div class="node-title">☁️ Remote (GitHub)</div>
-          <div class="node-desc">Centralized repository for collaborative team synchronization</div>
-        </div>
-      </div>
+          <div class="node-desc">Centralized repository for collaborative team synchronization</div></div>
     </div>
 
     <!-- Pedagogical 3-Part Explainer -->
@@ -336,9 +335,7 @@
         <p class="explainer-content">
           Think of online shopping: your Working Directory is browsing items in a store; Staging Area is placing selected items into your cart; Local Repository is checking out and paying for the order; and Remote Repository is sharing the order confirmation with your team.
         </p>
-      </div>
-    </div>
-  </div>
+      </div></div>
 </section>
 
 <!-- ==========================================
@@ -374,7 +371,7 @@
 
       <div class="diagram-title" style="margin-top: 1.5rem;">⚖️ Centralized VCS (CVCS) vs Distributed VCS (DVCS)</div>
       <div class="table-responsive">
-        <table class="notes-table">
+        <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
           <thead>
             <tr>
               <th>Feature</th>
@@ -404,7 +401,7 @@
               <td>Blazing fast: Local disk C-optimized operations.</td>
             </tr>
           </tbody>
-        </table>
+        </table></div>
       </div>
 
       <div class="placement-trap-card" style="margin-top: 1.25rem;">
@@ -412,9 +409,7 @@
         <div class="placement-trap-body">
           <p><strong>Wrong Thinking:</strong> "If my Wi-Fi is disconnected, I cannot run <code>git commit</code> because it needs to talk to the server."</p>
           <p><strong>Correct Thinking:</strong> Git is a <strong>Distributed</strong> Version Control System. <code>git commit</code> writes directly to your local <code>.git</code> database on your hard drive. Internet connection is required ONLY when synchronizing with a remote server via <code>git push</code>, <code>git pull</code>, or <code>git fetch</code>.</p>
-        </div>
-      </div>
-    </div>
+        </div></div>
   </div>
 </section>
 
@@ -440,7 +435,7 @@
       <p class="notes-paragraph">In technical interviews across Accenture, TCS, Cognizant, and Infosys, one of the quickest ways freshers fail is by saying "Git is a website where we upload code." Master this distinction clearly:</p>
 
       <div class="table-responsive">
-        <table class="notes-table">
+        <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
           <thead>
             <tr>
               <th>Dimension</th>
@@ -475,7 +470,7 @@
               <td>GitLab, Bitbucket, AWS CodeCommit, Azure DevOps Repos.</td>
             </tr>
           </tbody>
-        </table>
+        </table></div>
       </div>
 
       <div class="placement-trap-card" style="margin-top: 1.25rem;">
@@ -483,9 +478,7 @@
         <div class="placement-trap-body">
           <p><strong>Common Confusion:</strong> Candidates assume <code>git pull-request</code> is a built-in command in standard Git.</p>
           <p><strong>Correction:</strong> Pull Requests (PRs) do not exist in core Git! A Pull Request is a feature invented by hosting platforms like GitHub and GitLab to facilitate human peer code review, discussions, and automated CI test gates before running a <code>git merge</code>.</p>
-        </div>
-      </div>
-    </div>
+        </div></div>
   </div>
 </section>
 
@@ -593,18 +586,14 @@ git config --list --show-origin</code></pre>
           <div class="explainer-box analogy">
             <div class="explainer-label">🌍 Real-Life Example</div>
             <p>A camera with an SD card: The visible photo album on your laptop screen is the working directory; the SD card hardware holding all RAW files and timestamps is the .git folder.</p>
-          </div>
-        </div>
-      </div>
+          </div></div>
 
       <div class="placement-trap-card" style="margin-top: 1.25rem;">
         <div class="placement-trap-header">⚠️ PLACEMENT TRAP #3: "Deleting the .git folder deletes your code files"</div>
         <div class="placement-trap-body">
           <p><strong>Wrong Thinking:</strong> "If I delete <code>.git</code>, my code files disappear from my computer."</p>
           <p><strong>Correct Thinking:</strong> Your code files remain intact in your working directory. However, deleting <code>.git</code> completely obliterates all version history, commit logs, branches, stashes, and remote links, turning your project back into a regular unversioned folder.</p>
-        </div>
-      </div>
-    </div>
+        </div></div>
   </div>
 </section>
 
@@ -675,9 +664,7 @@ git config --list --show-origin</code></pre>
                 </div>
                 <div class="git-stage-lane" style="border:1px solid rgba(255,255,255,0.1); background:transparent; border-radius:8px; padding:0.75rem; text-align:center;">
                   <div style="font-weight:700; font-size:0.8rem; color:#C084FC; text-transform:uppercase; margin-bottom:0.25rem;">4. Remote Repo</div>
-                  <div style="font-size:0.72rem; color:#94a3b8;">origin / main</div>
-                </div>
-              </div>
+                  <div style="font-size:0.72rem; color:#94a3b8;">origin / main</div></div>
             </div>
 
             <div class="placement-trap-box">
@@ -716,9 +703,7 @@ git config --list --show-origin</code></pre>
               </button>
               <div class="challenge-answer">
                 <p><strong>Answer:</strong> NO. 'git add' creates a snapshot of the file at the exact moment it was run. Edits made after 'git add' remain unstaged in the working directory unless added again.</p>
-              </div>
-            </div>
-          </div>
+              </div></div>
 
 <div class="topic-card">
     <div class="topic-card-header">
@@ -777,12 +762,10 @@ git config --list --show-origin</code></pre>
           <div class="explainer-box analogy">
             <div class="explainer-label">🌍 Real-Life Example</div>
             <p>Cargo Shipping: Writing a letter is Untracked; placing it into a shipping box and taping the label is Staged; loading the box into the shipping container is Committed; reopening the box to add a brochure is Modified.</p>
-          </div>
-        </div>
-      </div>
+          </div></div>
 
       <div class="table-responsive" style="margin-top: 1.5rem;">
-        <table class="notes-table">
+        <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
           <thead>
             <tr>
               <th>State</th>
@@ -812,9 +795,7 @@ git config --list --show-origin</code></pre>
               <td>Data is safely sealed and stored in the <code>.git</code> database. Working files match the latest commit snapshot exactly.</td>
             </tr>
           </tbody>
-        </table>
-      </div>
-    </div>
+        </table></div></div>
   </div>
 </section>
 
@@ -933,9 +914,7 @@ git log --oneline</code></pre>
         <div class="placement-trap-body">
           <p><strong>Panic Reaction:</strong> A fresher checks out an older commit with <code>git checkout c1b2a3</code> and Git prints <em>"You are in 'detached HEAD' state"</em>. The student panics and thinks data is destroyed.</p>
           <p><strong>Reality:</strong> Detached HEAD simply means HEAD is pointing directly to a specific commit hash rather than a named branch reference. You can safely inspect code or run tests. If you want to make new commits from here, simply create a branch with <code>git switch -c new-feature-branch</code> to preserve your work!</p>
-        </div>
-      </div>
-    </div>
+        </div></div>
   </div>
 </section>
 
@@ -1035,9 +1014,7 @@ git branch -D feature-login</code></pre>
         A ──&gt; B ──&gt; C ──&gt; F ───────────&gt; [ M ] (Merge Commit on main: Parents F & E)<br>
                      \                 /<br>
                       D ──────────&gt; E ─'
-      </div>
-    </div>
-  </div>
+      </div></div>
 </section>
 
 <!-- ==========================================
@@ -1084,9 +1061,7 @@ git branch -D feature-login</code></pre>
         <div class="placement-trap-body">
           <p><strong>Wrong Thinking:</strong> Freshers panic and think Git has crashed or corrupted the project.</p>
           <p><strong>Correct Thinking:</strong> A merge conflict is a <strong>safety feature</strong>. Git deliberately pauses and refuses to make an arbitrary guess about whose code to overwrite. If you ever get overwhelmed, you can cleanly abort and return to pre-merge state with <code>git merge --abort</code>!</p>
-        </div>
-      </div>
-    </div>
+        </div></div>
   </div>
 </section>
 
@@ -1132,9 +1107,7 @@ git remote remove origin</code></pre>
         <div class="placement-trap-body">
           <p><strong>Misconception:</strong> Students think <code>origin</code> is a keyword reserved by Git for GitHub.</p>
           <p><strong>Reality:</strong> <code>origin</code> is simply an arbitrary nickname (alias) given by convention to the primary remote repository URL. You could name it <code>cloud</code>, <code>backup</code>, or <code>github</code>: <code>git remote add github https://...</code> works identically!</p>
-        </div>
-      </div>
-    </div>
+        </div></div>
   </div>
 </section>
 
@@ -1167,9 +1140,7 @@ git remote remove origin</code></pre>
         3. Downloads all objects, commits, trees, and branches from remote.<br>
         4. Automatically names the remote 'origin' pointing to the clone URL.<br>
         5. Checks out the default branch (main) into your working directory ready to edit!
-      </div>
-    </div>
-  </div>
+      </div></div>
 </section>
 
 <!-- ==========================================
@@ -1249,7 +1220,7 @@ git pull</code></pre>
     </div>
     <div class="topic-card-body">
       <div class="table-responsive">
-        <table class="notes-table">
+        <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
           <thead>
             <tr>
               <th>Aspect</th>
@@ -1274,9 +1245,7 @@ git pull</code></pre>
               <td>Use when you know your branch is clean and you want immediate quick synchronization.</td>
             </tr>
           </tbody>
-        </table>
-      </div>
-    </div>
+        </table></div></div>
   </div>
 </section>
 
@@ -1302,7 +1271,7 @@ git pull</code></pre>
       <p class="notes-paragraph"><code>git diff</code> visualizes line-by-line additions (prefixed with <code>+</code> in green) and deletions (prefixed with <code>-</code> in red) between Git's various storage areas.</p>
 
       <div class="table-responsive">
-        <table class="notes-table">
+        <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
           <thead>
             <tr>
               <th>Command</th>
@@ -1327,9 +1296,7 @@ git pull</code></pre>
               <td>Compare total differences between branches before merging.</td>
             </tr>
           </tbody>
-        </table>
-      </div>
-    </div>
+        </table></div></div>
   </div>
 </section>
 
@@ -1435,9 +1402,7 @@ git restore --staged app.js</code></pre>
               </button>
               <div class="challenge-answer">
                 <p><strong>Answer:</strong> The commit is discarded, the staging area is cleared, AND all uncommitted local file modifications are permanently destroyed.</p>
-              </div>
-            </div>
-          </div>
+              </div></div>
 
 <div class="topic-card">
     <div class="topic-card-header">
@@ -1453,7 +1418,7 @@ git restore --staged app.js</code></pre>
 
       <div class="diagram-title">🔄 The 3 Modes of git reset</div>
       <div class="table-responsive">
-        <table class="notes-table">
+        <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
           <thead>
             <tr>
               <th>Reset Mode</th>
@@ -1486,7 +1451,7 @@ git restore --staged app.js</code></pre>
               <td><span style="color:#F87171; font-weight:700;">EXTREMELY DANGEROUS!</span> (Permanently destroys uncommitted code)</td>
             </tr>
           </tbody>
-        </table>
+        </table></div>
       </div>
 
       <div class="placement-trap-card" style="margin-top: 1.25rem;">
@@ -1494,9 +1459,7 @@ git restore --staged app.js</code></pre>
         <div class="placement-trap-body">
           <p><strong>Fatal Action:</strong> Resetting commits that have already been pushed to a shared team repository on GitHub.</p>
           <p><strong>Why It's Disastrous:</strong> You rewrite local history, causing your branch to diverge from remote. Pushing will fail, and if you use <code>git push --force</code>, you overwrite your teammates' Git history, corrupting team workflows! Never use reset on public shared commits—use <code>git revert</code> instead.</p>
-        </div>
-      </div>
-    </div>
+        </div></div>
   </div>
 </section>
 
@@ -1527,9 +1490,7 @@ git restore --staged app.js</code></pre>
         A ──&gt; B ──&gt; C ──[ git reset HEAD~1 ]──&gt; A ──&gt; B (Commit C is removed from branch)<br><br>
         REVERT (Appends new inverse commit - 100% Public-Safe):<br>
         A ──&gt; B ──&gt; C ──[ git revert C ]──────&gt; A ──&gt; B ──&gt; C ──&gt; D (Commit D undoes C's changes)
-      </div>
-    </div>
-  </div>
+      </div></div>
 </section>
 
 <!-- ==========================================
@@ -1642,9 +1603,7 @@ git stash clear</code></pre>
               </button>
               <div class="challenge-answer">
                 <p><strong>Answer:</strong> No. By default, Git performs a 'Fast-Forward' merge, simply advancing the branch pointer to the feature commit without creating an extra merge commit.</p>
-              </div>
-            </div>
-          </div>
+              </div></div>
 
 <div class="topic-card">
     <div class="topic-card-header">
@@ -1670,7 +1629,7 @@ git stash clear</code></pre>
       </div>
 
       <div class="table-responsive" style="margin-top: 1.5rem;">
-        <table class="notes-table">
+        <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
           <thead>
             <tr>
               <th>Dimension</th>
@@ -1700,9 +1659,7 @@ git stash clear</code></pre>
               <td><strong>NEVER rebase commits that have been pushed to public shared branches!</strong></td>
             </tr>
           </tbody>
-        </table>
-      </div>
-    </div>
+        </table></div></div>
   </div>
 </section>
 
@@ -1790,9 +1747,7 @@ Thumbs.db</code></pre>
           <p><strong>Reality:</strong> <code>.gitignore</code> applies ONLY to untracked files! If a file was already committed, Git continues tracking modifications. To fix this, unstage it from the index without deleting it from your disk:</p>
           <pre style="background:#000; color:#E2E8F0; padding:0.5rem; margin-top:0.5rem; border-radius:4px; font-family:monospace;"><code>git rm --cached .env
 git commit -m "Remove .env from tracking"</code></pre>
-        </div>
-      </div>
-    </div>
+        </div></div>
   </div>
 </section>
 
@@ -1819,7 +1774,7 @@ git commit -m "Remove .env from tracking"</code></pre>
 
       <div class="diagram-title">📋 The Architecture of a Production GitHub Repository</div>
       <div class="table-responsive">
-        <table class="notes-table">
+        <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
           <thead>
             <tr>
               <th>GitHub Component</th>
@@ -1848,9 +1803,7 @@ git commit -m "Remove .env from tracking"</code></pre>
               <td>Packaged deployment binaries and changelogs tagged to specific Git release tags (e.g. <code>v1.0.0.zip</code>).</td>
             </tr>
           </tbody>
-        </table>
-      </div>
-    </div>
+        </table></div></div>
   </div>
 </section>
 
@@ -1915,7 +1868,7 @@ git commit -m "Remove .env from tracking"</code></pre>
     </div>
     <div class="topic-card-body">
       <div class="table-responsive">
-        <table class="notes-table">
+        <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
           <thead>
             <tr>
               <th>Dimension</th>
@@ -1945,9 +1898,7 @@ git commit -m "Remove .env from tracking"</code></pre>
               <td>Standard clone for local development.</td>
             </tr>
           </tbody>
-        </table>
-      </div>
-    </div>
+        </table></div></div>
   </div>
 </section>
 
@@ -3312,10 +3263,7 @@ git switch -c rescued-branch e9f8d7c</code></pre>
         <p><strong>Wrong Thinking:</strong> "Many GitHub contribution squares proves advanced Git competence."</p>
         <p><strong>Correct Thinking:</strong> Squares merely measure commits. Professional teams evaluate branching discipline, clean commit messages, PR reviews, and CI stability.</p>
         <p><strong>Remember:</strong> Commit quality and workflow discipline outweigh commit volume.</p>
-      </div>
-    </div>
-
-  </div>
+      </div></div>
 </section>
 
 <!-- ==========================================
@@ -3367,7 +3315,7 @@ git switch -c rescued-branch e9f8d7c</code></pre>
 
   <h3 style="color:var(--brand-cyan); margin-top:2rem;">B. 20 Critical Version Control Comparisons</h3>
   <div class="table-responsive">
-    <table class="notes-table">
+    <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
       <thead>
         <tr>
           <th>Comparison</th>
@@ -3397,7 +3345,7 @@ git switch -c rescued-branch e9f8d7c</code></pre>
         <tr><td><strong>git log vs git reflog</strong></td><td>Shows reachable commit tree ancestry</td><td>Shows all local movements of HEAD on your machine</td></tr>
         <tr><td><strong>git clean vs git restore</strong></td><td>Deletes untracked files from disk</td><td>Restores modified tracked files from commit</td></tr>
       </tbody>
-    </table>
+    </table></div>
   </div>
 
   <div class="visual-learning-card" style="margin-top:2rem;">
@@ -3456,9 +3404,7 @@ git switch -c rescued-branch e9f8d7c</code></pre>
           <li>🔹 <a href="#sec-31" style="color:var(--text-main); text-decoration:none;">Emergency Traps &amp; Fixes</a></li>
           <li>🔹 <a href="#sec-34" style="color:var(--text-main); text-decoration:none;">Exam MCQs Practice</a></li>
         </ul>
-      </div>
-    </div>
-  </div>
+      </div></div>
 </section>
 
           </div> <!-- /notes-content -->
@@ -3491,9 +3437,7 @@ git switch -c rescued-branch e9f8d7c</code></pre>
               <li><a href="../index.html#practice/git">Git Question Bank (100 MCQs)</a></li>
               <li><a href="../index.html#cbt/git">Git Timed Mock Exam</a></li>
             </ul>
-          </div>
-        </div>
-      </div>
+          </div></div>
       <div class="footer-bottom">
         <div class="container footer-bottom-inner">
           <p>&copy; 2026 PlacementPrep Platform. Built for Excellence.</p>
@@ -3642,6 +3586,75 @@ git switch -c rescued-branch e9f8d7c</code></pre>
           if (isMobile.matches) closeTOC();
         });
       });
+    })();
+  </script>
+  <script>
+    /* ── Scroll Indicator System ────────────────────────────── */
+    (function () {
+      /* 1. Scroll-fade: add .at-end class when scrolled all the way */
+      function setupScrollFade(el) {
+        function check() {
+          var atH = el.scrollLeft + el.clientWidth >= el.scrollWidth - 4;
+          var atV = el.scrollTop  + el.clientHeight >= el.scrollHeight - 4;
+          el.classList.toggle('at-end', atH && atV);
+        }
+        el.addEventListener('scroll', check, { passive: true });
+        check();
+      }
+
+      /* 2. Scroll hint label: inject below horizontally scrollable elements */
+      function addScrollHint(el) {
+        if (el.scrollWidth > el.clientWidth + 8) {
+          var label = document.createElement('div');
+          label.className = 'scroll-hint-label';
+          label.textContent = 'scroll';
+          el.parentNode.insertBefore(label, el.nextSibling);
+        }
+      }
+
+      /* 3. Apply scroll-x-wrap fade to relevant containers */
+      function applyFades() {
+        var xSelectors = [
+          '.table-responsive-wrapper',
+          '.diagram-card',
+          '.visual-canvas',
+          '.katex-display-wrapper',
+          '.diagram-box',
+          '.notes-diagram-box'
+        ];
+        var ySelectors = [
+          '.notes-toc-sidebar',
+          '.notes-sidebar',
+          'pre',
+          '.notes-code'
+        ];
+
+        xSelectors.forEach(function(sel) {
+          document.querySelectorAll(sel).forEach(function(el) {
+            el.classList.add('scroll-x-wrap');
+            setupScrollFade(el);
+            addScrollHint(el);
+          });
+        });
+
+        ySelectors.forEach(function(sel) {
+          document.querySelectorAll(sel).forEach(function(el) {
+            if (el.scrollHeight > el.clientHeight + 8) {
+              el.classList.add('scroll-y-wrap');
+              setupScrollFade(el);
+            }
+          });
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', applyFades);
+      } else {
+        applyFades();
+      }
+
+      /* Re-check after layout settles (fonts, KaTeX, images) */
+      window.addEventListener('load', applyFades);
     })();
   </script></body>
 </html>

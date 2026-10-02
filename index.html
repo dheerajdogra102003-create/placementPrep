@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
@@ -29,6 +29,7 @@
   <link rel="stylesheet" href="css/notes.css">
   <link rel="stylesheet" href="css/glow-effects.css">
   <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/scrollbars.css">
   <!-- KaTeX: Mathematical Rendering -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
   <link rel="stylesheet" href="css/visual-learning.css">
@@ -313,5 +314,74 @@
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
   <script defer src="js/math-render.js"></script>
 
-</body>
+
+  <script>
+    /* ── Scroll Indicator System ────────────────────────────── */
+    (function () {
+      /* 1. Scroll-fade: add .at-end class when scrolled all the way */
+      function setupScrollFade(el) {
+        function check() {
+          var atH = el.scrollLeft + el.clientWidth >= el.scrollWidth - 4;
+          var atV = el.scrollTop  + el.clientHeight >= el.scrollHeight - 4;
+          el.classList.toggle('at-end', atH && atV);
+        }
+        el.addEventListener('scroll', check, { passive: true });
+        check();
+      }
+
+      /* 2. Scroll hint label: inject below horizontally scrollable elements */
+      function addScrollHint(el) {
+        if (el.scrollWidth > el.clientWidth + 8) {
+          var label = document.createElement('div');
+          label.className = 'scroll-hint-label';
+          label.textContent = 'scroll';
+          el.parentNode.insertBefore(label, el.nextSibling);
+        }
+      }
+
+      /* 3. Apply scroll-x-wrap fade to relevant containers */
+      function applyFades() {
+        var xSelectors = [
+          '.table-responsive-wrapper',
+          '.diagram-card',
+          '.visual-canvas',
+          '.katex-display-wrapper',
+          '.diagram-box',
+          '.notes-diagram-box'
+        ];
+        var ySelectors = [
+          '.notes-toc-sidebar',
+          '.notes-sidebar',
+          'pre',
+          '.notes-code'
+        ];
+
+        xSelectors.forEach(function(sel) {
+          document.querySelectorAll(sel).forEach(function(el) {
+            el.classList.add('scroll-x-wrap');
+            setupScrollFade(el);
+            addScrollHint(el);
+          });
+        });
+
+        ySelectors.forEach(function(sel) {
+          document.querySelectorAll(sel).forEach(function(el) {
+            if (el.scrollHeight > el.clientHeight + 8) {
+              el.classList.add('scroll-y-wrap');
+              setupScrollFade(el);
+            }
+          });
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', applyFades);
+      } else {
+        applyFades();
+      }
+
+      /* Re-check after layout settles (fonts, KaTeX, images) */
+      window.addEventListener('load', applyFades);
+    })();
+  </script></body>
 </html>

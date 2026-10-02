@@ -96,6 +96,7 @@
     }
   </style>
   <link rel="stylesheet" href="../css/visual-learning.css">
+  <link rel="stylesheet" href="../css/scrollbars.css">
   <!-- KaTeX: Mathematical Rendering -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
 
@@ -376,9 +377,7 @@
               <div class="pipeline-node" style="border-left: 3px solid #f43f5e;">
                 <div class="node-icon">🛡️</div>
                 <div class="node-label">4. Security &amp; Defense</div>
-                <div class="node-subtext">CIA Triad, TLS 1.3, Firewalls, DMZ, Zero Trust</div>
-              </div>
-            </div>
+                <div class="node-subtext">CIA Triad, TLS 1.3, Firewalls, DMZ, Zero Trust</div></div>
 
             <div class="visual-explainer-grid">
               <div class="explainer-box happening">
@@ -399,9 +398,7 @@
                 <div class="explainer-label">🌍 Real-Life Analogy</div>
                 <div class="explainer-text">
                   Sending an international package: MAC is the street-level delivery van; IP is the country and city postal code; TCP is the signature-required delivery confirmation; TLS encryption is the sealed tamper-proof security box.
-                </div>
-              </div>
-            </div>
+                </div></div>
           </div>
             <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.6;">
               💡 <em>Click any topic on the left sidebar to jump straight to that technical section, inspect architectural diagrams, review real-world interview responses, and validate your placement exam readiness with interactive questions.</em>
@@ -453,7 +450,7 @@ Application (Data) ───> NIC Encapsulates into Packets/Frames ───> Sw
             </p>
 
             <div style="overflow-x: auto; margin-bottom: 1.5rem;">
-              <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9rem;">
+              <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9rem;">
                 <thead>
                   <tr style="background: #0f172a; border-bottom: 2px solid #334155; color: #38bdf8;">
                     <th style="padding: 0.75rem 1rem;">Network Type</th>
@@ -493,7 +490,7 @@ Application (Data) ───> NIC Encapsulates into Packets/Frames ───> Sw
                     <td style="padding: 0.75rem 1rem;">The Global Public Internet; multinational bank inter-country network</td>
                   </tr>
                 </tbody>
-              </table>
+              </table></div>
             </div>
 
             <div class="trap-box">
@@ -545,9 +542,7 @@ Application (Data) ───> NIC Encapsulates into Packets/Frames ───> Sw
                         <span style="font-size:0.75rem; background:rgba(52,211,153,0.2); color:#A7F3D0; padding:2px 8px; border-radius:12px;">Employees Only</span>
                       </div>
                       <p style="font-size:0.85rem; color:var(--text-secondary); margin:0;">Strictly isolated internal LAN for corporate employees. Hosts confidential systems: payroll, HR databases, ERP, and proprietary code repositories.</p>
-                    </div>
-                  </div>
-                </div>
+                    </div></div>
               </div>
 
               <div class="visual-explainer-grid">
@@ -562,9 +557,7 @@ Application (Data) ───> NIC Encapsulates into Packets/Frames ───> Sw
                 <div class="explainer-box analogy">
                   <div class="explainer-label">🌍 Real-Life Example</div>
                   <p>International Airport: The public check-in hall is the Public Internet; the VIP airline lounge accessible only with verified boarding passes is the Extranet; the security-screened Air Traffic Control tower is the Private Intranet.</p>
-                </div>
-              </div>
-            </div>
+                </div></div>
 
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem;">
               <div class="concept-card">
@@ -642,9 +635,7 @@ Application (Data) ───> NIC Encapsulates into Packets/Frames ───> Sw
                   <div style="background:#0F172A; border-radius:6px; padding:8px; font-size:0.78rem; color:var(--text-secondary); line-height:1.5;">
                     &bull; <strong>Pros:</strong> Maximum redundancy, zero single points of failure.<br>
                     &bull; <strong>Cons:</strong> Quadratic cable growth; used in cloud data center core backbones.
-                  </div>
-                </div>
-              </div>
+                  </div></div>
 
               <div class="visual-explainer-grid">
                 <div class="explainer-box happening">
@@ -658,12 +649,10 @@ Application (Data) ───> NIC Encapsulates into Packets/Frames ───> Sw
                 <div class="explainer-box analogy">
                   <div class="explainer-label">🌍 Real-Life Example</div>
                   <p>Airline Routes: Star is hub-and-spoke (all flights connect through Chicago or Atlanta); Mesh is direct flights connecting every city pair directly to each other without layovers.</p>
-                </div>
-              </div>
-            </div>
+                </div></div>
 
             <div style="overflow-x: auto; margin-bottom: 1.5rem;">
-              <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.88rem;">
+              <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.88rem;">
                 <thead>
                   <tr style="background: #0f172a; border-bottom: 2px solid #334155; color: #38bdf8;">
                     <th style="padding: 0.6rem 0.8rem;">Topology</th>
@@ -710,7 +699,7 @@ Application (Data) ───> NIC Encapsulates into Packets/Frames ───> Sw
                     <td style="padding: 0.6rem 0.8rem;">Large university campus with core, distribution, and access switches.</td>
                   </tr>
                 </tbody>
-              </table>
+              </table></div>
             </div>
 
             <div class="trap-box">
@@ -787,9 +776,7 @@ Application (Data) ───> NIC Encapsulates into Packets/Frames ───> Sw
               </button>
               <div class="challenge-answer">
                 <p><strong>Answer:</strong> 20 Collision Domains (each active port forms its own collision domain) and exactly 1 Broadcast Domain (all ports receive broadcast frames unless partitioned into VLANs).</p>
-              </div>
-            </div>
-          </div>
+              </div></div>
 
 <h2 style="font-size: 1.85rem; font-weight: 800; margin-bottom: 1rem; color: #f8fafc;">
               Network Devices Overview &amp; Packet Flow
@@ -843,9 +830,7 @@ Application (Data) ───> NIC Encapsulates into Packets/Frames ───> Sw
                 <div class="explainer-box analogy">
                   <div class="explainer-label">🌍 Real-Life Example</div>
                   <p>Corporate Mailroom: The office floor messenger (Switch) moves inter-office memos directly between desks; outgoing external mail is handed to the Postal Logistics office (Router) which assigns international postage and routes it across cities.</p>
-                </div>
-              </div>
-            </div>
+                </div></div>
           </section>
 
           <!-- Section 07: Hub -->
@@ -952,7 +937,7 @@ Application (Data) ───> NIC Encapsulates into Packets/Frames ───> Sw
             </p>
 
             <div style="overflow-x: auto;">
-              <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.88rem;">
+              <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.88rem;">
                 <thead>
                   <tr style="background: #0f172a; border-bottom: 2px solid #334155; color: #38bdf8;">
                     <th style="padding: 0.6rem 0.8rem;">Feature</th>
@@ -987,7 +972,7 @@ Application (Data) ───> NIC Encapsulates into Packets/Frames ───> Sw
                     <td style="padding: 0.6rem 0.8rem; color: #34d399;">1 domain per port (e.g. 48 domains)</td>
                   </tr>
                 </tbody>
-              </table>
+              </table></div>
             </div>
           </section>
 
@@ -1061,9 +1046,7 @@ Application (Data) ───> NIC Encapsulates into Packets/Frames ───> Sw
                     <div style="font-size:1.15rem; font-weight:800; color:#34D399; margin:6px 0; font-family:monospace;">3C : 4D : 5E</div>
                     <div style="font-weight:700; color:#E2E8F0; font-size:0.85rem;">NIC-Specific Extension</div>
                     <p style="font-size:0.75rem; color:var(--text-secondary); margin:4px 0 0 0;">Unique sequential serial number assigned by hardware manufacturer to individual physical network controller chip.</p>
-                  </div>
-                </div>
-              </div>
+                  </div></div>
 
               <div class="visual-explainer-grid">
                 <div class="explainer-box happening">
@@ -1077,9 +1060,7 @@ Application (Data) ───> NIC Encapsulates into Packets/Frames ───> Sw
                 <div class="explainer-box analogy">
                   <div class="explainer-label">🌍 Real-Life Example</div>
                   <p>Vehicle Identification Number (VIN): The first 3 characters identify the car manufacturer and country of origin (OUI), and the remaining digits represent that car's unique factory serial number (NIC extension).</p>
-                </div>
-              </div>
-            </div>
+                </div></div>
             <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">
               💡 <em>Common notations:</em> Colons (<code>00:1A:2B:3C:4D:5E</code> in Linux), Hyphens (<code>00-1A-2B-3C-4D-5E</code> in Windows cmd), or Dots (<code>001a.2b3c.4d5e</code> in Cisco IOS).
             </p>
@@ -1099,7 +1080,7 @@ Application (Data) ───> NIC Encapsulates into Packets/Frames ───> Sw
             </p>
 
             <div style="overflow-x: auto; margin-bottom: 1.5rem;">
-              <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9rem;">
+              <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9rem;">
                 <thead>
                   <tr style="background: #0f172a; border-bottom: 2px solid #334155; color: #38bdf8;">
                     <th style="padding: 0.75rem 1rem;">Parameter</th>
@@ -1134,7 +1115,7 @@ Application (Data) ───> NIC Encapsulates into Packets/Frames ───> Sw
                     <td style="padding: 0.75rem 1rem;">Postal Delivery Address (where you currently reside)</td>
                   </tr>
                 </tbody>
-              </table>
+              </table></div>
             </div>
 
             <div class="trap-box">
@@ -1216,9 +1197,7 @@ Application (Data) ───> NIC Encapsulates into Packets/Frames ───> Sw
                   <div style="font-size:1.1rem; font-weight:800; color:#38BDF8; margin-bottom:0.4rem;">Layer 7: Application</div>
                   <div style="font-size:0.875rem; color:#CBD5E1; margin-bottom:0.3rem;"><strong>PDU (Data Unit):</strong> <span style="color:#34D399; font-weight:700;">Data</span></div>
                   <div style="font-size:0.875rem; color:#CBD5E1; margin-bottom:0.4rem;"><strong>Key Protocols:</strong> HTTP, HTTPS, DNS, FTP, SMTP, SSH</div>
-                  <div style="font-size:0.825rem; color:#94A3B8; line-height:1.5;">Provides direct communication interfaces to user software applications.</div>
-                </div>
-              </div>
+                  <div style="font-size:0.825rem; color:#94A3B8; line-height:1.5;">Provides direct communication interfaces to user software applications.</div></div>
             </div>
 
             <div class="placement-trap-box">
@@ -1258,9 +1237,7 @@ Application (Data) ───> NIC Encapsulates into Packets/Frames ───> Sw
               </button>
               <div class="challenge-answer">
                 <p><strong>Answer:</strong> Layer 3 (Network Layer). The Protocol Data Unit (PDU) at Layer 3 is a Packet.</p>
-              </div>
-            </div>
-          </div>
+              </div></div>
 
 <h2 style="font-size: 1.85rem; font-weight: 800; margin-bottom: 1rem; color: #f8fafc;">
               The 7-Layer OSI Reference Model Deep Dive
@@ -1278,57 +1255,43 @@ Application (Data) ───> NIC Encapsulates into Packets/Frames ───> Sw
                   <div class="layer-badge" style="background: #9333ea; color: #fff;">L7</div>
                   <div class="layer-info">
                     <div class="layer-name">Application Layer &bull; <span style="font-size:0.75rem; color:#c084fc;">PDU: Data</span></div>
-                    <div class="layer-desc">User interface &amp; network APIs: HTTP, HTTPS, DNS, FTP, SMTP, SSH, DHCP.</div>
-                  </div>
-                </div>
+                    <div class="layer-desc">User interface &amp; network APIs: HTTP, HTTPS, DNS, FTP, SMTP, SSH, DHCP.</div></div>
 
                 <div class="layer-item" style="border-left: 4px solid #a78bfa; background: rgba(139, 92, 246, 0.08);">
                   <div class="layer-badge" style="background: #7c3aed; color: #fff;">L6</div>
                   <div class="layer-info">
                     <div class="layer-name">Presentation Layer &bull; <span style="font-size:0.75rem; color:#a78bfa;">PDU: Data</span></div>
-                    <div class="layer-desc">Syntax translation, TLS/SSL encryption, gzip compression, ASCII/JPEG encoding.</div>
-                  </div>
-                </div>
+                    <div class="layer-desc">Syntax translation, TLS/SSL encryption, gzip compression, ASCII/JPEG encoding.</div></div>
 
                 <div class="layer-item" style="border-left: 4px solid #818cf8; background: rgba(99, 102, 241, 0.08);">
                   <div class="layer-badge" style="background: #4f46e5; color: #fff;">L5</div>
                   <div class="layer-info">
                     <div class="layer-name">Session Layer &bull; <span style="font-size:0.75rem; color:#818cf8;">PDU: Data</span></div>
-                    <div class="layer-desc">Dialogue control, session tokens, RPC, recovery checkpoints.</div>
-                  </div>
-                </div>
+                    <div class="layer-desc">Dialogue control, session tokens, RPC, recovery checkpoints.</div></div>
 
                 <div class="layer-item" style="border-left: 4px solid #38bdf8; background: rgba(14, 165, 233, 0.08);">
                   <div class="layer-badge" style="background: #0284c7; color: #fff;">L4</div>
                   <div class="layer-info">
                     <div class="layer-name">Transport Layer &bull; <span style="font-size:0.75rem; color:#38bdf8;">PDU: Segments (TCP) / Datagrams (UDP)</span></div>
-                    <div class="layer-desc">End-to-end delivery, port numbers, TCP 3-way handshake, flow &amp; congestion control.</div>
-                  </div>
-                </div>
+                    <div class="layer-desc">End-to-end delivery, port numbers, TCP 3-way handshake, flow &amp; congestion control.</div></div>
 
                 <div class="layer-item" style="border-left: 4px solid #34d399; background: rgba(16, 185, 129, 0.08);">
                   <div class="layer-badge" style="background: #059669; color: #fff;">L3</div>
                   <div class="layer-info">
                     <div class="layer-name">Network Layer &bull; <span style="font-size:0.75rem; color:#34d399;">PDU: Packets</span></div>
-                    <div class="layer-desc">Logical IP addressing (IPv4/IPv6), routing paths, ICMP diagnostics &bull; <strong>Device: Router</strong></div>
-                  </div>
-                </div>
+                    <div class="layer-desc">Logical IP addressing (IPv4/IPv6), routing paths, ICMP diagnostics &bull; <strong>Device: Router</strong></div></div>
 
                 <div class="layer-item" style="border-left: 4px solid #fbbf24; background: rgba(245, 158, 11, 0.08);">
                   <div class="layer-badge" style="background: #d97706; color: #fff;">L2</div>
                   <div class="layer-info">
                     <div class="layer-name">Data Link Layer &bull; <span style="font-size:0.75rem; color:#fbbf24;">PDU: Frames</span></div>
-                    <div class="layer-desc">Physical MAC addressing, Ethernet framing, CRC trailer checksum &bull; <strong>Device: Switch, Bridge</strong></div>
-                  </div>
-                </div>
+                    <div class="layer-desc">Physical MAC addressing, Ethernet framing, CRC trailer checksum &bull; <strong>Device: Switch, Bridge</strong></div></div>
 
                 <div class="layer-item" style="border-left: 4px solid #f87171; background: rgba(239, 68, 68, 0.08);">
                   <div class="layer-badge" style="background: #dc2626; color: #fff;">L1</div>
                   <div class="layer-info">
                     <div class="layer-name">Physical Layer &bull; <span style="font-size:0.75rem; color:#f87171;">PDU: Bits</span></div>
-                    <div class="layer-desc">Raw 1s and 0s over copper, fiber optics, radio waves &bull; <strong>Device: Hub, Repeater, Cable</strong></div>
-                  </div>
-                </div>
+                    <div class="layer-desc">Raw 1s and 0s over copper, fiber optics, radio waves &bull; <strong>Device: Hub, Repeater, Cable</strong></div></div>
               </div>
 
               <div class="visual-explainer-grid">
@@ -1350,9 +1313,7 @@ Application (Data) ───> NIC Encapsulates into Packets/Frames ───> Sw
                   <div class="explainer-label">🌍 Real-Life Analogy</div>
                   <div class="explainer-text">
                     Like sending confidential corporate contracts: Executive writes letter (L7), legal encodes in English cipher (L6), secretary schedules courier batch (L5), postal manager logs tracking code (L4), sorting depot routes to airport (L3), truck driver drives to address (L2), road pavement carries tires (L1).
-                  </div>
-                </div>
-              </div>
+                  </div></div>
             </div>
 
             <!-- 7 Layers Breakdown Cards -->
@@ -1467,10 +1428,7 @@ Application (Data) ───> NIC Encapsulates into Packets/Frames ───> Sw
                   <strong>Media &amp; Hardware:</strong> Cat6 RJ45 copper, Single-mode &amp; Multi-mode Fiber optic cables, Wi-Fi radio frequencies; Hardware: <strong>Hubs, Repeaters, Modems, Connectors</strong>.<br>
                   <strong>Real-World Analogy:</strong> The physical tarmac road and railway tracks over which delivery trucks move.<br>
                   <strong style="color:#ef4444;">Placement Trap:</strong> A Hub operates at Layer 1; it cannot read MAC addresses or IP packets.
-                </div>
-              </div>
-
-            </div>
+                </div></div>
           </section>
 
           <!-- Section 17: OSI Memory Technique -->
@@ -1647,7 +1605,7 @@ LAYER 1:         0 1 1 0 1 0 0 1 1 1 0 1 0 0 1 0 1 1 0 1 0 1 1 0                
               </div>
 
               <div class="table-responsive" style="margin: 1.5rem 0;">
-                <table class="notes-table" style="margin:0;">
+                <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table" style="margin:0;">
                   <thead>
                     <tr>
                       <th style="width:50%;">OSI Theoretical Model (7 Layers)</th>
@@ -1695,7 +1653,7 @@ LAYER 1:         0 1 1 0 1 0 0 1 1 1 0 1 0 0 1 0 1 1 0 1 0 1 1 0                
                       </td>
                     </tr>
                   </tbody>
-                </table>
+                </table></div>
               </div>
 
               <div class="visual-explainer-grid">
@@ -1710,12 +1668,10 @@ LAYER 1:         0 1 1 0 1 0 0 1 1 1 0 1 0 0 1 0 1 1 0 1 0 1 1 0                
                 <div class="explainer-box analogy">
                   <div class="explainer-label">🌍 Real-Life Example</div>
                   <p>Architectural plan vs building execution: The 7-step blueprint details every sub-phase, but real construction teams combine framing, wiring, and insulation into consolidated milestone phases to ship faster.</p>
-                </div>
-              </div>
-            </div>
+                </div></div>
 
             <div style="overflow-x: auto;">
-              <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.88rem;">
+              <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.88rem;">
                 <thead>
                   <tr style="background: #0f172a; border-bottom: 2px solid #334155; color: #38bdf8;">
                     <th style="padding: 0.6rem 0.8rem;">Parameter</th>
@@ -1745,7 +1701,7 @@ LAYER 1:         0 1 1 0 1 0 0 1 1 1 0 1 0 0 1 0 1 1 0 1 0 1 1 0                
                     <td style="padding: 0.6rem 0.8rem;">Connectionless at Internet layer (IP); TCP or UDP at Transport</td>
                   </tr>
                 </tbody>
-              </table>
+              </table></div>
             </div>
           </section>
 
@@ -1775,7 +1731,7 @@ Total Address Space: 2^32 = 4,294,967,296 unique addresses (~4.3 Billion)
                 Private IP addresses are reserved strictly for internal enterprise LANs and home networks. Public Internet routers drop packets destined for these IPs immediately.
               </p>
               <div style="overflow-x: auto;">
-                <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem;">
+                <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table style="width: 100%; border-collapse: collapse; font-size: 0.85rem;">
                   <thead>
                     <tr style="background: #0f172a; border-bottom: 1px solid #334155; color: #34d399;">
                       <th style="padding: 0.5rem;">Class</th>
@@ -1808,9 +1764,7 @@ Total Address Space: 2^32 = 4,294,967,296 unique addresses (~4.3 Billion)
                       <td style="padding: 0.5rem;">Small office / Home office (SOHO) Wi-Fi routers</td>
                     </tr>
                   </tbody>
-                </table>
-              </div>
-            </div>
+                </table></div></div>
 
             <!-- IPv6 Breakdown -->
             <div class="concept-card">
@@ -1828,7 +1782,7 @@ Special note:   2001:db8::/32 is officially reserved by RFC 3849 for documentati
 
             <!-- Comparison Table -->
             <div style="overflow-x: auto; margin-top: 1.25rem;">
-              <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.88rem;">
+              <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.88rem;">
                 <thead>
                   <tr style="background: #0f172a; border-bottom: 2px solid #334155; color: #38bdf8;">
                     <th style="padding: 0.6rem 0.8rem;">Feature</th>
@@ -1863,7 +1817,7 @@ Special note:   2001:db8::/32 is officially reserved by RFC 3849 for documentati
                     <td style="padding: 0.6rem 0.8rem;">IPsec built into architecture; SLAAC stateless auto-config</td>
                   </tr>
                 </tbody>
-              </table>
+              </table></div>
             </div>
           </section>
 
@@ -1987,9 +1941,7 @@ Usable Assignable Host Range:  192.168.1.1 to 192.168.1.254
               </button>
               <div class="challenge-answer">
                 <p><strong>Answer:</strong> The Authoritative Nameserver (held by the domain registrar or DNS host like AWS Route 53 or Cloudflare).</p>
-              </div>
-            </div>
-          </div>
+              </div></div>
 
 <h2 style="font-size: 1.85rem; font-weight: 800; margin-bottom: 1rem; color: #f8fafc;">
               DNS: The Phonebook of the Internet
@@ -2108,7 +2060,7 @@ Scenario: Host A (192.168.1.10) wants to send data to Host B (192.168.1.20).
             </p>
 
             <div style="overflow-x: auto; margin-bottom: 1.5rem;">
-              <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.88rem;">
+              <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.88rem;">
                 <thead>
                   <tr style="background: #0f172a; border-bottom: 2px solid #334155; color: #38bdf8;">
                     <th style="padding: 0.6rem 0.8rem;">Port</th>
@@ -2179,7 +2131,7 @@ Scenario: Host A (192.168.1.10) wants to send data to Host B (192.168.1.20).
                     <td style="padding: 0.6rem 0.8rem;">HTTP over TLS/SSL (Encrypted secure web browsing)</td>
                   </tr>
                 </tbody>
-              </table>
+              </table></div>
             </div>
           </section>
 
@@ -2250,9 +2202,7 @@ Scenario: Host A (192.168.1.10) wants to send data to Host B (192.168.1.20).
               </button>
               <div class="challenge-answer">
                 <p><strong>Answer:</strong> Ack = 1001 (The server acknowledges receipt by calculating received Seq + 1).</p>
-              </div>
-            </div>
-          </div>
+              </div></div>
 
 <h2 style="font-size: 1.85rem; font-weight: 800; margin-bottom: 1rem; color: #f8fafc;">
               TCP &amp; The 3-Way Handshake
@@ -2278,9 +2228,7 @@ Scenario: Host A (192.168.1.10) wants to send data to Host B (192.168.1.20).
                   <div class="party-node server-node" style="padding: 0.6rem 1.25rem;">
                     <div style="font-size: 1.25rem;">🖥️</div>
                     <div style="font-weight: 700; color: #34d399;">Server (Port 443 / 80)</div>
-                    <div style="font-size: 0.7rem; color: var(--text-muted);">Listening Socket</div>
-                  </div>
-                </div>
+                    <div style="font-size: 0.7rem; color: var(--text-muted);">Listening Socket</div></div>
 
                 <div class="seq-timeline" style="margin-top: 1.25rem; gap: 1.25rem;">
                   <!-- Step 1: SYN -->
@@ -2315,9 +2263,7 @@ Scenario: Host A (192.168.1.10) wants to send data to Host B (192.168.1.20).
 
                   <div style="text-align: center; padding: 0.5rem; background: rgba(16, 185, 129, 0.15); border: 1px solid #10b981; border-radius: 6px; color: #34d399; font-weight: 700; font-size: 0.85rem;">
                     🎉 FULL-DUPLEX TCP SOCKET SYNCHRONIZED &amp; ESTABLISHED
-                  </div>
-                </div>
-              </div>
+                  </div></div>
 
               <div class="visual-explainer-grid">
                 <div class="explainer-box happening">
@@ -2338,9 +2284,7 @@ Scenario: Host A (192.168.1.10) wants to send data to Host B (192.168.1.20).
                   <div class="explainer-label">🌍 Real-Life Analogy</div>
                   <div class="explainer-text">
                     Like a walkie-talkie protocol: Alice: <em>"Bob, do you copy? (SYN)"</em> &bull; Bob: <em>"Copy that Alice, loud and clear! Can you hear me? (SYN-ACK)"</em> &bull; Alice: <em>"Hearing you clearly Bob, ready to speak! (ACK)"</em>.
-                  </div>
-                </div>
-              </div>
+                  </div></div>
             </div>
 
             <div class="concept-card">
@@ -2418,9 +2362,7 @@ Scenario: Host A (192.168.1.10) wants to send data to Host B (192.168.1.20).
               </button>
               <div class="challenge-answer">
                 <p><strong>Answer:</strong> UDP (specifically port 53 for standard DNS queries, port 67/68 for DHCP) because queries are single-request/single-response transactions where establishing a 3-way TCP handshake would double latency.</p>
-              </div>
-            </div>
-          </div>
+              </div></div>
 
 <h2 style="font-size: 1.85rem; font-weight: 800; margin-bottom: 1rem; color: #f8fafc;">
               UDP &amp; The Master TCP vs UDP Comparison
@@ -2430,7 +2372,7 @@ Scenario: Host A (192.168.1.10) wants to send data to Host B (192.168.1.20).
             </p>
 
             <div style="overflow-x: auto; margin-bottom: 1.5rem;">
-              <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.88rem;">
+              <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.88rem;">
                 <thead>
                   <tr style="background: #0f172a; border-bottom: 2px solid #334155; color: #38bdf8;">
                     <th style="padding: 0.6rem 0.8rem;">Feature</th>
@@ -2470,7 +2412,7 @@ Scenario: Host A (192.168.1.10) wants to send data to Host B (192.168.1.20).
                     <td style="padding: 0.6rem 0.8rem;">Video calling (Zoom), Online gaming, DNS queries, VoIP</td>
                   </tr>
                 </tbody>
-              </table>
+              </table></div>
             </div>
           </section>
 
@@ -2523,9 +2465,7 @@ Scenario: Host A (192.168.1.10) wants to send data to Host B (192.168.1.20).
                     <li><code>503 Service Unavailable</code>: Overload/maintenance.</li>
                     <li><code>504 Gateway Timeout</code>: Upstream proxy timeout.</li>
                   </ul>
-                </div>
-              </div>
-            </div>
+                </div></div>
           </section>
 
           <!-- Section 41 & 42: FTP & Email Protocols -->
@@ -2573,7 +2513,7 @@ Scenario: Host A (192.168.1.10) wants to send data to Host B (192.168.1.20).
             </p>
 
             <div style="overflow-x: auto;">
-              <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.88rem;">
+              <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.88rem;">
                 <thead>
                   <tr style="background: #0f172a; border-bottom: 2px solid #334155; color: #38bdf8;">
                     <th style="padding: 0.6rem 0.8rem;">Feature</th>
@@ -2608,7 +2548,7 @@ Scenario: Host A (192.168.1.10) wants to send data to Host B (192.168.1.20).
                     <td style="padding: 0.6rem 0.8rem; color: #34d399;">Breaks and isolates broadcast domains</td>
                   </tr>
                 </tbody>
-              </table>
+              </table></div>
             </div>
           </section>
 
@@ -2750,9 +2690,7 @@ STEP 6: Test DNS Resolution ────> 'nslookup google.com' (Validates DNS n
               </button>
               <div class="challenge-answer">
                 <p><strong>Answer:</strong> Availability (authorized users are completely blocked from accessing legitimate data and services).</p>
-              </div>
-            </div>
-          </div>
+              </div></div>
 
 <h2 style="font-size: 1.85rem; font-weight: 800; margin-bottom: 1rem; color: #f8fafc;">
               The CIA Triad: Confidentiality, Integrity &amp; Availability
@@ -2799,9 +2737,7 @@ STEP 6: Test DNS Resolution ────> 'nslookup google.com' (Validates DNS n
                 <div style="font-size: 0.8rem; color: var(--text-muted);">
                   <strong>Primary Controls:</strong> Server clustering, Load Balancers, DDoS scrubbing, automated backups.<br>
                   <strong>Violation Example:</strong> A massive 500 Gbps SYN flood knocking down an e-commerce checkout server during a Black Friday sale.
-                </div>
-              </div>
-            </div>
+                </div></div>
           </section>
 
           <!-- Section 49 & 50: Authentication vs Authorization & AAA -->
@@ -2865,9 +2801,7 @@ STEP 6: Test DNS Resolution ────> 'nslookup google.com' (Validates DNS n
                 <div class="explainer-box analogy">
                   <div class="explainer-label">🌍 Real-Life Example</div>
                   <p>Commercial Flight: Showing passport to TSA is Authentication; boarding pass assigning Economy seat 18B is Authorization; gate manifest logging when you boarded is Accounting.</p>
-                </div>
-              </div>
-            </div>
+                </div></div>
 
             <div class="trap-box">
               <strong style="color: #ef4444;">⚠️ Placement Interview Scenario:</strong><br>
@@ -2944,7 +2878,7 @@ Receiver decrypts signature with SENDER'S PUBLIC KEY ➔ Compares hashes. Matche
 
             <!-- Encryption vs Hashing Comparison Table -->
             <div style="overflow-x: auto; margin-top: 1.25rem;">
-              <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.88rem;">
+              <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.88rem;">
                 <thead>
                   <tr style="background: #0f172a; border-bottom: 2px solid #334155; color: #38bdf8;">
                     <th style="padding: 0.6rem 0.8rem;">Feature</th>
@@ -2974,7 +2908,7 @@ Receiver decrypts signature with SENDER'S PUBLIC KEY ➔ Compares hashes. Matche
                     <td style="padding: 0.6rem 0.8rem;">SHA-256, SHA-3, bcrypt, Argon2 (MD5/SHA1 are deprecated)</td>
                   </tr>
                 </tbody>
-              </table>
+              </table></div>
             </div>
           </section>
 
@@ -3003,7 +2937,7 @@ Internet ───> [ 1. FIREWALL ] ───> [ 2. INLINE IPS ] ───> Prot
             </div>
 
             <div style="overflow-x: auto; margin-bottom: 1.5rem;">
-              <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.88rem;">
+              <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.88rem;">
                 <thead>
                   <tr style="background: #0f172a; border-bottom: 2px solid #334155; color: #38bdf8;">
                     <th style="padding: 0.6rem 0.8rem;">Security System</th>
@@ -3032,7 +2966,7 @@ Internet ───> [ 1. FIREWALL ] ───> [ 2. INLINE IPS ] ───> Prot
                     <td style="padding: 0.6rem 0.8rem; color: #34d399;">Immediately resets TCP sockets and drops attack packets in real time.</td>
                   </tr>
                 </tbody>
-              </table>
+              </table></div>
             </div>
           </section>
 
@@ -3119,9 +3053,7 @@ Internet ───> [ 1. FIREWALL ] ───> [ 2. INLINE IPS ] ───> Prot
                 </div>
                 <div style="background:#0F172A; border-left:3px solid #E11D48; padding:10px; border-radius:6px;">
                   <strong style="color:#FB7185; font-size:0.85rem;">8. Social Engineering</strong>
-                  <div style="font-size:0.8rem; color:var(--text-secondary);">Spear phishing, executive BEC fraud, pretexting, watering hole attacks.</div>
-                </div>
-              </div>
+                  <div style="font-size:0.8rem; color:var(--text-secondary);">Spear phishing, executive BEC fraud, pretexting, watering hole attacks.</div></div>
 
               <div class="visual-explainer-grid">
                 <div class="explainer-box happening">
@@ -3135,9 +3067,7 @@ Internet ───> [ 1. FIREWALL ] ───> [ 2. INLINE IPS ] ───> Prot
                 <div class="explainer-box analogy">
                   <div class="explainer-label">🌍 Real-Life Example</div>
                   <p>Bank Security: Reconnaissance is casing the bank branch; Spoofing is fake uniforms; DoS is blocking the front doors with a crowd; Exploitation is picking the vault combination.</p>
-                </div>
-              </div>
-            </div>
+                </div></div>
           </section>
 
           <!-- Section 67 to 73: Phishing, Spoofing, Sniffing, MITM, DoS/DDoS, Password Attacks -->
@@ -3225,7 +3155,7 @@ Internet ───> [ 1. FIREWALL ] ───> [ 2. INLINE IPS ] ───> Prot
             </p>
 
             <div style="overflow-x: auto; margin-bottom: 1.5rem;">
-              <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.88rem;">
+              <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.88rem;">
                 <thead>
                   <tr style="background: #0f172a; border-bottom: 2px solid #334155; color: #38bdf8;">
                     <th style="padding: 0.6rem 0.8rem;">Parameter</th>
@@ -3255,7 +3185,7 @@ Internet ───> [ 1. FIREWALL ] ───> [ 2. INLINE IPS ] ───> Prot
                     <td style="padding: 0.6rem 0.8rem; color: #34d399;"><strong>Context-Aware Output Encoding</strong>, <code>HttpOnly</code> cookie flags, Content Security Policy (CSP).</td>
                   </tr>
                 </tbody>
-              </table>
+              </table></div>
             </div>
 
             <div class="concept-card">
@@ -3278,7 +3208,7 @@ Internet ───> [ 1. FIREWALL ] ───> [ 2. INLINE IPS ] ───> Prot
               Malware Taxonomy: Virus vs Worm vs Trojan vs Ransomware
             </h2>
             <div style="overflow-x: auto;">
-              <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.88rem;">
+              <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.88rem;">
                 <thead>
                   <tr style="background: #0f172a; border-bottom: 2px solid #334155; color: #38bdf8;">
                     <th style="padding: 0.6rem 0.8rem;">Malware Type</th>
@@ -3319,7 +3249,7 @@ Internet ───> [ 1. FIREWALL ] ───> [ 2. INLINE IPS ] ───> Prot
                     <td style="padding: 0.6rem 0.8rem;">Silently awaits instructions from botnet master to execute synchronized DDoS floods or crypto-mining.</td>
                   </tr>
                 </tbody>
-              </table>
+              </table></div>
             </div>
           </section>
 
@@ -3387,9 +3317,7 @@ Internet ───> [ 1. FIREWALL ] ───> [ 2. INLINE IPS ] ───> Prot
                 <div class="explainer-box analogy">
                   <div class="explainer-label">🌍 Real-Life Example</div>
                   <p>Embassy Security: Visitors enter the consular visa waiting room (DMZ) through the outer security gate (External Firewall), but are strictly barred from entering the diplomatic classified chambers (Private Intranet) guarded by armed inner guards (Internal Firewall).</p>
-                </div>
-              </div>
-            </div>
+                </div></div>
 
             <div class="concept-card">
               <h4 style="color: #38bdf8; margin-bottom: 0.5rem;">NIST SP 800-207 Zero Trust Core Tenets:</h4>
@@ -3542,9 +3470,7 @@ Internet ───> [ 1. FIREWALL ] ───> [ 2. INLINE IPS ] ───> Prot
                 <div class="pipeline-node" style="border-left: 3px solid #f43f5e;">
                   <div class="node-icon">🎨</div>
                   <div class="node-label">5. DOM Render</div>
-                  <div class="node-subtext">DOM &plus; CSSOM &rarr; Render Tree &rarr; Paint</div>
-                </div>
-              </div>
+                  <div class="node-subtext">DOM &plus; CSSOM &rarr; Render Tree &rarr; Paint</div></div>
 
               <div class="visual-explainer-grid">
                 <div class="explainer-box happening">
@@ -3565,9 +3491,7 @@ Internet ───> [ 1. FIREWALL ] ───> [ 2. INLINE IPS ] ───> Prot
                   <div class="explainer-label">🌍 Real-Life Analogy</div>
                   <div class="explainer-text">
                     Like calling a restaurant for takeout: You look up the phone number in the contacts directory (DNS), dial the area code and establish a ringing line (TCP), verify the manager's restaurant credentials (TLS), order your meal (HTTP GET), and eat the delivered dish (DOM Paint).
-                  </div>
-                </div>
-              </div>
+                  </div></div>
             </div>
           </section>
 
@@ -7289,9 +7213,7 @@ Internet ───> [ 1. FIREWALL ] ───> [ 2. INLINE IPS ] ───> Prot
                   </div>
                   <div>
                     <strong style="color:#38bdf8;">📌 Interview Key Point:</strong> OSI is a conceptual reference framework; the 4-layer TCP/IP suite was practically implemented and adopted on ARPANET first.
-                  </div>
-                </div>
-              </div>
+                  </div></div>
 
               <!-- Interview Q2 -->
               <div class="concept-card" style="border-left: 4px solid #38bdf8; padding: 1.5rem;">
@@ -7315,9 +7237,7 @@ Internet ───> [ 1. FIREWALL ] ───> [ 2. INLINE IPS ] ───> Prot
                   </div>
                   <div>
                     <strong style="color:#38bdf8;">📌 Interview Key Point:</strong> Yes! The developer must implement sequencing, timeouts, and ACKs at Layer 7 in the application code (e.g., HTTP/3 over QUIC).
-                  </div>
-                </div>
-              </div>
+                  </div></div>
 
               <!-- Interview Q3 -->
               <div class="concept-card" style="border-left: 4px solid #38bdf8; padding: 1.5rem;">
@@ -7341,9 +7261,7 @@ Internet ───> [ 1. FIREWALL ] ───> [ 2. INLINE IPS ] ───> Prot
                   </div>
                   <div>
                     <strong style="color:#38bdf8;">📌 Interview Key Point:</strong> During the TLS Handshake (Step 5) when verifying the server's X.509 certificate trust chain.
-                  </div>
-                </div>
-              </div>
+                  </div></div>
 
               <!-- Interview Q4 -->
               <div class="concept-card" style="border-left: 4px solid #38bdf8; padding: 1.5rem;">
@@ -7367,9 +7285,7 @@ Internet ───> [ 1. FIREWALL ] ───> [ 2. INLINE IPS ] ───> Prot
                   </div>
                   <div>
                     <strong style="color:#38bdf8;">📌 Interview Key Point:</strong> Authoritative holds the actual master DNS records for a domain; Recursive hunts down the answer on behalf of client machines.
-                  </div>
-                </div>
-              </div>
+                  </div></div>
 
               <!-- Interview Q5 -->
               <div class="concept-card" style="border-left: 4px solid #38bdf8; padding: 1.5rem;">
@@ -7393,9 +7309,7 @@ Internet ───> [ 1. FIREWALL ] ───> [ 2. INLINE IPS ] ───> Prot
                   </div>
                   <div>
                     <strong style="color:#38bdf8;">📌 Interview Key Point:</strong> An APIPA address in the range 169.254.0.0/16.
-                  </div>
-                </div>
-              </div>
+                  </div></div>
 
               <!-- Interview Q6 -->
               <div class="concept-card" style="border-left: 4px solid #38bdf8; padding: 1.5rem;">
@@ -7419,9 +7333,7 @@ Internet ───> [ 1. FIREWALL ] ───> [ 2. INLINE IPS ] ───> Prot
                   </div>
                   <div>
                     <strong style="color:#38bdf8;">📌 Interview Key Point:</strong> ARP lacks authentication; any node can send unsolicited gratuitous ARP replies to poison switch MAC tables (ARP Spoofing/Poisoning).
-                  </div>
-                </div>
-              </div>
+                  </div></div>
 
               <!-- Interview Q7 -->
               <div class="concept-card" style="border-left: 4px solid #38bdf8; padding: 1.5rem;">
@@ -7445,9 +7357,7 @@ Internet ───> [ 1. FIREWALL ] ───> [ 2. INLINE IPS ] ───> Prot
                   </div>
                   <div>
                     <strong style="color:#38bdf8;">📌 Interview Key Point:</strong> No, it points to the local Default Gateway router's MAC address.
-                  </div>
-                </div>
-              </div>
+                  </div></div>
 
               <!-- Interview Q8 -->
               <div class="concept-card" style="border-left: 4px solid #38bdf8; padding: 1.5rem;">
@@ -7471,9 +7381,7 @@ Internet ───> [ 1. FIREWALL ] ───> [ 2. INLINE IPS ] ───> Prot
                   </div>
                   <div>
                     <strong style="color:#38bdf8;">📌 Interview Key Point:</strong> A high-speed switch that performs Layer 2 switching in hardware while also routing Layer 3 IP packets between VLANs at wire speed.
-                  </div>
-                </div>
-              </div>
+                  </div></div>
 
               <!-- Interview Q9 -->
               <div class="concept-card" style="border-left: 4px solid #38bdf8; padding: 1.5rem;">
@@ -7497,9 +7405,7 @@ Internet ───> [ 1. FIREWALL ] ───> [ 2. INLINE IPS ] ───> Prot
                   </div>
                   <div>
                     <strong style="color:#38bdf8;">📌 Interview Key Point:</strong> 32 - 28 = 4 host bits; 2^4 - 2 = 14 usable host IPs.
-                  </div>
-                </div>
-              </div>
+                  </div></div>
 
               <!-- Interview Q10 -->
               <div class="concept-card" style="border-left: 4px solid #38bdf8; padding: 1.5rem;">
@@ -7523,9 +7429,7 @@ Internet ───> [ 1. FIREWALL ] ───> [ 2. INLINE IPS ] ───> Prot
                   </div>
                   <div>
                     <strong style="color:#38bdf8;">📌 Interview Key Point:</strong> A temporary short-lived high port (typically 49152-65535) chosen by the client OS to receive server replies.
-                  </div>
-                </div>
-              </div>
+                  </div></div>
 
               <!-- Interview Q11 -->
               <div class="concept-card" style="border-left: 4px solid #38bdf8; padding: 1.5rem;">
@@ -7549,9 +7453,7 @@ Internet ───> [ 1. FIREWALL ] ───> [ 2. INLINE IPS ] ───> Prot
                   </div>
                   <div>
                     <strong style="color:#38bdf8;">📌 Interview Key Point:</strong> TCP SYN Flood, where attackers send thousands of SYNs with spoofed IPs to exhaust the server's connection backlog memory.
-                  </div>
-                </div>
-              </div>
+                  </div></div>
 
               <!-- Interview Q12 -->
               <div class="concept-card" style="border-left: 4px solid #38bdf8; padding: 1.5rem;">
@@ -7575,9 +7477,7 @@ Internet ───> [ 1. FIREWALL ] ───> [ 2. INLINE IPS ] ───> Prot
                   </div>
                   <div>
                     <strong style="color:#38bdf8;">📌 Interview Key Point:</strong> No! HTTPS only encrypts the transit pipe; malicious application payloads will still compromise the server or browser if input validation is missing.
-                  </div>
-                </div>
-              </div>
+                  </div></div>
 
               <!-- Interview Q13 -->
               <div class="concept-card" style="border-left: 4px solid #38bdf8; padding: 1.5rem;">
@@ -7601,9 +7501,7 @@ Internet ───> [ 1. FIREWALL ] ───> [ 2. INLINE IPS ] ───> Prot
                   </div>
                   <div>
                     <strong style="color:#38bdf8;">📌 Interview Key Point:</strong> An advanced firewall capable of Layer 7 Deep Packet Inspection (DPI), application awareness, and integrated IPS capabilities.
-                  </div>
-                </div>
-              </div>
+                  </div></div>
 
               <!-- Interview Q14 -->
               <div class="concept-card" style="border-left: 4px solid #38bdf8; padding: 1.5rem;">
@@ -7627,9 +7525,7 @@ Internet ───> [ 1. FIREWALL ] ───> [ 2. INLINE IPS ] ───> Prot
                   </div>
                   <div>
                     <strong style="color:#38bdf8;">📌 Interview Key Point:</strong> Signature matches known threat patterns (like antivirus); Anomaly detects deviations from an established baseline of normal traffic behavior.
-                  </div>
-                </div>
-              </div>
+                  </div></div>
 
               <!-- Interview Q15 -->
               <div class="concept-card" style="border-left: 4px solid #38bdf8; padding: 1.5rem;">
@@ -7653,9 +7549,7 @@ Internet ───> [ 1. FIREWALL ] ───> [ 2. INLINE IPS ] ───> Prot
                   </div>
                   <div>
                     <strong style="color:#38bdf8;">📌 Interview Key Point:</strong> Remote Access connects individual telecommuters to the corporate network; Site-to-Site connects two entire permanent branch office networks together.
-                  </div>
-                </div>
-              </div>
+                  </div></div>
 
               <!-- Interview Q16 -->
               <div class="concept-card" style="border-left: 4px solid #38bdf8; padding: 1.5rem;">
@@ -7679,9 +7573,7 @@ Internet ───> [ 1. FIREWALL ] ───> [ 2. INLINE IPS ] ───> Prot
                   </div>
                   <div>
                     <strong style="color:#38bdf8;">📌 Interview Key Point:</strong> Both Availability (systems locked) and Confidentiality (data exfiltration/extortion).
-                  </div>
-                </div>
-              </div>
+                  </div></div>
 
               <!-- Interview Q17 -->
               <div class="concept-card" style="border-left: 4px solid #38bdf8; padding: 1.5rem;">
@@ -7705,9 +7597,7 @@ Internet ───> [ 1. FIREWALL ] ───> [ 2. INLINE IPS ] ───> Prot
                   </div>
                   <div>
                     <strong style="color:#38bdf8;">📌 Interview Key Point:</strong> Accounting (Auditing): tracking what actions users perform and when.
-                  </div>
-                </div>
-              </div>
+                  </div></div>
 
               <!-- Interview Q18 -->
               <div class="concept-card" style="border-left: 4px solid #38bdf8; padding: 1.5rem;">
@@ -7731,9 +7621,7 @@ Internet ───> [ 1. FIREWALL ] ───> [ 2. INLINE IPS ] ───> Prot
                   </div>
                   <div>
                     <strong style="color:#38bdf8;">📌 Interview Key Point:</strong> AES-256 is thousands of times faster and hardware-accelerated by modern CPU instructions (AES-NI).
-                  </div>
-                </div>
-              </div>
+                  </div></div>
 
               <!-- Interview Q19 -->
               <div class="concept-card" style="border-left: 4px solid #38bdf8; padding: 1.5rem;">
@@ -7757,9 +7645,7 @@ Internet ───> [ 1. FIREWALL ] ───> [ 2. INLINE IPS ] ───> Prot
                   </div>
                   <div>
                     <strong style="color:#38bdf8;">📌 Interview Key Point:</strong> Fast hashes can be brute-forced at billions of guesses per second on modern GPUs. Passwords require slow, salted, memory-hard algorithms like bcrypt or Argon2.
-                  </div>
-                </div>
-              </div>
+                  </div></div>
 
               <!-- Interview Q20 -->
               <div class="concept-card" style="border-left: 4px solid #38bdf8; padding: 1.5rem;">
@@ -7783,9 +7669,7 @@ Internet ───> [ 1. FIREWALL ] ───> [ 2. INLINE IPS ] ───> Prot
                   </div>
                   <div>
                     <strong style="color:#38bdf8;">📌 Interview Key Point:</strong> No, it only encrypts the hash digest; the document remains readable unless encrypted separately.
-                  </div>
-                </div>
-              </div>
+                  </div></div>
 
               <!-- Interview Q21 -->
               <div class="concept-card" style="border-left: 4px solid #38bdf8; padding: 1.5rem;">
@@ -7809,9 +7693,7 @@ Internet ───> [ 1. FIREWALL ] ───> [ 2. INLINE IPS ] ───> Prot
                   </div>
                   <div>
                     <strong style="color:#38bdf8;">📌 Interview Key Point:</strong> Attackers can bypass the browser entirely by sending crafted HTTP POST payloads directly via cURL, Python scripts, or Postman.
-                  </div>
-                </div>
-              </div>
+                  </div></div>
 
               <!-- Interview Q22 -->
               <div class="concept-card" style="border-left: 4px solid #38bdf8; padding: 1.5rem;">
@@ -7835,9 +7717,7 @@ Internet ───> [ 1. FIREWALL ] ───> [ 2. INLINE IPS ] ───> Prot
                   </div>
                   <div>
                     <strong style="color:#38bdf8;">📌 Interview Key Point:</strong> It instructs the browser to block client-side JavaScript (document.cookie) from accessing the session cookie, preventing token theft.
-                  </div>
-                </div>
-              </div>
+                  </div></div>
 
               <!-- Interview Q23 -->
               <div class="concept-card" style="border-left: 4px solid #38bdf8; padding: 1.5rem;">
@@ -7861,9 +7741,7 @@ Internet ───> [ 1. FIREWALL ] ───> [ 2. INLINE IPS ] ───> Prot
                   </div>
                   <div>
                     <strong style="color:#38bdf8;">📌 Interview Key Point:</strong> Anycast advertises the same IP address from dozens of data centers worldwide, dispersing flood traffic across regional edge nodes to absorb the volume.
-                  </div>
-                </div>
-              </div>
+                  </div></div>
 
               <!-- Interview Q24 -->
               <div class="concept-card" style="border-left: 4px solid #38bdf8; padding: 1.5rem;">
@@ -7887,9 +7765,7 @@ Internet ───> [ 1. FIREWALL ] ───> [ 2. INLINE IPS ] ───> Prot
                   </div>
                   <div>
                     <strong style="color:#38bdf8;">📌 Interview Key Point:</strong> No! NAT is an address mapping technology; it does not perform deep packet inspection, threat detection, or protocol verification.
-                  </div>
-                </div>
-              </div>
+                  </div></div>
 
               <!-- Interview Q25 -->
               <div class="concept-card" style="border-left: 4px solid #38bdf8; padding: 1.5rem;">
@@ -7913,9 +7789,7 @@ Internet ───> [ 1. FIREWALL ] ───> [ 2. INLINE IPS ] ───> Prot
                   </div>
                   <div>
                     <strong style="color:#38bdf8;">📌 Interview Key Point:</strong> Because the DMZ has an exposed public attack surface; if breached, an attacker would have direct physical access to crown-jewel databases.
-                  </div>
-                </div>
-              </div>
+                  </div></div>
 
               <!-- Interview Q26 -->
               <div class="concept-card" style="border-left: 4px solid #38bdf8; padding: 1.5rem;">
@@ -7939,9 +7813,7 @@ Internet ───> [ 1. FIREWALL ] ───> [ 2. INLINE IPS ] ───> Prot
                   </div>
                   <div>
                     <strong style="color:#38bdf8;">📌 Interview Key Point:</strong> It isolates workloads into granular software-defined zones, preventing an attacker who compromises one server from moving laterally across the network.
-                  </div>
-                </div>
-              </div>
+                  </div></div>
 
               <!-- Interview Q27 -->
               <div class="concept-card" style="border-left: 4px solid #38bdf8; padding: 1.5rem;">
@@ -7965,9 +7837,7 @@ Internet ───> [ 1. FIREWALL ] ───> [ 2. INLINE IPS ] ───> Prot
                   </div>
                   <div>
                     <strong style="color:#38bdf8;">📌 Interview Key Point:</strong> DHCP Snooping, which designates switch ports as either 'trusted' (connected to legitimate DHCP servers) or 'untrusted' (client ports).
-                  </div>
-                </div>
-              </div>
+                  </div></div>
 
               <!-- Interview Q28 -->
               <div class="concept-card" style="border-left: 4px solid #38bdf8; padding: 1.5rem;">
@@ -7991,9 +7861,7 @@ Internet ───> [ 1. FIREWALL ] ───> [ 2. INLINE IPS ] ───> Prot
                   </div>
                   <div>
                     <strong style="color:#38bdf8;">📌 Interview Key Point:</strong> BGP was created in 1989 for a small, cooperative academic/military network where all network operators implicitly trusted each other.
-                  </div>
-                </div>
-              </div>
+                  </div></div>
 
               <!-- Interview Q29 -->
               <div class="concept-card" style="border-left: 4px solid #38bdf8; padding: 1.5rem;">
@@ -8017,9 +7885,7 @@ Internet ───> [ 1. FIREWALL ] ───> [ 2. INLINE IPS ] ───> Prot
                   </div>
                   <div>
                     <strong style="color:#38bdf8;">📌 Interview Key Point:</strong> BDP = Bandwidth (bits/sec) x RTT (seconds). It represents the maximum amount of data in transit across the link at any moment.
-                  </div>
-                </div>
-              </div>
+                  </div></div>
 
               <!-- Interview Q30 -->
               <div class="concept-card" style="border-left: 4px solid #38bdf8; padding: 1.5rem;">
@@ -8043,9 +7909,7 @@ Internet ───> [ 1. FIREWALL ] ───> [ 2. INLINE IPS ] ───> Prot
                   </div>
                   <div>
                     <strong style="color:#38bdf8;">📌 Interview Key Point:</strong> TLS 1.3.
-                  </div>
-                </div>
-              </div>
+                  </div></div>
 
             </div>
           </section>
@@ -8462,10 +8326,7 @@ Internet ───> [ 1. FIREWALL ] ───> [ 2. INLINE IPS ] ───> Prot
                 </div>
                 <div style="font-size:0.82rem; color:var(--text-muted); line-height:1.5;">
                   <strong style="color:#38bdf8;">🔧 Remediation Action:</strong> Use a trusted VPN tunnel for all traffic and ensure all browser connections strictly use HTTPS.
-                </div>
-              </div>
-
-            </div>
+                </div></div>
           </section>
 
           <!-- Section 92: 20 Meaningful Diagrams Catalog -->
@@ -8558,9 +8419,7 @@ Internet ───> [ 1. FIREWALL ] ───> [ 2. INLINE IPS ] ───> Prot
                 </p>
                 <div style="font-size:0.85rem; color:var(--text-muted); line-height:1.5; margin-top:0.75rem;">
                   <strong style="color:#f8fafc;">Placement Key:</strong> Browsers (Chrome, Edge) are software applications; the Application Layer defines the protocols they speak (HTTP/HTTPS)!
-                </div>
-              </div>
-            </div>
+                </div></div>
           </section>
 
           <!-- Section 94: Searchable Protocol Table -->
@@ -8577,7 +8436,7 @@ Internet ───> [ 1. FIREWALL ] ───> [ 2. INLINE IPS ] ───> Prot
             </div>
 
             <div style="overflow-x: auto;">
-              <table id="protocol-table" style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.88rem;">
+              <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table id="protocol-table" style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.88rem;">
                 <thead>
                   <tr style="background: #0f172a; border-bottom: 2px solid #334155; color: #38bdf8;">
                     <th style="padding: 0.6rem 0.8rem;">Protocol</th>
@@ -8609,7 +8468,7 @@ Internet ───> [ 1. FIREWALL ] ───> [ 2. INLINE IPS ] ───> Prot
                   <tr style="border-bottom: 1px solid #1e293b;"><td>IMAPS</td><td>993</td><td>TCP</td><td>Application</td><td>IMAP over TLS (Encrypted email sync)</td></tr>
                   <tr><td>RDP</td><td>3389</td><td>TCP</td><td>Application</td><td>Remote Desktop Protocol (Windows GUI remote desktop)</td></tr>
                 </tbody>
-              </table>
+              </table></div>
             </div>
           </section>
 
@@ -8623,7 +8482,7 @@ Internet ───> [ 1. FIREWALL ] ───> [ 2. INLINE IPS ] ───> Prot
               Enterprise Security Tools Comparison Matrix
             </h2>
             <div style="overflow-x: auto;">
-              <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.88rem;">
+              <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.88rem;">
                 <thead>
                   <tr style="background: #0f172a; border-bottom: 2px solid #334155; color: #38bdf8;">
                     <th style="padding: 0.6rem 0.8rem;">Tool / System</th>
@@ -8670,7 +8529,7 @@ Internet ───> [ 1. FIREWALL ] ───> [ 2. INLINE IPS ] ───> Prot
                     <td style="padding: 0.6rem 0.8rem;">Correlates logs from firewalls, servers, and switches to detect APTs</td>
                   </tr>
                 </tbody>
-              </table>
+              </table></div>
             </div>
           </section>
 
@@ -8817,9 +8676,7 @@ Internet ───> [ 1. FIREWALL ] ───> [ 2. INLINE IPS ] ───> Prot
                   • Signature = Non-repudiation (Signed with Private key).<br>
                   • SQLi Defense = Parameterized Queries.<br>
                   • XSS Defense = Context-aware Output Encoding.
-                </div>
-              </div>
-            </div>
+                </div></div>
           </section>
 
         </article>
@@ -9019,6 +8876,75 @@ Internet ───> [ 1. FIREWALL ] ───> [ 2. INLINE IPS ] ───> Prot
           if (isMobile.matches) closeTOC();
         });
       });
+    })();
+  </script>
+  <script>
+    /* ── Scroll Indicator System ────────────────────────────── */
+    (function () {
+      /* 1. Scroll-fade: add .at-end class when scrolled all the way */
+      function setupScrollFade(el) {
+        function check() {
+          var atH = el.scrollLeft + el.clientWidth >= el.scrollWidth - 4;
+          var atV = el.scrollTop  + el.clientHeight >= el.scrollHeight - 4;
+          el.classList.toggle('at-end', atH && atV);
+        }
+        el.addEventListener('scroll', check, { passive: true });
+        check();
+      }
+
+      /* 2. Scroll hint label: inject below horizontally scrollable elements */
+      function addScrollHint(el) {
+        if (el.scrollWidth > el.clientWidth + 8) {
+          var label = document.createElement('div');
+          label.className = 'scroll-hint-label';
+          label.textContent = 'scroll';
+          el.parentNode.insertBefore(label, el.nextSibling);
+        }
+      }
+
+      /* 3. Apply scroll-x-wrap fade to relevant containers */
+      function applyFades() {
+        var xSelectors = [
+          '.table-responsive-wrapper',
+          '.diagram-card',
+          '.visual-canvas',
+          '.katex-display-wrapper',
+          '.diagram-box',
+          '.notes-diagram-box'
+        ];
+        var ySelectors = [
+          '.notes-toc-sidebar',
+          '.notes-sidebar',
+          'pre',
+          '.notes-code'
+        ];
+
+        xSelectors.forEach(function(sel) {
+          document.querySelectorAll(sel).forEach(function(el) {
+            el.classList.add('scroll-x-wrap');
+            setupScrollFade(el);
+            addScrollHint(el);
+          });
+        });
+
+        ySelectors.forEach(function(sel) {
+          document.querySelectorAll(sel).forEach(function(el) {
+            if (el.scrollHeight > el.clientHeight + 8) {
+              el.classList.add('scroll-y-wrap');
+              setupScrollFade(el);
+            }
+          });
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', applyFades);
+      } else {
+        applyFades();
+      }
+
+      /* Re-check after layout settles (fonts, KaTeX, images) */
+      window.addEventListener('load', applyFades);
     })();
   </script></body>
 </html>

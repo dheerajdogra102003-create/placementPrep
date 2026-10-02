@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="../css/notes.css">
   <link rel="stylesheet" href="../css/responsive.css">
   <link rel="stylesheet" href="../css/visual-learning.css">
+  <link rel="stylesheet" href="../css/scrollbars.css">
   <!-- KaTeX: Mathematical Rendering -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
 
@@ -296,9 +297,7 @@
         <div class="pipeline-node">
           <span class="node-step-badge">Pillar 04</span>
           <div class="node-title">⚙️ Processes &amp; Network</div>
-          <div class="node-desc">Process PIDs, <code>ps</code>, <code>top</code>, <code>kill -9</code>, <code>ping</code>, <code>netstat</code>, <code>curl</code></div>
-        </div>
-      </div>
+          <div class="node-desc">Process PIDs, <code>ps</code>, <code>top</code>, <code>kill -9</code>, <code>ping</code>, <code>netstat</code>, <code>curl</code></div></div>
     </div>
 
     <!-- Pedagogical 3-Part Explainer -->
@@ -322,9 +321,7 @@
         <p class="explainer-content">
           A terminal is like a TV screen showing the game, while the shell is the game engine processing the rules. Piping commands (<code>command1 | command2</code>) is like an assembly factory line where one worker's finished output becomes the next worker's raw material.
         </p>
-      </div>
-    </div>
-  </div>
+      </div></div>
 </section>
 
 <!-- ==========================================
@@ -350,7 +347,7 @@
 
       <div class="diagram-title">⚖️ GUI vs CLI: The Production Paradigm</div>
       <div class="table-responsive">
-        <table class="notes-table">
+        <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
           <thead>
             <tr>
               <th>Dimension</th>
@@ -380,9 +377,7 @@
               <td>Universal: Servers are managed exclusively via remote SSH command terminals.</td>
             </tr>
           </tbody>
-        </table>
-      </div>
-    </div>
+        </table></div></div>
   </div>
 </section>
 
@@ -419,9 +414,7 @@
             <div class="layer-badge" style="background: #0284c7; color: #fff;">Window</div>
             <div class="layer-info">
               <div class="layer-name">Terminal Emulator (GUI Container)</div>
-              <div class="layer-desc">Draws window, renders fonts/colors, captures keyboard strokes. (Windows Terminal, GNOME Terminal, iTerm2).</div>
-            </div>
-          </div>
+              <div class="layer-desc">Draws window, renders fonts/colors, captures keyboard strokes. (Windows Terminal, GNOME Terminal, iTerm2).</div></div>
 
           <div style="text-align: center; color: #38bdf8; font-size: 0.75rem; font-weight: 700;">&darr; Character stream byte pipes (stdin/stdout) &darr;</div>
 
@@ -429,9 +422,7 @@
             <div class="layer-badge" style="background: #059669; color: #fff;">Parser</div>
             <div class="layer-info">
               <div class="layer-name">Command Shell (Command Interpreter)</div>
-              <div class="layer-desc">Expands variables ($PATH), connects pipelines (|), evaluates loops, forks sub-processes. (Bash, Zsh, PowerShell).</div>
-            </div>
-          </div>
+              <div class="layer-desc">Expands variables ($PATH), connects pipelines (|), evaluates loops, forks sub-processes. (Bash, Zsh, PowerShell).</div></div>
 
           <div style="text-align: center; color: #10b981; font-size: 0.75rem; font-weight: 700;">&darr; Privileged System Calls (fork, execve, read, write) &darr;</div>
 
@@ -439,9 +430,7 @@
             <div class="layer-badge" style="background: #7c3aed; color: #fff;">Kernel</div>
             <div class="layer-info">
               <div class="layer-name">Operating System Kernel (Linux / NT)</div>
-              <div class="layer-desc">Schedules CPU threads, allocates page RAM, manages disk drivers, controls network interfaces.</div>
-            </div>
-          </div>
+              <div class="layer-desc">Schedules CPU threads, allocates page RAM, manages disk drivers, controls network interfaces.</div></div>
         </div>
 
         <div class="visual-explainer-grid">
@@ -463,9 +452,7 @@
             <div class="explainer-label">🌍 Real-Life Analogy</div>
             <div class="explainer-text">
               The Terminal is the telephone handset (speaker &amp; microphone); the Shell is the human translator who understands foreign languages; the Kernel is the CEO executing decisions.
-            </div>
-          </div>
-        </div>
+            </div></div>
       </div>
 
       <div class="placement-trap-card" style="margin-top: 1.25rem;">
@@ -473,9 +460,7 @@
         <div class="placement-trap-body">
           <p><strong>Wrong Thinking:</strong> "Terminal is just another name for Bash."</p>
           <p><strong>Correct Thinking:</strong> The Terminal is purely the graphical window wrapper that displays text and takes keyboard input. The Shell is the underlying program that parses syntax, executes commands, and returns output. You can run Bash, Python, or PowerShell inside the exact same terminal window!</p>
-        </div>
-      </div>
-    </div>
+        </div></div>
   </div>
 </section>
 
@@ -501,7 +486,7 @@
       <p class="notes-paragraph">Freshers must frequently switch between local Windows workstations and cloud Linux servers. Memorize these direct command equivalents:</p>
 
       <div class="table-responsive">
-        <table class="notes-table">
+        <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
           <thead>
             <tr>
               <th>Operation</th>
@@ -578,9 +563,7 @@
               <td>Displays active network interfaces, IP addresses, and MAC addresses.</td>
             </tr>
           </tbody>
-        </table>
-      </div>
-    </div>
+        </table></div></div>
   </div>
 </section>
 
@@ -655,9 +638,7 @@
               </button>
               <div class="challenge-answer">
                 <p><strong>Answer:</strong> NO. Linux mounts all physical and virtual drives as directories attached into the single unified root (/) filesystem hierarchy (e.g. /mnt/usb or /media/drive).</p>
-              </div>
-            </div>
-          </div>
+              </div></div>
 
 <div class="topic-card">
     <div class="topic-card-header">
@@ -709,18 +690,14 @@
           <div class="explainer-box analogy">
             <div class="explainer-label">🌍 Real-Life Example</div>
             <p>Single skyscraper lobby: In Windows, every building in town has its own independent front door (C:\, D:\); in Linux, every office and floor is reached through one single Grand Central entrance lobby (/).</p>
-          </div>
-        </div>
-      </div>
+          </div></div>
 
       <div class="placement-trap-card" style="margin-top: 1.25rem;">
         <div class="placement-trap-header">⚠️ PLACEMENT TRAP #2: Slashes: Forward (/) vs Backslash (\)</div>
         <div class="placement-trap-body">
           <p><strong>Path Delimiters:</strong> Linux strictly uses forward slashes: <code>/home/user/app.py</code>. Windows historically uses backslashes: <code>C:\Users\User\app.py</code>.</p>
           <p><strong>In Code:</strong> In Python/Java strings, backslashes act as escape characters (<code>\n</code>, <code>\t</code>). Always use forward slashes in cross-platform code (<code>path = "data/input.csv"</code>)!</p>
-        </div>
-      </div>
-    </div>
+        </div></div>
   </div>
 </section>
 
@@ -744,7 +721,7 @@
     </div>
     <div class="topic-card-body">
       <div class="table-responsive">
-        <table class="notes-table">
+        <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
           <thead>
             <tr>
               <th>Path Type</th>
@@ -767,7 +744,7 @@
               <td>Context-dependent: Evaluated relative to your current location (<code>pwd</code>). Breaks if you change folders!</td>
             </tr>
           </tbody>
-        </table>
+        </table></div>
       </div>
 
       <h4 style="color: var(--brand-primary); margin-top: 1.5rem;">The Special Path Symbols</h4>
@@ -798,9 +775,7 @@
       <div class="scenario-box" style="margin-top:0.75rem;">
         <p><strong>Q5:</strong> Why does running <code>myscript.sh</code> fail in Linux even if the file is in the current folder?</p>
         <p><strong>Answer:</strong> For security, Linux does not search the current directory by default. You must explicitly specify relative path: <code>./myscript.sh</code>.</p>
-      </div>
-    </div>
-  </div>
+      </div></div>
 </section>
 
 <!-- ==========================================
@@ -905,9 +880,7 @@ rm -rf temporary_data/                # Force recursive deletion without confirm
         <div class="placement-trap-header">⚠️ PLACEMENT TRAP #3: The Lethal rm -rf / Command</div>
         <div class="placement-trap-body">
           <p><strong>Warning:</strong> In Linux, running <code>rm -rf /</code> as root instructs the OS to recursively force-delete every single file and system binary on the entire computer with zero confirmation. There is no "Recycle Bin" or "Undo" in Linux terminal deletion.</p>
-        </div>
-      </div>
-    </div>
+        </div></div>
   </div>
 </section>
 
@@ -931,7 +904,7 @@ rm -rf temporary_data/                # Force recursive deletion without confirm
     </div>
     <div class="topic-card-body">
       <div class="table-responsive">
-        <table class="notes-table">
+        <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
           <thead>
             <tr>
               <th>Feature</th>
@@ -961,7 +934,7 @@ rm -rf temporary_data/                # Force recursive deletion without confirm
               <td><code>findstr /s /i "error" *.log</code></td>
             </tr>
           </tbody>
-        </table>
+        </table></div>
       </div>
 
       <div class="code-block-header">Essential Search Patterns</div>
@@ -1007,9 +980,7 @@ grep -rni "database_url" ./src</code></pre>
         <div class="scenario-box-label">Output Verification Question</div>
         <p><strong>Question:</strong> A directory contains: <code>test.c</code>, <code>test1.c</code>, <code>test12.c</code>, <code>mytest.c</code>. What is the output of <code>ls test?.c</code>?</p>
         <p><strong>Answer:</strong> Only <code>test1.c</code>. (<code>test.c</code> has 0 characters after 'test'; <code>test12.c</code> has 2 characters; <code>mytest.c</code> doesn't start with 'test').</p>
-      </div>
-    </div>
-  </div>
+      </div></div>
 </section>
 
 <!-- ==========================================
@@ -1071,7 +1042,7 @@ ps aux --sort=-%mem | head -n 6</code></pre>
     </div>
     <div class="topic-card-body">
       <div class="table-responsive">
-        <table class="notes-table">
+        <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
           <thead>
             <tr>
               <th>Operator</th>
@@ -1100,7 +1071,7 @@ ps aux --sort=-%mem | head -n 6</code></pre>
               <td><code>mysql -u root db_name &lt; backup.sql</code></td>
             </tr>
           </tbody>
-        </table>
+        </table></div>
       </div>
 
       <div class="placement-trap-card" style="margin-top: 1.25rem;">
@@ -1108,9 +1079,7 @@ ps aux --sort=-%mem | head -n 6</code></pre>
         <div class="placement-trap-body">
           <p><strong>The Mistake:</strong> Running <code>cat file.txt &gt; file.txt</code> in an attempt to modify a file in-place.</p>
           <p><strong>The Catastrophe:</strong> The shell processes the redirection operator <code>&gt;</code> <em>before</em> executing the command, immediately truncating <code>file.txt</code> to 0 bytes! When <code>cat</code> reads it, the file is already empty, wiping your code permanently.</p>
-        </div>
-      </div>
-    </div>
+        </div></div>
   </div>
 </section>
 
@@ -1137,7 +1106,7 @@ ps aux --sort=-%mem | head -n 6</code></pre>
 
       <div class="diagram-title">📐 Standard Stream Integer Descriptors</div>
       <div class="table-responsive">
-        <table class="notes-table">
+        <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
           <thead>
             <tr>
               <th>File Descriptor</th>
@@ -1166,7 +1135,7 @@ ps aux --sort=-%mem | head -n 6</code></pre>
               <td><code>2&gt; error.log</code></td>
             </tr>
           </tbody>
-        </table>
+        </table></div>
       </div>
 
       <div class="code-block-header">Redirecting Errors & Output Together</div>
@@ -1208,7 +1177,7 @@ ps aux --sort=-%mem | head -n 6</code></pre>
       <p class="notes-paragraph">Environment variables are dynamic key-value pairs maintained by the operating system shell that configure running processes, database credentials, language runtimes, and system paths.</p>
 
       <div class="table-responsive">
-        <table class="notes-table">
+        <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
           <thead>
             <tr>
               <th>Operation</th>
@@ -1238,9 +1207,7 @@ ps aux --sort=-%mem | head -n 6</code></pre>
               <td>Use <code>setx PORT 3000</code> or Windows System GUI</td>
             </tr>
           </tbody>
-        </table>
-      </div>
-    </div>
+        </table></div></div>
   </div>
 </section>
 
@@ -1348,9 +1315,7 @@ ps aux --sort=-%mem | head -n 6</code></pre>
               </button>
               <div class="challenge-answer">
                 <p><strong>Answer:</strong> chmod 640 (User: 4+2=6, Group: 4=4, Others: 0=0).</p>
-              </div>
-            </div>
-          </div>
+              </div></div>
 
 <div class="topic-card">
     <div class="topic-card-header">
@@ -1414,12 +1379,10 @@ ps aux --sort=-%mem | head -n 6</code></pre>
           <div class="explainer-box analogy">
             <div class="explainer-label">🌍 Real-Life Example</div>
             <p>Bank Safety Deposit: The account holder has full access (Owner 7); the bank vault guard can open and inspect with key (Group 5); members of the public can only view the vault door (Others 0).</p>
-          </div>
-        </div>
-      </div>
+          </div></div>
 
       <div class="table-responsive" style="margin-top: 1.5rem;">
-        <table class="notes-table">
+        <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
           <thead>
             <tr>
               <th>Permission</th>
@@ -1434,11 +1397,11 @@ ps aux --sort=-%mem | head -n 6</code></pre>
             <tr><td><strong>Write</strong></td><td><code>w</code></td><td><code>010</code></td><td><strong>2</strong></td><td>Modify, overwrite, or delete file contents.</td></tr>
             <tr><td><strong>Execute</strong></td><td><code>x</code></td><td><code>001</code></td><td><strong>1</strong></td><td>Run the file as a program, script, or binary.</td></tr>
           </tbody>
-        </table>
+        </table></div>
       </div>
 
       <div class="table-responsive" style="margin-top: 1.5rem;">
-        <table class="notes-table">
+        <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
           <thead>
             <tr>
               <th>Octal Code</th>
@@ -1452,9 +1415,7 @@ ps aux --sort=-%mem | head -n 6</code></pre>
             <tr><td><code>chmod 600 id_rsa</code></td><td><code>rw-------</code></td><td>Private SSH keys (Strict privacy: Only the owner can read/write; no one else has access).</td></tr>
             <tr><td><code>chmod 777 danger.sh</code></td><td><code>rwxrwxrwx</code></td><td><strong>Severe Security Risk!</strong> Gives read, write, and execute permissions to anyone on the server.</td></tr>
           </tbody>
-        </table>
-      </div>
-    </div>
+        </table></div></div>
   </div>
 </section>
 
@@ -1512,7 +1473,7 @@ sudo chown -R ubuntu:ubuntu /var/www/projects/</code></pre>
       <p class="notes-paragraph">A <strong>Process</strong> is an actively executing instance of a program in RAM. Every process is uniquely identified by an integer called a <strong>Process ID (PID)</strong>.</p>
 
       <div class="table-responsive">
-        <table class="notes-table">
+        <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
           <thead>
             <tr>
               <th>Task</th>
@@ -1547,9 +1508,7 @@ sudo chown -R ubuntu:ubuntu /var/www/projects/</code></pre>
               <td><code>start /B python server.py</code></td>
             </tr>
           </tbody>
-        </table>
-      </div>
-    </div>
+        </table></div></div>
   </div>
 </section>
 
@@ -1574,7 +1533,7 @@ sudo chown -R ubuntu:ubuntu /var/www/projects/</code></pre>
     <div class="topic-card-body">
 
       <div class="table-responsive">
-        <table class="notes-table">
+        <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
           <thead>
             <tr>
               <th>Diagnostic Tool</th>
@@ -1609,7 +1568,7 @@ sudo chown -R ubuntu:ubuntu /var/www/projects/</code></pre>
               <td>Ideal for testing REST API endpoints headlessly.</td>
             </tr>
           </tbody>
-        </table>
+        </table></div>
       </div>
 
       <h4 style="color: var(--brand-amber); margin-top: 1.5rem;">Universal Default Networking Ports</h4>
@@ -1696,7 +1655,7 @@ ssh -i ~/.ssh/my-aws-key.pem ubuntu@54.210.12.44</code></pre>
     </div>
     <div class="topic-card-body">
       <div class="table-responsive">
-        <table class="notes-table">
+        <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
           <thead>
             <tr>
               <th>Directory</th>
@@ -1714,9 +1673,7 @@ ssh -i ~/.ssh/my-aws-key.pem ubuntu@54.210.12.44</code></pre>
             <tr><td><code>/usr</code></td><td>User System Resources</td><td>Non-essential multi-user applications, libraries (<code>/usr/lib</code>), and shareable data.</td></tr>
             <tr><td><code>/dev</code></td><td>Device Files</td><td>Virtual device interfaces representing hardware (e.g. <code>/dev/sda</code> disk, <code>/dev/null</code>).</td></tr>
           </tbody>
-        </table>
-      </div>
-    </div>
+        </table></div></div>
   </div>
 </section>
 
@@ -1742,7 +1699,7 @@ ssh -i ~/.ssh/my-aws-key.pem ubuntu@54.210.12.44</code></pre>
       <p class="notes-paragraph">Package managers automate software installation, dependency resolution, updates, and removal from central trusted repositories.</p>
 
       <div class="table-responsive">
-        <table class="notes-table">
+        <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
           <thead>
             <tr>
               <th>Linux Family</th>
@@ -1771,9 +1728,7 @@ ssh -i ~/.ssh/my-aws-key.pem ubuntu@54.210.12.44</code></pre>
               <td><code>sudo pacman -Syu nginx</code></td>
             </tr>
           </tbody>
-        </table>
-      </div>
-    </div>
+        </table></div></div>
   </div>
 </section>
 
@@ -1903,7 +1858,7 @@ pause</code></pre>
     </div>
     <div class="topic-card-body">
       <div class="table-responsive">
-        <table class="notes-table">
+        <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
           <thead>
             <tr>
               <th>Operator</th>
@@ -1932,9 +1887,7 @@ pause</code></pre>
               <td><code>clear ; ls -la</code></td>
             </tr>
           </tbody>
-        </table>
-      </div>
-    </div>
+        </table></div></div>
   </div>
 </section>
 
@@ -3236,10 +3189,7 @@ pause</code></pre>
       <p><strong>Why:</strong> The <code>-x</code> flag (xtrace) prints each command preceded by a <code>+</code> sign after variable expansion, showing the exact line where execution halts.</p>
       <div style="margin-top:0.5rem; padding:0.5rem; background:rgba(16,185,129,0.1); border-left:3px solid var(--brand-emerald);">
         <strong>Placement Takeaway:</strong> <code>bash -x</code> is the single most valuable debugging flag in shell scripting.
-      </div>
-    </div>
-
-  </div>
+      </div></div>
 </section>
 
 <!-- ==========================================
@@ -3554,10 +3504,7 @@ pause</code></pre>
         <p><strong>Wrong Thinking:</strong> "If a command prints no output at all, it must have failed."</p>
         <p><strong>Correct Thinking:</strong> The Unix philosophy states: 'Silence is Golden'. Many successful Unix commands (like <code>cp</code>, <code>mv</code>, <code>rm</code>, <code>mkdir</code>, and <code>chmod</code>) produce NO stdout when they succeed. You verify success by checking <code>echo $?</code> (returns 0).</p>
         <p><strong>Remember:</strong> In Unix, no output usually means 100% SUCCESS!</p>
-      </div>
-    </div>
-
-  </div>
+      </div></div>
 </section>
 
 <!-- ==========================================
@@ -3576,7 +3523,7 @@ pause</code></pre>
   <!-- Part A: 30 Command Facts -->
   <h3 style="color:var(--brand-primary); margin-top:2rem;">Part A: 30 High-Yield Command Facts</h3>
   <div class="table-container" style="overflow-x:auto;">
-    <table class="notes-table">
+    <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
       <thead>
         <tr>
           <th>#</th>
@@ -3617,13 +3564,13 @@ pause</code></pre>
         <tr><td>29</td><td><code>nslookup</code></td><td>Both</td><td>Query DNS servers to resolve hostnames to IP addresses</td></tr>
         <tr><td>30</td><td><code>curl -I</code></td><td>Both</td><td>Fetch HTTP response status and headers without downloading body</td></tr>
       </tbody>
-    </table>
+    </table></div>
   </div>
 
   <!-- Part B: 20 Important Comparisons -->
   <h3 style="color:var(--brand-primary); margin-top:2rem;">Part B: 20 Crucial Placement Comparisons</h3>
   <div class="table-container" style="overflow-x:auto;">
-    <table class="notes-table">
+    <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
       <thead>
         <tr>
           <th>#</th>
@@ -3654,7 +3601,7 @@ pause</code></pre>
         <tr><td>19</td><td><code>sudo</code></td><td><code>su</code></td><td><code>sudo</code> runs single command with root rights; <code>su</code> switches full shell session to root</td></tr>
         <tr><td>20</td><td><code>head</code></td><td><code>tail</code></td><td><code>head</code> reads from file top; <code>tail</code> reads from file bottom (supports <code>-f</code> follow)</td></tr>
       </tbody>
-    </table>
+    </table></div>
   </div>
 
   <!-- Part C: Command Decision Tree -->
@@ -3697,9 +3644,7 @@ pause</code></pre>
           &bull; Reachability: <code>ping &lt;host&gt;</code> &bull; <code>traceroute</code><br>
           &bull; Ports &amp; Sockets: <code>ss -tulnp</code> &bull; <code>netstat</code><br>
           &bull; HTTP testing: <code>curl -I &lt;url&gt;</code>
-        </div>
-      </div>
-    </div>
+        </div></div>
 
     <div class="visual-explainer-grid">
       <div class="explainer-box happening">
@@ -3713,9 +3658,7 @@ pause</code></pre>
       <div class="explainer-box analogy">
         <div class="explainer-label">🌍 Real-Life Example</div>
         <p>A Swiss Army Knife: You don't use the corkscrew to cut rope; selecting the exact specialized blade for the task ensures clean, fast execution.</p>
-      </div>
-    </div>
-  </div>
+      </div></div>
 
   <div style="margin-top:2.5rem; text-align:center; padding:1.5rem; background:rgba(59,130,246,0.1); border-radius:8px; border:1px solid var(--brand-primary);">
     <h3 style="color:var(--brand-primary); margin-bottom:0.5rem;">🎉 You are Now Placement Ready!</h3>
@@ -3900,6 +3843,75 @@ pause</code></pre>
           if (isMobile.matches) closeTOC();
         });
       });
+    })();
+  </script>
+  <script>
+    /* ── Scroll Indicator System ────────────────────────────── */
+    (function () {
+      /* 1. Scroll-fade: add .at-end class when scrolled all the way */
+      function setupScrollFade(el) {
+        function check() {
+          var atH = el.scrollLeft + el.clientWidth >= el.scrollWidth - 4;
+          var atV = el.scrollTop  + el.clientHeight >= el.scrollHeight - 4;
+          el.classList.toggle('at-end', atH && atV);
+        }
+        el.addEventListener('scroll', check, { passive: true });
+        check();
+      }
+
+      /* 2. Scroll hint label: inject below horizontally scrollable elements */
+      function addScrollHint(el) {
+        if (el.scrollWidth > el.clientWidth + 8) {
+          var label = document.createElement('div');
+          label.className = 'scroll-hint-label';
+          label.textContent = 'scroll';
+          el.parentNode.insertBefore(label, el.nextSibling);
+        }
+      }
+
+      /* 3. Apply scroll-x-wrap fade to relevant containers */
+      function applyFades() {
+        var xSelectors = [
+          '.table-responsive-wrapper',
+          '.diagram-card',
+          '.visual-canvas',
+          '.katex-display-wrapper',
+          '.diagram-box',
+          '.notes-diagram-box'
+        ];
+        var ySelectors = [
+          '.notes-toc-sidebar',
+          '.notes-sidebar',
+          'pre',
+          '.notes-code'
+        ];
+
+        xSelectors.forEach(function(sel) {
+          document.querySelectorAll(sel).forEach(function(el) {
+            el.classList.add('scroll-x-wrap');
+            setupScrollFade(el);
+            addScrollHint(el);
+          });
+        });
+
+        ySelectors.forEach(function(sel) {
+          document.querySelectorAll(sel).forEach(function(el) {
+            if (el.scrollHeight > el.clientHeight + 8) {
+              el.classList.add('scroll-y-wrap');
+              setupScrollFade(el);
+            }
+          });
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', applyFades);
+      } else {
+        applyFades();
+      }
+
+      /* Re-check after layout settles (fonts, KaTeX, images) */
+      window.addEventListener('load', applyFades);
     })();
   </script></body>
 </html>

@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="../css/notes.css">
   <link rel="stylesheet" href="../css/responsive.css">
   <link rel="stylesheet" href="../css/visual-learning.css">
+  <link rel="stylesheet" href="../css/scrollbars.css">
   <!-- KaTeX: Mathematical Rendering -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
 
@@ -294,9 +295,7 @@
         <div class="pipeline-node">
           <span class="node-step-badge">Level 04</span>
           <div class="node-title">✨ Generative AI</div>
-          <div class="node-desc">Transformer foundation models generating novel text, code, media &amp; agentic actions</div>
-        </div>
-      </div>
+          <div class="node-desc">Transformer foundation models generating novel text, code, media &amp; agentic actions</div></div>
     </div>
 
     <!-- Pedagogical 3-Part Explainer -->
@@ -320,9 +319,7 @@
         <p class="explainer-content">
           Think of vehicle engineering: Transportation is AI; Motor Vehicles are ML; High-Performance Electric Cars (Tesla) are Deep Learning; and an Autonomous Self-Driving Fleet with real-time navigation intelligence is Generative AI.
         </p>
-      </div>
-    </div>
-  </div>
+      </div></div>
 </section>
 
 <!-- ==========================================
@@ -395,9 +392,7 @@
               </button>
               <div class="challenge-answer">
                 <p><strong>Answer:</strong> NO. It is Artificial Intelligence (rule-based heuristic expert system), but NOT Machine Learning because it does not learn parameters statistically from training data.</p>
-              </div>
-            </div>
-          </div>
+              </div></div>
 
 <div class="topic-card">
     <div class="topic-card-header">
@@ -425,7 +420,7 @@
       <!-- AI vs Automation Table -->
       <div class="diagram-title" style="margin-top: 1.5rem;">⚖️ AI vs Traditional Automation</div>
       <div class="table-responsive">
-        <table class="notes-table">
+        <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
           <thead>
             <tr>
               <th>Dimension</th>
@@ -455,7 +450,7 @@
               <td>Fraud detection engine flagging transactions with anomalous biometric and behavioral deviations.</td>
             </tr>
           </tbody>
-        </table>
+        </table></div>
       </div>
 
       <!-- AI vs ML vs DL Visual Card -->
@@ -489,9 +484,7 @@
                   <span style="font-size:0.75rem; background:rgba(52,211,153,0.2); color:#6EE7B7; padding:2px 8px; border-radius:12px;">Subset of ML</span>
                 </div>
                 <p style="font-size:0.85rem; color:var(--text-secondary); margin:0;">Multi-layered Artificial Neural Networks with automated hierarchical feature extraction from raw unstructured data (pixels, text tokens, audio). Includes CNNs, RNNs, LSTMs, Transformers, Diffusion Models, and LLMs.</p>
-              </div>
-            </div>
-          </div>
+              </div></div>
         </div>
 
         <div class="visual-explainer-grid">
@@ -506,9 +499,7 @@
           <div class="explainer-box analogy">
             <div class="explainer-label">🌍 Real-Life Example</div>
             <p>Automobile transportation: A bicycle with mechanical gears is deterministic automation; a car with an automatic gearbox adapting shift points to driving style is Machine Learning; an autonomous Tesla steering via vision neural networks is Deep Learning.</p>
-          </div>
-        </div>
-      </div>
+          </div></div>
 
       <div class="placement-trap-card" style="margin-top: 1.25rem;">
         <div class="placement-trap-header">⚠️ PLACEMENT TRAP #1: "Every Automated System is AI"</div>
@@ -533,9 +524,7 @@
           <li>Classic AI examples: Google Maps A* pathfinding, Stockfish chess engine heuristics.</li>
           <li>Modern AI examples: Netflix recommendation engine, Tesla computer vision autopilot, Claude/ChatGPT conversational reasoning.</li>
         </ul>
-      </div>
-    </div>
-  </div>
+      </div></div>
 </section>
 
 <!-- ==========================================
@@ -579,9 +568,7 @@
               </div>
               <div style="background:#0F172A; color:#E2E8F0; border-left:3px solid #38BDF8; padding:6px 10px; border-radius:4px; font-size:0.8rem;">
                 <strong style="color:#7DD3FC;">Classification:</strong> Discrete categories (Spam detection, Medical CT scans).
-              </div>
-            </div>
-          </div>
+              </div></div>
 
           <div style="background: rgba(167, 139, 250, 0.05); border: 1px solid rgba(167, 139, 250, 0.3); border-radius: 10px; padding: 1.2rem;">
             <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
@@ -595,9 +582,7 @@
               </div>
               <div style="background:#0F172A; color:#E2E8F0; border-left:3px solid #A78BFA; padding:6px 10px; border-radius:4px; font-size:0.8rem;">
                 <strong style="color:#C4B5FD;">Dimensionality Reduction:</strong> Compressing redundant features (PCA, t-SNE).
-              </div>
-            </div>
-          </div>
+              </div></div>
 
           <div style="background: rgba(52, 211, 153, 0.05); border: 1px solid rgba(52, 211, 153, 0.3); border-radius: 10px; padding: 1.2rem;">
             <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
@@ -611,9 +596,7 @@
               </div>
               <div style="background:#0F172A; color:#E2E8F0; border-left:3px solid #34D399; padding:6px 10px; border-radius:4px; font-size:0.8rem;">
                 <strong style="color:#6EE7B7;">Applications:</strong> AlphaGo, autonomous driving, robotics manipulation.
-              </div>
-            </div>
-          </div>
+              </div></div>
         </div>
 
         <div class="visual-explainer-grid">
@@ -630,12 +613,10 @@ ightarrow$ Classification). If there are NO targets, it is Unsupervised. If feed
           <div class="explainer-box analogy">
             <div class="explainer-label">🌍 Real-Life Example</div>
             <p>Learning mathematics: A student studying flashcards with questions and answers on the back is Supervised; a student sorting a pile of unsorted papers into similar subjects is Unsupervised; a baby learning to walk by stumbling and balancing is Reinforcement Learning.</p>
-          </div>
-        </div>
-      </div>
+          </div></div>
 
       <div class="table-responsive" style="margin-top: 1.5rem;">
-        <table class="notes-table">
+        <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
           <thead>
             <tr>
               <th>Feature</th>
@@ -676,7 +657,7 @@ ightarrow$ Classification). If there are NO targets, it is Unsupervised. If feed
               <td>Self-driving collision avoidance, robotic arm warehouse picking.</td>
             </tr>
           </tbody>
-        </table>
+        </table></div>
       </div>
 
       <div class="placement-trap-card" style="margin-top: 1.25rem;">
@@ -684,9 +665,7 @@ ightarrow$ Classification). If there are NO targets, it is Unsupervised. If feed
         <div class="placement-trap-body">
           <p><strong>Wrong Thinking:</strong> "If K-Means outputs 4 clusters, these are 4 mathematically confirmed classes of customers."</p>
           <p><strong>Correct Thinking:</strong> Unsupervised learning groups data points based on geometric distance metrics in feature space. Clusters require domain expertise to validate whether they correspond to actionable business archetypes.</p>
-        </div>
-      </div>
-    </div>
+        </div></div>
   </div>
 </section>
 
@@ -714,7 +693,7 @@ ightarrow$ Classification). If there are NO targets, it is Unsupervised. If feed
       <!-- Visual Data Table -->
       <div class="diagram-title">📋 Tabular Dataset Terminology Breakdown</div>
       <div class="table-responsive">
-        <table class="notes-table">
+        <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
           <thead>
             <tr>
               <th>Row ID</th>
@@ -747,7 +726,7 @@ ightarrow$ Classification). If there are NO targets, it is Unsupervised. If feed
               <td><span style="color:#F87171; font-weight:700;">1 (Yes)</span></td>
             </tr>
           </tbody>
-        </table>
+        </table></div>
       </div>
 
       <!-- Train / Val / Test Split Visual Card -->
@@ -771,9 +750,7 @@ ightarrow$ Classification). If there are NO targets, it is Unsupervised. If feed
             <div style="flex: 1.5; min-width:140px; background:rgba(52, 211, 153, 0.15); padding:12px; display:flex; flex-direction:column; justify-content:center;">
               <span style="font-weight:800; color:#34D399; font-size:0.95rem;">🏆 TEST SET (10% - 15%)</span>
               <span style="font-size:0.8rem; color:var(--text-secondary); margin-top:4px;">Final unbiased exam score. Evaluated strictly ONCE before production deployment.</span>
-            </div>
-          </div>
-        </div>
+            </div></div>
 
         <div class="visual-explainer-grid">
           <div class="explainer-box happening">
@@ -787,9 +764,7 @@ ightarrow$ Classification). If there are NO targets, it is Unsupervised. If feed
           <div class="explainer-box analogy">
             <div class="explainer-label">🌍 Real-Life Example</div>
             <p>Academic schooling: Textbook exercises solved daily with solutions are the Training Set; weekly mock exams to identify study weaknesses are the Validation Set; the final board examination held at the end of the year is the Test Set.</p>
-          </div>
-        </div>
-      </div>
+          </div></div>
 
       <div class="placement-trap-card" style="margin-top: 1.25rem;">
         <div class="placement-trap-header">⚠️ PLACEMENT TRAP #3: Tuning Hyperparameters on the Test Set</div>
@@ -854,7 +829,7 @@ X_train, X_val, y_train, y_val = train_test_split(
 
       <h4 style="color: var(--brand-cyan); margin-top: 1.5rem;">2. Categorical Encoding: Label vs One-Hot</h4>
       <div class="table-responsive">
-        <table class="notes-table">
+        <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
           <thead>
             <tr>
               <th>Strategy</th>
@@ -877,12 +852,12 @@ X_train, X_val, y_train, y_val = train_test_split(
               <td>Applying OHE to high-cardinality features (like Zip Code with 5,000 unique values), causing the "Curse of Dimensionality" and extreme sparsity.</td>
             </tr>
           </tbody>
-        </table>
+        </table></div>
       </div>
 
       <h4 style="color: var(--brand-emerald); margin-top: 1.5rem;">3. Feature Scaling: Normalization vs Standardization</h4>
       <div class="table-responsive">
-        <table class="notes-table">
+        <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
           <thead>
             <tr>
               <th>Aspect</th>
@@ -911,7 +886,7 @@ X_train, X_val, y_train, y_val = train_test_split(
               <td colspan="2">Distance-based models (KNN, K-Means), gradient-based models (Logistic/Linear Regression, Neural Nets, SVMs). Tree-based models (Random Forest, Decision Trees, XGBoost) are <strong>scale-invariant</strong>!</td>
             </tr>
           </tbody>
-        </table>
+        </table></div>
       </div>
 
       <div class="placement-trap-card" style="margin-top: 1.25rem;">
@@ -919,9 +894,7 @@ X_train, X_val, y_train, y_val = train_test_split(
         <div class="placement-trap-body">
           <p><strong>Disastrous Code:</strong> <code>scaler.fit_transform(X)</code> BEFORE calling <code>train_test_split()</code>.</p>
           <p><strong>Why It's Fatal:</strong> The mean and standard deviation of the test set bleed into the scaler parameters. In production, unseen inference data does not exist in advance. Always call <code>fit_transform()</code> ONLY on the Training set, and call <code>transform()</code> on Validation and Test sets!</p>
-        </div>
-      </div>
-    </div>
+        </div></div>
   </div>
 </section>
 
@@ -947,7 +920,7 @@ X_train, X_val, y_train, y_val = train_test_split(
       <p class="notes-paragraph">Supervised learning models learn a predictive mapping $f: X \to y$ from a historical dataset with verified ground-truth labels. The nature of the target variable $y$ dictates whether the problem is Regression or Classification.</p>
 
       <div class="table-responsive">
-        <table class="notes-table">
+        <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
           <thead>
             <tr>
               <th>Attribute</th>
@@ -982,7 +955,7 @@ X_train, X_val, y_train, y_val = train_test_split(
               <td>Predicting whether a patient's biopsy is Benign or Malignant.</td>
             </tr>
           </tbody>
-        </table>
+        </table></div>
       </div>
 
       <h4 style="color: var(--brand-amber); margin-top: 1.5rem;">Classification Sub-Types</h4>
@@ -1037,9 +1010,7 @@ X_train, X_val, y_train, y_val = train_test_split(
         <div class="placement-trap-body">
           <p><strong>Interview Trap:</strong> "Can K-Means cluster data of arbitrary shapes?"</p>
           <p><strong>Correct Answer:</strong> No! K-Means relies on spherical Euclidean distance and assumes clusters are isotropic (equal variance) and similarly sized. It fails miserably on non-spherical geometries (concentric circles, crescent shapes) or clusters with widely varying densities. For arbitrary shapes, use <strong>DBSCAN</strong> (Density-Based Spatial Clustering of Applications with Noise).</p>
-        </div>
-      </div>
-    </div>
+        </div></div>
   </div>
 </section>
 
@@ -1086,9 +1057,7 @@ X_train, X_val, y_train, y_val = train_test_split(
             </div>
             <div style="flex:1; min-width:180px; background:#0B0F17; border:1px solid #10B981; border-radius:8px; padding:8px 12px; text-align:center;">
               <span style="font-size:0.8rem; color:#34D399; font-weight:700;">⬆️ State $s_{t+1}$ + Reward $r_t$</span>
-              <div style="font-size:0.75rem; color:var(--text-secondary);">Environment updates &amp; scores action</div>
-            </div>
-          </div>
+              <div style="font-size:0.75rem; color:var(--text-secondary);">Environment updates &amp; scores action</div></div>
 
           <div style="width:100%; max-width:540px; background:rgba(16, 185, 129, 0.1); border:2px solid #10B981; border-radius:12px; padding:1.25rem; text-align:center;">
             <div style="font-size:1.1rem; font-weight:800; color:#34D399; display:flex; align-items:center; justify-content:center; gap:8px;">
@@ -1110,9 +1079,7 @@ X_train, X_val, y_train, y_val = train_test_split(
           <div class="explainer-box analogy">
             <div class="explainer-label">🌍 Real-Life Example</div>
             <p>Training a puppy: The puppy (Agent) is presented with a hand command (State in Environment). If it sits (Action), it gets a treat (Positive Reward +1). If it jumps on the couch (Action), it gets a verbal reprimand (Negative Reward -10).</p>
-          </div>
-        </div>
-      </div>
+          </div></div>
 
       <h4 style="color: var(--brand-cyan); margin-top: 1.5rem;">Core Vocabulary of RL</h4>
       <ul>
@@ -1198,9 +1165,7 @@ X_train, X_val, y_train, y_val = train_test_split(
               </button>
               <div class="challenge-answer">
                 <p><strong>Answer:</strong> TP = 8, FP = 2, FN = 2. Precision = 8 / (8 + 2) = 80%. Recall = 8 / (8 + 2) = 80%.</p>
-              </div>
-            </div>
-          </div>
+              </div></div>
 
 <div class="topic-card">
     <div class="topic-card-header">
@@ -1216,7 +1181,7 @@ X_train, X_val, y_train, y_val = train_test_split(
 
       <div class="diagram-title">🎯 The 2x2 Binary Confusion Matrix</div>
       <div class="table-responsive">
-        <table class="notes-table" style="text-align:center;">
+        <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table" style="text-align:center;">
           <thead>
             <tr>
               <th colspan="2" rowspan="2"></th>
@@ -1240,11 +1205,11 @@ X_train, X_val, y_train, y_val = train_test_split(
               <td style="background:rgba(52,211,153,0.1); color:#34D399; font-weight:700;">TRUE NEGATIVE (TN)<br><small>Healthy person correctly cleared</small></td>
             </tr>
           </tbody>
-        </table>
+        </table></div>
       </div>
 
       <div class="table-responsive" style="margin-top: 1.5rem;">
-        <table class="notes-table">
+        <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
           <thead>
             <tr>
               <th>Metric</th>
@@ -1279,12 +1244,12 @@ X_train, X_val, y_train, y_val = train_test_split(
               <td>On <strong>imbalanced datasets</strong> where both false alarms and missed cases carry penalties.</td>
             </tr>
           </tbody>
-        </table>
+        </table></div>
       </div>
 
       <h4 style="color: var(--brand-primary); margin-top: 1.5rem;">Regression Evaluation Metrics</h4>
       <div class="table-responsive">
-        <table class="notes-table">
+        <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
           <thead>
             <tr>
               <th>Metric</th>
@@ -1314,7 +1279,7 @@ X_train, X_val, y_train, y_val = train_test_split(
               <td>Coefficient of Determination: Proportion of variance explained by model compared to mean baseline. $R^2=1.0$ is perfect; $R^2=0$ equals predicting mean; $R^2 &lt; 0$ means worse than trivial baseline!</td>
             </tr>
           </tbody>
-        </table>
+        </table></div>
       </div>
 
       <div class="placement-trap-card" style="margin-top: 1.25rem;">
@@ -1322,9 +1287,7 @@ X_train, X_val, y_train, y_val = train_test_split(
         <div class="placement-trap-body">
           <p><strong>Placement Question:</strong> "A credit card transaction dataset has 99,000 legitimate transactions and 1,000 fraudulent transactions. A dummy model simply predicts 'Legitimate' for every transaction. What is its accuracy?"</p>
           <p><strong>Answer:</strong> Exactly 99.0% accuracy! Yet the model has a <strong>Recall of 0%</strong> on fraud, making it 100% useless in the real world. Always use <strong>Precision, Recall, F1, and PR-AUC</strong> for imbalanced domains.</p>
-        </div>
-      </div>
-    </div>
+        </div></div>
   </div>
 </section>
 
@@ -1370,7 +1333,7 @@ X_train, X_val, y_train, y_val = train_test_split(
 
       <div class="diagram-title" style="margin-top: 1.5rem;">⚖️ Decision Tree vs Random Forest Comparison</div>
       <div class="table-responsive">
-        <table class="notes-table">
+        <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
           <thead>
             <tr>
               <th>Feature</th>
@@ -1400,7 +1363,7 @@ X_train, X_val, y_train, y_val = train_test_split(
               <td>Low Variance: Highly robust to data perturbations.</td>
             </tr>
           </tbody>
-        </table>
+        </table></div>
       </div>
 
       <div class="placement-trap-card" style="margin-top: 1.25rem;">
@@ -1408,9 +1371,7 @@ X_train, X_val, y_train, y_val = train_test_split(
         <div class="placement-trap-body">
           <p><strong>Common Confusion:</strong> Candidates select Logistic Regression when an assessment asks for continuous stock price prediction.</p>
           <p><strong>Correction:</strong> Logistic Regression is strictly a <strong>Classification algorithm</strong>. Its sigmoid function bounds output strictly to probabilities between 0 and 1.</p>
-        </div>
-      </div>
-    </div>
+        </div></div>
   </div>
 </section>
 
@@ -1502,9 +1463,7 @@ X_train, X_val, y_train, y_val = train_test_split(
               </button>
               <div class="challenge-answer">
                 <p><strong>Answer:</strong> Overfitting (High Variance). The model memorized training set noise rather than learning generalizable underlying patterns.</p>
-              </div>
-            </div>
-          </div>
+              </div></div>
 
 <div class="topic-card">
     <div class="topic-card-header">
@@ -1550,9 +1509,7 @@ X_train, X_val, y_train, y_val = train_test_split(
         ...<br>
         Fold 5: [ TRAIN ] [ TRAIN ] [ TRAIN ] [ TRAIN ] [ TEST ] → Score 5<br>
         Final Validation Score = Mean(Score 1 .. Score 5). Eliminates train-test split bias!
-      </div>
-    </div>
-  </div>
+      </div></div>
 </section>
 
 <!-- ==========================================
@@ -1577,7 +1534,7 @@ X_train, X_val, y_train, y_val = train_test_split(
       <p class="notes-paragraph">Deep Learning is a subset of Machine Learning utilizing multi-layered Artificial Neural Networks to learn <strong>hierarchical representations</strong> directly from raw, unstructured data (images, audio, text, video) without manual feature engineering.</p>
 
       <div class="table-responsive">
-        <table class="notes-table">
+        <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
           <thead>
             <tr>
               <th>Dimension</th>
@@ -1607,7 +1564,7 @@ X_train, X_val, y_train, y_val = train_test_split(
               <td>Training takes days/weeks on GPU clusters; inference requires tensor quantization.</td>
             </tr>
           </tbody>
-        </table>
+        </table></div>
       </div>
 
       <div class="placement-trap-card" style="margin-top: 1.25rem;">
@@ -1615,9 +1572,7 @@ X_train, X_val, y_train, y_val = train_test_split(
         <div class="placement-trap-body">
           <p><strong>Wrong Assumption:</strong> "For tabular business data with 5,000 customer rows, a Deep Neural Network will outperform XGBoost."</p>
           <p><strong>Correct Reality:</strong> On tabular/structured data, tree-based models (XGBoost, LightGBM, CatBoost) consistently outperform Deep Learning in accuracy, training speed, and interpretability with far less hyperparameter tuning.</p>
-        </div>
-      </div>
-    </div>
+        </div></div>
   </div>
 </section>
 
@@ -1686,15 +1641,13 @@ X_train, X_val, y_train, y_val = train_test_split(
           <div class="explainer-box analogy">
             <div class="explainer-label">🌍 Real-Life Example</div>
             <p>Job Offer Decision: Inputs are Salary, Commute Time, and Culture (x); your personal priorities are the Weights (w); your baseline financial threshold is the Bias (b); and your final yes/no decision threshold is the Activation function.</p>
-          </div>
-        </div>
-      </div>
+          </div></div>
 
       <h4 style="color: var(--brand-primary); margin-top: 1.5rem;">Activation Functions: Why Non-Linearity is Essential</h4>
       <p class="notes-paragraph">Without non-linear activation functions, stacking 100 neural network layers collapses mathematically into a single linear transformation: $W_2(W_1 x + b_1) + b_2 = (W_2 W_1)x + (W_2 b_1 + b_2) = W_{new} x + b_{new}$.</p>
 
       <div class="table-responsive">
-        <table class="notes-table">
+        <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
           <thead>
             <tr>
               <th>Activation</th>
@@ -1729,7 +1682,7 @@ X_train, X_val, y_train, y_val = train_test_split(
               <td>Multiclass classification output layer. Converts logits into valid categorical probability distribution.</td>
             </tr>
           </tbody>
-        </table>
+        </table></div>
       </div>
 
       <h4 style="color: var(--brand-cyan); margin-top: 1.5rem;">Forward Propagation vs Backpropagation</h4>
@@ -1793,9 +1746,7 @@ X_train, X_val, y_train, y_val = train_test_split(
       <div style="background:#06090E; border:1px solid var(--border-color); border-radius:6px; padding:1rem; font-family:monospace; color:#E2E8F0; font-size:0.85rem;">
         Output Dimension = &lfloor; (W - F + 2P) / S &rfloor; + 1<br>
         Where: W = Input Size, F = Filter Size, P = Padding, S = Stride
-      </div>
-    </div>
-  </div>
+      </div></div>
 </section>
 
 <!-- ==========================================
@@ -1867,7 +1818,7 @@ X_train, X_val, y_train, y_val = train_test_split(
       </ul>
 
       <div class="table-responsive" style="margin-top: 1.5rem;">
-        <table class="notes-table">
+        <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
           <thead>
             <tr>
               <th>Architecture</th>
@@ -1900,9 +1851,7 @@ X_train, X_val, y_train, y_val = train_test_split(
               <td>LLMs (GPT-4, Claude, LLaMA), Vision Transformers (ViT), Multimodal AI.</td>
             </tr>
           </tbody>
-        </table>
-      </div>
-    </div>
+        </table></div></div>
   </div>
 </section>
 
@@ -1962,7 +1911,7 @@ X_train, X_val, y_train, y_val = train_test_split(
     </div>
     <div class="topic-card-body">
       <div class="table-responsive">
-        <table class="notes-table">
+        <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
           <thead>
             <tr>
               <th>Aspect</th>
@@ -1992,9 +1941,7 @@ X_train, X_val, y_train, y_val = train_test_split(
               <td>LLMs (GPT-4, Claude), Diffusion Models (Midjourney, Stable Diffusion), GANs.</td>
             </tr>
           </tbody>
-        </table>
-      </div>
-    </div>
+        </table></div></div>
   </div>
 </section>
 
@@ -2111,7 +2058,7 @@ X_train, X_val, y_train, y_val = train_test_split(
 
       <div class="diagram-title" style="margin-top: 1.5rem;">⚖️ RAG vs Model Fine-Tuning Comparison</div>
       <div class="table-responsive">
-        <table class="notes-table">
+        <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
           <thead>
             <tr>
               <th>Dimension</th>
@@ -2141,9 +2088,7 @@ X_train, X_val, y_train, y_val = train_test_split(
               <td>High: Requires GPU clusters (A100s/H100s) and curated paired dataset training.</td>
             </tr>
           </tbody>
-        </table>
-      </div>
-    </div>
+        </table></div></div>
   </div>
 </section>
 
@@ -2231,7 +2176,7 @@ X_train, X_val, y_train, y_val = train_test_split(
       <p class="notes-paragraph">Prompt engineering is the practice of structuring text inputs to steer foundation models toward accurate, structured outputs without changing neural weights.</p>
 
       <div class="table-responsive">
-        <table class="notes-table">
+        <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
           <thead>
             <tr>
               <th>Technique</th>
@@ -2256,9 +2201,7 @@ X_train, X_val, y_train, y_val = train_test_split(
               <td>Drastically improves multi-step logic, math, and code debugging benchmarks!</td>
             </tr>
           </tbody>
-        </table>
-      </div>
-    </div>
+        </table></div></div>
   </div>
 </section>
 
@@ -2311,9 +2254,7 @@ X_train, X_val, y_train, y_val = train_test_split(
             </div>
             <div class="pipeline-node" style="text-align:left; border-left:4px solid #EC4899; padding:10px 14px; background:#0F172A;">
               <span style="color:#F472B6; font-weight:800; font-size:0.85rem;">5. FINAL ANSWER</span>
-              <div style="font-size:0.85rem; color:#FDF2F8; font-weight:700;">"The current Apple stock price multiplied by 1.15 is $207.58."</div>
-            </div>
-          </div>
+              <div style="font-size:0.85rem; color:#FDF2F8; font-weight:700;">"The current Apple stock price multiplied by 1.15 is $207.58."</div></div>
         </div>
 
         <div class="visual-explainer-grid">
@@ -2328,9 +2269,7 @@ X_train, X_val, y_train, y_val = train_test_split(
           <div class="explainer-box analogy">
             <div class="explainer-label">🌍 Real-Life Example</div>
             <p>A research assistant: Asked for the company's Q3 revenue converted to Euros, the assistant thinks about where to look, opens the CFO's spreadsheet (Tool 1), notes the USD figure, opens currency exchange website (Tool 2), performs the math, and drafts the report.</p>
-          </div>
-        </div>
-      </div>
+          </div></div>
       </div>
   </div>
 </section>
@@ -2975,10 +2914,7 @@ X_train, X_val, y_train, y_val = train_test_split(
         <p><strong>Wrong Thinking:</strong> "A K-Means model with 5 clusters mathematically proves there are 5 types of customers."</p>
         <p><strong>Correct Thinking:</strong> K-Means will partition data into 5 clusters even if the data is completely uniform random noise. Domain experts must validate whether clusters reflect actionable patterns.</p>
         <p><strong>Remember:</strong> Unsupervised clusters reflect mathematical distance, not validated business truth.</p>
-      </div>
-    </div>
-
-  </div>
+      </div></div>
 </section>
 
 <!-- ==========================================
@@ -4004,7 +3940,7 @@ X_train, X_val, y_train, y_val = train_test_split(
   <!-- Part B: 20 Essential Formulas -->
   <h3 style="color:var(--brand-cyan); margin-top:2rem;">B. 20 Essential Formulas & Relationships</h3>
   <div class="table-responsive">
-    <table class="notes-table">
+    <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
       <thead>
         <tr>
           <th>Concept</th>
@@ -4034,7 +3970,7 @@ X_train, X_val, y_train, y_val = train_test_split(
         <tr><td>Cosine Similarity</td><td>$\frac{A \cdot B}{\|A\| \|B\|}$</td><td>Measures angle between embedding vectors</td></tr>
         <tr><td>Iterations Per Epoch</td><td>$\frac{\text{Total Samples}}{\text{Batch Size}}$</td><td>Number of weight updates in one dataset pass</td></tr>
       </tbody>
-    </table>
+    </table></div>
   </div>
 
   <!-- Interactive Final Knowledge Map -->
@@ -4094,9 +4030,7 @@ X_train, X_val, y_train, y_val = train_test_split(
           <li>🔹 <a href="#sec-31" style="color:var(--text-main); text-decoration:none;">Placement Viva Q&amp;A (30 Answers)</a></li>
           <li>🔹 <a href="#sec-32" style="color:var(--text-main); text-decoration:none;">Practice 30 MCQs Examination</a></li>
         </ul>
-      </div>
-    </div>
-  </div>
+      </div></div>
 </section>
 
           </div> <!-- /notes-content -->
@@ -4127,9 +4061,7 @@ X_train, X_val, y_train, y_val = train_test_split(
               <li><a href="../index.html#practice/ai-ml-dl">AI/ML Question Bank (100 MCQs)</a></li>
               <li><a href="../index.html#cbt/ai-ml-dl">AI/ML Timed Mock Exam</a></li>
             </ul>
-          </div>
-        </div>
-      </div>
+          </div></div>
       <div class="footer-bottom">
         <div class="container footer-bottom-inner">
           <p>&copy; 2026 PlacementPrep Platform. Built for Excellence.</p>
@@ -4278,6 +4210,75 @@ X_train, X_val, y_train, y_val = train_test_split(
           if (isMobile.matches) closeTOC();
         });
       });
+    })();
+  </script>
+  <script>
+    /* ── Scroll Indicator System ────────────────────────────── */
+    (function () {
+      /* 1. Scroll-fade: add .at-end class when scrolled all the way */
+      function setupScrollFade(el) {
+        function check() {
+          var atH = el.scrollLeft + el.clientWidth >= el.scrollWidth - 4;
+          var atV = el.scrollTop  + el.clientHeight >= el.scrollHeight - 4;
+          el.classList.toggle('at-end', atH && atV);
+        }
+        el.addEventListener('scroll', check, { passive: true });
+        check();
+      }
+
+      /* 2. Scroll hint label: inject below horizontally scrollable elements */
+      function addScrollHint(el) {
+        if (el.scrollWidth > el.clientWidth + 8) {
+          var label = document.createElement('div');
+          label.className = 'scroll-hint-label';
+          label.textContent = 'scroll';
+          el.parentNode.insertBefore(label, el.nextSibling);
+        }
+      }
+
+      /* 3. Apply scroll-x-wrap fade to relevant containers */
+      function applyFades() {
+        var xSelectors = [
+          '.table-responsive-wrapper',
+          '.diagram-card',
+          '.visual-canvas',
+          '.katex-display-wrapper',
+          '.diagram-box',
+          '.notes-diagram-box'
+        ];
+        var ySelectors = [
+          '.notes-toc-sidebar',
+          '.notes-sidebar',
+          'pre',
+          '.notes-code'
+        ];
+
+        xSelectors.forEach(function(sel) {
+          document.querySelectorAll(sel).forEach(function(el) {
+            el.classList.add('scroll-x-wrap');
+            setupScrollFade(el);
+            addScrollHint(el);
+          });
+        });
+
+        ySelectors.forEach(function(sel) {
+          document.querySelectorAll(sel).forEach(function(el) {
+            if (el.scrollHeight > el.clientHeight + 8) {
+              el.classList.add('scroll-y-wrap');
+              setupScrollFade(el);
+            }
+          });
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', applyFades);
+      } else {
+        applyFades();
+      }
+
+      /* Re-check after layout settles (fonts, KaTeX, images) */
+      window.addEventListener('load', applyFades);
     })();
   </script></body>
 </html>

@@ -118,6 +118,7 @@
     }
   </style>
   <link rel="stylesheet" href="../css/visual-learning.css">
+  <link rel="stylesheet" href="../css/scrollbars.css">
   <!-- KaTeX: Mathematical Rendering -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
 
@@ -400,9 +401,7 @@
               <div class="pipeline-node" style="border-left: 3px solid #8b5cf6;">
                 <div class="node-icon">🔒</div>
                 <div class="node-label">4. ACID &amp; Concurrency</div>
-                <div class="node-subtext">2PL Locks • Serializable Isolation • WAL Recovery</div>
-              </div>
-            </div>
+                <div class="node-subtext">2PL Locks • Serializable Isolation • WAL Recovery</div></div>
 
             <div class="visual-explainer-grid">
               <div class="explainer-box happening">
@@ -423,9 +422,7 @@
                 <div class="explainer-label">🌍 Real-Life Analogy</div>
                 <div class="explainer-text">
                   Think of a grand library: The catalog search terminal is the SQL parser; the librarian finding the exact shelf row is the B+ Tree Index; and checkout locks prevent two borrowers from checking out the exact same physical copy at the same second.
-                </div>
-              </div>
-            </div>
+                </div></div>
           </div>
         </section>
 
@@ -456,9 +453,7 @@
               </div>
               <div style="background:var(--bg-main); padding:0.75rem 1rem; border-radius:8px; border:1px solid var(--border-color);">
                 <strong style="color:#f472b6;">💳 Fees:</strong> Receipt No, Student Roll, Amount Paid, Date, Status
-              </div>
-            </div>
-          </div>
+              </div></div>
 
           <h3 style="margin-top:1.5rem; margin-bottom:0.75rem;">Why Are Dedicated Databases Essential?</h3>
           <ul style="line-height:1.7; padding-left:1.25rem;">
@@ -499,9 +494,7 @@
               <div style="text-align:center; color:#10b981;">▼</div>
               <div style="background:rgba(245,158,11,0.1); border:1px solid #f59e0b; border-radius:8px; padding:0.5rem 1rem; text-align:center;">
                 💾 Physical Database Storage (Data Pages, B-Tree Indexes, Write-Ahead Logs)
-              </div>
-            </div>
-          </div>
+              </div></div>
 
           <h3 style="margin-top:1.5rem; margin-bottom:0.75rem;">Core Responsibilities of a Modern DBMS</h3>
           <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:1rem;">
@@ -555,7 +548,7 @@
           </p>
 
           <div style="overflow-x:auto; margin:1.5rem 0;">
-            <table class="db-table-visual">
+            <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="db-table-visual">
               <thead>
                 <tr>
                   <th>Dimension</th>
@@ -600,7 +593,7 @@
                   <td>Declaratively enforced by DBMS engine (PRIMARY KEY, FOREIGN KEY, CHECK, NOT NULL).</td>
                 </tr>
               </tbody>
-            </table>
+            </table></div>
           </div>
 
           <div class="scenario-box" style="border-left:4px solid #f59e0b;">
@@ -697,7 +690,7 @@
 
           <div style="margin:1.5rem 0;">
             <h4 style="color:var(--brand-dbms); margin-bottom:0.5rem;">Table: Student</h4>
-            <table class="db-table-visual">
+            <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="db-table-visual">
               <thead>
                 <tr>
                   <th>student_id <span class="key-badge badge-pk">PK</span></th>
@@ -737,12 +730,12 @@
                   <td>Pune</td>
                 </tr>
               </tbody>
-            </table>
+            </table></div>
           </div>
 
           <h3 style="margin-top:1.5rem; margin-bottom:0.75rem;">Key Relational Formal Terminology</h3>
           <div style="overflow-x:auto;">
-            <table class="db-table-visual">
+            <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="db-table-visual">
               <thead>
                 <tr>
                   <th>Relational Formal Term</th>
@@ -782,7 +775,7 @@
                   <td>The total number of tuples currently stored in the relation instance. In the <code>Student</code> table above, <strong>Cardinality = 4</strong>.</td>
                 </tr>
               </tbody>
-            </table>
+            </table></div>
           </div>
         </section>
 
@@ -887,9 +880,7 @@
               </button>
               <div class="challenge-answer">
                 <p><strong>Answer:</strong> Yes, a table can have multiple Candidate Keys (e.g. employee_id and passport_number). However, only EXACTLY ONE can be designated as the Primary Key.</p>
-              </div>
-            </div>
-          </div>
+              </div></div>
 
 
 
@@ -919,9 +910,7 @@
               </div>
               <div class="layer-item" style="border-left:4px solid #06B6D4;">
                 <div class="layer-name" style="color:#38BDF8;">5. FOREIGN KEY &amp; COMPOSITE KEY</div>
-                <div class="layer-desc"><strong>Foreign Key:</strong> References Primary Key in parent table. <strong>Composite Key:</strong> Primary key constructed from two or more attributes combined.</div>
-              </div>
-            </div>
+                <div class="layer-desc"><strong>Foreign Key:</strong> References Primary Key in parent table. <strong>Composite Key:</strong> Primary key constructed from two or more attributes combined.</div></div>
 
             <div class="visual-explainer-grid">
               <div class="explainer-box happening">
@@ -935,9 +924,7 @@
               <div class="explainer-box analogy">
                 <div class="explainer-label">🌍 Real-Life Example</div>
                 <p>Citizen Identity: Passport Number, Driver's License, and National ID Card are all Candidate Keys; the government designates National ID as the Primary Key for official tax filings.</p>
-              </div>
-            </div>
-          </div>
+              </div></div>
         </section>
 
         <!-- ==========================================
@@ -1055,7 +1042,7 @@ CREATE TABLE Student (
                   <span style="font-size:0.75rem; background:rgba(56,189,248,0.2); color:#7DD3FC; padding:2px 8px; border-radius:4px;">Referenced Entity</span>
                 </div>
                 <div class="table-responsive">
-                  <table class="notes-table" style="margin:0;">
+                  <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table" style="margin:0;">
                     <thead>
                       <tr>
                         <th>dept_id <span class="key-badge badge-pk">PK</span></th>
@@ -1066,9 +1053,7 @@ CREATE TABLE Student (
                       <tr><td><strong>10</strong></td><td>Computer Science</td></tr>
                       <tr><td><strong>20</strong></td><td>Electronics</td></tr>
                     </tbody>
-                  </table>
-                </div>
-              </div>
+                  </table></div></div>
 
               <!-- Constraint Connector -->
               <div style="display:flex; align-items:center; justify-content:center; gap:10px; color:#F59E0B; font-weight:700; font-size:0.85rem;">
@@ -1086,7 +1071,7 @@ CREATE TABLE Student (
                   <span style="font-size:0.75rem; background:rgba(52,211,153,0.2); color:#6EE7B7; padding:2px 8px; border-radius:4px;">Referencing Entity</span>
                 </div>
                 <div class="table-responsive">
-                  <table class="notes-table" style="margin:0;">
+                  <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table" style="margin:0;">
                     <thead>
                       <tr>
                         <th>emp_id <span class="key-badge badge-pk">PK</span></th>
@@ -1109,9 +1094,7 @@ CREATE TABLE Student (
                         <td><span style="color:#EF4444; font-weight:700;">❌ REJECTED! Foreign Key Violation (99 does not exist)</span></td>
                       </tr>
                     </tbody>
-                  </table>
-                </div>
-              </div>
+                  </table></div></div>
             </div>
 
             <div class="visual-explainer-grid">
@@ -1126,9 +1109,7 @@ CREATE TABLE Student (
               <div class="explainer-box analogy">
                 <div class="explainer-label">🌍 Real-Life Example</div>
                 <p>University Course Registration: A student cannot enroll in a class section with course code 'CS999' if the academic department has not registered that course in the master catalog.</p>
-              </div>
-            </div>
-          </div>
+              </div></div>
         </section>
 
         <!-- ==========================================
@@ -1174,7 +1155,7 @@ CREATE TABLE Student (
           </p>
 
           <div style="overflow-x:auto; margin:1.5rem 0;">
-            <table class="db-table-visual">
+            <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="db-table-visual">
               <thead>
                 <tr>
                   <th>Feature</th>
@@ -1204,7 +1185,7 @@ CREATE TABLE Student (
                   <td>Enforcing uniqueness on alternative attributes (e.g., Email, PAN, Aadhaar).</td>
                 </tr>
               </tbody>
-            </table>
+            </table></div>
           </div>
         </section>
 
@@ -1221,7 +1202,7 @@ CREATE TABLE Student (
           </p>
 
           <div style="overflow-x:auto; margin:1.5rem 0;">
-            <table class="db-table-visual">
+            <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="db-table-visual">
               <thead>
                 <tr>
                   <th>Constraint</th>
@@ -1261,7 +1242,7 @@ CREATE TABLE Student (
                   <td>Provides an automatic fallback value if column omitted in INSERT.</td>
                 </tr>
               </tbody>
-            </table>
+            </table></div>
           </div>
         </section>
 
@@ -1297,7 +1278,7 @@ CREATE TABLE Student (
           </p>
 
           <div style="overflow-x:auto; margin:1.5rem 0;">
-            <table class="db-table-visual">
+            <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="db-table-visual">
               <thead>
                 <tr>
                   <th>Action</th>
@@ -1327,7 +1308,7 @@ CREATE TABLE Student (
                   <td>Complex multi-table transaction workflows.</td>
                 </tr>
               </tbody>
-            </table>
+            </table></div>
           </div>
         </section>
 
@@ -1432,7 +1413,7 @@ CREATE TABLE Student (
           </p>
 
           <div style="overflow-x:auto; margin:1.5rem 0;">
-            <table class="db-table-visual">
+            <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="db-table-visual">
               <thead>
                 <tr>
                   <th>Cardinality</th>
@@ -1467,7 +1448,7 @@ CREATE TABLE Student (
                   <td><strong>Requires a separate Junction/Bridge Table</strong> (e.g., <code>Enrollment</code>) with composite keys.</td>
                 </tr>
               </tbody>
-            </table>
+            </table></div>
           </div>
         </section>
 
@@ -1531,7 +1512,7 @@ CREATE TABLE Student (
           </p>
 
           <div style="overflow-x:auto; margin:1.5rem 0;">
-            <table class="db-table-visual">
+            <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="db-table-visual">
               <thead>
                 <tr>
                   <th>Category</th>
@@ -1572,7 +1553,7 @@ CREATE TABLE Student (
                   <td>Manages transaction boundaries and ensures ACID persistence.</td>
                 </tr>
               </tbody>
-            </table>
+            </table></div>
           </div>
         </section>
 
@@ -1741,7 +1722,7 @@ WHERE department IN ('IT', 'Engineering', 'R&amp;D');</code></pre>
           </p>
 
           <div style="overflow-x:auto; margin:1.5rem 0;">
-            <table class="db-table-visual">
+            <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="db-table-visual">
               <thead>
                 <tr>
                   <th>Pattern</th>
@@ -1782,7 +1763,7 @@ WHERE department IN ('IT', 'Engineering', 'R&amp;D');</code></pre>
                   <td>'Rahul', 'Om'</td>
                 </tr>
               </tbody>
-            </table>
+            </table></div>
           </div>
         </section>
 
@@ -1862,7 +1843,7 @@ ORDER BY department ASC, salary DESC;</code></pre>
           </p>
 
           <div style="overflow-x:auto; margin:1.5rem 0;">
-            <table class="db-table-visual">
+            <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="db-table-visual">
               <thead>
                 <tr>
                   <th>Function</th>
@@ -1897,7 +1878,7 @@ ORDER BY department ASC, salary DESC;</code></pre>
                   <td>Ignores NULLs.</td>
                 </tr>
               </tbody>
-            </table>
+            </table></div>
           </div>
         </section>
 
@@ -1915,7 +1896,7 @@ ORDER BY department ASC, salary DESC;</code></pre>
 
           <div class="concept-card">
             <h4>Given Table: EmpBonus</h4>
-            <table class="db-table-visual" style="max-width:300px;">
+            <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="db-table-visual" style="max-width:300px;">
               <thead><tr><th>emp_id</th><th>bonus</th></tr></thead>
               <tbody>
                 <tr><td>1</td><td>5000</td></tr>
@@ -1923,7 +1904,7 @@ ORDER BY department ASC, salary DESC;</code></pre>
                 <tr><td>3</td><td>7000</td></tr>
                 <tr><td>4</td><td>NULL</td></tr>
               </tbody>
-            </table>
+            </table></div>
             <div class="code-block-wrapper" style="margin-top:0.75rem;">
               <pre><code class="language-sql">SELECT COUNT(*), COUNT(bonus) FROM EmpBonus;
 -- OUTPUT:
@@ -1961,9 +1942,7 @@ ORDER BY department ASC, salary DESC;</code></pre>
                   &bull; Row 3: [Eng, ₹70,000]<br>
                   <div style="margin-top:8px; background:rgba(56, 189, 248, 0.1); padding:6px; border-radius:4px; color:#7DD3FC; font-weight:700;">
                     COUNT = 3 &bull; AVG = ₹70,000
-                  </div>
-                </div>
-              </div>
+                  </div></div>
 
               <div style="background:#0F172A; border-left:4px solid #10B981; border-radius:8px; padding:1.1rem;">
                 <div style="font-weight:700; color:#34D399; margin-bottom:8px;">👥 Marketing Bucket (3 Rows)</div>
@@ -1973,9 +1952,7 @@ ORDER BY department ASC, salary DESC;</code></pre>
                   &bull; Row 6: [Mkt, ₹55,000]<br>
                   <div style="margin-top:8px; background:rgba(52, 211, 153, 0.1); padding:6px; border-radius:4px; color:#6EE7B7; font-weight:700;">
                     COUNT = 3 &bull; AVG = ₹55,000
-                  </div>
-                </div>
-              </div>
+                  </div></div>
             </div>
 
             <div class="visual-explainer-grid">
@@ -1990,9 +1967,7 @@ ORDER BY department ASC, salary DESC;</code></pre>
               <div class="explainer-box analogy">
                 <div class="explainer-label">🌍 Real-Life Example</div>
                 <p>Sorting coins into piggy banks: Sorting a scattered pile of coins into 10-rupee, 5-rupee, and 2-rupee jars, then counting the total sum inside each jar separately.</p>
-              </div>
-            </div>
-          </div>
+              </div></div>
         </section>
 
         <!-- ==========================================
@@ -2029,7 +2004,7 @@ HAVING COUNT(*) &gt; 5 AND AVG(salary) &gt; 60000;</code></pre>
           </p>
 
           <div style="overflow-x:auto; margin:1.5rem 0;">
-            <table class="db-table-visual">
+            <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="db-table-visual">
               <thead>
                 <tr>
                   <th>Dimension</th>
@@ -2059,7 +2034,7 @@ HAVING COUNT(*) &gt; 5 AND AVG(salary) &gt; 60000;</code></pre>
                   <td>Usually paired with <code>GROUP BY</code> (though standard SQL allows HAVING on whole table aggregate).</td>
                 </tr>
               </tbody>
-            </table>
+            </table></div>
           </div>
         </section>
 
@@ -2141,9 +2116,7 @@ HAVING COUNT(*) &gt; 5 AND AVG(salary) &gt; 60000;</code></pre>
               <div class="pipeline-node" style="border-left: 3px solid #8b5cf6;">
                 <div class="node-icon">6️⃣</div>
                 <div class="node-label">ORDER BY &amp; LIMIT</div>
-                <div class="node-subtext">Sort &amp; slice pagination</div>
-              </div>
-            </div>
+                <div class="node-subtext">Sort &amp; slice pagination</div></div>
 
             <div class="visual-explainer-grid">
               <div class="explainer-box happening">
@@ -2164,9 +2137,7 @@ HAVING COUNT(*) &gt; 5 AND AVG(salary) &gt; 60000;</code></pre>
                 <div class="explainer-label">🌍 Real-Life Analogy</div>
                 <div class="explainer-text">
                   Imagine cooking: First you pull all ingredients from the pantry (FROM), discard expired items (WHERE), chop into recipe bowls (GROUP BY), taste test seasoning (HAVING), plate the best dishes (SELECT), garnish neatly in order (ORDER BY), and serve the top 3 portions (LIMIT).
-                </div>
-              </div>
-            </div>
+                </div></div>
           </div>
 
           <div style="margin:1.5rem 0;">
@@ -2204,9 +2175,7 @@ HAVING COUNT(*) &gt; 5 AND AVG(salary) &gt; 60000;</code></pre>
             </div>
             <div class="query-exec-step">
               <div class="query-step-num">9</div>
-              <div><strong style="color:#60a5fa;">LIMIT / OFFSET</strong>: Restricts total count of rows returned to client.</div>
-            </div>
-          </div>
+              <div><strong style="color:#60a5fa;">LIMIT / OFFSET</strong>: Restricts total count of rows returned to client.</div></div>
 
           <div class="scenario-box" style="border-left:4px solid #06b6d4;">
             <div class="scenario-box-label" style="color:#06b6d4;">💡 Why Column Aliases Fail in WHERE Clauses</div>
@@ -2287,9 +2256,7 @@ HAVING COUNT(*) &gt; 5 AND AVG(salary) &gt; 60000;</code></pre>
               </button>
               <div class="challenge-answer">
                 <p><strong>Answer:</strong> 1) INNER JOIN returns 0 rows (no matches exist). 2) LEFT JOIN returns 5 rows (all rows from Table A, with NULLs for all columns of Table B).</p>
-              </div>
-            </div>
-          </div>
+              </div></div>
 
 
 
@@ -2339,9 +2306,7 @@ HAVING COUNT(*) &gt; 5 AND AVG(salary) &gt; 60000;</code></pre>
               <div class="explainer-box analogy">
                 <div class="explainer-label">🌍 Real-Life Example</div>
                 <p>Class Reunion: INNER JOIN is inviting alumni who brought a spouse; LEFT JOIN is inviting all alumni, seating single alumni with an empty chair (NULL spouse).</p>
-              </div>
-            </div>
-          </div>
+              </div></div>
         </section>
 
         <!-- ==========================================
@@ -2508,29 +2473,27 @@ LEFT JOIN Employee m ON e.manager_id = m.emp_id;
             <!-- Left Table -->
             <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:10px; padding:1rem;">
               <h4 style="color:#60a5fa; margin-bottom:0.5rem; font-size:0.9rem;">Table A: Employee (Left)</h4>
-              <table class="db-table-visual" id="sim-table-a">
+              <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="db-table-visual" id="sim-table-a">
                 <thead><tr><th>emp_id</th><th>name</th><th>dept_id</th></tr></thead>
                 <tbody>
                   <tr id="sim-row-a1"><td>1</td><td>Alice</td><td>10</td></tr>
                   <tr id="sim-row-a2"><td>2</td><td>Bob</td><td>20</td></tr>
                   <tr id="sim-row-a3"><td>3</td><td>Charlie</td><td>NULL</td></tr>
                 </tbody>
-              </table>
+              </table></div>
             </div>
 
             <!-- Right Table -->
             <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:10px; padding:1rem;">
               <h4 style="color:#34d399; margin-bottom:0.5rem; font-size:0.9rem;">Table B: Department (Right)</h4>
-              <table class="db-table-visual" id="sim-table-b">
+              <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="db-table-visual" id="sim-table-b">
                 <thead><tr><th>dept_id</th><th>dept_name</th></tr></thead>
                 <tbody>
                   <tr id="sim-row-b1"><td>10</td><td>Engineering</td></tr>
                   <tr id="sim-row-b2"><td>20</td><td>Marketing</td></tr>
                   <tr id="sim-row-b3"><td>30</td><td>Finance</td></tr>
                 </tbody>
-              </table>
-            </div>
-          </div>
+              </table></div></div>
 
           <!-- Dynamic Output Simulation Result -->
           <div style="margin-top:1.5rem; background:var(--bg-card); border:1px solid var(--brand-dbms); border-radius:10px; padding:1.25rem;">
@@ -2542,15 +2505,13 @@ LEFT JOIN Employee m ON e.manager_id = m.emp_id;
               Only rows where <code>Employee.dept_id = Department.dept_id</code>. Charlie (dept_id NULL) and Finance (dept_id 30 with no employees) are excluded.
             </p>
             <div style="overflow-x:auto;">
-              <table class="db-table-visual" id="sim-result-table">
+              <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="db-table-visual" id="sim-result-table">
                 <thead><tr><th>emp_id</th><th>name</th><th>dept_id</th><th>dept_name</th></tr></thead>
                 <tbody id="sim-result-tbody">
                   <tr><td>1</td><td>Alice</td><td>10</td><td>Engineering</td></tr>
                   <tr><td>2</td><td>Bob</td><td>20</td><td>Marketing</td></tr>
                 </tbody>
-              </table>
-            </div>
-          </div>
+              </table></div></div>
         </section>
 
         <!-- ==========================================
@@ -2590,9 +2551,7 @@ WHERE e.salary &gt; (
     FROM Employee sub 
     WHERE sub.dept_id = e.dept_id
 );</code></pre>
-              </div>
-            </div>
-          </div>
+              </div></div>
         </section>
 
         <!-- ==========================================
@@ -2608,7 +2567,7 @@ WHERE e.salary &gt; (
           </p>
 
           <div style="overflow-x:auto; margin:1.5rem 0;">
-            <table class="db-table-visual">
+            <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="db-table-visual">
               <thead>
                 <tr>
                   <th>Criteria</th>
@@ -2633,7 +2592,7 @@ WHERE e.salary &gt; (
                   <td><strong>SAFE:</strong> <code>NOT EXISTS</code> handles NULLs predictably without dropping valid records.</td>
                 </tr>
               </tbody>
-            </table>
+            </table></div>
           </div>
         </section>
 
@@ -2743,9 +2702,7 @@ FROM Employee;</code></pre>
               </button>
               <div class="challenge-answer">
                 <p><strong>Answer:</strong> YES! Partial dependencies can ONLY occur when a Primary Key is Composite (consisting of two or more columns). With a single-column Primary Key, partial dependency is impossible.</p>
-              </div>
-            </div>
-          </div>
+              </div></div>
 
 
 
@@ -2778,7 +2735,7 @@ Unnormalized Data (Repeating groups, multi-valued attributes)<br>
           </p>
 
           <div style="overflow-x:auto; margin:1rem 0;">
-            <table class="db-table-visual">
+            <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="db-table-visual">
               <thead>
                 <tr>
                   <th>roll_no</th>
@@ -2794,7 +2751,7 @@ Unnormalized Data (Repeating groups, multi-valued attributes)<br>
                 <tr><td>102</td><td>Aman</td><td>CS101</td><td>Computer Science</td><td>Dr. Mehta</td></tr>
                 <tr><td>103</td><td>Priya</td><td>EC201</td><td>Electronics</td><td>Dr. Rao</td></tr>
               </tbody>
-            </table>
+            </table></div>
           </div>
 
           <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:1.25rem; margin:1.5rem 0;">
@@ -2839,26 +2796,26 @@ Unnormalized Data (Repeating groups, multi-valued attributes)<br>
           <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:1rem; margin:1.5rem 0;">
             <div style="background:var(--bg-card); border:1px solid #ef4444; border-radius:8px; padding:1rem;">
               <h4 style="color:#ef4444; margin-bottom:0.5rem;">❌ Violating 1NF (Non-Atomic Values)</h4>
-              <table class="db-table-visual">
+              <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="db-table-visual">
                 <thead><tr><th>emp_id</th><th>name</th><th>phone_numbers</th></tr></thead>
                 <tbody>
                   <tr><td>101</td><td>Rahul</td><td>9876543210, 9123456780</td></tr>
                   <tr><td>102</td><td>Aman</td><td>9988776655</td></tr>
                 </tbody>
-              </table>
+              </table></div>
               <span style="font-size:0.75rem; color:#ef4444;">Multi-valued phone numbers violate atomicity!</span>
             </div>
 
             <div style="background:var(--bg-card); border:1px solid #10b981; border-radius:8px; padding:1rem;">
               <h4 style="color:#10b981; margin-bottom:0.5rem;">✅ Converted to 1NF (Atomic Values)</h4>
-              <table class="db-table-visual">
+              <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="db-table-visual">
                 <thead><tr><th>emp_id</th><th>name</th><th>phone_number</th></tr></thead>
                 <tbody>
                   <tr><td>101</td><td>Rahul</td><td>9876543210</td></tr>
                   <tr><td>101</td><td>Rahul</td><td>9123456780</td></tr>
                   <tr><td>102</td><td>Aman</td><td>9988776655</td></tr>
                 </tbody>
-              </table>
+              </table></div>
               <span style="font-size:0.75rem; color:#10b981;">Each cell contains exactly one atomic value.</span>
             </div>
           </div>
@@ -2966,7 +2923,7 @@ Unnormalized Data (Repeating groups, multi-valued attributes)<br>
           </p>
 
           <div style="overflow-x:auto; margin:1.5rem 0;">
-            <table class="db-table-visual">
+            <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="db-table-visual">
               <thead>
                 <tr>
                   <th>Type of Dependency</th>
@@ -2996,7 +2953,7 @@ Unnormalized Data (Repeating groups, multi-valued attributes)<br>
                   <td><code>emp_id ➔ dept_id</code>, <code>dept_id ➔ dept_name</code></td>
                 </tr>
               </tbody>
-            </table>
+            </table></div>
           </div>
 
           <h3 style="margin-top:1.5rem; margin-bottom:0.75rem;">Armstrong's Axioms (Inference Rules)</h3>
@@ -3068,7 +3025,7 @@ Unnormalized Data (Repeating groups, multi-valued attributes)<br>
           </p>
 
           <div style="overflow-x:auto; margin:1.5rem 0;">
-            <table class="db-table-visual">
+            <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="db-table-visual">
               <thead>
                 <tr>
                   <th>Feature</th>
@@ -3098,7 +3055,7 @@ Unnormalized Data (Repeating groups, multi-valued attributes)<br>
                   <td>Created automatically on columns with <code>UNIQUE</code> constraints or manually via <code>CREATE INDEX</code>.</td>
                 </tr>
               </tbody>
-            </table>
+            </table></div>
           </div>
         </section>
 
@@ -3239,9 +3196,7 @@ Unnormalized Data (Repeating groups, multi-valued attributes)<br>
               </button>
               <div class="challenge-answer">
                 <p><strong>Answer:</strong> Write-Ahead Logging (WAL) and Redo Logs written to non-volatile disk storage before memory buffers are flushed.</p>
-              </div>
-            </div>
-          </div>
+              </div></div>
 
 
 
@@ -3310,7 +3265,7 @@ COMMIT; -- Changes become permanent and durable!</code></pre>
           </p>
 
           <div style="overflow-x:auto; margin:1.5rem 0;">
-            <table class="db-table-visual">
+            <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="db-table-visual">
               <thead>
                 <tr>
                   <th>Anomaly</th>
@@ -3340,7 +3295,7 @@ COMMIT; -- Changes become permanent and durable!</code></pre>
                   <td>T1 sees "phantom" new rows that appeared mid-transaction.</td>
                 </tr>
               </tbody>
-            </table>
+            </table></div>
           </div>
         </section>
 
@@ -3357,7 +3312,7 @@ COMMIT; -- Changes become permanent and durable!</code></pre>
           </p>
 
           <div style="overflow-x:auto; margin:1.5rem 0;">
-            <table class="db-table-visual">
+            <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="db-table-visual">
               <thead>
                 <tr>
                   <th>Isolation Level</th>
@@ -3397,7 +3352,7 @@ COMMIT; -- Changes become permanent and durable!</code></pre>
                   <td>Strict serial execution. Slowest throughput; high lock contention.</td>
                 </tr>
               </tbody>
-            </table>
+            </table></div>
           </div>
         </section>
 
@@ -3466,13 +3421,13 @@ COMMIT; -- Changes become permanent and durable!</code></pre>
           </div>
 
           <h4 style="margin-top:1.5rem; margin-bottom:0.5rem;">Lock Compatibility Matrix</h4>
-          <table class="db-table-visual" style="max-width:360px;">
+          <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="db-table-visual" style="max-width:360px;">
             <thead><tr><th>Request / Held</th><th>Shared (S) Held</th><th>Exclusive (X) Held</th></tr></thead>
             <tbody>
               <tr><td><strong>Shared (S) Request</strong></td><td style="color:#10b981; font-weight:700;">Compatible ✅</td><td style="color:#ef4444; font-weight:700;">Conflict (Wait) ❌</td></tr>
               <tr><td><strong>Exclusive (X) Request</strong></td><td style="color:#ef4444; font-weight:700;">Conflict (Wait) ❌</td><td style="color:#ef4444; font-weight:700;">Conflict (Wait) ❌</td></tr>
             </tbody>
-          </table>
+          </table></div>
         </section>
 
         <!-- ==========================================
@@ -3631,7 +3586,7 @@ ResultSet rs = stmt.executeQuery();</code></pre>
           <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:12px; padding:1.25rem; margin-bottom:1.5rem;">
             <h4 style="color:#60a5fa; margin-bottom:0.5rem;">Reference Table: Employee</h4>
             <div style="overflow-x:auto;">
-              <table class="db-table-visual">
+              <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="db-table-visual">
                 <thead><tr><th>id</th><th>name</th><th>dept</th><th>salary</th><th>bonus</th></tr></thead>
                 <tbody>
                   <tr><td>1</td><td>Alice</td><td>IT</td><td>60000</td><td>5000</td></tr>
@@ -3641,9 +3596,7 @@ ResultSet rs = stmt.executeQuery();</code></pre>
                   <tr><td>5</td><td>Emma</td><td>HR</td><td>55000</td><td>3000</td></tr>
                   <tr><td>6</td><td>Frank</td><td>Finance</td><td>70000</td><td>NULL</td></tr>
                 </tbody>
-              </table>
-            </div>
-          </div>
+              </table></div></div>
 
           <!-- 15 Query Cases -->
           <div style="display:flex; flex-direction:column; gap:1.25rem;">
@@ -3945,10 +3898,7 @@ ResultSet rs = stmt.executeQuery();</code></pre>
               <div id="reason-15" style="display:none; margin-top:0.75rem; padding:0.75rem; background:var(--bg-main); border-radius:6px; border:1px solid var(--border-color); font-size:0.85rem;">
                 <strong style="color:#10b981;">Correct Output:</strong> A. IT: 2, HR: 1, Finance: 0<br>
                 <strong style="color:#60a5fa;">Technical Reasoning:</strong> Finance has 1 employee with bonus NULL. COUNT(bonus) skips the NULL and returns 0 for Finance! (Not NULL).
-              </div>
-            </div>
-
-          </div>
+              </div></div>
         </section>
 
         <!-- ==========================================
@@ -4221,7 +4171,7 @@ ResultSet rs = stmt.executeQuery();</code></pre>
           </p>
 
           <div style="overflow-x:auto; margin:1.5rem 0;">
-            <table class="db-table-visual">
+            <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="db-table-visual">
               <thead>
                 <tr>
                   <th>Dimension</th>
@@ -4274,7 +4224,7 @@ ResultSet rs = stmt.executeQuery();</code></pre>
                   <td>Does not fire delete triggers (drops trigger definition).</td>
                 </tr>
               </tbody>
-            </table>
+            </table></div>
           </div>
         </section>
 
@@ -4350,7 +4300,7 @@ ResultSet rs = stmt.executeQuery();</code></pre>
           </p>
 
           <div style="overflow-x:auto; margin:1.5rem 0;">
-            <table class="db-table-visual">
+            <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="db-table-visual">
               <thead>
                 <tr>
                   <th>Dimension</th>
@@ -4385,7 +4335,7 @@ ResultSet rs = stmt.executeQuery();</code></pre>
                   <td>Snowflake, Google BigQuery, Amazon Redshift, ClickHouse.</td>
                 </tr>
               </tbody>
-            </table>
+            </table></div>
           </div>
         </section>
 
@@ -4402,7 +4352,7 @@ ResultSet rs = stmt.executeQuery();</code></pre>
           </p>
 
           <div style="overflow-x:auto; margin:1.5rem 0;">
-            <table class="db-table-visual">
+            <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="db-table-visual">
               <thead>
                 <tr>
                   <th>Criteria</th>
@@ -4437,7 +4387,7 @@ ResultSet rs = stmt.executeQuery();</code></pre>
                   <td>Real-time clickstreams, social feeds, high-throughput caching (Redis), IoT sensor telemetry.</td>
                 </tr>
               </tbody>
-            </table>
+            </table></div>
           </div>
         </section>
 
@@ -4518,9 +4468,7 @@ ResultSet rs = stmt.executeQuery();</code></pre>
                   <div style="flex:1; background:#0B0F17; color:#E2E8F0; border:1px solid #34D399; border-radius:6px; padding:6px; font-size:0.75rem;">
                     <strong style="color:#34D399;">Read Replica Pool (Followers)</strong><br>
                     Scales read-heavy SELECT queries, reports, and background analytics.
-                  </div>
-                </div>
-              </div>
+                  </div></div>
             </div>
 
             <div class="visual-explainer-grid">
@@ -4535,9 +4483,7 @@ ResultSet rs = stmt.executeQuery();</code></pre>
               <div class="explainer-box analogy">
                 <div class="explainer-label">🌍 Real-Life Example</div>
                 <p>Publishing newspaper: The editor writes and approves 1 master copy of tomorrow's news (Primary DB), and printing presses generate 500,000 replica copies distributed to newsstands across the country for readers (Read Replicas).</p>
-              </div>
-            </div>
-          </div>
+              </div></div>
         </section>
 
         <!-- ==========================================
@@ -5195,10 +5141,7 @@ COMMIT;</code></pre>
                 <p>💡 <strong>Explanation:</strong> Two intervals (StartA, EndA) and (StartB, EndB) overlap if and only if StartA < EndB AND EndA > StartB.</p>
                 <p style="color:#10b981;">🔄 <strong>Alternative Approach:</strong> EXCLUDE USING GIST in PostgreSQL.</p>
                 <p style="color:#ef4444;">⚠️ <strong>Common Pitfall:</strong> Using BETWEEN on endpoints, which mishandles back-to-back non-overlapping meetings (11:00-12:00 and 12:00-13:00).</p>
-              </div>
-            </div>
-
-          </div>
+              </div></div>
         </section>
 
         <!-- ==========================================
@@ -5270,7 +5213,7 @@ WHERE rk = 2;</code></pre>
           </p>
 
           <div style="overflow-x:auto; margin:1.5rem 0;">
-            <table class="db-table-visual">
+            <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="db-table-visual">
               <thead>
                 <tr>
                   <th>Dimension</th>
@@ -5295,7 +5238,7 @@ WHERE rk = 2;</code></pre>
                   <td><code>ROW_NUMBER()</code>, <code>RANK()</code>, <code>DENSE_RANK()</code>, <code>LEAD()</code>, <code>LAG()</code>, <code>NTILE()</code></td>
                 </tr>
               </tbody>
-            </table>
+            </table></div>
           </div>
 
           <div class="code-block-wrapper" style="margin:1rem 0;">
@@ -5366,9 +5309,7 @@ FROM Employee;
                 </div>
                 <div style="margin-top:0.4rem; font-size:0.78rem; color:#60a5fa;">
                   <strong>Concept Tested:</strong> Entity Integrity &nbsp;|&nbsp; <strong>Difficulty:</strong> Easy
-                </div>
-              </div>
-            </div>
+                </div></div>
 
             <div class="concept-card" id="mcq-card-2" style="border-left:4px solid #10b981;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
@@ -5407,9 +5348,7 @@ FROM Employee;
                 </div>
                 <div style="margin-top:0.4rem; font-size:0.78rem; color:#60a5fa;">
                   <strong>Concept Tested:</strong> Three-Valued Logic &nbsp;|&nbsp; <strong>Difficulty:</strong> Easy
-                </div>
-              </div>
-            </div>
+                </div></div>
 
             <div class="concept-card" id="mcq-card-3" style="border-left:4px solid #10b981;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
@@ -5448,9 +5387,7 @@ FROM Employee;
                 </div>
                 <div style="margin-top:0.4rem; font-size:0.78rem; color:#60a5fa;">
                   <strong>Concept Tested:</strong> SQL Command Categories &nbsp;|&nbsp; <strong>Difficulty:</strong> Easy
-                </div>
-              </div>
-            </div>
+                </div></div>
 
             <div class="concept-card" id="mcq-card-4" style="border-left:4px solid #10b981;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
@@ -5489,9 +5426,7 @@ FROM Employee;
                 </div>
                 <div style="margin-top:0.4rem; font-size:0.78rem; color:#60a5fa;">
                   <strong>Concept Tested:</strong> Degree vs Cardinality &nbsp;|&nbsp; <strong>Difficulty:</strong> Easy
-                </div>
-              </div>
-            </div>
+                </div></div>
 
             <div class="concept-card" id="mcq-card-5" style="border-left:4px solid #10b981;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
@@ -5530,9 +5465,7 @@ FROM Employee;
                 </div>
                 <div style="margin-top:0.4rem; font-size:0.78rem; color:#60a5fa;">
                   <strong>Concept Tested:</strong> Candidate Keys &nbsp;|&nbsp; <strong>Difficulty:</strong> Easy
-                </div>
-              </div>
-            </div>
+                </div></div>
 
             <div class="concept-card" id="mcq-card-6" style="border-left:4px solid #10b981;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
@@ -5571,9 +5504,7 @@ FROM Employee;
                 </div>
                 <div style="margin-top:0.4rem; font-size:0.78rem; color:#60a5fa;">
                   <strong>Concept Tested:</strong> HAVING vs WHERE &nbsp;|&nbsp; <strong>Difficulty:</strong> Easy
-                </div>
-              </div>
-            </div>
+                </div></div>
 
             <div class="concept-card" id="mcq-card-7" style="border-left:4px solid #10b981;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
@@ -5612,9 +5543,7 @@ FROM Employee;
                 </div>
                 <div style="margin-top:0.4rem; font-size:0.78rem; color:#60a5fa;">
                   <strong>Concept Tested:</strong> ACID Properties &nbsp;|&nbsp; <strong>Difficulty:</strong> Easy
-                </div>
-              </div>
-            </div>
+                </div></div>
 
             <div class="concept-card" id="mcq-card-8" style="border-left:4px solid #10b981;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
@@ -5653,9 +5582,7 @@ FROM Employee;
                 </div>
                 <div style="margin-top:0.4rem; font-size:0.78rem; color:#60a5fa;">
                   <strong>Concept Tested:</strong> Primary Key Constraints &nbsp;|&nbsp; <strong>Difficulty:</strong> Easy
-                </div>
-              </div>
-            </div>
+                </div></div>
 
             <div class="concept-card" id="mcq-card-9" style="border-left:4px solid #10b981;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
@@ -5694,9 +5621,7 @@ FROM Employee;
                 </div>
                 <div style="margin-top:0.4rem; font-size:0.78rem; color:#60a5fa;">
                   <strong>Concept Tested:</strong> COUNT(column) NULL Exclusion &nbsp;|&nbsp; <strong>Difficulty:</strong> Easy
-                </div>
-              </div>
-            </div>
+                </div></div>
 
             <div class="concept-card" id="mcq-card-10" style="border-left:4px solid #10b981;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
@@ -5735,9 +5660,7 @@ FROM Employee;
                 </div>
                 <div style="margin-top:0.4rem; font-size:0.78rem; color:#60a5fa;">
                   <strong>Concept Tested:</strong> ER Diagram Symbols &nbsp;|&nbsp; <strong>Difficulty:</strong> Easy
-                </div>
-              </div>
-            </div>
+                </div></div>
 
             <div class="concept-card" id="mcq-card-11" style="border-left:4px solid #10b981;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
@@ -5776,9 +5699,7 @@ FROM Employee;
                 </div>
                 <div style="margin-top:0.4rem; font-size:0.78rem; color:#60a5fa;">
                   <strong>Concept Tested:</strong> SQL LIKE Wildcards &nbsp;|&nbsp; <strong>Difficulty:</strong> Easy
-                </div>
-              </div>
-            </div>
+                </div></div>
 
             <div class="concept-card" id="mcq-card-12" style="border-left:4px solid #10b981;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
@@ -5817,9 +5738,7 @@ FROM Employee;
                 </div>
                 <div style="margin-top:0.4rem; font-size:0.78rem; color:#60a5fa;">
                   <strong>Concept Tested:</strong> 1NF Definition &nbsp;|&nbsp; <strong>Difficulty:</strong> Easy
-                </div>
-              </div>
-            </div>
+                </div></div>
 
             <div class="concept-card" id="mcq-card-13" style="border-left:4px solid #10b981;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
@@ -5858,9 +5777,7 @@ FROM Employee;
                 </div>
                 <div style="margin-top:0.4rem; font-size:0.78rem; color:#60a5fa;">
                   <strong>Concept Tested:</strong> Relational Algebra Operators &nbsp;|&nbsp; <strong>Difficulty:</strong> Easy
-                </div>
-              </div>
-            </div>
+                </div></div>
 
             <div class="concept-card" id="mcq-card-14" style="border-left:4px solid #10b981;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
@@ -5899,9 +5816,7 @@ FROM Employee;
                 </div>
                 <div style="margin-top:0.4rem; font-size:0.78rem; color:#60a5fa;">
                   <strong>Concept Tested:</strong> TCL Statements &nbsp;|&nbsp; <strong>Difficulty:</strong> Easy
-                </div>
-              </div>
-            </div>
+                </div></div>
 
             <div class="concept-card" id="mcq-card-15" style="border-left:4px solid #10b981;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
@@ -5940,9 +5855,7 @@ FROM Employee;
                 </div>
                 <div style="margin-top:0.4rem; font-size:0.78rem; color:#60a5fa;">
                   <strong>Concept Tested:</strong> Data Independence &nbsp;|&nbsp; <strong>Difficulty:</strong> Easy
-                </div>
-              </div>
-            </div>
+                </div></div>
 
             <div class="concept-card" id="mcq-card-16" style="border-left:4px solid #f59e0b;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
@@ -5981,9 +5894,7 @@ FROM Employee;
                 </div>
                 <div style="margin-top:0.4rem; font-size:0.78rem; color:#60a5fa;">
                   <strong>Concept Tested:</strong> SQL Query Execution Order &nbsp;|&nbsp; <strong>Difficulty:</strong> Medium
-                </div>
-              </div>
-            </div>
+                </div></div>
 
             <div class="concept-card" id="mcq-card-17" style="border-left:4px solid #f59e0b;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
@@ -6022,9 +5933,7 @@ FROM Employee;
                 </div>
                 <div style="margin-top:0.4rem; font-size:0.78rem; color:#60a5fa;">
                   <strong>Concept Tested:</strong> Cartesian Product &nbsp;|&nbsp; <strong>Difficulty:</strong> Medium
-                </div>
-              </div>
-            </div>
+                </div></div>
 
             <div class="concept-card" id="mcq-card-18" style="border-left:4px solid #f59e0b;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
@@ -6063,9 +5972,7 @@ FROM Employee;
                 </div>
                 <div style="margin-top:0.4rem; font-size:0.78rem; color:#60a5fa;">
                   <strong>Concept Tested:</strong> 2NF Single Attribute Key &nbsp;|&nbsp; <strong>Difficulty:</strong> Medium
-                </div>
-              </div>
-            </div>
+                </div></div>
 
             <div class="concept-card" id="mcq-card-19" style="border-left:4px solid #f59e0b;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
@@ -6104,9 +6011,7 @@ FROM Employee;
                 </div>
                 <div style="margin-top:0.4rem; font-size:0.78rem; color:#60a5fa;">
                   <strong>Concept Tested:</strong> Concurrency Anomalies &nbsp;|&nbsp; <strong>Difficulty:</strong> Medium
-                </div>
-              </div>
-            </div>
+                </div></div>
 
             <div class="concept-card" id="mcq-card-20" style="border-left:4px solid #f59e0b;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
@@ -6145,9 +6050,7 @@ FROM Employee;
                 </div>
                 <div style="margin-top:0.4rem; font-size:0.78rem; color:#60a5fa;">
                   <strong>Concept Tested:</strong> NOT IN with NULLs Trap &nbsp;|&nbsp; <strong>Difficulty:</strong> Medium
-                </div>
-              </div>
-            </div>
+                </div></div>
 
             <div class="concept-card" id="mcq-card-21" style="border-left:4px solid #f59e0b;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
@@ -6186,9 +6089,7 @@ FROM Employee;
                 </div>
                 <div style="margin-top:0.4rem; font-size:0.78rem; color:#60a5fa;">
                   <strong>Concept Tested:</strong> Clustered Index Architecture &nbsp;|&nbsp; <strong>Difficulty:</strong> Medium
-                </div>
-              </div>
-            </div>
+                </div></div>
 
             <div class="concept-card" id="mcq-card-22" style="border-left:4px solid #f59e0b;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
@@ -6227,9 +6128,7 @@ FROM Employee;
                 </div>
                 <div style="margin-top:0.4rem; font-size:0.78rem; color:#60a5fa;">
                   <strong>Concept Tested:</strong> Referential Actions &nbsp;|&nbsp; <strong>Difficulty:</strong> Medium
-                </div>
-              </div>
-            </div>
+                </div></div>
 
             <div class="concept-card" id="mcq-card-23" style="border-left:4px solid #f59e0b;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
@@ -6268,9 +6167,7 @@ FROM Employee;
                 </div>
                 <div style="margin-top:0.4rem; font-size:0.78rem; color:#60a5fa;">
                   <strong>Concept Tested:</strong> Transitive Dependency & 3NF &nbsp;|&nbsp; <strong>Difficulty:</strong> Medium
-                </div>
-              </div>
-            </div>
+                </div></div>
 
             <div class="concept-card" id="mcq-card-24" style="border-left:4px solid #f59e0b;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
@@ -6309,9 +6206,7 @@ FROM Employee;
                 </div>
                 <div style="margin-top:0.4rem; font-size:0.78rem; color:#60a5fa;">
                   <strong>Concept Tested:</strong> Two-Phase Locking (2PL) &nbsp;|&nbsp; <strong>Difficulty:</strong> Medium
-                </div>
-              </div>
-            </div>
+                </div></div>
 
             <div class="concept-card" id="mcq-card-25" style="border-left:4px solid #f59e0b;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
@@ -6350,9 +6245,7 @@ FROM Employee;
                 </div>
                 <div style="margin-top:0.4rem; font-size:0.78rem; color:#60a5fa;">
                   <strong>Concept Tested:</strong> Transaction Isolation Levels &nbsp;|&nbsp; <strong>Difficulty:</strong> Medium
-                </div>
-              </div>
-            </div>
+                </div></div>
 
             <div class="concept-card" id="mcq-card-26" style="border-left:4px solid #f59e0b;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
@@ -6391,9 +6284,7 @@ FROM Employee;
                 </div>
                 <div style="margin-top:0.4rem; font-size:0.78rem; color:#60a5fa;">
                   <strong>Concept Tested:</strong> UNION vs UNION ALL &nbsp;|&nbsp; <strong>Difficulty:</strong> Medium
-                </div>
-              </div>
-            </div>
+                </div></div>
 
             <div class="concept-card" id="mcq-card-27" style="border-left:4px solid #f59e0b;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
@@ -6432,9 +6323,7 @@ FROM Employee;
                 </div>
                 <div style="margin-top:0.4rem; font-size:0.78rem; color:#60a5fa;">
                   <strong>Concept Tested:</strong> Sargable Queries & Indexes &nbsp;|&nbsp; <strong>Difficulty:</strong> Medium
-                </div>
-              </div>
-            </div>
+                </div></div>
 
             <div class="concept-card" id="mcq-card-28" style="border-left:4px solid #f59e0b;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
@@ -6473,9 +6362,7 @@ FROM Employee;
                 </div>
                 <div style="margin-top:0.4rem; font-size:0.78rem; color:#60a5fa;">
                   <strong>Concept Tested:</strong> Composite Primary Keys &nbsp;|&nbsp; <strong>Difficulty:</strong> Medium
-                </div>
-              </div>
-            </div>
+                </div></div>
 
             <div class="concept-card" id="mcq-card-29" style="border-left:4px solid #f59e0b;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
@@ -6514,9 +6401,7 @@ FROM Employee;
                 </div>
                 <div style="margin-top:0.4rem; font-size:0.78rem; color:#60a5fa;">
                   <strong>Concept Tested:</strong> Write-Ahead Logging Recovery &nbsp;|&nbsp; <strong>Difficulty:</strong> Medium
-                </div>
-              </div>
-            </div>
+                </div></div>
 
             <div class="concept-card" id="mcq-card-30" style="border-left:4px solid #f59e0b;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
@@ -6555,9 +6440,7 @@ FROM Employee;
                 </div>
                 <div style="margin-top:0.4rem; font-size:0.78rem; color:#60a5fa;">
                   <strong>Concept Tested:</strong> Wait-For Graph Cycles &nbsp;|&nbsp; <strong>Difficulty:</strong> Medium
-                </div>
-              </div>
-            </div>
+                </div></div>
 
             <div class="concept-card" id="mcq-card-31" style="border-left:4px solid #f59e0b;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
@@ -6596,9 +6479,7 @@ FROM Employee;
                 </div>
                 <div style="margin-top:0.4rem; font-size:0.78rem; color:#60a5fa;">
                   <strong>Concept Tested:</strong> HAVING without GROUP BY &nbsp;|&nbsp; <strong>Difficulty:</strong> Medium
-                </div>
-              </div>
-            </div>
+                </div></div>
 
             <div class="concept-card" id="mcq-card-32" style="border-left:4px solid #f59e0b;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
@@ -6637,9 +6518,7 @@ FROM Employee;
                 </div>
                 <div style="margin-top:0.4rem; font-size:0.78rem; color:#60a5fa;">
                   <strong>Concept Tested:</strong> M:N Relational Mapping &nbsp;|&nbsp; <strong>Difficulty:</strong> Medium
-                </div>
-              </div>
-            </div>
+                </div></div>
 
             <div class="concept-card" id="mcq-card-33" style="border-left:4px solid #f59e0b;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
@@ -6678,9 +6557,7 @@ FROM Employee;
                 </div>
                 <div style="margin-top:0.4rem; font-size:0.78rem; color:#60a5fa;">
                   <strong>Concept Tested:</strong> Correlated Subqueries &nbsp;|&nbsp; <strong>Difficulty:</strong> Medium
-                </div>
-              </div>
-            </div>
+                </div></div>
 
             <div class="concept-card" id="mcq-card-34" style="border-left:4px solid #f59e0b;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
@@ -6719,9 +6596,7 @@ FROM Employee;
                 </div>
                 <div style="margin-top:0.4rem; font-size:0.78rem; color:#60a5fa;">
                   <strong>Concept Tested:</strong> Outer Join Antijoin Pattern &nbsp;|&nbsp; <strong>Difficulty:</strong> Medium
-                </div>
-              </div>
-            </div>
+                </div></div>
 
             <div class="concept-card" id="mcq-card-35" style="border-left:4px solid #f59e0b;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
@@ -6760,9 +6635,7 @@ FROM Employee;
                 </div>
                 <div style="margin-top:0.4rem; font-size:0.78rem; color:#60a5fa;">
                   <strong>Concept Tested:</strong> BCNF Determinant Rule &nbsp;|&nbsp; <strong>Difficulty:</strong> Medium
-                </div>
-              </div>
-            </div>
+                </div></div>
 
             <div class="concept-card" id="mcq-card-36" style="border-left:4px solid #f59e0b;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
@@ -6801,9 +6674,7 @@ FROM Employee;
                 </div>
                 <div style="margin-top:0.4rem; font-size:0.78rem; color:#60a5fa;">
                   <strong>Concept Tested:</strong> Updatable Views &nbsp;|&nbsp; <strong>Difficulty:</strong> Medium
-                </div>
-              </div>
-            </div>
+                </div></div>
 
             <div class="concept-card" id="mcq-card-37" style="border-left:4px solid #f59e0b;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
@@ -6842,9 +6713,7 @@ FROM Employee;
                 </div>
                 <div style="margin-top:0.4rem; font-size:0.78rem; color:#60a5fa;">
                   <strong>Concept Tested:</strong> Declarative Query Languages &nbsp;|&nbsp; <strong>Difficulty:</strong> Medium
-                </div>
-              </div>
-            </div>
+                </div></div>
 
             <div class="concept-card" id="mcq-card-38" style="border-left:4px solid #f59e0b;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
@@ -6883,9 +6752,7 @@ FROM Employee;
                 </div>
                 <div style="margin-top:0.4rem; font-size:0.78rem; color:#60a5fa;">
                   <strong>Concept Tested:</strong> DENSE_RANK vs RANK &nbsp;|&nbsp; <strong>Difficulty:</strong> Medium
-                </div>
-              </div>
-            </div>
+                </div></div>
 
             <div class="concept-card" id="mcq-card-39" style="border-left:4px solid #f59e0b;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
@@ -6924,9 +6791,7 @@ FROM Employee;
                 </div>
                 <div style="margin-top:0.4rem; font-size:0.78rem; color:#60a5fa;">
                   <strong>Concept Tested:</strong> Principle of Least Privilege &nbsp;|&nbsp; <strong>Difficulty:</strong> Medium
-                </div>
-              </div>
-            </div>
+                </div></div>
 
             <div class="concept-card" id="mcq-card-40" style="border-left:4px solid #f59e0b;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
@@ -6965,9 +6830,7 @@ FROM Employee;
                 </div>
                 <div style="margin-top:0.4rem; font-size:0.78rem; color:#60a5fa;">
                   <strong>Concept Tested:</strong> NoSQL Classification &nbsp;|&nbsp; <strong>Difficulty:</strong> Medium
-                </div>
-              </div>
-            </div>
+                </div></div>
 
             <div class="concept-card" id="mcq-card-41" style="border-left:4px solid #ef4444;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
@@ -7006,9 +6869,7 @@ FROM Employee;
                 </div>
                 <div style="margin-top:0.4rem; font-size:0.78rem; color:#60a5fa;">
                   <strong>Concept Tested:</strong> Attribute Closure Computation &nbsp;|&nbsp; <strong>Difficulty:</strong> Hard
-                </div>
-              </div>
-            </div>
+                </div></div>
 
             <div class="concept-card" id="mcq-card-42" style="border-left:4px solid #ef4444;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
@@ -7047,9 +6908,7 @@ FROM Employee;
                 </div>
                 <div style="margin-top:0.4rem; font-size:0.78rem; color:#60a5fa;">
                   <strong>Concept Tested:</strong> Conflict Serializability Graph &nbsp;|&nbsp; <strong>Difficulty:</strong> Hard
-                </div>
-              </div>
-            </div>
+                </div></div>
 
             <div class="concept-card" id="mcq-card-43" style="border-left:4px solid #ef4444;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
@@ -7088,9 +6947,7 @@ FROM Employee;
                 </div>
                 <div style="margin-top:0.4rem; font-size:0.78rem; color:#60a5fa;">
                   <strong>Concept Tested:</strong> NOT IN with Literal NULL &nbsp;|&nbsp; <strong>Difficulty:</strong> Hard
-                </div>
-              </div>
-            </div>
+                </div></div>
 
             <div class="concept-card" id="mcq-card-44" style="border-left:4px solid #ef4444;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
@@ -7129,9 +6986,7 @@ FROM Employee;
                 </div>
                 <div style="margin-top:0.4rem; font-size:0.78rem; color:#60a5fa;">
                   <strong>Concept Tested:</strong> Wound-Wait vs Wait-Die &nbsp;|&nbsp; <strong>Difficulty:</strong> Hard
-                </div>
-              </div>
-            </div>
+                </div></div>
 
             <div class="concept-card" id="mcq-card-45" style="border-left:4px solid #ef4444;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
@@ -7170,9 +7025,7 @@ FROM Employee;
                 </div>
                 <div style="margin-top:0.4rem; font-size:0.78rem; color:#60a5fa;">
                   <strong>Concept Tested:</strong> Lossless-Join Decomposition &nbsp;|&nbsp; <strong>Difficulty:</strong> Hard
-                </div>
-              </div>
-            </div>
+                </div></div>
 
             <div class="concept-card" id="mcq-card-46" style="border-left:4px solid #ef4444;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
@@ -7211,9 +7064,7 @@ FROM Employee;
                 </div>
                 <div style="margin-top:0.4rem; font-size:0.78rem; color:#60a5fa;">
                   <strong>Concept Tested:</strong> Strict 2PL & Cascading Aborts &nbsp;|&nbsp; <strong>Difficulty:</strong> Hard
-                </div>
-              </div>
-            </div>
+                </div></div>
 
             <div class="concept-card" id="mcq-card-47" style="border-left:4px solid #ef4444;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
@@ -7252,9 +7103,7 @@ FROM Employee;
                 </div>
                 <div style="margin-top:0.4rem; font-size:0.78rem; color:#60a5fa;">
                   <strong>Concept Tested:</strong> Nth Highest Salary Subquery &nbsp;|&nbsp; <strong>Difficulty:</strong> Hard
-                </div>
-              </div>
-            </div>
+                </div></div>
 
             <div class="concept-card" id="mcq-card-48" style="border-left:4px solid #ef4444;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
@@ -7293,9 +7142,7 @@ FROM Employee;
                 </div>
                 <div style="margin-top:0.4rem; font-size:0.78rem; color:#60a5fa;">
                   <strong>Concept Tested:</strong> ARIES Recovery Phases &nbsp;|&nbsp; <strong>Difficulty:</strong> Hard
-                </div>
-              </div>
-            </div>
+                </div></div>
 
             <div class="concept-card" id="mcq-card-49" style="border-left:4px solid #ef4444;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
@@ -7334,9 +7181,7 @@ FROM Employee;
                 </div>
                 <div style="margin-top:0.4rem; font-size:0.78rem; color:#60a5fa;">
                   <strong>Concept Tested:</strong> Query Order & WHERE Failure &nbsp;|&nbsp; <strong>Difficulty:</strong> Hard
-                </div>
-              </div>
-            </div>
+                </div></div>
 
             <div class="concept-card" id="mcq-card-50" style="border-left:4px solid #ef4444;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
@@ -7375,9 +7220,7 @@ FROM Employee;
                 </div>
                 <div style="margin-top:0.4rem; font-size:0.78rem; color:#60a5fa;">
                   <strong>Concept Tested:</strong> Relational Division &nbsp;|&nbsp; <strong>Difficulty:</strong> Hard
-                </div>
-              </div>
-            </div>
+                </div></div>
 
           </div>
         </section>
@@ -7873,10 +7716,7 @@ FROM Employee;
                 <p>🧠 <strong>Technical Explanation:</strong> It is the inverse of the Cartesian Product.</p>
                 <p style="color:#f59e0b;">🔎 <strong>Interviewer Follow-up:</strong> How do you implement relational division in SQL?</p>
                 <p style="color:#10b981;">📌 <strong>Interview Key Point:</strong> HAVING COUNT(DISTINCT item) = (SELECT COUNT(*) FROM AllItems).</p>
-              </div>
-            </div>
-
-          </div>
+              </div></div>
         </section>
 
         <!-- ==========================================
@@ -8230,10 +8070,7 @@ FROM Employee;
               <div style="font-size:0.8rem; color:var(--text-muted); display:flex; flex-wrap:wrap; gap:1rem;">
                 <span>🏢 <strong>Real-world Application:</strong> Instagram, Twitter, LinkedIn architecture.</span>
                 <span>📌 <strong>Interview Takeaway:</strong> Enterprise applications are rarely 100% SQL or 100% NoSQL; they combine both.</span>
-              </div>
-            </div>
-
-          </div>
+              </div></div>
         </section>
 
         <!-- ==========================================
@@ -8260,25 +8097,19 @@ FROM Employee;
                   <div class="layer-badge" style="background:#2563eb; color:#fff;">Layer 3</div>
                   <div class="layer-info">
                     <div class="layer-name">External Schema (User Views)</div>
-                    <div class="layer-desc">Tailored UI views, security masks, and customized user projections.</div>
-                  </div>
-                </div>
+                    <div class="layer-desc">Tailored UI views, security masks, and customized user projections.</div></div>
                 <div style="text-align:center; color:#60a5fa; font-size:0.75rem; font-weight:700; padding:0.2rem 0;">↕ Logical Data Independence (Insulates views from table schema changes)</div>
                 <div class="layer-item" style="border-left: 3px solid #10b981; background:rgba(16,185,129,0.08);">
                   <div class="layer-badge" style="background:#059669; color:#fff;">Layer 2</div>
                   <div class="layer-info">
                     <div class="layer-name">Conceptual Schema (Logical Design)</div>
-                    <div class="layer-desc">All tables, attributes, relationships, foreign keys, and integrity constraints.</div>
-                  </div>
-                </div>
+                    <div class="layer-desc">All tables, attributes, relationships, foreign keys, and integrity constraints.</div></div>
                 <div style="text-align:center; color:#10b981; font-size:0.75rem; font-weight:700; padding:0.2rem 0;">↕ Physical Data Independence (Insulates schema from index/disk changes)</div>
                 <div class="layer-item" style="border-left: 3px solid #8b5cf6; background:rgba(139,92,246,0.08);">
                   <div class="layer-badge" style="background:#7c3aed; color:#fff;">Layer 1</div>
                   <div class="layer-info">
                     <div class="layer-name">Internal Schema (Physical Storage)</div>
-                    <div class="layer-desc">B+ Tree indices, storage allocation, page hashing, and byte records on disk.</div>
-                  </div>
-                </div>
+                    <div class="layer-desc">B+ Tree indices, storage allocation, page hashing, and byte records on disk.</div></div>
               </div>
               <div class="visual-explainer-grid">
                 <div class="explainer-box happening">
@@ -8291,9 +8122,7 @@ FROM Employee;
                 </div>
                 <div class="explainer-box analogy">
                   <div class="explainer-label">🌍 Real-Life Example</div>
-                  <div class="explainer-text">Like electricity: You plug in your charger into the wall socket (External view) without caring if power is generated from solar or coal (Internal).</div>
-                </div>
-              </div>
+                  <div class="explainer-text">Like electricity: You plug in your charger into the wall socket (External view) without caring if power is generated from solar or coal (Internal).</div></div>
             </div>
 
             <!-- Diagram 2: Table Dimensions -->
@@ -8307,7 +8136,7 @@ FROM Employee;
                   <span>&larr; Degree = 3 Attributes (Columns) &rarr;</span>
                   <span>Cardinality = 3 Tuples (Rows) &darr;</span>
                 </div>
-                <table class="db-table-visual" style="margin:0;">
+                <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="db-table-visual" style="margin:0;">
                   <thead>
                     <tr>
                       <th>id <span style="background:rgba(59,130,246,0.3); padding:0.1rem 0.4rem; border-radius:4px; font-size:0.65rem;">PK</span></th>
@@ -8320,7 +8149,7 @@ FROM Employee;
                     <tr><td>102</td><td>Aman</td><td>₹50,000</td></tr>
                     <tr><td>103</td><td>Priya</td><td>₹70,000</td></tr>
                   </tbody>
-                </table>
+                </table></div>
               </div>
               <div class="visual-explainer-grid">
                 <div class="explainer-box happening">
@@ -8333,9 +8162,7 @@ FROM Employee;
                 </div>
                 <div class="explainer-box analogy">
                   <div class="explainer-label">🌍 Real-Life Example</div>
-                  <div class="explainer-text">An attendance sheet has columns for Roll No, Name, Date (Degree = 3) and 60 student rows (Cardinality = 60).</div>
-                </div>
-              </div>
+                  <div class="explainer-text">An attendance sheet has columns for Roll No, Name, Date (Degree = 3) and 60 student rows (Cardinality = 60).</div></div>
             </div>
 
             <!-- Diagram 3: Keys Hierarchy -->
@@ -8355,9 +8182,7 @@ FROM Employee;
                     </div>
                     <div style="flex:1; min-width:130px; padding:0.5rem; border-radius:6px; background:rgba(139,92,246,0.15); border:1px solid #8b5cf6;">
                       <div style="font-weight:700; color:#a78bfa; font-size:0.75rem;">🔄 ALTERNATE KEYS</div>
-                      <div style="font-size:0.7rem; color:var(--text-muted);">Unchosen candidate keys (can be UNIQUE).</div>
-                    </div>
-                  </div>
+                      <div style="font-size:0.7rem; color:var(--text-muted);">Unchosen candidate keys (can be UNIQUE).</div></div>
                 </div>
               </div>
               <div class="visual-explainer-grid">
@@ -8371,9 +8196,7 @@ FROM Employee;
                 </div>
                 <div class="explainer-box analogy">
                   <div class="explainer-label">🌍 Real-Life Example</div>
-                  <div class="explainer-text">A citizen can be identified by (Aadhaar, Passport, PAN). All 3 are Candidate Keys; the government picks Aadhaar as Primary Key.</div>
-                </div>
-              </div>
+                  <div class="explainer-text">A citizen can be identified by (Aadhaar, Passport, PAN). All 3 are Candidate Keys; the government picks Aadhaar as Primary Key.</div></div>
             </div>
 
             <!-- Diagram 4: Referential Integrity Link -->
@@ -8392,9 +8215,7 @@ FROM Employee;
                   <div style="font-weight:700; color:#f472b6; font-size:0.8rem;">EMPLOYEE (Child Table)</div>
                   <div style="font-size:0.75rem; margin-top:0.25rem;">
                     <div>• emp_id: 1, name: Alice, dept_id: <strong>10</strong> &nbsp;<span style="color:#10b981; font-weight:700;">&check; Valid (Exists in Parent)</span></div>
-                    <div>• emp_id: 2, name: Bob, dept_id: <strong>99</strong> &nbsp;<span style="color:#ef4444; font-weight:700;">&cross; Violation (dept 99 missing)</span></div>
-                  </div>
-                </div>
+                    <div>• emp_id: 2, name: Bob, dept_id: <strong>99</strong> &nbsp;<span style="color:#ef4444; font-weight:700;">&cross; Violation (dept 99 missing)</span></div></div>
               </div>
               <div class="visual-explainer-grid">
                 <div class="explainer-box happening">
@@ -8407,9 +8228,7 @@ FROM Employee;
                 </div>
                 <div class="explainer-box analogy">
                   <div class="explainer-label">🌍 Real-Life Example</div>
-                  <div class="explainer-text">You cannot register a vehicle to a driver's license number that does not exist in the DMV master registry.</div>
-                </div>
-              </div>
+                  <div class="explainer-text">You cannot register a vehicle to a driver's license number that does not exist in the DMV master registry.</div></div>
             </div>
 
             <!-- Diagram 5: SQL Logical Processing Flow -->
@@ -8436,9 +8255,7 @@ FROM Employee;
                 </div>
                 <div class="pipeline-connector"><span class="connector-arrow">&rarr;</span></div>
                 <div class="pipeline-node" style="padding:0.5rem 0.6rem; min-width:85px;">
-                  <div class="node-label" style="font-size:0.75rem;">5. SELECT</div>
-                </div>
-              </div>
+                  <div class="node-label" style="font-size:0.75rem;">5. SELECT</div></div>
               <div class="visual-explainer-grid">
                 <div class="explainer-box happening">
                   <div class="explainer-label">💡 What is happening?</div>
@@ -8450,9 +8267,7 @@ FROM Employee;
                 </div>
                 <div class="explainer-box analogy">
                   <div class="explainer-label">🌍 Real-Life Example</div>
-                  <div class="explainer-text">You inspect applicants' resumes first (WHERE), sort them into tech stacks (GROUP BY), and invite only batches with &gt;5 people (HAVING).</div>
-                </div>
-              </div>
+                  <div class="explainer-text">You inspect applicants' resumes first (WHERE), sort them into tech stacks (GROUP BY), and invite only batches with &gt;5 people (HAVING).</div></div>
             </div>
 
             <!-- Diagram 6: Normalization Flowchart -->
@@ -8466,30 +8281,22 @@ FROM Employee;
                   <div class="layer-badge" style="background:#dc2626; color:#fff;">1NF</div>
                   <div class="layer-info">
                     <div class="layer-name">Atomic Attributes</div>
-                    <div class="layer-desc">Eliminate repeating groups, array columns, and multi-valued comma lists.</div>
-                  </div>
-                </div>
+                    <div class="layer-desc">Eliminate repeating groups, array columns, and multi-valued comma lists.</div></div>
                 <div class="layer-item" style="border-left:3px solid #f59e0b; background:rgba(245,158,11,0.06);">
                   <div class="layer-badge" style="background:#d97706; color:#fff;">2NF</div>
                   <div class="layer-info">
                     <div class="layer-name">No Partial Dependencies</div>
-                    <div class="layer-desc">Every non-prime attribute must depend on the WHOLE composite primary key.</div>
-                  </div>
-                </div>
+                    <div class="layer-desc">Every non-prime attribute must depend on the WHOLE composite primary key.</div></div>
                 <div class="layer-item" style="border-left:3px solid #10b981; background:rgba(16,185,129,0.06);">
                   <div class="layer-badge" style="background:#059669; color:#fff;">3NF</div>
                   <div class="layer-info">
                     <div class="layer-name">No Transitive Dependencies</div>
-                    <div class="layer-desc">Non-key attributes cannot determine other non-key attributes (A &rarr; B &rarr; C).</div>
-                  </div>
-                </div>
+                    <div class="layer-desc">Non-key attributes cannot determine other non-key attributes (A &rarr; B &rarr; C).</div></div>
                 <div class="layer-item" style="border-left:3px solid #8b5cf6; background:rgba(139,92,246,0.06);">
                   <div class="layer-badge" style="background:#7c3aed; color:#fff;">BCNF</div>
                   <div class="layer-info">
                     <div class="layer-name">Boyce-Codd Normal Form</div>
-                    <div class="layer-desc">For every functional dependency X &rarr; Y, X must be a Super Key.</div>
-                  </div>
-                </div>
+                    <div class="layer-desc">For every functional dependency X &rarr; Y, X must be a Super Key.</div></div>
               </div>
               <div class="visual-explainer-grid">
                 <div class="explainer-box happening">
@@ -8502,9 +8309,7 @@ FROM Employee;
                 </div>
                 <div class="explainer-box analogy">
                   <div class="explainer-label">🌍 Real-Life Example</div>
-                  <div class="explainer-text">Storing customer city &amp; zip code on every order record causes inconsistency if a zip code changes; normalize customer into its own table!</div>
-                </div>
-              </div>
+                  <div class="explainer-text">Storing customer city &amp; zip code on every order record causes inconsistency if a zip code changes; normalize customer into its own table!</div></div>
             </div>
 
             <!-- Diagram 7: Two-Phase Locking (2PL) -->
@@ -8525,9 +8330,7 @@ FROM Employee;
                   </div>
                   <div style="flex:1; padding:0.5rem; background:rgba(239,68,68,0.15); border-radius:4px;">
                     Releasing locks. <strong>Zero new locks can be acquired!</strong>
-                  </div>
-                </div>
-              </div>
+                  </div></div>
               <div class="visual-explainer-grid">
                 <div class="explainer-box happening">
                   <div class="explainer-label">💡 What is happening?</div>
@@ -8539,9 +8342,7 @@ FROM Employee;
                 </div>
                 <div class="explainer-box analogy">
                   <div class="explainer-label">🌍 Real-Life Example</div>
-                  <div class="explainer-text">A chef gathers all required pots and pans first (Growing). Once they wash and put back one pot (Shrinking), they cannot grab any new pan!</div>
-                </div>
-              </div>
+                  <div class="explainer-text">A chef gathers all required pots and pans first (Growing). Once they wash and put back one pot (Shrinking), they cannot grab any new pan!</div></div>
             </div>
 
             <!-- Diagram 8: Deadlock Circular Wait -->
@@ -8575,12 +8376,8 @@ FROM Employee;
                 </div>
                 <div class="explainer-box analogy">
                   <div class="explainer-label">🌍 Real-Life Example</div>
-                  <div class="explainer-text">Two cars meet head-to-head on a narrow one-lane bridge; neither can advance unless one car puts itself in reverse.</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          </div>
+                  <div class="explainer-text">Two cars meet head-to-head on a narrow one-lane bridge; neither can advance unless one car puts itself in reverse.</div></div>
+            </div></div>
         </section>
 
         <!-- ==========================================
@@ -8619,16 +8416,14 @@ FROM Employee;
               <div>
                 <h5 style="color:#10b981; margin-bottom:0.4rem;">Simulated Result Set:</h5>
                 <div style="overflow-x:auto;">
-                  <table class="db-table-visual" id="pg-result-table">
+                  <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="db-table-visual" id="pg-result-table">
                     <thead><tr><th>department</th><th>COUNT(*)</th></tr></thead>
                     <tbody id="pg-result-tbody">
                       <tr><td>IT</td><td>3</td></tr>
                       <tr><td>HR</td><td>2</td></tr>
                       <tr><td>Finance</td><td>1</td></tr>
                     </tbody>
-                  </table>
-                </div>
-              </div>
+                  </table></div></div>
             </div>
           </div>
         </section>
@@ -8998,9 +8793,7 @@ FROM Employee;
               <div>✅ 20 Meaningful Educational Diagrams</div>
               <div>✅ 10-Minute Rapid Revision Cheat Sheet</div>
               <div>✅ Top 50 Rapid Fire Placement Facts</div>
-              <div>✅ Top 40 Misconceptions (❌ vs ✅)</div>
-            </div>
-          </div>
+              <div>✅ Top 40 Misconceptions (❌ vs ✅)</div></div>
         </section>
 
       </article>
@@ -9280,6 +9073,75 @@ FROM Employee;
           if (isMobile.matches) closeTOC();
         });
       });
+    })();
+  </script>
+  <script>
+    /* ── Scroll Indicator System ────────────────────────────── */
+    (function () {
+      /* 1. Scroll-fade: add .at-end class when scrolled all the way */
+      function setupScrollFade(el) {
+        function check() {
+          var atH = el.scrollLeft + el.clientWidth >= el.scrollWidth - 4;
+          var atV = el.scrollTop  + el.clientHeight >= el.scrollHeight - 4;
+          el.classList.toggle('at-end', atH && atV);
+        }
+        el.addEventListener('scroll', check, { passive: true });
+        check();
+      }
+
+      /* 2. Scroll hint label: inject below horizontally scrollable elements */
+      function addScrollHint(el) {
+        if (el.scrollWidth > el.clientWidth + 8) {
+          var label = document.createElement('div');
+          label.className = 'scroll-hint-label';
+          label.textContent = 'scroll';
+          el.parentNode.insertBefore(label, el.nextSibling);
+        }
+      }
+
+      /* 3. Apply scroll-x-wrap fade to relevant containers */
+      function applyFades() {
+        var xSelectors = [
+          '.table-responsive-wrapper',
+          '.diagram-card',
+          '.visual-canvas',
+          '.katex-display-wrapper',
+          '.diagram-box',
+          '.notes-diagram-box'
+        ];
+        var ySelectors = [
+          '.notes-toc-sidebar',
+          '.notes-sidebar',
+          'pre',
+          '.notes-code'
+        ];
+
+        xSelectors.forEach(function(sel) {
+          document.querySelectorAll(sel).forEach(function(el) {
+            el.classList.add('scroll-x-wrap');
+            setupScrollFade(el);
+            addScrollHint(el);
+          });
+        });
+
+        ySelectors.forEach(function(sel) {
+          document.querySelectorAll(sel).forEach(function(el) {
+            if (el.scrollHeight > el.clientHeight + 8) {
+              el.classList.add('scroll-y-wrap');
+              setupScrollFade(el);
+            }
+          });
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', applyFades);
+      } else {
+        applyFades();
+      }
+
+      /* Re-check after layout settles (fonts, KaTeX, images) */
+      window.addEventListener('load', applyFades);
     })();
   </script></body>
 </html>

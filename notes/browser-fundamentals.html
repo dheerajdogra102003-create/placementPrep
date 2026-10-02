@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="../css/notes.css">
   <link rel="stylesheet" href="../css/responsive.css">
   <link rel="stylesheet" href="../css/visual-learning.css">
+  <link rel="stylesheet" href="../css/scrollbars.css">
   <!-- KaTeX: Mathematical Rendering -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
 
@@ -214,8 +215,8 @@
     In modern web computing, the browser serves as the primary execution surface for <strong>Single-Page Applications (SPAs)</strong>, handling local state management, cryptographic security negotiations (TLS), background network asynchronous caching, client-side routing, and real-time hardware-accelerated 2D/3D graphics compositing via WebGL and WebGPU.
   </p>
 
-  <div class="table-responsive-wrapper">
-    <table class="notes-table">
+  
+    <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
       <thead>
         <tr>
           <th>Entity</th>
@@ -250,8 +251,7 @@
           <td>Nginx, Apache HTTP Server, Node.js / Express, Caddy</td>
         </tr>
       </tbody>
-    </table>
-  </div>
+    </table></div>
 </section>
 
 <section id="sec-2" class="notes-section">
@@ -282,9 +282,7 @@
       <div style="background: var(--bg-primary); padding: 0.85rem; border-radius: var(--radius-md);">
         <strong style="color: #A78BFA);">Kitchen = Web Server</strong>
         <p style="font-size: 0.88rem; color: var(--text-secondary); margin-top: 0.25rem;">The backend engine where ingredients (databases) are cooked into finished dishes (HTML/JSON responses).</p>
-      </div>
-    </div>
-  </div>
+      </div></div>
 </section>
 
 <!-- ==========================================
@@ -354,9 +352,7 @@
         <div class="pipeline-node" style="border-top: 3px solid #c084fc;">
           <span class="node-step-badge">Hardware</span>
           <div class="node-title">🎮 GPU Process</div>
-          <div class="node-desc">Hardware acceleration: Composites tile layers, applies 3D transforms, renders pixels</div>
-        </div>
-      </div>
+          <div class="node-desc">Hardware acceleration: Composites tile layers, applies 3D transforms, renders pixels</div></div>
     </div>
 
     <!-- Pedagogical 3-Part Explainer -->
@@ -380,9 +376,7 @@
         <p class="explainer-content">
           Think of a restaurant: The Browser Process is the manager greeting guests at the door; the Network Process is delivery drivers fetching groceries; the Renderer Process is the kitchen preparing individual dishes in a fireproof room; and the GPU Process is the food plating and lighting presentation.
         </p>
-      </div>
-    </div>
-  </div>
+      </div></div>
 
   <div class="scenario-detail-grid">
     <div class="scenario-box">
@@ -399,9 +393,7 @@
     </div>
     <div class="scenario-box">
       <div class="scenario-box-label">GPU Process</div>
-      <div class="scenario-box-content">Isolated process dedicated to communicating with graphics hardware. Handles CSS 3D transforms, WebGL shaders, video acceleration, and layer compositing.</div>
-    </div>
-  </div>
+      <div class="scenario-box-content">Isolated process dedicated to communicating with graphics hardware. Handles CSS 3D transforms, WebGL shaders, video acceleration, and layer compositing.</div></div>
 </section>
 
 <!-- ==========================================
@@ -422,8 +414,8 @@
     <pre class="notes-code"><code style="color: #60A5FA;">https</code>://<code style="color: #34D399;">example.com</code>:<code style="color: #FBBF24;">443</code>/<code style="color: #A78BFA;">products</code>?<code style="color: #F87171;">id=25&category=tech</code>#<code style="color: #EC4899;">reviews</code></pre>
   </div>
 
-  <div class="table-responsive-wrapper">
-    <table class="notes-table">
+  
+    <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
       <thead>
         <tr>
           <th>Segment</th>
@@ -463,8 +455,7 @@
           <td>Client-side anchor identifying section ID. <strong>CRITICAL: Never transmitted to the server in HTTP requests!</strong></td>
         </tr>
       </tbody>
-    </table>
-  </div>
+    </table></div>
 </section>
 
 <section id="sec-5" class="notes-section">
@@ -477,8 +468,8 @@
     Interviewers frequently probe whether a fresher understands the Venn diagram relationship between URI, URL, and URN:
   </p>
 
-  <div class="table-responsive-wrapper">
-    <table class="notes-table">
+  
+    <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
       <thead>
         <tr>
           <th>Concept</th>
@@ -507,8 +498,7 @@
           <td><code>urn:isbn:978-3-16-148410-0</code> (Book ISBN number)</td>
         </tr>
       </tbody>
-    </table>
-  </div>
+    </table></div>
 
   <div class="trap-card">
     <div class="trap-card-header">
@@ -555,9 +545,7 @@
     </div>
     <div class="scenario-box">
       <div class="scenario-box-label">FQDN</div>
-      <div class="scenario-box-content">Fully Qualified Domain Name: Complete, unambiguous domain path ending at the DNS root: <code>www.example.com.</code></div>
-    </div>
-  </div>
+      <div class="scenario-box-content">Fully Qualified Domain Name: Complete, unambiguous domain path ending at the DNS root: <code>www.example.com.</code></div></div>
 </section>
 
 <!-- ==========================================
@@ -577,8 +565,8 @@
     DNS queries utilize <strong>UDP port 53</strong> for standard resolution (fast, low-overhead single packet exchange) and fallback to <strong>TCP port 53</strong> for large responses (>512 bytes) or zone transfers.
   </p>
 
-  <div class="table-responsive-wrapper">
-    <table class="notes-table">
+  
+    <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
       <thead>
         <tr>
           <th>DNS Record</th>
@@ -625,8 +613,7 @@
           <td>SPF records (prevent email spoofing), DKIM, site verification</td>
         </tr>
       </tbody>
-    </table>
-  </div>
+    </table></div>
 </section>
 
 <section id="sec-8" class="notes-section">
@@ -676,9 +663,7 @@
         <span class="journey-step-num">07</span>
         <span class="journey-step-title">Client Connects</span>
         <span class="journey-step-desc">Resolver caches IP for duration of TTL and delivers IP to browser. Browser initiates TCP three-way handshake.</span>
-      </div>
-    </div>
-  </div>
+      </div></div>
 </section>
 
 <section id="sec-9" class="notes-section">
@@ -713,9 +698,7 @@
         </div>
         <div class="scenario-box">
           <div class="scenario-box-label">4. Interview Takeaway</div>
-          <div class="scenario-box-content">"DNS translates names to IPs. If IP works but domain fails, the issue is DNS, never server hardware or network connectivity!"</div>
-        </div>
-      </div>
+          <div class="scenario-box-content">"DNS translates names to IPs. If IP works but domain fails, the issue is DNS, never server hardware or network connectivity!"</div></div>
     </div>
   </div>
 </section>
@@ -768,9 +751,7 @@
         <div class="sequence-message">
           <div class="sequence-arrow arrow-left">
             <span class="sequence-label">2. HTTP Response: HTTP/1.1 200 OK (Content-Type: application/json)</span>
-          </div>
-        </div>
-      </div>
+          </div></div>
     </div>
 
     <!-- Pedagogical 3-Part Explainer -->
@@ -794,9 +775,7 @@
         <p class="explainer-content">
           Ordering at a busy fast-food counter: the cashier takes your order, gives you your burger, and immediately forgets your face for the next customer unless you show your receipt ticket (token/cookie).
         </p>
-      </div>
-    </div>
-  </div>
+      </div></div>
 </section>
 
 <section id="sec-11" class="notes-section">
@@ -837,9 +816,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1Ni...
     </div>
     <div class="scenario-box">
       <div class="scenario-box-label">4. Request Body</div>
-      <div class="scenario-box-content">Optional data payload carrying JSON, XML, or multi-part binary file uploads (primarily used in POST, PUT, PATCH).</div>
-    </div>
-  </div>
+      <div class="scenario-box-content">Optional data payload carrying JSON, XML, or multi-part binary file uploads (primarily used in POST, PUT, PATCH).</div></div>
 </section>
 
 <section id="sec-12" class="notes-section">
@@ -852,8 +829,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1Ni...
     In fresher recruitment exams, interviewers frequently test the mathematical properties of HTTP methods: <strong>Safe</strong> (read-only, does not alter server state) and <strong>Idempotent</strong> ($f(f(x)) = f(x)$, making 1 request produces the same server state as 1,000 identical requests).
   </p>
 
-  <div class="table-responsive-wrapper">
-    <table class="notes-table">
+  
+    <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
       <thead>
         <tr>
           <th>Method</th>
@@ -914,8 +891,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1Ni...
           <td>❌ No</td>
         </tr>
       </tbody>
-    </table>
-  </div>
+    </table></div>
 </section>
 
 <section id="sec-13" class="notes-section">
@@ -952,8 +928,8 @@ Set-Cookie: session_id=xyz987; Secure; HttpOnly; SameSite=Strict
     Status codes are 3-digit integers categorized by their first digit:
   </p>
 
-  <div class="table-responsive-wrapper">
-    <table class="notes-table">
+  
+    <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
       <thead>
         <tr>
           <th>Code</th>
@@ -1060,8 +1036,7 @@ Set-Cookie: session_id=xyz987; Secure; HttpOnly; SameSite=Strict
           <td>Proxy/Load Balancer timed out waiting for upstream server to finish computing.</td>
         </tr>
       </tbody>
-    </table>
-  </div>
+    </table></div>
 
   <div class="trap-card">
     <div class="trap-card-header">
@@ -1114,9 +1089,7 @@ Set-Cookie: session_id=xyz987; Secure; HttpOnly; SameSite=Strict
               <div class="connector-line" style="background:#ef4444;"><div class="connector-particle" style="background:#ef4444; box-shadow:0 0 8px #ef4444;"></div></div>
               <span class="connector-label" style="color:#ef4444;">GET /login?pwd=secret123</span>
             </div>
-            <div style="padding:0.4rem 0.8rem; background:rgba(255,255,255,0.06); border-radius:6px; font-size:0.8rem; font-weight:700;">Public Wi-Fi / Sniffer</div>
-          </div>
-        </div>
+            <div style="padding:0.4rem 0.8rem; background:rgba(255,255,255,0.06); border-radius:6px; font-size:0.8rem; font-weight:700;">Public Wi-Fi / Sniffer</div></div>
 
         <!-- HTTPS: Encrypted -->
         <div style="background:rgba(16, 185, 129, 0.08); border:1px solid rgba(16, 185, 129, 0.3); border-radius:10px; padding:1rem 1.25rem;">
@@ -1130,9 +1103,7 @@ Set-Cookie: session_id=xyz987; Secure; HttpOnly; SameSite=Strict
               <div class="connector-line" style="background:#10b981;"><div class="connector-particle" style="background:#10b981; box-shadow:0 0 8px #10b981;"></div></div>
               <span class="connector-label" style="color:#10b981;">a8f93b01c7d2e4... (Ciphertext)</span>
             </div>
-            <div style="padding:0.4rem 0.8rem; background:rgba(255,255,255,0.06); border-radius:6px; font-size:0.8rem; font-weight:700;">Origin Server</div>
-          </div>
-        </div>
+            <div style="padding:0.4rem 0.8rem; background:rgba(255,255,255,0.06); border-radius:6px; font-size:0.8rem; font-weight:700;">Origin Server</div></div>
       </div>
     </div>
 
@@ -1157,9 +1128,7 @@ Set-Cookie: session_id=xyz987; Secure; HttpOnly; SameSite=Strict
         <p class="explainer-content">
           Sending data via HTTP is like mailing an open postcard where the postman, courier, and anyone who glances at it can read every word. HTTPS is like locking the letter inside a titanium briefcase that only the intended recipient possesses the key to unlock.
         </p>
-      </div>
-    </div>
-  </div>
+      </div></div>
 
   <div class="scenario-detail-grid">
     <div class="scenario-box">
@@ -1172,9 +1141,7 @@ Set-Cookie: session_id=xyz987; Secure; HttpOnly; SameSite=Strict
     </div>
     <div class="scenario-box">
       <div class="scenario-box-label">3. Authentication (Identity)</div>
-      <div class="scenario-box-content">Digital certificates issued by trusted Certificate Authorities (CAs) prove the client is actually talking to <code>google.com</code>, not a DNS-spoofed imposter.</div>
-    </div>
-  </div>
+      <div class="scenario-box-content">Digital certificates issued by trusted Certificate Authorities (CAs) prove the client is actually talking to <code>google.com</code>, not a DNS-spoofed imposter.</div></div>
 
   <div class="trap-card">
     <div class="trap-card-header">
@@ -1267,9 +1234,7 @@ Set-Cookie: session_id=xyz987; Secure; HttpOnly; SameSite=Strict
     </div>
     <div class="scenario-box">
       <div class="scenario-box-label">Persistent Cookies</div>
-      <div class="scenario-box-content">Explicitly defines <code>Expires=Wed, 21 Oct 2026 07:28:00 GMT</code> or <code>Max-Age=31536000</code>. Written to disk and persists across browser reboots.</div>
-    </div>
-  </div>
+      <div class="scenario-box-content">Explicitly defines <code>Expires=Wed, 21 Oct 2026 07:28:00 GMT</code> or <code>Max-Age=31536000</code>. Written to disk and persists across browser reboots.</div></div>
 </section>
 
 <section id="sec-18" class="notes-section">
@@ -1287,8 +1252,8 @@ Set-Cookie: session_id=xyz987; Secure; HttpOnly; SameSite=Strict
     <pre class="notes-code"><code>Set-Cookie: auth_token=jwt_998877; Path=/; Secure; HttpOnly; SameSite=Strict</code></pre>
   </div>
 
-  <div class="table-responsive-wrapper">
-    <table class="notes-table">
+  
+    <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
       <thead>
         <tr>
           <th>Attribute</th>
@@ -1329,8 +1294,7 @@ Set-Cookie: session_id=xyz987; Secure; HttpOnly; SameSite=Strict
           <td>Modern browsers reject <code>SameSite=None</code> if not paired with <code>Secure</code>.</td>
         </tr>
       </tbody>
-    </table>
-  </div>
+    </table></div>
 </section>
 
 <!-- ==========================================
@@ -1357,9 +1321,7 @@ Set-Cookie: session_id=xyz987; Secure; HttpOnly; SameSite=Strict
     </div>
     <div class="scenario-box">
       <div class="scenario-box-label">Cache-Control: no-store</div>
-      <div class="scenario-box-content">The TRUE "do not cache" directive. The browser must never write any copy of this response to disk/RAM (used for sensitive financial ledgers).</div>
-    </div>
-  </div>
+      <div class="scenario-box-content">The TRUE "do not cache" directive. The browser must never write any copy of this response to disk/RAM (used for sensitive financial ledgers).</div></div>
 
   <div class="diagram-card" style="margin-top: 1.5rem;">
     <div class="diagram-title">⚡ How 304 Not Modified Works (Conditional GET)</div>
@@ -1384,8 +1346,8 @@ Browser action:  Instantly loads the 500KB stylesheet from local SSD in 1 millis
     <h2 class="notes-section-title">Cache vs Cookie Comparison</h2>
   </div>
 
-  <div class="table-responsive-wrapper">
-    <table class="notes-table">
+  
+    <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
       <thead>
         <tr>
           <th>Dimension</th>
@@ -1420,8 +1382,7 @@ Browser action:  Instantly loads the 500KB stylesheet from local SSD in 1 millis
           <td><code>Set-Cookie</code>, <code>Domain</code>, <code>Path</code>, <code>SameSite</code></td>
         </tr>
       </tbody>
-    </table>
-  </div>
+    </table></div>
 </section>
 
 <!-- ==========================================
@@ -1522,12 +1483,10 @@ localStorage.clear();</code></pre>
               </button>
               <div class="challenge-answer">
                 <p><strong>Answer:</strong> NO. sessionStorage is strictly scoped to the unique tab/window browsing context. Opening the same URL in a new tab initializes a completely new, independent sessionStorage instance.</p>
-              </div>
-            </div>
-          </div>
+              </div></div>
 
-<div class="table-responsive-wrapper">
-    <table class="notes-table">
+
+    <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
       <thead>
         <tr>
           <th>Feature</th>
@@ -1581,8 +1540,7 @@ localStorage.clear();</code></pre>
           <td>Shared across all tabs (same origin)</td>
         </tr>
       </tbody>
-    </table>
-  </div>
+    </table></div>
 </section>
 
 <section id="sec-23" class="notes-section">
@@ -1636,9 +1594,7 @@ history.go(-2);    // Go back two steps in session history</code></pre>
         • Your ISP (Internet Service Provider) still sees every domain you visit.<br>
         • College/Corporate Wi-Fi network admins log all traffic & DNS queries.<br>
         • Web servers log your true public IP address, browser fingerprint, and timestamps.
-      </div>
-    </div>
-  </div>
+      </div></div>
 
   <div class="trap-card">
     <div class="trap-card-header">
@@ -1711,9 +1667,7 @@ history.go(-2);    // Go back two steps in session history</code></pre>
       <div class="pipeline-node" style="border-left: 3px solid #8b5cf6;">
         <div class="node-icon">🌿</div>
         <div class="node-label">4. DOM Tree</div>
-        <div class="node-subtext">Document &rarr; html &rarr; body &rarr; h1</div>
-      </div>
-    </div>
+        <div class="node-subtext">Document &rarr; html &rarr; body &rarr; h1</div></div>
 
     <div class="visual-explainer-grid">
       <div class="explainer-box happening">
@@ -1726,9 +1680,7 @@ history.go(-2);    // Go back two steps in session history</code></pre>
       </div>
       <div class="explainer-box analogy">
         <div class="explainer-label">🌍 Real-Life Example</div>
-        <div class="explainer-text">An architectural blueprint: Raw text instructions (HTML) are parsed by builders into a physical 3D structural model with rooms and doors (DOM) that can be redecorated at runtime.</div>
-      </div>
-    </div>
+        <div class="explainer-text">An architectural blueprint: Raw text instructions (HTML) are parsed by builders into a physical 3D structural model with rooms and doors (DOM) that can be redecorated at runtime.</div></div>
   </div>
 </section>
 
@@ -1852,9 +1804,7 @@ element.classList.add('active'); // Best practice: toggle CSS classes!</code></p
               </button>
               <div class="challenge-answer">
                 <p><strong>Answer:</strong> NO. Elements with 'display: none' exist in the DOM tree, but are completely omitted from the Render Tree because they take up zero visual geometry and no pixels on screen (unlike 'visibility: hidden', which remains in the Render Tree).</p>
-              </div>
-            </div>
-          </div>
+              </div></div>
 
 
 
@@ -1905,8 +1855,8 @@ element.classList.add('active'); // Best practice: toggle CSS classes!</code></p
     A common interview question asks candidates to distinguish between the <strong>JavaScript Engine</strong> and the <strong>Browser Environment</strong>:
   </p>
 
-  <div class="table-responsive-wrapper">
-    <table class="notes-table">
+  
+    <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
       <thead>
         <tr>
           <th>Component</th>
@@ -1929,8 +1879,7 @@ element.classList.add('active'); // Best practice: toggle CSS classes!</code></p
           <td><code>document</code>, <code>fetch()</code>, <code>setTimeout()</code>, <code>localStorage</code></td>
         </tr>
       </tbody>
-    </table>
-  </div>
+    </table></div>
 </section>
 
 <section id="sec-30" class="notes-section">
@@ -1960,9 +1909,7 @@ element.classList.add('active'); // Best practice: toggle CSS classes!</code></p
 
         <div style="padding:0.85rem; border-radius:8px; background:rgba(168,85,247,0.15); border:1px solid #8b5cf6;">
           <div style="font-weight:700; color:#c084fc; font-size:0.85rem;">🌐 BROWSER WEB APIs (C++ Threads)</div>
-          <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.25rem;">DOM Events, <code>setTimeout</code> countdowns, <code>fetch()</code> network calls.</div>
-        </div>
-      </div>
+          <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.25rem;">DOM Events, <code>setTimeout</code> countdowns, <code>fetch()</code> network calls.</div></div>
 
       <div style="text-align:center; color:#38bdf8; font-size:0.85rem; font-weight:700;">&darr; Async Callbacks Queued by Priority &darr;</div>
 
@@ -1985,9 +1932,7 @@ element.classList.add('active'); // Best practice: toggle CSS classes!</code></p
           </div>
           <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.25rem;">
             <code>setTimeout()</code>, <code>setInterval()</code>, <code>setImmediate()</code>, UI click events, I/O callbacks.
-          </div>
-        </div>
-      </div>
+          </div></div>
     </div>
 
     <div class="visual-explainer-grid">
@@ -2001,9 +1946,7 @@ element.classList.add('active'); // Best practice: toggle CSS classes!</code></p
       </div>
       <div class="explainer-box analogy">
         <div class="explainer-label">🌍 Real-Life Example</div>
-        <div class="explainer-text">At a doctor's clinic: Scheduled general checkup patients wait in line (Macrotask Queue), but if an ambulance emergency arrives (Microtask Queue), the doctor sees ALL emergency cases before calling the next scheduled patient!</div>
-      </div>
-    </div>
+        <div class="explainer-text">At a doctor's clinic: Scheduled general checkup patients wait in line (Macrotask Queue), but if an ambulance emergency arrives (Microtask Queue), the doctor sees ALL emergency cases before calling the next scheduled patient!</div></div>
   </div>
 
   <div class="code-block-wrapper">
@@ -2066,9 +2009,7 @@ console.log('4');</code></pre>
     </div>
     <div class="scenario-box">
       <div class="scenario-box-label">Performance Tab</div>
-      <div class="scenario-box-content">Profile FPS, CPU runtime bottlenecks, JavaScript execution flame charts, and layout reflow / paint performance.</div>
-    </div>
-  </div>
+      <div class="scenario-box-content">Profile FPS, CPU runtime bottlenecks, JavaScript execution flame charts, and layout reflow / paint performance.</div></div>
 </section>
 
 <!-- ==========================================
@@ -2088,8 +2029,8 @@ console.log('4');</code></pre>
     An <strong>Origin</strong> is strictly defined by the three-tuple: <code>Protocol + Host + Port</code>. If ANY of these three values differ, it is classified as Cross-Origin!
   </p>
 
-  <div class="table-responsive-wrapper">
-    <table class="notes-table">
+  
+    <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
       <thead>
         <tr>
           <th>Compared URL to <code>https://example.com:443/app</code></th>
@@ -2119,8 +2060,7 @@ console.log('4');</code></pre>
           <td>Different Port (<code>:8080</code> vs <code>:443</code>).</td>
         </tr>
       </tbody>
-    </table>
-  </div>
+    </table></div>
 </section>
 
 <section id="sec-33" class="notes-section">
@@ -2166,8 +2106,8 @@ Access-Control-Allow-Credentials: true</code></pre>
     <h2 class="notes-section-title">Frontend vs Backend Architecture</h2>
   </div>
 
-  <div class="table-responsive-wrapper">
-    <table class="notes-table">
+  
+    <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
       <thead>
         <tr>
           <th>Dimension</th>
@@ -2197,8 +2137,7 @@ Access-Control-Allow-Credentials: true</code></pre>
           <td>Authoritative validation, protected secret keys & DB credentials</td>
         </tr>
       </tbody>
-    </table>
-  </div>
+    </table></div>
 </section>
 
 <section id="sec-35" class="notes-section">
@@ -2348,9 +2287,7 @@ async function fetchUserProfile(userId) {
           </div>
           <div class="scenario-box">
             <div class="scenario-box-label">Resolution Direction</div>
-            <div class="scenario-box-content">Flush local DNS cache (<code>ipconfig /flushdns</code>); test with public resolver (<code>8.8.8.8</code>); check authoritative 'A' record status in domain registrar.</div>
-          </div>
-        </div>
+            <div class="scenario-box-content">Flush local DNS cache (<code>ipconfig /flushdns</code>); test with public resolver (<code>8.8.8.8</code>); check authoritative 'A' record status in domain registrar.</div></div>
       </div>
     </div>
 
@@ -2373,9 +2310,7 @@ async function fetchUserProfile(userId) {
           </div>
           <div class="scenario-box">
             <div class="scenario-box-label">Resolution Direction</div>
-            <div class="scenario-box-content">Check URL for typos; verify SPA fallback routing in Nginx (ensure fallback to <code>index.html</code> for client-side routing).</div>
-          </div>
-        </div>
+            <div class="scenario-box-content">Check URL for typos; verify SPA fallback routing in Nginx (ensure fallback to <code>index.html</code> for client-side routing).</div></div>
       </div>
     </div>
 
@@ -2398,9 +2333,7 @@ async function fetchUserProfile(userId) {
           </div>
           <div class="scenario-box">
             <div class="scenario-box-label">Resolution Direction</div>
-            <div class="scenario-box-content">Verify Role-Based Access Control (RBAC) claims in the JWT token or assign Admin role in backend database.</div>
-          </div>
-        </div>
+            <div class="scenario-box-content">Verify Role-Based Access Control (RBAC) claims in the JWT token or assign Admin role in backend database.</div></div>
       </div>
     </div>
 
@@ -2423,9 +2356,7 @@ async function fetchUserProfile(userId) {
           </div>
           <div class="scenario-box">
             <div class="scenario-box-label">Resolution Direction</div>
-            <div class="scenario-box-content">Implement token refresh interceptor using refresh tokens or redirect user to <code>/login</code> to authenticate again.</div>
-          </div>
-        </div>
+            <div class="scenario-box-content">Implement token refresh interceptor using refresh tokens or redirect user to <code>/login</code> to authenticate again.</div></div>
       </div>
     </div>
 
@@ -2448,9 +2379,7 @@ async function fetchUserProfile(userId) {
           </div>
           <div class="scenario-box">
             <div class="scenario-box-label">Resolution Direction</div>
-            <div class="scenario-box-content">Implement <strong>Cache Busting</strong> via content-hashing in build tools (e.g. <code>styles.8a7d.css</code>). When CSS changes, URL changes!</div>
-          </div>
-        </div>
+            <div class="scenario-box-content">Implement <strong>Cache Busting</strong> via content-hashing in build tools (e.g. <code>styles.8a7d.css</code>). When CSS changes, URL changes!</div></div>
       </div>
     </div>
 
@@ -2473,9 +2402,7 @@ async function fetchUserProfile(userId) {
           </div>
           <div class="scenario-box">
             <div class="scenario-box-label">Resolution Direction</div>
-            <div class="scenario-box-content">Renew expired certificate; ensure Subject Alternative Name (SAN) includes both <code>example.com</code> and <code>*.example.com</code>.</div>
-          </div>
-        </div>
+            <div class="scenario-box-content">Renew expired certificate; ensure Subject Alternative Name (SAN) includes both <code>example.com</code> and <code>*.example.com</code>.</div></div>
       </div>
     </div>
 
@@ -2498,9 +2425,7 @@ async function fetchUserProfile(userId) {
           </div>
           <div class="scenario-box">
             <div class="scenario-box-label">Resolution Direction</div>
-            <div class="scenario-box-content">Configure backend server to send <code>Access-Control-Allow-Origin: http://localhost:3000</code> and handle preflight <code>OPTIONS</code> requests.</div>
-          </div>
-        </div>
+            <div class="scenario-box-content">Configure backend server to send <code>Access-Control-Allow-Origin: http://localhost:3000</code> and handle preflight <code>OPTIONS</code> requests.</div></div>
       </div>
     </div>
 
@@ -2523,9 +2448,7 @@ async function fetchUserProfile(userId) {
           </div>
           <div class="scenario-box">
             <div class="scenario-box-label">Resolution Direction</div>
-            <div class="scenario-box-content">Add the <code>defer</code> attribute to script tags (<code>&lt;script src="app.js" defer&gt;</code>) or move script tags to the bottom of <code>&lt;body&gt;</code>.</div>
-          </div>
-        </div>
+            <div class="scenario-box-content">Add the <code>defer</code> attribute to script tags (<code>&lt;script src="app.js" defer&gt;</code>) or move script tags to the bottom of <code>&lt;body&gt;</code>.</div></div>
       </div>
     </div>
 
@@ -2548,9 +2471,7 @@ async function fetchUserProfile(userId) {
           </div>
           <div class="scenario-box">
             <div class="scenario-box-label">Resolution Direction</div>
-            <div class="scenario-box-content">Add database B-tree indexes, implement Redis in-memory caching, optimize SQL joins, or offload work to background task queues.</div>
-          </div>
-        </div>
+            <div class="scenario-box-content">Add database B-tree indexes, implement Redis in-memory caching, optimize SQL joins, or offload work to background task queues.</div></div>
       </div>
     </div>
 
@@ -2573,13 +2494,8 @@ async function fetchUserProfile(userId) {
           </div>
           <div class="scenario-box">
             <div class="scenario-box-label">Resolution Direction</div>
-            <div class="scenario-box-content">Educate user that network firewalls and DNS resolvers log all outbound network domain queries regardless of incognito tabs.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
+            <div class="scenario-box-content">Educate user that network firewalls and DNS resolvers log all outbound network domain queries regardless of incognito tabs.</div></div>
+      </div></div>
 </section>
 
 <!-- ==========================================
@@ -2598,7 +2514,7 @@ async function fetchUserProfile(userId) {
   <!-- 1. HTTP vs HTTPS -->
   <div class="table-responsive-wrapper">
     <h4 style="padding: 1rem 1.25rem 0.5rem; color: var(--brand-cyan);">1. HTTP vs HTTPS</h4>
-    <table class="notes-table">
+    <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
       <thead><tr><th>Dimension</th><th>HTTP</th><th>HTTPS</th></tr></thead>
       <tbody>
         <tr><td>Port</td><td>Port 80</td><td>Port 443</td></tr>
@@ -2606,169 +2522,155 @@ async function fetchUserProfile(userId) {
         <tr><td>Certificates</td><td>None required</td><td>Requires SSL/TLS Certificate signed by CA</td></tr>
         <tr><td>Performance</td><td>Slightly faster handshake</td><td>Handshake requires 1 extra RTT (negligible in TLS 1.3)</td></tr>
       </tbody>
-    </table>
-  </div>
+    </table></div>
 
   <!-- 2. HTTP vs HTTPS vs FTP -->
   <div class="table-responsive-wrapper">
     <h4 style="padding: 1rem 1.25rem 0.5rem; color: var(--brand-cyan);">2. HTTP vs HTTPS vs FTP</h4>
-    <table class="notes-table">
+    <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
       <thead><tr><th>Protocol</th><th>Default Port</th><th>Transport</th><th>Primary Purpose</th></tr></thead>
       <tbody>
         <tr><td>HTTP</td><td>80</td><td>TCP (Stateless)</td><td>Web hypermedia transfer (HTML, CSS, JSON)</td></tr>
         <tr><td>HTTPS</td><td>443</td><td>TCP + TLS (Encrypted)</td><td>Secure web hypermedia transfer</td></tr>
         <tr><td>FTP</td><td>20 (Data), 21 (Control)</td><td>TCP (Dual connection)</td><td>Bulk file upload and directory management</td></tr>
       </tbody>
-    </table>
-  </div>
+    </table></div>
 
   <!-- 3. Cookie vs LocalStorage vs SessionStorage -->
   <div class="table-responsive-wrapper">
     <h4 style="padding: 1rem 1.25rem 0.5rem; color: var(--brand-cyan);">3. Cookie vs LocalStorage vs SessionStorage</h4>
-    <table class="notes-table">
+    <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
       <thead><tr><th>Storage</th><th>Capacity</th><th>Lifetime</th><th>Sent with HTTP Requests?</th></tr></thead>
       <tbody>
         <tr><td>Cookie</td><td>~4 KB</td><td>Expires / Max-Age attribute</td><td>✅ Yes (Every matching HTTP request)</td></tr>
         <tr><td>LocalStorage</td><td>~5 MB – 10 MB</td><td>Persistent until cleared</td><td>❌ No (Client JS only)</td></tr>
         <tr><td>SessionStorage</td><td>~5 MB</td><td>Until current tab is closed</td><td>❌ No (Client JS only)</td></tr>
       </tbody>
-    </table>
-  </div>
+    </table></div>
 
   <!-- 4. Cache vs Cookie -->
   <div class="table-responsive-wrapper">
     <h4 style="padding: 1rem 1.25rem 0.5rem; color: var(--brand-cyan);">4. Cache vs Cookie</h4>
-    <table class="notes-table">
+    <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
       <thead><tr><th>Dimension</th><th>Browser Cache</th><th>Cookies</th></tr></thead>
       <tbody>
         <tr><td>Goal</td><td>Accelerate asset load speed (performance)</td><td>Maintain client state and session identity</td></tr>
         <tr><td>Contents</td><td>Heavy files (CSS, JS, images, fonts)</td><td>Small key-value string tokens</td></tr>
         <tr><td>Network role</td><td>Prevents network requests</td><td>Appended as request headers</td></tr>
       </tbody>
-    </table>
-  </div>
+    </table></div>
 
   <!-- 5. Browser vs Search Engine -->
   <div class="table-responsive-wrapper">
     <h4 style="padding: 1rem 1.25rem 0.5rem; color: var(--brand-cyan);">5. Browser vs Search Engine</h4>
-    <table class="notes-table">
+    <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
       <thead><tr><th>Dimension</th><th>Browser</th><th>Search Engine</th></tr></thead>
       <tbody>
         <tr><td>Nature</td><td>Locally installed client software application</td><td>Web service accessible via internet</td></tr>
         <tr><td>Function</td><td>Renders HTML/CSS/JS code into visual web pages</td><td>Crawls, indexes, and searches web pages</td></tr>
         <tr><td>Examples</td><td>Chrome, Edge, Firefox, Safari</td><td>Google Search, Bing, DuckDuckGo</td></tr>
       </tbody>
-    </table>
-  </div>
+    </table></div>
 
   <!-- 6. URL vs URI -->
   <div class="table-responsive-wrapper">
     <h4 style="padding: 1rem 1.25rem 0.5rem; color: var(--brand-cyan);">6. URL vs URI</h4>
-    <table class="notes-table">
+    <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
       <thead><tr><th>Concept</th><th>Hierarchy</th><th>Key Trait</th></tr></thead>
       <tbody>
         <tr><td>URI</td><td>Superset</td><td>Identifies a resource by name, location, or both</td></tr>
         <tr><td>URL</td><td>Subset of URI</td><td>Specifies the exact protocol & network location to fetch the resource</td></tr>
       </tbody>
-    </table>
-  </div>
+    </table></div>
 
   <!-- 7. DNS vs DHCP -->
   <div class="table-responsive-wrapper">
     <h4 style="padding: 1rem 1.25rem 0.5rem; color: var(--brand-cyan);">7. DNS vs DHCP</h4>
-    <table class="notes-table">
+    <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
       <thead><tr><th>Protocol</th><th>Port</th><th>Primary Purpose</th></tr></thead>
       <tbody>
         <tr><td>DNS</td><td>Port 53 (UDP/TCP)</td><td>Translates domain names to IP addresses (e.g. <code>google.com -> 142.250.x.x</code>)</td></tr>
         <tr><td>DHCP</td><td>Port 67/68 (UDP)</td><td>Dynamically assigns local private IP addresses to devices joining a network</td></tr>
       </tbody>
-    </table>
-  </div>
+    </table></div>
 
   <!-- 8. Authentication vs Authorization -->
   <div class="table-responsive-wrapper">
     <h4 style="padding: 1rem 1.25rem 0.5rem; color: var(--brand-cyan);">8. Authentication vs Authorization</h4>
-    <table class="notes-table">
+    <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
       <thead><tr><th>Concept</th><th>Question Answered</th><th>Status Code on Failure</th></tr></thead>
       <tbody>
         <tr><td>Authentication (AuthN)</td><td>"Who are you?" (Verifies identity via passwords, MFA, JWT)</td><td><code>401 Unauthorized</code></td></tr>
         <tr><td>Authorization (AuthZ)</td><td>"What permissions do you have?" (Verifies roles like Admin vs User)</td><td><code>403 Forbidden</code></td></tr>
       </tbody>
-    </table>
-  </div>
+    </table></div>
 
   <!-- 9. 401 vs 403 -->
   <div class="table-responsive-wrapper">
     <h4 style="padding: 1rem 1.25rem 0.5rem; color: var(--brand-cyan);">9. HTTP 401 vs HTTP 403</h4>
-    <table class="notes-table">
+    <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
       <thead><tr><th>Code</th><th>Name</th><th>Client Action to Fix</th></tr></thead>
       <tbody>
         <tr><td>401</td><td>Unauthorized</td><td>Provide valid login credentials or refresh expired token</td></tr>
         <tr><td>403</td><td>Forbidden</td><td>Logging in won't help; user lacks required administrative permission</td></tr>
       </tbody>
-    </table>
-  </div>
+    </table></div>
 
   <!-- 10. 404 vs 500 -->
   <div class="table-responsive-wrapper">
     <h4 style="padding: 1rem 1.25rem 0.5rem; color: var(--brand-cyan);">10. HTTP 404 vs HTTP 500</h4>
-    <table class="notes-table">
+    <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
       <thead><tr><th>Code</th><th>Fault Source</th><th>Meaning</th></tr></thead>
       <tbody>
         <tr><td>404 Not Found</td><td>Client Error</td><td>The requested URL resource does not exist on the server</td></tr>
         <tr><td>500 Internal Error</td><td>Server Error</td><td>The server encountered an unhandled exception/crash in backend code</td></tr>
       </tbody>
-    </table>
-  </div>
+    </table></div>
 
   <!-- 11. DOM vs CSSOM -->
   <div class="table-responsive-wrapper">
     <h4 style="padding: 1rem 1.25rem 0.5rem; color: var(--brand-cyan);">11. DOM vs CSSOM</h4>
-    <table class="notes-table">
+    <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
       <thead><tr><th>Tree</th><th>Input</th><th>Represents</th></tr></thead>
       <tbody>
         <tr><td>DOM</td><td>HTML document markup</td><td>Node hierarchy of elements, tags, attributes, and text</td></tr>
         <tr><td>CSSOM</td><td>CSS rules & stylesheets</td><td>Computed styles, selector cascade, and visual rules</td></tr>
       </tbody>
-    </table>
-  </div>
+    </table></div>
 
   <!-- 12. Frontend vs Backend -->
   <div class="table-responsive-wrapper">
     <h4 style="padding: 1rem 1.25rem 0.5rem; color: var(--brand-cyan);">12. Frontend vs Backend</h4>
-    <table class="notes-table">
+    <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
       <thead><tr><th>Tier</th><th>Where it Runs</th><th>Primary Objective</th></tr></thead>
       <tbody>
         <tr><td>Frontend</td><td>Client browser</td><td>User interface, interactivity, client state, presentation</td></tr>
         <tr><td>Backend</td><td>Server / Cloud</td><td>Business logic, security validation, database transactions, APIs</td></tr>
       </tbody>
-    </table>
-  </div>
+    </table></div>
 
   <!-- 13. Client vs Server -->
   <div class="table-responsive-wrapper">
     <h4 style="padding: 1rem 1.25rem 0.5rem; color: var(--brand-cyan);">13. Client vs Server</h4>
-    <table class="notes-table">
+    <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
       <thead><tr><th>Role</th><th>Initiative</th><th>Scalability Model</th></tr></thead>
       <tbody>
         <tr><td>Client</td><td>Initiates request</td><td>Consumes services on behalf of one user</td></tr>
         <tr><td>Server</td><td>Passively listens on port and responds</td><td>Serves thousands of concurrent clients via load balancing</td></tr>
       </tbody>
-    </table>
-  </div>
+    </table></div>
 
   <!-- 14. LocalStorage vs SessionStorage -->
   <div class="table-responsive-wrapper">
     <h4 style="padding: 1rem 1.25rem 0.5rem; color: var(--brand-cyan);">14. LocalStorage vs SessionStorage</h4>
-    <table class="notes-table">
+    <div class="table-responsive-wrapper"><div class="scroll-hint-label">scroll</div><table class="notes-table">
       <thead><tr><th>Feature</th><th>LocalStorage</th><th>SessionStorage</th></tr></thead>
       <tbody>
         <tr><td>Persistence</td><td>Indefinite (survives restarts)</td><td>Strictly tied to tab lifetime</td></tr>
         <tr><td>Scope</td><td>Shared across all windows/tabs of same origin</td><td>Isolated to single tab window</td></tr>
         <tr><td>Ideal Use</td><td>Dark mode preferences, cached user profile</td><td>Multi-step wizard form states, one-time payment flows</td></tr>
       </tbody>
-    </table>
-  </div>
+    </table></div>
 </section>
 
 <!-- ==========================================
@@ -2863,9 +2765,7 @@ async function fetchUserProfile(userId) {
     </div>
     <div class="trap-card" style="margin: 0;">
       <div class="trap-title">20. GET Requests Must Be Idempotent</div>
-      <div class="trap-text">Never execute database deletions or fund transfers via GET requests. Browsers, crawlers, and proxies prefetch GET links!</div>
-    </div>
-  </div>
+      <div class="trap-text">Never execute database deletions or fund transfers via GET requests. Browsers, crawlers, and proxies prefetch GET links!</div></div>
 </section>
 
 <!-- ==========================================
@@ -2894,9 +2794,7 @@ async function fetchUserProfile(userId) {
       </div>
       <div class="interview-a-body">
         The browser parses the URL, checks cache, resolves domain to IP via DNS, establishes a TCP 3-way handshake on port 443, completes TLS cryptographic handshake, sends an HTTP GET request, receives the HTML stream, builds DOM and CSSOM, merges them into the Render Tree, performs layout (reflow), and paints pixels to screen.
-        <div class="interview-a-keypoint">Key Interview Point: Mention DNS -> TCP -> TLS -> DOM/CSSOM -> Render Tree -> Layout -> Paint.</div>
-      </div>
-    </div>
+        <div class="interview-a-keypoint">Key Interview Point: Mention DNS -> TCP -> TLS -> DOM/CSSOM -> Render Tree -> Layout -> Paint.</div></div>
 
     <div class="interview-card">
       <div class="interview-q-header" onclick="this.parentElement.querySelector('.interview-a-body').classList.toggle('open')">
@@ -2908,9 +2806,7 @@ async function fetchUserProfile(userId) {
       </div>
       <div class="interview-a-body">
         HTTP sends data in unencrypted plaintext on port 80, vulnerable to packet sniffing. HTTPS executes HTTP over a TLS/SSL encrypted cryptographic tunnel on port 443, ensuring confidentiality, data integrity, and server authentication via digital certificates.
-        <div class="interview-a-keypoint">Key Interview Point: Port 80 vs 443; plaintext vs encrypted TLS tunnel; Certificate Authority validation.</div>
-      </div>
-    </div>
+        <div class="interview-a-keypoint">Key Interview Point: Port 80 vs 443; plaintext vs encrypted TLS tunnel; Certificate Authority validation.</div></div>
 
     <div class="interview-card">
       <div class="interview-q-header" onclick="this.parentElement.querySelector('.interview-a-body').classList.toggle('open')">
@@ -2922,9 +2818,7 @@ async function fetchUserProfile(userId) {
       </div>
       <div class="interview-a-body">
         DNS (Domain Name System) translates human-readable domain names (like <code>google.com</code>) into 32-bit/128-bit machine-routable IP addresses (like <code>142.250.190.46</code>). Just as a phonebook maps names to phone numbers, DNS maps hostnames to IP addresses over UDP port 53.
-        <div class="interview-a-keypoint">Key Interview Point: Translates string names to binary routing IP addresses; operates primarily over UDP port 53.</div>
-      </div>
-    </div>
+        <div class="interview-a-keypoint">Key Interview Point: Translates string names to binary routing IP addresses; operates primarily over UDP port 53.</div></div>
 
     <div class="interview-card">
       <div class="interview-q-header" onclick="this.parentElement.querySelector('.interview-a-body').classList.toggle('open')">
@@ -2936,9 +2830,7 @@ async function fetchUserProfile(userId) {
       </div>
       <div class="interview-a-body">
         Cookies are ~4KB string tokens sent automatically with matching HTTP requests to manage sessions. LocalStorage is ~5-10MB client-side persistent storage that never expires. SessionStorage is ~5MB client-side storage isolated to a single tab that deletes when the tab closes.
-        <div class="interview-a-keypoint">Key Interview Point: Cookies sent with HTTP requests; LocalStorage persists; SessionStorage tab-isolated.</div>
-      </div>
-    </div>
+        <div class="interview-a-keypoint">Key Interview Point: Cookies sent with HTTP requests; LocalStorage persists; SessionStorage tab-isolated.</div></div>
 
     <div class="interview-card">
       <div class="interview-q-header" onclick="this.parentElement.querySelector('.interview-a-body').classList.toggle('open')">
@@ -2950,9 +2842,7 @@ async function fetchUserProfile(userId) {
       </div>
       <div class="interview-a-body">
         The Document Object Model (DOM) is an in-memory, language-independent tree representation of an HTML document created by the browser parser. It allows JavaScript to dynamically query, traverse, and mutate elements, attributes, and styles.
-        <div class="interview-a-keypoint">Key Interview Point: Tree structure representing HTML nodes in memory; accessible via JavaScript.</div>
-      </div>
-    </div>
+        <div class="interview-a-keypoint">Key Interview Point: Tree structure representing HTML nodes in memory; accessible via JavaScript.</div></div>
 
     <div class="interview-card">
       <div class="interview-q-header" onclick="this.parentElement.querySelector('.interview-a-body').classList.toggle('open')">
@@ -2964,9 +2854,7 @@ async function fetchUserProfile(userId) {
       </div>
       <div class="interview-a-body">
         GET is safe and idempotent, passing parameters in the URL query string to retrieve resources without modifying server state. POST is neither safe nor idempotent, passing data payloads inside the request body to create resources or submit forms.
-        <div class="interview-a-keypoint">Key Interview Point: Safe/idempotent vs modifying state; URL query string vs Request Body.</div>
-      </div>
-    </div>
+        <div class="interview-a-keypoint">Key Interview Point: Safe/idempotent vs modifying state; URL query string vs Request Body.</div></div>
 
     <div class="interview-card">
       <div class="interview-q-header" onclick="this.parentElement.querySelector('.interview-a-body').classList.toggle('open')">
@@ -2978,9 +2866,7 @@ async function fetchUserProfile(userId) {
       </div>
       <div class="interview-a-body">
         HTTP 404 Not Found is a client-side error indicating that the client successfully reached the web server, but the server could not locate any active resource or routing handler corresponding to the requested URI path.
-        <div class="interview-a-keypoint">Key Interview Point: Proves server is healthy and responding, but requested path does not exist.</div>
-      </div>
-    </div>
+        <div class="interview-a-keypoint">Key Interview Point: Proves server is healthy and responding, but requested path does not exist.</div></div>
 
     <div class="interview-card">
       <div class="interview-q-header" onclick="this.parentElement.querySelector('.interview-a-body').classList.toggle('open')">
@@ -2992,9 +2878,7 @@ async function fetchUserProfile(userId) {
       </div>
       <div class="interview-a-body">
         <code>textContent</code> sets raw text without parsing HTML tags, making it safe from Cross-Site Scripting (XSS). <code>innerHTML</code> parses strings as HTML elements, executing any embedded tags or scripts and creating security vulnerabilities if untrusted input is displayed.
-        <div class="interview-a-keypoint">Key Interview Point: textContent prevents XSS; innerHTML parses tags and risks script injection.</div>
-      </div>
-    </div>
+        <div class="interview-a-keypoint">Key Interview Point: textContent prevents XSS; innerHTML parses tags and risks script injection.</div></div>
 
     <div class="interview-card">
       <div class="interview-q-header" onclick="this.parentElement.querySelector('.interview-a-body').classList.toggle('open')">
@@ -3006,9 +2890,7 @@ async function fetchUserProfile(userId) {
       </div>
       <div class="interview-a-body">
         The Same-Origin Policy prevents client-side scripts loaded from one origin from accessing or reading cookies, DOM nodes, or AJAX response data from a different origin. An origin is strictly defined by the tuple: Protocol, Host, and Port.
-        <div class="interview-a-keypoint">Key Interview Point: Origin = Protocol + Host + Port. Prevents malicious sites from stealing session data.</div>
-      </div>
-    </div>
+        <div class="interview-a-keypoint">Key Interview Point: Origin = Protocol + Host + Port. Prevents malicious sites from stealing session data.</div></div>
 
     <div class="interview-card">
       <div class="interview-q-header" onclick="this.parentElement.querySelector('.interview-a-body').classList.toggle('open')">
@@ -3020,9 +2902,7 @@ async function fetchUserProfile(userId) {
       </div>
       <div class="interview-a-body">
         Browser caching stores static assets (CSS, JS, images) locally on user disk or RAM. On subsequent visits, the browser loads resources instantly without network overhead, dramatically reducing server bandwidth and page loading latency.
-        <div class="interview-a-keypoint">Key Interview Point: Saves local copies of assets; governed by Cache-Control and ETag headers.</div>
-      </div>
-    </div>
+        <div class="interview-a-keypoint">Key Interview Point: Saves local copies of assets; governed by Cache-Control and ETag headers.</div></div>
 
   </div>
 
@@ -3039,9 +2919,7 @@ async function fetchUserProfile(userId) {
       </div>
       <div class="interview-a-body">
         401 Unauthorized indicates an **Authentication** failure: credentials are missing or invalid, and logging in can grant access. 403 Forbidden indicates an **Authorization** failure: the user identity is known and authenticated, but the user lacks sufficient permission/role to access the resource.
-        <div class="interview-a-keypoint">Key Interview Point: 401 = Who are you? (AuthN); 403 = You lack permission (AuthZ).</div>
-      </div>
-    </div>
+        <div class="interview-a-keypoint">Key Interview Point: 401 = Who are you? (AuthN); 403 = You lack permission (AuthZ).</div></div>
 
     <div class="interview-card">
       <div class="interview-q-header" onclick="this.parentElement.querySelector('.interview-a-body').classList.toggle('open')">
@@ -3053,9 +2931,7 @@ async function fetchUserProfile(userId) {
       </div>
       <div class="interview-a-body">
         When an asset's cache expires, the client sends a conditional request with <code>If-None-Match: "ETag"</code>. If the file has not changed on the server, the server replies with <code>304 Not Modified</code> with an empty body, allowing the browser to reuse the local cached copy with zero payload download.
-        <div class="interview-a-keypoint">Key Interview Point: Conditional GET request with ETag; 304 has empty body; saves bandwidth.</div>
-      </div>
-    </div>
+        <div class="interview-a-keypoint">Key Interview Point: Conditional GET request with ETag; 304 has empty body; saves bandwidth.</div></div>
 
     <div class="interview-card">
       <div class="interview-q-header" onclick="this.parentElement.querySelector('.interview-a-body').classList.toggle('open')">
@@ -3067,9 +2943,7 @@ async function fetchUserProfile(userId) {
       </div>
       <div class="interview-a-body">
         <code>Secure</code> ensures the cookie is only transmitted over encrypted HTTPS connections, preventing plaintext sniffing. <code>HttpOnly</code> blocks client-side JavaScript (<code>document.cookie</code>) from reading the cookie, mitigating session token theft via Cross-Site Scripting (XSS).
-        <div class="interview-a-keypoint">Key Interview Point: Secure = HTTPS only; HttpOnly = JavaScript cannot read (prevents XSS session hijacking).</div>
-      </div>
-    </div>
+        <div class="interview-a-keypoint">Key Interview Point: Secure = HTTPS only; HttpOnly = JavaScript cannot read (prevents XSS session hijacking).</div></div>
 
     <div class="interview-card">
       <div class="interview-q-header" onclick="this.parentElement.querySelector('.interview-a-body').classList.toggle('open')">
@@ -3081,9 +2955,7 @@ async function fetchUserProfile(userId) {
       </div>
       <div class="interview-a-body">
         <code>display: none</code> removes the element completely from the **Render Tree**, meaning it takes zero layout space and triggers a reflow when toggled. <code>visibility: hidden</code> keeps the element in the Render Tree, preserving its layout width and height on screen while painting it transparent.
-        <div class="interview-a-keypoint">Key Interview Point: display: none is excluded from Render Tree; visibility: hidden consumes layout space.</div>
-      </div>
-    </div>
+        <div class="interview-a-keypoint">Key Interview Point: display: none is excluded from Render Tree; visibility: hidden consumes layout space.</div></div>
 
     <div class="interview-card">
       <div class="interview-q-header" onclick="this.parentElement.querySelector('.interview-a-body').classList.toggle('open')">
@@ -3095,9 +2967,7 @@ async function fetchUserProfile(userId) {
       </div>
       <div class="interview-a-body">
         When the call stack empties, the Event Loop drains the **Microtask Queue** (Promise handlers, <code>queueMicrotask</code>) completely until empty before processing a single task from the **Macrotask Queue** (<code>setTimeout</code>, <code>setInterval</code>, I/O events). Microtasks always take priority!
-        <div class="interview-a-keypoint">Key Interview Point: Microtasks (Promises) are drained completely before each Macrotask (setTimeout).</div>
-      </div>
-    </div>
+        <div class="interview-a-keypoint">Key Interview Point: Microtasks (Promises) are drained completely before each Macrotask (setTimeout).</div></div>
 
     <div class="interview-card">
       <div class="interview-q-header" onclick="this.parentElement.querySelector('.interview-a-body').classList.toggle('open')">
@@ -3109,9 +2979,7 @@ async function fetchUserProfile(userId) {
       </div>
       <div class="interview-a-body">
         CORS is a browser mechanism that relaxes SOP using response headers. For "non-simple" requests (custom headers like <code>Authorization</code>, or methods like PUT/DELETE), the browser automatically sends an HTTP <code>OPTIONS</code> preflight request to confirm whether the server permits the operation before sending the actual request.
-        <div class="interview-a-keypoint">Key Interview Point: Preflight OPTIONS checks server permissions before executing non-simple cross-origin requests.</div>
-      </div>
-    </div>
+        <div class="interview-a-keypoint">Key Interview Point: Preflight OPTIONS checks server permissions before executing non-simple cross-origin requests.</div></div>
 
     <div class="interview-card">
       <div class="interview-q-header" onclick="this.parentElement.querySelector('.interview-a-body').classList.toggle('open')">
@@ -3123,9 +2991,7 @@ async function fetchUserProfile(userId) {
       </div>
       <div class="interview-a-body">
         **Reflow (Layout)** recalculates the geometry, dimensions, and positioning of nodes in the document, which is computationally expensive. **Repaint** occurs when visual properties that don't affect geometry (like <code>color</code> or <code>background-color</code>) change, rasterizing new pixels without recalculating dimensions.
-        <div class="interview-a-keypoint">Key Interview Point: Reflow recalculates geometry/positions (expensive); Repaint redraws colors/pixels (cheaper).</div>
-      </div>
-    </div>
+        <div class="interview-a-keypoint">Key Interview Point: Reflow recalculates geometry/positions (expensive); Repaint redraws colors/pixels (cheaper).</div></div>
 
     <div class="interview-card">
       <div class="interview-q-header" onclick="this.parentElement.querySelector('.interview-a-body').classList.toggle('open')">
@@ -3137,9 +3003,7 @@ async function fetchUserProfile(userId) {
       </div>
       <div class="interview-a-body">
         <code>Strict</code> forbids sending cookies on any cross-site request (highest CSRF protection). <code>Lax</code> (default) withholds cookies on cross-site subrequests (images/iframes) but sends them on safe top-level GET navigations. <code>None</code> sends cookies on all cross-site requests (requires <code>Secure</code>).
-        <div class="interview-a-keypoint">Key Interview Point: Prevents CSRF. Strict = never cross-site; Lax = top-level GET only; None = requires Secure.</div>
-      </div>
-    </div>
+        <div class="interview-a-keypoint">Key Interview Point: Prevents CSRF. Strict = never cross-site; Lax = top-level GET only; None = requires Secure.</div></div>
 
     <div class="interview-card">
       <div class="interview-q-header" onclick="this.parentElement.querySelector('.interview-a-body').classList.toggle('open')">
@@ -3151,9 +3015,7 @@ async function fetchUserProfile(userId) {
       </div>
       <div class="interview-a-body">
         CSS is render-blocking because browsers cannot build the Render Tree or calculate layout until the full CSSOM is constructed, preventing Flash of Unstyled Content (FOUC). JavaScript loaded with <code>defer</code> or <code>async</code> downloads in the background without blocking HTML parsing.
-        <div class="interview-a-keypoint">Key Interview Point: Prevents FOUC; DOM + CSSOM required for Render Tree before Layout/Paint.</div>
-      </div>
-    </div>
+        <div class="interview-a-keypoint">Key Interview Point: Prevents FOUC; DOM + CSSOM required for Render Tree before Layout/Paint.</div></div>
 
     <div class="interview-card">
       <div class="interview-q-header" onclick="this.parentElement.querySelector('.interview-a-body').classList.toggle('open')">
@@ -3165,9 +3027,7 @@ async function fetchUserProfile(userId) {
       </div>
       <div class="interview-a-body">
         <code>301 Moved Permanently</code> indicates the URL has permanently changed; browsers cache the redirect and search engines transfer SEO ranking to the new target. <code>302 Found</code> indicates a temporary redirect; browsers do not cache permanently, retaining the original URL for future visits.
-        <div class="interview-a-keypoint">Key Interview Point: 301 is permanent & cached (transfers SEO); 302 is temporary and not cached permanently.</div>
-      </div>
-    </div>
+        <div class="interview-a-keypoint">Key Interview Point: 301 is permanent & cached (transfers SEO); 302 is temporary and not cached permanently.</div></div>
 
   </div>
 
@@ -3184,9 +3044,7 @@ async function fetchUserProfile(userId) {
       </div>
       <div class="interview-a-body">
         Postman is a standalone desktop testing client that does not implement or enforce the browser **Same-Origin Policy (SOP)**. When executed inside a web browser, the browser detects a cross-origin request and blocks client JavaScript from reading the response if the backend lacks CORS headers (<code>Access-Control-Allow-Origin</code>).
-        <div class="interview-a-keypoint">Key Interview Point: Postman is not a browser and ignores CORS/SOP. Browsers enforce CORS strictly.</div>
-      </div>
-    </div>
+        <div class="interview-a-keypoint">Key Interview Point: Postman is not a browser and ignores CORS/SOP. Browsers enforce CORS strictly.</div></div>
 
     <div class="interview-card">
       <div class="interview-q-header" onclick="this.parentElement.querySelector('.interview-a-body').classList.toggle('open')">
@@ -3198,9 +3056,7 @@ async function fetchUserProfile(userId) {
       </div>
       <div class="interview-a-body">
         Cache busting appends a unique cryptographic content hash to static asset filenames (e.g. <code>bundle.8f9b2.js</code>). When source code changes, the build tool generates a new filename with a new hash, forcing the browser to fetch the new asset while allowing older assets to use aggressive caching (<code>max-age=31536000</code>).
-        <div class="interview-a-keypoint">Key Interview Point: Content hashing changes the URL filename on every deployment, bypassing stale caches.</div>
-      </div>
-    </div>
+        <div class="interview-a-keypoint">Key Interview Point: Content hashing changes the URL filename on every deployment, bypassing stale caches.</div></div>
 
     <div class="interview-card">
       <div class="interview-q-header" onclick="this.parentElement.querySelector('.interview-a-body').classList.toggle('open')">
@@ -3212,9 +3068,7 @@ async function fetchUserProfile(userId) {
       </div>
       <div class="interview-a-body">
         This triggers a **Mixed Content** security warning. Modern browsers will either automatically upgrade the image request to HTTPS, or block it entirely (especially for active mixed content like scripts or iframes) to prevent Man-in-the-Middle network tampering.
-        <div class="interview-a-keypoint">Key Interview Point: Mixed content vulnerability; browsers block insecure scripts and warn on insecure images.</div>
-      </div>
-    </div>
+        <div class="interview-a-keypoint">Key Interview Point: Mixed content vulnerability; browsers block insecure scripts and warn on insecure images.</div></div>
 
     <div class="interview-card">
       <div class="interview-q-header" onclick="this.parentElement.querySelector('.interview-a-body').classList.toggle('open')">
@@ -3226,9 +3080,7 @@ async function fetchUserProfile(userId) {
       </div>
       <div class="interview-a-body">
         Standard <code>&lt;script&gt;</code> tags block the HTML parser: the browser pauses DOM building while downloading and executing the script. Adding <code>defer</code> downloads the script in parallel without blocking HTML parsing, executing it in order only after DOM construction completes.
-        <div class="interview-a-keypoint">Key Interview Point: Prevents HTML parser blocking; defer downloads in parallel and executes after DOM is ready.</div>
-      </div>
-    </div>
+        <div class="interview-a-keypoint">Key Interview Point: Prevents HTML parser blocking; defer downloads in parallel and executes after DOM is ready.</div></div>
 
     <div class="interview-card">
       <div class="interview-q-header" onclick="this.parentElement.querySelector('.interview-a-body').classList.toggle('open')">
@@ -3240,9 +3092,7 @@ async function fetchUserProfile(userId) {
       </div>
       <div class="interview-a-body">
         A **Recursive Resolver** (ISP, Google 8.8.8.8) is the client's agent that hunts down the IP address across root, TLD, and authoritative servers. An **Authoritative Server** (Cloudflare, Route 53) holds the official DNS records configured by the domain owner and provides the definitive IP answer.
-        <div class="interview-a-keypoint">Key Interview Point: Recursive resolver hunts and caches; Authoritative server holds official zone records.</div>
-      </div>
-    </div>
+        <div class="interview-a-keypoint">Key Interview Point: Recursive resolver hunts and caches; Authoritative server holds official zone records.</div></div>
 
   </div>
 </section>
@@ -3500,10 +3350,7 @@ async function fetchUserProfile(userId) {
       <div class="quiz-answer-drawer">
         <strong>Correct Answer: B (OPTIONS)</strong><br>
         The browser dispatches an <code>OPTIONS</code> request with <code>Origin</code> and <code>Access-Control-Request-Method</code> headers to query the server's cross-origin permissions before sending non-simple requests.
-      </div>
-    </div>
-
-  </div>
+      </div></div>
 </section>
 
         </article>
@@ -3686,6 +3533,75 @@ async function fetchUserProfile(userId) {
           if (isMobile.matches) closeTOC();
         });
       });
+    })();
+  </script>
+  <script>
+    /* ── Scroll Indicator System ────────────────────────────── */
+    (function () {
+      /* 1. Scroll-fade: add .at-end class when scrolled all the way */
+      function setupScrollFade(el) {
+        function check() {
+          var atH = el.scrollLeft + el.clientWidth >= el.scrollWidth - 4;
+          var atV = el.scrollTop  + el.clientHeight >= el.scrollHeight - 4;
+          el.classList.toggle('at-end', atH && atV);
+        }
+        el.addEventListener('scroll', check, { passive: true });
+        check();
+      }
+
+      /* 2. Scroll hint label: inject below horizontally scrollable elements */
+      function addScrollHint(el) {
+        if (el.scrollWidth > el.clientWidth + 8) {
+          var label = document.createElement('div');
+          label.className = 'scroll-hint-label';
+          label.textContent = 'scroll';
+          el.parentNode.insertBefore(label, el.nextSibling);
+        }
+      }
+
+      /* 3. Apply scroll-x-wrap fade to relevant containers */
+      function applyFades() {
+        var xSelectors = [
+          '.table-responsive-wrapper',
+          '.diagram-card',
+          '.visual-canvas',
+          '.katex-display-wrapper',
+          '.diagram-box',
+          '.notes-diagram-box'
+        ];
+        var ySelectors = [
+          '.notes-toc-sidebar',
+          '.notes-sidebar',
+          'pre',
+          '.notes-code'
+        ];
+
+        xSelectors.forEach(function(sel) {
+          document.querySelectorAll(sel).forEach(function(el) {
+            el.classList.add('scroll-x-wrap');
+            setupScrollFade(el);
+            addScrollHint(el);
+          });
+        });
+
+        ySelectors.forEach(function(sel) {
+          document.querySelectorAll(sel).forEach(function(el) {
+            if (el.scrollHeight > el.clientHeight + 8) {
+              el.classList.add('scroll-y-wrap');
+              setupScrollFade(el);
+            }
+          });
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', applyFades);
+      } else {
+        applyFades();
+      }
+
+      /* Re-check after layout settles (fonts, KaTeX, images) */
+      window.addEventListener('load', applyFades);
     })();
   </script></body>
 </html>
