@@ -1989,4 +1989,146 @@ pre.notes-code,
   color: inherit;
 }
 
+/* ==========================================================================
+   KATEX MATHEMATICAL RENDERING STYLES
+   Professional math typography integrated with PlacementPrep design system.
+   ========================================================================== */
+
+/* --- Inline Math Wrapper ------------------------------------------------- */
+.katex-inline-wrapper {
+  display: inline;
+  line-height: inherit;
+  /* Prevent inline math from causing line-height jumps */
+  vertical-align: baseline;
+}
+
+.katex-inline-wrapper .katex {
+  font-size: 1em; /* Inherit surrounding text size */
+  line-height: inherit;
+}
+
+/* --- Display Math Wrapper ------------------------------------------------ */
+.katex-display-wrapper {
+  display: block;
+  overflow-x: auto;     /* Horizontal scroll for very wide equations */
+  overflow-y: hidden;
+  padding: 1.25rem 1rem;
+  margin: 1.25rem 0;
+  background: rgba(99, 102, 241, 0.04);
+  border: 1px solid rgba(99, 102, 241, 0.18);
+  border-radius: var(--radius-md, 8px);
+  text-align: center;
+  -webkit-overflow-scrolling: touch; /* Smooth scroll on iOS */
+  max-width: 100%;
+  /* Prevent page-level horizontal overflow */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.katex-display-wrapper .katex-display {
+  margin: 0; /* KaTeX adds its own margin; reset it here */
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.katex-display-wrapper .katex {
+  font-size: 1.1em;
+  color: var(--text-primary, #F8FAFC);
+}
+
+/* --- Light Theme Overrides ----------------------------------------------- */
+[data-theme="light"] .katex-display-wrapper {
+  background: rgba(99, 102, 241, 0.05);
+  border-color: rgba(99, 102, 241, 0.2);
+}
+
+[data-theme="light"] .katex,
+[data-theme="light"] .katex-inline-wrapper .katex,
+[data-theme="light"] .katex-display-wrapper .katex {
+  color: var(--text-primary, #0F172A);
+}
+
+/* --- KaTeX default color override for dark theme ------------------------ */
+[data-theme="dark"] .katex {
+  color: var(--text-primary, #F8FAFC);
+}
+
+/* Ensure KaTeX SVGs and spans don't overflow their container */
+.katex .katex-html {
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+/* --- Math in Tables ----------------------------------------------------- */
+table .katex-inline-wrapper,
+td .katex-inline-wrapper,
+th .katex-inline-wrapper {
+  display: inline;
+}
+
+td .katex-display-wrapper,
+th .katex-display-wrapper {
+  margin: 0.5rem 0;
+  padding: 0.75rem;
+}
+
+/* --- Math in List Items ------------------------------------------------- */
+li .katex-inline-wrapper {
+  display: inline;
+  vertical-align: baseline;
+}
+
+/* --- Math in Cards and Callout Boxes ------------------------------------ */
+.notes-card .katex-inline-wrapper,
+.callout .katex-inline-wrapper,
+.alert .katex-inline-wrapper,
+.trap-box .katex-inline-wrapper,
+.success-box .katex-inline-wrapper,
+.info-box .katex-inline-wrapper {
+  display: inline;
+}
+
+/* --- Math Error Styling (fallback display) ------------------------------ */
+.katex-error {
+  color: var(--danger, #EF4444);
+  font-family: var(--font-mono, monospace);
+  font-size: 0.875em;
+  background: rgba(239, 68, 68, 0.08);
+  padding: 0.1em 0.25em;
+  border-radius: 3px;
+}
+
+/* --- Responsive: Narrow viewports --------------------------------------- */
+@media (max-width: 640px) {
+  .katex-display-wrapper {
+    padding: 0.875rem 0.625rem;
+    margin: 1rem 0;
+    border-radius: 6px;
+  }
+
+  .katex-display-wrapper .katex {
+    font-size: 1em; /* Slightly smaller on mobile */
+  }
+
+  .katex-inline-wrapper .katex {
+    font-size: 0.95em;
+  }
+}
+
+/* --- Prevent double-scrollbars on page ---------------------------------- */
+.notes-content .katex-display-wrapper {
+  /* Constrain to content column; never wider than its parent */
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* --- Print styles ------------------------------------------------------- */
+@media print {
+  .katex-display-wrapper {
+    break-inside: avoid;
+    overflow: visible;
+    border: 1px solid #cbd5e1;
+    background: transparent;
+  }
+}
 
