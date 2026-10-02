@@ -1,312 +1,322 @@
-﻿/* ==========================================================================
-   PLACEMENTPREP - CUSTOM SCROLLBARS & SCROLL INDICATOR SYSTEM
-   Premium styled scrollbars for every scrollable region on the site.
+/* ==========================================================================
+   PLACEMENTPREP - HIGH-VISIBILITY DUAL-THEME SCROLLBAR SYSTEM
+   Distinct, high-contrast, fully visible scrollbars for both Dark & Light modes.
    ========================================================================== */
 
 /* ==========================================================================
-   1. SCROLLBAR DESIGN TOKENS
+   1. COLOR TOKENS: DISTINCT FOR DARK & LIGHT MODES
    ========================================================================== */
 :root {
-  --sb-track-dark:   rgba(255, 255, 255, 0.03);
-  --sb-thumb-dark:   rgba(255, 255, 255, 0.14);
-  --sb-hover-dark:   rgba(99, 102, 241, 0.65);
-  --sb-active-dark:  rgba(99, 102, 241, 0.9);
-  --sb-track-light:  rgba(0, 0, 0, 0.06);
-  --sb-thumb-light:  rgba(0, 0, 0, 0.22);
-  --sb-hover-light:  rgba(99, 102, 241, 0.6);
-  --sb-radius: 8px;
-  --sb-width-thin:   5px;
-  --sb-width-normal: 7px;
+  /* DARK MODE: Electric Indigo / Cyber Violet with Deep Obsidian Track */
+  --sb-track:            #0f172a;
+  --sb-track-border:     rgba(255, 255, 255, 0.08);
+  --sb-thumb:            #6366f1;
+  --sb-thumb-hover:      #818cf8;
+  --sb-thumb-active:     #a5b4fc;
+  --sb-thumb-border:     #0f172a;
+  
+  /* Horizontal table/code track & thumb */
+  --sb-box-track:        #0b0f19;
+  --sb-box-thumb:        #6366f1;
+  --sb-box-hover:        #818cf8;
+
+  /* Dimensions */
+  --sb-width-main:       10px;
+  --sb-width-pane:       8px;
+  --sb-radius:           8px;
+}
+
+/* LIGHT MODE OVERRIDES: Crisp Vivid Ocean Blue with Clean Slate Track */
+[data-theme="light"],
+html[data-theme="light"] {
+  --sb-track:            #e2e8f0;
+  --sb-track-border:     #cbd5e1;
+  --sb-thumb:            #0284c7;
+  --sb-thumb-hover:      #0369a1;
+  --sb-thumb-active:     #075985;
+  --sb-thumb-border:     #e2e8f0;
+
+  --sb-box-track:        #edf2f7;
+  --sb-box-thumb:        #0284c7;
+  --sb-box-hover:        #0369a1;
 }
 
 /* ==========================================================================
-   2. GLOBAL PAGE SCROLLBAR
+   2. GLOBAL HTML & BODY SCROLLBAR
    ========================================================================== */
 html {
-  scrollbar-color: var(--sb-thumb-dark) var(--sb-track-dark);
-  scrollbar-width: thin;
+  scrollbar-color: var(--sb-thumb) var(--sb-track);
+  scrollbar-width: auto;
 }
-html::-webkit-scrollbar { width: var(--sb-width-normal); }
-html::-webkit-scrollbar-track { background: var(--sb-track-dark); }
+
+html::-webkit-scrollbar {
+  width: var(--sb-width-main);
+  height: var(--sb-width-main);
+}
+
+html::-webkit-scrollbar-track {
+  background: var(--sb-track);
+  border-left: 1px solid var(--sb-track-border);
+}
+
 html::-webkit-scrollbar-thumb {
-  background: var(--sb-thumb-dark);
+  background: var(--sb-thumb);
   border-radius: var(--sb-radius);
+  border: 2px solid var(--sb-thumb-border);
 }
-html::-webkit-scrollbar-thumb:hover { background: var(--sb-hover-dark); }
-html::-webkit-scrollbar-thumb:active { background: var(--sb-active-dark); }
+
+html::-webkit-scrollbar-thumb:hover {
+  background: var(--sb-thumb-hover);
+}
+
+html::-webkit-scrollbar-thumb:active {
+  background: var(--sb-thumb-active);
+}
 
 /* ==========================================================================
-   3. TOC SIDEBAR - Thin vertical scrollbar
+   3. TOC SIDEBARS & NAVIGATION PANELS
    ========================================================================== */
 .notes-toc-sidebar,
-.notes-sidebar {
-  scrollbar-color: var(--sb-thumb-dark) transparent;
+.notes-sidebar,
+.cbt-palette-pane {
+  scrollbar-color: var(--sb-thumb) var(--sb-track);
   scrollbar-width: thin;
 }
+
 .notes-toc-sidebar::-webkit-scrollbar,
-.notes-sidebar::-webkit-scrollbar { width: var(--sb-width-thin); }
+.notes-sidebar::-webkit-scrollbar,
+.cbt-palette-pane::-webkit-scrollbar {
+  width: var(--sb-width-pane);
+}
+
 .notes-toc-sidebar::-webkit-scrollbar-track,
-.notes-sidebar::-webkit-scrollbar-track { background: transparent; }
-.notes-toc-sidebar::-webkit-scrollbar-thumb,
-.notes-sidebar::-webkit-scrollbar-thumb {
-  background: var(--sb-thumb-dark);
+.notes-sidebar::-webkit-scrollbar-track,
+.cbt-palette-pane::-webkit-scrollbar-track {
+  background: var(--sb-track);
   border-radius: var(--sb-radius);
 }
+
+.notes-toc-sidebar::-webkit-scrollbar-thumb,
+.notes-sidebar::-webkit-scrollbar-thumb,
+.cbt-palette-pane::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb);
+  border-radius: var(--sb-radius);
+  border: 1.5px solid var(--sb-thumb-border);
+}
+
 .notes-toc-sidebar::-webkit-scrollbar-thumb:hover,
-.notes-sidebar::-webkit-scrollbar-thumb:hover { background: var(--sb-hover-dark); }
+.notes-sidebar::-webkit-scrollbar-thumb:hover,
+.cbt-palette-pane::-webkit-scrollbar-thumb:hover {
+  background: var(--sb-thumb-hover);
+}
 
 /* ==========================================================================
-   4. CODE BLOCKS - Horizontal + max-height vertical
+   4. HORIZONTAL CODE BLOCKS & DIAGRAM CONTAINERS
    ========================================================================== */
 pre,
+code[class*="language-"],
 .notes-code,
 .diagram-box,
-.notes-diagram-box {
-  scrollbar-color: rgba(99, 102, 241, 0.5) rgba(255, 255, 255, 0.03);
+.notes-diagram-box,
+.ascii-art,
+.flowchart-container {
+  scrollbar-color: var(--sb-box-thumb) var(--sb-box-track);
   scrollbar-width: thin;
 }
+
 pre::-webkit-scrollbar,
 .notes-code::-webkit-scrollbar,
 .diagram-box::-webkit-scrollbar,
-.notes-diagram-box::-webkit-scrollbar {
-  height: var(--sb-width-thin);
-  width:  var(--sb-width-thin);
+.notes-diagram-box::-webkit-scrollbar,
+.ascii-art::-webkit-scrollbar,
+.flowchart-container::-webkit-scrollbar {
+  height: var(--sb-width-pane);
+  width: var(--sb-width-pane);
 }
+
 pre::-webkit-scrollbar-track,
 .notes-code::-webkit-scrollbar-track,
 .diagram-box::-webkit-scrollbar-track,
-.notes-diagram-box::-webkit-scrollbar-track {
-  background: rgba(255,255,255,0.025);
+.notes-diagram-box::-webkit-scrollbar-track,
+.ascii-art::-webkit-scrollbar-track,
+.flowchart-container::-webkit-scrollbar-track {
+  background: var(--sb-box-track);
   border-radius: var(--sb-radius);
-  margin: 0 4px;
+  border: 1px solid var(--sb-track-border);
 }
+
 pre::-webkit-scrollbar-thumb,
 .notes-code::-webkit-scrollbar-thumb,
 .diagram-box::-webkit-scrollbar-thumb,
-.notes-diagram-box::-webkit-scrollbar-thumb {
-  background: rgba(99,102,241,0.4);
+.notes-diagram-box::-webkit-scrollbar-thumb,
+.ascii-art::-webkit-scrollbar-thumb,
+.flowchart-container::-webkit-scrollbar-thumb {
+  background: var(--sb-box-thumb);
   border-radius: var(--sb-radius);
+  border: 1.5px solid var(--sb-box-track);
 }
+
 pre::-webkit-scrollbar-thumb:hover,
 .notes-code::-webkit-scrollbar-thumb:hover,
 .diagram-box::-webkit-scrollbar-thumb:hover,
-.notes-diagram-box::-webkit-scrollbar-thumb:hover { background: rgba(99,102,241,0.75); }
-pre::-webkit-scrollbar-corner,
-.notes-code::-webkit-scrollbar-corner { background: transparent; }
-
-/* Overflow + max-height constraints */
-pre {
-  overflow-x: auto;
-  overflow-y: auto;
-  max-height: 480px;
+.notes-diagram-box::-webkit-scrollbar-thumb:hover {
+  background: var(--sb-box-hover);
 }
-.notes-code {
-  overflow-x: auto;
-  overflow-y: auto;
-  max-height: 520px;
-}
-.diagram-box,
-.notes-diagram-box {
-  overflow-x: auto;
-  overflow-y: hidden;
-}
-
-/* Grow scrollbar on hover for code readability */
-pre:hover::-webkit-scrollbar { height: var(--sb-width-normal); }
 
 /* ==========================================================================
-   5. DIAGRAM CARDS & VISUAL CANVAS - Horizontal scroll + cyan thumb
+   5. TABLE RESPONSIVE WRAPPERS - HIGHLY VISIBLE DRAGGABLE BAR
    ========================================================================== */
-.diagram-card,
-.visual-canvas {
-  overflow-x: auto;
-  overflow-y: hidden;
-  scrollbar-color: rgba(6,182,212,0.45) rgba(255,255,255,0.03);
+.table-responsive-wrapper,
+.table-wrap,
+.notes-table-wrap,
+.overflow-x-auto {
+  scrollbar-color: var(--sb-box-thumb) var(--sb-box-track);
+  scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table-responsive-wrapper::-webkit-scrollbar,
+.table-wrap::-webkit-scrollbar,
+.notes-table-wrap::-webkit-scrollbar,
+.overflow-x-auto::-webkit-scrollbar {
+  height: var(--sb-width-main);
+  background: var(--sb-box-track);
+}
+
+.table-responsive-wrapper::-webkit-scrollbar-track,
+.table-wrap::-webkit-scrollbar-track,
+.notes-table-wrap::-webkit-scrollbar-track,
+.overflow-x-auto::-webkit-scrollbar-track {
+  background: var(--sb-box-track);
+  border-radius: var(--sb-radius);
+  border: 1px solid var(--sb-track-border);
+}
+
+.table-responsive-wrapper::-webkit-scrollbar-thumb,
+.table-wrap::-webkit-scrollbar-thumb,
+.notes-table-wrap::-webkit-scrollbar-thumb,
+.overflow-x-auto::-webkit-scrollbar-thumb {
+  background: var(--sb-box-thumb);
+  border-radius: var(--sb-radius);
+  border: 2px solid var(--sb-box-track);
+}
+
+.table-responsive-wrapper::-webkit-scrollbar-thumb:hover,
+.table-wrap::-webkit-scrollbar-thumb:hover,
+.notes-table-wrap::-webkit-scrollbar-thumb:hover {
+  background: var(--sb-box-hover);
+}
+
+/* ==========================================================================
+   6. MODAL & DIALOG SCROLLBARS
+   ========================================================================== */
+.modal-body,
+.cbt-modal-dialog,
+.cbt-result-dialog,
+.cbt-scrollable-content {
+  scrollbar-color: var(--sb-thumb) var(--sb-track);
   scrollbar-width: thin;
 }
-.diagram-card::-webkit-scrollbar,
-.visual-canvas::-webkit-scrollbar { height: var(--sb-width-thin); }
-.diagram-card::-webkit-scrollbar-track,
-.visual-canvas::-webkit-scrollbar-track {
-  background: rgba(255,255,255,0.025);
-  border-radius: var(--sb-radius);
-  margin: 0 8px;
-}
-.diagram-card::-webkit-scrollbar-thumb,
-.visual-canvas::-webkit-scrollbar-thumb {
-  background: rgba(6,182,212,0.4);
-  border-radius: var(--sb-radius);
-}
-.diagram-card::-webkit-scrollbar-thumb:hover,
-.visual-canvas::-webkit-scrollbar-thumb:hover { background: rgba(6,182,212,0.75); }
 
-/* ==========================================================================
-   6. TABLE WRAPPER - Horizontal scroll + purple thumb
-   ========================================================================== */
-.table-responsive-wrapper {
-  overflow-x: auto;
-  overflow-y: hidden;
-  position: relative;
-  scrollbar-color: rgba(139,92,246,0.5) rgba(255,255,255,0.03);
-  scrollbar-width: thin;
+.modal-body::-webkit-scrollbar,
+.cbt-modal-dialog::-webkit-scrollbar,
+.cbt-scrollable-content::-webkit-scrollbar {
+  width: var(--sb-width-pane);
 }
-.table-responsive-wrapper::-webkit-scrollbar { height: var(--sb-width-thin); }
-.table-responsive-wrapper::-webkit-scrollbar-track {
-  background: rgba(255,255,255,0.03);
-  border-radius: var(--sb-radius);
-  margin: 0 12px;
-}
-.table-responsive-wrapper::-webkit-scrollbar-thumb {
-  background: rgba(139,92,246,0.4);
-  border-radius: var(--sb-radius);
-}
-.table-responsive-wrapper::-webkit-scrollbar-thumb:hover { background: rgba(139,92,246,0.75); }
 
-/* ==========================================================================
-   7. KATEX DISPLAY MATH - Thin horizontal
-   ========================================================================== */
-.katex-display-wrapper {
-  overflow-x: auto;
-  overflow-y: hidden;
-  scrollbar-color: rgba(99,102,241,0.4) transparent;
-  scrollbar-width: thin;
-}
-.katex-display-wrapper::-webkit-scrollbar { height: 4px; }
-.katex-display-wrapper::-webkit-scrollbar-track { background: transparent; margin: 0 12px; }
-.katex-display-wrapper::-webkit-scrollbar-thumb {
-  background: rgba(99,102,241,0.35);
-  border-radius: var(--sb-radius);
-}
-.katex-display-wrapper::-webkit-scrollbar-thumb:hover { background: rgba(99,102,241,0.65); }
-
-/* ==========================================================================
-   8. CBT PALETTE PANE - Thin vertical
-   ========================================================================== */
-.cbt-palette-pane {
-  scrollbar-color: var(--sb-thumb-dark) transparent;
-  scrollbar-width: thin;
-}
-.cbt-palette-pane::-webkit-scrollbar { width: var(--sb-width-thin); }
-.cbt-palette-pane::-webkit-scrollbar-track { background: transparent; }
-.cbt-palette-pane::-webkit-scrollbar-thumb {
-  background: var(--sb-thumb-dark);
-  border-radius: var(--sb-radius);
-}
-.cbt-palette-pane::-webkit-scrollbar-thumb:hover { background: var(--sb-hover-dark); }
-
-/* ==========================================================================
-   9. MOBILE NAV MENU DRAWER
-   ========================================================================== */
-.nav-menu {
-  scrollbar-color: var(--sb-thumb-dark) transparent;
-  scrollbar-width: thin;
-}
-.nav-menu::-webkit-scrollbar { width: var(--sb-width-thin); }
-.nav-menu::-webkit-scrollbar-track { background: transparent; }
-.nav-menu::-webkit-scrollbar-thumb {
-  background: var(--sb-thumb-dark);
+.modal-body::-webkit-scrollbar-track,
+.cbt-modal-dialog::-webkit-scrollbar-track,
+.cbt-scrollable-content::-webkit-scrollbar-track {
+  background: var(--sb-track);
   border-radius: var(--sb-radius);
 }
 
+.modal-body::-webkit-scrollbar-thumb,
+.cbt-modal-dialog::-webkit-scrollbar-thumb,
+.cbt-scrollable-content::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb);
+  border-radius: var(--sb-radius);
+  border: 1.5px solid var(--sb-thumb-border);
+}
+
+.modal-body::-webkit-scrollbar-thumb:hover,
+.cbt-modal-dialog::-webkit-scrollbar-thumb:hover,
+.cbt-scrollable-content::-webkit-scrollbar-thumb:hover {
+  background: var(--sb-thumb-hover);
+}
+
 /* ==========================================================================
-   10. EXPLANATION PANELS & TEXTAREAS
+   7. FORM TEXTAREAS & EXPLANATION CONTENT
    ========================================================================== */
 textarea,
 .explanation-body,
-.cbt-explanation-text {
-  scrollbar-color: var(--sb-thumb-dark) transparent;
+.cbt-explanation-text,
+.nav-dropdown-panel,
+.nav-menu {
+  scrollbar-color: var(--sb-thumb) var(--sb-track);
   scrollbar-width: thin;
 }
+
 textarea::-webkit-scrollbar,
 .explanation-body::-webkit-scrollbar,
-.cbt-explanation-text::-webkit-scrollbar { width: var(--sb-width-thin); }
+.cbt-explanation-text::-webkit-scrollbar,
+.nav-dropdown-panel::-webkit-scrollbar,
+.nav-menu::-webkit-scrollbar {
+  width: var(--sb-width-pane);
+}
+
 textarea::-webkit-scrollbar-track,
 .explanation-body::-webkit-scrollbar-track,
-.cbt-explanation-text::-webkit-scrollbar-track { background: transparent; }
+.cbt-explanation-text::-webkit-scrollbar-track,
+.nav-dropdown-panel::-webkit-scrollbar-track,
+.nav-menu::-webkit-scrollbar-track {
+  background: var(--sb-track);
+  border-radius: var(--sb-radius);
+}
+
 textarea::-webkit-scrollbar-thumb,
 .explanation-body::-webkit-scrollbar-thumb,
-.cbt-explanation-text::-webkit-scrollbar-thumb {
-  background: var(--sb-thumb-dark);
+.cbt-explanation-text::-webkit-scrollbar-thumb,
+.nav-dropdown-panel::-webkit-scrollbar-thumb,
+.nav-menu::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb);
   border-radius: var(--sb-radius);
+  border: 1.5px solid var(--sb-thumb-border);
 }
+
 textarea::-webkit-scrollbar-thumb:hover,
-.explanation-body::-webkit-scrollbar-thumb:hover { background: var(--sb-hover-dark); }
-
-/* ==========================================================================
-   11. NAV DROPDOWN PANEL
-   ========================================================================== */
-.nav-dropdown-panel {
-  scrollbar-color: var(--sb-thumb-dark) transparent;
-  scrollbar-width: thin;
-}
-.nav-dropdown-panel::-webkit-scrollbar { width: var(--sb-width-thin); }
-.nav-dropdown-panel::-webkit-scrollbar-track { background: transparent; }
-.nav-dropdown-panel::-webkit-scrollbar-thumb {
-  background: var(--sb-thumb-dark);
-  border-radius: var(--sb-radius);
+.explanation-body::-webkit-scrollbar-thumb:hover {
+  background: var(--sb-thumb-hover);
 }
 
 /* ==========================================================================
-   12. SCROLL FADE SHADOW INDICATORS
-   Add class .scroll-x-wrap or .scroll-y-wrap on any container
-   to get a gradient shadow hinting that more content exists.
-   ========================================================================== */
-
-/* Horizontal right-fade */
-.scroll-x-wrap {
-  position: relative;
-}
-.scroll-x-wrap::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 16px; /* leave room for scrollbar */
-  width: 56px;
-  background: linear-gradient(to right, transparent, rgba(11,13,18,0.88));
-  pointer-events: none;
-  z-index: 5;
-  border-radius: 0 var(--radius-xl, 16px) 0 0;
-  transition: opacity 0.25s;
-}
-.scroll-x-wrap.at-end::after { opacity: 0; }
-
-/* Vertical bottom-fade */
-.scroll-y-wrap {
-  position: relative;
-}
-.scroll-y-wrap::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 56px;
-  background: linear-gradient(to bottom, transparent, rgba(21,26,34,0.92));
-  pointer-events: none;
-  z-index: 5;
-  border-radius: 0 0 var(--radius-xl, 16px) var(--radius-xl, 16px);
-  transition: opacity 0.25s;
-}
-.scroll-y-wrap.at-end::after { opacity: 0; }
-
-/* ==========================================================================
-   13. SCROLL INDICATOR PILL - shows on mobile for tables & diagrams
-   Usage: <div class="scroll-hint-label">scroll</div>
+   8. SCROLL HINT LABEL - High contrast for both themes
    ========================================================================== */
 .scroll-hint-label {
   display: none;
   align-items: center;
   justify-content: center;
-  gap: 0.4rem;
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
+  gap: 0.5rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--text-muted, #64748b);
-  margin-top: 0.35rem;
+  color: #94a3b8;
+  background: rgba(99, 102, 241, 0.12);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  border-radius: 999px;
+  padding: 0.25rem 0.75rem;
+  margin: 0.4rem auto;
+  width: fit-content;
   animation: scrollHintPulse 2.5s ease-in-out infinite;
 }
+
+[data-theme="light"] .scroll-hint-label {
+  color: #0369a1;
+  background: rgba(2, 132, 199, 0.1);
+  border: 1px solid rgba(2, 132, 199, 0.28);
+}
+
 .scroll-hint-label::before { content: '←'; }
 .scroll-hint-label::after  { content: '→'; }
 
@@ -315,106 +325,16 @@ textarea::-webkit-scrollbar-thumb:hover,
 }
 
 @keyframes scrollHintPulse {
-  0%,100% { opacity: 0.45; transform: scaleX(0.97); }
-  50%      { opacity: 1;    transform: scaleX(1); }
+  0%,100% { opacity: 0.6; transform: scaleX(0.98); }
+  50%      { opacity: 1;   transform: scaleX(1); }
 }
 
 /* ==========================================================================
-   14. SCROLL MARGIN FOR FIXED NAVBAR
+   9. SCROLL MARGIN FOR FIXED NAVBAR
    ========================================================================== */
 [id],
 h2[id], h3[id], h4[id], h5[id],
 .notes-section[id],
 section[id] {
   scroll-margin-top: calc(var(--nav-height, 4.25rem) + 1.5rem);
-}
-
-/* ==========================================================================
-   15. LIGHT THEME OVERRIDES
-   ========================================================================== */
-[data-theme="light"] html {
-  scrollbar-color: var(--sb-thumb-light) var(--sb-track-light);
-}
-[data-theme="light"] html::-webkit-scrollbar-track { background: var(--sb-track-light); }
-[data-theme="light"] html::-webkit-scrollbar-thumb { background: var(--sb-thumb-light); }
-[data-theme="light"] html::-webkit-scrollbar-thumb:hover { background: var(--sb-hover-light); }
-
-[data-theme="light"] .notes-toc-sidebar::-webkit-scrollbar-thumb,
-[data-theme="light"] .notes-sidebar::-webkit-scrollbar-thumb,
-[data-theme="light"] .cbt-palette-pane::-webkit-scrollbar-thumb {
-  background: var(--sb-thumb-light);
-}
-[data-theme="light"] .notes-toc-sidebar::-webkit-scrollbar-thumb:hover,
-[data-theme="light"] .notes-sidebar::-webkit-scrollbar-thumb:hover {
-  background: var(--sb-hover-light);
-}
-
-[data-theme="light"] pre::-webkit-scrollbar-track,
-[data-theme="light"] .notes-code::-webkit-scrollbar-track,
-[data-theme="light"] .diagram-box::-webkit-scrollbar-track {
-  background: rgba(0,0,0,0.04);
-}
-[data-theme="light"] pre::-webkit-scrollbar-thumb,
-[data-theme="light"] .notes-code::-webkit-scrollbar-thumb,
-[data-theme="light"] .diagram-box::-webkit-scrollbar-thumb {
-  background: rgba(99,102,241,0.35);
-}
-[data-theme="light"] pre::-webkit-scrollbar-thumb:hover,
-[data-theme="light"] .notes-code::-webkit-scrollbar-thumb:hover {
-  background: rgba(99,102,241,0.65);
-}
-
-[data-theme="light"] .table-responsive-wrapper::-webkit-scrollbar-track {
-  background: rgba(0,0,0,0.04);
-}
-
-[data-theme="light"] .scroll-x-wrap::after {
-  background: linear-gradient(to right, transparent, rgba(248,250,252,0.9));
-}
-[data-theme="light"] .scroll-y-wrap::after {
-  background: linear-gradient(to bottom, transparent, rgba(241,245,249,0.92));
-}
-
-/* ==========================================================================
-   16. UTILITY CLASSES
-   ========================================================================== */
-.overflow-x-scroll {
-  overflow-x: auto;
-  overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-color: var(--sb-thumb-dark) transparent;
-  scrollbar-width: thin;
-}
-.overflow-x-scroll::-webkit-scrollbar { height: var(--sb-width-thin); }
-.overflow-x-scroll::-webkit-scrollbar-track { background: transparent; }
-.overflow-x-scroll::-webkit-scrollbar-thumb {
-  background: var(--sb-thumb-dark);
-  border-radius: var(--sb-radius);
-}
-
-.overflow-y-scroll {
-  overflow-y: auto;
-  overflow-x: hidden;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-color: var(--sb-thumb-dark) transparent;
-  scrollbar-width: thin;
-}
-.overflow-y-scroll::-webkit-scrollbar { width: var(--sb-width-thin); }
-.overflow-y-scroll::-webkit-scrollbar-track { background: transparent; }
-.overflow-y-scroll::-webkit-scrollbar-thumb {
-  background: var(--sb-thumb-dark);
-  border-radius: var(--sb-radius);
-}
-
-.overflow-auto {
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-color: var(--sb-thumb-dark) transparent;
-  scrollbar-width: thin;
-}
-.overflow-auto::-webkit-scrollbar { width: var(--sb-width-thin); height: var(--sb-width-thin); }
-.overflow-auto::-webkit-scrollbar-track { background: transparent; }
-.overflow-auto::-webkit-scrollbar-thumb {
-  background: var(--sb-thumb-dark);
-  border-radius: var(--sb-radius);
 }

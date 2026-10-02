@@ -103,13 +103,13 @@
                 </div>
               ` : `
                 <div class="badge badge-topic">
-                  <span>${isPractice ? '📖 Instant Feedback' : '🔍 Review Mode'}</span>
+                  <span>${isPractice ? 'Instant Feedback' : 'Review Mode'}</span>
                 </div>
               `}
 
               <!-- Mobile Palette Toggle -->
               <button type="button" class="cbt-palette-drawer-toggle" id="btn-palette-toggle" aria-label="Toggle Question Palette">
-                <span>📋 Palette</span>
+                <span>Palette</span>
               </button>
             </div>
           </header>
@@ -165,7 +165,7 @@
             <aside class="cbt-palette-pane" id="cbt-palette-pane" role="complementary" aria-label="Question Navigation Palette">
               <!-- Mobile Drawer Header with Close Button -->
               <div class="cbt-palette-drawer-header">
-                <span class="cbt-palette-drawer-title">📋 Question Palette</span>
+                <span class="cbt-palette-drawer-title">Question Palette</span>
                 <button type="button" class="cbt-palette-close-btn" id="btn-close-palette-drawer" aria-label="Close Question Palette">✕</button>
               </div>
 
@@ -300,7 +300,7 @@
       const isMarked = !!this.markedForReview[this.currentIndex];
       const reviewBtnText = document.getElementById('btn-cbt-review-text');
       if (reviewBtnText) {
-        reviewBtnText.textContent = isMarked ? '✓ Marked for Review' : '⭐ Mark for Review';
+        reviewBtnText.textContent = isMarked ? 'Marked for Review' : 'Mark for Review';
       }
 
       // Format code block if present

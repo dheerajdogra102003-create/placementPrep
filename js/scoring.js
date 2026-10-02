@@ -112,9 +112,9 @@
       }
 
       const tiers = [
-        { key: 'foundational', icon: '🟢', name: 'Foundational Recall', target: '40% (~45s/Q)', color: 'var(--brand-emerald)', desc: 'Direct conceptual recall & syntax foundations' },
-        { key: 'application', icon: '🟡', name: 'Application & Problem-Solving', target: '40% (~60s/Q)', color: 'var(--brand-amber)', desc: 'Practical scenarios, commands & moderate logic' },
-        { key: 'highDifficulty', icon: '🔴', name: 'High-Difficulty Multi-Step', target: '20% (~90s/Q)', color: 'var(--brand-rose)', desc: 'Multi-step tracing, edge cases & deep complexity' }
+        { key: 'foundational', icon: '', name: 'Foundational Recall', target: '40% (~45s/Q)', color: 'var(--brand-emerald)', desc: 'Direct conceptual recall & syntax foundations' },
+        { key: 'application', icon: '', name: 'Application & Problem-Solving', target: '40% (~60s/Q)', color: 'var(--brand-amber)', desc: 'Practical scenarios, commands & moderate logic' },
+        { key: 'highDifficulty', icon: '', name: 'High-Difficulty Multi-Step', target: '20% (~90s/Q)', color: 'var(--brand-rose)', desc: 'Multi-step tracing, edge cases & deep complexity' }
       ];
 
       let tierCardsHtml = '';
@@ -204,7 +204,7 @@
             <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 1.5rem; text-align: left; margin-bottom: 2rem;">
               <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.25rem;">
                 <h4 style="margin: 0; font-size: 1.05rem; color: var(--text-primary); display: flex; align-items: center; gap: 0.5rem;">
-                  <span>🎯 Calibrated 40% - 40% - 20% Tier Breakdown</span>
+                  <span>Calibrated 40% - 40% - 20% Tier Breakdown</span>
                 </h4>
                 <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.82rem; color: var(--text-muted);">
                   <span>Speed Diagnostic:</span>
@@ -216,27 +216,27 @@
                 ${tierCardsHtml}
               </div>
               <div style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; border-top: 1px solid var(--border-subtle); padding-top: 0.75rem;">
-                💡 <strong>Exam Pacing Calibration:</strong> Foundational questions test instantaneous recall (~45s); Application tests syntax &amp; parameter reasoning (~60s); High-Difficulty questions test multi-step tracing &amp; edge conditions (~90s).
+                <strong>Exam Pacing Calibration:</strong> Foundational questions test instantaneous recall (~45s); Application tests syntax &amp; parameter reasoning (~60s); High-Difficulty questions test multi-step tracing &amp; edge conditions (~90s).
               </div>
             </div>
 
             <!-- Topic Mastery Breakdown -->
             <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 1.5rem; text-align: left; margin-bottom: 2rem;">
               <h4 style="margin-bottom: 1.25rem; font-size: 1rem; color: var(--text-primary); display: flex; align-items: center; gap: 0.5rem;">
-                <span>📊 Topic Mastery Breakdown</span>
+                <span>Topic Mastery Breakdown</span>
               </h4>
               ${topicRows || '<p style="color: var(--text-muted); font-size: 0.9rem;">No topic breakdown available.</p>'}
             </div>
 
             <div class="result-actions">
               <button type="button" class="btn btn-primary btn-lg" id="btn-result-review">
-                <span>🔍 Review All Questions &amp; Solutions</span>
+                <span>Review All Questions &amp; Solutions</span>
               </button>
               <button type="button" class="btn btn-secondary btn-lg" id="btn-result-retake">
-                <span>🔄 Retake Speed Drill</span>
+                <span>Retake Speed Drill</span>
               </button>
               <button type="button" class="btn btn-outline btn-lg" id="btn-result-home">
-                <span>🏠 Return to Dashboard</span>
+                <span>Return to Dashboard</span>
               </button>
             </div>
           </div>

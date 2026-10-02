@@ -35,11 +35,11 @@
         const isShown = answer.classList.contains('show');
         if (isShown) {
           answer.classList.remove('show');
-          this.innerHTML = '<span>💡 Reveal Verified Answer &amp; Placement Trap</span>';
+          this.innerHTML = '<span>Reveal Verified Answer &amp; Placement Trap</span>';
           this.setAttribute('aria-expanded', 'false');
         } else {
           answer.classList.add('show');
-          this.innerHTML = '<span>🔒 Hide Answer</span>';
+          this.innerHTML = '<span>Hide Answer</span>';
           this.setAttribute('aria-expanded', 'true');
         }
       });
@@ -265,7 +265,7 @@
       floatBtn.type = 'button';
       floatBtn.title = 'Expand Table of Contents (Alt + T)';
       floatBtn.setAttribute('aria-label', 'Expand Table of Contents');
-      floatBtn.innerHTML = '<span class="toc-float-icon">📑</span><span class="toc-float-text">Contents</span><span class="toc-float-arrow">▶</span><kbd class="toc-float-kbd">Alt+T</kbd>';
+      floatBtn.innerHTML = '<span class="toc-float-text">Contents</span><span class="toc-float-arrow">▶</span><kbd class="toc-float-kbd">Alt+T</kbd>';
       document.body.appendChild(floatBtn);
     }
 

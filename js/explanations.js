@@ -30,7 +30,7 @@
           wrongOptionsHtml = `
             <div class="explanation-section wrong-options">
               <div class="explanation-section-title">
-                <span>⚠️ Why Other Options Are Incorrect</span>
+                <span>Why Other Options Are Incorrect</span>
               </div>
               <div>${items}</div>
             </div>
@@ -43,7 +43,7 @@
         realWorldHtml = `
           <div class="explanation-section real-world">
             <div class="explanation-section-title">
-              <span>🌐 Real-World IT & Enterprise Context</span>
+              <span>Real-World IT & Enterprise Context</span>
             </div>
             <p>${question.realWorldApplication}</p>
           </div>
@@ -56,7 +56,7 @@
         trapHtml = `
           <div class="explanation-section placement-trap">
             <div class="explanation-section-title">
-              <span>🎯 MNC Placement Trap & Interview Tip</span>
+              <span>MNC Placement Trap & Interview Tip</span>
             </div>
             <p>${tipText}</p>
           </div>
@@ -67,11 +67,11 @@
         <div class="explanation-card">
           <div class="explanation-header">
             <div class="explanation-title">
-              <span>💡 Conceptual Analysis & Solution</span>
+              <span>Conceptual Analysis & Solution</span>
             </div>
             <div>
               <span class="badge ${isCorrect ? 'badge-easy' : 'badge-hard'}">
-                ${isCorrect ? '✓ Correct Answer' : '✗ Incorrect Selection'}
+                ${isCorrect ? 'Correct Answer' : 'Incorrect Selection'}
               </span>
             </div>
           </div>

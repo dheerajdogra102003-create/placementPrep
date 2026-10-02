@@ -209,14 +209,14 @@
               </div>
 
               <a href="#modules" class="btn btn-outline btn-sm" style="flex-shrink: 0;">
-                <span>✕ Exit to Modules</span>
+                <span>Exit to Modules</span>
               </a>
             </div>
 
             <!-- Question Count & Speed Drill Selector -->
             <div style="margin-bottom: 1.5rem;">
               <label style="font-size: 0.9rem; font-weight: 700; color: var(--text-primary); display: flex; align-items: center; gap: 0.5rem;">
-                <span>🎯 Select Module Cap &amp; Pacing Target:</span>
+                <span>Select Module Cap &amp; Pacing Target:</span>
                 <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 500;">(Strictly 30–40 questions)</span>
               </label>
               
@@ -243,12 +243,12 @@
             <!-- Calibrated 40-40-20 Content Distribution Cards -->
             <div style="margin-bottom: 1.5rem;">
               <div style="font-size: 0.9rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem;">
-                📊 Calibrated 40% - 40% - 20% Content Blueprint:
+                Calibrated 40% - 40% - 20% Content Blueprint:
               </div>
               <div class="cbt-blueprint-grid">
                 <div class="cbt-blueprint-item" style="border-left: 3px solid var(--brand-emerald);">
                   <div style="font-weight: 700; font-size: 0.92rem; color: var(--text-primary); margin-bottom: 0.25rem;">
-                    🟢 40% Foundational Recall
+                    40% Foundational Recall
                   </div>
                   <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.75rem; line-height: 1.4;">
                     Direct conceptual recall, core definitions &amp; basic syntax.
@@ -261,7 +261,7 @@
 
                 <div class="cbt-blueprint-item" style="border-left: 3px solid var(--brand-amber);">
                   <div style="font-weight: 700; font-size: 0.92rem; color: var(--text-primary); margin-bottom: 0.25rem;">
-                    🟡 40% Application &amp; Problem
+                    40% Application &amp; Problem
                   </div>
                   <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.75rem; line-height: 1.4;">
                     Practical scenarios, moderate tracing, queries &amp; logic.
@@ -274,7 +274,7 @@
 
                 <div class="cbt-blueprint-item" style="border-left: 3px solid var(--brand-rose);">
                   <div style="font-weight: 700; font-size: 0.92rem; color: var(--text-primary); margin-bottom: 0.25rem;">
-                    🔴 20% High-Difficulty Multi-Step
+                    20% High-Difficulty Multi-Step
                   </div>
                   <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.75rem; line-height: 1.4;">
                     Deep recursion, scope traps, complex joins &amp; edge cases.
@@ -290,7 +290,7 @@
             <!-- Rules & Anti-Spoiler Notification Strip -->
             <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 1.15rem; margin-bottom: 2rem;">
               <div style="font-weight: 700; font-size: 0.85rem; color: var(--text-primary); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.4rem;">
-                <span>🔒 Strict Examination Rules &amp; Anti-Spoiler Safeguards:</span>
+                <span>Strict Examination Rules &amp; Anti-Spoiler Safeguards:</span>
               </div>
               <ul style="margin: 0; padding-left: 1.25rem; font-size: 0.83rem; color: var(--text-secondary); line-height: 1.6;">
                 <li><strong>Anti-Spoiler Protocol:</strong> Answers, hints, and explanations remain locked until exam submission.</li>
@@ -309,10 +309,10 @@
 
               <div style="display: flex; gap: 0.75rem;">
                 <a href="#practice/${modMeta.id}" class="btn btn-outline" title="Practice freely with instant solutions">
-                  <span>📖 Learn Mode</span>
+                  <span>Learn Mode</span>
                 </a>
                 <button type="button" class="btn btn-primary btn-lg" id="btn-start-cbt-exam">
-                  <span>🚀 Start Timed Speed Drill →</span>
+                  <span>Start Timed Speed Drill →</span>
                 </button>
               </div>
             </div>
@@ -369,10 +369,10 @@
 
             <div class="hero-cta-group">
               <a href="#modules" class="btn btn-primary btn-lg">
-                <span>⚡ Explore All 12 Modules</span>
+                <span>Explore All 12 Modules</span>
               </a>
               <a href="notes.html" class="btn-glow-rgb btn-lg">
-                <span>📚 Master Notes Hub (All Subjects)</span>
+                <span>Master Notes Hub (All Subjects)</span>
               </a>
               <button type="button" class="btn btn-glass btn-lg" id="btn-quick-cbt">
                 <span>⏱️ Launch Timed Mock Test</span>
@@ -470,7 +470,7 @@
           <div class="container">
             <div style="text-align: center; max-width: 800px; margin: 0 auto 2.5rem;">
               <span class="badge-rgb" style="font-size: 0.85rem; padding: 0.35rem 1rem; border-radius: 999px; display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
-                <span>✨ MNC INTERVIEW & PLACEMENT MASTER NOTES</span>
+                <span>MNC INTERVIEW & PLACEMENT MASTER NOTES</span>
               </span>
               <h2 style="font-size: 2.25rem; font-weight: 800; margin-bottom: 0.75rem; letter-spacing: -0.02em; color: var(--text-primary);">
                 Deep-Dive Subject Notes &amp; Visual Cheat Sheets
@@ -487,7 +487,7 @@
               <div class="rgb-card-wrapper">
                 <div class="rgb-card-inner" style="padding: 1.75rem;">
                   <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem;">
-                    <span style="font-size: 2.5rem; line-height: 1;">🗄️</span>
+                    
                     <span style="background: rgba(59,130,246,0.15); color: #60a5fa; border: 1px solid rgba(59,130,246,0.3); padding: 0.2rem 0.6rem; border-radius: 6px; font-size: 0.75rem; font-weight: 700;">117 Secs • 50 MCQs</span>
                   </div>
                   <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; color: #f8fafc;">DBMS &amp; SQL Masterclass</h3>
@@ -504,7 +504,7 @@
               <div class="rgb-card-wrapper">
                 <div class="rgb-card-inner" style="padding: 1.75rem;">
                   <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem;">
-                    <span style="font-size: 2.5rem; line-height: 1;">☁️</span>
+                    
                     <span style="background: rgba(56,189,248,0.15); color: #38bdf8; border: 1px solid rgba(56,189,248,0.3); padding: 0.2rem 0.6rem; border-radius: 6px; font-size: 0.75rem; font-weight: 700;">80 Points • 60 MCQs</span>
                   </div>
                   <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; color: #f8fafc;">Cloud Computing</h3>
@@ -521,7 +521,7 @@
               <div class="rgb-card-wrapper">
                 <div class="rgb-card-inner" style="padding: 1.75rem;">
                   <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem;">
-                    <span style="font-size: 2.5rem; line-height: 1;">🐧</span>
+                    
                     <span style="background: rgba(245,158,11,0.15); color: #f59e0b; border: 1px solid rgba(245,158,11,0.3); padding: 0.2rem 0.6rem; border-radius: 6px; font-size: 0.75rem; font-weight: 700;">Shell • Permissions</span>
                   </div>
                   <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; color: #f8fafc;">Linux &amp; Command Prompt</h3>
@@ -538,7 +538,7 @@
               <div class="rgb-card-wrapper">
                 <div class="rgb-card-inner" style="padding: 1.75rem;">
                   <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem;">
-                    <span style="font-size: 2.5rem; line-height: 1;">🐙</span>
+                    
                     <span style="background: rgba(239,68,68,0.15); color: #ef4444; border: 1px solid rgba(239,68,68,0.3); padding: 0.2rem 0.6rem; border-radius: 6px; font-size: 0.75rem; font-weight: 700;">VCS • Branching</span>
                   </div>
                   <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; color: #f8fafc;">Git &amp; GitHub</h3>
@@ -555,7 +555,7 @@
               <div class="rgb-card-wrapper">
                 <div class="rgb-card-inner" style="padding: 1.75rem;">
                   <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem;">
-                    <span style="font-size: 2.5rem; line-height: 1;">🤖</span>
+                    
                     <span style="background: rgba(168,85,247,0.15); color: #c084fc; border: 1px solid rgba(168,85,247,0.3); padding: 0.2rem 0.6rem; border-radius: 6px; font-size: 0.75rem; font-weight: 700;">GenAI • LLMs • ML</span>
                   </div>
                   <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; color: #f8fafc;">AI + ML + Deep Learning</h3>
@@ -572,7 +572,7 @@
               <div class="rgb-card-wrapper">
                 <div class="rgb-card-inner" style="padding: 1.75rem;">
                   <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem;">
-                    <span style="font-size: 2.5rem; line-height: 1;">🌐</span>
+                    
                     <span style="background: rgba(16,185,129,0.15); color: #34d399; border: 1px solid rgba(16,185,129,0.3); padding: 0.2rem 0.6rem; border-radius: 6px; font-size: 0.75rem; font-weight: 700;">97 Secs • 90 MCQs</span>
                   </div>
                   <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; color: #f8fafc;">Networking &amp; Security</h3>
@@ -589,7 +589,7 @@
 
             <div style="text-align: center; margin-top: 1.5rem;">
               <a href="notes.html" class="btn-glow-rgb" style="padding: 0.75rem 2rem; font-size: 1rem;">
-                <span>📚 Browse All Subject Notes in Master Hub →</span>
+                <span>Browse All Subject Notes in Master Hub →</span>
               </a>
             </div>
           </div>
@@ -618,7 +618,7 @@
                 </p>
 
                 <div class="cbt-feature-point">
-                  <div class="cbt-feature-point-icon">📋</div>
+                  <div class="cbt-feature-point-icon"></div>
                   <div>
                     <h4 style="font-size: 1.05rem; margin-bottom: 0.25rem;">5-State Question Status Palette</h4>
                     <p style="font-size: 0.9rem; color: var(--text-muted);">
@@ -638,7 +638,7 @@
                 </div>
 
                 <div class="cbt-feature-point">
-                  <div class="cbt-feature-point-icon">📊</div>
+                  <div class="cbt-feature-point-icon"></div>
                   <div>
                     <h4 style="font-size: 1.05rem; margin-bottom: 0.25rem;">Granular Diagnostic Scorecard</h4>
                     <p style="font-size: 0.9rem; color: var(--text-muted);">
@@ -755,7 +755,7 @@
       if (modulesList.length === 0) {
         container.innerHTML = `
           <div style="grid-column: 1 / -1; text-align: center; padding: 4.5rem 1rem; color: var(--text-muted);">
-            <div style="font-size: 3.5rem; margin-bottom: 1rem;">🔍</div>
+            <div style="font-size: 3.5rem; margin-bottom: 1rem;"></div>
             <h3>No modules matched your search criteria</h3>
             <p>Try searching for a different keyword or reset filters.</p>
           </div>
@@ -789,11 +789,11 @@
               <div class="module-card-actions">
                 ${mod.notesUrl ? `
                   <a href="${mod.notesUrl}" class="btn btn-outline btn-sm" title="Comprehensive Placement Notes" style="border-color: var(--brand-cyan); color: var(--brand-cyan);">
-                    <span>📝 Notes</span>
+                    <span>Notes</span>
                   </a>
                 ` : ''}
                 <a href="#practice/${mod.id}" class="btn btn-secondary btn-sm" title="Practice with instant solutions">
-                  <span>📖 Practice</span>
+                  <span>Practice</span>
                 </a>
                 <a href="#cbt/${mod.id}" class="btn btn-primary btn-sm" title="Launch calibrated 30-40 question speed drill">
                   <span>⏱️ Timed CBT (30-40 Qs)</span>
