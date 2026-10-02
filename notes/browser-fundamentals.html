@@ -3508,7 +3508,11 @@ async function fetchUserProfile(userId) {
 
         </article>
       </div>
-    </main>
+          <!-- Mobile TOC Toggle Button -->
+      <button class="notes-toc-floating-btn" id="notes-toc-floating-btn" aria-label="Open Table of Contents">
+        <span>&#128209; Contents</span>
+      </button>
+</main>
 
     <!-- Footer -->
     <footer class="site-footer">
@@ -3628,5 +3632,60 @@ async function fetchUserProfile(userId) {
   <!-- Math Rendering: KaTeX engine + centralized renderer -->
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
   <script defer src="../js/math-render.js"></script>
-</body>
+
+  <script>
+    /* ── Mobile TOC Drawer ─────────────────────────────────── */
+    (function () {
+      var isMobile = window.matchMedia('(max-width: 768px)');
+      var sidebar = document.querySelector('.notes-toc-sidebar, .notes-sidebar');
+      var floatBtn = document.querySelector('.notes-toc-floating-btn');
+      if (!sidebar) return;
+
+      /* Create overlay */
+      var overlay = document.createElement('div');
+      overlay.className = 'notes-toc-overlay';
+      document.body.appendChild(overlay);
+
+      /* Create close button inside sidebar */
+      var closeBtn = document.createElement('button');
+      closeBtn.className = 'notes-toc-mobile-close-btn';
+      closeBtn.setAttribute('aria-label', 'Close Table of Contents');
+      closeBtn.innerHTML = 'x';
+      sidebar.insertBefore(closeBtn, sidebar.firstChild);
+
+      function openTOC() {
+        sidebar.classList.add('mobile-toc-open');
+        overlay.classList.add('active');
+        document.body.classList.add('toc-mobile-open');
+        closeBtn.focus();
+      }
+
+      function closeTOC() {
+        sidebar.classList.remove('mobile-toc-open');
+        overlay.classList.remove('active');
+        document.body.classList.remove('toc-mobile-open');
+        if (floatBtn) floatBtn.focus();
+      }
+
+      if (floatBtn) {
+        floatBtn.addEventListener('click', function () {
+          if (isMobile.matches) openTOC();
+        });
+        floatBtn.innerHTML = '<span>Table of Contents</span>';
+      }
+
+      closeBtn.addEventListener('click', closeTOC);
+      overlay.addEventListener('click', closeTOC);
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && sidebar.classList.contains('mobile-toc-open')) closeTOC();
+      });
+
+      sidebar.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () {
+          if (isMobile.matches) closeTOC();
+        });
+      });
+    })();
+  </script></body>
 </html>
